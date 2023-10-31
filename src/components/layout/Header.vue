@@ -23,6 +23,7 @@
                         </svg>
                     </a>
                 </div>
+
                 <div class="ltr:mr-2 rtl:ml-2 hidden sm:block">
                     <ul class="flex items-center space-x-2 rtl:space-x-reverse dark:text-[#d0d2d6]">
                         <li>
@@ -42,6 +43,7 @@
                                 </svg>
                             </router-link>
                         </li>
+
                         <li>
                             <router-link
                                 to="/apps/todolist"
@@ -69,6 +71,7 @@
                                 </svg>
                             </router-link>
                         </li>
+
                         <li>
                             <router-link
                                 to="/apps/chat"
