@@ -1,6 +1,14 @@
 <template>
     <div>
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <ul class="flex space-x-2 rtl:space-x-reverse">
+            <li>
+                <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
+            </li>
+            <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+                <span>Tables</span>
+            </li>
+        </ul>
+        <div class="pt-5 grid grid-cols-1 xl:grid-cols-2 gap-6">
             <!-- Basic -->
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">

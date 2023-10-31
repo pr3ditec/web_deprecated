@@ -1,5 +1,7 @@
 <template>
-    <div>
-        <h1>Home</h1>
-    </div>
+    <ul class="flex space-x-2 rtl:space-x-reverse">
+        <li>
+            <a href="javascript:;" class="text-primary hover:underline">Home</a>
+        </li>
+    </ul>
 </template>

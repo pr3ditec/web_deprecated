@@ -931,7 +931,7 @@
 </template>
 <script lang="ts" setup>
     import { ref, computed } from 'vue';
-    import apexchart from 'vue3-apexcharts';
+    // import apexchart from 'vue3-apexcharts';
     import { useAppStore } from '@/stores/index';
     import { useMeta } from '@/composables/use-meta';
     useMeta({ title: 'Analytics Admin' });

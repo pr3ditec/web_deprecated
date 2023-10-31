@@ -4,9 +4,18 @@ import appSetting from '@/app-setting';
 
 import HomeView from '../views/index.vue';
 
+import TablesView from '../views/tables.vue';
+import AnalyticsView from '../views/analytics.vue';
+import FinanceView from '../views/finance.vue';
+import CryptoView from '../views/crypto.vue';
+
 const routes: RouteRecordRaw[] = [
     // dashboard
     { path: '/', name: 'home', component: HomeView },
+    { path: '/analytics', name: 'analytics', component: AnalyticsView },
+    { path: '/tables', name: 'tables', component: TablesView },
+    { path: '/finance', name: 'finance', component: FinanceView },
+    { path: '/crypto', name: 'crypto', component: CryptoView },
 ];
 
 const router = createRouter({
