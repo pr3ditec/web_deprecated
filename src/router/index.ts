@@ -43,7 +43,9 @@ router.beforeEach((to, from, next) => {
     }
     next(true);
 });
+
 router.afterEach((to, from, next) => {
     appSetting.changeAnimation();
 });
+
 export default router;

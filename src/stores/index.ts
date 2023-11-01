@@ -44,6 +44,7 @@ export const useAppStore = defineStore('app', {
             payload = payload || this.theme; // light|dark|system
             localStorage.setItem('theme', payload);
             this.theme = payload;
+
             if (payload == 'light') {
                 this.isDarkMode = false;
             } else if (payload == 'dark') {
@@ -101,7 +102,7 @@ export const useAppStore = defineStore('app', {
             i18n.global.locale.value = payload;
             localStorage.setItem('i18n_locale', payload);
             this.locale = payload;
-            if(this.locale?.toLowerCase() === 'ae') {
+            if (this.locale?.toLowerCase() === 'ae') {
                 this.toggleRTL('rtl');
             } else {
                 this.toggleRTL('ltr');
@@ -115,6 +116,11 @@ export const useAppStore = defineStore('app', {
             setTimeout(() => {
                 this.isShowMainLoader = false;
             }, 500);
+        },
+        toggleMobileMenu() {
+            if (window.innerWidth < 1024) {
+                this.toggleSidebar();
+            }
         },
     },
     getters: {},
