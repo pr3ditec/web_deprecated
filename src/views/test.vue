@@ -8,7 +8,7 @@
     <div class="mt-5">
         <select v-model="selectedUnidadesFederativas" class="form-select">
             <option value="">Selecione...</option>
-            <option v-for="estado in estados" :value="estado.id">{{ estado.nome }} - {{ estado.uf }}</option>
+            <option v-for="uf in unidadesFederativas" :value="uf.id">{{ uf.nome }} - {{ uf.uf }}</option>
         </select>
     </div>
 </template>
@@ -20,14 +20,14 @@ export default {
     data() {
         return {
             selectedUnidadesFederativas: '',
-            estados: [],
+            unidadesFederativas: [],
         };
     },
     mounted() {
         // Faça a requisição Ajax para obter os usuários
         axios.get('http://localhost:8001/unidades_federativas')
             .then((response) => {
-                this.estados = response.data.list;
+                this.unidadesFederativas = response.data.list;
                 console.log(this.estados);
             })
             .catch((error) => {

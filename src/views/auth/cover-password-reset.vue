@@ -106,7 +106,9 @@
                             </button>
                         </form>
                     </div>
-                    <p class="absolute bottom-6 w-full text-center dark:text-white">© {{ new Date().getFullYear() }}.VRISTO All Rights Reserved.</p>
+                    <p class="absolute bottom-6 w-full text-center dark:text-white">
+                        © {{ new Date().getFullYear() }}. Sauvi<span class="text-red-500">Tech</span>.
+                    </p>
                 </div>
             </div>
         </div>

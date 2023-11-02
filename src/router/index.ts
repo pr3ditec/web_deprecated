@@ -494,12 +494,6 @@ const routes: RouteRecordRaw[] = [
         component: () => import(/* webpackChunkName: "pages-knowledge-base" */ '../views/pages/knowledge-base.vue'),
     },
     {
-        path: '/pages/contact-us-boxed',
-        name: 'contact-us-boxed',
-        component: () => import(/* webpackChunkName: "pages-contact-us-boxed" */ '../views/pages/contact-us-boxed.vue'),
-        meta: { layout: 'auth' },
-    },
-    {
         path: '/pages/contact-us-cover',
         name: 'contact-us-cover',
         component: () => import(/* webpackChunkName: "pages-contact-us-cover" */ '../views/pages/contact-us-cover.vue'),
@@ -509,12 +503,6 @@ const routes: RouteRecordRaw[] = [
         path: '/pages/faq',
         name: 'faq',
         component: () => import(/* webpackChunkName: "pages-faq" */ '../views/pages/faq.vue'),
-    },
-    {
-        path: '/pages/coming-soon-boxed',
-        name: 'coming-soon-boxed',
-        component: () => import(/* webpackChunkName: "pages-coming-soon-boxed" */ '../views/pages/coming-soon-boxed.vue'),
-        meta: { layout: 'auth' },
     },
     {
         path: '/pages/coming-soon-cover',

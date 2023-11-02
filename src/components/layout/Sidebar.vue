@@ -62,7 +62,7 @@
                         wheelPropagation: false,
                     }" class="h-[calc(100vh-80px)] relative">
 
-                    <ul class="relative font-semibold space-y-0.5 p-4 py-0">
+                    <ul class="relative font-semibold space-y-0.5 p-4 py-0 mb-10">
                         <MenuDashboard />
 
                         <h2
@@ -1063,7 +1063,8 @@
                                     <span
                                         class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{{
                                             $t('documentation')
-                                        }}</span>
+                                        }}
+                                    </span>
                                 </div>
                             </a>
                         </li>
