@@ -3,13 +3,18 @@
         <div class="absolute inset-0">
             <img src="/assets/images/auth/bg-gradient.png" alt="image" class="h-full w-full object-cover" />
         </div>
+
         <div
             class="relative flex min-h-screen items-center justify-center bg-[url(/assets/images/auth/map.png)] bg-cover bg-center bg-no-repeat px-6 py-10 dark:bg-[#060818] sm:px-16">
+
             <img src="/assets/images/auth/coming-soon-object1.png" alt="image"
                 class="absolute left-0 top-1/2 h-full max-h-[893px] -translate-y-1/2" />
+
             <img src="/assets/images/auth/coming-soon-object2.png" alt="image"
                 class="absolute left-24 top-0 h-40 md:left-[30%]" />
+
             <img src="/assets/images/auth/coming-soon-object3.png" alt="image" class="absolute right-0 top-0 h-[300px]" />
+
             <img src="/assets/images/auth/polygon-object.svg" alt="image" class="absolute bottom-0 end-[28%]" />
 
             <div
@@ -19,10 +24,12 @@
                     <div
                         class="absolute inset-y-0 w-8 from-primary/10 via-transparent to-transparent ltr:-right-10 ltr:bg-gradient-to-r rtl:-left-10 rtl:bg-gradient-to-l xl:w-16 ltr:xl:-right-20 rtl:xl:-left-20">
                     </div>
+
                     <div class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg]">
                         <router-link to="/" class="w-48 block lg:w-72 ms-10">
                             <img src="/assets/images/logowtext.png" alt="Logo" class="w-full" />
                         </router-link>
+
                         <div class="mt-24 hidden w-full max-w-[430px] lg:block">
                             <img src="/assets/images/auth/login.svg" alt="Cover Image" class="w-full" />
                         </div>
@@ -35,9 +42,11 @@
                         <router-link to="/" class="w-8 block lg:hidden">
                             <img src="/assets/images/logo.svg" alt="Logo" class="mx-auto w-10" />
                         </router-link>
+
                         <div class="dropdown ms-auto w-max">
                             <Popper :placement="store.rtlClass === 'rtl' ? 'bottom-start' : 'bottom-end'"
                                 offsetDistance="8">
+
                                 <button type="button"
                                     class="flex items-center gap-2.5 rounded-lg border border-white-dark/30 bg-white px-2 py-1.5 text-white-dark hover:border-primary hover:text-primary dark:bg-black">
                                     <div>
@@ -101,6 +110,7 @@
                                     </span>
                                 </div>
                             </div>
+
                             <div>
                                 <label for="Password">Password</label>
                                 <div class="relative text-white-dark">
@@ -127,12 +137,14 @@
                                     </span>
                                 </div>
                             </div>
+
                             <div>
                                 <label class="flex cursor-pointer items-center">
                                     <input type="checkbox" class="form-checkbox bg-white dark:bg-black" />
                                     <span class="text-white-dark">Subscribe to weekly newsletter</span>
                                 </label>
                             </div>
+
                             <button type="submit"
                                 class="btn btn-gradient !mt-6 w-full border-0 uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]">
                                 Sign in
@@ -143,7 +155,9 @@
                             <span
                                 class="absolute inset-x-0 top-1/2 h-px w-full -translate-y-1/2 bg-white-light dark:bg-white-dark"></span>
                             <span
-                                class="relative bg-white px-2 font-bold uppercase text-white-dark dark:bg-dark dark:text-white-light">or</span>
+                                class="relative bg-white px-2 font-bold uppercase text-white-dark dark:bg-dark dark:text-white-light">
+                                or
+                            </span>
                         </div>
 
                         <div class="mb-10 md:mb-[60px]">
@@ -212,14 +226,19 @@
 
                         <div class="text-center dark:text-white">
                             Don't have an account ?
+
                             <router-link to="/auth/cover-register"
                                 class="uppercase text-primary underline transition hover:text-black dark:hover:text-white">
                                 SIGN UP
                             </router-link>
                         </div>
                     </div>
-                    <p class="absolute bottom-6 w-full text-center dark:text-white">© {{ new Date().getFullYear() }}.
-                        Sauvvi<span class="text-red-500">Tech</span> All Rights Reserved.</p>
+
+                    <p class="absolute bottom-6 w-full text-center dark:text-white">
+                        Sauvvi<span class="text-red-500">Tech</span>
+                        <br>
+                        {{ new Date().getFullYear() }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -233,15 +252,19 @@ import appSetting from '@/app-setting';
 import { useAppStore } from '@/stores/index';
 import { useRouter } from 'vue-router';
 import { useMeta } from '@/composables/use-meta';
+
 useMeta({ title: 'Login Cover' });
+
 const router = useRouter();
 const store = useAppStore();
+
 // multi language
 const i18n = reactive(useI18n());
 const changeLanguage = (item: any) => {
     i18n.locale = item.code;
     appSetting.toggleLanguage(item);
 };
+
 const currentFlag = computed(() => {
     return `/assets/images/flags/${i18n.locale.toUpperCase()}.svg`;
 });
