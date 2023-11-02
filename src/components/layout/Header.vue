@@ -4,7 +4,7 @@
             <div class="relative bg-white flex w-full items-center px-5 py-2.5 dark:bg-[#0e1726]">
                 <div class="horizontal-logo flex lg:hidden justify-between items-center ltr:mr-2 rtl:ml-2">
                     <router-link to="/" class="main-logo flex items-center shrink-0">
-                        <img class="w-8 ltr:-ml-1 rtl:-mr-1 inline" src="src/assets/images/logo.png" alt="" />
+                        <img class="w-8 ltr:-ml-1 rtl:-mr-1 inline" src="/assets/images/logo.png" alt="" />
                         <span
                             class="text-2xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle hidden md:inline dark:text-white-light transition-all duration-300">
                             Sauvvi
@@ -390,7 +390,7 @@
                             class="!block">
                             <button type="button" class="relative group block">
                                 <img class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
-                                    src="/assets/images/user-profile.jpeg" alt="" />
+                                    src="/assets/images/logo.png" alt="" />
                             </button>
                             <template #content="{ close }">
                                 <ul
@@ -399,15 +399,16 @@
                                         <div class="flex items-center px-4 py-4">
                                             <div class="flex-none">
                                                 <img class="rounded-md w-10 h-10 object-cover"
-                                                    src="/assets/images/user-profile.jpeg" alt="" />
+                                                    src="/assets/images/logo.png" alt="" />
                                             </div>
-                                            <div class="ltr:pl-4 rtl:pr-4 truncate">
+                                            <div class="ltr:pl-1 rtl:pr-1 truncate">
                                                 <h4 class="text-base">
-                                                    John Doe<span
-                                                        class="text-xs bg-success-light rounded text-success px-1 ltr:ml-2 rtl:ml-2">Pro</span>
+                                                    Sauvvi Admin
+                                                    <span
+                                                        class="text-xs bg-success-light rounded text-success px-1 ltr:ml-1 rtl:ml-1">Adm</span>
                                                 </h4>
                                                 <a class="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white"
-                                                    href="javascript:;">johndoe@gmail.com</a>
+                                                    href="javascript:;">admin@sauvvitech.com</a>
                                             </div>
                                         </div>
                                     </li>
@@ -421,7 +422,7 @@
                                                     stroke="currentColor" stroke-width="1.5" />
                                             </svg>
 
-                                            Profile
+                                            {{ $t('profile') }}
                                         </router-link>
                                     </li>
                                     <li>
@@ -436,7 +437,7 @@
                                                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                             </svg>
 
-                                            Inbox
+                                            {{ $t('mailbox') }}
                                         </router-link>
                                     </li>
                                     <li>
@@ -463,7 +464,7 @@
                                                 </g>
                                             </svg>
 
-                                            Lock Screen
+                                            {{ $t('lock_screen') }}
                                         </router-link>
                                     </li>
                                     <li class="border-t border-white-light dark:border-white-light/10">
@@ -478,7 +479,7 @@
                                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
 
-                                            Sign Out
+                                            {{ $t('sign_out') }}
                                         </router-link>
                                     </li>
                                 </ul>
@@ -647,6 +648,7 @@
                             </svg>
                         </div>
                     </a>
+
                     <ul class="sub-menu">
                         <li>
                             <router-link to="/components/tabs">{{ $t('tabs') }}</router-link>
@@ -692,6 +694,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="menu nav-item relative">
                     <a href="javascript:;" class="nav-link">
                         <div class="flex items-center">
@@ -714,6 +717,7 @@
                             </svg>
                         </div>
                     </a>
+
                     <ul class="sub-menu">
                         <li>
                             <router-link to="/elements/alerts">{{ $t('alerts') }}</router-link>
@@ -771,6 +775,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="menu nav-item relative">
                     <a href="javascript:;" class="nav-link">
                         <div class="flex items-center">
@@ -799,6 +804,7 @@
                             </svg>
                         </div>
                     </a>
+
                     <ul class="sub-menu">
                         <li>
                             <router-link to="/tables">{{ $t('tables') }}</router-link>
@@ -861,6 +867,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="menu nav-item relative">
                     <a href="javascript:;" class="nav-link">
                         <div class="flex items-center">
@@ -889,6 +896,7 @@
                             </svg>
                         </div>
                     </a>
+
                     <ul class="sub-menu">
                         <li>
                             <router-link to="/forms/basic">{{ $t('basic') }}</router-link>
@@ -937,6 +945,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="menu nav-item relative">
                     <a href="javascript:;" class="nav-link">
                         <div class="flex items-center">
@@ -965,6 +974,7 @@
                             </svg>
                         </div>
                     </a>
+
                     <ul class="sub-menu">
                         <li class="relative">
                             <a href="javascript:;">{{ $t('users') }}
@@ -1187,7 +1197,7 @@ const notifications = ref([
     {
         id: 1,
         profile: 'user-profile.jpeg',
-        message: '<strong class="text-sm mr-1">John Doe</strong>invite you to <strong>Prototyping</strong>',
+        message: '<strong class="text-sm mr-1">Sauvvi Admin</strong>invite you to <strong>Prototyping</strong>',
         time: '45 min ago',
     },
     {

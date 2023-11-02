@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-between items-center px-4 py-3">
         <router-link to="/" class="main-logo flex items-center shrink-0">
-            <img class="w-8 ml-[5px] flex-none" src="/src/assets/images/logo.png" alt="" />
+            <img class="w-8 ml-[5px] flex-none" src="/assets/images/logo.png" alt="" />
             <span class="text-2xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">
                 Sauvvi<span class="text-red-500">Tech</span>
             </span>

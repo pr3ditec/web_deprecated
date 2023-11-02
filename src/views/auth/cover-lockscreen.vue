@@ -5,12 +5,17 @@
         </div>
         <div
             class="relative flex min-h-screen items-center justify-center bg-[url(/assets/images/auth/map.png)] bg-cover bg-center bg-no-repeat px-6 py-10 dark:bg-[#060818] sm:px-16">
+
             <img src="/assets/images/auth/coming-soon-object1.png" alt="image"
                 class="absolute left-0 top-1/2 h-full max-h-[893px] -translate-y-1/2" />
+
             <img src="/assets/images/auth/coming-soon-object2.png" alt="image"
                 class="absolute left-24 top-0 h-40 md:left-[30%]" />
+
             <img src="/assets/images/auth/coming-soon-object3.png" alt="image" class="absolute right-0 top-0 h-[300px]" />
+
             <img src="/assets/images/auth/polygon-object.svg" alt="image" class="absolute bottom-0 end-[28%]" />
+
             <div
                 class="relative flex w-full max-w-[1502px] flex-col justify-between overflow-hidden rounded-md bg-white/60 backdrop-blur-lg dark:bg-black/50 lg:min-h-[758px] lg:flex-row lg:gap-10 xl:gap-0">
                 <div
@@ -20,13 +25,14 @@
                     </div>
                     <div class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg]">
                         <router-link to="/" class="w-48 block lg:w-72 ms-10">
-                            <img src="/assets/images/auth/logo-white.svg" alt="Logo" class="w-full" />
+                            <img src="/assets/images/logowtext.png" alt="Logo" class="w-full" />
                         </router-link>
                         <div class="mt-24 hidden w-full max-w-[430px] lg:block">
                             <img src="/assets/images/auth/unlock.svg" alt="Cover Image" class="w-full" />
                         </div>
                     </div>
                 </div>
+
                 <div
                     class="relative flex w-full flex-col items-center justify-center gap-6 px-4 pb-16 pt-6 sm:px-6 lg:max-w-[667px]">
                     <div class="flex w-full max-w-[440px] items-center gap-2 lg:absolute lg:end-6 lg:top-6 lg:max-w-full">
@@ -133,8 +139,10 @@ import { useAppStore } from '@/stores/index';
 import { useRouter } from 'vue-router';
 import { useMeta } from '@/composables/use-meta';
 useMeta({ title: 'Lockscreen Cover' });
+
 const router = useRouter();
 const store = useAppStore();
+
 // multi language
 const i18n = reactive(useI18n());
 const changeLanguage = (item: any) => {
