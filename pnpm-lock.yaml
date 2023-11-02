@@ -6,28 +6,28 @@ settings:
 
 dependencies:
   '@vueuse/head':
-    specifier: ^0.9.7
+    specifier: ^0.9.8
     version: 0.9.8(vue@3.3.7)
   axios:
     specifier: ^1.6.0
     version: 1.6.0
   pinia:
-    specifier: ^2.0.22
+    specifier: ^2.1.7
     version: 2.1.7(typescript@4.9.5)(vue@3.3.7)
   vue:
-    specifier: ^3.2.37
+    specifier: ^3.3.7
     version: 3.3.7(typescript@4.9.5)
   vue-height-collapsible:
     specifier: ^0.1.1
     version: 0.1.1(vue@3.3.7)
   vue-i18n:
-    specifier: ^9.2.2
+    specifier: ^9.6.2
     version: 9.6.2(vue@3.3.7)
   vue-router:
-    specifier: ^4.1.5
+    specifier: ^4.2.5
     version: 4.2.5(vue@3.3.7)
   vue3-perfect-scrollbar:
-    specifier: ^1.6.0
+    specifier: ^1.6.1
     version: 1.6.1(postcss@8.4.31)
   vue3-popper:
     specifier: ^1.5.0
@@ -41,31 +41,31 @@ devDependencies:
     specifier: ^3.1.9
     version: 3.1.9(rollup@2.79.1)
   '@tailwindcss/forms':
-    specifier: ^0.5.3
+    specifier: ^0.5.6
     version: 0.5.6(tailwindcss@3.3.5)
   '@tailwindcss/typography':
-    specifier: ^0.5.7
+    specifier: ^0.5.10
     version: 0.5.10(tailwindcss@3.3.5)
   '@vitejs/plugin-vue':
-    specifier: ^3.1.0
+    specifier: ^3.2.0
     version: 3.2.0(vite@3.2.7)(vue@3.3.7)
   autoprefixer:
-    specifier: ^10.4.12
+    specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.31)
   postcss:
-    specifier: ^8.4.17
+    specifier: ^8.4.31
     version: 8.4.31
   tailwindcss:
-    specifier: ^3.3.2
+    specifier: ^3.3.5
     version: 3.3.5
   typescript:
-    specifier: ^4.6.4
+    specifier: ^4.9.5
     version: 4.9.5
   vite:
-    specifier: ^3.1.0
+    specifier: ^3.2.7
     version: 3.2.7
   vue-tsc:
-    specifier: ^0.40.4
+    specifier: ^0.40.13
     version: 0.40.13(typescript@4.9.5)
 
 packages:
@@ -515,7 +515,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.22.1
-      caniuse-lite: 1.0.30001558
+      caniuse-lite: 1.0.30001559
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -565,8 +565,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001558
-      electron-to-chromium: 1.4.570
+      caniuse-lite: 1.0.30001559
+      electron-to-chromium: 1.4.574
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
 
@@ -579,13 +579,13 @@ packages:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
       browserslist: 4.22.1
-      caniuse-lite: 1.0.30001558
+      caniuse-lite: 1.0.30001559
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: false
 
-  /caniuse-lite@1.0.30001558:
-    resolution: {integrity: sha512-/Et7DwLqpjS47JPEcz6VnxU9PwcIdVi0ciLXRWBQdj1XFye68pSQYpV0QtPTfUKWuOaEig+/Vez2l74eDc1tPQ==}
+  /caniuse-lite@1.0.30001559:
+    resolution: {integrity: sha512-cPiMKZgqgkg5LY3/ntGeLFUpi6tzddBNS58A4tnTgQw1zON7u2sZMU7SzOeVH4tj20++9ggL+V6FDOFMTaFFYA==}
 
   /chokidar@3.5.3:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
@@ -789,8 +789,8 @@ packages:
       domhandler: 4.3.1
     dev: false
 
-  /electron-to-chromium@1.4.570:
-    resolution: {integrity: sha512-5GxH0PLSIfXKOUMMHMCT4M0olwj1WwAxsQHzVW5Vh3kbsvGw8b4k7LHQmTLC2aRhsgFzrF57XJomca4XLc/WHA==}
+  /electron-to-chromium@1.4.574:
+    resolution: {integrity: sha512-bg1m8L0n02xRzx4LsTTMbBPiUd9yIR+74iPtS/Ao65CuXvhVZHP0ym1kSdDG3yHFDXqHQQBKujlN1AQ8qZnyFg==}
 
   /entities@2.2.0:
     resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}

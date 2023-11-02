@@ -467,7 +467,7 @@
                                         </router-link>
                                     </li>
                                     <li class="border-t border-white-light dark:border-white-light/10">
-                                        <router-link to="/auth/boxed-signin" class="text-danger !py-3" @click="close()">
+                                        <router-link to="/auth/cover-login" class="text-danger !py-3" @click="close()">
                                             <svg class="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 rotate-90 shrink-0" width="18"
                                                 height="18" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
