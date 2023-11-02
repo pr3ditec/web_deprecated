@@ -1556,7 +1556,9 @@
     import Swal from 'sweetalert2';
     import { useAppStore } from '@/stores/index';
     import { useMeta } from '@/composables/use-meta';
+
     useMeta({ title: 'Mailbox' });
+
     const store = useAppStore();
 
     const defaultData = ref({
@@ -1569,6 +1571,7 @@
         description: '',
         displayDescription: '',
     });
+
     const isShowMailMenu = ref(false);
     const isEdit = ref(false);
     const selectedTab = ref('inbox');
