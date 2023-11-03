@@ -464,7 +464,7 @@
                                                 </g>
                                             </svg>
 
-                                            {{ $t('lock_screen') }}
+                                            {{ $t('lockscreen') }}
                                         </router-link>
                                     </li>
                                     <li class="border-t border-white-light dark:border-white-light/10">
@@ -479,7 +479,7 @@
                                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                             </svg>
 
-                                            {{ $t('sign_out') }}
+                                            {{ $t('signout') }}
                                         </router-link>
                                     </li>
                                 </ul>

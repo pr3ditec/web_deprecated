@@ -117,5 +117,8 @@
     "skin": "Skin",
     "sticky_header": "Sticky Header",
     "clone_header": "Clone Header",
-    "home": "Home"
+    "home": "Home",
+    "signin": "Signin",
+    "signup": "Signup",
+    "signout": "Signout"
 }
