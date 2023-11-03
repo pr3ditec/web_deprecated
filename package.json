@@ -9,6 +9,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
+        "@bhplugin/vue3-datatable": "^1.1.2",
         "@headlessui/vue": "^1.7.16",
         "@suadelabs/vue3-multiselect": "^1.0.2",
         "@vuelidate/core": "^2.0.3",
@@ -26,6 +27,7 @@
         "vue-i18n": "^9.6.2",
         "vue-router": "^4.2.5",
         "vue-simple-range-slider": "^1.1.0",
+        "vue3-apexcharts": "^1.4.4",
         "vue3-form-wizard": "^0.2.1",
         "vue3-number-spinner": "^0.0.9",
         "vue3-perfect-scrollbar": "^1.6.1",
