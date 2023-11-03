@@ -80,11 +80,11 @@
                     <div class="w-full max-w-[440px] lg:mt-16">
                         <div class="mb-10 flex items-center">
                             <div
-                                class="flex h-16 w-16 items-end justify-center overflow-hidden rounded-full bg-[#00AB55] ltr:mr-4 rtl:ml-4">
-                                <img src="/assets/images/auth/user.png" class="w-full object-cover" alt="images" />
+                                class="flex h-16 w-16 items-end justify-center overflow-hidden rounded-full bg-white ltr:mr-4 rtl:ml-4">
+                                <img src="/assets/images/logo.png" class="w-full object-cover" alt="images" />
                             </div>
                             <div class="flex-1">
-                                <h4 class="text-2xl dark:text-white">Shaun Park</h4>
+                                <h4 class="text-2xl dark:text-white">SauvviTech Admin</h4>
                                 <p class="text-white-dark">Enter your password to unlock your ID</p>
                             </div>
                         </div>
