@@ -1051,10 +1051,6 @@
                                     <router-link to="/auth/cover-login" target="_blank">{{ $t('login_cover')
                                     }}</router-link>
                                 </li>
-                                <li>
-                                    <router-link to="/auth/boxed-signin" target="_blank">{{ $t('login_boxed')
-                                    }}</router-link>
-                                </li>
                             </ul>
                         </li>
                         <li class="relative">

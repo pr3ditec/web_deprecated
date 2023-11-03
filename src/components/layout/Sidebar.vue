@@ -1003,22 +1003,6 @@
                             <vue-collapsible :isOpen="activeDropdown === 'authentication'">
                                 <ul class="sub-menu text-gray-500">
                                     <li @click="toggleMobileMenu">
-                                        <router-link to="/auth/boxed-signin" target="_blank">{{ $t('login_boxed')
-                                        }}</router-link>
-                                    </li>
-                                    <li @click="toggleMobileMenu">
-                                        <router-link to="/auth/boxed-signup" target="_blank">{{ $t('register_boxed')
-                                        }}</router-link>
-                                    </li>
-                                    <li @click="toggleMobileMenu">
-                                        <router-link to="/auth/boxed-lockscreen" target="_blank">{{ $t('unlock_boxed')
-                                        }}</router-link>
-                                    </li>
-                                    <li @click="toggleMobileMenu">
-                                        <router-link to="/auth/boxed-password-reset" target="_blank">{{
-                                            $t('recover_id_boxed') }}</router-link>
-                                    </li>
-                                    <li @click="toggleMobileMenu">
                                         <router-link to="/auth/cover-login" target="_blank">{{ $t('login_cover')
                                         }}</router-link>
                                     </li>
