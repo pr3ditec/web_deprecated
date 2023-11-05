@@ -494,7 +494,8 @@
                                                                                         stroke-width="1.5"></path>
                                                                                 </svg>
                                                                                 <span>
-                                                                                    {{ task.status === 'important' ? 'NotImportant' : 'Important' }}
+                                                                                    {{ task.status === 'important' ?
+                                                                                        'NotImportant' : 'Important' }}
                                                                                 </span>
                                                                             </a>
                                                                         </li>
@@ -727,13 +728,15 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from '@headlessui/vue';
-import { quillEditor } from 'vue3-quill';
+// import { quillEditor } from 'vue3-quill';
 import 'vue3-quill/lib/vue3-quill.css';
 import Swal from 'sweetalert2';
 
 import { useAppStore } from '@/stores/index';
 import { useMeta } from '@/composables/use-meta';
+
 useMeta({ title: 'Todolist' });
+
 const store = useAppStore();
 
 const defaultParams = ref({
