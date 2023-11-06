@@ -500,6 +500,12 @@ const routes: RouteRecordRaw[] = [
         meta: { layout: 'auth' },
     },
     {
+        path: '/pages/contact-us',
+        name: 'contact-us',
+        component: () => import(/* webpackChunkName: "pages-contact-us-cover" */ '../views/pages/contact-us-cover.vue'),
+        meta: { layout: 'auth' },
+    },
+    {
         path: '/pages/faq',
         name: 'faq',
         component: () => import(/* webpackChunkName: "pages-faq" */ '../views/pages/faq.vue'),
@@ -507,6 +513,12 @@ const routes: RouteRecordRaw[] = [
     {
         path: '/pages/coming-soon-cover',
         name: 'coming-soon-cover',
+        component: () => import(/* webpackChunkName: "pages-coming-soon-cover" */ '../views/pages/coming-soon-cover.vue'),
+        meta: { layout: 'auth' },
+    },
+    {
+        path: '/pages/coming-soon',
+        name: 'coming-soon',
         component: () => import(/* webpackChunkName: "pages-coming-soon-cover" */ '../views/pages/coming-soon-cover.vue'),
         meta: { layout: 'auth' },
     },

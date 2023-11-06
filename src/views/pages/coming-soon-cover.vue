@@ -20,7 +20,7 @@
                     </div>
                     <div class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg]">
                         <router-link to="/" class="w-48 block lg:w-72 mx-auto 2xl:m-0">
-                            <img src="/assets/images/auth/logo-white.svg" alt="Logo" class="w-full" />
+                            <img src="/assets/images/logowtext.png" alt="Logo" class="w-full" />
                         </router-link>
                         <div class="mt-24 hidden w-full max-w-[430px] rtl:rotate-y-180 lg:block">
                             <img src="/assets/images/auth/coming-soon-cover.svg" alt="Cover Image" class="w-full" />
