@@ -38,6 +38,12 @@
                                 <router-link to="/test" @click="toggleMobileMenu()">{{ $t('Test') }}</router-link>
                             </li>
                             <li>
+                                <router-link to="/programar-agenda" @click="toggleMobileMenu()">{{ $t('Programar Agenda') }}</router-link>
+                            </li>
+                            <li>
+                                <router-link to="/agenda" @click="toggleMobileMenu()">{{ $t('Agenda') }}</router-link>
+                            </li>
+                            <li>
                                 <router-link to="/tables" @click="toggleMobileMenu()">{{ $t('tables')
                                 }}</router-link>
                             </li>
