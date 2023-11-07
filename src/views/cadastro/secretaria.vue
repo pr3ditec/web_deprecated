@@ -1,6 +1,7 @@
 <!-- vuejs rodando em optionsjs -->
 <script lang="ts">
 
+    import { inject } from 'vue';
     import ValidacaoInput from '../../helpers/ValidacaoInput';
 
     export default {
@@ -8,6 +9,8 @@
             return{
                 // helpers
                 addRelacao: false,
+                // classe de requsicoes axios
+                request: Object(inject('api')),
                 // Formulario para castro
                 secretariaFormData: {
                     nome: '',
@@ -21,13 +24,30 @@
                     sexo: '0'
                     
                 },
-                // Classes
+                nacionalidade:{
+                    id: "",
+                    descricao: "",
+                    created_at: "",
+                    updated_at: ""
+                },
+
+                // Classes css
                 classeInputs:{
                     'p-3': true,
                     'h-10': true,
                     'w-1/2': true,
                     'rounded-md': true,
                     'border border-zinc-200': true,
+                    'shadow-sm': true,
+                    'focus:outline-none': true
+                },
+                classePassword:{
+                    'p-3': true,
+                    'h-10': true,
+                    'w-1/2': true,
+                    'rounded-md': true,
+                    'border border-zinc-200': true,
+                    'border border-red-600': false,
                     'shadow-sm': true,
                     'focus:outline-none': true
                 },
@@ -51,13 +71,26 @@
             }
         },
         methods:{
-            async cadasrarSecretaria(){
-                    
+            compararSenhas(entrada){
+                if(this.secretariaFormData.password == entrada.target.value){
+
+                    this.classePassword['border border-zinc-200'] = true
+                    this.classePassword['border border-red-600'] = false
+                    return 
+                }   
+
+                this.classePassword['border border-zinc-200'] = false
+                this.classePassword['border border-red-600'] = true
+            },
+            async cadastrarSecretaria(){
+                if(!ValidacaoInput.email(this.secretariaFormData.email)){
+                    return
+                }
                 console.log(this.secretariaFormData)
             }
         },
-        mounted(){
-
+        async created(){
+            this.nacionalidade = await this.request.pegarDadosApi('/nacionalidade')
         }
     }
 </script>
@@ -90,57 +123,51 @@
 
             <hr class="w-80 h-0.5 mx-auto bg-slate-700 border-0 rounded dark:bg-slate-700">
 
-            <input v-bind:class="classeInputs" type="text" placeholder="Ex.: 000.000.000-00" v-model="secretariaFormData.cpf" />
+            <input v-bind:class="classeInputs" v-maska data-maska="###" type="text" placeholder="Ex.: 000.000.000-00" v-model="secretariaFormData.cpf" />
             <input v-bind:class="classeInputs" type="text" placeholder="Ex.: secretaria@sauvi.com" v-model="secretariaFormData.email" />
             <input v-bind:class="classeInputs" type="date" placeholder="Ex.: 00/00/0000" v-model="secretariaFormData.nascimento" />
 
             <select v-bind:class="classeSelect" v-model="secretariaFormData.sexo">
                 <option value="0" disabled selected>Selecione o sexo</option>
-                <option value="1">M</option>
-                <option value="2">F</option>
-                <option value="3">U</option>
+                <option value="M">M</option>
+                <option value="F">F</option>
+                <option value="X">U</option>
             </select>
 
             <select v-bind:class="classeSelect" v-model="secretariaFormData.nacionalidade_id">
                 <option value="0" disabled selected>Selecione a nacionalidade</option>
-                <option value="1">BR</option>
-                <option value="1">ES</option>
+                <option v-for="nac in nacionalidade" :value="// @ts-expect-error
+                                                                                nac.id">
+                    {{ 
+                        // @ts-expect-error
+                        nac.descricao 
+                    }}
+                </option>
             </select>
 
+            <!-- senhas -->
             <input v-bind:class="classeInputs" type="password" placeholder="Ex.: senha" v-model="secretariaFormData.password" />
-            <input v-bind:class="classeInputs" type="password" placeholder="Ex.: repetir a senha" />
-            
-            <input class="checkbox" type="checkbox" v-model="addRelacao" />
+            <input v-bind:class="classePassword" v-on:keyup="$event => compararSenhas($event)" type="password" placeholder="Ex.: repetir a senha" />
+            <span class="flex flex-col items-start text-danger text-xs align-start mt-0 pt-0" v-show="classePassword['border border-red-600']">Senhas nao correspondem</span>
+
+            <!-- <input class="checkbox" type="checkbox" v-model="addRelacao" />
             <Transition>
                 <select v-bind:class="classeSelect" v-model="secretariaFormData.nacionalidade_id" v-show="addRelacao">
                     <option value="0" disabled selected>Selecione a nacionalidade</option>
                     <option value="1">ES</option>
                 </select>
-            </Transition>
+            </Transition> -->
         </div>
         <!-- Vinculo -->
 
         <hr class="w-80 h-0.5 mx-auto bg-slate-700 border-0 rounded dark:bg-slate-700">
 
         <div class="flex flex-col items-center font-semibold mt-6">
-            <button class="btn btn-primary w-80" @click="cadasrarSecretaria">Cadastrar</button>
+            <button class="btn btn-primary w-80" v-on:keyup.enter="cadastrarSecretaria()" @click="cadastrarSecretaria()">Cadastrar</button>
         </div>
         <!-- FORMULARIO -->
 
 
-        <!-- FOOTER -->
-        <!-- <div class="col-3 bg-slate-200">3</div> -->
-        <!-- FOOTER -->
     </div>
 </template>
 
-
-<!--             'nome' => 'required',
-            'cpf' => 'required|max:14',
-            'email' => 'email',
-            'password' => 'required|min:8',
-            'nome_mae' => 'required',
-            'nascimento' => 'required|date_format:d/m/Y',
-            'nacionalidade_id' => 'required|exists:nacionalidade,id',
-            'clinica_id' => 'integer|exists:clinica.clinica,id',
-            "sexo" => "required|max:1", -->

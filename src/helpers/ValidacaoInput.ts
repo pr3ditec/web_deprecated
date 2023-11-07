@@ -1,7 +1,10 @@
 
 
 export default class Validacao{
-
+    
+    constructor(){
+        console.log("skrr")
+    }
 
     public static email(email: string) : boolean{
 
