@@ -9,11 +9,13 @@ import TablesView from '../views/tables.vue';
 import AnalyticsView from '../views/analytics.vue';
 import FinanceView from '../views/finance.vue';
 import CryptoView from '../views/crypto.vue';
-import ProgramarAgenda from '../views/programar-agenda.vue';
-import Agenda from '../views/agenda.vue';
+/** CADASTRO */
+import Secretaria from '../views/cadastro/secretaria.vue';
+
 
 const routes: RouteRecordRaw[] = [
-    // dashboard
+
+    /** DASHBOARD */
     {
         path: '/',
         name: 'home',
@@ -23,16 +25,6 @@ const routes: RouteRecordRaw[] = [
         path: '/test',
         name: 'test',
         component: TestView,
-    },
-    {
-        path: '/programar-agenda',
-        name: 'programar-agenda',
-        component: ProgramarAgenda,
-    },
-    {
-        path: '/agenda',
-        name: 'agenda',
-        component: Agenda,
     },
     {
         path: '/analytics',
@@ -54,6 +46,17 @@ const routes: RouteRecordRaw[] = [
         name: 'crypto',
         component: CryptoView,
     },
+    /** DASHBOARD */
+
+
+    /** CADASTRO */
+    {
+        path: '/secretaria',
+        name: 'secretaria',
+        component: Secretaria
+    },
+    /** CADASTRO */
+
 
     // auth
     {
