@@ -2,29 +2,61 @@
 
 export default class Validacao{
     
-    constructor(){
-        console.log("skrr")
-    }
 
-    public static email(email: string) : boolean{
+    public static email(email: string) : any{
 
-        if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
-
-            return true
+        let response:any = {
+            "status": true,
+            "mensagem": "email válido"
         }
 
-        return false
+        if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)){
+            response =  {
+                "status": false,
+                "mensagem": "email não é válido"
+            }
+        }
+
+        return response
     } 
 
-    public static cpf(cpf: string): boolean{
+    public static cpf(cpf: string): any{
+    
+        let response:any = {
+            "status": true,
+            "mensagem": "cpf é valido"
+        }
 
         if(/([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/.test(cpf)){
-            
-            return  true
+            response = {
+                "status": false,
+                "mensagem": "cpf não é valido"
+            }
         }
-        return false
+
+        return response
     }
 
+
+    public static inputVazio(dataInputs: any): any{
+        let response:any = {
+            "status": true,
+            "mensagem": "Campos passaram pela validação"
+        }
+
+        Object.values(dataInputs).forEach(input => {
+            //@ts-expect-error
+            if(input.length == 0){
+                response =  {
+                    "status": false,
+                    "mensagem": "Campos não podem estar vazios"
+                }
+            }
+
+        });
+        
+        return response
+    }
     
 
 

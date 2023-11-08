@@ -18,6 +18,7 @@ import RiscoEmpresarial from '../views/risco-empresarial/risco-empresarial.vue';
 
 /** CADASTRO */
 import Secretaria from '../views/cadastro/secretaria.vue';
+import Clinica from '../views/cadastro/clinica.vue';
 
 
 const routes: RouteRecordRaw[] = [
@@ -81,6 +82,11 @@ const routes: RouteRecordRaw[] = [
         path: '/secretaria',
         name: 'secretaria',
         component: Secretaria
+    },
+    {
+        path: '/clinica',
+        name: 'clinica',
+        component: Clinica
     },
     /** CADASTRO */
 

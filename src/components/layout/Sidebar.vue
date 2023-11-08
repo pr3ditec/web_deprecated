@@ -69,6 +69,10 @@
                                 <router-link to="/secretaria" @click="toggleMobileMenu()">{{ $t('Secretaria')
                                 }}</router-link>
                             </li>
+                            <li>
+                                <router-link to="/clinica" @click="toggleMobileMenu()">{{ $t('Clinica')
+                                }}</router-link>
+                            </li>
                         </ul>
                     </vue-collapsible>
                 </li>
