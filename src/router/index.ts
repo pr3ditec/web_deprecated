@@ -9,6 +9,13 @@ import TablesView from '../views/tables.vue';
 import AnalyticsView from '../views/analytics.vue';
 import FinanceView from '../views/finance.vue';
 import CryptoView from '../views/crypto.vue';
+/** AGENDA */
+import ProgramarAgenda from '../views/agenda/programar-agenda.vue';
+import Agenda from '../views/agenda/agenda.vue';
+
+/** RISCO EMPRESARIAL */
+import RiscoEmpresarial from '../views/risco-empresarial/risco-empresarial.vue';
+
 /** CADASTRO */
 import Secretaria from '../views/cadastro/secretaria.vue';
 
@@ -48,6 +55,26 @@ const routes: RouteRecordRaw[] = [
     },
     /** DASHBOARD */
 
+    /** RISCO */
+    {
+        path: '/risco-empresarial',
+        name: 'risco',
+        component: RiscoEmpresarial
+    },
+    /** RISCO */
+
+    /** AGENDA */
+    {
+        path: '/programar-agenda',
+        name: 'Programar Agenda',
+        component: ProgramarAgenda
+    },
+    {
+        path: '/agenda',
+        name: 'Agenda',
+        component: Agenda
+    },
+    /** AGENDA */
 
     /** CADASTRO */
     {

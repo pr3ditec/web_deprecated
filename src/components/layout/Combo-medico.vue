@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import { API_BASE_URL } from './config/apiConfig';
 import axios from 'axios';
 
 export default {
@@ -25,7 +24,7 @@ export default {
     },
     methods: {
         getApiUrl(route) {
-            return `${API_BASE_URL}/${route}`;
+            return `http://localhost:8001/${route}`;
         },
         updateSelectedProfessional() {
             console.log(this.selectedProfessional);

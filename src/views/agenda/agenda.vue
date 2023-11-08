@@ -216,7 +216,7 @@
     import dayGridPlugin from '@fullcalendar/daygrid';
     import timeGridPlugin from '@fullcalendar/timegrid';
     import interactionPlugin from '@fullcalendar/interaction';
-    import SelectMedico from '../components/layout/Combo-medico.vue';
+    import SelectMedico from '../../components/layout/Combo-medico.vue';
     import Swal from 'sweetalert2';
     import { useMeta } from '@/composables/use-meta';
     useMeta({ title: 'Calendar' });

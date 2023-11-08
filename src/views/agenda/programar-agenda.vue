@@ -33,11 +33,8 @@
                         <DialogPanel class="bg-gray-800 text-white px-4 pt-5 pb-6 sm:p-12 sm:pb-6">
                             <div class="sm:flex sm:items-start">
                                 <div class="mt-3 text-center sm:mt-0 sm:ml-0 sm:text-left">
-                                    <Dialog.Title as="h3" class="text-lg leading-6 font-medium text-white">
-                                        Data selecionada
-                                    </Dialog.Title>
                                     <div>
-                                        <label for="horaInicio" class="text-white">Hora de Início:</label>
+                                        <label for="horaInicio" class="text-white">Hora de In��cio:</label>
                                         <SelectHorarioInicio v-model="horarioInicio" />
                                     </div>
                                     <div>
@@ -118,173 +115,160 @@
     </TransitionRoot>
 </template>
 
-<script lang="ts" setup>
-import { ref, watch, watchEffect } from 'vue';
-
+<script lang="ts">
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from '@headlessui/vue';
-
 import FullCalendar from '@fullcalendar/vue3';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-
 import timeGridPlugin from '@fullcalendar/timegrid';
-import SelectMedico from '../components/layout/Combo-medico.vue';
-import SelectHorarioInicio from '../components/layout/Combo-horario.vue';
-import SelectHorarioFim from '../components/layout/Combo-horario.vue';
-
+import SelectMedico from '../../components/layout/Combo-medico.vue';
+import SelectHorarioInicio from '../../components/layout/Combo-horario.vue';
+import SelectHorarioFim from '../../components/layout/Combo-horario.vue';
 import Swal from 'sweetalert2';
 import { useMeta } from '@/composables/use-meta';
 
-useMeta({ title: 'Calendar' });
-
-const selectedDoctor = ref(null);
-const isAddEventModal = ref(false);
-const selectedDate = ref(null);
-const isAllSelected = ref(false);
-const showTable = ref(false);
-
-let incrementoSelecionado = ref(null);
-let selectedHours = ref<string[]>([]);
-let horarioInicio = ref<string | null>(null);
-let horarioFim = ref<string | null>(null);
-let table: string[][] = [];
-let columns = 5;
-let rows;
-
-const calendarOptions = {
-    plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-    initialView: 'dayGridMonth',
-    selectable: true,
-    dateClick: function (info) {
-        selectedDate.value = info.dateStr;
-        isAddEventModal.value = true;
-    }
-};
-
-const resetModal = () => {
-    horarioInicio.value = null;
-    horarioFim.value = null;
-    incrementoSelecionado.value = null;
-    isAllSelected.value = false;
-};
-
-watchEffect(() => {
-    if (!isAddEventModal.value) {
-        resetModal();
-    }
-});
-const toggleHour = (hour: string) => {
-    console.log(`Toggling hour: ${hour}`);
-    const index = selectedHours.value.indexOf(hour);
-    if (index >= 0) {
-        selectedHours.value.splice(index, 1);
-    } else {
-        selectedHours.value.push(hour);
-    }
-};
-
-const generateHours = () => {
-    let horarios: string[] = [];
-
-    if (horarioInicio.value && horarioFim.value) {
-        let partesInicio = horarioInicio.value.split(':');
-        let inicio = parseInt(partesInicio[0]) * 60 + parseInt(partesInicio[1]);
-        let partesFim = horarioFim.value.split(':');
-        let fim = parseInt(partesFim[0]) * 60 + parseInt(partesFim[1]);
-        let incremento = Number(incrementoSelecionado.value);
-
-        for (let i = inicio; i < fim; i += incremento) {
-            let horas = Math.floor(i / 60);
-            let minutos = i % 60;
-            horarios.push(`${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`);
+export default {
+    components: {
+        TransitionRoot,
+        TransitionChild,
+        Dialog,
+        DialogPanel,
+        DialogOverlay,
+        FullCalendar,
+        SelectMedico,
+        SelectHorarioInicio,
+        SelectHorarioFim
+    },
+    data() {
+        return {
+            selectedDoctor: null,
+            isAddEventModal: false,
+            selectedDate: null,
+            isAllSelected: false,
+            showTable: false,
+            incrementoSelecionado: null,
+            selectedHours: [] as string[],
+            horarioInicio: null as string | null,
+            horarioFim: null as string | null,
+            table: [] as string[][],
+            rows: null as number | null,
+            hours: null as string[] | null,
+            columns: 5,
+            calendarOptions: {
+                plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+                initialView: 'dayGridMonth',
+                selectable: true,
+                dateClick: (info) => {
+                    this.selectedDate = info.dateStr;
+                    this.isAddEventModal = () => true;
+                }
+            }
+        };
+    },
+    created() {
+        useMeta({ title: 'Calendar' });
+        this.resetModal();
+        this.hours = this.generateHours();
+        this.rows = Math.ceil(this.hours.length / this.columns);
+        for (let i = 0; i < this.rows; i++) {
+            let row: string[] = [];
+            for (let j = 0; j < this.columns; j++) {
+                let index = i + j * this.rows;
+                if (index < this.hours.length) {
+                    row.push(this.hours[index]);
+                }
+            }
+            this.table.push(row);
         }
-    }
-
-    return horarios;
-}
-
-let hours = generateHours();
-rows = Math.ceil(hours.length / columns);
-
-for (let i = 0; i < rows; i++) {
-    let row: string[] = [];
-    for (let j = 0; j < columns; j++) {
-        let index = i + j * rows;
-        if (index < hours.length) {
-            row.push(hours[index]);
-        }
-    }
-    table.push(row);
-}
-
-watch(incrementoSelecionado, () => {
-    hours = generateHours();
-    rows = Math.ceil(hours.length / columns);
-    table = []; // Limpa a tabela
-    for (let i = 0; i < rows; i++) {
-        let row: string[] = [];
-        for (let j = 0; j < columns; j++) {
-            let index = i + j * rows;
-            if (index < hours.length) {
-                row.push(hours[index]);
+    },
+    watch: {
+        horarioFim() {
+            console.log(this.horarioFim);
+            this.showTable = Boolean(this.horarioInicio) && Boolean(this.horarioFim) && Boolean(this.incrementoSelecionado);
+            this.table = [];
+        },
+        incrementoSelecionado() {
+            // console.log(this.incrementoSelecionado);
+            this.showTable = Boolean(this.horarioInicio) && Boolean(this.horarioFim) && Boolean(this.incrementoSelecionado);
+            // console.log(this.showTable);
+        },
+        selectedDoctor(newVal, oldVal) {
+            if (newVal !== oldVal) {
+                // VER REGRA SELECIONAR MEDICO
+            }
+        },
+        horarioInicio() {
+            this.showTable = Boolean(this.horarioInicio) && Boolean(this.horarioFim) && Boolean(this.incrementoSelecionado);
+            console.log(this.horarioInicio);
+            this.table = [];
+        },
+        isAddEventModal() {
+            if (!this.isAddEventModal) {
+                this.resetModal();
             }
         }
-        table.push(row);
+    },
+    methods: {
+        resetModal() {
+            this.horarioInicio = null;
+            this.horarioFim = null;
+            this.incrementoSelecionado = null;
+            this.isAllSelected = false;
+        },
+        toggleHour(hour) {
+            console.log(`Toggling hour: ${hour}`);
+            const index = this.selectedHours.indexOf(hour);
+            if (index >= 0) {
+                this.selectedHours.splice(index, 1);
+            } else {
+                this.selectedHours.push(hour);
+            }
+        },
+        generateHours() {
+            let horarios: string[] = [];
+            if (this.horarioInicio && this.horarioFim) {
+                let partesInicio = this.horarioInicio.split(':');
+                let inicio = parseInt(partesInicio[0]) * 60 + parseInt(partesInicio[1]);
+                let partesFim = this.horarioFim.split(':');
+                let fim = parseInt(partesFim[0]) * 60 + parseInt(partesFim[1]);
+                let incremento = Number(this.incrementoSelecionado);
+                for (let i = inicio; i < fim; i += incremento) {
+                    let horas = Math.floor(i / 60);
+                    let minutos = i % 60;
+                    horarios.push(`${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`);
+                }
+            }
+            return horarios;
+        },
+        selectAll() {
+            if (this.isAllSelected) {
+                this.selectedHours = [];
+            } else {
+                this.selectedHours = this.table.flat();
+            }
+            this.isAllSelected = !this.isAllSelected;
+        },
+        saveHours() {
+            console.log(this.selectedHours);
+            console.log(this.selectedDate);
+            this.showMessage('Agenda criada com Sucesso!.');
+            // VER REGRA SALVAR AGENDA
+        },
+        showMessage(msg = '', type = 'success') {
+            const toast: any = Swal.mixin({
+                toast: true,
+                position: 'center',
+                showConfirmButton: false,
+                timer: 3000,
+                customClass: { container: 'toast' },
+            });
+            toast.fire({
+                icon: type,
+                title: msg,
+                padding: '10px 20px',
+            });
+        }
     }
-});
-
-watch(selectedDoctor, (newVal, oldVal) => {
-    if (newVal !== oldVal) {
-        // regra para selecionar o medico
-    }
-});
-
-watch(horarioInicio, () => {
-    showTable.value = Boolean(horarioInicio.value) && Boolean(horarioFim.value) && Boolean(incrementoSelecionado.value);
-    console.log(horarioInicio);
-    table = [];
-});
-
-watch(horarioFim, () => {
-    console.log(horarioFim);
-    showTable.value = Boolean(horarioInicio.value) && Boolean(horarioFim.value) && Boolean(incrementoSelecionado.value);
-    table = [];
-});
-
-watch(incrementoSelecionado, () => {
-    // console.log(incrementoSelecionado);
-    showTable.value = Boolean(horarioInicio.value) && Boolean(horarioFim.value) && Boolean(incrementoSelecionado.value);
-    // console.log(showTable);
-});
-
-const selectAll = () => {
-    if (isAllSelected.value) {
-        selectedHours.value = [];
-    } else {
-        selectedHours.value = table.flat();
-    }
-    isAllSelected.value = !isAllSelected.value;
-};
-
-function saveHours() {
-    console.log(selectedHours.value);
-    console.log(selectedDate);
-    showMessage('Agenda criada com Sucesso!.');
-    // Aqui você pode adicionar a lógica para salvar os horários selecionados
-}
-
-const showMessage = (msg = '', type = 'success') => {
-    const toast: any = Swal.mixin({
-        toast: true,
-        position: 'center',
-        showConfirmButton: false,
-        timer: 3000,
-        customClass: { container: 'toast' },
-    });
-    toast.fire({
-        icon: type,
-        title: msg,
-        padding: '10px 20px',
-    });
 };
 </script>
+
