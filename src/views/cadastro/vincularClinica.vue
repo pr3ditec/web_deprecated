@@ -66,7 +66,6 @@
                 </select>
                 <button class="btn btn-primary">criar vinculo</button>
             </div>
-
         </Transition>
     </div>
 </template>
