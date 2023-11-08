@@ -1,20 +1,21 @@
 import axios from 'axios'
 
 export default class Api{
-    
-    public axiosConn : any;
-    private token:string;
 
-    constructor(url: string, token: string ){
+    private request: any;
+    private token: string;
+    private origin:string;
 
+    constructor(url: string, token: string, origin: string){
         this.token = token
+        this.origin = origin
 
-        this.axiosConn = axios.create({
+        this.request = axios.create({
             baseURL: url,
-            timeout: 1000,
+            timeout: 2000,
             headers:{
-                "Content-Type": "application/json",
-                "Authorization": this.token
+                "Authorization": token,
+                "OriginRequest": origin
             }
         })
     }
@@ -22,15 +23,19 @@ export default class Api{
 
     public async pegarDadosApi(rota:string, data:any={}) : Promise<Array<any>>{
 
-        let response:any = await this.axiosConn.get(rota,data)
+        let response:any = await this.request.get(rota);
 
         return response.data.list
     }
 
+    public async enviarDadosApi(rota:string,data: any={}) : Promise<any>{
 
-    public setToken(token:string):void {
-        this.token = token
+        let response:any = await this.request.post(rota, data=data)
+
+        return response.data
     }
+
+
 
 
 }

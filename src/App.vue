@@ -16,10 +16,12 @@ import { useMeta } from '@/composables/use-meta';
 import { provide } from 'vue';
 import ApiConnection from './api/Api';
 
+
+
 const store = useAppStore();
 
 // Aqui vai ser feito um compartilhamento com todas as bibliotecas
-let connection = new ApiConnection('http://127.0.0.1:8000', 'ead8ae26e4375ea8280b336f4d438666')
+let connection = new ApiConnection('http://localhost:8000', '03c7cfdc935d71776f7f0735f8a44bf4', 'admin')
 provide("api", connection)
 
 
