@@ -9,7 +9,6 @@
             <div class="mb-5">
                 <div class="mb-4 flex items-center sm:flex-row flex-col sm:justify-between justify-center">
                     <div class="sm:mb-0 mb-4">
-                        <div class="text-lg font-semibold ltr:sm:text-left rtl:sm:text-right text-center">Selecione os Dias de Atendimento</div>
                         <div class="flex items-center mt-2 flex-wrap sm:justify-start justify-center">
                             <div class="flex items-center ltr:mr-4 rtl:ml-4">
                                 <div class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-primary"></div>
@@ -92,7 +91,7 @@
                             leave-from="opacity-100 scale-100"
                             leave-to="opacity-0 scale-95"
                         >
-                            <DialogPanel class="panel border-0 p-0 rounded-lg overflow-hidden w-full max-w-lg text-black dark:text-white-dark">
+                            <DialogPanel class="panel border-2 p-0 rounded-lg overflow-hidden w-full max-w-lg text-black dark:text-white-dark">
                                 <button
                                     type="button"
                                     class="absolute top-4 ltr:right-4 rtl:left-4 text-gray-400 hover:text-gray-800 dark:hover:text-gray-600 outline-none"
@@ -134,7 +133,7 @@
                                         </div>
 
                                         <div class="mb-5">
-                                            <label for="dateStart">From :</label>
+                                            <label for="dateStart">Presença :</label>
                                             <input
                                                 id="dateStart"
                                                 type="datetime-local"
@@ -149,7 +148,7 @@
                                             <div class="text-danger mt-2" id="startDateErr"></div>
                                         </div>
                                         <div class="mb-5">
-                                            <label for="dateEnd">To :</label>
+                                            <label for="dateEnd">Saida :</label>
                                             <input
                                                 id="dateEnd"
                                                 type="datetime-local"
@@ -163,7 +162,7 @@
                                             <div class="text-danger mt-2" id="endDateErr"></div>
                                         </div>
                                         <div class="mb-5">
-                                            <label for="description">Event Description :</label>
+                                            <label for="description">Anotações :</label>
                                             <textarea
                                                 id="description"
                                                 name="description"
@@ -173,30 +172,30 @@
                                             ></textarea>
                                         </div>
                                         <div class="mb-5">
-                                            <label>Badge:</label>
+                                            <label>Status:</label>
                                             <div class="mt-3">
                                                 <label class="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
                                                     <input type="radio" class="form-radio" name="badge" value="primary" v-model="params.type" />
-                                                    <span class="ltr:pl-2 rtl:pr-2">Work</span>
+                                                    <span class="ltr:pl-2 rtl:pr-2">Marcado</span>
                                                 </label>
                                                 <label class="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
                                                     <input type="radio" class="form-radio text-info" name="badge" value="info" v-model="params.type" />
-                                                    <span class="ltr:pl-2 rtl:pr-2">Travel</span>
+                                                    <span class="ltr:pl-2 rtl:pr-2">Atrasado</span>
                                                 </label>
                                                 <label class="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
                                                     <input type="radio" class="form-radio text-success" name="badge" value="success" v-model="params.type" />
-                                                    <span class="ltr:pl-2 rtl:pr-2">Personal</span>
+                                                    <span class="ltr:pl-2 rtl:pr-2">Atendido</span>
                                                 </label>
                                                 <label class="inline-flex cursor-pointer">
                                                     <input type="radio" class="form-radio text-danger" name="badge" value="danger" v-model="params.type" />
-                                                    <span class="ltr:pl-2 rtl:pr-2">Important</span>
+                                                    <span class="ltr:pl-2 rtl:pr-2">Cancelado</span>
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="flex justify-end items-center mt-8">
-                                            <button type="button" class="btn btn-outline-danger" @click="isAddEventModal = false">Cancel</button>
+                                            <button type="button" class="btn btn-outline-danger" @click="isAddEventModal = false">Cancelar</button>
                                             <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">
-                                                {{ params.id ? 'Update Event' : 'Create Event' }}
+                                                {{ params.id ? 'Update Event' : 'Criar Evento' }}
                                             </button>
                                         </div>
                                     </form>
@@ -216,7 +215,7 @@
     import dayGridPlugin from '@fullcalendar/daygrid';
     import timeGridPlugin from '@fullcalendar/timegrid';
     import interactionPlugin from '@fullcalendar/interaction';
-    import SelectMedico from '../../components/layout/Combo-medico.vue';
+    import SelectMedico from '../../components/layout/Select-doctor.vue';
     import Swal from 'sweetalert2';
     import { useMeta } from '@/composables/use-meta';
     useMeta({ title: 'Calendar' });

@@ -35,7 +35,8 @@ export default {
         const apiUrl = this.getApiUrl(`medico/clinica/secretaria/${this.secretariaId}`);
         axios.get(apiUrl, {
             headers: {
-                'Authorization':`${this.token}`
+                "authorization":`${this.token}`,
+                "originRequest":`app`
             }
         })
         .then(response => {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <select v-model="selectedHour" class="form-select mb-4 form-select mb-4 bg-gray-800 text-white" @change="updateSelectedHorario">
+        <select v-model="selectedHour" class="form-select mb-4 form-select mb-4" @change="updateSelectedHorario">
             <option disabled value="">Selecione um horário</option>
             <option v-for="hora in horas" :key="hora" :value="hora < 10 ? '0' + hora + ':00' : hora + ':00'">
                 {{ hora < 10 ? '0' + hora + ':00' : hora + ':00' }}
