@@ -121,5 +121,9 @@
     "home": "Página Inicial",
     "signin": "Entrar",
     "signup": "Inscrever-se",
-    "signout": "Sair"
+    "signout": "Sair",
+    "Clinic": "Clinica",
+    "Secretary": "Secretaria",
+    "Schedule": "Agenda",
+    "Make an Schedule": "Programar Agenda"
 }
