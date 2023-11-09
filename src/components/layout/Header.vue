@@ -441,7 +441,7 @@
                                         </router-link>
                                     </li>
                                     <li>
-                                        <router-link to="/auth/cover-lockscreen" class="dark:hover:text-white"
+                                        <router-link to="/auth/lockscreen" class="dark:hover:text-white"
                                             @click="close()">
                                             <svg class="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 shrink-0" width="18" height="18"
                                                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -468,7 +468,7 @@
                                         </router-link>
                                     </li>
                                     <li class="border-t border-white-light dark:border-white-light/10">
-                                        <router-link to="/auth/cover-login" class="text-danger !py-3" @click="close()">
+                                        <router-link to="/auth/login" class="text-danger !py-3" @click="close()">
                                             <svg class="w-4.5 h-4.5 ltr:mr-2 rtl:ml-2 rotate-90 shrink-0" width="18"
                                                 height="18" viewBox="0 0 24 24" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -1048,7 +1048,7 @@
                             <ul
                                 class="rounded absolute top-0 ltr:left-[95%] rtl:right-[95%] min-w-[180px] bg-white z-[10] text-dark dark:text-white-dark dark:bg-[#1b2e4b] shadow p-0 py-2 hidden">
                                 <li>
-                                    <router-link to="/auth/cover-login" target="_blank">{{ $t('login_cover')
+                                    <router-link to="/auth/login" target="_blank">{{ $t('login_cover')
                                     }}</router-link>
                                 </li>
                             </ul>
@@ -1066,11 +1066,7 @@
                             <ul
                                 class="rounded absolute top-0 ltr:left-[95%] rtl:right-[95%] min-w-[180px] bg-white z-[10] text-dark dark:text-white-dark dark:bg-[#1b2e4b] shadow p-0 py-2 hidden">
                                 <li>
-                                    <router-link to="/auth/cover-register" target="_blank">{{ $t('register_cover')
-                                    }}</router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/auth/boxed-signup" target="_blank">{{ $t('register_boxed')
+                                    <router-link to="/auth/register" target="_blank">{{ $t('register_cover')
                                     }}</router-link>
                                 </li>
                             </ul>
@@ -1088,11 +1084,7 @@
                             <ul
                                 class="rounded absolute top-0 ltr:left-[95%] rtl:right-[95%] min-w-[180px] bg-white z-[10] text-dark dark:text-white-dark dark:bg-[#1b2e4b] shadow p-0 py-2 hidden">
                                 <li>
-                                    <router-link to="/auth/cover-password-reset" target="_blank">{{ $t('recover_id_cover')
-                                    }}</router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/auth/boxed-password-reset" target="_blank">{{ $t('recover_id_boxed')
+                                    <router-link to="/auth/password-reset" target="_blank">{{ $t('recover_id_cover')
                                     }}</router-link>
                                 </li>
                             </ul>
@@ -1110,11 +1102,7 @@
                             <ul
                                 class="rounded absolute top-0 ltr:left-[95%] rtl:right-[95%] min-w-[180px] bg-white z-[10] text-dark dark:text-white-dark dark:bg-[#1b2e4b] shadow p-0 py-2 hidden">
                                 <li>
-                                    <router-link to="/auth/cover-lockscreen" target="_blank">{{ $t('unlock_cover')
-                                    }}</router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/auth/cover-lockscreen" target="_blank">{{ $t('unlock_boxed')
+                                    <router-link to="/auth/lockscreen" target="_blank">{{ $t('unlock_cover')
                                     }}</router-link>
                                 </li>
                             </ul>

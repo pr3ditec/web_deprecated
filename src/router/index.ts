@@ -93,27 +93,27 @@ const routes: RouteRecordRaw[] = [
 
     // auth
     {
-        path: '/auth/cover-login',
-        name: 'cover-login',
-        component: () => import(/* webpackChunkName: "auth-cover-login" */ '../views/auth/cover-login.vue'),
+        path: '/auth/login',
+        name: 'login',
+        component: () => import(/* webpackChunkName: "auth-login" */ '../views/auth/login.vue'),
         meta: { layout: 'auth' },
     },
     {
-        path: '/auth/cover-register',
-        name: 'cover-register',
-        component: () => import(/* webpackChunkName: "auth-cover-register" */ '../views/auth/cover-register.vue'),
+        path: '/auth/register',
+        name: 'register',
+        component: () => import(/* webpackChunkName: "auth-register" */ '../views/auth/register.vue'),
         meta: { layout: 'auth' },
     },
     {
-        path: '/auth/cover-lockscreen',
-        name: 'cover-lockscreen',
-        component: () => import(/* webpackChunkName: "auth-cover-lockscreen" */ '../views/auth/cover-lockscreen.vue'),
+        path: '/auth/lockscreen',
+        name: 'lockscreen',
+        component: () => import(/* webpackChunkName: "auth-lockscreen" */ '../views/auth/lockscreen.vue'),
         meta: { layout: 'auth' },
     },
     {
-        path: '/auth/cover-password-reset',
-        name: 'cover-password-reset',
-        component: () => import(/* webpackChunkName: "auth-cover-password-reset" */ '../views/auth/cover-password-reset.vue'),
+        path: '/auth/password-reset',
+        name: 'password-reset',
+        component: () => import(/* webpackChunkName: "auth-password-reset" */ '../views/auth/password-reset.vue'),
         meta: { layout: 'auth' },
     },
 
