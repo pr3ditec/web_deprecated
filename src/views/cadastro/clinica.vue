@@ -1,10 +1,14 @@
 <script>
 
     import ValidacaoInput from '../../helpers/ValidacaoInput';
+    import Response from '../../helpers/Response';
+    import { inject } from 'vue';
 
     export default {
         data(){
             return{
+                // Api
+                request: Object(inject('api')),
                 clinicaFormData:{
                     nome: "",
                 },
@@ -18,6 +22,8 @@
                     numero: "",
                     complemento: "",
                 },
+                estado:{},
+                tipoEndereco: {},
                 //classes
                 classeInputs:{
                     'p-3': true,
@@ -49,8 +55,22 @@
                 // sanitizar
                 this.clinicaEnderecoFormData['cep'] = this.clinicaEnderecoFormData['cep'].replaceAll('-', '')
                 
+                this.request.enviarDadosApi('/medico/clinica', this.clinicaFormData).then( (res) => {
+                    if(res.status == true){
+                        this.request.enviarDadosApi('medico/clinica/endereco', this.clinicaEnderecoFormData).then(res => {
+                            if(res.status == false){
 
-                // console.log(this.clinicaFormData,this.clinicaEnderecoFormData)
+                                return Response.mensagemErro(res.message)
+                            }else{
+
+                                return Response.mensagemSucesso(res.message)
+                            }
+                        })
+                    }else{
+
+                        return Response.mensagemErro(res.message)
+                    }
+                })
             }
 
 
@@ -58,8 +78,8 @@
 
         async created(){
 
-
-            
+            this.estado = await this.request.pegarDadosApi('/unidades_federativas')
+            this.tipoEndereco = await this.request.pegarDadosApi('/endereco/tipo')
         }
 
     }
@@ -88,26 +108,24 @@
 
             <select v-bind:class="classeSelect" v-model="clinicaEnderecoFormData.estado" >
                 <option value="0" disabled selected>Selecione o estado</option>
-                <option value="1" >teste</option>
-                <!-- <option v-for="es in estado" :value="// @ts-expect-error
-                                                                                es.id">
+                <option v-for="es in estado" :value="// @ts-expect-error
+                                                        es.id">
                     {{ 
                         // @ts-expect-error
                         es.nome 
                     }}
-                </option> -->
+                </option>
             </select>
 
             <select v-bind:class="classeSelect" v-model="clinicaEnderecoFormData.tipo" >
-                <option value="0" disabled selected>Selecione o tipo</option>
-                <option value="1" >teste</option>
-                <!-- <option v-for="t in tipo" :value="// @ts-expect-error
-                                                                                t.id">
+                <option value="0" disabled selected>Selecione o tipo de enreço</option>
+                <option v-for="tipo in tipoEndereco" :value="// @ts-expect-error
+                                                    tipo.id">
                     {{ 
                         // @ts-expect-error
-                        t.nome 
+                        tipo.descricao 
                     }}
-                </option> -->
+                </option>
             </select>
 
             <input v-bind:class="classeInputs" v-mask="'#####'" type="text" placeholder="Ex.: numero" v-model="clinicaEnderecoFormData.numero" />
