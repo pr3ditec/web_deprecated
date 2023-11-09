@@ -58,19 +58,19 @@
                                 }}</router-link>
                             </li>
                             <li>
-                                <router-link to="/agenda" @click="toggleMobileMenu()">{{ $t('Agenda')
+                                <router-link to="/agenda" @click="toggleMobileMenu()">{{ $t('Schedule')
                                 }}</router-link>
                             </li>
                             <li>
-                                <router-link to="/programar-agenda" @click="toggleMobileMenu()">{{ $t('Programar Agenda')
+                                <router-link to="/programar-agenda" @click="toggleMobileMenu()">{{ $t('Make an Schedule')
                                 }}</router-link>
                             </li>
                             <li>
-                                <router-link to="/secretaria" @click="toggleMobileMenu()">{{ $t('Secretaria')
+                                <router-link to="/secretaria" @click="toggleMobileMenu()">{{ $t('Secretary')
                                 }}</router-link>
                             </li>
                             <li>
-                                <router-link to="/clinica" @click="toggleMobileMenu()">{{ $t('Clinica')
+                                <router-link to="/clinica" @click="toggleMobileMenu()">{{ $t('Clinic')
                                 }}</router-link>
                             </li>
                         </ul>
