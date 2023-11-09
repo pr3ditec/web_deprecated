@@ -26,7 +26,7 @@ provide("api", connection)
 
 
 // meta
-useMeta({ title: 'Sales Admin' });
+useMeta({ title: 'Admin' });
 
 const mainLayout = computed(() => {
     return store.mainLayout === 'auth' ? authLayout : appLayout;
