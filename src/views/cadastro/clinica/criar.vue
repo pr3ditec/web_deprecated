@@ -1,14 +1,13 @@
 <script>
 
-    import ValidacaoInput from '../../helpers/ValidacaoInput';
-    import Response from '../../helpers/Response';
-    import { inject } from 'vue';
+import { inject } from 'vue';
+import ValidacaoInput from '../../../helpers/ValidacaoInput';
+import Response from '../../../helpers/Response';
 
-    export default {
-        data(){
-            return{
-                // Api
-                request: Object(inject('api')),
+export default{
+    data(){
+        return{
+            request: Object(inject('api')),
                 clinicaFormData:{
                     nome: "",
                     especialidade_id: "0"
@@ -28,35 +27,11 @@
                 tipoEndereco: {},
                 cidades:{},
                 especialidades:{},
-                //classes
-                classeInputs:{
-                    'p-3': true,
-                    'h-10': true,
-                    'w-1/2': true,
-                    'rounded-md': true,
-                    'border border-zinc-200': true,
-                    'shadow-sm': true,
-                    'focus:outline-none': true,
-                    'dark:text-slate-400': true,
-                    'dark:bg-slate-800': true,
-                    "dark:border-0": true
-                },
-                classeSelect:{
-                    'w-1/2': true,
-                    'p-3': true,
-                    'rounded-md': true,
-                    'border border-zinc-200': true,
-                    'bg-slate-50': true,
-                    'shadow-sm': true,
-                    'dark:text-slate-400': true,
-                    'dark:bg-slate-800': true,
-                    "dark:border-0": true
-                }
-            }
-        },
-        methods:{
+        }
+    },
+    methods:{
 
-            async cadastrarClinica(){
+        async cadastrarClinica(){
                 // validar campos
                 if(ValidacaoInput.inputVazio(this.clinicaFormData)['status'] == false || ValidacaoInput.inputVazio(this.clinicaEnderecoFormData)['status'] == false){
                     return Response.mensagemErro('Campos naos podem estar vazios')
@@ -88,49 +63,56 @@
                     }
                 })
             },
-            
-
-            
-
-
-        },
-        watch:{
-            async 'clinicaEnderecoFormData.estado'(novo){
-                this.cidades = await this.request.pegarDadosApi(`/cidade/${novo}`)
-            }
-        },
-        async created(){
-
-            this.estados = await this.request.pegarDadosApi('/unidades_federativas')
-            this.tipoEndereco = await this.request.pegarDadosApi('/endereco/tipo')
-            this.especialidades = await this.request.pegarDadosApi('/medico/especialidade/1')    
+    },
+    watch:{
+        async 'clinicaEnderecoFormData.estado'(novo){
+            this.cidades = await this.request.pegarDadosApi(`/cidade/${novo}`)
         }
+    },
+    async created(){
 
-
+        this.estados = await this.request.pegarDadosApi('/unidades_federativas')
+        this.tipoEndereco = await this.request.pegarDadosApi('/endereco/tipo')
+        this.especialidades = await this.request.pegarDadosApi('/medico/especialidade/1')    
     }
+}
+
 </script>
-
 <template>
-
-    <div class="grid space-y-6 grid-cols-1 items-center">  
-        <!-- HEADER -->
-        <div>
-            <h1 class="text-4xl font-bold mb-4">{{ $t("Clinic") }}</h1>
-        </div>       
-        <!-- HEADER -->
-
+    <div class="grid space-y-6 grid-cols-1 items-center w-full">  
 
         <!-- FORMULARIO -->
-        <div class="flex flex-col items-center gap-5 mt-4  ">
+        <div class="flex flex-col items-center gap-5 mt-4">
 
-            <input v-bind:class="classeInputs" type="text" placeholder="Ex.: Nome da clinica" v-model="clinicaFormData.nome" />
-            <hr class="w-80 h-0.5 mx-auto bg-slate-700 border-0 rounded dark:bg-slate-700">
+            <!-- Nome da clinica -->
+            <div class="w-1/2">
+                <label for="groupFname">Nome da clinica</label>
+                <input class="form-input" type="text" placeholder="Ex.: Nome da clinica" v-model="clinicaFormData.nome" />
+            </div>
+            <hr>
 
-            <input v-bind:class="classeInputs" v-mask="'#####-###'" type="text" placeholder="Ex.: 87560-000" v-on:input="$event => clinicaEnderecoFormData.cep = $event.target.value" />
-            <input v-bind:class="classeInputs" type="text" placeholder="Ex.: Rua" v-model="clinicaEnderecoFormData.rua" />
-            <input v-bind:class="classeInputs" type="text" placeholder="Ex.: bairro" v-model="clinicaEnderecoFormData.bairro" />
+            <!-- CEP -->
+            <div class="w-1/2">
+                <label for="groupFname">CEP</label>
+                <input class="form-input" v-mask="'#####-###'" type="text" placeholder="Ex.: 87560-000" v-on:input="$event => clinicaEnderecoFormData.cep = $event.target.value" />
+            </div>
 
-            <select v-bind:class="classeSelect" v-model="clinicaFormData.especialidade_id" >
+            <!-- Rua -->
+            <div class="w-1/2">
+                <label for="groupFname">Rua</label>
+                <input class="form-input" type="text" placeholder="Ex.: Rua" v-model="clinicaEnderecoFormData.rua" />
+            </div>
+
+            <!-- Bairro -->
+            <div class="w-1/2">
+                <label for="groupFname">Bairro</label>
+                <input class="form-input" type="text" placeholder="Ex.: bairro" v-model="clinicaEnderecoFormData.bairro" />
+            </div>
+
+            <hr class="bg-dark">
+
+            <!-- Especialidade -->
+            <select class="form-select w-1/2" v-model="clinicaFormData.especialidade_id" >
                 <option value="0" disabled selected>Selecione a especialidade</option>
                 <option v-for="esspecialidade in especialidades" :value="// @ts-expect-error
                                                         esspecialidade.id">
@@ -140,8 +122,8 @@
                     }}
                 </option>
             </select>
-
-            <select v-bind:class="classeSelect" v-model="clinicaEnderecoFormData.estado" >
+            <!-- Estado -->
+            <select class="form-select w-1/2" v-model="clinicaEnderecoFormData.estado" >
                 <option value="0" disabled selected>Selecione o estado</option>
                 <option v-for="estado in estados" :value="// @ts-expect-error
                                                         estado.uf">
@@ -152,7 +134,8 @@
                 </option>
             </select>
 
-            <select v-bind:class="classeSelect" v-model="clinicaEnderecoFormData.cidade" >
+            <!-- Cidade -->
+            <select class="form-select w-1/2" v-model="clinicaEnderecoFormData.cidade" >
                 <option value="0" disabled selected>Selecione a cidade</option>
                 <option v-for="cidade in cidades" :value="// @ts-expect-error
                                                         cidade.id">
@@ -163,8 +146,8 @@
                 </option>
             </select>
             
-
-            <select v-bind:class="classeSelect" v-model="clinicaEnderecoFormData.tipo" >
+            <!-- Tipo de endereco -->
+            <select class="form-select w-1/2" v-model="clinicaEnderecoFormData.tipo" >
                 <option value="0" disabled selected>Selecione o tipo de enreço</option>
                 <option v-for="tipo in tipoEndereco" :value="// @ts-expect-error
                                                     tipo.id">
@@ -175,8 +158,17 @@
                 </option>
             </select>
 
-            <input v-bind:class="classeInputs" v-mask="'#####'" type="text" placeholder="Ex.: numero" v-model="clinicaEnderecoFormData.numero" />
-            <input v-bind:class="classeInputs" type="text" placeholder="Ex.: complemento" v-model="clinicaEnderecoFormData.complemento" />
+            <!-- Numero -->
+            <div class="w-1/2">
+                <label for="groupFname">Nome da mãe</label>
+                <input class="form-input" v-mask="'#####'" type="text" placeholder="Ex.: numero" v-model="clinicaEnderecoFormData.numero" />
+            </div>
+
+            <!-- Complemento -->
+            <div class="w-1/2">
+                <label for="groupFname">Nome da mãe</label>
+                <input class="form-input" type="text" placeholder="Ex.: complemento" v-model="clinicaEnderecoFormData.complemento" />
+            </div>
 
         </div>
 
