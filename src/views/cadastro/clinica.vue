@@ -16,7 +16,7 @@
                     cep: "",
                     rua: "",
                     bairro: "",
-                    cidade: "",
+                    cidade: "0",
                     estado: "0",
                     tipo: "0",
                     numero: "",
@@ -24,6 +24,7 @@
                 },
                 estado:{},
                 tipoEndereco: {},
+                cidades:{},
                 //classes
                 classeInputs:{
                     'p-3': true,
@@ -49,7 +50,7 @@
             async cadastrarClinica(){
                 // validar campos
                 if(ValidacaoInput.inputVazio(this.clinicaFormData)['status'] == false || ValidacaoInput.inputVazio(this.clinicaEnderecoFormData)['status'] == false){
-                    return console.log('Campos naos podem estar vazios')
+                    return Response.mensagemErro('Campos naos podem estar vazios')
                 }
 
                 // sanitizar
@@ -75,12 +76,17 @@
 
 
         },
-
+        watch:{
+            async 'clinicaEnderecoFormData.estado'(novo){
+                this.cidades = await this.request.pegarDadosApi(`/cidade/${novo}`)
+            }
+        },
         async created(){
 
             this.estado = await this.request.pegarDadosApi('/unidades_federativas')
             this.tipoEndereco = await this.request.pegarDadosApi('/endereco/tipo')
         }
+
 
     }
 </script>
@@ -104,7 +110,6 @@
             <input v-bind:class="classeInputs" v-mask="'#####-###'" type="text" placeholder="Ex.: 87560-000" v-on:input="$event => clinicaEnderecoFormData.cep = $event.target.value" />
             <input v-bind:class="classeInputs" type="text" placeholder="Ex.: Rua" v-model="clinicaEnderecoFormData.rua" />
             <input v-bind:class="classeInputs" type="text" placeholder="Ex.: bairro" v-model="clinicaEnderecoFormData.bairro" />
-            <input v-bind:class="classeInputs" type="text" placeholder="Ex.: cidade" v-model="clinicaEnderecoFormData.cidade" />
 
             <select v-bind:class="classeSelect" v-model="clinicaEnderecoFormData.estado" >
                 <option value="0" disabled selected>Selecione o estado</option>
@@ -116,6 +121,21 @@
                     }}
                 </option>
             </select>
+
+
+            <select v-bind:class="classeSelect" v-model="clinicaEnderecoFormData.cidade" >
+                <option value="0" disabled selected>Selecione a cidade</option>
+                <option v-for="cidade in cidades" :value="// @ts-expect-error
+                                                        cidade.id">
+                    {{ 
+                        // @ts-expect-error
+                        cidade.nome 
+                    }}
+                </option>
+            </select>
+            
+            <!-- <input v-bind:class="classeInputs" type="text" placeholder="Ex.: cidade" v-model="clinicaEnderecoFormData.cidade" /> -->
+
 
             <select v-bind:class="classeSelect" v-model="clinicaEnderecoFormData.tipo" >
                 <option value="0" disabled selected>Selecione o tipo de enreço</option>
