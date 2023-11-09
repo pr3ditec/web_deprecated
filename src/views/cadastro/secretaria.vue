@@ -38,7 +38,10 @@
                 "rounded-md": true,
                 "border border-zinc-200": true,
                 "shadow-sm": true,
-                "focus:outline-none": true
+                "focus:outline-none": true,
+                'dark:text-slate-400': true,
+                'dark:bg-slate-800': true,
+                "dark:border-0": true
             },
             classePassword: {
                 "p-3": true,
@@ -48,7 +51,10 @@
                 "border border-zinc-200": true,
                 "border border-red-600": false,
                 "shadow-sm": true,
-                "focus:outline-none": true
+                "focus:outline-none": true,
+                'dark:text-slate-400': true,
+                'dark:bg-slate-800': true,
+                "dark:border-0": true
             },
             classeInputsRow: {
                 "p-3": true,
@@ -57,7 +63,10 @@
                 "rounded-md": true,
                 "border border-zinc-200": true,
                 "shadow-sm": true,
-                "focus:outline-none": true
+                "focus:outline-none": true,
+                'dark:text-slate-400': true,
+                'dark:bg-slate-800': true,
+                "dark:border-0": true
             },
             classeSelect: {
                 "w-1/2": true,
@@ -65,7 +74,10 @@
                 "rounded-md": true,
                 "border border-zinc-200": true,
                 "bg-slate-50": true,
-                "shadow-sm": true
+                "shadow-sm": true,
+                'dark:text-slate-400': true,
+                'dark:bg-slate-800': true,
+                "dark:border-0": true
             }
         };
     },
@@ -124,7 +136,7 @@
     <div class="grid space-y-6 grid-cols-1 items-center">  
         <!-- HEADER -->
         <div>
-            <h1 class="text-4xl font-bold mb-4">Secretária</h1>
+            <h1 class="text-4xl font-bold mb-4">{{ $t('Secretary') }}</h1>
         </div>       
         <!-- HEADER -->
 
@@ -148,9 +160,9 @@
 
             <select v-bind:class="classeSelect" v-model="secretariaFormData.sexo">
                 <option value="0" disabled selected>Selecione o sexo</option>
-                <option value="M">M</option>
-                <option value="F">F</option>
-                <option value="X">U</option>
+                <option value="F">Feminino</option>
+                <option value="M">Masculino</option>
+                <option value="X">Outro</option>
             </select>
 
             <select v-bind:class="classeSelect" v-model="secretariaFormData.nacionalidade_id">
