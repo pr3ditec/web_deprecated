@@ -116,22 +116,21 @@ import Vincular from './vincular.vue';
             this.secretariaFormData["cpf"] = this.secretariaFormData["cpf"].replaceAll(".", "").replaceAll("-", "");
             // salvando dados da secretaria
             await this.request.enviarDadosApi("medico/clinica/secretaria", this.secretariaFormData).then((res) => {
-                console.log(res.list[1])
                 if (res.status == false) {
                     return Response.mensagemErro(res.message);
                 }
                 else {
 
                     if(this.vinculoMedico['status'] && this.vinculoMedico['valor'] != 0){
-                        // this.request.enviarDadosApi('/secretaria/medico', {
-                        //     "secretataria_id": res.list[1].id
-                        // })
+                        this.request.enviarDadosApi('/secretaria/medico', {
+                            "secretataria_id": res.list[1].id
+                        })
                     }
                     if(this.vinculoClinica['status'] && this.vinculoClinica['valor'] != 0){
-                        // this.request.enviarDadosApi('/secretaria/medico', {
-                        //     "secretataria_id": res.list[1].id
-                        //      "clinica_id": this.vinculoClinica['valor']
-                        // })
+                        this.request.enviarDadosApi('/secretaria/medico', {
+                            "secretataria_id": res.list[1].id,
+                            "clinica_id": this.vinculoClinica['valor']
+                        })
                     }
 
                     return Response.mensagemSucesso(res.message);
