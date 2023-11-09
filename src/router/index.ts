@@ -17,8 +17,8 @@ import Agenda from '../views/agenda/agenda.vue';
 import RiscoEmpresarial from '../views/risco-empresarial/risco-empresarial.vue';
 
 /** CADASTRO */
-import Secretaria from '../views/cadastro/secretaria.vue';
-import Clinica from '../views/cadastro/clinica.vue';
+import Secretaria from '../views/cadastro/secretaria/secretaria.vue';
+import Clinica from '../views/cadastro/clinica/clinica.vue';
 
 
 const routes: RouteRecordRaw[] = [
