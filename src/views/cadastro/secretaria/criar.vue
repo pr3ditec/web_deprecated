@@ -94,20 +94,20 @@ export default{
         <div class="flex flex-row gap-1 w-full">
             <!-- Nome da secretaria -->
             <div class="w-1/2">
-                <label for="groupFname">Nome completo</label>
-                <input class="form-input" type="text" placeholder="Ex.: Nome completo" v-model="secretariaFormData.nome" />
+                <label class="capitalize" for="groupFname capitalize">{{ $t('name') }}</label>
+                <input class="form-input" type="text" placeholder="Ex.: Fernanda" v-model="secretariaFormData.nome" />
             </div>
 
             <!-- Nome da mae -->
             <div class="w-1/2">
-                <label for="groupFname">Nome da mãe</label>
-                <input class="form-input" type="text" placeholder="Ex.: Nome da Mae" v-model="secretariaFormData.nome_mae" />
+                <label class="capitalize" for="groupFname capitalize">{{ $t("mother's name") }}</label>
+                <input class="form-input" type="text" placeholder="Ex.: Sabrina" v-model="secretariaFormData.nome_mae" />
             </div>
         </div>
 
         <!-- CPF  -->
         <div class="w-full gap-0">
-            <label for="groupFname">CPF</label>
+            <label class="capitalize" for="groupFname capitalize">CPF</label>
             <input class="form-input" v-mask="'###.###.###-##'" type="text" placeholder="Ex.: 000.000.000-00" v-on:input="$event => {
                 //@ts-expect-error
                 secretariaFormData.cpf = $event.target.value }" />
@@ -115,27 +115,27 @@ export default{
 
         <!-- EMAIL -->
         <div class="w-full gap-0">
-            <label for="groupFname">E-mail</label>
+            <label class="capitalize" for="groupFname capitalize">E-mail</label>
             <input class="form-input" type="text" placeholder="Ex.: secretaria@sauvi.com" v-model="secretariaFormData.email" />
         </div>
 
         <!-- DATA DE NASCIMENTO -->
         <div class="w-full gap-0">
-            <label class="justify-start">Data de nascimento</label>
+            <label class="justify-start capitalize">{{ $t('birthdate') }}</label>
             <input class="form-input" v-mask="'##/##/####'" type="text" placeholder="Ex.: 00/00/0000" v-model="secretariaFormData.nascimento" />
         </div>
         
         <!-- SEXO -->
         <select class="form-select" v-model="secretariaFormData.sexo">
-                <option value="0" disabled selected>Selecione o sexo</option>
-                <option value="F">Feminino</option>
-                <option value="M">Masculino</option>
-                <option value="X">Outro</option>
+                <option value="0" disabled selected>{{ $t('select') }} {{ $t('gender') }}</option>
+                <option class="capitalize" value="F">{{ $t('female') }}</option>
+                <option class="capitalize" value="M">{{  $t('male') }}</option>
+                <option class="capitalize" value="X">{{ $t('other') }}</option>
         </select>
 
         <!-- NACIONALIDADE -->
         <select class="form-select" v-model="secretariaFormData.nacionalidade_id">
-                <option value="0" disabled selected>Selecione a nacionalidade</option>
+                <option value="0" disabled selected>{{ $t('select') }} {{ $t('citizenship') }}</option>
                 <option v-for="nac in nacionalidade" :value="// @ts-expect-error
                                                             nac.id">
                     {{ 
@@ -146,13 +146,13 @@ export default{
         </select>
 
         <div class="w-full gap-0">
-            <label class="justify-start">Senha</label>
-            <input class="form-input" type="password" placeholder="Ex.: senha" v-model="secretariaFormData.password" />
+            <label  class="capitalize justify-start">{{ $t('password') }}</label>
+            <input class="form-input" type="password" v-model="secretariaFormData.password" />
         </div>
 
         <div class="w-full gap-0">
-            <label class="justify-start">Repetir a senha</label>
-            <input class="form-input" v-bind:class="classePassword" v-on:keyup="$event => compararSenhas($event)" type="password" placeholder="Ex.: repetir a senha" />
+            <label class="capitalize justify-start">{{ $t('repeat')}} {{ $t('password') }}</label>
+            <input class="form-input" v-bind:class="classePassword" v-on:keyup="$event => compararSenhas($event)" type="password" />
             <span class="flex flex-col items-start text-danger text-xs align-start mt-0 pt-0" v-show="classePassword['border border-red-600']">Senhas nao correspondem</span>
         </div>
 

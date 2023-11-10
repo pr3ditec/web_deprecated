@@ -86,34 +86,34 @@ export default{
 
             <!-- Nome da clinica -->
             <div class="w-1/2">
-                <label for="groupFname">Nome da clinica</label>
-                <input class="form-input" type="text" placeholder="Ex.: Nome da clinica" v-model="clinicaFormData.nome" />
+                <label class="capitalize" for="groupFname">{{ $t('name') }}</label>
+                <input class="form-input" type="text" placeholder="Ex.: Clinica principal" v-model="clinicaFormData.nome" />
             </div>
             <hr>
 
             <!-- CEP -->
             <div class="w-1/2">
-                <label for="groupFname">CEP</label>
+                <label class="capitalize" for="groupFname">CEP</label>
                 <input class="form-input" v-mask="'#####-###'" type="text" placeholder="Ex.: 87560-000" v-on:input="$event => clinicaEnderecoFormData.cep = $event.target.value" />
             </div>
 
             <!-- Rua -->
             <div class="w-1/2">
-                <label for="groupFname">Rua</label>
-                <input class="form-input" type="text" placeholder="Ex.: Rua" v-model="clinicaEnderecoFormData.rua" />
+                <label class="capitalize" for="groupFname">{{ $t('street') }}</label>
+                <input class="form-input" type="text" placeholder="Ex.: Rua mercelo azevedo" v-model="clinicaEnderecoFormData.rua" />
             </div>
 
             <!-- Bairro -->
             <div class="w-1/2">
-                <label for="groupFname">Bairro</label>
-                <input class="form-input" type="text" placeholder="Ex.: bairro" v-model="clinicaEnderecoFormData.bairro" />
+                <label class="capitalize" for="groupFname">{{ $t('neighborhood') }}</label>
+                <input class="form-input" type="text" placeholder="Ex.: Centro" v-model="clinicaEnderecoFormData.bairro" />
             </div>
 
             <hr class="bg-dark">
 
             <!-- Especialidade -->
             <select class="form-select w-1/2" v-model="clinicaFormData.especialidade_id" >
-                <option value="0" disabled selected>Selecione a especialidade</option>
+                <option value="0" disabled selected>{{ $t('select') }} {{ $t('capabilities') }}</option>
                 <option v-for="esspecialidade in especialidades" :value="// @ts-expect-error
                                                         esspecialidade.id">
                     {{ 
@@ -124,7 +124,7 @@ export default{
             </select>
             <!-- Estado -->
             <select class="form-select w-1/2" v-model="clinicaEnderecoFormData.estado" >
-                <option value="0" disabled selected>Selecione o estado</option>
+                <option value="0" disabled selected>{{ $t('select') }} {{ $t('state') }}</option>
                 <option v-for="estado in estados" :value="// @ts-expect-error
                                                         estado.uf">
                     {{ 
@@ -136,7 +136,7 @@ export default{
 
             <!-- Cidade -->
             <select class="form-select w-1/2" v-model="clinicaEnderecoFormData.cidade" >
-                <option value="0" disabled selected>Selecione a cidade</option>
+                <option value="0" disabled selected>{{ $t('select') }} {{ $t('city') }}</option>
                 <option v-for="cidade in cidades" :value="// @ts-expect-error
                                                         cidade.id">
                     {{ 
@@ -148,7 +148,7 @@ export default{
             
             <!-- Tipo de endereco -->
             <select class="form-select w-1/2" v-model="clinicaEnderecoFormData.tipo" >
-                <option value="0" disabled selected>Selecione o tipo de enreço</option>
+                <option value="0" disabled selected>{{ $t('select') }} {{ $t('address')}}</option>
                 <option v-for="tipo in tipoEndereco" :value="// @ts-expect-error
                                                     tipo.id">
                     {{ 
@@ -160,14 +160,14 @@ export default{
 
             <!-- Numero -->
             <div class="w-1/2">
-                <label for="groupFname">Nome da mãe</label>
-                <input class="form-input" v-mask="'#####'" type="text" placeholder="Ex.: numero" v-model="clinicaEnderecoFormData.numero" />
+                <label class="capitalize" for="groupFname">{{ $t('number' )}}</label>
+                <input class="form-input" v-mask="'#####'" type="text" placeholder="Ex.: 233" v-model="clinicaEnderecoFormData.numero" />
             </div>
 
             <!-- Complemento -->
             <div class="w-1/2">
-                <label for="groupFname">Nome da mãe</label>
-                <input class="form-input" type="text" placeholder="Ex.: complemento" v-model="clinicaEnderecoFormData.complemento" />
+                <label class="capitalize" for="groupFname">{{ $t('adjunct') }}</label>
+                <input class="form-input" type="text" placeholder="Ex.: Apto 12" v-model="clinicaEnderecoFormData.complemento" />
             </div>
 
         </div>

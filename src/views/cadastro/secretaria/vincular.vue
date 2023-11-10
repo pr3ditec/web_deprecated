@@ -1,107 +1,81 @@
 <script>
 
-import { inject } from 'vue';
+import { inject } from 'vue'
 
 export default{
     data(){
         return{
+            // Api para fazer requests
             request: Object(inject('api')),
-            // secretaroas
-            secretaria_id: 0,
-            secretarias:{},
-            // medico
-            medico_id: 0,
-            medicos:{},
-            // clinica
-            clinica_id: 0,
-            clinicas:{}
+            // variaveis reativas
+            secretaria: {
+                nome: ""
+            },
+            clinicas: {}
         }
     },
     methods:{
-        vincularClinica(){
-            this.request.enviarDadosApi('/secretaria/medico',{
-                "clinica_id": this.clinica_id,
-                "secretaria_d": "",
-                "ativo": "1"
-            })
+
+        async pesquisarSecretaria(cpf){
+            if(cpf.length == 14){
+                cpf = cpf.replaceAll('.', '').replaceAll('-','')
+                await this.request.pegarDadosApi(`/secretaria/${cpf}`).then( (res) => {
+                    this.secretaria = res
+                })
+            }else{
+                this.secretaria = {
+                    nome: ""
+                }
+            }
         },  
-        vincularMedico(){
-            this.request.enviarDadosApi('/secretaria/medico',{
-                "medico_id": this.medico_id,
-                "secretaria_d": '',
-                "ativo": "1"
-            })
+
+        criarVinculo(){
+            if(this.secretaria.nome != ""){
+                console.log('Vinculo solicitado')
+            }
         }
     },
     async created(){
 
-        this.secretarias = []
-        this.medicos = await this.request.pegarDadosApi('/medico')
-        this.clinicas = await this.request.pegarDadosApi('/medico/clinica/1') // colocar o id do usuario
+        this.clinicas = await this.request.pegarDadosApi('/medico/clinica/4/') // colocar id do medico
     }
-
 }
 
+
 </script>
+
 <template>
 
-    <div class="flex flex-col items-center gap-5 mt-4 w-full">
+    <div class="flex flex-col items-center gap-1 mt-4 w-1/2"  v-on:keyup.enter="criarVinculo">
 
-        <!-- secretarias -->
-        <div class="flex flex-col gap-2 w-full pl-6">
-            <h1 class="text-lg">Vincular secretaria com médicos</h1>
+        <h1 class="text-3xl font-bold">Vincular com secretária</h1>
             <hr>
-            <div class="flex flex-row w-full justify-center p-6">
-                <select class="form-select" @change="secretaria_id = $event.target.value">
-                    <option value="0" disabled selected>Selecione o medico</option>
-                    <option v-for="secretaria in secretarias" :value="secretaria.medico_id">
-                        {{ secretaria.nome }}
-                    </option>
-                </select>
+            <div class="w-full flex flex-col gap-0 p-6">
+                <label>{{ $t('secretary') }}</label>
+                <div class="flex flex-col w-full justify-center">
+
+                    <input class="form-input" type="text" v-mask="'###.###.###-##'" placeholder="Digite o cpf ........" v-on:keyup="$event => pesquisarSecretaria($event.target.value)"/>
+                    <Transition>
+                        <div class="w-full mt-2 bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none" v-show="secretaria.nome != '' ">
+                            <div class="p-5 flex items-center flex-col sm:flex-row">
+                                <div class="mb-5 w-20 h-20 rounded-full overflow-hidden">
+                                <img src="/assets/images/profile-34.jpeg" alt="" class="w-full h-full object-cover" />
+                                </div>
+                                <div class="flex-1 ltr:sm:pl-5 rtl:sm:pr-5 text-center sm:text-left">
+                                <h5 class="text-[#3b3f5c] text-[15px] font-semibold mb-2 dark:text-white-light">{{ secretaria.nome }}</h5>
+                                <p class="mb-2 text-white-dark">{{ $t('secretary') }}</p>
+                                <span class="badge bg-primary rounded-full">Ativo</span>
+                                <p class="font-semibold text-white-dark mt-4 sm:mt-8">Maecenas nec mi vel lacus condimentum rhoncus dignissim egestas orci. Integer blandit porta placerat. Vestibulum in ultricies.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Transition>
+                </div>
             </div>
+            <hr>   
             <div class="flex flex-col items-center font-semibold mt-2">
-                <button class="btn btn-primary w-80" v-on:keyup.enter="cadastrarSecretaria" @click="vincularMedico" :disabled="medico_id == 0">Vincular com medico</button>
+                <button class="btn btn-primary w-80" @click="criarVinculo" :disabled="secretaria.nome == '' ">Solicitar vinculo</button>
             </div>
-
-        </div>
-
-        <!-- Vincular com medicos -->
-        <div class="flex flex-col gap-2 w-full pl-6">
-            <h1 class="text-lg">Vincular secretaria com médicos</h1>
-            <hr>
-            <div class="flex flex-row w-full justify-center p-6">
-                <select class="form-select" @change="medico_id = $event.target.value">
-                    <option value="0" disabled selected>Selecione o medico</option>
-                    <option v-for="medico in medicos" :value="medico.medico_id">
-                        {{ medico.nome }}
-                    </option>
-                </select>
-            </div>
-            <div class="flex flex-col items-center font-semibold mt-2">
-                <button class="btn btn-primary w-80" v-on:keyup.enter="cadastrarSecretaria" @click="vincularMedico" :disabled="medico_id == 0">Vincular com medico</button>
-            </div>
-
-        </div>
-
-        <!-- Vincular com clinicas -->
-        <div class="flex flex-col gap-2 w-full pl-6">
-            <h1 class="text-lg">Vincular secretaria com médicos</h1>
-            <hr>
-            <div class="flex flex-row w-full justify-center p-6">
-                <hr>
-                <select class="form-select" @change="clinica_id = $event.target.value">
-                    <option value="0" disabled selected>Selecione a clinica</option>
-                    <option v-for="clinica in clinicas" :value="clinica.id">
-                        {{ clinica.nome }}
-                    </option>
-                </select>
-            </div>
-            <div class="flex flex-col items-center font-semibold mt-2">
-                <button class="btn btn-primary w-80" v-on:keyup.enter="cadastrarSecretaria" @click="vincularClinica" :disabled="clinica_id == 0">Vincular com clinica</button>
-            </div>
-        
-        </div>
-
     </div>
 
 </template>
