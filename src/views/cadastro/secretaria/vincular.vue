@@ -16,11 +16,12 @@ export default {
         }
     },
     methods: {
-
         async pesquisarSecretaria(cpf) {
+            // escolher mascara
             if (cpf.length == 14) {
                 cpf = cpf.replaceAll('.', '').replaceAll('-', '')
                 await this.request.pegarDadosApi(`/secretaria/${cpf}`).then((res) => {
+                    console.log(res)
                     if (res.length === undefined) {
                         this.encontrada = true
                         this.secretaria = res
@@ -37,7 +38,7 @@ export default {
 
         criarVinculo() {
             if (this.secretaria.nome != "") {
-                console.log('Vinculo solicitado')
+                console.log('Vinculo solicitado') // rota ainda nao implementada
             }
         }
     },
@@ -59,7 +60,7 @@ export default {
             <label>{{ $t('secretary') }}</label>
             <div class="flex flex-col w-full justify-center">
 
-                <input class="form-input" type="text" v-mask="'###.###.###-##'" placeholder="Digite o cpf ........"
+                <input class="form-input" v-mask="'###.###.###-##'" type="text" placeholder="Digite o cpf ........"
                     v-on:keyup="$event => pesquisarSecretaria($event.target.value)" />
                 <span class="text-danger text-sm" v-show="!encontrada">secretaria não encontrada</span>
                 <Transition>
@@ -67,7 +68,7 @@ export default {
                         v-show="secretaria.nome != ''">
                         <div class="p-5 flex items-center flex-col sm:flex-row">
                             <div class="mb-5 w-20 h-20 rounded-full overflow-hidden">
-                                <img src="/assets/images/profile-34.jpeg" alt="" class="w-full h-full object-cover" />
+                                <img src="/assets/images/profile-12.jpeg" alt="" class="w-full h-full object-cover" />
                             </div>
                             <div class="flex-1 ltr:sm:pl-5 rtl:sm:pr-5 text-center sm:text-left">
                                 <h5 class="text-[#3b3f5c] text-[15px] font-semibold mb-2 dark:text-white-light">{{
