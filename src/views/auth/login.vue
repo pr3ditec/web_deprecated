@@ -88,16 +88,16 @@
                         <div class="mb-10">
                             <h1 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">Sign in
                             </h1>
-                            <p class="text-base font-bold leading-normal text-white-dark">Enter your email and password to
+                            <p class="text-base font-bold leading-normal text-white-dark">Enter your cpf and password to
                                 login</p>
                         </div>
 
-                        <form class="space-y-5 dark:text-white" @submit.prevent="router.push('/')">
+                        <form class="space-y-5 dark:text-white" @submit.prevent="submitForm">
                             <div>
-                                <label for="Email">Email</label>
+                                <label for="cpf">CPF</label>
                                 <div class="relative text-white-dark">
-                                    <input id="Email" type="email" placeholder="Enter Email"
-                                        class="form-input ps-10 placeholder:text-white-dark" />
+                                    <input id="CPF" type="text" placeholder="Enter CPF" v-model="loginForm.cpf"
+                                        class="form-input ps-10 placeholder:text-white-dark" required />
                                     <span class="absolute start-4 top-1/2 -translate-y-1/2">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                                             <path opacity="0.5"
@@ -115,7 +115,8 @@
                                 <label for="Password">Password</label>
                                 <div class="relative text-white-dark">
                                     <input id="Password" type="password" placeholder="Enter Password"
-                                        class="form-input ps-10 placeholder:text-white-dark" />
+                                        v-model="loginForm.password" class="form-input ps-10 placeholder:text-white-dark"
+                                        required />
                                     <span class="absolute start-4 top-1/2 -translate-y-1/2">
                                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                                             <path opacity="0.5"
@@ -136,13 +137,6 @@
                                         </svg>
                                     </span>
                                 </div>
-                            </div>
-
-                            <div>
-                                <label class="flex cursor-pointer items-center">
-                                    <input type="checkbox" class="form-checkbox bg-white dark:bg-black" />
-                                    <span class="text-white-dark">Subscribe to weekly newsletter</span>
-                                </label>
                             </div>
 
                             <button type="submit"
@@ -252,8 +246,10 @@ import appSetting from '@/app-setting';
 import { useAppStore } from '@/stores/index';
 import { useRouter } from 'vue-router';
 import { useMeta } from '@/composables/use-meta';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
-useMeta({ title: 'Login Cover' });
+useMeta({ title: 'Login' });
 
 const router = useRouter();
 const store = useAppStore();
@@ -268,4 +264,38 @@ const changeLanguage = (item: any) => {
 const currentFlag = computed(() => {
     return `/assets/images/flags/${i18n.locale.toUpperCase()}.svg`;
 });
+
+const loginForm = reactive({
+    cpf: '',
+    password: ''
+});
+
+const req = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'http://localhost:8001/login',
+    headers: {
+        'originRequest': 'admin',
+    },
+    data: loginForm
+};
+
+const submitForm = async () => {
+    try {
+        const response = await axios.request(req);
+
+        if (response.data.status) {
+            //store.setUserLoggedIn(true);
+            router.push('/');
+        } else {
+            // Handle login failure
+            console.log('Login failed: ', response.data.message);
+            Swal.fire('Login failed', response.data.message, 'info');
+        }
+    } catch (error) {
+        // Handle request failure
+        console.log('Request failed', error);
+        alert('Request failed: ' + error);
+    }
+};
 </script>
