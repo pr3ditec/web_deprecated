@@ -15,7 +15,7 @@ export default class Api{
             timeout: 2000,
             headers:{
                 "Authorization": token,
-                "OriginRequest": origin
+                "origin-request": origin
             }
         })
     }
