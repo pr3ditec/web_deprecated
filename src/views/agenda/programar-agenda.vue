@@ -7,7 +7,7 @@
     <div v-if="selectedDoctor">
         <div class="flex justify-center items-center">
             <div class="w-6/12">
-            <div class="calendar-wrapper">
+                <div class="calendar-wrapper">
                     <FullCalendar ref="calendar" :options="calendarOptions" />
                 </div>
             </div>
@@ -30,7 +30,8 @@
                     leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                     <div
                         class="inline-block align-bottom rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                        <DialogPanel class="panel border-2 p-0 rounded-lg overflow-hidden w-full max-w-lg text-black dark:text-white-dark">
+                        <DialogPanel
+                            class="panel border-2 p-0 rounded-lg overflow-hidden w-full max-w-lg text-black dark:text-white-dark">
                             <div class="border-1 p-5 sm:my-8 sm:align-middle">
                                 <div class="mt-3 ">
                                     <div>
@@ -43,8 +44,7 @@
                                     </div>
                                     <div class="mt-2" v-if="horarioInicio && horarioFim">
                                         <label for="incremento">Intervalo entre as consultas:</label>
-                                        <select id="incremento" v-model="incrementoSelecionado"
-                                            class="form-select mb-4">
+                                        <select id="incremento" v-model="incrementoSelecionado" class="form-select mb-4">
                                             <option disabled value="">Selecione o intervalo de consultas</option>
                                             <option value="60">1 hora</option>
                                             <option value="30">30 minutos</option>
@@ -127,15 +127,16 @@ import SelectHorarioInicio from '../../components/layout/Select-time.vue';
 import SelectHorarioFim from '../../components/layout/Select-time.vue';
 import Swal from 'sweetalert2';
 import { useMeta } from '@/composables/use-meta';
+import axios from 'axios';
 
 export default {
     components: {
+        FullCalendar,
         TransitionRoot,
         TransitionChild,
         Dialog,
         DialogPanel,
         DialogOverlay,
-        FullCalendar,
         SelectMedico,
         SelectHorarioInicio,
         SelectHorarioFim
@@ -155,6 +156,7 @@ export default {
             rows: null as number | null,
             hours: null as string[] | null,
             columns: 5,
+            token: 'ed66450e81e007a467062444d88b1c92',
             windowResize: function (view, element) {
                 view.calendar.option('height', window.innerHeight);
             },
@@ -175,6 +177,16 @@ export default {
         this.resetModal();
     },
     watch: {
+        selectedDoctor: {
+            immediate: true, // Chama a função quando o componente é montado
+            handler(newDoctor) {
+                if (newDoctor) {
+                    console.log(newDoctor);
+                    this.clearSchedule(); // Limpa a agenda
+                    this.fetchDoctorAvailability(newDoctor);
+                }
+            }
+        },
         horarioFim() {
             this.generateTable();
         },
@@ -194,6 +206,50 @@ export default {
         }
     },
     methods: {
+        async fetchDoctorAvailability(doctorId) {
+            try {
+                const response = await axios.get(`http://localhost:8001/consulta/medico/${doctorId}`, {
+                    headers: {
+                        "authorization": this.token,
+                        "originRequest": "app"
+                    }
+                });
+                const data = response.data;
+
+                const availableHours = data.list.horarios;
+                console.log(availableHours);
+                this.markAvailableHours(availableHours);
+            } catch (error) {
+                console.error('Erro ao buscar disponibilidade do médico', error);
+            }
+        },
+        markAvailableHours(availableHours) {
+            const calendarApi = (this.$refs.calendar as any).getApi();
+            calendarApi.removeAllEvents();
+
+            if (!availableHours) {
+                console.error('Nenhum horário disponível retornado pela API');
+                calendarApi.removeAllEvents();
+                return;
+            }
+
+            this.$nextTick(() => {
+                availableHours.forEach(day => {
+                    // considerar o fuso horário
+                    const eventDate = new Date(day.data + 'T' + day.horarios[0]);
+
+                    // Converte a data para o fuso horário especificado (timezone)
+                    const eventDateInTimeZone = new Date(eventDate.toLocaleString("en-US", { timeZone: day.timezone }));
+
+                    calendarApi.addEvent({
+                        title: 'DIA LIBERADO',
+                        start: eventDateInTimeZone.toISOString(),
+                        allDay: true
+                    });
+                });
+            });
+        },
+
         resetModal() {
             this.horarioInicio = null;
             this.horarioFim = null;
@@ -201,6 +257,14 @@ export default {
             this.isAllSelected = false;
             this.showTable = false;
         },
+
+        clearSchedule() {
+            this.selectedHours = [];
+            this.table = [];
+            this.rows = null;
+            this.hours = null;
+        },
+
         toggleHour(hour) {
             const index = this.selectedHours.indexOf(hour);
             if (index >= 0) {
@@ -209,6 +273,7 @@ export default {
                 this.selectedHours.push(hour);
             }
         },
+
         generateHours() {
             let horarios: string[] = [];
             if (this.horarioInicio && this.horarioFim) {
@@ -225,6 +290,7 @@ export default {
             }
             return horarios;
         },
+
         generateTable() {
             if (this.horarioInicio && this.horarioFim && this.incrementoSelecionado) {
                 this.hours = this.generateHours();
@@ -242,6 +308,7 @@ export default {
                 }
             }
         },
+
         selectAll() {
             if (this.isAllSelected) {
                 this.selectedHours = [];
@@ -250,6 +317,7 @@ export default {
             }
             this.isAllSelected = !this.isAllSelected;
         },
+
         saveHours() {
             console.log(this.selectedHours);
             console.log(this.selectedDate);
@@ -257,6 +325,7 @@ export default {
             this.showMessage('Agenda criada com Sucesso!.');
             // VER REGRA SALVAR AGENDA
         },
+
         showMessage(msg = '', type = 'success') {
             const toast: any = Swal.mixin({
                 toast: true,

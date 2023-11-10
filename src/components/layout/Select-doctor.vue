@@ -2,7 +2,8 @@
     <div>
         <select v-model="selectedProfessional" class="form-select mb-4" @change="updateSelectedProfessional">
             <option disabled value="">Selecione um profissional</option>
-            <option v-for="profissional in profissionais" :key="profissional.usuario_id">
+            <option v-for="profissional in profissionais" :key="profissional.usuario_id"
+            :value="profissional.usuario_id">
                 {{ profissional.nome }}
             </option>
         </select>
@@ -18,8 +19,8 @@ export default {
         return {
             selectedProfessional: '',
             profissionais: [],
-            token: '15a7afa7c8c3311e65818d11fa1c9ce5',
-            secretariaId: 1
+            token: 'ed66450e81e007a467062444d88b1c92',
+            secretariaId: '1'
         };
     },
     methods: {
