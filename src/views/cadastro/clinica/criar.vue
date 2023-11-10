@@ -2,7 +2,7 @@
 
 import { inject } from 'vue';
 import ValidacaoInput from '../../../helpers/ValidacaoInput';
-import Response from '../../../helpers/Response';
+import Response from '../../../api/Response';
 
 export default {
     data() {
@@ -181,5 +181,6 @@ export default {
         <div class="flex flex-col items-center font-semibold mt-6">
             <button @click="cadastrarClinica()" class="btn btn-primary w-80">Cadastrar</button>
         </div>
-    <!-- FORMULARIO -->
-</div></template>
+        <!-- FORMULARIO -->
+    </div>
+</template>

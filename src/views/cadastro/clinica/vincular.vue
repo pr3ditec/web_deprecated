@@ -8,25 +8,39 @@ export default {
             // Api para fazer requests
             request: Object(inject('api')),
             // variaveis reativas
+            encontrada: true,
+            medico: {},
             clinicas: []
         }
     },
     methods: {
 
-        async pesquisarClinica(cpf) {
+        async pesquisarMedico(cpf) {
+            if(cpf.length == 14){
+                cpf = cpf.replaceAll('.', '').replaceAll('-', '')
+                await this.request.pegarDadosApi(`/medico/${cpf}`).then((res) => {
+                    if (res.length === undefined) {
+                        this.encontrada = true
+                        this.medico = res
+                    } else {
+                        this.encontrada = false
+                    }
+                })
+            }else{
 
+            }
         },
 
         criarVinculo() {
             if (this.clinicas != false) {
 
-                this.request.enviarDadosApi('/')
+                console.log('vinculo solicitado') // rota ainda nao implementada
             }
         }
     },
     async created() {
 
-        // this.clinicas = await this.request.pegarDadosApi('/medico/clinica/4/') // colocar id do medico
+        this.clinicas = await this.request.pegarDadosApi('/medico/clinica/4/') // colocar id do medico
     }
 }
 
@@ -42,8 +56,10 @@ export default {
             <label class="capitalize">{{ $t('doctor') }}</label>
             <div class="flex flex-col w-full justify-center">
 
+                <!-- bucas do meidico -->
                 <input class="form-input" type="text" v-mask="'###.###.###-##'" placeholder="Digite o cpf ........"
-                    v-on:keyup="$event => pesquisarClinica($event.target.value)" />
+                    v-on:keyup="$event => pesquisarMedico($event.target.value)" />
+                    <span class="text-danger text-sm" v-show="!encontrada">medico não encontrado</span>
                 <Transition>
                     <div class="w-full mt-2 bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none"
                         v-show="clinicas.length != 0">
@@ -63,11 +79,20 @@ export default {
                         </div>
                     </div>
                 </Transition>
+
+                <!-- Select das clinicas -->
+                <select class="form-select mt-5">
+                    <option selected disabled>Selecione a clínica</option>
+                    <option v-for="clinica in clinicas" :value="clinica.id">
+                        {{ clinica.nome }}
+                    </option>
+                </select>
             </div>
         </div>
         <hr>
         <div class="flex flex-col items-center font-semibold mt-2">
             <button class="btn btn-primary w-80 capitalize" @click="criarVinculo" :disabled="clinicas.length == 0">{{
                 $t('join') }}</button>
+        </div>
     </div>
-</div></template>
+</template>

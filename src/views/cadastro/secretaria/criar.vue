@@ -1,13 +1,16 @@
 <script lang="ts">
 
 import ValidacaoInput from '../../../helpers/ValidacaoInput';
-import Response from '../../../helpers/Response'
+import Response from '../../../api/Response';
 import { inject } from 'vue';
+import { useAppStore } from '@/stores/index';
+
 
 export default {
     data() {
         return {
             request: Object(inject("api")),
+            store: useAppStore(),
             // Formulario para castro
             secretariaFormData: {
                 nome: "",
