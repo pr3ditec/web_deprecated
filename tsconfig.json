@@ -18,7 +18,7 @@
         },
         "noImplicitAny": false,
         "allowJs": true,
-        "types": ["@intlify/vite-plugin-vue-i18n/client"]
+        "types": ["@intlify/unplugin-vue-i18n/messages"]
     },
     "include": ["src/**/*.js", "src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
     "references": [
