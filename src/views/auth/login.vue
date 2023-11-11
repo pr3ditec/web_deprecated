@@ -282,7 +282,7 @@ const submitForm = async () => {
         const response = await axios.request(req);
 
         if (response.data.status) {
-            //store.setUserLoggedIn(true);
+            store.setUserLogin(response.data.list.token);
             router.push('/');
         } else {
             // Handle login failure
@@ -295,4 +295,9 @@ const submitForm = async () => {
         alert('Request failed: ' + error);
     }
 };
+
+if (store.getUserToken()) {
+    Swal.fire("Você foi redirecionado pois já está logado."); // será removida, é pra vc saber o q está acontecendo
+    router.push('/');
+}
 </script>

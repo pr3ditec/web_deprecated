@@ -612,6 +612,10 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const store = useAppStore();
 
+    // if (!store.getUserToken()) {
+    //     router.push('/auth/login');
+    // }
+
     if (to?.meta?.layout == 'auth') {
         store.setMainLayout('auth');
     } else {

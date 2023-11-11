@@ -23,6 +23,12 @@ export const useAppStore = defineStore('app', {
     }),
 
     actions: {
+        setUserLogin(token) {
+            localStorage.setItem('user.token', token);
+        },
+        getUserToken() {
+            return localStorage.getItem('user.token') ?? null;
+        },
         setMainLayout(payload: any = null) {
             this.mainLayout = payload; //app , auth
         },
@@ -109,5 +115,7 @@ export const useAppStore = defineStore('app', {
             }
         },
     },
-    getters: {},
+    getters: {
+
+    },
 });

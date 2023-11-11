@@ -15,8 +15,7 @@ import { useAppStore } from '@/stores/index';
 import { useMeta } from '@/composables/use-meta';
 import { provide } from 'vue';
 import ApiConnection from './api/Api';
-
-
+import { useRouter } from 'vue-router';
 
 const store = useAppStore();
 
