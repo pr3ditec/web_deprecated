@@ -55,7 +55,7 @@
 
                                     <div class="mt-2 mb-2">
                                         <p class="text-md mb-3">
-                                            Você selecionou a data: 09/11/2023
+                                            Você selecionou a data: {{ selectedDate }}
                                         </p>
                                     </div>
 
@@ -127,7 +127,7 @@ import SelectHorarioInicio from '../../components/layout/Select-time.vue';
 import SelectHorarioFim from '../../components/layout/Select-time.vue';
 import Swal from 'sweetalert2';
 import { useMeta } from '@/composables/use-meta';
-import axios from 'axios';
+import { inject } from 'vue';
 
 export default {
     components: {
@@ -143,6 +143,7 @@ export default {
     },
     data() {
         return {
+            request: Object(inject('api')),
             selectedDoctor: null,
             isAddEventModal: false,
             selectedDate: null,
@@ -156,7 +157,6 @@ export default {
             rows: null as number | null,
             hours: null as string[] | null,
             columns: 5,
-            token: 'ed66450e81e007a467062444d88b1c92',
             windowResize: function (view, element) {
                 view.calendar.option('height', window.innerHeight);
             },
@@ -181,7 +181,6 @@ export default {
             immediate: true, // Chama a função quando o componente é montado
             handler(newDoctor) {
                 if (newDoctor) {
-                    console.log(newDoctor);
                     this.clearSchedule(); // Limpa a agenda
                     this.fetchDoctorAvailability(newDoctor);
                 }
@@ -208,19 +207,12 @@ export default {
     methods: {
         async fetchDoctorAvailability(doctorId) {
             try {
-                const response = await axios.get(`http://localhost:8001/consulta/medico/${doctorId}`, {
-                    headers: {
-                        "authorization": this.token,
-                        "originRequest": "app"
-                    }
-                });
-                const data = response.data;
+                const response = await this.request.pegarDadosApi(`/consulta/medico/${doctorId}`);
 
-                const availableHours = data.list.horarios;
-                console.log(availableHours);
+                let availableHours = response.horarios;
                 this.markAvailableHours(availableHours);
             } catch (error) {
-                console.error('Erro ao buscar disponibilidade do médico', error);
+                console.error("Erro ao buscar disponibilidade do médico: ", error);
             }
         },
         markAvailableHours(availableHours) {
@@ -318,12 +310,38 @@ export default {
             this.isAllSelected = !this.isAllSelected;
         },
 
-        saveHours() {
+        async saveHours() {
             console.log(this.selectedHours);
             console.log(this.selectedDate);
             this.isAddEventModal = false;
-            this.showMessage('Agenda criada com Sucesso!.');
-            // VER REGRA SALVAR AGENDA
+
+            let schedule = {
+                "data": this.selectedDate,
+                "horarios": [...this.selectedHours]
+            };
+
+            console.log(schedule);
+            try {
+                let dataJSON = JSON.stringify(schedule);
+
+                let data = {
+                    "horarios_disponiveis": dataJSON
+                };
+                // console.log(data);
+
+                // console.log(dataJSON);
+                let response = await this.request.enviarDadosApi('/consulta/criar', data);
+
+                console.log(response);
+                if (response && !response.error) {
+                    this.showMessage('Agenda criada com Sucesso!.');
+                } else {
+                    this.showMessage('Erro ao criar a agenda.', 'error');
+                }
+            } catch (error) {
+                console.error("Erro ao salvar a agenda: ", error);
+                this.showMessage('Erro ao criar a agenda.', 'error');
+            }
         },
 
         showMessage(msg = '', type = 'success') {
