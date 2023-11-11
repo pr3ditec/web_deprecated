@@ -295,9 +295,4 @@ const submitForm = async () => {
         alert('Request failed: ' + error);
     }
 };
-
-if (store.getUserToken()) {
-    Swal.fire("Você foi redirecionado pois está logado."); // será removida, é pra vc saber o q está acontecendo
-    router.push('/');
-}
 </script>

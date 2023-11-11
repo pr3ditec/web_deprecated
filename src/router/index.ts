@@ -612,16 +612,21 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const store = useAppStore();
 
-    // if (!store.getUserToken()) {
-    //     router.push('/auth/login');
-    // }
-
     if (to?.meta?.layout == 'auth') {
         store.setMainLayout('auth');
     } else {
         store.setMainLayout('app');
     }
-    next(true);
+
+    if (!store.getUserToken()) {
+        if (to.path === '/auth/login') {
+            next(true);
+        }
+
+        next({ path: '/auth/login' });
+    } else {
+        next(true);
+    }
 });
 
 router.afterEach((to, from, next) => {

@@ -27,7 +27,10 @@ export const useAppStore = defineStore('app', {
             localStorage.setItem('user.token', token);
         },
         getUserToken() {
-            return localStorage.getItem('user.token') ?? null;
+            return localStorage.getItem('user.token');
+        },
+        setUserLogout() {
+            localStorage.removeItem('user.token');
         },
         setMainLayout(payload: any = null) {
             this.mainLayout = payload; //app , auth
