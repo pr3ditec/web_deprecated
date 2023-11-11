@@ -266,17 +266,14 @@ const currentFlag = computed(() => {
 });
 
 const loginForm = reactive({
-    cpf: '',
-    password: ''
+    cpf: '99198223887',
+    password: 'marlene123'
 });
 
 const req = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: 'http://localhost:8001/login',
-    headers: {
-        'originRequest': 'admin',
-    },
+    url: 'http://localhost:8001/admin/login',
     data: loginForm
 };
 

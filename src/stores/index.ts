@@ -6,13 +6,13 @@ export const useAppStore = defineStore('app', {
     state: () => ({
         isDarkMode: false,
         mainLayout: 'app',
-        theme: 'light',
+        theme: 'dark',
         menu: 'vertical',
         layout: 'full',
         rtlClass: 'ltr',
         animation: '',
         navbar: 'navbar-sticky',
-        locale: 'en',
+        locale: 'pt',
         sidebar: false,
         languageList: [
             { code: 'pt', name: 'Portuguese' },
