@@ -188,382 +188,110 @@
         </div>
     </div>
 </template>
-<script lang="ts" setup>
-    import { ref, computed } from 'vue';
-    import { useAppStore } from '@/stores/index';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Finance Admin' });
-    const store = useAppStore();
 
-    // bitcoin
-    const bitcoin = computed(() => {
+<script lang="ts">
+import { inject } from 'vue';
+import { useMeta } from '@/composables/use-meta';
+import 'flatpickr/dist/flatpickr.css';
+useMeta({ title: 'Risco Empresarial' });
+
+export default {
+    components: {
+
+    },
+    data() {
+        const dataAtual = new Date();
+        const dataInicial = new Date();
+        dataInicial.setDate(dataAtual.getDate() - 365);
+
         return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
-            },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#00ab55'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
-                    },
-                },
-            },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
+            request: Object(inject('api')),
+            totalParcelas: 0,
+            totalParcelasPagas: 0,
+            totalInadimplencia: 0,
+            caixaFuturo: 0,
+            totalParcelasAtendimentos: 0,
+            adimplente: 0,
+            inadimplente: 0,
+            parcelamento: {},
+            dataAtual: dataAtual.toISOString().split('T')[0],
+            dataInicial: dataInicial.toISOString().split('T')[0],
+            dataFim: dataAtual.toISOString().split('T')[0]
         };
-    });
+    },
+    async mounted() {
+        await this.processData();
+    },
+    methods: {
+        async processData() {
 
-    const bitcoinSeries = ref([
-        {
-            data: [21, 9, 36, 12, 44, 25, 59, 41, 25, 66],
-        },
-    ]);
+            const data = await this.request.pegarDadosApi(`relatorio/risco_empresarial/${this.dataInicial}/${this.dataFim}`);
 
-    // ethereum
-    const ethereum = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
-            },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#e7515a'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
-                    },
-                },
-            },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
+            const porcentagensRiscoEmpresarial = data.map(item => parseFloat(item.porcentagem_risco_empresarial));
 
-    const ethereumSeries = ref([
-        {
-            data: [44, 25, 59, 41, 66, 25, 21, 9, 36, 12],
-        },
-    ]);
+            data.forEach(item => {
+                item.parcelas.forEach(parcela => {
+                    // somando o total de parcelas
+                    this.totalParcelas++;
 
-    // litecoin
-    const litecoin = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
-            },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#00ab55'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
-                    },
-                },
-            },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
+                    // verifico se foi pago a parcela
+                    if (parcela.pagamento) {
+                        this.totalParcelasPagas++;
+                        this.adimplente += parseFloat(parcela.valor);
+                    }
 
-    const litecoinSeries = ref([
-        {
-            data: [9, 21, 36, 12, 66, 25, 44, 25, 41, 59],
-        },
-    ]);
+                    // verifico inadimplência
+                    let dataVencimento = new Date(parcela.vencimento);
+                    if (!parcela.pagamento && dataVencimento < new Date(this.dataAtual)) {
+                        this.totalInadimplencia++;
+                        this.inadimplente += parseFloat(parcela.valor);
+                    }
 
-    // binance
-    const binance = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
-            },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#e7515a'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
-                    },
-                },
-            },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
+                    // colocar no caixa futuro
+                    if (!parcela.pagamento) {
+                        this.caixaFuturo += parseFloat(parcela.valor);
+                    }
 
-    const binanceSeries = ref([
-        {
-            data: [25, 44, 25, 59, 41, 21, 36, 12, 19, 9],
-        },
-    ]);
+                    // vejo se a parcela ta paga
+                    if (parcela.historico && parcela.historico.some(h => h.descricao === 'EFETIVADO')) {
+                        this.totalParcelasAtendimentos++;
+                    }
 
-    // tether
-    const tether = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
-            },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#00ab55'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
-                    },
-                },
-            },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
+                    // agrupa as parcelas
+                    if (!this.parcelamento[parcela.parcela]) {
+                        this.parcelamento[parcela.parcela] = {
+                            numeroParcelas: 0,
+                            valorPago: 0,
+                            valorInadimplente: 0
+                        };
+                    }
+                    this.parcelamento[parcela.parcela].numeroParcelas++;
+                    if (parcela.pagamento) {
+                        this.parcelamento[parcela.parcela].valorPago += parseFloat(parcela.valor);
+                    } else if (dataVencimento < new Date(this.dataAtual)) {
+                        this.parcelamento[parcela.parcela].valorInadimplente += parseFloat(parcela.valor);
+                    }
 
-    const tetherSeries = ref([
-        {
-            data: [21, 59, 41, 44, 25, 66, 9, 36, 25, 12],
-        },
-    ]);
 
-    // solana
-    const solana = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
-            },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#e7515a'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
-                    },
-                },
-            },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
+                });
+            });
 
-    const solanaSeries = ref([
-        {
-            data: [21, -9, 36, -12, 44, 25, 59, -41, 66, -25],
-        },
-    ]);
+            // inadimplência para cada parcela
+            Object.keys(this.parcelamento).forEach(parcela => {
+                this.parcelamento[parcela].inadimplencia = this.parcelamento[parcela].valorInadimplente / (this.parcelamento[parcela].valorPago + this.parcelamento[parcela].valorInadimplente);
+            });
+
+            console.log(this.totalParcelas);
+            console.log(this.totalParcelasPagas);
+            console.log(this.adimplente);
+            console.log(this.totalInadimplencia);
+            console.log(this.inadimplente);
+            console.log(this.caixaFuturo);
+            console.log(this.totalParcelasAtendimentos);
+            console.log(this.parcelamento);
+            console.log(porcentagensRiscoEmpresarial);
+
+        }
+    }
+}
 </script>

@@ -149,7 +149,7 @@ export default {
             selectedDate: null,
             isAllSelected: false,
             showTable: false,
-            incrementoSelecionado: null,
+            incrementoSelecionado: "",
             selectedHours: [] as string[],
             horarioInicio: null as string | null,
             horarioFim: null as string | null,
@@ -230,7 +230,7 @@ export default {
                     // considerar o fuso horário
                     const eventDate = new Date(day.data + 'T' + day.horarios[0]);
 
-                    // Converte a data para o fuso horário especificado (timezone)
+                    // para converter a data para o fuso horário especificado (timezone)
                     const eventDateInTimeZone = new Date(eventDate.toLocaleString("en-US", { timeZone: day.timezone }));
 
                     calendarApi.addEvent({
@@ -245,7 +245,7 @@ export default {
         resetModal() {
             this.horarioInicio = null;
             this.horarioFim = null;
-            this.incrementoSelecionado = null;
+            this.incrementoSelecionado = "";
             this.isAllSelected = false;
             this.showTable = false;
         },
@@ -311,8 +311,6 @@ export default {
         },
 
         async saveHours() {
-            console.log(this.selectedHours);
-            console.log(this.selectedDate);
             this.isAddEventModal = false;
 
             let schedule = {
@@ -320,21 +318,20 @@ export default {
                 "horarios": [...this.selectedHours]
             };
 
-            console.log(schedule);
+            // array para armazenar múltiplas agendas
+            let schedules = [schedule];
+
             try {
-                let dataJSON = JSON.stringify(schedule);
-
                 let data = {
-                    "horarios_disponiveis": dataJSON
+                    // converte o array de agendas em uma string JSON - tem que passar assim na api
+                    "horarios_disponiveis": JSON.stringify(schedules)
                 };
-                // console.log(data);
-
-                // console.log(dataJSON);
                 let response = await this.request.enviarDadosApi('/consulta/criar', data);
 
-                console.log(response);
                 if (response && !response.error) {
                     this.showMessage('Agenda criada com Sucesso!.');
+
+                    await this.fetchDoctorAvailability(this.selectedDoctor);
                 } else {
                     this.showMessage('Erro ao criar a agenda.', 'error');
                 }
