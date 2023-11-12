@@ -1,6 +1,14 @@
 {
     "semi": true,
-    "singleQuote": true,
-    "printWidth": 160,
-    "vueIndentScriptAndStyle": true
+    "trailingComma": "all",
+    "singleQuote": false,
+    "arrowParens": "always",
+    "vueIndentScriptAndStyle": false,
+    "vueIndentScriptWithTabs": false,
+    "vueIndentStyleWithTabs": false,
+    "vueWhitespaceBeforeOpeningBrace": false,
+    "vueIndentInnerHtml": true,
+    "vueQuoteProps": "as-needed",
+    "vueQuoteStyle": "as-needed",
+    "printWidth": 160
 }
