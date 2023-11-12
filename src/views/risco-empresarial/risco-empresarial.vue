@@ -192,7 +192,6 @@
 <script lang="ts">
 import { inject } from 'vue';
 import { useMeta } from '@/composables/use-meta';
-import 'flatpickr/dist/flatpickr.css';
 useMeta({ title: 'Risco Empresarial' });
 
 export default {

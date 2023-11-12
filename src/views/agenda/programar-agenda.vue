@@ -228,7 +228,7 @@ export default {
             this.$nextTick(() => {
                 availableHours.forEach(day => {
                     // considerar o fuso horário
-                    const eventDate = new Date(day.data + 'T' + day.horarios[0]);
+                    const eventDate = new Date(day.data + 'T' + day.horarios[0].hora);
 
                     // para converter a data para o fuso horário especificado (timezone)
                     const eventDateInTimeZone = new Date(eventDate.toLocaleString("en-US", { timeZone: day.timezone }));
