@@ -20,7 +20,6 @@ export default {
                 { field: "paciente", headerClass: "flex flex-row gap-1 font-extrabold uppercase", title: this.$t("patient") },
                 { field: "data", headerClass: "flex flex-row gap-1 font-extrabold uppercase", title: this.$t("date") },
                 { field: "hora", headerClass: "flex flex-row gap-1 font-extrabold uppercase", title: this.$t("time") },
-
             ],
             dadosTabela: [],
         };
