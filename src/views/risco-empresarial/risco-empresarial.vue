@@ -10,71 +10,72 @@
         </ul>
         <div class="pt-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6 text-white">
-                <!-- Users Visit -->
+
                 <div class="panel bg-gradient-to-r from-cyan-500 to-cyan-400">
                     <div class="flex justify-between">
-                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Quantidade total de parcelas</div>
+                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Quantidade Total de Parcelas</div>
                     </div>
                     <div class="flex items-center mt-5">
-                        <div class="text-2xl font-bold ltr:mr-3 rtl:ml-3">806935</div>
+                        <div class="text-2xl font-bold ltr:mr-3 rtl:ml-3">{{ totalParcelas }}</div>
                     </div>
                 </div>
 
-                <!-- Sessions -->
                 <div class="panel bg-gradient-to-r from-violet-500 to-violet-400">
                     <div class="flex justify-between">
-                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Valor total de parcelas pagas</div>
+                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Valor Total de Parcelas Pagas</div>
                     </div>
                     <div class="flex items-center mt-5">
-                        <div class="text-1xl font-bold ltr:mr-3 rtl:ml-3">38.228.761,23</div>
-                        <div class="badge bg-white/30">[445606]</div>
+                        <div class="text-1xl font-bold ltr:mr-3 rtl:ml-3">{{ totalParcelasPagas }}</div>
+                        <div class="badge bg-white/30">{{ formatValor(adimplente) }}</div>
                     </div>
-                    <div class="flex items-center font-semibold mt-5">Atendimentos [228186]</div>
                 </div>
 
-                <!-- Time On-Site -->
                 <div class="panel bg-gradient-to-r from-blue-500 to-blue-400">
                     <div class="flex justify-between">
-                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Valor total inadimplência %</div>
+                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Valor Total Inadimplência </div>
                     </div>
                     <div class="flex items-center mt-5">
-                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">42.10%</div>
+                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">{{ totalInadimplencia }}</div>
+                        <div class="badge bg-white/30">{{ formatValor(inadimplente) }}</div>
                     </div>
                 </div>
 
-                <!-- Bounce Rate -->
                 <div class="panel bg-gradient-to-r from-fuchsia-500 to-fuchsia-400">
                     <div class="flex justify-between">
-                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Caixa futuro</div>
+                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">Caixa Futuro</div>
                     </div>
                     <div class="flex items-center mt-5">
-                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">2.057.073.485,04</div>
+                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">{{ formatValor(caixaFuturo) }}</div>
                     </div>
-                    <div class="flex items-center font-semibold mt-5">Média parcelamento 33.8</div>
+                    <div class="flex items-center font-semibold mt-5">
+                        Média Parcelamento {{ mediaParcelamento }}
+                    </div>
                 </div>
             </div>
 
             <div class="grid grid-cols-2 xl:grid-cols-2 gap-6 mb-2">
                 <div class="grid gap-6 xl:grid-flow-row">
-                    <!-- Previous Statement -->
                     <div class="panel overflow-hidden">
                         <div>
                             <div class="text-center">
-                                <div class="text-lg font-bold">Total parcelas atendimentos que deveriam ser pagas</div>
+                                <div class="text-lg font-bold">Total Parcelas Pagas</div>
                             </div>
                         </div>
                         <div class="relative mt-10 text-center">
                             <div class="grid grid-cols-3 md:grid-cols-1 gap-6">
                                 <div>
-                                    <div class="mt-3 font-semibold text-2xl">49.733.828,10 - 603301 [74.76%]</div>
+                                    <div class="mt-3 font-semibold text-2xl">{{ totalParcelasPagas }} - {{
+                                        formatValor(adimplente) }}</div>
                                 </div>
                                 <div>
-                                    <div class="text-primary">Adimplente</div>
-                                    <div class="text-success mt-2 font-semibold text-2xl">32.181.303,14 - 62.18%</div>
+                                    <div class="text-primary">Adimplente </div>
+                                    <div class="text-success mt-2 font-semibold text-2xl">{{ parcelaPagaEmDia }} - {{
+                                        formatValor(parcelaPagaEmDiaValor) }}</div>
                                 </div>
                                 <div>
                                     <div class="text-primary">Inadimplente</div>
-                                    <div class="text-danger mt-2 font-semibold text-2xl">17.552.524,96 - 37.82%</div>
+                                    <div class="text-danger mt-2 font-semibold text-2xl">{{ parcelaPagaAtrasada }} - {{
+                                        formatValor(parcelaPagaAtrasadaValor) }}</div>
                                 </div>
                             </div>
                         </div>
@@ -82,98 +83,45 @@
                 </div>
                 <div class="grid gap-6 xl:grid-flow-row">
                     <div class="panel overflow-hidden">
-                        <div>
-                            <div class="text-center">
-                                <div class="text-lg font-bold">Parcelas de atendimentos concluídos</div>
-                            </div>
-                        </div>
-                        <div class="relative mt-10 text-center">
-                            <div class="grid grid-cols-3 md:grid-cols-1 gap-6">
-                                <div>
-                                    <div class="mt-3 font-semibold text-2xl">49.733.828,10 - 603301 [74.76%]</div>
+                        <p class="text-lg dark:text-white-light/90">Risco Empresarial <span
+                                class="text-primary ml-2">50%</span></p>
+                        <div class="relative">
+                            <apexchart height="325" :options="revenueChart" :series="revenueSeries"
+                                class="bg-white dark:bg-black rounded-lg overflow-hidden">
+                                <div
+                                    class="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                                    <span
+                                        class="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
                                 </div>
-                                <div>
-                                    <div class="text-primary">Adimplente</div>
-                                    <div class="text-success mt-2 font-semibold text-2xl">6.047.458,09 - 34.62%</div>
-                                </div>
-                                <div>
-                                    <div class="text-primary">Inadimplente</div>
-                                    <div class="text-danger mt-2 font-semibold text-2xl">10.241.626,71 - 65.38%</div>
-                                </div>
-                            </div>
+                            </apexchart>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 gap-6">
-                <!-- Recent Transactions -->
                 <div class="panel">
                     <div class="mb-5 text-lg font-bold">PARCELAMENTO</div>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>PARCELA</th>
-                                    <th>NUMERO DE PARCELAS</th>
-                                    <th>VALOR PAGO</th>
-                                    <th>VALOR INADIMPLENTE</th>
-                                    <th class="text-center ltr:rounded-r-md rtl:rounded-l-md">INADIMPLÊNCIA</th>
+                                    <th class="!text-center">PARCELA</th>
+                                    <th class="!text-center">NUMERO DE PARCELAS</th>
+                                    <th class="!text-right">VALOR PAGO</th>
+                                    <th class="!text-right">VALOR INADIMPLENTE</th>
+                                    <th class="!text-center ltr:rounded-r-md rtl:rounded-l-md">INADIMPLÊNCIA</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="font-semibold">01</td>
-                                    <td class="whitespace-nowrap">6271</td>
-                                    <td class="whitespace-nowrap">6.024.948,72 - [39479]</td>
-                                    <td>629.239,86 - [5672]</td>
-                                    <td class="text-center">
-                                        <span class="badge bg-success/20 text-success rounded-full">9.46%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold">02</td>
-                                    <td class="whitespace-nowrap">42040</td>
-                                    <td class="whitespace-nowrap">3.302.789,85 - [33387]</td>
-                                    <td>933.534,22 - [8653]</td>
-                                    <td class="text-center">
-                                        <span class="badge bg-info/20 text-info rounded-full hover:top-0">22.04%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold">03</td>
-                                    <td class="whitespace-nowrap">38523</td>
-                                    <td class="whitespace-nowrap">2.740.909,05 - [28262]</td>
-                                    <td>1.042.746,80 - [10261]</td>
-                                    <td class="text-center">
-                                        <span class="badge bg-info/20 text-info rounded-full hover:top-0">27.56%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold">04</td>
-                                    <td class="whitespace-nowrap">39272</td>
-                                    <td class="whitespace-nowrap">2.541.986,07 - [27239]</td>
-                                    <td>1.197.120,53 - [12033]</td>
-                                    <td class="text-center">
-                                        <span class="badge bg-danger/20 text-danger rounded-full hover:top-0">32.02%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold">05</td>
-                                    <td class="whitespace-nowrap">35649</td>
-                                    <td class="whitespace-nowrap">2.169.188,49 - [23572]</td>
-                                    <td>1.165.739,20 - [12077]</td>
-                                    <td class="text-center">
-                                        <span class="badge bg-danger/20 text-danger rounded-full hover:top-0">34.96%</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="font-semibold">06</td>
-                                    <td class="whitespace-nowrap">34417</td>
-                                    <td class="whitespace-nowrap">1.955.189,26 - [21915]</td>
-                                    <td>1.175.173,07 - [12502]</td>
-                                    <td class="text-center">
-                                        <span class="badge bg-danger/20 text-danger rounded-full hover:top-0">37.54%</span>
+                                <tr v-for="(value, parcela) in parcelamento" :key="parcela">
+                                    <td class="!text-center">{{ parcela }}</td>
+                                    <td class="!text-center">{{ value.numeroParcelas }}</td>
+                                    <td class="!text-right">{{ formatValor(value.valorPago) }}</td>
+                                    <td class="!text-right">{{ formatValor(value.valorInadimplente) }}</td>
+                                    <td class="!text-center ltr:rounded-r-md rtl:rounded-l-md"
+                                        v-bind:class="{ 'text-success': value.valorInadimplente <= 70, 'text-danger': value.valorInadimplente > 70 }">
+                                        {{ value.valorInadimplente }} %
                                     </td>
                                 </tr>
                             </tbody>
@@ -186,19 +134,182 @@
 </template>
 
 <script lang="ts">
-import { inject } from "vue";
-import { useMeta } from "@/composables/use-meta";
-useMeta({ title: "Risco Empresarial" });
+import { ref, inject, computed } from 'vue';
+import { useMeta } from '@/composables/use-meta';
+import apexchart from 'vue3-apexcharts';
+import { useAppStore } from '@/stores/index';
+useMeta({ title: 'Risco Empresarial' });
 
 export default {
-    components: {},
+    components: {
+        apexchart
+    },
+    setup() {
+        const store = useAppStore();
+
+        const revenueChart = computed(() => {
+            const isDark = store.theme === 'dark' || store.isDarkMode ? true : false;
+            const isRtl = store.rtlClass === 'rtl' ? true : false;
+            return {
+                chart: {
+                    height: 325,
+                    type: 'area',
+                    fontFamily: 'Nunito, sans-serif',
+                    zoom: {
+                        enabled: false,
+                    },
+                    toolbar: {
+                        show: false,
+                    },
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+                stroke: {
+                    show: true,
+                    curve: 'smooth',
+                    width: 2,
+                    lineCap: 'square',
+                },
+                dropShadow: {
+                    enabled: true,
+                    opacity: 0.2,
+                    blur: 10,
+                    left: -7,
+                    top: 22,
+                },
+                colors: isDark ? ['#2196f3', '#e7515a'] : ['#1b55e2', '#e7515a'],
+                markers: {
+                    discrete: [
+                        {
+                            seriesIndex: 0,
+                            dataPointIndex: 6,
+                            fillColor: '#1b55e2',
+                            strokeColor: 'transparent',
+                            size: 7,
+                        },
+                        {
+                            seriesIndex: 1,
+                            dataPointIndex: 5,
+                            fillColor: '#e7515a',
+                            strokeColor: 'transparent',
+                            size: 7,
+                        },
+                    ],
+                },
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                xaxis: {
+                    axisBorder: {
+                        show: false,
+                    },
+                    axisTicks: {
+                        show: false,
+                    },
+                    crosshairs: {
+                        show: true,
+                    },
+                    labels: {
+                        offsetX: isRtl ? 2 : 0,
+                        offsetY: 5,
+                        style: {
+                            fontSize: '12px',
+                            cssClass: 'apexcharts-xaxis-title',
+                        },
+                    },
+                },
+                yaxis: {
+                    tickAmount: 7,
+                    labels: {
+                        formatter: (value: number) => {
+                            return value / 1000 + 'K';
+                        },
+                        offsetX: isRtl ? -30 : -10,
+                        offsetY: 0,
+                        style: {
+                            fontSize: '12px',
+                            cssClass: 'apexcharts-yaxis-title',
+                        },
+                    },
+                    opposite: isRtl ? true : false,
+                },
+                grid: {
+                    borderColor: isDark ? '#191e3a' : '#e0e6ed',
+                    strokeDashArray: 5,
+                    xaxis: {
+                        lines: {
+                            show: true,
+                        },
+                    },
+                    yaxis: {
+                        lines: {
+                            show: false,
+                        },
+                    },
+                    padding: {
+                        top: 0,
+                        right: 0,
+                        bottom: 0,
+                        left: 0,
+                    },
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'right',
+                    fontSize: '16px',
+                    markers: {
+                        width: 10,
+                        height: 10,
+                        offsetX: -2,
+                    },
+                    itemMargin: {
+                        horizontal: 10,
+                        vertical: 5,
+                    },
+                },
+                tooltip: {
+                    marker: {
+                        show: true,
+                    },
+                    x: {
+                        show: false,
+                    },
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shadeIntensity: 1,
+                        inverseColors: !1,
+                        opacityFrom: isDark ? 0.19 : 0.28,
+                        opacityTo: 0.05,
+                        stops: isDark ? [100, 100] : [45, 100],
+                    },
+                },
+            };
+        });
+
+        const revenueSeries = ref([
+            {
+                name: '30%',
+                data: [16800, 16800, 15500, 17800, 15500, 17000, 19000, 16000, 15000, 17000, 14000, 17000],
+            },
+            {
+                name: '50%',
+                data: [16500, 17500, 16200, 17300, 16000, 19500, 16000, 17000, 16000, 19000, 18000, 19000],
+            },
+        ]);
+
+        return {
+            revenueChart,
+            revenueSeries
+        };
+    },
     data() {
         const dataAtual = new Date();
         const dataInicial = new Date();
         dataInicial.setDate(dataAtual.getDate() - 365);
 
         return {
-            request: Object(inject("api")),
+            request: Object(inject('api')),
             totalParcelas: 0,
             totalParcelasPagas: 0,
             totalInadimplencia: 0,
@@ -206,10 +317,23 @@ export default {
             totalParcelasAtendimentos: 0,
             adimplente: 0,
             inadimplente: 0,
-            parcelamento: {},
-            dataAtual: dataAtual.toISOString().split("T")[0],
-            dataInicial: dataInicial.toISOString().split("T")[0],
-            dataFim: dataAtual.toISOString().split("T")[0],
+            mediaParcelamento: 0,
+            somaParcelas: 0,
+            parcelaPagaAtrasada: 0,
+            parcelaPagaAtrasadaValor: 0,
+            parcelaPagaEmDia: 0,
+            parcelaPagaEmDiaValor: 0,
+            parcelamento: {} as {
+                [key: string]: {
+                    numeroParcelas: number,
+                    valorPago: number,
+                    valorInadimplente: number,
+                    inadimplencia: number
+                }
+            },
+            dataAtual: dataAtual.toISOString().split('T')[0],
+            dataInicial: dataInicial.toISOString().split('T')[0],
+            dataFim: dataAtual.toISOString().split('T')[0]
         };
     },
     async mounted() {
@@ -217,12 +341,16 @@ export default {
     },
     methods: {
         async processData() {
+
             const data = await this.request.pegarDadosApi(`relatorio/risco_empresarial/${this.dataInicial}/${this.dataFim}`);
 
-            const porcentagensRiscoEmpresarial = data.map((item) => parseFloat(item.porcentagem_risco_empresarial));
+            const porcentagensRiscoEmpresarial = data.map(item => parseFloat(item.porcentagem_risco_empresarial));
 
-            data.forEach((item) => {
-                item.parcelas.forEach((parcela) => {
+            data.forEach(item => {
+                item.parcelas.forEach(parcela => {
+
+                    this.somaParcelas += parseFloat(parcela.valor);
+
                     // somando o total de parcelas
                     this.totalParcelas++;
 
@@ -230,6 +358,15 @@ export default {
                     if (parcela.pagamento) {
                         this.totalParcelasPagas++;
                         this.adimplente += parseFloat(parcela.valor);
+
+                        let dataVencimento = new Date(parcela.vencimento);
+                        if (dataVencimento < new Date(this.dataAtual)) {
+                            this.parcelaPagaAtrasada++;
+                            this.parcelaPagaAtrasadaValor += parseFloat(parcela.valor);
+                        } else {
+                            this.parcelaPagaEmDia++;
+                            this.parcelaPagaEmDiaValor += parseFloat(parcela.valor);
+                        }
                     }
 
                     // verifico inadimplência
@@ -245,7 +382,7 @@ export default {
                     }
 
                     // vejo se a parcela ta paga
-                    if (parcela.historico && parcela.historico.some((h) => h.descricao === "EFETIVADO")) {
+                    if (parcela.historico && parcela.historico.some(h => h.descricao === 'EFETIVADO')) {
                         this.totalParcelasAtendimentos++;
                     }
 
@@ -255,6 +392,7 @@ export default {
                             numeroParcelas: 0,
                             valorPago: 0,
                             valorInadimplente: 0,
+                            inadimplencia: 0
                         };
                     }
                     this.parcelamento[parcela.parcela].numeroParcelas++;
@@ -267,21 +405,20 @@ export default {
             });
 
             // inadimplência para cada parcela
-            Object.keys(this.parcelamento).forEach((parcela) => {
-                this.parcelamento[parcela].inadimplencia =
-                    this.parcelamento[parcela].valorInadimplente / (this.parcelamento[parcela].valorPago + this.parcelamento[parcela].valorInadimplente);
+            Object.keys(this.parcelamento).forEach(parcela => {
+                this.parcelamento[parcela].inadimplencia = this.parcelamento[parcela].valorInadimplente / (this.parcelamento[parcela].valorPago + this.parcelamento[parcela].valorInadimplente);
             });
 
-            console.log(this.totalParcelas);
-            console.log(this.totalParcelasPagas);
-            console.log(this.adimplente);
-            console.log(this.totalInadimplencia);
-            console.log(this.inadimplente);
-            console.log(this.caixaFuturo);
-            console.log(this.totalParcelasAtendimentos);
-            console.log(this.parcelamento);
-            console.log(porcentagensRiscoEmpresarial);
+            if (this.totalParcelas !== 0) {
+                this.mediaParcelamento = this.somaParcelas / this.totalParcelas;
+            } else {
+                this.mediaParcelamento = 0;
+            }
         },
-    },
-};
+
+        formatValor(valor) {
+            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+    }
+}
 </script>
