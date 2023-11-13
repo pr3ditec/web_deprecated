@@ -21,6 +21,9 @@ import RiscoEmpresarial from "../views/risco-empresarial/risco-empresarial.vue";
 import Secretaria from "../views/cadastro/secretaria/secretaria.vue";
 import Clinica from "../views/cadastro/clinica/clinica.vue";
 
+/** RELATORIOS */
+import RelatorioMedicos from "../views/relatorio/medicos/medico.vue";
+
 const routes: RouteRecordRaw[] = [
     /** DASHBOARD */
     {
@@ -88,6 +91,14 @@ const routes: RouteRecordRaw[] = [
         component: Clinica,
     },
     /** CADASTRO */
+
+    /** RELATORIOS */
+    {
+        path: "/relatorios/medicos",
+        name: "Relatório de médicos",
+        component: RelatorioMedicos,
+    },
+    /** RELATORIOS */
 
     // auth
     {

@@ -145,5 +145,11 @@
     "repeat": "repetir",
     "male": "masculino",
     "female": "feminino",
-    "other": "outro"
+    "other": "outro",
+    "report": "relatorio",
+    "type": "tipo",
+    "date": "data",
+    "telephone": "telefone",
+    "document": "documento",
+    "empty field": "campo vazio"
 }
