@@ -22,7 +22,7 @@ import { useRouter } from "vue-router";
 const store = useAppStore();
 
 // Aqui vai ser feito um compartilhamento com todas as bibliotecas
-let connection = new ApiConnection("http://localhost:8000", "03c7cfdc935d71776f7f0735f8a44bf4", "admin");
+let connection = new ApiConnection("http://localhost:8000", localStorage.getItem("user.token")??"", "admin");
 provide("api", connection);
 
 // meta

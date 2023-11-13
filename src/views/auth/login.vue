@@ -313,7 +313,7 @@ const loginForm = reactive({
 const req = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "http://localhost:8001/admin/login",
+    url: "http://localhost:8000/admin/login",
     data: loginForm,
 };
 

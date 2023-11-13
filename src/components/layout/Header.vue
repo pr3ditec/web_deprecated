@@ -1401,7 +1401,7 @@ const removeMessage = (value: number) => {
 
 const userName = computed(() => {
     let fullName = store.getUserName();
-    let firstName = fullName.split(" ")[0];
+    let firstName = fullName?.split(" ")[0];
 
     return firstName;
 });
