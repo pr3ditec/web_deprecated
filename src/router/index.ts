@@ -23,6 +23,7 @@ import Clinica from "../views/cadastro/clinica/clinica.vue";
 
 /** RELATORIOS */
 import RelatorioMedicos from "../views/relatorio/medicos/medico.vue";
+import RelatorioConsultas from "../views/relatorio/consultas/consulta.vue";
 
 const routes: RouteRecordRaw[] = [
     /** DASHBOARD */
@@ -97,6 +98,11 @@ const routes: RouteRecordRaw[] = [
         path: "/relatorios/medicos",
         name: "Relatório de médicos",
         component: RelatorioMedicos,
+    },
+    {
+        path: "/relatorios/consultas",
+        name: "Relatório de médicos",
+        component: RelatorioConsultas,
     },
     /** RELATORIOS */
 
