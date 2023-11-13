@@ -220,16 +220,16 @@
                     <vue-collapsible :isOpen="activeDropdown === 'authentication'">
                         <ul class="sub-menu text-gray-500">
                             <li @click="toggleMobileMenu">
-                                <router-link to="/auth/login" target="_blank">{{ $t("login_cover") }}</router-link>
+                                <router-link to="/auth/login" target="_blank">{{ $t("login") }}</router-link>
                             </li>
                             <li @click="toggleMobileMenu">
-                                <router-link to="/auth/register" target="_blank">{{ $t("register_cover") }}</router-link>
+                                <router-link to="/auth/register" target="_blank">{{ $t("register") }}</router-link>
                             </li>
                             <li @click="toggleMobileMenu">
-                                <router-link to="/auth/lockscreen" target="_blank">{{ $t("unlock_cover") }}</router-link>
+                                <router-link to="/auth/lockscreen" target="_blank">{{ $t("unlock") }}</router-link>
                             </li>
                             <li @click="toggleMobileMenu">
-                                <router-link to="/auth/password-reset" target="_blank">{{ $t("recover_id_cover") }}</router-link>
+                                <router-link to="/auth/password-reset" target="_blank">{{ $t("recover_id") }}</router-link>
                             </li>
                         </ul>
                     </vue-collapsible>

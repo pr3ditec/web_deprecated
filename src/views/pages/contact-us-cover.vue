@@ -202,7 +202,7 @@ import appSetting from "@/app-setting";
 import { useAppStore } from "@/stores/index";
 import { useRouter } from "vue-router";
 import { useMeta } from "@/composables/use-meta";
-useMeta({ title: "Contact Us Cover" });
+useMeta({ title: "Contact Us" });
 const router = useRouter();
 const store = useAppStore();
 // multi language

@@ -1185,7 +1185,7 @@
                                 class="rounded absolute top-0 ltr:left-[95%] rtl:right-[95%] min-w-[180px] bg-white z-[10] text-dark dark:text-white-dark dark:bg-[#1b2e4b] shadow p-0 py-2 hidden"
                             >
                                 <li>
-                                    <router-link to="/auth/login" target="_blank">{{ $t("login_cover") }}</router-link>
+                                    <router-link to="/auth/login" target="_blank">{{ $t("login") }}</router-link>
                                 </li>
                             </ul>
                         </li>

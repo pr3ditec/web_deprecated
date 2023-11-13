@@ -276,7 +276,7 @@ import { useAppStore } from "@/stores/index";
 import { useRouter } from "vue-router";
 import { useMeta } from "@/composables/use-meta";
 
-useMeta({ title: "Register Cover" });
+useMeta({ title: "Register" });
 
 const router = useRouter();
 const store = useAppStore();

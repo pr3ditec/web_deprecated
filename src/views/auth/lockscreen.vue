@@ -87,7 +87,7 @@
                                 <img src="/assets/images/logo.png" class="w-full object-cover" alt="images" />
                             </div>
                             <div class="flex-1">
-                                <h4 class="text-2xl dark:text-white">SauvviTech Admin</h4>
+                                <h4 class="text-2xl dark:text-white" v-text="userName"></h4>
                                 <p class="text-white-dark">Enter your password to unlock your ID</p>
                             </div>
                         </div>
@@ -145,7 +145,8 @@ import appSetting from "@/app-setting";
 import { useAppStore } from "@/stores/index";
 import { useRouter } from "vue-router";
 import { useMeta } from "@/composables/use-meta";
-useMeta({ title: "Lockscreen Cover" });
+
+useMeta({ title: "Lockscreen" });
 
 const router = useRouter();
 const store = useAppStore();
@@ -159,4 +160,6 @@ const changeLanguage = (item: any) => {
 const currentFlag = computed(() => {
     return `/assets/images/flags/${i18n.locale.toUpperCase()}.svg`;
 });
+
+const userName = store.getUserName();
 </script>

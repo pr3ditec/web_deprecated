@@ -199,7 +199,7 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useMeta } from "@/composables/use-meta";
-useMeta({ title: "Coming Soon Cover" });
+useMeta({ title: "Coming Soon" });
 const router = useRouter();
 
 const timer1: any = ref(null);
