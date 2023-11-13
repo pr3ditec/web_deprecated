@@ -469,7 +469,7 @@
                                             </div>
                                             <div class="ltr:pl-1 rtl:pr-1 truncate">
                                                 <h4 class="text-base">
-                                                    Sauvvi Admin
+                                                    <span v-text="userName"></span>
                                                     <span class="text-xs bg-success-light rounded text-success px-1 ltr:ml-1 rtl:ml-1">Adm</span>
                                                 </h4>
                                                 <a class="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white" href="javascript:;"
@@ -1398,4 +1398,11 @@ const removeNotification = (value: number) => {
 const removeMessage = (value: number) => {
     messages.value = messages.value.filter((d) => d.id !== value);
 };
+
+const userName = computed(() => {
+    let fullName = store.getUserName();
+    let firstName = fullName.split(" ")[0];
+
+    return firstName;
+});
 </script>

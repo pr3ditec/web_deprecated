@@ -23,6 +23,18 @@ export const useAppStore = defineStore("app", {
     }),
 
     actions: {
+        setUserName(name) {
+            localStorage.setItem("user.name", name);
+        },
+        getUserName() {
+            return localStorage.getItem("user.name");
+        },
+        setUserEmail(email) {
+            localStorage.setItem("user.email", email);
+        },
+        getUserEmail() {
+            return localStorage.getItem("user.email");
+        },
         setUserLogin(token) {
             localStorage.setItem("user.token", token);
         },

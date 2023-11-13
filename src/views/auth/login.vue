@@ -323,6 +323,7 @@ const submitForm = async () => {
 
         if (response.data.status) {
             store.setUserLogin(response.data.list.token);
+            store.setUserName(response.data.list.nome);
             router.push("/");
         } else {
             // Handle login failure
