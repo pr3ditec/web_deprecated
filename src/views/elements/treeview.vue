@@ -828,30 +828,30 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import VueCollapsible from 'vue-height-collapsible/vue3';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Treeview' });
+import { ref } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import VueCollapsible from "vue-height-collapsible/vue3";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Treeview" });
 
-    const { codeArr, toggleCode } = codePreview();
-    const treeview1: any = ref(['images']);
-    const treeview2: any = ref(['parent-node']);
+const { codeArr, toggleCode } = codePreview();
+const treeview1: any = ref(["images"]);
+const treeview2: any = ref(["parent-node"]);
 
-    const toggleTreeview1 = (name: string) => {
-        if (treeview1.value.includes(name as never)) {
-            treeview1.value = treeview1.value.filter((d) => d != name);
-        } else {
-            treeview1.value.push(name as never);
-        }
-    };
+const toggleTreeview1 = (name: string) => {
+    if (treeview1.value.includes(name as never)) {
+        treeview1.value = treeview1.value.filter((d) => d != name);
+    } else {
+        treeview1.value.push(name as never);
+    }
+};
 
-    const toggleTreeview2 = (name: string) => {
-        if (treeview2.value.includes(name as never)) {
-            treeview2.value = treeview2.value.filter((d) => d != name);
-        } else {
-            treeview2.value.push(name as never);
-        }
-    };
+const toggleTreeview2 = (name: string) => {
+    if (treeview2.value.includes(name as never)) {
+        treeview2.value = treeview2.value.filter((d) => d != name);
+    } else {
+        treeview2.value.push(name as never);
+    }
+};
 </script>

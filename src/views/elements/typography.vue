@@ -231,6 +231,6 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Typography' });
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Typography" });
 </script>

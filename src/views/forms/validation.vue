@@ -1082,171 +1082,171 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { useVuelidate } from '@vuelidate/core';
-    import { required, email, sameAs } from '@vuelidate/validators';
-    import Swal from 'sweetalert2';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Form Validation' });
+import { ref } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email, sameAs } from "@vuelidate/validators";
+import Swal from "sweetalert2";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Form Validation" });
 
-    const { codeArr, toggleCode } = codePreview();
+const { codeArr, toggleCode } = codePreview();
 
-    const form1 = ref({
-        name: '',
-    });
-    const isSubmitForm1 = ref(false);
-    const rules1 = {
-        form1: {
-            name: { required },
+const form1 = ref({
+    name: "",
+});
+const isSubmitForm1 = ref(false);
+const rules1 = {
+    form1: {
+        name: { required },
+    },
+};
+const $v1 = useVuelidate(rules1, { form1 });
+const submitForm1 = () => {
+    isSubmitForm1.value = true;
+    $v1.value.form1.$touch();
+    if ($v1.value.form1.$invalid) {
+        return false;
+    }
+    //form validated success
+    showMessage("Form submitted successfully.");
+};
+
+const form2 = ref({
+    email: "",
+});
+const isSubmitForm2 = ref(false);
+const rules2 = {
+    form2: {
+        email: { required, email },
+    },
+};
+const $v2 = useVuelidate(rules2, { form2 });
+const submitForm2 = () => {
+    isSubmitForm2.value = true;
+    $v2.value.form2.$touch();
+    if ($v2.value.form2.$invalid) {
+        return false;
+    }
+    //form validated success
+    showMessage("Form submitted successfully.");
+};
+
+const form3 = ref({
+    select: "",
+});
+const isSubmitForm3 = ref(false);
+const rules3 = {
+    form3: {
+        select: { required },
+    },
+};
+const $v3 = useVuelidate(rules3, { form3 });
+const submitForm3 = () => {
+    isSubmitForm3.value = true;
+    $v3.value.form3.$touch();
+    if ($v3.value.form3.$invalid) {
+        return false;
+    }
+    //form validated success
+    showMessage("Form submitted successfully.");
+};
+
+const form4 = ref({
+    firstName: "Shaun",
+    lastName: "Park",
+    userName: "",
+    city: "",
+    state: "",
+    zip: "",
+    isTerms: false,
+});
+const isSubmitForm4 = ref(false);
+const rules4 = {
+    form4: {
+        firstName: { required },
+        lastName: { required },
+        userName: { required },
+        city: { required },
+        state: { required },
+        zip: { required },
+        isTerms: {
+            sameAsRawValue: sameAs(true),
         },
-    };
-    const $v1 = useVuelidate(rules1, { form1 });
-    const submitForm1 = () => {
-        isSubmitForm1.value = true;
-        $v1.value.form1.$touch();
-        if ($v1.value.form1.$invalid) {
-            return false;
-        }
-        //form validated success
-        showMessage('Form submitted successfully.');
-    };
+    },
+};
+const $v4 = useVuelidate(rules4, { form4 });
+const submitForm4 = () => {
+    isSubmitForm4.value = true;
+    $v4.value.form4.$touch();
+    if ($v4.value.form4.$invalid) {
+        return false;
+    }
+    //form validated success
+    showMessage("Form submitted successfully.");
+};
 
-    const form2 = ref({
-        email: '',
-    });
-    const isSubmitForm2 = ref(false);
-    const rules2 = {
-        form2: {
-            email: { required, email },
+const form5 = ref({
+    firstName: "Shaun",
+    lastName: "Park",
+    userName: "",
+    city: "",
+    state: "",
+    zip: "",
+    isTerms: false,
+});
+const submitForm5 = () => {
+    //form validated success
+    showMessage("Form submitted successfully.");
+};
+
+const form6 = ref({
+    firstName: "Shaun",
+    lastName: "Park",
+    userName: "",
+    city: "",
+    state: "",
+    zip: "",
+    isTerms: false,
+});
+const isSubmitForm6 = ref(false);
+const rules6 = {
+    form6: {
+        firstName: { required },
+        lastName: { required },
+        userName: { required },
+        city: { required },
+        state: { required },
+        zip: { required },
+        isTerms: {
+            sameAsRawValue: sameAs(true),
         },
-    };
-    const $v2 = useVuelidate(rules2, { form2 });
-    const submitForm2 = () => {
-        isSubmitForm2.value = true;
-        $v2.value.form2.$touch();
-        if ($v2.value.form2.$invalid) {
-            return false;
-        }
-        //form validated success
-        showMessage('Form submitted successfully.');
-    };
+    },
+};
+const $v6 = useVuelidate(rules6, { form6 });
+const submitForm6 = () => {
+    isSubmitForm6.value = true;
+    $v6.value.form6.$touch();
+    if ($v6.value.form6.$invalid) {
+        return false;
+    }
+    //form validated success
+    showMessage("Form submitted successfully.");
+};
 
-    const form3 = ref({
-        select: '',
+const showMessage = (msg = "", type = "success") => {
+    const toast: any = Swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 3000,
+        customClass: { container: "toast" },
     });
-    const isSubmitForm3 = ref(false);
-    const rules3 = {
-        form3: {
-            select: { required },
-        },
-    };
-    const $v3 = useVuelidate(rules3, { form3 });
-    const submitForm3 = () => {
-        isSubmitForm3.value = true;
-        $v3.value.form3.$touch();
-        if ($v3.value.form3.$invalid) {
-            return false;
-        }
-        //form validated success
-        showMessage('Form submitted successfully.');
-    };
-
-    const form4 = ref({
-        firstName: 'Shaun',
-        lastName: 'Park',
-        userName: '',
-        city: '',
-        state: '',
-        zip: '',
-        isTerms: false,
+    toast.fire({
+        icon: type,
+        title: msg,
+        padding: "10px 20px",
     });
-    const isSubmitForm4 = ref(false);
-    const rules4 = {
-        form4: {
-            firstName: { required },
-            lastName: { required },
-            userName: { required },
-            city: { required },
-            state: { required },
-            zip: { required },
-            isTerms: {
-                sameAsRawValue: sameAs(true),
-            },
-        },
-    };
-    const $v4 = useVuelidate(rules4, { form4 });
-    const submitForm4 = () => {
-        isSubmitForm4.value = true;
-        $v4.value.form4.$touch();
-        if ($v4.value.form4.$invalid) {
-            return false;
-        }
-        //form validated success
-        showMessage('Form submitted successfully.');
-    };
-
-    const form5 = ref({
-        firstName: 'Shaun',
-        lastName: 'Park',
-        userName: '',
-        city: '',
-        state: '',
-        zip: '',
-        isTerms: false,
-    });
-    const submitForm5 = () => {
-        //form validated success
-        showMessage('Form submitted successfully.');
-    };
-
-    const form6 = ref({
-        firstName: 'Shaun',
-        lastName: 'Park',
-        userName: '',
-        city: '',
-        state: '',
-        zip: '',
-        isTerms: false,
-    });
-    const isSubmitForm6 = ref(false);
-    const rules6 = {
-        form6: {
-            firstName: { required },
-            lastName: { required },
-            userName: { required },
-            city: { required },
-            state: { required },
-            zip: { required },
-            isTerms: {
-                sameAsRawValue: sameAs(true),
-            },
-        },
-    };
-    const $v6 = useVuelidate(rules6, { form6 });
-    const submitForm6 = () => {
-        isSubmitForm6.value = true;
-        $v6.value.form6.$touch();
-        if ($v6.value.form6.$invalid) {
-            return false;
-        }
-        //form validated success
-        showMessage('Form submitted successfully.');
-    };
-
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
-        });
-    };
+};
 </script>

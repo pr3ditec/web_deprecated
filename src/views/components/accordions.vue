@@ -936,16 +936,16 @@ const accordians4: any = ref(1);
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import VueCollapsible from 'vue-height-collapsible/vue3';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Accordions' });
+import { ref } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import VueCollapsible from "vue-height-collapsible/vue3";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Accordions" });
 
-    const { codeArr, toggleCode } = codePreview();
-    const accordians1: any = ref(1);
-    const accordians2: any = ref(1);
-    const accordians3: any = ref(1);
-    const accordians4: any = ref(1);
+const { codeArr, toggleCode } = codePreview();
+const accordians1: any = ref(1);
+const accordians2: any = ref(1);
+const accordians3: any = ref(1);
+const accordians4: any = ref(1);
 </script>

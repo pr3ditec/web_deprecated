@@ -623,45 +623,45 @@ const copy = async (msg) =&gt; {
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import useClipboard from 'vue-clipboard3';
-    import Swal from 'sweetalert2';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Clipboard' });
+import { ref } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import useClipboard from "vue-clipboard3";
+import Swal from "sweetalert2";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Clipboard" });
 
-    const { codeArr, toggleCode } = codePreview();
-    const message1 = ref('http://www.admin-dashboard.com');
-    const message2 = ref('Lorem ipsum dolor sit amet, consectetur adipiscing elit...');
+const { codeArr, toggleCode } = codePreview();
+const message1 = ref("http://www.admin-dashboard.com");
+const message2 = ref("Lorem ipsum dolor sit amet, consectetur adipiscing elit...");
 
-    const { toClipboard } = useClipboard();
-    const copy = async (msg) => {
-        if (msg) {
-            await toClipboard(msg);
-            showMessage('Copied successfully.');
-        }
-    };
+const { toClipboard } = useClipboard();
+const copy = async (msg) => {
+    if (msg) {
+        await toClipboard(msg);
+        showMessage("Copied successfully.");
+    }
+};
 
-    const cut = async (msg) => {
-        if (msg) {
-            await toClipboard(msg);
-            showMessage('Cut successfully.');
-        }
-    };
+const cut = async (msg) => {
+    if (msg) {
+        await toClipboard(msg);
+        showMessage("Cut successfully.");
+    }
+};
 
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
-        });
-    };
+const showMessage = (msg = "", type = "success") => {
+    const toast: any = Swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 3000,
+        customClass: { container: "toast" },
+    });
+    toast.fire({
+        icon: type,
+        title: msg,
+        padding: "10px 20px",
+    });
+};
 </script>

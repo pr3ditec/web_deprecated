@@ -48,7 +48,14 @@
                         <div class="badge bg-white/30">+ 2.35%</div>
                     </div>
                     <div class="flex items-center font-semibold mt-5">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2 shrink-0">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5 ltr:mr-2 rtl:ml-2 shrink-0"
+                        >
                             <path
                                 opacity="0.5"
                                 d="M3.27489 15.2957C2.42496 14.1915 2 13.6394 2 12C2 10.3606 2.42496 9.80853 3.27489 8.70433C4.97196 6.49956 7.81811 4 12 4C16.1819 4 19.028 6.49956 20.7251 8.70433C21.575 9.80853 22 10.3606 22 12C22 13.6394 21.575 14.1915 20.7251 15.2957C19.028 17.5004 16.1819 20 12 20C7.81811 20 4.97196 17.5004 3.27489 15.2957Z"
@@ -103,7 +110,14 @@
                         <div class="badge bg-white/30">- 2.35%</div>
                     </div>
                     <div class="flex items-center font-semibold mt-5">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2 shrink-0">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5 ltr:mr-2 rtl:ml-2 shrink-0"
+                        >
                             <path
                                 opacity="0.5"
                                 d="M3.27489 15.2957C2.42496 14.1915 2 13.6394 2 12C2 10.3606 2.42496 9.80853 3.27489 8.70433C4.97196 6.49956 7.81811 4 12 4C16.1819 4 19.028 6.49956 20.7251 8.70433C21.575 9.80853 22 10.3606 22 12C22 13.6394 21.575 14.1915 20.7251 15.2957C19.028 17.5004 16.1819 20 12 20C7.81811 20 4.97196 17.5004 3.27489 15.2957Z"
@@ -158,7 +172,14 @@
                         <div class="badge bg-white/30">+ 1.35%</div>
                     </div>
                     <div class="flex items-center font-semibold mt-5">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2 shrink-0">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5 ltr:mr-2 rtl:ml-2 shrink-0"
+                        >
                             <path
                                 opacity="0.5"
                                 d="M3.27489 15.2957C2.42496 14.1915 2 13.6394 2 12C2 10.3606 2.42496 9.80853 3.27489 8.70433C4.97196 6.49956 7.81811 4 12 4C16.1819 4 19.028 6.49956 20.7251 8.70433C21.575 9.80853 22 10.3606 22 12C22 13.6394 21.575 14.1915 20.7251 15.2957C19.028 17.5004 16.1819 20 12 20C7.81811 20 4.97196 17.5004 3.27489 15.2957Z"
@@ -213,7 +234,14 @@
                         <div class="badge bg-white/30">- 0.35%</div>
                     </div>
                     <div class="flex items-center font-semibold mt-5">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2 shrink-0">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5 ltr:mr-2 rtl:ml-2 shrink-0"
+                        >
                             <path
                                 opacity="0.5"
                                 d="M3.27489 15.2957C2.42496 14.1915 2 13.6394 2 12C2 10.3606 2.42496 9.80853 3.27489 8.70433C4.97196 6.49956 7.81811 4 12 4C16.1819 4 19.028 6.49956 20.7251 8.70433C21.575 9.80853 22 10.3606 22 12C22 13.6394 21.575 14.1915 20.7251 15.2957C19.028 17.5004 16.1819 20 12 20C7.81811 20 4.97196 17.5004 3.27489 15.2957Z"
@@ -242,7 +270,7 @@
                         <!-- Bitcoin -->
                         <div class="panel">
                             <div class="flex items-center font-semibold mb-5">
-                                <div class=" shrink-0 w-10 h-10 rounded-full grid place-content-center">
+                                <div class="shrink-0 w-10 h-10 rounded-full grid place-content-center">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         xml:space="preserve"
@@ -780,382 +808,382 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref, computed } from 'vue';
-    // import apexchart from 'vue3-apexcharts';
-    import { useAppStore } from '@/stores/index';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Finance Admin' });
-    const store = useAppStore();
+import { ref, computed } from "vue";
+// import apexchart from 'vue3-apexcharts';
+import { useAppStore } from "@/stores/index";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Finance Admin" });
+const store = useAppStore();
 
-    // bitcoin
-    const bitcoin = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
+// bitcoin
+const bitcoin = computed(() => {
+    return {
+        chart: {
+            height: 45,
+            type: "line",
+            sparkline: {
+                enabled: true,
             },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#00ab55'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
-                    },
-                },
-            },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
-
-    const bitcoinSeries = ref([
-        {
-            data: [21, 9, 36, 12, 44, 25, 59, 41, 25, 66],
         },
-    ]);
-
-    // ethereum
-    const ethereum = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
-            },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#e7515a'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
-                    },
-                },
-            },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
-
-    const ethereumSeries = ref([
-        {
-            data: [44, 25, 59, 41, 66, 25, 21, 9, 36, 12],
+        stroke: {
+            width: 2,
         },
-    ]);
-
-    // litecoin
-    const litecoin = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
-            },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#00ab55'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
-                    },
-                },
-            },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
-
-    const litecoinSeries = ref([
-        {
-            data: [9, 21, 36, 12, 66, 25, 44, 25, 41, 59],
+        markers: {
+            size: 0,
         },
-    ]);
-
-    // binance
-    const binance = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
+        colors: ["#00ab55"],
+        grid: {
+            padding: {
+                top: 0,
+                bottom: 0,
+                left: 0,
             },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#e7515a'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
-                    },
-                },
-            },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
-
-    const binanceSeries = ref([
-        {
-            data: [25, 44, 25, 59, 41, 21, 36, 12, 19, 9],
         },
-    ]);
-
-    // tether
-    const tether = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
+        tooltip: {
+            x: {
+                show: false,
             },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#00ab55'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
-                        },
+            y: {
+                title: {
+                    formatter: (val: any) => {
+                        return "";
                     },
                 },
             },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
-
-    const tetherSeries = ref([
-        {
-            data: [21, 59, 41, 44, 25, 66, 9, 36, 25, 12],
         },
-    ]);
-
-    // solana
-    const solana = computed(() => {
-        return {
-            chart: {
-                height: 45,
-                type: 'line',
-                sparkline: {
-                    enabled: true,
-                },
-            },
-            stroke: {
-                width: 2,
-            },
-            markers: {
-                size: 0,
-            },
-            colors: ['#e7515a'],
-            grid: {
-                padding: {
-                    top: 0,
-                    bottom: 0,
-                    left: 0,
-                },
-            },
-            tooltip: {
-                x: {
-                    show: false,
-                },
-                y: {
-                    title: {
-                        formatter: (val: any) => {
-                            return '';
+        responsive: [
+            {
+                breakPoint: 576,
+                options: {
+                    chart: {
+                        height: 95,
+                    },
+                    grid: {
+                        padding: {
+                            top: 45,
+                            bottom: 0,
+                            left: 0,
                         },
                     },
                 },
             },
-            responsive: [
-                {
-                    breakPoint: 576,
-                    options: {
-                        chart: {
-                            height: 95,
-                        },
-                        grid: {
-                            padding: {
-                                top: 45,
-                                bottom: 0,
-                                left: 0,
-                            },
-                        },
-                    },
-                },
-            ],
-        };
-    });
+        ],
+    };
+});
 
-    const solanaSeries = ref([
-        {
-            data: [21, -9, 36, -12, 44, 25, 59, -41, 66, -25],
+const bitcoinSeries = ref([
+    {
+        data: [21, 9, 36, 12, 44, 25, 59, 41, 25, 66],
+    },
+]);
+
+// ethereum
+const ethereum = computed(() => {
+    return {
+        chart: {
+            height: 45,
+            type: "line",
+            sparkline: {
+                enabled: true,
+            },
         },
-    ]);
+        stroke: {
+            width: 2,
+        },
+        markers: {
+            size: 0,
+        },
+        colors: ["#e7515a"],
+        grid: {
+            padding: {
+                top: 0,
+                bottom: 0,
+                left: 0,
+            },
+        },
+        tooltip: {
+            x: {
+                show: false,
+            },
+            y: {
+                title: {
+                    formatter: (val: any) => {
+                        return "";
+                    },
+                },
+            },
+        },
+        responsive: [
+            {
+                breakPoint: 576,
+                options: {
+                    chart: {
+                        height: 95,
+                    },
+                    grid: {
+                        padding: {
+                            top: 45,
+                            bottom: 0,
+                            left: 0,
+                        },
+                    },
+                },
+            },
+        ],
+    };
+});
+
+const ethereumSeries = ref([
+    {
+        data: [44, 25, 59, 41, 66, 25, 21, 9, 36, 12],
+    },
+]);
+
+// litecoin
+const litecoin = computed(() => {
+    return {
+        chart: {
+            height: 45,
+            type: "line",
+            sparkline: {
+                enabled: true,
+            },
+        },
+        stroke: {
+            width: 2,
+        },
+        markers: {
+            size: 0,
+        },
+        colors: ["#00ab55"],
+        grid: {
+            padding: {
+                top: 0,
+                bottom: 0,
+                left: 0,
+            },
+        },
+        tooltip: {
+            x: {
+                show: false,
+            },
+            y: {
+                title: {
+                    formatter: (val: any) => {
+                        return "";
+                    },
+                },
+            },
+        },
+        responsive: [
+            {
+                breakPoint: 576,
+                options: {
+                    chart: {
+                        height: 95,
+                    },
+                    grid: {
+                        padding: {
+                            top: 45,
+                            bottom: 0,
+                            left: 0,
+                        },
+                    },
+                },
+            },
+        ],
+    };
+});
+
+const litecoinSeries = ref([
+    {
+        data: [9, 21, 36, 12, 66, 25, 44, 25, 41, 59],
+    },
+]);
+
+// binance
+const binance = computed(() => {
+    return {
+        chart: {
+            height: 45,
+            type: "line",
+            sparkline: {
+                enabled: true,
+            },
+        },
+        stroke: {
+            width: 2,
+        },
+        markers: {
+            size: 0,
+        },
+        colors: ["#e7515a"],
+        grid: {
+            padding: {
+                top: 0,
+                bottom: 0,
+                left: 0,
+            },
+        },
+        tooltip: {
+            x: {
+                show: false,
+            },
+            y: {
+                title: {
+                    formatter: (val: any) => {
+                        return "";
+                    },
+                },
+            },
+        },
+        responsive: [
+            {
+                breakPoint: 576,
+                options: {
+                    chart: {
+                        height: 95,
+                    },
+                    grid: {
+                        padding: {
+                            top: 45,
+                            bottom: 0,
+                            left: 0,
+                        },
+                    },
+                },
+            },
+        ],
+    };
+});
+
+const binanceSeries = ref([
+    {
+        data: [25, 44, 25, 59, 41, 21, 36, 12, 19, 9],
+    },
+]);
+
+// tether
+const tether = computed(() => {
+    return {
+        chart: {
+            height: 45,
+            type: "line",
+            sparkline: {
+                enabled: true,
+            },
+        },
+        stroke: {
+            width: 2,
+        },
+        markers: {
+            size: 0,
+        },
+        colors: ["#00ab55"],
+        grid: {
+            padding: {
+                top: 0,
+                bottom: 0,
+                left: 0,
+            },
+        },
+        tooltip: {
+            x: {
+                show: false,
+            },
+            y: {
+                title: {
+                    formatter: (val: any) => {
+                        return "";
+                    },
+                },
+            },
+        },
+        responsive: [
+            {
+                breakPoint: 576,
+                options: {
+                    chart: {
+                        height: 95,
+                    },
+                    grid: {
+                        padding: {
+                            top: 45,
+                            bottom: 0,
+                            left: 0,
+                        },
+                    },
+                },
+            },
+        ],
+    };
+});
+
+const tetherSeries = ref([
+    {
+        data: [21, 59, 41, 44, 25, 66, 9, 36, 25, 12],
+    },
+]);
+
+// solana
+const solana = computed(() => {
+    return {
+        chart: {
+            height: 45,
+            type: "line",
+            sparkline: {
+                enabled: true,
+            },
+        },
+        stroke: {
+            width: 2,
+        },
+        markers: {
+            size: 0,
+        },
+        colors: ["#e7515a"],
+        grid: {
+            padding: {
+                top: 0,
+                bottom: 0,
+                left: 0,
+            },
+        },
+        tooltip: {
+            x: {
+                show: false,
+            },
+            y: {
+                title: {
+                    formatter: (val: any) => {
+                        return "";
+                    },
+                },
+            },
+        },
+        responsive: [
+            {
+                breakPoint: 576,
+                options: {
+                    chart: {
+                        height: 95,
+                    },
+                    grid: {
+                        padding: {
+                            top: 45,
+                            bottom: 0,
+                            left: 0,
+                        },
+                    },
+                },
+            },
+        ],
+    };
+});
+
+const solanaSeries = ref([
+    {
+        data: [21, -9, 36, -12, 44, 25, 59, -41, 66, -25],
+    },
+]);
 </script>

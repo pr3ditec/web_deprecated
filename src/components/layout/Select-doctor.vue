@@ -10,16 +10,16 @@
 </template>
 
 <script>
-import { inject } from 'vue'
+import { inject } from "vue";
 
 export default {
-    name: 'SelectProfissional',
+    name: "SelectProfissional",
     data() {
         return {
-            request: Object(inject('api')),
-            selectedProfessional: '',
+            request: Object(inject("api")),
+            selectedProfessional: "",
             profissionais: [],
-            secretariaId: '1'
+            secretariaId: "1",
         };
     },
     async created() {
@@ -31,8 +31,8 @@ export default {
     },
     methods: {
         updateSelectedProfessional() {
-            this.$emit('update:modelValue', this.selectedProfessional);
-        }
-    }
+            this.$emit("update:modelValue", this.selectedProfessional);
+        },
+    },
 };
 </script>

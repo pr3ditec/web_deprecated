@@ -533,39 +533,39 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import Multiselect from '@suadelabs/vue3-multiselect';
-    import '@suadelabs/vue3-multiselect/dist/vue3-multiselect.css';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Vue Multiselect' });
+import { ref } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import Multiselect from "@suadelabs/vue3-multiselect";
+import "@suadelabs/vue3-multiselect/dist/vue3-multiselect.css";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Vue Multiselect" });
 
-    const { codeArr, toggleCode } = codePreview();
+const { codeArr, toggleCode } = codePreview();
 
-    const options = ref(['Orange', 'White', 'Purple']);
-    const input1 = ref('Orange');
+const options = ref(["Orange", "White", "Purple"]);
+const input1 = ref("Orange");
 
-    const options2 = ref([
-        {
-            group_name: 'Group 1',
-            list: [{ name: 'Orange' }, { name: 'White' }, { name: 'Purple' }],
-        },
-        {
-            group_name: 'Group 2',
-            list: [{ name: 'Yellow' }, { name: 'Red' }, { name: 'Green' }],
-        },
-        {
-            group_name: 'Group 3',
-            list: [{ name: 'Aqua' }, { name: 'Black' }, { name: 'Blue' }],
-        },
-    ]);
-    const input2 = ref({ name: 'Orange' });
+const options2 = ref([
+    {
+        group_name: "Group 1",
+        list: [{ name: "Orange" }, { name: "White" }, { name: "Purple" }],
+    },
+    {
+        group_name: "Group 2",
+        list: [{ name: "Yellow" }, { name: "Red" }, { name: "Green" }],
+    },
+    {
+        group_name: "Group 3",
+        list: [{ name: "Aqua" }, { name: "Black" }, { name: "Blue" }],
+    },
+]);
+const input2 = ref({ name: "Orange" });
 
-    const options3 = ref([{ name: 'Orange' }, { name: 'White', $isDisabled: true }, { name: 'Purple' }]);
-    const input3 = ref({ name: 'Orange' });
+const options3 = ref([{ name: "Orange" }, { name: "White", $isDisabled: true }, { name: "Purple" }]);
+const input3 = ref({ name: "Orange" });
 
-    const input4 = ref('');
-    const input5 = ref('');
-    const input6 = ref([]);
+const input4 = ref("");
+const input5 = ref("");
+const input6 = ref([]);
 </script>

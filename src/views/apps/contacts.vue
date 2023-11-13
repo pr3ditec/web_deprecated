@@ -125,7 +125,7 @@
                                                 v-show="!contact.path && contact.name"
                                                 class="grid place-content-center h-8 w-8 ltr:mr-2 rtl:ml-2 rounded-full bg-primary text-white text-sm font-semibold"
                                             >
-                                                {{ contact.name.charAt(0) + '' + contact.name.charAt(contact.name.indexOf(' ') + 1) }}
+                                                {{ contact.name.charAt(0) + "" + contact.name.charAt(contact.name.indexOf(" ") + 1) }}
                                             </div>
                                             <div
                                                 v-show="!contact.path && !contact.name"
@@ -345,7 +345,7 @@
                                     </svg>
                                 </button>
                                 <div class="text-lg font-medium bg-[#fbfbfb] dark:bg-[#121c2c] ltr:pl-5 rtl:pr-5 py-3 ltr:pr-[50px] rtl:pl-[50px]">
-                                    {{ params.id ? 'Edit Contact' : 'Add Contact' }}
+                                    {{ params.id ? "Edit Contact" : "Add Contact" }}
                                 </div>
                                 <div class="p-5">
                                     <form @submit.prevent="saveUser">
@@ -378,7 +378,7 @@
                                         <div class="flex justify-end items-center mt-8">
                                             <button type="button" class="btn btn-outline-danger" @click="addContactModal = false">Cancel</button>
                                             <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">
-                                                {{ params.id ? 'Update' : 'Add' }}
+                                                {{ params.id ? "Update" : "Add" }}
                                             </button>
                                         </div>
                                     </form>
@@ -392,259 +392,259 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref, onMounted } from 'vue';
-    import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from '@headlessui/vue';
-    import Swal from 'sweetalert2';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Contacts' });
+import { ref, onMounted } from "vue";
+import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from "@headlessui/vue";
+import Swal from "sweetalert2";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Contacts" });
 
-    const defaultParams = ref({
-        id: null,
-        name: '',
-        email: '',
-        role: '',
-        phone: '',
-        location: '',
-    });
-    const displayType = ref('list');
-    const addContactModal = ref(false);
-    const params = ref(JSON.parse(JSON.stringify(defaultParams.value)));
-    const filterdContactsList: any = ref([]);
-    const searchUser = ref('');
-    const contactList = ref([
-        {
-            id: 1,
-            path: 'profile-35.png',
-            name: 'Alan Green',
-            role: 'Web Developer',
-            email: 'alan@mail.com',
-            location: 'Boston, USA',
-            phone: '+1 202 555 0197',
-            posts: 25,
-            followers: '5K',
-            following: 500,
-        },
-        {
-            id: 2,
-            path: 'profile-35.png',
-            name: 'Linda Nelson',
-            role: 'Web Designer',
-            email: 'linda@mail.com',
-            location: 'Sydney, Australia',
-            phone: '+1 202 555 0170',
-            posts: 25,
-            followers: '21.5K',
-            following: 350,
-        },
-        {
-            id: 3,
-            path: 'profile-35.png',
-            name: 'Lila Perry',
-            role: 'UX/UI Designer',
-            email: 'lila@mail.com',
-            location: 'Miami, USA',
-            phone: '+1 202 555 0105',
+const defaultParams = ref({
+    id: null,
+    name: "",
+    email: "",
+    role: "",
+    phone: "",
+    location: "",
+});
+const displayType = ref("list");
+const addContactModal = ref(false);
+const params = ref(JSON.parse(JSON.stringify(defaultParams.value)));
+const filterdContactsList: any = ref([]);
+const searchUser = ref("");
+const contactList = ref([
+    {
+        id: 1,
+        path: "profile-35.png",
+        name: "Alan Green",
+        role: "Web Developer",
+        email: "alan@mail.com",
+        location: "Boston, USA",
+        phone: "+1 202 555 0197",
+        posts: 25,
+        followers: "5K",
+        following: 500,
+    },
+    {
+        id: 2,
+        path: "profile-35.png",
+        name: "Linda Nelson",
+        role: "Web Designer",
+        email: "linda@mail.com",
+        location: "Sydney, Australia",
+        phone: "+1 202 555 0170",
+        posts: 25,
+        followers: "21.5K",
+        following: 350,
+    },
+    {
+        id: 3,
+        path: "profile-35.png",
+        name: "Lila Perry",
+        role: "UX/UI Designer",
+        email: "lila@mail.com",
+        location: "Miami, USA",
+        phone: "+1 202 555 0105",
+        posts: 20,
+        followers: "21.5K",
+        following: 350,
+    },
+    {
+        id: 4,
+        path: "profile-35.png",
+        name: "Andy King",
+        role: "Project Lead",
+        email: "andy@mail.com",
+        location: "Tokyo, Japan",
+        phone: "+1 202 555 0194",
+        posts: 25,
+        followers: "21.5K",
+        following: 300,
+    },
+    {
+        id: 5,
+        path: "profile-35.png",
+        name: "Jesse Cory",
+        role: "Web Developer",
+        email: "jesse@mail.com",
+        location: "Edinburgh, UK",
+        phone: "+1 202 555 0161",
+        posts: 30,
+        followers: "20K",
+        following: 350,
+    },
+    {
+        id: 6,
+        path: "profile-35.png",
+        name: "Xavier",
+        role: "UX/UI Designer",
+        email: "xavier@mail.com",
+        location: "New York, USA",
+        phone: "+1 202 555 0155",
+        posts: 25,
+        followers: "21.5K",
+        following: 350,
+    },
+    {
+        id: 7,
+        path: "profile-35.png",
+        name: "Susan",
+        role: "Project Manager",
+        email: "susan@mail.com",
+        location: "Miami, USA",
+        phone: "+1 202 555 0118",
+        posts: 40,
+        followers: "21.5K",
+        following: 350,
+    },
+    {
+        id: 8,
+        path: "profile-35.png",
+        name: "Raci Lopez",
+        role: "Web Developer",
+        email: "traci@mail.com",
+        location: "Edinburgh, UK",
+        phone: "+1 202 555 0135",
+        posts: 25,
+        followers: "21.5K",
+        following: 350,
+    },
+    {
+        id: 9,
+        path: "profile-35.png",
+        name: "Steven Mendoza",
+        role: "HR",
+        email: "sokol@verizon.net",
+        location: "Monrovia, US",
+        phone: "+1 202 555 0100",
+        posts: 40,
+        followers: "21.8K",
+        following: 300,
+    },
+    {
+        id: 10,
+        path: "profile-35.png",
+        name: "James Cantrell",
+        role: "Web Developer",
+        email: "sravani@comcast.net",
+        location: "Michigan, US",
+        phone: "+1 202 555 0134",
+        posts: 100,
+        followers: "28K",
+        following: 520,
+    },
+    {
+        id: 11,
+        path: "profile-35.png",
+        name: "Reginald Brown",
+        role: "Web Designer",
+        email: "drhyde@gmail.com",
+        location: "Entrimo, Spain",
+        phone: "+1 202 555 0153",
+        posts: 35,
+        followers: "25K",
+        following: 500,
+    },
+    {
+        id: 12,
+        path: "profile-35.png",
+        name: "Stacey Smith",
+        role: "Chief technology officer",
+        email: "maikelnai@optonline.net",
+        location: "Lublin, Poland",
+        phone: "+1 202 555 0115",
+        posts: 21,
+        followers: "5K",
+        following: 200,
+    },
+]);
+
+onMounted(() => {
+    searchContacts();
+});
+
+const searchContacts = () => {
+    filterdContactsList.value = contactList.value.filter((d) => d.name.toLowerCase().includes(searchUser.value.toLowerCase()));
+};
+
+const editUser = (user: any = null) => {
+    params.value = JSON.parse(JSON.stringify(defaultParams.value));
+    if (user) {
+        params.value = JSON.parse(JSON.stringify(user));
+    }
+
+    addContactModal.value = true;
+};
+
+const saveUser = () => {
+    if (!params.value.name) {
+        showMessage("Name is required.", "error");
+        return true;
+    }
+    if (!params.value.email) {
+        showMessage("Email is required.", "error");
+        return true;
+    }
+    if (!params.value.phone) {
+        showMessage("Phone is required.", "error");
+        return true;
+    }
+    if (!params.value.role) {
+        showMessage("Occupation is required.", "error");
+        return true;
+    }
+
+    if (params.value.id) {
+        //update user
+        let user: any = contactList.value.find((d) => d.id === params.value.id);
+        user.name = params.value.name;
+        user.email = params.value.email;
+        user.role = params.value.role;
+        user.phone = params.value.phone;
+        user.location = params.value.location;
+    } else {
+        //add user
+        let maxUserId = contactList.value.length
+            ? contactList.value.reduce((max, character) => (character.id > max ? character.id : max), contactList.value[0].id)
+            : 0;
+
+        let user = {
+            id: maxUserId + 1,
+            path: "profile-35.png",
+            name: params.value.name,
+            email: params.value.email,
+            role: params.value.role,
+            phone: params.value.phone,
+            location: params.value.location,
             posts: 20,
-            followers: '21.5K',
-            following: 350,
-        },
-        {
-            id: 4,
-            path: 'profile-35.png',
-            name: 'Andy King',
-            role: 'Project Lead',
-            email: 'andy@mail.com',
-            location: 'Tokyo, Japan',
-            phone: '+1 202 555 0194',
-            posts: 25,
-            followers: '21.5K',
-            following: 300,
-        },
-        {
-            id: 5,
-            path: 'profile-35.png',
-            name: 'Jesse Cory',
-            role: 'Web Developer',
-            email: 'jesse@mail.com',
-            location: 'Edinburgh, UK',
-            phone: '+1 202 555 0161',
-            posts: 30,
-            followers: '20K',
-            following: 350,
-        },
-        {
-            id: 6,
-            path: 'profile-35.png',
-            name: 'Xavier',
-            role: 'UX/UI Designer',
-            email: 'xavier@mail.com',
-            location: 'New York, USA',
-            phone: '+1 202 555 0155',
-            posts: 25,
-            followers: '21.5K',
-            following: 350,
-        },
-        {
-            id: 7,
-            path: 'profile-35.png',
-            name: 'Susan',
-            role: 'Project Manager',
-            email: 'susan@mail.com',
-            location: 'Miami, USA',
-            phone: '+1 202 555 0118',
-            posts: 40,
-            followers: '21.5K',
-            following: 350,
-        },
-        {
-            id: 8,
-            path: 'profile-35.png',
-            name: 'Raci Lopez',
-            role: 'Web Developer',
-            email: 'traci@mail.com',
-            location: 'Edinburgh, UK',
-            phone: '+1 202 555 0135',
-            posts: 25,
-            followers: '21.5K',
-            following: 350,
-        },
-        {
-            id: 9,
-            path: 'profile-35.png',
-            name: 'Steven Mendoza',
-            role: 'HR',
-            email: 'sokol@verizon.net',
-            location: 'Monrovia, US',
-            phone: '+1 202 555 0100',
-            posts: 40,
-            followers: '21.8K',
-            following: 300,
-        },
-        {
-            id: 10,
-            path: 'profile-35.png',
-            name: 'James Cantrell',
-            role: 'Web Developer',
-            email: 'sravani@comcast.net',
-            location: 'Michigan, US',
-            phone: '+1 202 555 0134',
-            posts: 100,
-            followers: '28K',
-            following: 520,
-        },
-        {
-            id: 11,
-            path: 'profile-35.png',
-            name: 'Reginald Brown',
-            role: 'Web Designer',
-            email: 'drhyde@gmail.com',
-            location: 'Entrimo, Spain',
-            phone: '+1 202 555 0153',
-            posts: 35,
-            followers: '25K',
+            followers: "5K",
             following: 500,
-        },
-        {
-            id: 12,
-            path: 'profile-35.png',
-            name: 'Stacey Smith',
-            role: 'Chief technology officer',
-            email: 'maikelnai@optonline.net',
-            location: 'Lublin, Poland',
-            phone: '+1 202 555 0115',
-            posts: 21,
-            followers: '5K',
-            following: 200,
-        },
-    ]);
-
-    onMounted(() => {
+        };
+        contactList.value.splice(0, 0, user);
         searchContacts();
+    }
+
+    showMessage("User has been saved successfully.");
+    addContactModal.value = false;
+};
+
+const deleteUser = (user: any = null) => {
+    contactList.value = contactList.value.filter((d) => d.id != user.id);
+    searchContacts();
+    showMessage("User has been deleted successfully.");
+};
+
+const showMessage = (msg = "", type = "success") => {
+    const toast: any = Swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 3000,
+        customClass: { container: "toast" },
     });
-
-    const searchContacts = () => {
-        filterdContactsList.value = contactList.value.filter((d) => d.name.toLowerCase().includes(searchUser.value.toLowerCase()));
-    };
-
-    const editUser = (user: any = null) => {
-        params.value = JSON.parse(JSON.stringify(defaultParams.value));
-        if (user) {
-            params.value = JSON.parse(JSON.stringify(user));
-        }
-
-        addContactModal.value = true;
-    };
-
-    const saveUser = () => {
-        if (!params.value.name) {
-            showMessage('Name is required.', 'error');
-            return true;
-        }
-        if (!params.value.email) {
-            showMessage('Email is required.', 'error');
-            return true;
-        }
-        if (!params.value.phone) {
-            showMessage('Phone is required.', 'error');
-            return true;
-        }
-        if (!params.value.role) {
-            showMessage('Occupation is required.', 'error');
-            return true;
-        }
-
-        if (params.value.id) {
-            //update user
-            let user: any = contactList.value.find((d) => d.id === params.value.id);
-            user.name = params.value.name;
-            user.email = params.value.email;
-            user.role = params.value.role;
-            user.phone = params.value.phone;
-            user.location = params.value.location;
-        } else {
-            //add user
-            let maxUserId = contactList.value.length
-                ? contactList.value.reduce((max, character) => (character.id > max ? character.id : max), contactList.value[0].id)
-                : 0;
-
-            let user = {
-                id: maxUserId + 1,
-                path: 'profile-35.png',
-                name: params.value.name,
-                email: params.value.email,
-                role: params.value.role,
-                phone: params.value.phone,
-                location: params.value.location,
-                posts: 20,
-                followers: '5K',
-                following: 500,
-            };
-            contactList.value.splice(0, 0, user);
-            searchContacts();
-        }
-
-        showMessage('User has been saved successfully.');
-        addContactModal.value = false;
-    };
-
-    const deleteUser = (user: any = null) => {
-        contactList.value = contactList.value.filter((d) => d.id != user.id);
-        searchContacts();
-        showMessage('User has been deleted successfully.');
-    };
-
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
-        });
-    };
+    toast.fire({
+        icon: type,
+        title: msg,
+        padding: "10px 20px",
+    });
+};
 </script>

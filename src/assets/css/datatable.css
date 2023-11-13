@@ -66,12 +66,12 @@
     @apply dark:bg-[#181f32];
 }
 
-.datatable .bh-table-responsive input[type='checkbox'] + div {
+.datatable .bh-table-responsive input[type="checkbox"] + div {
     @apply rounded border-2 border-[#e0e6ed] bg-transparent text-primary dark:border-[#253b5c];
 }
 
-.datatable .bh-table-responsive input[type='checkbox']:checked + div,
-.datatable .bh-table-responsive input[type='checkbox']:indeterminate + div {
+.datatable .bh-table-responsive input[type="checkbox"]:checked + div,
+.datatable .bh-table-responsive input[type="checkbox"]:indeterminate + div {
     @apply !bg-primary border-primary;
 }
 

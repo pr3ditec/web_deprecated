@@ -249,7 +249,13 @@
                                     viewBox="0 0 891.29496 745.19434"
                                     xmlns:xlink="http://www.w3.org/1999/xlink"
                                 >
-                                    <ellipse cx="418.64354" cy="727.19434" rx="352" ry="18" :fill="store.theme === 'dark' || store.isDarkMode ? '#888ea8' : '#e6e6e6'" />
+                                    <ellipse
+                                        cx="418.64354"
+                                        cy="727.19434"
+                                        rx="352"
+                                        ry="18"
+                                        :fill="store.theme === 'dark' || store.isDarkMode ? '#888ea8' : '#e6e6e6'"
+                                    />
                                     <path
                                         d="M778.64963,250.35008h-3.99878V140.80476a63.40187,63.40187,0,0,0-63.4018-63.40193H479.16232a63.40188,63.40188,0,0,0-63.402,63.4017v600.9744a63.40189,63.40189,0,0,0,63.4018,63.40192H711.24875a63.40187,63.40187,0,0,0,63.402-63.40168V328.32632h3.99878Z"
                                         transform="translate(-154.35252 -77.40283)"
@@ -358,8 +364,20 @@
                                         transform="translate(-154.35252 -77.40283)"
                                         :fill="store.theme === 'dark' || store.isDarkMode ? '#888ea8' : '#e6e6e6'"
                                     />
-                                    <ellipse cx="554.64354" cy="605.66091" rx="24.50394" ry="2.71961" :fill="store.theme === 'dark' || store.isDarkMode ? '#888ea8' : '#e6e6e6'" />
-                                    <ellipse cx="335.64354" cy="285.66091" rx="24.50394" ry="2.71961" :fill="store.theme === 'dark' || store.isDarkMode ? '#888ea8' : '#e6e6e6'" />
+                                    <ellipse
+                                        cx="554.64354"
+                                        cy="605.66091"
+                                        rx="24.50394"
+                                        ry="2.71961"
+                                        :fill="store.theme === 'dark' || store.isDarkMode ? '#888ea8' : '#e6e6e6'"
+                                    />
+                                    <ellipse
+                                        cx="335.64354"
+                                        cy="285.66091"
+                                        rx="24.50394"
+                                        ry="2.71961"
+                                        :fill="store.theme === 'dark' || store.isDarkMode ? '#888ea8' : '#e6e6e6'"
+                                    />
                                 </svg>
                             </div>
                             <p class="flex justify-center bg-white-dark/20 p-2 font-semibold rounded-md max-w-[190px] mx-auto">
@@ -402,7 +420,7 @@
                                 <div class="mx-3">
                                     <p class="font-semibold">{{ selectedUser.name }}</p>
                                     <p class="text-white-dark text-xs">
-                                        {{ selectedUser.active ? 'Active now' : 'Last seen at ' + selectedUser.time }}
+                                        {{ selectedUser.active ? "Active now" : "Last seen at " + selectedUser.time }}
                                     </p>
                                 </div>
                             </div>
@@ -642,7 +660,7 @@
                             <div class="space-y-5 p-4 sm:pb-0 pb-[68px] sm:min-h-[300px] min-h-[400px]">
                                 <div class="block m-6 mt-0">
                                     <h4 class="text-xs text-center border-b border-[#f4f4f4] dark:border-gray-800 relative">
-                                        <span class="relative top-2 px-3 bg-white dark:bg-[#0e1726]">{{ 'Today, ' + selectedUser.time }}</span>
+                                        <span class="relative top-2 px-3 bg-white dark:bg-[#0e1726]">{{ "Today, " + selectedUser.time }}</span>
                                     </h4>
                                 </div>
                                 <template v-if="selectedUser.messages && selectedUser.messages.length">
@@ -696,7 +714,7 @@
                                                     class="text-xs text-white-dark"
                                                     :class="{ 'ltr:text-right rtl:text-left': selectedUser.userId === message.fromUserId }"
                                                 >
-                                                    {{ message.time ? message.time : '5h ago' }}
+                                                    {{ message.time ? message.time : "5h ago" }}
                                                 </div>
                                             </div>
                                         </div>
@@ -820,285 +838,285 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref, computed } from 'vue';
-    import { useAppStore } from '@/stores/index';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Chat' });
-    const store = useAppStore();
-    const isShowUserChat = ref(false);
-    const isShowChatMenu = ref(false);
-    const loginUser = ref({
-        id: 0,
-        name: 'Alon Smith',
-        path: 'profile-34.jpeg',
-        designation: 'Software Developer',
-    });
-    const contactList = ref([
-        {
-            userId: 1,
-            name: 'Nia Hillyer',
-            path: 'profile-16.jpeg',
-            time: '2:09 PM',
-            preview: 'How do you do?',
-            messages: [
-                {
-                    fromUserId: 0,
-                    toUserId: 1,
-                    text: 'Hi, I am back from vacation',
-                },
-                {
-                    fromUserId: 0,
-                    toUserId: 1,
-                    text: 'How are you?',
-                },
-                {
-                    fromUserId: 1,
-                    toUserId: 0,
-                    text: 'Welcom Back',
-                },
-                {
-                    fromUserId: 1,
-                    toUserId: 0,
-                    text: 'I am all well',
-                },
-                {
-                    fromUserId: 0,
-                    toUserId: 1,
-                    text: 'Coffee?',
-                },
-            ],
-            active: true,
-        },
-        {
-            userId: 2,
-            name: 'Sean Freeman',
-            path: 'profile-1.jpeg',
-            time: '12:09 PM',
-            preview: 'I was wondering...',
-            messages: [
-                {
-                    fromUserId: 0,
-                    toUserId: 2,
-                    text: 'Hello',
-                },
-                {
-                    fromUserId: 0,
-                    toUserId: 2,
-                    text: "It's me",
-                },
-                {
-                    fromUserId: 0,
-                    toUserId: 2,
-                    text: 'I have a question regarding project.',
-                },
-            ],
-            active: false,
-        },
-        {
-            userId: 3,
-            name: 'Alma Clarke',
-            path: 'profile-2.jpeg',
-            time: '1:44 PM',
-            preview: 'I’ve forgotten how it felt before',
-            messages: [
-                {
-                    fromUserId: 0,
-                    toUserId: 3,
-                    text: 'Hey Buddy.',
-                },
-                {
-                    fromUserId: 0,
-                    toUserId: 3,
-                    text: "What's up",
-                },
-                {
-                    fromUserId: 3,
-                    toUserId: 0,
-                    text: 'I am sick',
-                },
-                {
-                    fromUserId: 0,
-                    toUserId: 3,
-                    text: 'Not comming to office today.',
-                },
-            ],
-            active: true,
-        },
-        {
-            userId: 4,
-            name: 'Alan Green',
-            path: 'profile-3.jpeg',
-            time: '2:06 PM',
-            preview: 'But we’re probably gonna need a new carpet.',
-            messages: [
-                {
-                    fromUserId: 0,
-                    toUserId: 4,
-                    text: 'Hi, collect your check',
-                },
-                {
-                    fromUserId: 4,
-                    toUserId: 0,
-                    text: 'Ok, I will be there in 10 mins',
-                },
-            ],
-            active: true,
-        },
-        {
-            userId: 5,
-            name: 'Shaun Park',
-            path: 'profile-4.jpeg',
-            time: '2:05 PM',
-            preview: 'It’s not that bad...',
-            messages: [
-                {
-                    fromUserId: 0,
-                    toUserId: 3,
-                    text: 'Hi, I am back from vacation',
-                },
-                {
-                    fromUserId: 0,
-                    toUserId: 3,
-                    text: 'How are you?',
-                },
-                {
-                    fromUserId: 0,
-                    toUserId: 5,
-                    text: 'Welcom Back',
-                },
-                {
-                    fromUserId: 0,
-                    toUserId: 5,
-                    text: 'I am all well',
-                },
-                {
-                    fromUserId: 5,
-                    toUserId: 0,
-                    text: 'Coffee?',
-                },
-            ],
-            active: false,
-        },
-        {
-            userId: 6,
-            name: 'Roxanne',
-            path: 'profile-5.jpeg',
-            time: '2:00 PM',
-            preview: 'Wasup for the third time like is you bling bitch',
-            messages: [
-                {
-                    fromUserId: 0,
-                    toUserId: 6,
-                    text: 'Hi',
-                },
-                {
-                    fromUserId: 0,
-                    toUserId: 6,
-                    text: 'Uploaded files to server.',
-                },
-            ],
-            active: false,
-        },
-        {
-            userId: 7,
-            name: 'Ernest Reeves',
-            path: 'profile-6.jpeg',
-            time: '2:09 PM',
-            preview: 'Wasup for the third time like is you bling bitch',
-            messages: [],
-            active: true,
-        },
-        {
-            userId: 8,
-            name: 'Laurie Fox',
-            path: 'profile-7.jpeg',
-            time: '12:09 PM',
-            preview: 'Wasup for the third time like is you bling bitch',
-            messages: [],
-            active: true,
-        },
-        {
-            userId: 9,
-            name: 'Xavier',
-            path: 'profile-8.jpeg',
-            time: '4:09 PM',
-            preview: 'Wasup for the third time like is you bling bitch',
-            messages: [],
-            active: false,
-        },
-        {
-            userId: 10,
-            name: 'Susan Phillips',
-            path: 'profile-9.jpeg',
-            time: '9:00 PM',
-            preview: 'Wasup for the third time like is you bling bitch',
-            messages: [],
-            active: true,
-        },
-        {
-            userId: 11,
-            name: 'Dale Butler',
-            path: 'profile-10.jpeg',
-            time: '5:09 PM',
-            preview: 'Wasup for the third time like is you bling bitch',
-            messages: [],
-            active: false,
-        },
-        {
-            userId: 12,
-            name: 'Grace Roberts',
-            path: 'user-profile.jpeg',
-            time: '8:01 PM',
-            preview: 'Wasup for the third time like is you bling bitch',
-            messages: [],
-            active: true,
-        },
-    ]);
-    const searchUser = ref('');
-    const textMessage = ref('');
-    const selectedUser: any = ref(null);
-
-    const searchUsers = computed(() => {
-        setTimeout(() => {
-            const element: any = document.querySelector('.chat-users');
-            if (element) {
-                element.scrollTop = 0;
-                element.behavior = 'smooth';
-            }
-        });
-        return contactList.value.filter((d) => {
-            return d.name.toLowerCase().includes(searchUser.value);
-        });
-    });
-
-    const selectUser = (user: any) => {
-        selectedUser.value = user;
-        isShowUserChat.value = true;
-        scrollToBottom();
-        isShowChatMenu.value = false;
-    };
-
-    const sendMessage = () => {
-        if (textMessage.value.trim()) {
-            const user: any = contactList.value.find((d) => d.userId === selectedUser.value.userId);
-            user.messages.push({
-                fromUserId: selectedUser.value.userId,
+import { ref, computed } from "vue";
+import { useAppStore } from "@/stores/index";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Chat" });
+const store = useAppStore();
+const isShowUserChat = ref(false);
+const isShowChatMenu = ref(false);
+const loginUser = ref({
+    id: 0,
+    name: "Alon Smith",
+    path: "profile-34.jpeg",
+    designation: "Software Developer",
+});
+const contactList = ref([
+    {
+        userId: 1,
+        name: "Nia Hillyer",
+        path: "profile-16.jpeg",
+        time: "2:09 PM",
+        preview: "How do you do?",
+        messages: [
+            {
+                fromUserId: 0,
+                toUserId: 1,
+                text: "Hi, I am back from vacation",
+            },
+            {
+                fromUserId: 0,
+                toUserId: 1,
+                text: "How are you?",
+            },
+            {
+                fromUserId: 1,
                 toUserId: 0,
-                text: textMessage.value,
-                time: 'Just now',
-            });
-            textMessage.value = '';
-            scrollToBottom();
-        }
-    };
+                text: "Welcom Back",
+            },
+            {
+                fromUserId: 1,
+                toUserId: 0,
+                text: "I am all well",
+            },
+            {
+                fromUserId: 0,
+                toUserId: 1,
+                text: "Coffee?",
+            },
+        ],
+        active: true,
+    },
+    {
+        userId: 2,
+        name: "Sean Freeman",
+        path: "profile-1.jpeg",
+        time: "12:09 PM",
+        preview: "I was wondering...",
+        messages: [
+            {
+                fromUserId: 0,
+                toUserId: 2,
+                text: "Hello",
+            },
+            {
+                fromUserId: 0,
+                toUserId: 2,
+                text: "It's me",
+            },
+            {
+                fromUserId: 0,
+                toUserId: 2,
+                text: "I have a question regarding project.",
+            },
+        ],
+        active: false,
+    },
+    {
+        userId: 3,
+        name: "Alma Clarke",
+        path: "profile-2.jpeg",
+        time: "1:44 PM",
+        preview: "I’ve forgotten how it felt before",
+        messages: [
+            {
+                fromUserId: 0,
+                toUserId: 3,
+                text: "Hey Buddy.",
+            },
+            {
+                fromUserId: 0,
+                toUserId: 3,
+                text: "What's up",
+            },
+            {
+                fromUserId: 3,
+                toUserId: 0,
+                text: "I am sick",
+            },
+            {
+                fromUserId: 0,
+                toUserId: 3,
+                text: "Not comming to office today.",
+            },
+        ],
+        active: true,
+    },
+    {
+        userId: 4,
+        name: "Alan Green",
+        path: "profile-3.jpeg",
+        time: "2:06 PM",
+        preview: "But we’re probably gonna need a new carpet.",
+        messages: [
+            {
+                fromUserId: 0,
+                toUserId: 4,
+                text: "Hi, collect your check",
+            },
+            {
+                fromUserId: 4,
+                toUserId: 0,
+                text: "Ok, I will be there in 10 mins",
+            },
+        ],
+        active: true,
+    },
+    {
+        userId: 5,
+        name: "Shaun Park",
+        path: "profile-4.jpeg",
+        time: "2:05 PM",
+        preview: "It’s not that bad...",
+        messages: [
+            {
+                fromUserId: 0,
+                toUserId: 3,
+                text: "Hi, I am back from vacation",
+            },
+            {
+                fromUserId: 0,
+                toUserId: 3,
+                text: "How are you?",
+            },
+            {
+                fromUserId: 0,
+                toUserId: 5,
+                text: "Welcom Back",
+            },
+            {
+                fromUserId: 0,
+                toUserId: 5,
+                text: "I am all well",
+            },
+            {
+                fromUserId: 5,
+                toUserId: 0,
+                text: "Coffee?",
+            },
+        ],
+        active: false,
+    },
+    {
+        userId: 6,
+        name: "Roxanne",
+        path: "profile-5.jpeg",
+        time: "2:00 PM",
+        preview: "Wasup for the third time like is you bling bitch",
+        messages: [
+            {
+                fromUserId: 0,
+                toUserId: 6,
+                text: "Hi",
+            },
+            {
+                fromUserId: 0,
+                toUserId: 6,
+                text: "Uploaded files to server.",
+            },
+        ],
+        active: false,
+    },
+    {
+        userId: 7,
+        name: "Ernest Reeves",
+        path: "profile-6.jpeg",
+        time: "2:09 PM",
+        preview: "Wasup for the third time like is you bling bitch",
+        messages: [],
+        active: true,
+    },
+    {
+        userId: 8,
+        name: "Laurie Fox",
+        path: "profile-7.jpeg",
+        time: "12:09 PM",
+        preview: "Wasup for the third time like is you bling bitch",
+        messages: [],
+        active: true,
+    },
+    {
+        userId: 9,
+        name: "Xavier",
+        path: "profile-8.jpeg",
+        time: "4:09 PM",
+        preview: "Wasup for the third time like is you bling bitch",
+        messages: [],
+        active: false,
+    },
+    {
+        userId: 10,
+        name: "Susan Phillips",
+        path: "profile-9.jpeg",
+        time: "9:00 PM",
+        preview: "Wasup for the third time like is you bling bitch",
+        messages: [],
+        active: true,
+    },
+    {
+        userId: 11,
+        name: "Dale Butler",
+        path: "profile-10.jpeg",
+        time: "5:09 PM",
+        preview: "Wasup for the third time like is you bling bitch",
+        messages: [],
+        active: false,
+    },
+    {
+        userId: 12,
+        name: "Grace Roberts",
+        path: "user-profile.jpeg",
+        time: "8:01 PM",
+        preview: "Wasup for the third time like is you bling bitch",
+        messages: [],
+        active: true,
+    },
+]);
+const searchUser = ref("");
+const textMessage = ref("");
+const selectedUser: any = ref(null);
 
-    const scrollToBottom = () => {
-        if (isShowUserChat.value) {
-            setTimeout(() => {
-                const element: any = document.querySelector('.chat-conversation-box');
-                element.behavior = 'smooth';
-                element.scrollTop = element.scrollHeight;
-            });
+const searchUsers = computed(() => {
+    setTimeout(() => {
+        const element: any = document.querySelector(".chat-users");
+        if (element) {
+            element.scrollTop = 0;
+            element.behavior = "smooth";
         }
-    };
+    });
+    return contactList.value.filter((d) => {
+        return d.name.toLowerCase().includes(searchUser.value);
+    });
+});
+
+const selectUser = (user: any) => {
+    selectedUser.value = user;
+    isShowUserChat.value = true;
+    scrollToBottom();
+    isShowChatMenu.value = false;
+};
+
+const sendMessage = () => {
+    if (textMessage.value.trim()) {
+        const user: any = contactList.value.find((d) => d.userId === selectedUser.value.userId);
+        user.messages.push({
+            fromUserId: selectedUser.value.userId,
+            toUserId: 0,
+            text: textMessage.value,
+            time: "Just now",
+        });
+        textMessage.value = "";
+        scrollToBottom();
+    }
+};
+
+const scrollToBottom = () => {
+    if (isShowUserChat.value) {
+        setTimeout(() => {
+            const element: any = document.querySelector(".chat-conversation-box");
+            element.behavior = "smooth";
+            element.scrollTop = element.scrollHeight;
+        });
+    }
+};
 </script>

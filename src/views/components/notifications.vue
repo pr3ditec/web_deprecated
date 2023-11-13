@@ -563,60 +563,60 @@
 </template>
 
 <script lang="ts" setup>
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import Swal from 'sweetalert2';
-    import { useAppStore } from '@/stores/index';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Notification' });
-    const store = useAppStore();
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import Swal from "sweetalert2";
+import { useAppStore } from "@/stores/index";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Notification" });
+const store = useAppStore();
 
-    const { codeArr, toggleCode } = codePreview();
-    const showMessage = (msg = 'Example notification text.', position = 'bottom-start', showCloseButton = true, closeButtonHtml = '', duration = 3000) => {
-        const toast = Swal.mixin({
-            toast: true,
-            position: <any>(position || 'bottom-start'),
-            showConfirmButton: false,
-            timer: duration,
-            showCloseButton: showCloseButton,
-        });
-        toast.fire({
-            title: msg,
-        });
-    };
+const { codeArr, toggleCode } = codePreview();
+const showMessage = (msg = "Example notification text.", position = "bottom-start", showCloseButton = true, closeButtonHtml = "", duration = 3000) => {
+    const toast = Swal.mixin({
+        toast: true,
+        position: <any>(position || "bottom-start"),
+        showConfirmButton: false,
+        timer: duration,
+        showCloseButton: showCloseButton,
+    });
+    toast.fire({
+        title: msg,
+    });
+};
 
-    const clickCallable = () => {
+const clickCallable = () => {
+    Swal.fire({
+        toast: true,
+        position: "bottom-start",
+        text: "Custom callback when action button is clicked.",
+        showCloseButton: true,
+        showConfirmButton: false,
+    }).then((result) => {
         Swal.fire({
             toast: true,
-            position: 'bottom-start',
-            text: 'Custom callback when action button is clicked.',
+            position: "bottom-start",
+            text: "Thanks for clicking the Dismiss button!",
             showCloseButton: true,
             showConfirmButton: false,
-        }).then((result) => {
-            Swal.fire({
-                toast: true,
-                position: 'bottom-start',
-                text: 'Thanks for clicking the Dismiss button!',
-                showCloseButton: true,
-                showConfirmButton: false,
-            });
         });
-    };
+    });
+};
 
-    const coloredToast = (color) => {
-        const toast = Swal.mixin({
-            toast: true,
-            position: 'bottom-start',
-            showConfirmButton: false,
-            timer: 3000,
-            showCloseButton: true,
-            customClass: {
-                popup: `color-${color}`,
-            },
-            target: document.getElementById(color + '-toast') || 'body',
-        });
-        toast.fire({
-            title: 'Example notification text.',
-        });
-    };
+const coloredToast = (color) => {
+    const toast = Swal.mixin({
+        toast: true,
+        position: "bottom-start",
+        showConfirmButton: false,
+        timer: 3000,
+        showCloseButton: true,
+        customClass: {
+            popup: `color-${color}`,
+        },
+        target: document.getElementById(color + "-toast") || "body",
+    });
+    toast.fire({
+        title: "Example notification text.",
+    });
+};
 </script>

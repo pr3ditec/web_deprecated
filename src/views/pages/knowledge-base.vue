@@ -865,34 +865,34 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import VueCollapsible from 'vue-height-collapsible/vue3';
-    import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay, TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
-    import { useMeta } from '@/composables/use-meta';
-    import { useAppStore } from '@/stores/index';
-    const store = useAppStore();
-    useMeta({ title: 'Knowledge Base' });
+import { ref } from "vue";
+import VueCollapsible from "vue-height-collapsible/vue3";
+import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay, TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
+import { useMeta } from "@/composables/use-meta";
+import { useAppStore } from "@/stores/index";
+const store = useAppStore();
+useMeta({ title: "Knowledge Base" });
 
-    const activeTab: any = ref('general');
-    const active1: any = ref(1);
-    const active2: any = ref(1);
-    const modal = ref(false);
-    const items = ref([
-        {
-            src: '/assets/images/knowledge/image-5.jpg',
-            title: 'Excessive sugar is harmful',
-        },
-        {
-            src: '/assets/images/knowledge/image-6.jpg',
-            title: 'Creative Photography',
-        },
-        {
-            src: '/assets/images/knowledge/image-7.jpg',
-            title: 'Plan your next trip',
-        },
-        {
-            src: '/assets/images/knowledge/image-8.jpg',
-            title: 'My latest Vlog',
-        },
-    ]);
+const activeTab: any = ref("general");
+const active1: any = ref(1);
+const active2: any = ref(1);
+const modal = ref(false);
+const items = ref([
+    {
+        src: "/assets/images/knowledge/image-5.jpg",
+        title: "Excessive sugar is harmful",
+    },
+    {
+        src: "/assets/images/knowledge/image-6.jpg",
+        title: "Creative Photography",
+    },
+    {
+        src: "/assets/images/knowledge/image-7.jpg",
+        title: "Plan your next trip",
+    },
+    {
+        src: "/assets/images/knowledge/image-8.jpg",
+        title: "My latest Vlog",
+    },
+]);
 </script>

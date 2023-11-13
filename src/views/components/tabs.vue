@@ -4959,10 +4959,10 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Tabs' });
-    const { codeArr, toggleCode } = codePreview();
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Tabs" });
+const { codeArr, toggleCode } = codePreview();
 </script>

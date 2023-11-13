@@ -901,7 +901,7 @@
                         </VueSimpleRangeSlider>
                         <div class="text-primary font-bold mb-10" id="locking_slider2_value"></div>
                         <div class="ltr:text-right rtl:text-left">
-                            <button type="button" class="btn btn-primary" id="lockbutton" @click="setLock">{{ lockedState ? 'Unlock' : 'Lock' }}</button>
+                            <button type="button" class="btn btn-primary" id="lockbutton" @click="setLock">{{ lockedState ? "Unlock" : "Lock" }}</button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code12')">
@@ -923,7 +923,7 @@
 &lt;div class=&quot;text-primary font-bold mb-10&quot; id=&quot;locking_slider2_value&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;ltr:text-right rtl:text-left&quot;&gt;
   &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot; id=&quot;lockbutton&quot; @click=&quot;setLock&quot;&gt;{{
-                                    lockedState ? 'Unlock' : 'Lock'
+                                    lockedState ? "Unlock" : "Lock"
                                 }}&lt;/button&gt;
 &lt;/div&gt;
 
@@ -976,111 +976,111 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref, onMounted } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { useAppStore } from '@/stores/index';
+import { ref, onMounted } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { useAppStore } from "@/stores/index";
 
-    //flatpickr
-    import flatPickr from 'vue-flatpickr-component';
-    import 'flatpickr/dist/flatpickr.css';
-    // range slider
-    import VueSimpleRangeSlider from 'vue-simple-range-slider';
-    import 'vue-simple-range-slider/css';
+//flatpickr
+import flatPickr from "vue-flatpickr-component";
+import "flatpickr/dist/flatpickr.css";
+// range slider
+import VueSimpleRangeSlider from "vue-simple-range-slider";
+import "vue-simple-range-slider/css";
 
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Date & Range Picker' });
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Date & Range Picker" });
 
-    const store = useAppStore();
+const store = useAppStore();
 
-    const { codeArr, toggleCode } = codePreview();
+const { codeArr, toggleCode } = codePreview();
 
-    const date1 = ref('2022-07-05');
-    const basic: any = ref({
-        dateFormat: 'Y-m-d',
-        position: store.rtlClass === 'rtl' ? 'auto right' : 'auto left',
-    });
+const date1 = ref("2022-07-05");
+const basic: any = ref({
+    dateFormat: "Y-m-d",
+    position: store.rtlClass === "rtl" ? "auto right" : "auto left",
+});
 
-    const date2 = ref('2022-07-05 12:00');
-    const dateTime: any = ref({
-        enableTime: true,
-        dateFormat: 'Y-m-d H:i',
-        position: store.rtlClass === 'rtl' ? 'auto right' : 'auto left',
-    });
+const date2 = ref("2022-07-05 12:00");
+const dateTime: any = ref({
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    position: store.rtlClass === "rtl" ? "auto right" : "auto left",
+});
 
-    const date3 = ref('2022-07-05 to 2022-07-10');
-    const rangeCalendar: any = ref({
-        dateFormat: 'Y-m-d',
-        mode: 'range',
-        position: store.rtlClass === 'rtl' ? 'auto right' : 'auto left',
-    });
+const date3 = ref("2022-07-05 to 2022-07-10");
+const rangeCalendar: any = ref({
+    dateFormat: "Y-m-d",
+    mode: "range",
+    position: store.rtlClass === "rtl" ? "auto right" : "auto left",
+});
 
-    const date4 = ref('13:45');
-    const preloadingTime: any = ref({
-        noCalendar: true,
-        enableTime: true,
-        dateFormat: 'H:i',
-        position: store.rtlClass === 'rtl' ? 'auto right' : 'auto left',
-    });
+const date4 = ref("13:45");
+const preloadingTime: any = ref({
+    noCalendar: true,
+    enableTime: true,
+    dateFormat: "H:i",
+    position: store.rtlClass === "rtl" ? "auto right" : "auto left",
+});
 
-    const slider1 = ref(0);
-    const slider2 = ref(0);
-    const slider3 = ref(0);
-    const slider4 = ref(0);
+const slider1 = ref(0);
+const slider2 = ref(0);
+const slider3 = ref(0);
+const slider4 = ref(0);
 
-    const nouiMin1 = ref(20);
-    const nouiMax1 = ref(40);
-    const nouiSlider1: any = ref([nouiMin1.value, nouiMax1.value]);
+const nouiMin1 = ref(20);
+const nouiMax1 = ref(40);
+const nouiSlider1: any = ref([nouiMin1.value, nouiMax1.value]);
 
-    const nouiSlider2: any = ref([500, 4000]);
-    const nouiMin2Perc = ref(0);
-    const nouiMax2Perc = ref(0);
+const nouiSlider2: any = ref([500, 4000]);
+const nouiMin2Perc = ref(0);
+const nouiMax2Perc = ref(0);
 
-    onMounted(() => {
-        setLock();
-    });
+onMounted(() => {
+    setLock();
+});
 
-    const slider1Update = (range) => {
-        if (range) {
-            nouiMin1.value = range[0];
-            nouiMax1.value = JSON.parse(JSON.stringify(range[1]));
-        }
-    };
-    const slider2Update = (range) => {
-        if (range) {
-            nouiMin2Perc.value = parseFloat((range[0] * 0.01).toFixed(2));
-            nouiMax2Perc.value = parseFloat((range[1] * 0.01).toFixed(2));
-        }
-    };
-    const selectUpdateValue = () => {
-        nouiSlider1.value = [nouiMin1.value, nouiMax1.value];
-    };
+const slider1Update = (range) => {
+    if (range) {
+        nouiMin1.value = range[0];
+        nouiMax1.value = JSON.parse(JSON.stringify(range[1]));
+    }
+};
+const slider2Update = (range) => {
+    if (range) {
+        nouiMin2Perc.value = parseFloat((range[0] * 0.01).toFixed(2));
+        nouiMax2Perc.value = parseFloat((range[1] * 0.01).toFixed(2));
+    }
+};
+const selectUpdateValue = () => {
+    nouiSlider1.value = [nouiMin1.value, nouiMax1.value];
+};
 
-    const nouiSlider3: any = ref(5);
-    const nouiSlider4: any = ref(10);
-    const lockedState = ref(false);
-    const lockingSlider1 = ref(0);
-    const lockingSlider2 = ref(0);
+const nouiSlider3: any = ref(5);
+const nouiSlider4: any = ref(10);
+const lockedState = ref(false);
+const lockingSlider1 = ref(0);
+const lockingSlider2 = ref(0);
 
-    const setLock = () => {
-        lockedState.value = !lockedState.value;
-        if (lockedState.value) {
-            lockingSlider1.value = nouiSlider3.value;
-            lockingSlider2.value = nouiSlider4.value;
-        }
-    };
+const setLock = () => {
+    lockedState.value = !lockedState.value;
+    if (lockedState.value) {
+        lockingSlider1.value = nouiSlider3.value;
+        lockingSlider2.value = nouiSlider4.value;
+    }
+};
 
-    const setLockSlider1 = () => {
-        if (!lockedState.value) {
-            return false;
-        }
+const setLockSlider1 = () => {
+    if (!lockedState.value) {
+        return false;
+    }
 
-        if (lockingSlider1.value > lockingSlider2.value) {
-            nouiSlider4.value = nouiSlider3.value - lockingSlider1.value;
-        } else if (lockingSlider1.value < lockingSlider2.value) {
-            nouiSlider4.value = lockingSlider1.value + nouiSlider3.value;
-        } else {
-            nouiSlider4.value = nouiSlider3.value;
-        }
-    };
+    if (lockingSlider1.value > lockingSlider2.value) {
+        nouiSlider4.value = nouiSlider3.value - lockingSlider1.value;
+    } else if (lockingSlider1.value < lockingSlider2.value) {
+        nouiSlider4.value = lockingSlider1.value + nouiSlider3.value;
+    } else {
+        nouiSlider4.value = nouiSlider3.value;
+    }
+};
 </script>

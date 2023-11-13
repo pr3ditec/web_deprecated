@@ -497,10 +497,10 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Breadcrumbs' });
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Breadcrumbs" });
 
-    const { codeArr, toggleCode } = codePreview();
+const { codeArr, toggleCode } = codePreview();
 </script>

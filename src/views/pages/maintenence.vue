@@ -21,8 +21,8 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { useMeta } from '@/composables/use-meta';
-    import { useAppStore } from '@/stores/index';
-    const store = useAppStore();
-    useMeta({ title: 'Maintenence' });
+import { useMeta } from "@/composables/use-meta";
+import { useAppStore } from "@/stores/index";
+const store = useAppStore();
+useMeta({ title: "Maintenence" });
 </script>

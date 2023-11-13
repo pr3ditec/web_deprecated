@@ -269,6 +269,6 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Color Library' });
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Color Library" });
 </script>

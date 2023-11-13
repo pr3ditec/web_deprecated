@@ -513,38 +513,38 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Progress Bar' });
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Progress Bar" });
 
-    const { codeArr, toggleCode } = codePreview();
+const { codeArr, toggleCode } = codePreview();
 </script>
 <style>
-    .striped-bar {
-        background-image: linear-gradient(
-            45deg,
-            hsla(0, 0%, 100%, 0.15) 25%,
-            transparent 0,
-            transparent 50%,
-            hsla(0, 0%, 100%, 0.15) 0,
-            hsla(0, 0%, 100%, 0.15) 75%,
-            transparent 0,
-            transparent
-        );
-        background-size: 1rem 1rem;
-    }
-    .striped-bar-sm {
-        background-image: linear-gradient(
-            45deg,
-            hsla(0, 0%, 100%, 0.15) 25%,
-            transparent 0,
-            transparent 50%,
-            hsla(0, 0%, 100%, 0.15) 0,
-            hsla(0, 0%, 100%, 0.15) 75%,
-            transparent 0,
-            transparent
-        );
-        background-size: 1rem 1rem;
-    }
+.striped-bar {
+    background-image: linear-gradient(
+        45deg,
+        hsla(0, 0%, 100%, 0.15) 25%,
+        transparent 0,
+        transparent 50%,
+        hsla(0, 0%, 100%, 0.15) 0,
+        hsla(0, 0%, 100%, 0.15) 75%,
+        transparent 0,
+        transparent
+    );
+    background-size: 1rem 1rem;
+}
+.striped-bar-sm {
+    background-image: linear-gradient(
+        45deg,
+        hsla(0, 0%, 100%, 0.15) 25%,
+        transparent 0,
+        transparent 50%,
+        hsla(0, 0%, 100%, 0.15) 0,
+        hsla(0, 0%, 100%, 0.15) 75%,
+        transparent 0,
+        transparent
+    );
+    background-size: 1rem 1rem;
+}
 </style>

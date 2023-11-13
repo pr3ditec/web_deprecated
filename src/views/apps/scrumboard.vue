@@ -337,7 +337,7 @@
                                     </svg>
                                 </button>
                                 <div class="text-lg font-medium bg-[#fbfbfb] dark:bg-[#121c2c] ltr:pl-5 rtl:pr-5 py-3 ltr:pr-[50px] rtl:pl-[50px]">
-                                    {{ params.id ? 'Edit Project' : 'Add Project' }}
+                                    {{ params.id ? "Edit Project" : "Add Project" }}
                                 </div>
                                 <div class="p-5">
                                     <form @submit.prevent="saveProject">
@@ -350,7 +350,7 @@
 
                                         <div class="flex justify-end items-center mt-8">
                                             <button type="button" class="btn btn-outline-danger" @click="isAddProjectModal = false">Cancel</button>
-                                            <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">{{ params.id ? 'Update' : 'Add' }}</button>
+                                            <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">{{ params.id ? "Update" : "Add" }}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -410,7 +410,7 @@
                                     </svg>
                                 </button>
                                 <div class="text-lg font-medium bg-[#fbfbfb] dark:bg-[#121c2c] ltr:pl-5 rtl:pr-5 py-3 ltr:pr-[50px] rtl:pl-[50px]">
-                                    {{ paramsTask.id ? 'Edit Task' : 'Add Task' }}
+                                    {{ paramsTask.id ? "Edit Task" : "Add Task" }}
                                 </div>
                                 <div class="p-5">
                                     <form @submit.prevent="saveTask">
@@ -437,7 +437,7 @@
 
                                         <div class="flex justify-end items-center mt-8">
                                             <button type="button" class="btn btn-outline-danger" @click="isAddTaskModal = false">Cancel</button>
-                                            <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">{{ paramsTask.id ? 'Update' : 'Add' }}</button>
+                                            <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">{{ paramsTask.id ? "Update" : "Add" }}</button>
                                         </div>
                                     </form>
                                 </div>
@@ -536,230 +536,230 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from '@headlessui/vue';
-    import { VueDraggableNext as draggable } from 'vue-draggable-next';
-    import Swal from 'sweetalert2';
-    import { useAppStore } from '@/stores/index';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Scrumboard' });
-    const store = useAppStore();
-    const params = ref({
-        id: null,
-        title: '',
+import { ref } from "vue";
+import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from "@headlessui/vue";
+import { VueDraggableNext as draggable } from "vue-draggable-next";
+import Swal from "sweetalert2";
+import { useAppStore } from "@/stores/index";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Scrumboard" });
+const store = useAppStore();
+const params = ref({
+    id: null,
+    title: "",
+});
+const paramsTask = ref({
+    projectId: null,
+    id: null,
+    title: "",
+    description: "",
+    tags: "",
+});
+const selectedTask: any = ref(null);
+const isAddProjectModal = ref(false);
+const isAddTaskModal = ref(false);
+const isDeleteModal = ref(false);
+const projectList: any = ref([
+    {
+        id: 1,
+        title: "In Progress",
+        tasks: [
+            {
+                projectId: 1,
+                id: 1,
+                title: "Creating a new Portfolio on Dribble",
+                description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+                image: true,
+                date: " 08 Aug, 2020",
+                tags: ["designing"],
+            },
+            {
+                projectId: 1,
+                id: 2,
+                title: "Singapore Team Meet",
+                description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+                date: " 09 Aug, 2020",
+                tags: ["meeting"],
+            },
+        ],
+    },
+    {
+        id: 2,
+        title: "Pending",
+        tasks: [
+            {
+                projectId: 2,
+                id: 1,
+                title: "Plan a trip to another country",
+                description: "",
+                date: " 10 Sep, 2020",
+            },
+        ],
+    },
+    {
+        id: 3,
+        title: "Complete",
+        tasks: [
+            {
+                projectId: 3,
+                id: 1,
+                title: "Dinner with Kelly Young",
+                description: "",
+                date: " 08 Aug, 2020",
+            },
+            {
+                projectId: 3,
+                id: 2,
+                title: "Launch New SEO Wordpress Theme ",
+                description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                date: " 09 Aug, 2020",
+            },
+        ],
+    },
+    {
+        id: 4,
+        title: "Working",
+        tasks: [],
+    },
+]);
+
+const addEditProject = (project: any = null) => {
+    setTimeout(() => {
+        params.value = {
+            id: null,
+            title: "",
+        };
+        if (project) {
+            params.value = JSON.parse(JSON.stringify(project));
+        }
+
+        isAddProjectModal.value = true;
     });
-    const paramsTask = ref({
+};
+
+const saveProject = () => {
+    if (!params.value.title) {
+        showMessage("Title is required.", "error");
+        return false;
+    }
+
+    if (params.value.id) {
+        //update project
+        const project = projectList.value.find((d: any) => d.id === params.value.id);
+        project.title = params.value.title;
+    } else {
+        //add project
+        const lastId = projectList.value.length
+            ? projectList.value.reduce((max: number, obj: any) => (obj.id > max ? obj.id : max), projectList.value[0].id)
+            : 0;
+
+        const project = {
+            id: lastId + 1,
+            title: params.value.title,
+            tasks: [],
+        };
+        projectList.value.push(project);
+    }
+
+    showMessage("Project has been saved successfully.");
+    isAddProjectModal.value = false;
+};
+
+const deleteProject = (project: any) => {
+    projectList.value = projectList.value.filter((d: any) => d.id != project.id);
+    showMessage("Project has been deleted successfully.");
+};
+
+const clearProjects = (project: any) => {
+    project.tasks = [];
+};
+
+// task
+const addEditTask = (projectId: any, task: any = null) => {
+    paramsTask.value = {
         projectId: null,
         id: null,
-        title: '',
-        description: '',
-        tags: '',
-    });
-    const selectedTask: any = ref(null);
-    const isAddProjectModal = ref(false);
-    const isAddTaskModal = ref(false);
-    const isDeleteModal = ref(false);
-    const projectList: any = ref([
-        {
-            id: 1,
-            title: 'In Progress',
-            tasks: [
-                {
-                    projectId: 1,
-                    id: 1,
-                    title: 'Creating a new Portfolio on Dribble',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-                    image: true,
-                    date: ' 08 Aug, 2020',
-                    tags: ['designing'],
-                },
-                {
-                    projectId: 1,
-                    id: 2,
-                    title: 'Singapore Team Meet',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-                    date: ' 09 Aug, 2020',
-                    tags: ['meeting'],
-                },
-            ],
-        },
-        {
-            id: 2,
-            title: 'Pending',
-            tasks: [
-                {
-                    projectId: 2,
-                    id: 1,
-                    title: 'Plan a trip to another country',
-                    description: '',
-                    date: ' 10 Sep, 2020',
-                },
-            ],
-        },
-        {
-            id: 3,
-            title: 'Complete',
-            tasks: [
-                {
-                    projectId: 3,
-                    id: 1,
-                    title: 'Dinner with Kelly Young',
-                    description: '',
-                    date: ' 08 Aug, 2020',
-                },
-                {
-                    projectId: 3,
-                    id: 2,
-                    title: 'Launch New SEO Wordpress Theme ',
-                    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                    date: ' 09 Aug, 2020',
-                },
-            ],
-        },
-        {
-            id: 4,
-            title: 'Working',
-            tasks: [],
-        },
-    ]);
-
-    const addEditProject = (project: any = null) => {
-        setTimeout(() => {
-            params.value = {
-                id: null,
-                title: '',
-            };
-            if (project) {
-                params.value = JSON.parse(JSON.stringify(project));
-            }
-
-            isAddProjectModal.value = true;
-        });
+        title: "",
+        description: "",
+        tags: "",
     };
+    if (task) {
+        paramsTask.value = JSON.parse(JSON.stringify(task));
+        paramsTask.value.tags = paramsTask.value.tags ? paramsTask.value.tags.toString() : "";
+    }
+    paramsTask.value.projectId = projectId;
+    isAddTaskModal.value = true;
+};
 
-    const saveProject = () => {
-        if (!params.value.title) {
-            showMessage('Title is required.', 'error');
-            return false;
+const saveTask = () => {
+    if (!paramsTask.value.title) {
+        showMessage("Title is required.", "error");
+        return false;
+    }
+
+    const project = projectList.value.find((d: any) => d.id === paramsTask.value.projectId);
+    if (paramsTask.value.id) {
+        //update task
+        const task = project.tasks.find((d: any) => d.id === paramsTask.value.id);
+        task.title = paramsTask.value.title;
+        task.description = paramsTask.value.description;
+        task.tags = paramsTask.value.tags?.length > 0 ? paramsTask.value.tags.split(",") : [];
+    } else {
+        //add task
+        let maxid = 0;
+        if (project.tasks?.length) {
+            maxid = project.tasks.reduce((max: number, obj: any) => (obj.id > max ? obj.id : max), project.tasks[0].id);
         }
 
-        if (params.value.id) {
-            //update project
-            const project = projectList.value.find((d: any) => d.id === params.value.id);
-            project.title = params.value.title;
-        } else {
-            //add project
-            const lastId = projectList.value.length
-                ? projectList.value.reduce((max: number, obj: any) => (obj.id > max ? obj.id : max), projectList.value[0].id)
-                : 0;
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, "0");
+        const mm = String(today.getMonth()); //January is 0!
+        const yyyy = today.getFullYear();
+        const monthNames: any = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-            const project = {
-                id: lastId + 1,
-                title: params.value.title,
-                tasks: [],
-            };
-            projectList.value.push(project);
-        }
-
-        showMessage('Project has been saved successfully.');
-        isAddProjectModal.value = false;
-    };
-
-    const deleteProject = (project: any) => {
-        projectList.value = projectList.value.filter((d: any) => d.id != project.id);
-        showMessage('Project has been deleted successfully.');
-    };
-
-    const clearProjects = (project: any) => {
-        project.tasks = [];
-    };
-
-    // task
-    const addEditTask = (projectId: any, task: any = null) => {
-        paramsTask.value = {
-            projectId: null,
-            id: null,
-            title: '',
-            description: '',
-            tags: '',
+        const task = {
+            projectId: paramsTask.value.projectId,
+            id: maxid + 1,
+            title: paramsTask.value.title,
+            description: paramsTask.value.description,
+            date: dd + " " + monthNames[mm] + ", " + yyyy,
+            tags: paramsTask.value.tags?.length > 0 ? paramsTask.value.tags.split(",") : [],
         };
-        if (task) {
-            paramsTask.value = JSON.parse(JSON.stringify(task));
-            paramsTask.value.tags = paramsTask.value.tags ? paramsTask.value.tags.toString() : '';
-        }
-        paramsTask.value.projectId = projectId;
-        isAddTaskModal.value = true;
-    };
 
-    const saveTask = () => {
-        if (!paramsTask.value.title) {
-            showMessage('Title is required.', 'error');
-            return false;
-        }
+        project.tasks.push(task);
+    }
 
-        const project = projectList.value.find((d: any) => d.id === paramsTask.value.projectId);
-        if (paramsTask.value.id) {
-            //update task
-            const task = project.tasks.find((d: any) => d.id === paramsTask.value.id);
-            task.title = paramsTask.value.title;
-            task.description = paramsTask.value.description;
-            task.tags = paramsTask.value.tags?.length > 0 ? paramsTask.value.tags.split(',') : [];
-        } else {
-            //add task
-            let maxid = 0;
-            if (project.tasks?.length) {
-                maxid = project.tasks.reduce((max: number, obj: any) => (obj.id > max ? obj.id : max), project.tasks[0].id);
-            }
+    showMessage("Task has been saved successfully.");
+    isAddTaskModal.value = false;
+};
 
-            const today = new Date();
-            const dd = String(today.getDate()).padStart(2, '0');
-            const mm = String(today.getMonth()); //January is 0!
-            const yyyy = today.getFullYear();
-            const monthNames: any = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const deleteConfirmModal = (projectId: any, task: any = null) => {
+    selectedTask.value = task;
+    setTimeout(() => {
+        isDeleteModal.value = true;
+    }, 10);
+};
 
-            const task = {
-                projectId: paramsTask.value.projectId,
-                id: maxid + 1,
-                title: paramsTask.value.title,
-                description: paramsTask.value.description,
-                date: dd + ' ' + monthNames[mm] + ', ' + yyyy,
-                tags: paramsTask.value.tags?.length > 0 ? paramsTask.value.tags.split(',') : [],
-            };
+const deleteTask = () => {
+    let project = projectList.value.find((d: any) => d.id === selectedTask.value.projectId);
+    project.tasks = project.tasks.filter((d: any) => d.id != selectedTask.value.id);
 
-            project.tasks.push(task);
-        }
+    showMessage("Task has been deleted successfully.");
+    isDeleteModal.value = false;
+};
 
-        showMessage('Task has been saved successfully.');
-        isAddTaskModal.value = false;
-    };
-
-    const deleteConfirmModal = (projectId: any, task: any = null) => {
-        selectedTask.value = task;
-        setTimeout(() => {
-            isDeleteModal.value = true;
-        }, 10);
-    };
-
-    const deleteTask = () => {
-        let project = projectList.value.find((d: any) => d.id === selectedTask.value.projectId);
-        project.tasks = project.tasks.filter((d: any) => d.id != selectedTask.value.id);
-
-        showMessage('Task has been deleted successfully.');
-        isDeleteModal.value = false;
-    };
-
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
-        });
-    };
+const showMessage = (msg = "", type = "success") => {
+    const toast: any = Swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 3000,
+        customClass: { container: "toast" },
+    });
+    toast.fire({
+        icon: type,
+        title: msg,
+        padding: "10px 20px",
+    });
+};
 </script>

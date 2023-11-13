@@ -17,23 +17,34 @@
     <TransitionRoot as="template" appear :show="isAddEventModal" @hidden="resetModal">
         <Dialog as="div" static class="fixed z-10 inset-0 overflow-y-auto" @close="isAddEventModal = false">
             <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-                <TransitionChild as="template" enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100"
-                    leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
+                <TransitionChild
+                    as="template"
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                >
                     <DialogOverlay class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                 </TransitionChild>
 
                 <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
-                <TransitionChild as="template" enter="ease-out duration-300"
+                <TransitionChild
+                    as="template"
+                    enter="ease-out duration-300"
                     enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enterTo="opacity-100 translate-y-0 sm:scale-100" leave="ease-in duration-200"
+                    enterTo="opacity-100 translate-y-0 sm:scale-100"
+                    leave="ease-in duration-200"
                     leaveFrom="opacity-100 translate-y-0 sm:scale-100"
-                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+                    leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                >
                     <div
-                        class="inline-block align-bottom rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                        <DialogPanel
-                            class="panel border-2 p-0 rounded-lg overflow-hidden w-full max-w-lg text-black dark:text-white-dark">
+                        class="inline-block align-bottom rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+                    >
+                        <DialogPanel class="panel border-2 p-0 rounded-lg overflow-hidden w-full max-w-lg text-black dark:text-white-dark">
                             <div class="border-1 p-5 sm:my-8 sm:align-middle">
-                                <div class="mt-3 ">
+                                <div class="mt-3">
                                     <div>
                                         <label for="horaInicio text-letf">Hora de Início:</label>
                                         <SelectHorarioInicio v-model="horarioInicio" />
@@ -54,20 +65,20 @@
                                     </div>
 
                                     <div class="mt-2 mb-2">
-                                        <p class="text-md mb-3">
-                                            Você selecionou a data: {{ selectedDate }}
-                                        </p>
+                                        <p class="text-md mb-3">Você selecionou a data: {{ selectedDate }}</p>
                                     </div>
 
                                     <button v-if="showTable" @click="selectAll">
                                         <span
                                             class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                            v-if="isAllSelected">
+                                            v-if="isAllSelected"
+                                        >
                                             Retirar Seleção
                                         </span>
                                         <span
                                             class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                            v-else>
+                                            v-else
+                                        >
                                             Selecionar Todos
                                         </span>
                                     </button>
@@ -76,16 +87,21 @@
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th class="form-control mb-4 sm:align-middle" colspan="6">
-                                                        Horário
-                                                    </th>
+                                                    <th class="form-control mb-4 sm:align-middle" colspan="6">Horário</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr v-for="row in table">
                                                     <td v-for="hour in row">
-                                                        <div :id="hour" @click="toggleHour(hour)"
-                                                            :class="[selectedHours.includes(hour) ? 'bg-green-500 text-white rounded-full text-center cursor-pointer p-1' : 'bg-red-500 text-white text-center rounded-full cursor-pointer p-1']">
+                                                        <div
+                                                            :id="hour"
+                                                            @click="toggleHour(hour)"
+                                                            :class="[
+                                                                selectedHours.includes(hour)
+                                                                    ? 'bg-green-500 text-white rounded-full text-center cursor-pointer p-1'
+                                                                    : 'bg-red-500 text-white text-center rounded-full cursor-pointer p-1',
+                                                            ]"
+                                                        >
                                                             {{ hour }}
                                                         </div>
                                                     </td>
@@ -93,18 +109,20 @@
                                             </tbody>
                                         </table>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                 <button
                                     class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                    @click="saveHours">
+                                    @click="saveHours"
+                                >
                                     Gravar
                                 </button>
-                                <button type="button"
+                                <button
+                                    type="button"
                                     class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                    @click="isAddEventModal = false">
+                                    @click="isAddEventModal = false"
+                                >
                                     Fechar
                                 </button>
                             </div>
@@ -117,17 +135,17 @@
 </template>
 
 <script lang="ts">
-import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from '@headlessui/vue';
-import FullCalendar from '@fullcalendar/vue3';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import SelectMedico from '../../components/layout/Select-doctor.vue';
-import SelectHorarioInicio from '../../components/layout/Select-time.vue';
-import SelectHorarioFim from '../../components/layout/Select-time.vue';
-import Swal from 'sweetalert2';
-import { useMeta } from '@/composables/use-meta';
-import { inject } from 'vue';
+import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from "@headlessui/vue";
+import FullCalendar from "@fullcalendar/vue3";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import SelectMedico from "../../components/layout/Select-doctor.vue";
+import SelectHorarioInicio from "../../components/layout/Select-time.vue";
+import SelectHorarioFim from "../../components/layout/Select-time.vue";
+import Swal from "sweetalert2";
+import { useMeta } from "@/composables/use-meta";
+import { inject } from "vue";
 
 export default {
     components: {
@@ -139,11 +157,11 @@ export default {
         DialogOverlay,
         SelectMedico,
         SelectHorarioInicio,
-        SelectHorarioFim
+        SelectHorarioFim,
     },
     data() {
         return {
-            request: Object(inject('api')),
+            request: Object(inject("api")),
             selectedDoctor: null,
             isAddEventModal: false,
             selectedDate: null,
@@ -158,22 +176,22 @@ export default {
             hours: null as string[] | null,
             columns: 5,
             windowResize: function (view, element) {
-                view.calendar.option('height', window.innerHeight);
+                view.calendar.option("height", window.innerHeight);
             },
             calendarOptions: {
                 plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-                initialView: 'dayGridMonth',
+                initialView: "dayGridMonth",
                 selectable: true,
                 heigth: 600,
                 dateClick: (info) => {
                     this.selectedDate = info.dateStr;
                     this.isAddEventModal = true;
-                }
-            }
+                },
+            },
         };
     },
     created() {
-        useMeta({ title: 'Calendar' });
+        useMeta({ title: "Calendar" });
         this.resetModal();
     },
     watch: {
@@ -184,7 +202,7 @@ export default {
                     this.clearSchedule(); // Limpa a agenda
                     this.fetchDoctorAvailability(newDoctor);
                 }
-            }
+            },
         },
         horarioFim() {
             this.generateTable();
@@ -202,7 +220,7 @@ export default {
             if (this.isAddEventModal == false) {
                 this.resetModal();
             }
-        }
+        },
     },
     methods: {
         async fetchDoctorAvailability(doctorId) {
@@ -220,23 +238,23 @@ export default {
             calendarApi.removeAllEvents();
 
             if (!availableHours) {
-                console.error('Nenhum horário disponível retornado pela API');
+                console.error("Nenhum horário disponível retornado pela API");
                 calendarApi.removeAllEvents();
                 return;
             }
 
             this.$nextTick(() => {
-                availableHours.forEach(day => {
+                availableHours.forEach((day) => {
                     // considerar o fuso horário
-                    const eventDate = new Date(day.data + 'T' + day.horarios[0].hora);
+                    const eventDate = new Date(day.data + "T" + day.horarios[0].hora);
 
                     // para converter a data para o fuso horário especificado (timezone)
                     const eventDateInTimeZone = new Date(eventDate.toLocaleString("en-US", { timeZone: day.timezone }));
 
                     calendarApi.addEvent({
-                        title: 'DIA LIBERADO',
+                        title: "DIA LIBERADO",
                         start: eventDateInTimeZone.toISOString(),
-                        allDay: true
+                        allDay: true,
                     });
                 });
             });
@@ -269,15 +287,15 @@ export default {
         generateHours() {
             let horarios: string[] = [];
             if (this.horarioInicio && this.horarioFim) {
-                let partesInicio = this.horarioInicio.split(':');
+                let partesInicio = this.horarioInicio.split(":");
                 let inicio = parseInt(partesInicio[0]) * 60 + parseInt(partesInicio[1]);
-                let partesFim = this.horarioFim.split(':');
+                let partesFim = this.horarioFim.split(":");
                 let fim = parseInt(partesFim[0]) * 60 + parseInt(partesFim[1]);
                 let incremento = Number(this.incrementoSelecionado);
                 for (let i = inicio; i < fim; i += incremento) {
                     let horas = Math.floor(i / 60);
                     let minutos = i % 60;
-                    horarios.push(`${horas.toString().padStart(2, '0')}:${minutos.toString().padStart(2, '0')}`);
+                    horarios.push(`${horas.toString().padStart(2, "0")}:${minutos.toString().padStart(2, "0")}`);
                 }
             }
             return horarios;
@@ -314,8 +332,8 @@ export default {
             this.isAddEventModal = false;
 
             let schedule = {
-                "data": this.selectedDate,
-                "horarios": [...this.selectedHours]
+                data: this.selectedDate,
+                horarios: [...this.selectedHours],
             };
 
             // array para armazenar múltiplas agendas
@@ -324,38 +342,37 @@ export default {
             try {
                 let data = {
                     // converte o array de agendas em uma string JSON - tem que passar assim na api
-                    "horarios_disponiveis": JSON.stringify(schedules)
+                    horarios_disponiveis: JSON.stringify(schedules),
                 };
-                let response = await this.request.enviarDadosApi('/consulta/criar', data);
+                let response = await this.request.enviarDadosApi("/consulta/criar", data);
 
                 if (response && !response.error) {
-                    this.showMessage('Agenda criada com Sucesso!.');
+                    this.showMessage("Agenda criada com Sucesso!.");
 
                     await this.fetchDoctorAvailability(this.selectedDoctor);
                 } else {
-                    this.showMessage('Erro ao criar a agenda.', 'error');
+                    this.showMessage("Erro ao criar a agenda.", "error");
                 }
             } catch (error) {
                 console.error("Erro ao salvar a agenda: ", error);
-                this.showMessage('Erro ao criar a agenda.', 'error');
+                this.showMessage("Erro ao criar a agenda.", "error");
             }
         },
 
-        showMessage(msg = '', type = 'success') {
+        showMessage(msg = "", type = "success") {
             const toast: any = Swal.mixin({
                 toast: true,
-                position: 'center',
+                position: "center",
                 showConfirmButton: false,
                 timer: 3000,
-                customClass: { container: 'toast' },
+                customClass: { container: "toast" },
             });
             toast.fire({
                 icon: type,
                 title: msg,
-                padding: '10px 20px',
+                padding: "10px 20px",
             });
-        }
-    }
+        },
+    },
 };
 </script>
-

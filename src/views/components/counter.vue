@@ -324,11 +324,11 @@ import CountUp from 'vue-countup-v3';
     </div>
 </template>
 <script lang="ts" setup>
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import CountUp from 'vue-countup-v3';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Counter' });
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import CountUp from "vue-countup-v3";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Counter" });
 
-    const { codeArr, toggleCode } = codePreview();
+const { codeArr, toggleCode } = codePreview();
 </script>

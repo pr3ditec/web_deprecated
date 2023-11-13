@@ -1,18 +1,9 @@
+class Sanitaze {
+    constructor() {}
 
-class Sanitaze{
+    public static allItems(data: any): any {
+        let responseData = {};
 
-    constructor(){
-
+        data.forEach((item) => {});
     }
-
-    public static allItems(data: any) : any{
-
-        let responseData = {}
-
-        data.forEach(item => {
-            
-        });
-    }
-
-
 }

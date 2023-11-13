@@ -220,23 +220,23 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { quillEditor } from 'vue3-quill';
-    import 'vue3-quill/lib/vue3-quill.css';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Quill Editor' });
+import { ref } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { quillEditor } from "vue3-quill";
+import "vue3-quill/lib/vue3-quill.css";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Quill Editor" });
 
-    const { codeArr, toggleCode } = codePreview();
-    const options1 = ref({
-        modules: {
-            toolbar: [[{ header: [1, 2, false] }], ['bold', 'italic', 'underline', 'link'], [{ list: 'ordered' }, { list: 'bullet' }], ['clean']],
-        },
-        placeholder: '',
-    });
+const { codeArr, toggleCode } = codePreview();
+const options1 = ref({
+    modules: {
+        toolbar: [[{ header: [1, 2, false] }], ["bold", "italic", "underline", "link"], [{ list: "ordered" }, { list: "bullet" }], ["clean"]],
+    },
+    placeholder: "",
+});
 
-    const content1 = ref(`<h1>This is a heading text...</h1>
+const content1 = ref(`<h1>This is a heading text...</h1>
             <br />
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dui arcu, pellentesque id mattis sed, mattis semper erat. Etiam commodo arcu a mollis consequat. Curabitur pretium auctor
@@ -266,14 +266,14 @@
               dapibus nulla convallis id. Quisque elementum lectus ac dui gravida, ut molestie nunc convallis. Pellentesque et odio non dolor convallis commodo sit amet a ante.
             </p>`);
 
-    const options2 = ref({
-        modules: {
-            toolbar: [[{ header: [1, 2, false] }], ['bold', 'italic', 'underline', 'link'], [{ list: 'ordered' }, { list: 'bullet' }], ['clean']],
-        },
-        placeholder: '',
-    });
+const options2 = ref({
+    modules: {
+        toolbar: [[{ header: [1, 2, false] }], ["bold", "italic", "underline", "link"], [{ list: "ordered" }, { list: "bullet" }], ["clean"]],
+    },
+    placeholder: "",
+});
 
-    const content2 = ref(`<h1>This is a heading text...</h1>
+const content2 = ref(`<h1>This is a heading text...</h1>
             <br />
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dui arcu, pellentesque id mattis sed, mattis semper erat. Etiam commodo arcu a mollis consequat. Curabitur pretium auctor

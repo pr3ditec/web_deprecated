@@ -16,8 +16,8 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { useMeta } from '@/composables/use-meta';
-    import { useAppStore } from '@/stores/index';
-    const store = useAppStore();
-    useMeta({ title: 'Error 404' });
+import { useMeta } from "@/composables/use-meta";
+import { useAppStore } from "@/stores/index";
+const store = useAppStore();
+useMeta({ title: "Error 404" });
 </script>

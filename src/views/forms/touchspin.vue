@@ -1162,28 +1162,28 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { NumberSpinner } from 'vue3-number-spinner';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Touchspin' });
+import { ref } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { NumberSpinner } from "vue3-number-spinner";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Touchspin" });
 
-    const { codeArr, toggleCode } = codePreview();
+const { codeArr, toggleCode } = codePreview();
 
-    const value1 = ref(0);
-    const value2 = ref(0);
-    const value3 = ref(0);
-    const value4 = ref(0);
-    const value5 = ref(0);
-    const value6 = ref(0);
-    const value7 = ref(0);
-    const value8 = ref(0);
-    const value9 = ref(0);
-    const value10 = ref(0);
-    const days = ref(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+const value1 = ref(0);
+const value2 = ref(0);
+const value3 = ref(0);
+const value4 = ref(0);
+const value5 = ref(0);
+const value6 = ref(0);
+const value7 = ref(0);
+const value8 = ref(0);
+const value9 = ref(0);
+const value10 = ref(0);
+const days = ref(["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]);
 
-    const dayFormatter = (value) => {
-        return days.value[value];
-    };
+const dayFormatter = (value) => {
+    return days.value[value];
+};
 </script>

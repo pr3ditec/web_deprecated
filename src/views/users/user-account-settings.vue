@@ -605,9 +605,9 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { TabGroup, TabList, Tab, TabPanels, TabPanel } from '@headlessui/vue';
-    import { useAppStore } from '@/stores/index';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Account Setting' });
-    const store = useAppStore();
+import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
+import { useAppStore } from "@/stores/index";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Account Setting" });
+const store = useAppStore();
 </script>

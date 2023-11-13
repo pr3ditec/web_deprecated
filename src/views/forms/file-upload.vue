@@ -209,31 +209,31 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { onMounted } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import FileUploadWithPreview from 'file-upload-with-preview';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'File Upload' });
+import { onMounted } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import FileUploadWithPreview from "file-upload-with-preview";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "File Upload" });
 
-    const { codeArr, toggleCode } = codePreview();
+const { codeArr, toggleCode } = codePreview();
 
-    onMounted(() => {
+onMounted(() => {
     // single image upload
-        new FileUploadWithPreview('myFirstImage', {
-            images: {
-                baseImage: '/assets/images/file-preview.svg',
-                backgroundImage: '',
-            },
-        });
-
-        // multiple image upload
-        new FileUploadWithPreview('mySecondImage', {
-            images: {
-                baseImage: '/assets/images/file-preview.svg',
-                backgroundImage: '',
-            },
-            multiple: true,
-        });
+    new FileUploadWithPreview("myFirstImage", {
+        images: {
+            baseImage: "/assets/images/file-preview.svg",
+            backgroundImage: "",
+        },
     });
+
+    // multiple image upload
+    new FileUploadWithPreview("mySecondImage", {
+        images: {
+            baseImage: "/assets/images/file-preview.svg",
+            backgroundImage: "",
+        },
+        multiple: true,
+    });
+});
 </script>

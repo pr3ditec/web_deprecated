@@ -666,12 +666,12 @@ import 'vue3-form-wizard/dist/style.css';
     </div>
 </template>
 <script lang="ts" setup>
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { FormWizard, TabContent } from 'vue3-form-wizard';
-    import 'vue3-form-wizard/dist/style.css';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Wizards' });
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { FormWizard, TabContent } from "vue3-form-wizard";
+import "vue3-form-wizard/dist/style.css";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Wizards" });
 
-    const { codeArr, toggleCode } = codePreview();
+const { codeArr, toggleCode } = codePreview();
 </script>

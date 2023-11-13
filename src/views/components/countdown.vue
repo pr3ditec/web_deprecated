@@ -274,73 +274,73 @@ const setTimerDemo2 = () =&gt; {
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref, onMounted } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Countdown' });
+import { ref, onMounted } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Countdown" });
 
-    const { codeArr, toggleCode } = codePreview();
+const { codeArr, toggleCode } = codePreview();
 
-    const timer1: any = ref(null);
-    const demo1: any = ref({
-        days: null,
-        hours: null,
-        minutes: null,
-        seconds: null,
-    });
-    const timer2: any = ref(null);
-    const demo2: any = ref({
-        days: null,
-        hours: null,
-        minutes: null,
-        seconds: null,
-    });
+const timer1: any = ref(null);
+const demo1: any = ref({
+    days: null,
+    hours: null,
+    minutes: null,
+    seconds: null,
+});
+const timer2: any = ref(null);
+const demo2: any = ref({
+    days: null,
+    hours: null,
+    minutes: null,
+    seconds: null,
+});
 
-    onMounted(() => {
-        setTimerDemo1();
-        setTimerDemo2();
-    });
+onMounted(() => {
+    setTimerDemo1();
+    setTimerDemo2();
+});
 
-    const setTimerDemo1 = () => {
-        let date = new Date();
-        date.setDate(date.getDate() + 3);
-        let countDownDate = date.getTime();
+const setTimerDemo1 = () => {
+    let date = new Date();
+    date.setDate(date.getDate() + 3);
+    let countDownDate = date.getTime();
 
-        timer1.value = setInterval(() => {
-            let now = new Date().getTime();
+    timer1.value = setInterval(() => {
+        let now = new Date().getTime();
 
-            let distance = countDownDate - now;
+        let distance = countDownDate - now;
 
-            demo1.value.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            demo1.value.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            demo1.value.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            demo1.value.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        demo1.value.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        demo1.value.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        demo1.value.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        demo1.value.seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if (distance < 0) {
-                clearInterval(timer1.value);
-            }
-        }, 500);
-    };
+        if (distance < 0) {
+            clearInterval(timer1.value);
+        }
+    }, 500);
+};
 
-    const setTimerDemo2 = () => {
-        let date = new Date();
-        date.setFullYear(date.getFullYear() + 1);
-        let countDownDate = date.getTime();
+const setTimerDemo2 = () => {
+    let date = new Date();
+    date.setFullYear(date.getFullYear() + 1);
+    let countDownDate = date.getTime();
 
-        timer2.value = setInterval(() => {
-            let now = new Date().getTime();
+    timer2.value = setInterval(() => {
+        let now = new Date().getTime();
 
-            let distance = countDownDate - now;
+        let distance = countDownDate - now;
 
-            demo2.value.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            demo2.value.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            demo2.value.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            demo2.value.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        demo2.value.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        demo2.value.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        demo2.value.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        demo2.value.seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if (distance < 0) {
-                clearInterval(timer2.value);
-            }
-        }, 500);
-    };
+        if (distance < 0) {
+            clearInterval(timer2.value);
+        }
+    }, 500);
+};
 </script>

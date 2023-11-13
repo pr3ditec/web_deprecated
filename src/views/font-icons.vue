@@ -1534,6 +1534,6 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Font Icons' });
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Font Icons" });
 </script>

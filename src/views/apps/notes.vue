@@ -240,7 +240,7 @@
                                                         v-if="!note.thumb && note.user"
                                                         class="grid place-content-center h-8 w-8 rounded-full bg-gray-300 dark:bg-gray-700 text-sm font-semibold"
                                                     >
-                                                        {{ note.user.charAt(0) + '' + note.user.charAt(note.user.indexOf('') + 1) }}
+                                                        {{ note.user.charAt(0) + "" + note.user.charAt(note.user.indexOf("") + 1) }}
                                                     </div>
                                                     <div
                                                         v-if="!note.thumb && !note.user"
@@ -627,7 +627,7 @@
                                             </svg>
                                         </button>
                                         <div class="text-lg font-medium bg-[#fbfbfb] dark:bg-[#121c2c] ltr:pl-5 rtl:pr-5 py-3 ltr:pr-[50px] rtl:pl-[50px]">
-                                            {{ params.id ? 'Edit Note' : 'Add Note' }}
+                                            {{ params.id ? "Edit Note" : "Add Note" }}
                                         </div>
                                         <div class="p-5">
                                             <form @submit.prevent="saveNote">
@@ -681,7 +681,7 @@
                                                 <div class="flex justify-end items-center mt-8">
                                                     <button type="button" class="btn btn-outline-danger gap-2" @click="isAddNoteModal = false">Cancel</button>
                                                     <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">
-                                                        {{ params.id ? 'Update Note' : 'Add Note' }}
+                                                        {{ params.id ? "Update Note" : "Add Note" }}
                                                     </button>
                                                 </div>
                                             </form>
@@ -895,354 +895,354 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref, onMounted } from 'vue';
-    import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from '@headlessui/vue';
-    import Swal from 'sweetalert2';
-    import { useAppStore } from '@/stores/index';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Notes' });
-    const store = useAppStore();
-    const defaultParams = ref({
-        id: null,
-        title: '',
-        description: '',
-        tag: '',
-        user: '',
-        thumb: '',
-    });
-    const isAddNoteModal = ref(false);
-    const isDeleteNoteModal = ref(false);
-    const isViewNoteModal = ref(false);
-    const params = ref(JSON.parse(JSON.stringify(defaultParams.value)));
-    const isShowNoteMenu = ref(false);
-    const notesList = ref([
-        {
-            id: 1,
-            user: 'Max Smith',
-            thumb: 'profile-16.jpeg',
-            title: 'Meeting with Kelly',
-            description: 'Curabitur facilisis vel elit sed dapibus sodales purus rhoncus.',
-            date: '11/01/2020',
-            isFav: false,
-            tag: 'personal',
-        },
-        {
-            id: 2,
-            user: 'John Doe',
-            thumb: 'profile-14.jpeg',
-            title: 'Receive Package',
-            description: 'Facilisis curabitur facilisis vel elit sed dapibus sodales purus.',
-            date: '11/02/2020',
-            isFav: true,
-            tag: '',
-        },
-        {
-            id: 3,
-            user: 'Kia Jain',
-            thumb: 'profile-15.jpeg',
-            title: 'Download Docs',
-            description: 'Proin a dui malesuada, laoreet mi vel, imperdiet diam quam laoreet.',
-            date: '11/04/2020',
-            isFav: false,
-            tag: 'work',
-        },
-        {
-            id: 4,
-            user: 'Max Smith',
-            thumb: 'profile-16.jpeg',
-            title: 'Meeting at 4:50pm',
-            description: 'Excepteur sint occaecat cupidatat non proident, anim id est laborum.',
-            date: '11/08/2020',
-            isFav: false,
-            tag: '',
-        },
-        {
-            id: 5,
-            user: 'Karena Courtliff',
-            thumb: 'profile-17.jpeg',
-            title: 'Backup Files EOD',
-            description: 'Maecenas condimentum neque mollis, egestas leo ut, gravida.',
-            date: '11/09/2020',
-            isFav: false,
-            tag: '',
-        },
-        {
-            id: 6,
-            user: 'Max Smith',
-            thumb: 'profile-16.jpeg',
-            title: 'Download Server Logs',
-            description: 'Suspendisse efficitur diam quis gravida. Nunc molestie est eros.',
-            date: '11/09/2020',
-            isFav: false,
-            tag: 'social',
-        },
-        {
-            id: 7,
-            user: 'Vladamir Koschek',
-            thumb: '',
-            title: 'Team meet at Starbucks',
-            description: 'Etiam a odio eget enim aliquet laoreet lobortis sed ornare nibh.',
-            date: '11/10/2020',
-            isFav: false,
-            tag: '',
-        },
-        {
-            id: 8,
-            user: 'Max Smith',
-            thumb: 'profile-16.jpeg',
-            title: 'Create new users Profile',
-            description: 'Duis aute irure in nulla pariatur. Etiam a odio eget enim aliquet.',
-            date: '11/11/2020',
-            isFav: false,
-            tag: 'important',
-        },
-        {
-            id: 9,
-            user: 'Robert Garcia',
-            thumb: 'profile-21.jpeg',
-            title: 'Create a compost pile',
-            description: 'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro.',
-            date: '11/12/2020',
-            isFav: true,
-            tag: '',
-        },
-        {
-            id: 10,
-            user: 'Marie Hamilton',
-            thumb: 'profile-2.jpeg',
-            title: 'Take a hike at a local park',
-            description: 'De carne lumbering animata corpora quaeritis. Summus brains sit',
-            date: '11/13/2020',
-            isFav: true,
-            tag: '',
-        },
-        {
-            id: 11,
-            user: 'Megan Meyers',
-            thumb: 'profile-1.jpeg',
-            title: 'Take a class at local community center that interests you',
-            description: 'Cupcake ipsum dolor. Sit amet marshmallow topping cheesecake muffin.',
-            date: '11/13/2020',
-            isFav: false,
-            tag: '',
-        },
-        {
-            id: 12,
-            user: 'Angela Hull',
-            thumb: 'profile-22.jpeg',
-            title: 'Research a topic interested in',
-            description: 'Lemon drops tootsie roll marshmallow halvah carrot cake.',
-            date: '11/14/2020',
-            isFav: false,
-            tag: '',
-        },
-        {
-            id: 13,
-            user: 'Karen Wolf',
-            thumb: 'profile-23.jpeg',
-            title: 'Plan a trip to another country',
-            description: 'Space, the final frontier. These are the voyages of the Starship Enterprise.',
-            date: '11/16/2020',
-            isFav: true,
-            tag: '',
-        },
-        {
-            id: 14,
-            user: 'Jasmine Barnes',
-            thumb: 'profile-1.jpeg',
-            title: 'Improve touch typing',
-            description: 'Well, the way they make shows is, they make one show.',
-            date: '11/16/2020',
-            isFav: false,
-            tag: '',
-        },
-        {
-            id: 15,
-            user: 'Thomas Cox',
-            thumb: 'profile-11.jpeg',
-            title: 'Learn Express.js',
-            description: 'Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            date: '11/17/2020',
-            isFav: false,
-            tag: 'work',
-        },
-        {
-            id: 16,
-            user: 'Marcus Jones',
-            thumb: 'profile-12.jpeg',
-            title: 'Learn calligraphy',
-            description: 'Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            date: '11/17/2020',
-            isFav: false,
-            tag: '',
-        },
-        {
-            id: 17,
-            user: 'Matthew Gray',
-            thumb: 'profile-24.jpeg',
-            title: 'Have a photo session with some friends',
-            description: 'Venusaur Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            date: '11/18/2020',
-            isFav: false,
-            tag: 'important',
-        },
-        {
-            id: 18,
-            user: 'Chad Davis',
-            thumb: 'profile-31.jpeg',
-            title: 'Go to the gym',
-            description: 'Charmander Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            date: '11/18/2020',
-            isFav: false,
-            tag: '',
-        },
-        {
-            id: 19,
-            user: 'Linda Drake',
-            thumb: 'profile-23.jpeg',
-            title: 'Make own LEGO creation',
-            description: 'Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            date: '11/18/2020',
-            isFav: false,
-            tag: 'social',
-        },
-        {
-            id: 20,
-            user: 'Kathleen Flores',
-            thumb: 'profile-34.jpeg',
-            title: 'Take cat on a walk',
-            description: 'Baseball ipsum dolor sit amet cellar rubber win hack tossed. ',
-            date: '11/18/2020',
-            isFav: false,
-            tag: 'personal',
-        },
-    ]);
-    const filterdNotesList: any = ref('');
-    const selectedTab: any = ref('all');
-    const deletedNote: any = ref(null);
-    const selectedNote: any = ref({
-        id: null,
-        title: '',
-        description: '',
-        tag: '',
-        user: '',
-        thumb: '',
-    });
+import { ref, onMounted } from "vue";
+import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from "@headlessui/vue";
+import Swal from "sweetalert2";
+import { useAppStore } from "@/stores/index";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Notes" });
+const store = useAppStore();
+const defaultParams = ref({
+    id: null,
+    title: "",
+    description: "",
+    tag: "",
+    user: "",
+    thumb: "",
+});
+const isAddNoteModal = ref(false);
+const isDeleteNoteModal = ref(false);
+const isViewNoteModal = ref(false);
+const params = ref(JSON.parse(JSON.stringify(defaultParams.value)));
+const isShowNoteMenu = ref(false);
+const notesList = ref([
+    {
+        id: 1,
+        user: "Max Smith",
+        thumb: "profile-16.jpeg",
+        title: "Meeting with Kelly",
+        description: "Curabitur facilisis vel elit sed dapibus sodales purus rhoncus.",
+        date: "11/01/2020",
+        isFav: false,
+        tag: "personal",
+    },
+    {
+        id: 2,
+        user: "John Doe",
+        thumb: "profile-14.jpeg",
+        title: "Receive Package",
+        description: "Facilisis curabitur facilisis vel elit sed dapibus sodales purus.",
+        date: "11/02/2020",
+        isFav: true,
+        tag: "",
+    },
+    {
+        id: 3,
+        user: "Kia Jain",
+        thumb: "profile-15.jpeg",
+        title: "Download Docs",
+        description: "Proin a dui malesuada, laoreet mi vel, imperdiet diam quam laoreet.",
+        date: "11/04/2020",
+        isFav: false,
+        tag: "work",
+    },
+    {
+        id: 4,
+        user: "Max Smith",
+        thumb: "profile-16.jpeg",
+        title: "Meeting at 4:50pm",
+        description: "Excepteur sint occaecat cupidatat non proident, anim id est laborum.",
+        date: "11/08/2020",
+        isFav: false,
+        tag: "",
+    },
+    {
+        id: 5,
+        user: "Karena Courtliff",
+        thumb: "profile-17.jpeg",
+        title: "Backup Files EOD",
+        description: "Maecenas condimentum neque mollis, egestas leo ut, gravida.",
+        date: "11/09/2020",
+        isFav: false,
+        tag: "",
+    },
+    {
+        id: 6,
+        user: "Max Smith",
+        thumb: "profile-16.jpeg",
+        title: "Download Server Logs",
+        description: "Suspendisse efficitur diam quis gravida. Nunc molestie est eros.",
+        date: "11/09/2020",
+        isFav: false,
+        tag: "social",
+    },
+    {
+        id: 7,
+        user: "Vladamir Koschek",
+        thumb: "",
+        title: "Team meet at Starbucks",
+        description: "Etiam a odio eget enim aliquet laoreet lobortis sed ornare nibh.",
+        date: "11/10/2020",
+        isFav: false,
+        tag: "",
+    },
+    {
+        id: 8,
+        user: "Max Smith",
+        thumb: "profile-16.jpeg",
+        title: "Create new users Profile",
+        description: "Duis aute irure in nulla pariatur. Etiam a odio eget enim aliquet.",
+        date: "11/11/2020",
+        isFav: false,
+        tag: "important",
+    },
+    {
+        id: 9,
+        user: "Robert Garcia",
+        thumb: "profile-21.jpeg",
+        title: "Create a compost pile",
+        description: "Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro.",
+        date: "11/12/2020",
+        isFav: true,
+        tag: "",
+    },
+    {
+        id: 10,
+        user: "Marie Hamilton",
+        thumb: "profile-2.jpeg",
+        title: "Take a hike at a local park",
+        description: "De carne lumbering animata corpora quaeritis. Summus brains sit",
+        date: "11/13/2020",
+        isFav: true,
+        tag: "",
+    },
+    {
+        id: 11,
+        user: "Megan Meyers",
+        thumb: "profile-1.jpeg",
+        title: "Take a class at local community center that interests you",
+        description: "Cupcake ipsum dolor. Sit amet marshmallow topping cheesecake muffin.",
+        date: "11/13/2020",
+        isFav: false,
+        tag: "",
+    },
+    {
+        id: 12,
+        user: "Angela Hull",
+        thumb: "profile-22.jpeg",
+        title: "Research a topic interested in",
+        description: "Lemon drops tootsie roll marshmallow halvah carrot cake.",
+        date: "11/14/2020",
+        isFav: false,
+        tag: "",
+    },
+    {
+        id: 13,
+        user: "Karen Wolf",
+        thumb: "profile-23.jpeg",
+        title: "Plan a trip to another country",
+        description: "Space, the final frontier. These are the voyages of the Starship Enterprise.",
+        date: "11/16/2020",
+        isFav: true,
+        tag: "",
+    },
+    {
+        id: 14,
+        user: "Jasmine Barnes",
+        thumb: "profile-1.jpeg",
+        title: "Improve touch typing",
+        description: "Well, the way they make shows is, they make one show.",
+        date: "11/16/2020",
+        isFav: false,
+        tag: "",
+    },
+    {
+        id: 15,
+        user: "Thomas Cox",
+        thumb: "profile-11.jpeg",
+        title: "Learn Express.js",
+        description: "Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        date: "11/17/2020",
+        isFav: false,
+        tag: "work",
+    },
+    {
+        id: 16,
+        user: "Marcus Jones",
+        thumb: "profile-12.jpeg",
+        title: "Learn calligraphy",
+        description: "Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        date: "11/17/2020",
+        isFav: false,
+        tag: "",
+    },
+    {
+        id: 17,
+        user: "Matthew Gray",
+        thumb: "profile-24.jpeg",
+        title: "Have a photo session with some friends",
+        description: "Venusaur Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        date: "11/18/2020",
+        isFav: false,
+        tag: "important",
+    },
+    {
+        id: 18,
+        user: "Chad Davis",
+        thumb: "profile-31.jpeg",
+        title: "Go to the gym",
+        description: "Charmander Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        date: "11/18/2020",
+        isFav: false,
+        tag: "",
+    },
+    {
+        id: 19,
+        user: "Linda Drake",
+        thumb: "profile-23.jpeg",
+        title: "Make own LEGO creation",
+        description: "Charmeleon Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        date: "11/18/2020",
+        isFav: false,
+        tag: "social",
+    },
+    {
+        id: 20,
+        user: "Kathleen Flores",
+        thumb: "profile-34.jpeg",
+        title: "Take cat on a walk",
+        description: "Baseball ipsum dolor sit amet cellar rubber win hack tossed. ",
+        date: "11/18/2020",
+        isFav: false,
+        tag: "personal",
+    },
+]);
+const filterdNotesList: any = ref("");
+const selectedTab: any = ref("all");
+const deletedNote: any = ref(null);
+const selectedNote: any = ref({
+    id: null,
+    title: "",
+    description: "",
+    tag: "",
+    user: "",
+    thumb: "",
+});
 
-    onMounted(() => {
-        searchNotes();
-    });
+onMounted(() => {
+    searchNotes();
+});
 
-    const searchNotes = () => {
-        if (selectedTab.value != 'fav') {
-            if (selectedTab.value != 'all' || selectedTab.value === 'delete') {
-                filterdNotesList.value = notesList.value.filter((d) => d.tag === selectedTab.value);
-            } else {
-                filterdNotesList.value = notesList.value;
-            }
+const searchNotes = () => {
+    if (selectedTab.value != "fav") {
+        if (selectedTab.value != "all" || selectedTab.value === "delete") {
+            filterdNotesList.value = notesList.value.filter((d) => d.tag === selectedTab.value);
         } else {
-            filterdNotesList.value = notesList.value.filter((d) => d.isFav);
+            filterdNotesList.value = notesList.value;
         }
-    };
+    } else {
+        filterdNotesList.value = notesList.value.filter((d) => d.isFav);
+    }
+};
 
-    const saveNote = () => {
-        if (!params.value.title) {
-            showMessage('Title is required.', 'error');
-            return false;
-        }
-        if (params.value.id) {
-            //update task
-            let note: any = notesList.value.find((d) => d.id === params.value.id);
-            note.title = params.value.title;
-            note.user = params.value.user;
-            note.description = params.value.description;
-            note.tag = params.value.tag;
-        } else {
-            //add note
-            let maxNoteId = notesList.value.length
-                ? notesList.value.reduce((max, character) => (character.id > max ? character.id : max), notesList.value[0].id)
-                : 0;
-            let dt = new Date();
-            let note = {
-                id: maxNoteId + 1,
-                title: params.value.title,
-                user: params.value.user,
-                thumb: 'profile-21.jpeg',
-                description: params.value.description,
-                date: dt.getDate() + '/' + Number(dt.getMonth()) + 1 + '/' + dt.getFullYear(),
-                isFav: false,
-                tag: params.value.tag,
-            };
-            notesList.value.splice(0, 0, note);
-            searchNotes();
-        }
-
-        showMessage('Note has been saved successfully.');
-        isAddNoteModal.value = false;
+const saveNote = () => {
+    if (!params.value.title) {
+        showMessage("Title is required.", "error");
+        return false;
+    }
+    if (params.value.id) {
+        //update task
+        let note: any = notesList.value.find((d) => d.id === params.value.id);
+        note.title = params.value.title;
+        note.user = params.value.user;
+        note.description = params.value.description;
+        note.tag = params.value.tag;
+    } else {
+        //add note
+        let maxNoteId = notesList.value.length
+            ? notesList.value.reduce((max, character) => (character.id > max ? character.id : max), notesList.value[0].id)
+            : 0;
+        let dt = new Date();
+        let note = {
+            id: maxNoteId + 1,
+            title: params.value.title,
+            user: params.value.user,
+            thumb: "profile-21.jpeg",
+            description: params.value.description,
+            date: dt.getDate() + "/" + Number(dt.getMonth()) + 1 + "/" + dt.getFullYear(),
+            isFav: false,
+            tag: params.value.tag,
+        };
+        notesList.value.splice(0, 0, note);
         searchNotes();
-    };
+    }
 
-    const tabChanged = (type: string) => {
-        selectedTab.value = type;
-        searchNotes();
-        isShowNoteMenu.value = false;
-    };
+    showMessage("Note has been saved successfully.");
+    isAddNoteModal.value = false;
+    searchNotes();
+};
 
-    const setFav = (note: any) => {
-        let item = filterdNotesList.value.find((d) => d.id === note.id);
-        item.isFav = !item.isFav;
-        searchNotes();
-    };
+const tabChanged = (type: string) => {
+    selectedTab.value = type;
+    searchNotes();
+    isShowNoteMenu.value = false;
+};
 
-    const setTag = (note: any, name: string = '') => {
-        let item = filterdNotesList.value.find((d) => d.id === note.id);
-        item.tag = name;
-        searchNotes();
-    };
+const setFav = (note: any) => {
+    let item = filterdNotesList.value.find((d) => d.id === note.id);
+    item.isFav = !item.isFav;
+    searchNotes();
+};
 
-    const deleteNoteConfirm = (note: any) => {
-        setTimeout(() => {
-            deletedNote.value = note;
-            isDeleteNoteModal.value = true;
-        });
-    };
+const setTag = (note: any, name: string = "") => {
+    let item = filterdNotesList.value.find((d) => d.id === note.id);
+    item.tag = name;
+    searchNotes();
+};
 
-    const viewNote = (note: any) => {
-        setTimeout(() => {
-            selectedNote.value = note;
-            isViewNoteModal.value = true;
-        });
-    };
+const deleteNoteConfirm = (note: any) => {
+    setTimeout(() => {
+        deletedNote.value = note;
+        isDeleteNoteModal.value = true;
+    });
+};
 
-    const editNote = (note: any = null) => {
-        isShowNoteMenu.value = false;
-        params.value = JSON.parse(JSON.stringify(defaultParams.value));
+const viewNote = (note: any) => {
+    setTimeout(() => {
+        selectedNote.value = note;
+        isViewNoteModal.value = true;
+    });
+};
 
-        if (note) {
-            params.value = JSON.parse(JSON.stringify(note));
-        }
-        isAddNoteModal.value = true;
-    };
+const editNote = (note: any = null) => {
+    isShowNoteMenu.value = false;
+    params.value = JSON.parse(JSON.stringify(defaultParams.value));
 
-    const deleteNote = () => {
-        notesList.value = notesList.value.filter((d) => d.id != deletedNote.value.id);
-        searchNotes();
-        showMessage('Note has been deleted successfully.');
-        isDeleteNoteModal.value = false;
-    };
+    if (note) {
+        params.value = JSON.parse(JSON.stringify(note));
+    }
+    isAddNoteModal.value = true;
+};
 
-    const showMessage = (msg = '', type = 'success') => {
-        const toast: any = Swal.mixin({
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 3000,
-            customClass: { container: 'toast' },
-        });
-        toast.fire({
-            icon: type,
-            title: msg,
-            padding: '10px 20px',
-        });
-    };
+const deleteNote = () => {
+    notesList.value = notesList.value.filter((d) => d.id != deletedNote.value.id);
+    searchNotes();
+    showMessage("Note has been deleted successfully.");
+    isDeleteNoteModal.value = false;
+};
+
+const showMessage = (msg = "", type = "success") => {
+    const toast: any = Swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 3000,
+        customClass: { container: "toast" },
+    });
+    toast.fire({
+        icon: type,
+        title: msg,
+        padding: "10px 20px",
+    });
+};
 </script>

@@ -114,7 +114,9 @@
     height: 180px;
     margin: 1.858736059%;
     position: relative;
-    transition: background 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    transition:
+        background 0.2s ease-in-out,
+        opacity 0.2s ease-in-out;
     width: 29.615861214%;
 }
 
@@ -131,7 +133,9 @@
     margin-top: -6px;
     position: absolute;
     text-align: center;
-    transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition:
+        background 0.2s ease-in-out,
+        color 0.2s ease-in-out;
     width: 20px;
 }
 .custom-file-container__image-multi-preview__single-image-clear:hover {
@@ -174,8 +178,8 @@
 }
 
 .rtl .custom-file-container__custom-file__custom-file-control__button {
-    right:auto;
-    left:0;
+    right: auto;
+    left: 0;
     border-left: none;
 }
 

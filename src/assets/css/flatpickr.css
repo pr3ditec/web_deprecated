@@ -180,5 +180,7 @@
 .dark .flatpickr-day.inRange {
     background-color: #060818;
     border-color: #060818;
-    box-shadow: -5px 0 0 #060818, 5px 0 0 #060818;
+    box-shadow:
+        -5px 0 0 #060818,
+        5px 0 0 #060818;
 }

@@ -586,14 +586,14 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import VueCollapsible from 'vue-height-collapsible/vue3';
-    import { useMeta } from '@/composables/use-meta';
-    import { useAppStore } from '@/stores/index';
-    const store = useAppStore();
-    useMeta({ title: 'FAQ' });
+import { ref } from "vue";
+import VueCollapsible from "vue-height-collapsible/vue3";
+import { useMeta } from "@/composables/use-meta";
+import { useAppStore } from "@/stores/index";
+const store = useAppStore();
+useMeta({ title: "FAQ" });
 
-    const activeTab: any = ref('general');
-    const active1: any = ref(1);
-    const active2: any = ref(1);
+const activeTab: any = ref("general");
+const active1: any = ref(1);
+const active2: any = ref(1);
 </script>

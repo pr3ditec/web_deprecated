@@ -1618,12 +1618,12 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { useAppStore } from '@/stores/index';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Input Group' });
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { useAppStore } from "@/stores/index";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Input Group" });
 
-    const store = useAppStore();
-    const { codeArr, toggleCode } = codePreview();
+const store = useAppStore();
+const { codeArr, toggleCode } = codePreview();
 </script>

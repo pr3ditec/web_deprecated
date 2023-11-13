@@ -408,7 +408,7 @@
                             <div
                                 class="w-24 h-24 border border-white-light rounded-md shadow dark:border-dark flex items-center justify-center font-semibold cursor-grab"
                             >
-                                {{ 'Item ' + i }}
+                                {{ "Item " + i }}
                             </div>
                         </template>
                     </draggable>
@@ -463,36 +463,36 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import { VueDraggableNext as draggable } from 'vue-draggable-next';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Drag & Drop' });
+import { ref } from "vue";
+import { VueDraggableNext as draggable } from "vue-draggable-next";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Drag & Drop" });
 
-    const items = ref([
-        {
-            id: 1,
-            text: 'Need to be approved',
-            name: 'Kelly Young',
-        },
-        {
-            id: 2,
-            text: 'Meeting with client',
-            name: 'Andy King',
-        },
-        {
-            id: 3,
-            text: 'Project Detail',
-            name: 'Judy Holmes',
-        },
-        {
-            id: 4,
-            text: 'Edited Post Apporval',
-            name: 'Vincent Carpenter',
-        },
-        {
-            id: 5,
-            text: 'Project Lead Pickup',
-            name: 'Mary McDonald',
-        },
-    ]);
+const items = ref([
+    {
+        id: 1,
+        text: "Need to be approved",
+        name: "Kelly Young",
+    },
+    {
+        id: 2,
+        text: "Meeting with client",
+        name: "Andy King",
+    },
+    {
+        id: 3,
+        text: "Project Detail",
+        name: "Judy Holmes",
+    },
+    {
+        id: 4,
+        text: "Edited Post Apporval",
+        name: "Vincent Carpenter",
+    },
+    {
+        id: 5,
+        text: "Project Lead Pickup",
+        name: "Mary McDonald",
+    },
+]);
 </script>

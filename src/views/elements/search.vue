@@ -350,60 +350,60 @@ const searchResults = computed(() =&gt; {
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref, computed } from 'vue';
-    import highlight from '@/components/plugins/highlight.vue';
-    import codePreview from '@/composables/codePreview';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Search' });
+import { ref, computed } from "vue";
+import highlight from "@/components/plugins/highlight.vue";
+import codePreview from "@/composables/codePreview";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Search" });
 
-    const { codeArr, toggleCode } = codePreview();
-    const search = ref('');
-    const items: any = [
-        {
-            thumb: 'profile-5.jpeg',
-            name: 'Alan Green',
-            email: 'alan@mail.com',
-            status: 'Active',
-            statusClass: 'badge badge-outline-primary',
-        },
-        {
-            thumb: 'profile-11.jpeg',
-            name: 'Linda Nelson',
-            email: 'Linda@mail.com',
-            status: 'Busy',
-            statusClass: 'badge badge-outline-danger',
-        },
-        {
-            thumb: 'profile-12.jpeg',
-            name: 'Lila Perry',
-            email: 'Lila@mail.com',
-            status: 'Closed',
-            statusClass: 'badge badge-outline-warning',
-        },
-        {
-            thumb: 'profile-3.jpeg',
-            name: 'Andy King',
-            email: 'Andy@mail.com',
-            status: 'Active',
-            statusClass: 'badge badge-outline-primary',
-        },
-        {
-            thumb: 'profile-15.jpeg',
-            name: 'Jesse Cory',
-            email: 'Jesse@mail.com',
-            status: 'Busy',
-            statusClass: 'badge badge-outline-danger',
-        },
-    ];
-    const focus = ref(false);
+const { codeArr, toggleCode } = codePreview();
+const search = ref("");
+const items: any = [
+    {
+        thumb: "profile-5.jpeg",
+        name: "Alan Green",
+        email: "alan@mail.com",
+        status: "Active",
+        statusClass: "badge badge-outline-primary",
+    },
+    {
+        thumb: "profile-11.jpeg",
+        name: "Linda Nelson",
+        email: "Linda@mail.com",
+        status: "Busy",
+        statusClass: "badge badge-outline-danger",
+    },
+    {
+        thumb: "profile-12.jpeg",
+        name: "Lila Perry",
+        email: "Lila@mail.com",
+        status: "Closed",
+        statusClass: "badge badge-outline-warning",
+    },
+    {
+        thumb: "profile-3.jpeg",
+        name: "Andy King",
+        email: "Andy@mail.com",
+        status: "Active",
+        statusClass: "badge badge-outline-primary",
+    },
+    {
+        thumb: "profile-15.jpeg",
+        name: "Jesse Cory",
+        email: "Jesse@mail.com",
+        status: "Busy",
+        statusClass: "badge badge-outline-danger",
+    },
+];
+const focus = ref(false);
 
-    const searchResults = computed(() => {
-        return items.filter((item: any) => {
-            return (
-                item.name.toLowerCase().includes(search.value.toLowerCase()) ||
-                item.email.toLowerCase().includes(search.value.toLowerCase()) ||
-                item.status.toLowerCase().includes(search.value.toLowerCase())
-            );
-        });
+const searchResults = computed(() => {
+    return items.filter((item: any) => {
+        return (
+            item.name.toLowerCase().includes(search.value.toLowerCase()) ||
+            item.email.toLowerCase().includes(search.value.toLowerCase()) ||
+            item.status.toLowerCase().includes(search.value.toLowerCase())
+        );
     });
+});
 </script>

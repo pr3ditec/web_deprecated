@@ -29,9 +29,7 @@
                         <div class="text-1xl font-bold ltr:mr-3 rtl:ml-3">38.228.761,23</div>
                         <div class="badge bg-white/30">[445606]</div>
                     </div>
-                    <div class="flex items-center font-semibold mt-5">
-                        Atendimentos [228186]
-                    </div>
+                    <div class="flex items-center font-semibold mt-5">Atendimentos [228186]</div>
                 </div>
 
                 <!-- Time On-Site -->
@@ -52,9 +50,7 @@
                     <div class="flex items-center mt-5">
                         <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">2.057.073.485,04</div>
                     </div>
-                    <div class="flex items-center font-semibold mt-5">
-                        Média parcelamento 33.8
-                    </div>
+                    <div class="flex items-center font-semibold mt-5">Média parcelamento 33.8</div>
                 </div>
             </div>
 
@@ -70,14 +66,14 @@
                         <div class="relative mt-10 text-center">
                             <div class="grid grid-cols-3 md:grid-cols-1 gap-6">
                                 <div>
-                                    <div class="mt-3 font-semibold text-2xl">49.733.828,10 - 603301 [74.76%] </div>
+                                    <div class="mt-3 font-semibold text-2xl">49.733.828,10 - 603301 [74.76%]</div>
                                 </div>
                                 <div>
                                     <div class="text-primary">Adimplente</div>
                                     <div class="text-success mt-2 font-semibold text-2xl">32.181.303,14 - 62.18%</div>
                                 </div>
                                 <div>
-                                    <div class="text-primary">Inadimplente </div>
+                                    <div class="text-primary">Inadimplente</div>
                                     <div class="text-danger mt-2 font-semibold text-2xl">17.552.524,96 - 37.82%</div>
                                 </div>
                             </div>
@@ -94,14 +90,14 @@
                         <div class="relative mt-10 text-center">
                             <div class="grid grid-cols-3 md:grid-cols-1 gap-6">
                                 <div>
-                                    <div class="mt-3 font-semibold text-2xl">49.733.828,10 - 603301 [74.76%] </div>
+                                    <div class="mt-3 font-semibold text-2xl">49.733.828,10 - 603301 [74.76%]</div>
                                 </div>
                                 <div>
                                     <div class="text-primary">Adimplente</div>
-                                    <div class="text-success mt-2 font-semibold text-2xl"> 6.047.458,09 - 34.62%</div>
+                                    <div class="text-success mt-2 font-semibold text-2xl">6.047.458,09 - 34.62%</div>
                                 </div>
                                 <div>
-                                    <div class="text-primary">Inadimplente </div>
+                                    <div class="text-primary">Inadimplente</div>
                                     <div class="text-danger mt-2 font-semibold text-2xl">10.241.626,71 - 65.38%</div>
                                 </div>
                             </div>
@@ -139,7 +135,7 @@
                                     <td class="font-semibold">02</td>
                                     <td class="whitespace-nowrap">42040</td>
                                     <td class="whitespace-nowrap">3.302.789,85 - [33387]</td>
-                                    <td>933.534,22 - [8653] </td>
+                                    <td>933.534,22 - [8653]</td>
                                     <td class="text-center">
                                         <span class="badge bg-info/20 text-info rounded-full hover:top-0">22.04%</span>
                                     </td>
@@ -148,7 +144,7 @@
                                     <td class="font-semibold">03</td>
                                     <td class="whitespace-nowrap">38523</td>
                                     <td class="whitespace-nowrap">2.740.909,05 - [28262]</td>
-                                    <td>1.042.746,80 - [10261] </td>
+                                    <td>1.042.746,80 - [10261]</td>
                                     <td class="text-center">
                                         <span class="badge bg-info/20 text-info rounded-full hover:top-0">27.56%</span>
                                     </td>
@@ -190,21 +186,19 @@
 </template>
 
 <script lang="ts">
-import { inject } from 'vue';
-import { useMeta } from '@/composables/use-meta';
-useMeta({ title: 'Risco Empresarial' });
+import { inject } from "vue";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Risco Empresarial" });
 
 export default {
-    components: {
-
-    },
+    components: {},
     data() {
         const dataAtual = new Date();
         const dataInicial = new Date();
         dataInicial.setDate(dataAtual.getDate() - 365);
 
         return {
-            request: Object(inject('api')),
+            request: Object(inject("api")),
             totalParcelas: 0,
             totalParcelasPagas: 0,
             totalInadimplencia: 0,
@@ -213,9 +207,9 @@ export default {
             adimplente: 0,
             inadimplente: 0,
             parcelamento: {},
-            dataAtual: dataAtual.toISOString().split('T')[0],
-            dataInicial: dataInicial.toISOString().split('T')[0],
-            dataFim: dataAtual.toISOString().split('T')[0]
+            dataAtual: dataAtual.toISOString().split("T")[0],
+            dataInicial: dataInicial.toISOString().split("T")[0],
+            dataFim: dataAtual.toISOString().split("T")[0],
         };
     },
     async mounted() {
@@ -223,13 +217,12 @@ export default {
     },
     methods: {
         async processData() {
-
             const data = await this.request.pegarDadosApi(`relatorio/risco_empresarial/${this.dataInicial}/${this.dataFim}`);
 
-            const porcentagensRiscoEmpresarial = data.map(item => parseFloat(item.porcentagem_risco_empresarial));
+            const porcentagensRiscoEmpresarial = data.map((item) => parseFloat(item.porcentagem_risco_empresarial));
 
-            data.forEach(item => {
-                item.parcelas.forEach(parcela => {
+            data.forEach((item) => {
+                item.parcelas.forEach((parcela) => {
                     // somando o total de parcelas
                     this.totalParcelas++;
 
@@ -252,7 +245,7 @@ export default {
                     }
 
                     // vejo se a parcela ta paga
-                    if (parcela.historico && parcela.historico.some(h => h.descricao === 'EFETIVADO')) {
+                    if (parcela.historico && parcela.historico.some((h) => h.descricao === "EFETIVADO")) {
                         this.totalParcelasAtendimentos++;
                     }
 
@@ -261,7 +254,7 @@ export default {
                         this.parcelamento[parcela.parcela] = {
                             numeroParcelas: 0,
                             valorPago: 0,
-                            valorInadimplente: 0
+                            valorInadimplente: 0,
                         };
                     }
                     this.parcelamento[parcela.parcela].numeroParcelas++;
@@ -270,14 +263,13 @@ export default {
                     } else if (dataVencimento < new Date(this.dataAtual)) {
                         this.parcelamento[parcela.parcela].valorInadimplente += parseFloat(parcela.valor);
                     }
-
-
                 });
             });
 
             // inadimplência para cada parcela
-            Object.keys(this.parcelamento).forEach(parcela => {
-                this.parcelamento[parcela].inadimplencia = this.parcelamento[parcela].valorInadimplente / (this.parcelamento[parcela].valorPago + this.parcelamento[parcela].valorInadimplente);
+            Object.keys(this.parcelamento).forEach((parcela) => {
+                this.parcelamento[parcela].inadimplencia =
+                    this.parcelamento[parcela].valorInadimplente / (this.parcelamento[parcela].valorPago + this.parcelamento[parcela].valorInadimplente);
             });
 
             console.log(this.totalParcelas);
@@ -289,8 +281,7 @@ export default {
             console.log(this.totalParcelasAtendimentos);
             console.log(this.parcelamento);
             console.log(porcentagensRiscoEmpresarial);
-
-        }
-    }
-}
+        },
+    },
+};
 </script>

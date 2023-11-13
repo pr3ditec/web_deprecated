@@ -14,24 +14,25 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
     data() {
         return {
-            selectedUnidadesFederativas: '',
+            selectedUnidadesFederativas: "",
             unidadesFederativas: [],
         };
     },
     mounted() {
         // Faça a requisição Ajax para obter os usuários
-        axios.get('http://localhost:8001/unidades_federativas')
+        axios
+            .get("http://localhost:8001/unidades_federativas")
             .then((response) => {
                 this.unidadesFederativas = response.data.list;
                 console.log(this.estados);
             })
             .catch((error) => {
-                console.error('Erro ao obter dados:', error);
+                console.error("Erro ao obter dados:", error);
             });
     },
 };

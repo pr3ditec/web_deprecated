@@ -225,66 +225,66 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import { ref } from 'vue';
-    import { useMeta } from '@/composables/use-meta';
-    useMeta({ title: 'Invoice Preview' });
+import { ref } from "vue";
+import { useMeta } from "@/composables/use-meta";
+useMeta({ title: "Invoice Preview" });
 
-    const items = ref([
-        {
-            id: 1,
-            title: 'Calendar App Customization',
-            quantity: 1,
-            price: '120',
-            amount: '120',
-        },
-        {
-            id: 2,
-            title: 'Chat App Customization',
-            quantity: 1,
-            price: '230',
-            amount: '230',
-        },
-        {
-            id: 3,
-            title: 'Laravel Integration',
-            quantity: 1,
-            price: '405',
-            amount: '405',
-        },
-        {
-            id: 4,
-            title: 'Backend UI Design',
-            quantity: 1,
-            price: '2500',
-            amount: '2500',
-        },
-    ]);
-    const columns = ref([
-        {
-            key: 'id',
-            label: 'S.NO',
-        },
-        {
-            key: 'title',
-            label: 'ITEMS',
-        },
-        {
-            key: 'quantity',
-            label: 'QTY',
-        },
-        {
-            key: 'price',
-            label: 'PRICE',
-            class: 'ltr:text-right rtl:text-left',
-        },
-        {
-            key: 'amount',
-            label: 'AMOUNT',
-            class: 'ltr:text-right rtl:text-left',
-        },
-    ]);
+const items = ref([
+    {
+        id: 1,
+        title: "Calendar App Customization",
+        quantity: 1,
+        price: "120",
+        amount: "120",
+    },
+    {
+        id: 2,
+        title: "Chat App Customization",
+        quantity: 1,
+        price: "230",
+        amount: "230",
+    },
+    {
+        id: 3,
+        title: "Laravel Integration",
+        quantity: 1,
+        price: "405",
+        amount: "405",
+    },
+    {
+        id: 4,
+        title: "Backend UI Design",
+        quantity: 1,
+        price: "2500",
+        amount: "2500",
+    },
+]);
+const columns = ref([
+    {
+        key: "id",
+        label: "S.NO",
+    },
+    {
+        key: "title",
+        label: "ITEMS",
+    },
+    {
+        key: "quantity",
+        label: "QTY",
+    },
+    {
+        key: "price",
+        label: "PRICE",
+        class: "ltr:text-right rtl:text-left",
+    },
+    {
+        key: "amount",
+        label: "AMOUNT",
+        class: "ltr:text-right rtl:text-left",
+    },
+]);
 
-    const print = () => {
-        window.print();
-    };
+const print = () => {
+    window.print();
+};
 </script>
