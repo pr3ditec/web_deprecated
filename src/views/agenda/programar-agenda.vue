@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="text-4xl font-bold mb-5 lead">Programar Agenda</h1>
+        <h1 class="text-4xl font-bold mb-5 lead">{{ $t("make_an_schedule") }}</h1>
         <SelectMedico v-model="selectedDoctor" />
     </div>
 

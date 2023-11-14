@@ -64,7 +64,7 @@
                                 }}</router-link>
                             </li> -->
                             <li>
-                                <router-link to="/risco-empresarial" @click="toggleMobileMenu()">{{ $t("Risco Empresarial") }}</router-link>
+                                <router-link to="/risco-empresarial" @click="toggleMobileMenu()">{{ $t("busines_risk") }}</router-link>
                             </li>
                         </ul>
                     </vue-collapsible>
@@ -98,7 +98,7 @@
                             </svg>
 
                             <span class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">
-                                {{ $t("Schedule") }}
+                                {{ $t("schedule") }}
                             </span>
                         </div>
                         <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === 'Schedule' }">
@@ -111,10 +111,10 @@
                     <vue-collapsible :isOpen="activeDropdown === 'Schedule'">
                         <ul class="sub-menu text-gray-500">
                             <li>
-                                <router-link to="/agenda" @click="toggleMobileMenu()">{{ $t("Schedule") }}</router-link>
+                                <router-link to="/agenda" @click="toggleMobileMenu()">{{ $t("schedule") }}</router-link>
                             </li>
                             <li>
-                                <router-link to="/programar-agenda" @click="toggleMobileMenu()">{{ $t("Make an Schedule") }}</router-link>
+                                <router-link to="/programar-agenda" @click="toggleMobileMenu()">{{ $t("make_an_schedule") }}</router-link>
                             </li>
                         </ul>
                     </vue-collapsible>
