@@ -3,6 +3,7 @@ import { inject } from "vue";
 import MascarasInput from "@/helpers/MascaraInput";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
+import { MenuItems } from "@headlessui/vue";
 
 export default {
     components: {
@@ -16,7 +17,11 @@ export default {
             // Dados
             search: "",
             cols: [
-                { field: "nome", headerClass: "flex flex-row gap-1 font-extrabold uppercase", title: this.$t("name") },
+                {
+                    field: "nome",
+                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    title: this.$t("name"),
+                },
                 {
                     field: "telefone",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
@@ -36,7 +41,9 @@ export default {
                         if (item.documento.length == 0) {
                             return "";
                         }
-                        return MascarasInput.cpf(Object(item.documento[0]).numero);
+                        return MascarasInput.cpf(
+                            Object(item.documento[0]).numero,
+                        );
                     },
                 },
                 {
@@ -44,7 +51,9 @@ export default {
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
                     title: this.$t("cnpj"),
                     cellRenderer: (item: any) => {
-                        return MascarasInput.cnpj(Object(item.documento[1]).numero ?? "");
+                        return MascarasInput.cnpj(
+                            Object(item.documento[1]).numero ?? "",
+                        );
                     },
                 },
                 {
@@ -63,7 +72,11 @@ export default {
             dadosTabela: [
                 {
                     nome: "",
-                    documento: {},
+                    documento: [
+                        {
+                            cpf: "",
+                        },
+                    ],
                     telefone: {},
                     endereco: {},
                     especialidade: {
@@ -86,17 +99,30 @@ export default {
     <div class="grid space-y-6 grid-cols-1 items-center">
         <!-- HEADER -->
         <div>
-            <h1 class="text-4xl font-bold mb-4 capitalize">{{ $t("doctor") }}</h1>
+            <h1 class="text-4xl font-bold mb-4 capitalize">
+                {{ $t("doctor") }}
+            </h1>
 
             <div class="flex flex-row gap-4 align-items-center">
-                <h6 class="text-xl font-bold mb-4 capitalize">{{ $t("list") }}</h6>
+                <h6 class="text-xl font-bold mb-4 capitalize">
+                    {{ $t("list") }}
+                </h6>
             </div>
         </div>
         <!-- HEADER -->
 
-        <div class="table-responsive p-6 pt-1 gap-1' flex flex-col items-center">
-            <input v-model="search" type="text" class="form-input w-1/2" placeholder="Pesquisar ......" />
-            <hr class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
+        <div
+            class="table-responsive p-6 pt-1 gap-1' flex flex-col items-center"
+        >
+            <input
+                v-model="search"
+                type="text"
+                class="form-input w-1/2"
+                placeholder="Pesquisar ......"
+            />
+            <hr
+                class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700"
+            />
             <vue3-datatable
                 class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
                 :rows="dadosTabela"
@@ -114,8 +140,8 @@ export default {
     </div>
 </template>
 <style>
-    /* alt-pagination */
-    .alt-pagination .bh-pagination .bh-page-item {
-        @apply !w-max min-w-[32px] !rounded;
-    }
+/* alt-pagination */
+.alt-pagination .bh-pagination .bh-page-item {
+    @apply !w-max min-w-[32px] !rounded;
+}
 </style>

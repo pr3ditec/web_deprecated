@@ -101,7 +101,7 @@ const routes: RouteRecordRaw[] = [
     },
     {
         path: "/relatorios/consultas",
-        name: "Relatório de médicos",
+        name: "Relatório de consultas",
         component: RelatorioConsultas,
     },
     /** RELATORIOS */
