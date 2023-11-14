@@ -313,7 +313,7 @@ const loginForm = reactive({
 const req = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "http://localhost:8001/admin/login",
+    url: "http://localhost:8000/admin/login",
     data: loginForm,
 };
 
@@ -324,6 +324,7 @@ const submitForm = async () => {
         if (response.data.status) {
             store.setUserLogin(response.data.list.token);
             store.setUserName(response.data.list.nome);
+            store.setUserId(response.data.list.usuario_id)
             router.push("/");
         } else {
             // Handle login failure
