@@ -634,7 +634,7 @@ router.beforeEach((to, from, next) => {
     }
 
     if (!store.getUserToken()) {
-        if (to.path === "/auth/login") {
+        if (to.path === "/auth/login" || to.path === "/auth/register") {
             next(true);
         }
 
