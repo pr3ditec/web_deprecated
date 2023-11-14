@@ -213,6 +213,9 @@
                             <li>
                                 <router-link to="/relatorios/medicos" @click="toggleMobileMenu()" class="capitalize">{{ $t("doctor") }}</router-link>
                             </li>
+                            <li>
+                                <router-link to="/relatorios/consultas" @click="toggleMobileMenu()" class="capitalize">{{ $t("appointment") }}</router-link>
+                            </li>
                         </ul>
                     </vue-collapsible>
                 </li>

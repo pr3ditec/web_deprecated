@@ -151,5 +151,8 @@
     "date": "data",
     "telephone": "telefone",
     "document": "documento",
-    "empty field": "campo vazio"
+    "empty field": "campo vazio",
+    "appointment": "consulta",
+    "time": "hora",
+    "patient": "paciente"
 }
