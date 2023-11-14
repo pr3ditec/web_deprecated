@@ -44,6 +44,12 @@ export const useAppStore = defineStore("app", {
         getUserToken() {
             return localStorage.getItem("user.token");
         },
+        setUserId(id) {
+            localStorage.setItem("user.id", id);
+        },
+        getUserId() {
+            return localStorage.getItem("user.id");
+        },
         setMainLayout(payload: any = null) {
             this.mainLayout = payload; //app , auth
         },
