@@ -169,5 +169,17 @@
     "number_of_installments": "número de parcelas",
     "paid_amount": "valor pago",
     "defaulted_amount": "valor inadimplente",
-    "defaulted": "inadimplência"
+    "defaulted": "inadimplência",
+    "start_time": "Hora de Início",
+    "end_time": "Hora de Término",
+    "interval_between_consultations": "Intervalo entre as consultas",
+    "select_query_range": "Selecione o intervalo de consultas",
+    "minutes": "minutos",
+    "you_selected_date": "Você selecionou a data",
+    "remove_selection": "Retirar Seleção",
+    "select_all": "Selecionar Todos",
+    "schedules": "Horários",
+    "record": "Gravar",
+    "close": "Fechar",
+    "released_times": "horários liberados"
 }
