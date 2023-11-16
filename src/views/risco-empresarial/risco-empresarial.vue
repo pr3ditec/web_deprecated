@@ -21,7 +21,9 @@
 
                 <div class="panel bg-gradient-to-r from-violet-500 to-violet-400">
                     <div class="flex justify-between">
-                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">{{ $t("total_value_of_installments_paid") }}</div>
+                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">
+                            {{ $t("total_value_of_installments_paid") }}
+                        </div>
                     </div>
                     <div class="flex items-center mt-5">
                         <div class="text-1xl font-bold ltr:mr-3 rtl:ml-3">{{ totalParcelasPagas }}</div>
@@ -46,7 +48,9 @@
                     <div class="flex items-center mt-5">
                         <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">{{ formatValor(caixaFuturo) }}</div>
                     </div>
-                    <div class="flex items-center font-semibold mt-5">{{ $t("average_installments") }} {{ mediaParcelamento }}</div>
+                    <div class="flex items-center font-semibold mt-5">
+                        {{ $t("average_installments") }} {{ mediaParcelamento }}
+                    </div>
                 </div>
             </div>
 
@@ -61,7 +65,9 @@
                         <div class="relative mt-10 text-center">
                             <div class="grid grid-cols-3 md:grid-cols-1 gap-6">
                                 <div>
-                                    <div class="mt-3 font-semibold text-2xl">{{ totalParcelasPagas }} - {{ formatValor(adimplente) }}</div>
+                                    <div class="mt-3 font-semibold text-2xl">
+                                        {{ totalParcelasPagas }} - {{ formatValor(adimplente) }}
+                                    </div>
                                 </div>
                                 <div>
                                     <div class="text-primary">{{ $t("in_compliance") }}</div>
@@ -81,10 +87,19 @@
                 </div>
                 <div class="grid gap-6 xl:grid-flow-row">
                     <div class="panel overflow-hidden">
-                        <p class="text-lg dark:text-white-light/90">{{ $t("busines_risk") }}<span class="text-primary ml-2">%</span></p>
+                        <p class="text-lg dark:text-white-light/90">
+                            {{ $t("busines_risk") }}<span class="text-primary ml-2">%</span>
+                        </p>
                         <div class="relative">
-                            <apexchart height="325" :options="revenueChart" :series="revenueSeries" class="bg-white dark:bg-black rounded-lg overflow-hidden">
-                                <div class="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                            <apexchart
+                                height="325"
+                                :options="revenueChart"
+                                :series="revenueSeries"
+                                class="bg-white dark:bg-black rounded-lg overflow-hidden"
+                            >
+                                <div
+                                    class="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]"
+                                >
                                     <span
                                         class="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"
                                     ></span>
@@ -117,7 +132,10 @@
                                     <td class="!text-right">{{ formatValor(value.valorInadimplente) }}</td>
                                     <td
                                         class="!text-center ltr:rounded-r-md rtl:rounded-l-md"
-                                        v-bind:class="{ 'text-success': value.valorInadimplente <= 70, 'text-danger': value.valorInadimplente > 70 }"
+                                        v-bind:class="{
+                                            'text-success': value.valorInadimplente <= 70,
+                                            'text-danger': value.valorInadimplente > 70,
+                                        }"
                                     >
                                         {{ value.valorInadimplente }} %
                                     </td>
@@ -137,6 +155,8 @@ import { useMeta } from "@/composables/use-meta";
 import apexchart from "vue3-apexcharts";
 import { useAppStore } from "@/stores/index";
 useMeta({ title: "Risco Empresarial" });
+
+const labels = ref<string[]>([]);
 
 export default {
     components: {
@@ -176,26 +196,10 @@ export default {
                     left: -7,
                     top: 22,
                 },
-                colors: isDark ? ["#2196f3", "#e7515a"] : ["#1b55e2", "#e7515a"],
-                markers: {
-                    discrete: [
-                        {
-                            seriesIndex: 0,
-                            dataPointIndex: 6,
-                            fillColor: "#1b55e2",
-                            strokeColor: "transparent",
-                            size: 7,
-                        },
-                        {
-                            seriesIndex: 1,
-                            dataPointIndex: 5,
-                            fillColor: "#e7515a",
-                            strokeColor: "transparent",
-                            size: 7,
-                        },
-                    ],
-                },
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                colors: isDark
+                    ? ["#2196f3", "#e7515a", "#4caf50", "#ffeb3b", "#9c27b0"]
+                    : ["#1b55e2", "#e7515a", "#4caf50", "#ffeb3b", "#9c27b0"],
+                labels: labels.value,
                 xaxis: {
                     axisBorder: {
                         show: false,
@@ -285,7 +289,7 @@ export default {
             };
         });
 
-        const revenueSeries = ref<{ name: string; data: number[] }[]>([]);
+        const revenueSeries = ref<{ name: string; data: number[]; color?: string }[]>([]);
 
         return {
             revenueChart,
@@ -320,7 +324,6 @@ export default {
                     inadimplencia: number;
                 };
             },
-            // revenueSeries: [],
             dataAtual: dataAtual.toISOString().split("T")[0],
             dataInicial: dataInicial.toISOString().split("T")[0],
             dataFim: dataAtual.toISOString().split("T")[0],
@@ -331,35 +334,55 @@ export default {
     },
     methods: {
         async processData() {
-            const data = await this.request.pegarDadosApi(`relatorio/risco_empresarial/${this.dataInicial}/${this.dataFim}`);
+            function getMonthYear(dateString) {
+                const date = new Date(dateString);
+                return `${date.getFullYear()}-${date.getMonth() + 1}`;
+            }
+
+            const data = await this.request.pegarDadosApi(
+                `relatorio/risco_empresarial/${this.dataInicial}/${this.dataFim}`,
+            );
 
             let groupedData = {};
+            let tempLabels: string[] = [];
 
             data.forEach((item) => {
                 let porcentagem = item.risco_empresarial.porcentagem;
-                let data = item.risco_empresarial.data;
-                let valor_consulta = parseFloat(item.valor_consulta);
 
-                if (groupedData.hasOwnProperty(porcentagem)) {
-                    groupedData[porcentagem].valor.push(valor_consulta);
-                } else {
-                    groupedData[porcentagem] = {
-                        data: data,
-                        valor: [valor_consulta],
-                    };
-                }
+                item.parcelas.forEach((parcela) => {
+                    let data = getMonthYear(parcela.vencimento);
+                    let valor = parseFloat(parcela.valor);
+
+                    if (!groupedData.hasOwnProperty(porcentagem)) {
+                        groupedData[porcentagem] = {};
+                    }
+
+                    if (!groupedData[porcentagem].hasOwnProperty(data)) {
+                        groupedData[porcentagem][data] = valor;
+                        if (!tempLabels.includes(data)) {
+                            tempLabels.push(data);
+                        }
+                    } else {
+                        groupedData[porcentagem][data] += valor;
+                    }
+                });
             });
 
             let seriesData: { name: string; data: number[] }[] = [];
 
             for (let porcentagem in groupedData) {
+                let dataSeries: number[] = [];
+                tempLabels.forEach((label) => {
+                    dataSeries.push(groupedData[porcentagem][label] || 0);
+                });
                 seriesData.push({
                     name: porcentagem + "%",
-                    data: groupedData[porcentagem].valor,
+                    data: dataSeries,
                 });
             }
 
             this.revenueSeries = seriesData;
+            labels.value = tempLabels.sort();
 
             data.forEach((item) => {
                 item.parcelas.forEach((parcela) => {
@@ -421,11 +444,12 @@ export default {
             // inadimplência para cada parcela
             Object.keys(this.parcelamento).forEach((parcela) => {
                 this.parcelamento[parcela].inadimplencia =
-                    this.parcelamento[parcela].valorInadimplente / (this.parcelamento[parcela].valorPago + this.parcelamento[parcela].valorInadimplente);
+                    this.parcelamento[parcela].valorInadimplente /
+                    (this.parcelamento[parcela].valorPago + this.parcelamento[parcela].valorInadimplente);
             });
 
             if (this.totalParcelas !== 0) {
-                this.mediaParcelamento = this.somaParcelas / this.totalParcelas;
+                this.mediaParcelamento = +(this.somaParcelas / this.totalParcelas).toFixed(2);
             } else {
                 this.mediaParcelamento = 0;
             }
