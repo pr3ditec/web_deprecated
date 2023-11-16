@@ -75,7 +75,7 @@ export default {
         },
         // Solicitacoes
         removerSolicitacao(id: number) {
-            let item = this.pegarDadosSolicitacao(id)
+            let item = this.pegarDadosSolicitacao(id);
         },
         pegarDadosSolicitacao(id: number) {
             var response: any = {
