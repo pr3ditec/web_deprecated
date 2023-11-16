@@ -18,4 +18,14 @@ export default class Response {
             text: mensagem,
         });
     }
+
+    public static mensagemToast(mensagem: any): any {
+        return Swal.mixin({
+            text: mensagem,
+            toast: true,
+            showConfirmButton: false,
+            timer: 1000,
+            position: "top",
+        }).fire();
+    }
 }
