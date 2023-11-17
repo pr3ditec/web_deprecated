@@ -16,21 +16,9 @@
         </div>
     </div>
 
-    <TransitionRoot
-        as="template"
-        appear
-        :show="isAddEventModal"
-        @hidden="resetModal"
-    >
-        <Dialog
-            as="div"
-            static
-            class="fixed z-10 inset-0 overflow-y-auto"
-            @close="isAddEventModal = false"
-        >
-            <div
-                class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
-            >
+    <TransitionRoot as="template" appear :show="isAddEventModal" @hidden="resetModal">
+        <Dialog as="div" static class="fixed z-10 inset-0 overflow-y-auto" @close="isAddEventModal = false">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <TransitionChild
                     as="template"
                     enter="ease-out duration-300"
@@ -40,16 +28,10 @@
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <DialogOverlay
-                        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-                    />
+                    <DialogOverlay class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
                 </TransitionChild>
 
-                <span
-                    class="hidden sm:inline-block sm:align-middle sm:h-screen"
-                    aria-hidden="true"
-                    >​</span
-                >
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">â</span>
                 <TransitionChild
                     as="template"
                     enter="ease-out duration-300"
@@ -68,32 +50,15 @@
                             <div class="border-1 p-5 sm:my-8 sm:align-middle">
                                 <div class="mt-3">
                                     <div>
-                                        <label for="horaInicio text-letf"
-                                            >{{ $t("start_time") }}:</label
-                                        >
-                                        <SelectHorarioInicio
-                                            v-model="horarioInicio"
-                                        />
+                                        <label for="horaInicio text-letf">{{ $t("start_time") }}:</label>
+                                        <SelectHorarioInicio v-model="horarioInicio" />
                                     </div>
                                     <div>
-                                        <label for="horaFim"
-                                            >{{ $t("end_time") }}:</label
-                                        >
-                                        <SelectHorarioFim
-                                            v-model="horarioFim"
-                                        />
+                                        <label for="horaFim">{{ $t("end_time") }}:</label>
+                                        <SelectHorarioFim v-model="horarioFim" />
                                     </div>
-                                    <div
-                                        class="mt-2"
-                                        v-if="horarioInicio && horarioFim"
-                                    >
-                                        <label for="incremento"
-                                            >{{
-                                                $t(
-                                                    "interval_between_consultations",
-                                                )
-                                            }}:</label
-                                        >
+                                    <div class="mt-2" v-if="horarioInicio && horarioFim">
+                                        <label for="incremento">{{ $t("interval_between_consultations") }}:</label>
                                         <select
                                             id="incremento"
                                             v-model="incrementoSelecionado"
@@ -102,18 +67,10 @@
                                             <option disabled value="">
                                                 {{ $t("select_query_range") }}
                                             </option>
-                                            <option value="60">
-                                                1 {{ $t("time") }}
-                                            </option>
-                                            <option value="30">
-                                                30 {{ $t("minutes") }}
-                                            </option>
-                                            <option value="15">
-                                                15 {{ $t("minutes") }}
-                                            </option>
-                                            <option value="10">
-                                                10 {{ $t("minutes") }}
-                                            </option>
+                                            <option value="60">1 {{ $t("time") }}</option>
+                                            <option value="30">30 {{ $t("minutes") }}</option>
+                                            <option value="15">15 {{ $t("minutes") }}</option>
+                                            <option value="10">10 {{ $t("minutes") }}</option>
                                         </select>
                                     </div>
 
@@ -143,10 +100,7 @@
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th
-                                                        class="form-control mb-4 sm:align-middle"
-                                                        colspan="6"
-                                                    >
+                                                    <th class="form-control mb-4 sm:align-middle" colspan="6">
                                                         {{ $t("schedules") }}
                                                     </th>
                                                 </tr>
@@ -156,13 +110,9 @@
                                                     <td v-for="hour in row">
                                                         <div
                                                             :id="hour"
-                                                            @click="
-                                                                toggleHour(hour)
-                                                            "
+                                                            @click="toggleHour(hour)"
                                                             :class="[
-                                                                selectedHours.includes(
-                                                                    hour,
-                                                                )
+                                                                selectedHours.includes(hour)
                                                                     ? 'bg-green-500 text-white rounded-full text-center cursor-pointer p-1'
                                                                     : 'bg-red-500 text-white text-center rounded-full cursor-pointer p-1',
                                                             ]"
@@ -176,9 +126,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
-                            >
+                            <div class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                 <button
                                     class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                                     @click="saveHours"
@@ -212,13 +160,7 @@ import SelectHorarioFim from "../../components/layout/Select-time.vue";
 import Swal from "sweetalert2";
 import { useMeta } from "@/composables/use-meta";
 import { inject } from "vue";
-import {
-    TransitionRoot,
-    TransitionChild,
-    Dialog,
-    DialogPanel,
-    DialogOverlay,
-} from "@headlessui/vue";
+import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from "@headlessui/vue";
 
 export default {
     components: {
@@ -269,7 +211,7 @@ export default {
     },
     watch: {
         selectedDoctor: {
-            immediate: true, // Chama a função quando o componente é montado
+            immediate: true, // Chama a função quando o componente está montado
             handler(newDoctor) {
                 if (newDoctor) {
                     this.clearSchedule(); // Limpa a agenda
@@ -298,18 +240,14 @@ export default {
     methods: {
         async fetchDoctorAvailability(doctorId) {
             try {
-                const response = await this.request.pegarDadosApi(
-                    `/consulta/medico/${doctorId}`,
-                );
+                const response = await this.request.pegarDadosApi(`/consulta/medico/${doctorId}`);
 
+                const idDoctor = doctorId;
                 let availableHours = response.horarios;
 
                 this.markAvailableHours(availableHours);
             } catch (error) {
-                console.error(
-                    "Erro ao buscar disponibilidade do médico: ",
-                    error,
-                );
+                console.error("Erro ao buscar disponibilidade do médico: ", error);
             }
         },
         markAvailableHours(availableHours) {
@@ -325,9 +263,7 @@ export default {
             this.$nextTick(() => {
                 availableHours.forEach((day) => {
                     // considerar o fuso horário
-                    const eventDate = new Date(
-                        day.data + "T" + day.horarios[0].hora,
-                    );
+                    const eventDate = new Date(day.data + "T" + day.horarios[0].hora);
 
                     // para converter a data para o fuso horário especificado (timezone)
                     const eventDateInTimeZone = new Date(
@@ -373,30 +309,21 @@ export default {
             let horarios: string[] = [];
             if (this.horarioInicio && this.horarioFim) {
                 let partesInicio = this.horarioInicio.split(":");
-                let inicio =
-                    parseInt(partesInicio[0]) * 60 + parseInt(partesInicio[1]);
+                let inicio = parseInt(partesInicio[0]) * 60 + parseInt(partesInicio[1]);
                 let partesFim = this.horarioFim.split(":");
                 let fim = parseInt(partesFim[0]) * 60 + parseInt(partesFim[1]);
                 let incremento = Number(this.incrementoSelecionado);
                 for (let i = inicio; i < fim; i += incremento) {
                     let horas = Math.floor(i / 60);
                     let minutos = i % 60;
-                    horarios.push(
-                        `${horas.toString().padStart(2, "0")}:${minutos
-                            .toString()
-                            .padStart(2, "0")}`,
-                    );
+                    horarios.push(`${horas.toString().padStart(2, "0")}:${minutos.toString().padStart(2, "0")}`);
                 }
             }
             return horarios;
         },
 
         generateTable() {
-            if (
-                this.horarioInicio &&
-                this.horarioFim &&
-                this.incrementoSelecionado
-            ) {
+            if (this.horarioInicio && this.horarioFim && this.incrementoSelecionado) {
                 this.hours = this.generateHours();
                 this.rows = Math.ceil(this.hours.length / this.columns);
                 this.table = [];
@@ -435,14 +362,13 @@ export default {
 
             try {
                 let data = {
+                    // medico_id: JSON.stringify(this.selectedDoctor),
                     // converte o array de agendas em uma string JSON - tem que passar assim na api
                     horarios_disponiveis: JSON.stringify(schedules),
                 };
-                let response = await this.request.enviarDadosApi(
-                    "/consulta/criar",
-                    data,
-                );
 
+                let response = await this.request.enviarDadosApi("/consulta/criar", data);
+                console.log(response);
                 if (response && !response.error) {
                     this.showMessage("Agenda criada com Sucesso!.");
 

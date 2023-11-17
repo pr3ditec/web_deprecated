@@ -50,6 +50,31 @@ export const useAppStore = defineStore("app", {
         getUserId() {
             return localStorage.getItem("user.id");
         },
+        setDoctorId(doctorId) {
+            localStorage.setItem("doctor.id", doctorId);
+        },
+        getDoctorId() {
+            return localStorage.getItem("doctor.id");
+        },
+        setSecretaryId(secretaryId) {
+            localStorage.setItem("secretary.id", secretaryId);
+        },
+        getSecretaryId() {
+            return localStorage.getItem("secretary.id");
+        },
+        setDevId(devId) {
+            localStorage.setItem("dev.id", devId);
+        },
+        getDevId() {
+            return localStorage.getItem("dev.id");
+        },
+        setManagerId(managerId) {
+            localStorage.setItem("manager.id", managerId);
+        },
+        getManagerId() {
+            return localStorage.getItem("manager.id");
+        },
+
         setMainLayout(payload: any = null) {
             this.mainLayout = payload; //app , auth
         },

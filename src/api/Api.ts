@@ -13,7 +13,7 @@ export default class Api {
             baseURL: url,
             timeout: 3000,
             headers: {
-                Authorization: token,
+                "Authorization": token,
                 "Origin-Request": origin,
             },
         });

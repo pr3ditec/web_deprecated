@@ -485,6 +485,10 @@ const submitForm = async () => {
             store.setUserLogin(response.data.list.token);
             store.setUserName(response.data.list.nome);
             store.setUserId(response.data.list.usuario_id);
+            store.setDoctorId(response.data.list.medico_id);
+            store.setSecretaryId(response.data.list.secretaria_id);
+            store.setDevId(response.data.list.desenvolvedor_id);
+            store.setManagerId(response.data.list.gestor_id);
 
             router.push("/");
         } else {

@@ -2,7 +2,11 @@
     <div>
         <select v-model="selectedProfessional" class="form-select mb-4" @change="updateSelectedProfessional">
             <option disabled value="">Selecione um profissional</option>
-            <option v-for="profissional in profissionais" :key="profissional.usuario_id" :value="profissional.usuario_id">
+            <option
+                v-for="profissional in profissionais"
+                :key="profissional.usuario_id"
+                :value="profissional.usuario_id"
+            >
                 {{ profissional.nome }}
             </option>
         </select>
@@ -19,14 +23,24 @@ export default {
             request: Object(inject("api")),
             selectedProfessional: "",
             profissionais: [],
-            secretariaId: "1",
         };
     },
     async created() {
-        try {
-            this.profissionais = await this.request.pegarDadosApi(`/medico/clinica/secretaria/${this.secretariaId}`);
-        } catch (error) {
-            console.error(error);
+        if (localStorage.getItem("secretary.id") && localStorage.getItem("secretary.id") !== "") {
+            try {
+                this.profissionais = await this.request.pegarDadosApi(
+                    `/medico/clinica/secretaria/${localStorage.getItem("secretary.id")}`,
+                );
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            this.profissionais = [
+                {
+                    usuario_id: localStorage.getItem("doctor.id"),
+                    nome: localStorage.getItem("user.name"),
+                },
+            ];
         }
     },
     methods: {
