@@ -26,7 +26,7 @@ export default {
         };
     },
     async created() {
-        if (localStorage.getItem("secretary.id") && localStorage.getItem("secretary.id") !== "") {
+        if (localStorage.getItem("secretary.id") && localStorage.getItem("secretary.id") != "null") {
             try {
                 this.profissionais = await this.request.pegarDadosApi(
                     `/medico/clinica/secretaria/${localStorage.getItem("secretary.id")}`,
