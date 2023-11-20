@@ -86,11 +86,11 @@ export default {
     },
     async created() {
         this.estados = await this.request.pegarDadosApi(
-            "/unidades_federativas",
+            "/unidades-federativas",
         );
         this.tipoEndereco = await this.request.pegarDadosApi("/endereco/tipo");
         this.especialidades = await this.request.pegarDadosApi(
-            `/medico/especialidade/${localStorage.getItem("user.item")}`,
+            `/medico/especialidade/${localStorage.getItem("user.id")}`,
         );
     },
 };
