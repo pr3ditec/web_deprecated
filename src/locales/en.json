@@ -1,4 +1,7 @@
 {
+    "enterCredentialsToContinue": "Enter with your credentials to continue",
+    "idDoc": "Document ID",
+
     "dashboard": "Dashboard",
     "sales": "Sales",
     "analytics": "Analytics",
@@ -102,6 +105,7 @@
     "recover_id": "Recover Id",
     "supports": "Supports",
     "lockscreen": "Lockscreen",
+    "password": "Password",
     "password_recovery": "Password Recovery",
     "404": "404",
     "500": "500",

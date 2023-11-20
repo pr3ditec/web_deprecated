@@ -1,4 +1,7 @@
 {
+    "enterCredentialsToContinue": "Digite seu CPF e senha para continuar.",
+    "idDoc": "CPF",
+
     "404": "404",
     "500": "500",
     "503": "503",
@@ -99,7 +102,7 @@
     "coming_soon": "Em breve",
     "error": "Erros",
     "maintenence": "Manutenção",
-    "login": "Login",
+    "login": "Entrar",
     "register": "Cadastrar",
     "unlock": "Desbloquear",
     "recover_id": "Recuperar",
@@ -141,7 +144,7 @@
     "birthdate": "data de nascimento",
     "gender": "sexo",
     "citizenship": "nacionalidade",
-    "password": "senha",
+    "password": "Senha",
     "repeat": "repetir",
     "male": "masculino",
     "female": "feminino",
