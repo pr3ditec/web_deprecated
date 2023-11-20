@@ -116,7 +116,11 @@ export default {
 
             Object(this.$refs.solicitacoes).removerSolicitacao(item.index);
 
-            console.log(item.item.horarios);
+            this.$refs.calendar.getApi().getEvents().forEach(element => {
+                if(element._def.publicId == id){
+                    element._def.editable = false                    
+                }
+            });
         },
         removerSolicitacao(id: number, date: any) {
             let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(
@@ -210,6 +214,7 @@ export default {
                         <FullCalendar
                             :options="calendarOptions"
                             style="z-index: -100"
+                            ref="calendar"
                         ></FullCalendar>
                     </div>
                     <!-- CALENDARIO -->
