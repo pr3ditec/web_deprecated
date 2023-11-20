@@ -1,5 +1,5 @@
 <template>
-    <div class="w-8 block">
+    <div class="w-8">
         <img
             src="/assets/images/logos/plus.png"
             alt="Logo"

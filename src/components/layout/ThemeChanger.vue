@@ -4,7 +4,7 @@ import { useAppStore } from "@/stores/index";
 const store = useAppStore();
 </script>
 <template>
-    <div>
+    <div class="w-max">
         <a
             href="javascript:;"
             v-show="store.theme === 'light'"
