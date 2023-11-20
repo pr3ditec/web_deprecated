@@ -60,7 +60,7 @@ const submitForm = async () => {
     <div class="w-full max-w-[440px] lg:mt-16">
         <div class="mb-10">
             <h1
-                class="text-3xl font-extrabold uppercase !leading-snug text-danger md:text-4xl"
+                class="text-3xl font-extrabold uppercase !leading-snug text-danger md:text-4xl text-shadow"
             >
                 {{ $t("login") }}
             </h1>
@@ -81,7 +81,7 @@ const submitForm = async () => {
                         class="form-input ps-10 placeholder:text-white-dark text-center"
                         required
                     />
-                    
+
                     <span class="absolute start-4 top-1/2 -translate-y-1/2">
                         <svg
                             width="18"
@@ -316,3 +316,10 @@ const submitForm = async () => {
         </div>
     </div>
 </template>
+
+<style scoped>
+.text-shadow {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: none;
+}
+</style>
