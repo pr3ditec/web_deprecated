@@ -1,7 +1,12 @@
 <template>
     <div
         class="main-section antialiased relative font-nunito text-sm font-normal"
-        :class="[store.sidebar ? 'toggle-sidebar' : '', store.menu, store.layout, store.rtlClass]"
+        :class="[
+            store.sidebar ? 'toggle-sidebar' : '',
+            store.menu,
+            store.layout,
+            store.rtlClass,
+        ]"
     >
         <component v-bind:is="mainLayout"></component>
     </div>
@@ -22,7 +27,11 @@ import { useRouter } from "vue-router";
 const store = useAppStore();
 
 // Aqui vai ser feito um compartilhamento com todas as bibliotecas
-let connection = new ApiConnection("http://localhost:8000", localStorage.getItem("user.token")??"", "admin");
+let connection = new ApiConnection(
+    "http://localhost:8001",
+    localStorage.getItem("user.token") ?? "",
+    "admin",
+);
 provide("api", connection);
 
 // meta

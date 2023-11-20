@@ -53,19 +53,31 @@ export default {
                 events: [{}],
 
                 // QUANDO UM EVENTO DE FORA É ARRASTADO PARA DENTRO DO CALENDARIO
-                drop: (item: any) => this.adicionarHorario(item.draggedEl.id, item.dateStr),
+                drop: (item: any) =>
+                    this.adicionarHorario(item.draggedEl.id, item.dateStr),
 
                 // QUANDO UM EVENTO DE DENTRO DO CALENDARIO É ARRASTADO PARA OUTRO LUGAR
                 eventDragStart: (item: any) =>
-                    this.removerSolicitacao(item.event.id, FormatoData.formatarParaApi(item.event.start)),
-                eventDrop: (item: any) => this.adicionarHorario(item.event.id, item.event.start),
+                    this.removerSolicitacao(
+                        item.event.id,
+                        FormatoData.formatarParaApi(item.event.start),
+                    ),
+                eventDrop: (item: any) =>
+                    this.adicionarHorario(item.event.id, item.event.start),
 
                 // QUANDO UM EVENTO DE DENTRO DO CALENDARIO É PRESSIONADO
                 eventClick: async (click: any) => {
-                    const response = await Response.mesagemConfirmacao("warning", "Remover", "Cancelar");
+                    const response = await Response.mesagemConfirmacao(
+                        "warning",
+                        "Remover",
+                        "Cancelar",
+                    );
                     if (response) {
                         click.event.remove(); // Remove na parte visual
-                        this.removerSolicitacao(click.event.id, FormatoData.formatarParaApi(click.event.start));
+                        this.removerSolicitacao(
+                            click.event.id,
+                            FormatoData.formatarParaApi(click.event.start),
+                        );
                     }
                 },
             },
@@ -87,7 +99,9 @@ export default {
 
         /** SOLICITACOES */
         adicionarHorario(id: number, date: never) {
-            let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(id);
+            let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(
+                id,
+            );
 
             Object(this.$refs.solicitacoes).inserirDadosSolicitacao(
                 item.index,
@@ -96,16 +110,27 @@ export default {
             );
         },
         proporHorario(id: number) {
-            let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(id);
+            let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(
+                id,
+            );
 
-            Object(this.$refs.solicitacoes).removerSolicitacao(item.index)
+            Object(this.$refs.solicitacoes).removerSolicitacao(item.index);
 
-            console.log(item.item.horarios);
+            this.$refs.calendar.getApi().getEvents().forEach(element => {
+                if(element._def.publicId == id){
+                    element._def.editable = false                    
+                }
+            });
         },
         removerSolicitacao(id: number, date: any) {
-            let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(id);
+            let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(
+                id,
+            );
 
-            Object(this.$refs.solicitacoes).removerDadosSolicitacao(item.index, date); // validar remocao
+            Object(this.$refs.solicitacoes).removerDadosSolicitacao(
+                item.index,
+                date,
+            ); // validar remocao
         },
         /** SOLICITACOES */
 
@@ -116,7 +141,9 @@ export default {
                 itemSelector: ".d-custom",
                 eventData: (el: any) => {
                     // let data = this.pegarDadosSolicitacao(el.id);
-                    let data = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(el.id);
+                    let data = Object(
+                        this.$refs.solicitacoes,
+                    ).pegarDadosSolicitacao(el.id);
                     return {
                         id: data.item.paciente_id,
                         title: data.item.paciente_nome,
@@ -130,19 +157,21 @@ export default {
 
         /** BUSCAR DADOS DE API */
         async buscarAgendamentos() {
-            await this.request.pegarDadosApi("/pre_agendamento/medico/1").then((response: any) => {
-                if (!response == null) {
-                    response.forEach((res: any) => {
-                        this.calendarOptions.events.push({
-                            id: res.paciente_id,
-                            title: res.paciente_nome,
-                            start: res.created_at,
-                            overlap: true,
-                            editable: true,
+            await this.request
+                .pegarDadosApi("/pre-agendamento/medico/1")
+                .then((response: any) => {
+                    if (!response == null) {
+                        response.forEach((res: any) => {
+                            this.calendarOptions.events.push({
+                                id: res.paciente_id,
+                                title: res.paciente_nome,
+                                start: res.created_at,
+                                overlap: true,
+                                editable: true,
+                            });
                         });
-                    });
-                }
-            });
+                    }
+                });
         },
         /** BUSCAR DADOS DE API */
     },
@@ -165,7 +194,7 @@ export default {
     <div>
         <div class="panel">
             <div class="mb-5">
-                <!-- LEGENDAS E BOTAO SOBRE O CALENDARIO -->
+                <!-- LEGENDAS E BOTAO SOBRE O CALENDARIO     -->
                 <HeaderAgenda @cadastrarEvento="cadastrarEvento()" />
 
                 <div class="flex flex-row justify-between gap-3">
@@ -173,13 +202,20 @@ export default {
                     <div
                         class="drag-container flex flex-col gap-2 p-4 shadow-md rounded-sm w-2/12 text-center overflow-y-auto"
                     >
-                        <Solicitacoes ref="solicitacoes" @proporHorario="proporHorario" />
+                        <Solicitacoes
+                            ref="solicitacoes"
+                            @proporHorario="proporHorario"
+                        />
                     </div>
                     <!-- SOLICITACOES -->
 
                     <!-- CALENDARIO -->
                     <div class="calendar-wrapper w-11/12">
-                        <FullCalendar :options="calendarOptions" style="z-index: -100"></FullCalendar>
+                        <FullCalendar
+                            :options="calendarOptions"
+                            style="z-index: -100"
+                            ref="calendar"
+                        ></FullCalendar>
                     </div>
                     <!-- CALENDARIO -->
                 </div>

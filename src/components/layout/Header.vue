@@ -277,7 +277,7 @@
                         </button>
                     </div>
 
-                   <ThemeChanger />
+                    <ThemeChanger />
 
                     <div class="dropdown shrink-0">
                         <Popper
@@ -612,7 +612,10 @@
                                                     >
                                                         <img
                                                             class="w-12 h-12 rounded-full object-cover"
-                                                            :src="`/assets/images/${notification.profile}`"
+                                                            :src="`/assets/images/${
+                                                                notification.profile ??
+                                                                null
+                                                            }`"
                                                             alt=""
                                                         />
                                                         <span
@@ -624,17 +627,17 @@
                                                     class="ltr:pl-3 rtl:pr-3 flex flex-auto"
                                                 >
                                                     <div
-                                                        class="ltr:pr-3 rtl:pl-3"
+                                                        class="ltr:pr-3 rtl:pl-3 font-bold"
                                                     >
                                                         <h6
                                                             v-html="
-                                                                notification.message
+                                                                notification.titulo
                                                             "
                                                         ></h6>
                                                         <span
                                                             class="text-xs block font-normal dark:text-gray-500"
                                                             v-text="
-                                                                notification.time
+                                                                notification.mensagem
                                                             "
                                                         ></span>
                                                     </div>
@@ -716,7 +719,7 @@
                                                         />
                                                     </svg>
                                                 </div>
-                                                No data available.
+                                                Nenhuma notificação.
                                             </div>
                                         </li>
                                     </template>
@@ -2122,11 +2125,12 @@ import appSetting from "@/app-setting";
 import { useRoute } from "vue-router";
 import { useAppStore } from "@/stores/index";
 import ThemeChanger from "@/components/layout/ThemeChanger.vue";
-
+import FirebaseClient from "@/firebase";
 
 const store = useAppStore();
 const route = useRoute();
 const search = ref(false);
+const firebase: FirebaseClient = new FirebaseClient();
 
 // multi language
 const i18n = reactive(useI18n());
@@ -2140,27 +2144,13 @@ const currentFlag = computed(() => {
 
 const notifications = ref([
     {
-        id: 1,
-        profile: "user-profile.jpeg",
-        message:
-            '<strong class="text-sm mr-1">Sauvvi Admin</strong>invite you to <strong>Prototyping</strong>',
-        time: "45 min ago",
-    },
-    {
-        id: 2,
-        profile: "profile-34.jpeg",
-        message:
-            '<strong class="text-sm mr-1">Adam Nolan</strong>mentioned you to <strong>UX Basics</strong>',
-        time: "9h Ago",
-    },
-    {
-        id: 3,
-        profile: "profile-16.jpeg",
-        message:
-            '<strong class="text-sm mr-1">Anna Morgan</strong>Upload a file',
-        time: "9h Ago",
+        id: 0,
+        profile: "",
+        titulo: "",
+        mensagem: "",
     },
 ]);
+firebase.receberMensagens(notifications);
 
 const messages = ref([
     {
