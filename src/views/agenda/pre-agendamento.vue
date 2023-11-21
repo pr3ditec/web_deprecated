@@ -1,8 +1,7 @@
 <script lang="ts">
-import { inject } from "vue";
-import MascarasInput from "@/helpers/MascaraInput";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
+import { inject } from "vue";
 
 export default {
     components: {
@@ -10,62 +9,56 @@ export default {
     },
     data() {
         return {
+            // api
             request: Object(inject("api")),
-            mascara: MascarasInput,
 
-            // Dados
-            mostrarTabela: false,
+            // tabela
             search: "",
             cols: [
                 {
-                    field: "medico",
+                    field: "paciente_nome",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("doctor"),
+                    title: this.$t("name") + ' ' +this.$t('patient'),
                 },
                 {
-                    field: "paciente",
+                    field: "especialidade",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("patient"),
+                    title: this.$t("capabilities"),
                 },
                 {
-                    field: "data",
+                    field: "status",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("date"),
-                },
-                {
-                    field: "hora",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("time"),
+                    title: this.$t("status"),
                 },
             ],
-            dadosTabela: [{
-                medico: "",
-                paciente: "",
-                data: "",
-                hora: ""
-            }],
+            dadosTabela: [
+                {
+                    paciente_nome: "vazio",
+                    especialidade: "",
+                    status: "",
+                },
+            ],
         };
     },
     methods: {},
     async created() {
         await this.request
-            .pegarDadosApi("/agendamento/medico/1")
-            .then((res: any) => {
-                this.dadosTabela = res;
+            .pegarDadosApi("/pre-agendamento/medico/1") // colocar o id do medico
+            .then((response: any) => {
+                this.dadosTabela = response;
+                this.dadosTabela.forEach((item) => {
+                    item["horarios"] = [];
+                });
             });
     },
-    mounted(){
-        setTimeout(() => (this.mostrarTabela = true), 500);
-    }
 };
 </script>
-
 <template>
     <div class="grid space-y-6 grid-cols-1 items-center">
         <!-- HEADER -->
         <div>
             <h1 class="text-4xl font-bold mb-4 capitalize">
-                {{ $t("appointment") }}
+                {{ $t("schedule attempt") }}
             </h1>
 
             <div class="flex flex-row gap-4 align-items-center">
@@ -89,7 +82,6 @@ export default {
                 class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700"
             />
             <vue3-datatable
-                v-if="mostrarTabela"
                 class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
                 :rows="dadosTabela"
                 :columns="cols"
@@ -102,7 +94,6 @@ export default {
                 nextArrow="Next"
             >
             </vue3-datatable>
-            <div v-else>loading</div>
         </div>
     </div>
 </template>
