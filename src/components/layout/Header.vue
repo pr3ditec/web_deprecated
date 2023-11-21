@@ -2125,12 +2125,12 @@ import appSetting from "@/app-setting";
 import { useRoute } from "vue-router";
 import { useAppStore } from "@/stores/index";
 import ThemeChanger from "@/components/layout/ThemeChanger.vue";
-// import FirebaseClient from "@/firebase";
+import FirebaseClient from "@/firebase";
 
 const store = useAppStore();
 const route = useRoute();
 const search = ref(false);
-// const firebase: FirebaseClient = new FirebaseClient();
+const firebase: FirebaseClient = new FirebaseClient();
 
 // multi language
 const i18n = reactive(useI18n());
@@ -2142,15 +2142,11 @@ const currentFlag = computed(() => {
     return `/assets/images/flags/${i18n.locale.toUpperCase()}.svg`;
 });
 
-const notifications = ref([
-    {
-        id: 0,
-        profile: "",
-        titulo: "",
-        mensagem: "",
-    },
-]);
-// firebase.receberMensagens(notifications);
+/** NOTIFICACOES DO FIREBASE */
+const notifications = ref([]);
+firebase.receberMensagens(notifications);
+console.log(window.navigator.userAgent)
+/** NOTIFICACOES DO FIREBASE */
 
 const messages = ref([
     {

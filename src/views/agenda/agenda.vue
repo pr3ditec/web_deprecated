@@ -116,7 +116,8 @@ export default {
 
             Object(this.$refs.solicitacoes).removerSolicitacao(item.index);
 
-            this.$refs.calendar.getApi().getEvents().forEach(element => {
+            let data: any = this.$refs.calendar
+            data.getApi().getEvents().forEach(element => {
                 if(element._def.publicId == id){
                     element._def.editable = false                    
                 }
