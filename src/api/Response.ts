@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { useAppStore } from "@/stores";
 
 export default class Response {
     public static mensagemErro(mensagem: string): any {
@@ -29,7 +30,24 @@ export default class Response {
         }).fire();
     }
 
-    public static async mesagemConfirmacao(icon: any, confirm: string, cancel: string): Promise<boolean> {
+    public static notificacaoToast(): any {
+        var store = useAppStore();
+        return Swal.mixin({
+            icon: "info",
+            toast: true,
+            showConfirmButton: false,
+            width: "8em",
+            background: store.isDarkMode ? "dark" : "white",
+            timer: 800,
+            position: "top",
+        }).fire();
+    }
+
+    public static async mesagemConfirmacao(
+        icon: any,
+        confirm: string,
+        cancel: string,
+    ): Promise<boolean> {
         return await Swal.fire({
             icon: icon,
             iconColor: "#3b3f5c",
