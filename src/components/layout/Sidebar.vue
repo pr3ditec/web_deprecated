@@ -109,12 +109,15 @@
                     </button>
 
                     <vue-collapsible :isOpen="activeDropdown === 'Schedule'">
-                        <ul class="sub-menu text-gray-500">
+                        <ul class="sub-menu text-gray-500 capitalize">
                             <li>
                                 <router-link to="/agenda" @click="toggleMobileMenu()">{{ $t("schedule") }}</router-link>
                             </li>
                             <li>
                                 <router-link to="/programar-agenda" @click="toggleMobileMenu()">{{ $t("make_an_schedule") }}</router-link>
+                            </li>
+                            <li>
+                                <router-link to="/pre-agendamento" @click="toggleMobileMenu()">{{ $t("schedule attempt") }}</router-link>
                             </li>
                         </ul>
                     </vue-collapsible>
