@@ -2125,12 +2125,12 @@ import appSetting from "@/app-setting";
 import { useRoute } from "vue-router";
 import { useAppStore } from "@/stores/index";
 import ThemeChanger from "@/components/layout/ThemeChanger.vue";
-import FirebaseClient from "@/firebase";
+// import FirebaseClient from "@/firebase";
 
 const store = useAppStore();
 const route = useRoute();
 const search = ref(false);
-const firebase: FirebaseClient = new FirebaseClient();
+// const firebase: FirebaseClient = new FirebaseClient();
 
 // multi language
 const i18n = reactive(useI18n());
@@ -2150,7 +2150,7 @@ const notifications = ref([
         mensagem: "",
     },
 ]);
-firebase.receberMensagens(notifications);
+// firebase.receberMensagens(notifications);
 
 const messages = ref([
     {
