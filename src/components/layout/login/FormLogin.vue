@@ -16,7 +16,7 @@ const store = useAppStore();
 const i18n = reactive(useI18n());
 
 const loginForm = reactive({
-    cpf: "99198223887",
+    login: "marlene@email.com",
     password: "marlene123",
 });
 
@@ -77,7 +77,7 @@ const submitForm = async () => {
                         id="iddoc"
                         type="text"
                         :placeholder="$t('idDoc')"
-                        v-model="loginForm.cpf"
+                        v-model="loginForm.login"
                         class="form-input ps-10 placeholder:text-white-dark text-center"
                         required
                     />
