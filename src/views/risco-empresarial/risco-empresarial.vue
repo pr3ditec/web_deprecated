@@ -340,7 +340,7 @@ export default {
             }
 
             const data = await this.request.pegarDadosApi(
-                `relatorio/risco_empresarial/${this.dataInicial}/${this.dataFim}`,
+                `relatorio/risco-empresarial/${this.dataInicial}/${this.dataFim}`,
             );
 
             let groupedData = {};
