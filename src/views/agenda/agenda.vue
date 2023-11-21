@@ -116,12 +116,14 @@ export default {
 
             Object(this.$refs.solicitacoes).removerSolicitacao(item.index);
 
-            let data: any = this.$refs.calendar
-            data.getApi().getEvents().forEach(element => {
-                if(element._def.publicId == id){
-                    element._def.editable = false                    
-                }
-            });
+            let data: any = this.$refs.calendar;
+            data.getApi()
+                .getEvents()
+                .forEach((element) => {
+                    if (element._def.publicId == id) {
+                        element._def.editable = false;
+                    }
+                });
         },
         removerSolicitacao(id: number, date: any) {
             let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(

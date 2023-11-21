@@ -2145,7 +2145,6 @@ const currentFlag = computed(() => {
 /** NOTIFICACOES DO FIREBASE */
 const notifications = ref([]);
 firebase.receberMensagens(notifications);
-console.log(window.navigator.userAgent)
 /** NOTIFICACOES DO FIREBASE */
 
 const messages = ref([

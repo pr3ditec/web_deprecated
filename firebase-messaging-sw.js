@@ -23,20 +23,22 @@ messaging.onBackgroundMessage(function (payload) {
         icon: "/assets/images/logo.png",
         body: payload.data.remetente,
     };
-    console.log(self)
-    self.onnotificationclick = function (event){
+    console.log(self);
+    self.onnotificationclick = function (event) {
         event.waitUntil(
             clients
-              .matchAll({
-                type: "window",
-              })
-              .then((clientList) => {
-                for (const client of clientList) {
-                  if (client.url === "/" && "focus" in client) return client.focus();
-                }
-                if (clients.openWindow) return clients.openWindow("/agenda");
-              }),
-          );
-    }
+                .matchAll({
+                    type: "window",
+                })
+                .then((clientList) => {
+                    for (const client of clientList) {
+                        if (client.url === "/" && "focus" in client)
+                            return client.focus();
+                    }
+                    if (clients.openWindow)
+                        return clients.openWindow("/agenda");
+                }),
+        );
+    };
     self.registration.showNotification(notificationTitle, notificationOptions);
 });

@@ -22,14 +22,11 @@ export default class FirebaseClient {
         this.app = initializeApp(this.firebaseConfig);
         // Chamando instancia que recebe as mensagens
         this.mensagens = getMessaging(this.app);
-
-        // fica ouvindo as mensagens que vao acontecer em primeiro plano
-        // this.recuperarToken();
     }
 
     public async receberMensagens(arrayNotificacoes: any) {
         onMessage(this.mensagens, (payload) => {
-            Response.notificacaoToast()
+            Response.notificacaoToast();
             arrayNotificacoes.value.push({
                 id: 1,
                 profile: "user-profile.jpeg",

@@ -29,22 +29,25 @@ export default class Response {
             position: "top",
         }).fire();
     }
-    
+
     public static notificacaoToast(): any {
-        var store = useAppStore()
+        var store = useAppStore();
         return Swal.mixin({
-            icon: 'info',
+            icon: "info",
             toast: true,
             showConfirmButton: false,
-            width: '8em',
-            background: store.isDarkMode ? 'dark' : 'white',
+            width: "8em",
+            background: store.isDarkMode ? "dark" : "white",
             timer: 800,
             position: "top",
         }).fire();
     }
-    
 
-    public static async mesagemConfirmacao(icon: any, confirm: string, cancel: string): Promise<boolean> {
+    public static async mesagemConfirmacao(
+        icon: any,
+        confirm: string,
+        cancel: string,
+    ): Promise<boolean> {
         return await Swal.fire({
             icon: icon,
             iconColor: "#3b3f5c",
