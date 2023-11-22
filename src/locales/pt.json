@@ -186,5 +186,7 @@
   "released_times": "horários liberados",
   "schedule_attempt": "Pré agendamento",
   "release_schedules": "Liberar Horários",
-  "cancel": "cancelar"
+  "cancel": "cancelar",
+  "select_doctor": "Selecione um profissional para visualizar agenda",
+  "loading": "Carregando"
 }

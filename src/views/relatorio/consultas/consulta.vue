@@ -102,7 +102,7 @@ export default {
                 nextArrow="Next"
             >
             </vue3-datatable>
-            <div v-else>loading</div>
+            <div v-else>{{ $t('loading')}}</div>
         </div>
     </div>
 </template>

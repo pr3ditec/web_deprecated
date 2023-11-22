@@ -38,7 +38,7 @@ export default {
                     field: "documento",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
                     title: this.$t("cpf"),
-                    cellRenderer: async (item: any) => {
+                    cellRenderer: (item: any) => {
                         if (item.documento.length == 0) {
                             return "";
                         }
@@ -126,7 +126,7 @@ export default {
             />
             <hr
                 class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700"
-            />
+            />  
             <vue3-datatable
                 v-if="mostrarTabela"
                 class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
@@ -141,7 +141,7 @@ export default {
                 nextArrow="Next"
             >
             </vue3-datatable>
-            <div v-else>Loading</div>
+            <div v-else>{{ $t('loading')}}</div>
         </div>
     </div>
 </template>

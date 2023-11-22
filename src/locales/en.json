@@ -121,5 +121,7 @@
   "home": "Home",
   "signin": "Signin",
   "signup": "Signup",
-  "signout": "Signout"
+  "signout": "Signout",
+  "select_doctor": "Select a doctor to see his agenda",
+  "loading": "Loading"
 }
