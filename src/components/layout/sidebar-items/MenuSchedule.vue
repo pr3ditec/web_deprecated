@@ -117,7 +117,7 @@ const toggleMobileMenu = () => {
                     <router-link
                         to="/pre-agendamento"
                         @click="toggleMobileMenu()"
-                        >{{ $t("schedule attempt") }}</router-link
+                        >{{ $t("schedule_attempt") }}</router-link
                     >
                 </li>
             </ul>

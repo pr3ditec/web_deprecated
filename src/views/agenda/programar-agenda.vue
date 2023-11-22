@@ -19,22 +19,22 @@
                     class="border-1 p-5 sm:align-middle bg-white rounded-lg shadow-md"
                 >
                     <button
-                        class="mt-3 mb-2 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        class="mt-3 mb-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                         @click="
                             showSchedule = true;
                             showAvailableHours = false;
                         "
                     >
-                        Liberar Horários
+                        {{ $t("release_schedules") }}
                     </button>
                     <button
-                        class="mt-3 mb-2 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        class="mt-3 mb-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                         @click="
                             showSchedule = false;
                             showAvailableHours = true;
                         "
                     >
-                        Horários liberados
+                        {{ $t("released_times") }}
                     </button>
                     <div v-if="showSchedule">
                         <div class="mt-3">
@@ -150,12 +150,11 @@
                     </div>
 
                     <div class="table-responsive" v-if="showAvailableHours">
-                        <table>
+                        <table class="table-hover">
                             <thead>
-                                <tr>
-                                    <th>Data</th>
-                                    <th>Horários</th>
-                                    <th>Ação</th>
+                                <tr class="uppercase">
+                                    <th class="!text-center">{{ $t("date") }}</th>
+                                    <th class="!text-center">{{ $t("schedules") }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -163,38 +162,56 @@
                                     v-for="day in existingSchedules"
                                     :key="day.data"
                                 >
-                                    <tr v-if="day.horarios.length > 0">
-                                        <td>{{ day.data }}</td>
-                                        <td>
-                                            <ul>
-                                                <li
-                                                    v-for="(
-                                                        hour, index
-                                                    ) in day.horarios"
-                                                    :key="index"
-                                                >
-                                                    {{ hour.hora }}
-                                                    <button
-                                                        @click="
-                                                            deleteHour(
-                                                                day,
-                                                                index,
-                                                            )
-                                                        "
-                                                    >
-                                                        Excluir
-                                                    </button>
-                                                </li>
-                                            </ul>
+                                    <tr
+                                        v-if="
+                                            day.horarios.length > 0 &&
+                                            new Date(day.data) >= new Date()
+                                        "
+                                    >
+                                        <td class="!text-center">
+                                            {{ day.data }}
                                         </td>
-                                        <td>
-                                            <!-- <button @click="deleteDay(day)"> -->
-                                            <button>Excluir Dia</button>
+
+                                        <td class="!text-center">
+                                            <span
+                                                v-for="(
+                                                    hour, index
+                                                ) in day.horarios"
+                                                :key="index"
+                                                class="inline-block m-1 px-2"
+                                                @click="
+                                                    toggleHourDisp(day, index)
+                                                "
+                                                :class="[
+                                                    selectedHours.includes(hour)
+                                                        ? 'bg-red-500 text-white rounded-full cursor-pointer p-1'
+                                                        : 'bg-green-500 text-white rounded-full cursor-pointer p-1',
+                                                ]"
+                                            >
+                                                {{ hour.hora }}
+                                            </span>
                                         </td>
                                     </tr>
                                 </template>
                             </tbody>
                         </table>
+                        <div
+                            class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
+                        >
+                            <button
+                                class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                                @click="saveChanges"
+                            >
+                                {{ $t("record") }}
+                            </button>
+                            <button
+                                type="button"
+                                class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                                @click="cancelChanges"
+                            >
+                                {{ $t("cancel") }}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -232,6 +249,7 @@ export default {
             selectedDate: null as string | null,
             isAllSelected: false,
             showTable: false,
+            selectedTimezone: null,
             incrementoSelecionado: "30",
             existingSchedules: [],
             selectedHours: [] as string[],
@@ -249,6 +267,9 @@ export default {
                 initialView: "dayGridMonth",
                 selectable: true,
                 heigth: 600,
+                validRange: {
+                    start: new Date(),
+                },
                 select: (info) => {
                     this.selectedDates = this.generateSelectedDates(
                         new Date(info.startStr),
@@ -310,6 +331,9 @@ export default {
                 const response = await this.request.pegarDadosApi(
                     `/consulta/medico/${doctorId}`,
                 );
+
+                this.selectedTimezone = response.horarios[0].timezone;
+
                 console.log(response);
                 this.existingSchedules = response.horarios.map((day) => ({
                     data: day.data,
@@ -432,6 +456,61 @@ export default {
                 this.selectedHours = this.table.flat();
             }
             this.isAllSelected = !this.isAllSelected;
+        },
+
+        toggleHourDisp(day, index) {
+            const hour = day.horarios[index];
+            const idx = this.selectedHours.indexOf(hour);
+            if (idx >= 0) {
+                this.selectedHours.splice(idx, 1);
+            } else {
+                this.selectedHours.push(hour);
+            }
+        },
+        formatDate(dateString, timezone) {
+            let date = new Date(dateString + "T00:00:00" + timezone);
+            let formattedDate = date.toLocaleDateString("pt-BR");
+            return formattedDate;
+        },
+        saveChanges() {
+            this.existingSchedules.forEach((day) => {
+                day.horarios = day.horarios.filter(
+                    (hour) => !this.selectedHours.includes(hour),
+                );
+            });
+
+            let schedules = this.existingSchedules.filter(
+                (day) => day.horarios.length > 0,
+            );
+
+            console.log(schedules);
+            this.sendHoursToAPI(schedules);
+        },
+        cancelChanges() {
+            this.selectedHours = [];
+        },
+        async sendHoursToAPI(schedules) {
+            try {
+                let data = {
+                    medico_id: this.selectedDoctor,
+                    horarios_disponiveis: JSON.stringify(schedules),
+                };
+                console.log(data);
+                let response = await this.request.enviarDadosApi(
+                    "/consulta/criar",
+                    data,
+                );
+                console.log(response);
+                if (response && !response.error) {
+                    this.showMessage("Agenda atualizada com sucesso!");
+                    await this.fetchDoctorAvailability(this.selectedDoctor);
+                } else {
+                    this.showMessage("Erro ao atualizar a agenda.", "error");
+                }
+            } catch (error) {
+                console.error("Erro ao atualizar a agenda: ", error);
+                this.showMessage("Erro ao atualizar a agenda.", "error");
+            }
         },
         async saveHours() {
             this.isAddEventModal = false;

@@ -58,7 +58,7 @@ export default {
         <!-- HEADER -->
         <div>
             <h1 class="text-4xl font-bold mb-4 capitalize">
-                {{ $t("schedule attempt") }}
+                {{ $t("schedule_attempt") }}
             </h1>
 
             <div class="flex flex-row gap-4 align-items-center">

@@ -184,5 +184,7 @@
   "record": "Gravar",
   "close": "Fechar",
   "released_times": "horários liberados",
-  "schedule attempt": "Pré agendamento"
+  "schedule_attempt": "Pré agendamento",
+  "release_schedules": "Liberar Horários",
+  "cancel": "cancelar"
 }
