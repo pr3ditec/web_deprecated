@@ -205,6 +205,31 @@ const toggleMobileMenu = () => {
                         >{{ $t("lightbox") }}</router-link
                     >
                 </li>
+                <li>
+                    <router-link to="/test" @click="toggleMobileMenu()">{{
+                        $t("Test")
+                    }}</router-link>
+                </li>
+                <li>
+                    <router-link to="/tables" @click="toggleMobileMenu()">{{
+                        $t("tables")
+                    }}</router-link>
+                </li>
+                <li>
+                    <router-link to="/analytics" @click="toggleMobileMenu()">{{
+                        $t("analytics")
+                    }}</router-link>
+                </li>
+                <li>
+                    <router-link to="/finance" @click="toggleMobileMenu()">{{
+                        $t("finance")
+                    }}</router-link>
+                </li>
+                <li>
+                    <router-link to="/crypto" @click="toggleMobileMenu()">{{
+                        $t("crypto")
+                    }}</router-link>
+                </li>
             </ul>
         </vue-collapsible>
     </li>
