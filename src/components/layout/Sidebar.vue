@@ -67,12 +67,14 @@ const toggleMobileMenu = () => {
                     <ul
                         class="relative font-semibold space-y-0.5 p-4 py-0 mb-10"
                     >
+                        <!-- production menus -->
                         <MenuDashboard />
                         <MenuSchedule />
                         <MenuRegister />
                         <MenuGeneralReport />
                         <MenuAuth />
 
+                        <!-- ref menus -->
                         <MenuApps />
                         <MenuUserInterface />
                         <MenuTableAndForms />
