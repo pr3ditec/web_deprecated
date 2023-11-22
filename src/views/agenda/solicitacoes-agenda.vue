@@ -3,13 +3,19 @@ import { remove } from "dom7";
 import { inject } from "vue";
 
 export default {
+    props: {
+        medico: Number,
+    },
     data() {
         return {
             request: Object(inject("api")),
+            // medicoSelect: 1,
             solicitacaoAgenda: [
                 {
                     paciente_id: 0,
-                    paciente_nome: "vazio",
+                    paciente_nome: "",
+                    especialidade: "",
+                    status: "",
                     horarios: [],
                 },
             ],
@@ -61,7 +67,7 @@ export default {
     },
     async created() {
         await this.request
-            .pegarDadosApi("/pre-agendamento/medico/1")
+            .pegarDadosApi(`/pre-agendamento/medico/${this.medico}`)
             .then((response: any) => {
                 this.solicitacaoAgenda = response;
                 this.solicitacaoAgenda.forEach((item) => {
@@ -69,53 +75,58 @@ export default {
                 });
             });
     },
-
-    mounted() {},
 };
 </script>
 <template>
     <h6 class="uppercase font-bold font-xl mt-3">solicitações</h6>
-    <TransitionGroup name="list" tag="div">
-        <div
-            :id="solicitacao.paciente_id.toString()"
-            class="d-custom max-w-[30rem] w-full bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none hover:bg-slate-50"
-            v-for="solicitacao in solicitacaoAgenda"
-        >
-            <div class="p-5 flex items-center flex-col sm:flex-row">
-                <div class="mb-3 w-20 h-20 rounded-full overflow-hidden">
-                    <img
-                        src="/assets/images/logo.png"
-                        alt=""
-                        height="24"
-                        class="w-full h-full object-cover"
-                    />
+    <div v-if="solicitacaoAgenda[0].paciente_id == 0">Carregando</div>
+    <div v-else>
+        <TransitionGroup name="list" tag="div">
+            <div
+                :id="solicitacao.paciente_id.toString()"
+                class="d-custom max-w-[30rem] w-full bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none hover:bg-slate-50"
+                v-for="solicitacao in solicitacaoAgenda"
+            >
+                <div class="p-5 flex items-center flex-col sm:flex-row">
+                    <div class="mb-3 w-20 h-20 rounded-full overflow-hidden">
+                        <img
+                            src="/assets/images/logo.png"
+                            alt=""
+                            height="24"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                    <div
+                        class="flex-1 ltr:sm:pl-5 rtl:sm:pr-5 text-center sm:text-left"
+                    >
+                        <h5
+                            class="text-[#3b3f5c] text-[15px] font-semibold mb-1 dark:text-white-light"
+                        >
+                            {{ solicitacao.paciente_nome }}
+                        </h5>
+                        <p class="mb-1 text-white-dark">
+                            {{ solicitacao.especialidade }}
+                        </p>
+                        <span class="badge bg-dark rounded-full">{{
+                            solicitacao.status
+                        }}</span>
+                        <p class="font-semibold text-white-dark mt-2 sm:mt-4">
+                            Maecenas nec mi vel lacus condimentum.
+                        </p>
+                    </div>
                 </div>
                 <div
-                    class="flex-1 ltr:sm:pl-5 rtl:sm:pr-5 text-center sm:text-left"
+                    class="flex flex-col mb-4 items-center justify-center"
+                    v-show="solicitacao.horarios.length > 0"
                 >
-                    <h5
-                        class="text-[#3b3f5c] text-[15px] font-semibold mb-1 dark:text-white-light"
+                    <button
+                        class="btn btn-sm btn-dark capitalize"
+                        @click="emitProporHorario(solicitacao.paciente_id)"
                     >
-                        {{ solicitacao.paciente_nome }}
-                    </h5>
-                    <p class="mb-1 text-white-dark">tset</p>
-                    <span class="badge bg-dark rounded-full">Tipo</span>
-                    <p class="font-semibold text-white-dark mt-2 sm:mt-4">
-                        Maecenas nec mi vel lacus condimentum.
-                    </p>
+                        propor horarios
+                    </button>
                 </div>
             </div>
-            <div
-                class="flex flex-col mb-4 items-center justify-center"
-                v-show="solicitacao.horarios.length > 0"
-            >
-                <button
-                    class="btn btn-sm btn-dark capitalize"
-                    @click="emitProporHorario(solicitacao.paciente_id)"
-                >
-                    propor horarios
-                </button>
-            </div>
-        </div>
-    </TransitionGroup>
+        </TransitionGroup>
+    </div>
 </template>

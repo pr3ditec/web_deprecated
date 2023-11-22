@@ -89,7 +89,7 @@ export default {
             console.log("cadastrarEvento");
         },
         updateMedico(medico: any) {
-            console.log("medico_id");
+            this.medicoSelect = medico;
         },
         /** EMITS - EVENTOS DE COMPOENTES FILHOS */
 
@@ -139,6 +139,7 @@ export default {
 
         /** ARRASTAR E SOLTAR */
         arrastarSolicitacoes() {
+            if (this.medicoSelect == 0) return;
             let doc: any = document.getElementsByClassName("drag-container");
             new Draggable(doc[0], {
                 itemSelector: ".d-custom",
@@ -151,7 +152,7 @@ export default {
                         id: data.item.paciente_id,
                         title: data.item.paciente_nome,
                         overlap: true,
-                        editable: true,
+                        editable: false,
                     };
                 },
             });
@@ -160,8 +161,9 @@ export default {
 
         /** BUSCAR DADOS DE API */
         async buscarAgendamentos() {
+            if (this.medicoSelect == 0) return;
             await this.request
-                .pegarDadosApi("/pre-agendamento/medico/1")
+                .pegarDadosApi(`/pre-agendamento/medico/${this.medicoSelect}`)
                 .then((response: any) => {
                     if (!response == null) {
                         response.forEach((res: any) => {
@@ -178,13 +180,12 @@ export default {
         },
         /** BUSCAR DADOS DE API */
     },
-
-    async created() {
-        this.buscarAgendamentos(); // Buscando agendamentos que estao vinculados com o medico
-    },
-
-    mounted() {
-        this.arrastarSolicitacoes(); // Criando as propriedades para arrastar
+    watch: {
+        async medicoSelect(novoValor) {
+            this.buscarAgendamentos().then(() => {
+                this.arrastarSolicitacoes();
+            });
+        },
     },
 };
 </script>
@@ -195,34 +196,43 @@ export default {
         <SelectMedico @update:modelValue="($event) => updateMedico($event)" />
     </div>
     <div>
-        <div class="panel">
-            <div class="mb-5">
-                <!-- LEGENDAS E BOTAO SOBRE O CALENDARIO     -->
-                <HeaderAgenda @cadastrarEvento="cadastrarEvento()" />
+        <TransitionGroup  name="list" tag="div">
+            <div v-if="medicoSelect != 0" class="panel">
+                <div class="mb-5">
+                    <!-- LEGENDAS E BOTAO SOBRE O CALENDARIO     -->
+                    <HeaderAgenda @cadastrarEvento="cadastrarEvento()" />
 
-                <div class="flex flex-row justify-between gap-3">
-                    <!-- SOLICITACOES -->
-                    <div
-                        class="drag-container flex flex-col gap-2 p-4 shadow-md rounded-sm w-2/12 text-center overflow-y-auto"
-                    >
-                        <Solicitacoes
-                            ref="solicitacoes"
-                            @proporHorario="proporHorario"
-                        />
-                    </div>
-                    <!-- SOLICITACOES -->
+                    <div class="flex flex-row justify-between gap-3">
+                        <!-- SOLICITACOES -->
+                        <div
+                            class="drag-container flex flex-col gap-2 p-4 shadow-md rounded-sm w-2/12 text-center overflow-y-auto"
+                        >
+                            <Solicitacoes
+                                ref="solicitacoes"
+                                :medico=medicoSelect
+                                @proporHorario="proporHorario"
+                            />
+                        </div>
+                        <!-- SOLICITACOES -->
 
-                    <!-- CALENDARIO -->
-                    <div class="calendar-wrapper w-11/12">
-                        <FullCalendar
-                            :options="calendarOptions"
-                            style="z-index: -100"
-                            ref="calendar"
-                        ></FullCalendar>
+                        <!-- CALENDARIO -->
+                        <div class="calendar-wrapper w-11/12">
+                            <FullCalendar
+                                :options="calendarOptions"
+                                style="z-index: -100"
+                                ref="calendar"
+                            ></FullCalendar>
+                        </div>
+                        <!-- CALENDARIO -->
                     </div>
-                    <!-- CALENDARIO -->
                 </div>
             </div>
-        </div>
+            <div
+                v-else
+                class="flex flex-col items-center justify-center"
+            >
+                <h1 class="text-md font-medium">{{ $t('select_doctor') }}</h1>
+            </div>
+        </TransitionGroup>
     </div>
 </template>

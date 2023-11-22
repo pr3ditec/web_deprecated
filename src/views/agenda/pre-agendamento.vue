@@ -14,11 +14,12 @@ export default {
 
             // tabela
             search: "",
+            mostrarTabela: false,
             cols: [
                 {
                     field: "paciente_nome",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("name") + ' ' +this.$t('patient'),
+                    title: this.$t("name") + " " + this.$t("patient"),
                 },
                 {
                     field: "especialidade",
@@ -51,6 +52,9 @@ export default {
                 });
             });
     },
+    mounted(){
+        setTimeout(() => (this.mostrarTabela = true), 500);
+    }
 };
 </script>
 <template>
@@ -82,6 +86,7 @@ export default {
                 class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700"
             />
             <vue3-datatable
+                v-if="mostrarTabela"
                 class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
                 :rows="dadosTabela"
                 :columns="cols"
@@ -94,6 +99,7 @@ export default {
                 nextArrow="Next"
             >
             </vue3-datatable>
+            <div v-else>{{ $t("loading") }}</div>
         </div>
     </div>
 </template>
