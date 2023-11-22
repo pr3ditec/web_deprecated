@@ -1,10 +1,11 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import Response from "../api/Response";
+import axios from "axios";
 
 export default class FirebaseClient {
     // configs
-    private firebaseConfig: object = { 
+    private firebaseConfig: object = {
         authDomain: "sauvvitech-e6b9c.firebaseapp.com",
         apiKey: "AIzaSyCgHpbq5-JlDhxaABnkNmqiMj-E-oYA6hg",
         appId: "1:601401587384:android:1b69a7e478cd58b090664d",
@@ -20,8 +21,9 @@ export default class FirebaseClient {
     constructor() {
         // inicializando o firebase
         this.app = initializeApp(this.firebaseConfig);
-        // Chamando instancia que recebe as mensagens
         this.mensagens = getMessaging(this.app);
+        // Chamando instancia que recebe as mensagens
+        // console.log(window.navigator)
     }
 
     public async receberMensagens(arrayNotificacoes: any) {
@@ -36,10 +38,12 @@ export default class FirebaseClient {
         });
     }
 
-    public recuperarToken() {
-        getToken(this.mensagens).then((response) => {
-            console.log(response);
-        });
+    private async recuperarToken(): Promise<string> {
+        // var token = "token";
+        // getToken(this.mensagens).then((res) => {
+        //     token = res;
+        // });
+        return await getToken(this.mensagens);
     }
 
     private permitirNotificacoes() {
@@ -49,6 +53,44 @@ export default class FirebaseClient {
             } else {
                 return false;
             }
+        });
+    }
+
+    public async cadastrarDispositivo() {
+        const userAgentData = window.navigator.userAgent.toLocaleLowerCase();
+        const versionData = userAgentData.split("(")[1].split(" ");
+        let dataAxios = {
+            system: userAgentData.includes("windows")
+                ? "windows"
+                : userAgentData.includes("linux")
+                  ? "linux"
+                  : userAgentData.includes("android")
+                    ? "android"
+                    : userAgentData.includes("iphone")
+                      ? "iphone"
+                      : "desconehcido",
+            version: `${versionData[1]}${versionData[2]}`,
+            brand: userAgentData.includes("windows")
+                ? "microsoft"
+                : userAgentData.includes("iphone")
+                  ? "apple"
+                  : userAgentData.includes("ubuntu")
+                    ? "ubuntu"
+                    : userAgentData.includes("debian")
+                      ? "debian"
+                      : "desconhecido",
+            browser: window.navigator.userAgent.includes("Chrome")
+                ? "chrome"
+                : window.navigator.userAgent.includes("Firefox")
+                  ? "firefox"
+                  : "unknow",
+            token: await this.recuperarToken(),
+        };
+        axios.post("http://127.0.0.1:8001/dispositivo/admin/", dataAxios, {
+            headers: {
+                "origin-request": "admin",
+                Authorization: localStorage.getItem("user.token"),
+            },
         });
     }
 }
