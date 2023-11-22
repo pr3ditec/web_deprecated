@@ -38,17 +38,17 @@ const toggleMobileMenu = () => {
 </script>
 
 <template>
-    <TitleDivision title="dashboard" />
+    <TitleDivision title="report" />
 
     <li class="menu nav-item">
         <button
             type="button"
             class="nav-link group w-full"
-            :class="{ active: activeDropdown === 'dashboard' }"
+            :class="{ active: activeDropdown === 'relatorio' }"
             @click="
-                activeDropdown === 'dashboard'
+                activeDropdown === 'relatorio'
                     ? (activeDropdown = null)
-                    : (activeDropdown = 'dashboard')
+                    : (activeDropdown = 'relatorio')
             "
         >
             <div class="flex items-center">
@@ -72,14 +72,14 @@ const toggleMobileMenu = () => {
                 </svg>
 
                 <span
-                    class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark"
+                    class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark capitalize"
                 >
-                    {{ $t("dashboard") }}
+                    {{ $t("report") }}
                 </span>
             </div>
             <div
                 class="rtl:rotate-180"
-                :class="{ '!rotate-90': activeDropdown === 'dashboard' }"
+                :class="{ '!rotate-90': activeDropdown === 'relatorio' }"
             >
                 <svg
                     width="16"
@@ -99,37 +99,25 @@ const toggleMobileMenu = () => {
             </div>
         </button>
 
-        <vue-collapsible :isOpen="activeDropdown === 'dashboard'">
+        <vue-collapsible :isOpen="activeDropdown === 'relatorio'">
             <ul class="sub-menu text-gray-500">
-                <!-- <li>
-                                <router-link to="/test" @click="toggleMobileMenu()">{{ $t('Test') }}</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/tables" @click="toggleMobileMenu()">{{ $t('tables')
-                                }}</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/analytics" @click="toggleMobileMenu()">{{ $t('analytics')
-                                }}</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/finance" @click="toggleMobileMenu()">{{ $t('finance')
-                                }}</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/crypto" @click="toggleMobileMenu()">{{ $t('crypto')
-                                }}</router-link>
-                            </li> -->
                 <li>
                     <router-link
-                        to="/risco-empresarial"
+                        to="/relatorios/medicos"
                         @click="toggleMobileMenu()"
-                        >{{ $t("busines_risk") }}</router-link
+                        class="capitalize"
+                        >{{ $t("doctor") }}</router-link
+                    >
+                </li>
+                <li>
+                    <router-link
+                        to="/relatorios/consultas"
+                        @click="toggleMobileMenu()"
+                        class="capitalize"
+                        >{{ $t("appointment") }}</router-link
                     >
                 </li>
             </ul>
         </vue-collapsible>
     </li>
-
-   
 </template>

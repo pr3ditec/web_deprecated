@@ -21,8 +21,9 @@ useMeta({ title: "Login" });
         </div>
 
         <div
-            class="relative flex min-h-screen items-center justify-center bg-[url(/assets/images/auth/noimage.png)] bg-cover bg-center bg-no-repeat px-6 py-10 dark:bg-[#060818] sm:px-16"
+            class="relative flex min-h-screen items-center justify-center dark:bg-[#060818] sm:px-16"
         >
+            <!-- <div class="relative flex min-h-screen items-center justify-center bg-[url(/assets/images/auth/map.png)] bg-cover bg-center bg-no-repeat px-6 py-10 dark:bg-[#060818] sm:px-16"> -->
             <!-- <img src="/assets/images/auth/polygon-object.svg" alt="image" class="absolute bottom-0 end-[50%]" /> -->
 
             <div
