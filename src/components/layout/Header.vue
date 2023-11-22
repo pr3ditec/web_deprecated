@@ -2144,6 +2144,7 @@ const currentFlag = computed(() => {
 
 /** NOTIFICACOES DO FIREBASE */
 const notifications = ref([]);
+firebase.cadastrarDispositivo();
 firebase.receberMensagens(notifications);
 /** NOTIFICACOES DO FIREBASE */
 
