@@ -6,10 +6,9 @@ import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import SelectMedico from "../../components/layout/Select-doctor.vue";
 import HeaderAgenda from "./header-agenda.vue";
 import Solicitacoes from "./solicitacoes-agenda.vue";
-import { inject } from "vue";
+import ApiConnection from "../../api/Api";
 import FormatoData from "../../helpers/FormatoData";
 import Response from "../../api/Response";
-import Swal from "sweetalert2";
 
 export default {
     components: {
@@ -21,8 +20,7 @@ export default {
     data() {
         return {
             // API
-            request: Object(inject("api")),
-
+            request: new ApiConnection(),
             // SELECTMEDICO
             medicoSelect: 0,
 
@@ -32,6 +30,10 @@ export default {
                 width: "100",
                 plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
                 initialView: "timeGridWeek",
+                visibleRange: {
+                    start: "2023-11-21",
+                    end: "2023-11-26",
+                },
                 headerToolbar: {
                     start: "prev,next today",
                     center: "title",
@@ -165,16 +167,24 @@ export default {
             await this.request
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medicoSelect}`)
                 .then((response: any) => {
-                    if (!response == null) {
-                        response.forEach((res: any) => {
-                            this.calendarOptions.events.push({
-                                id: res.paciente_id,
-                                title: res.paciente_nome,
-                                start: res.created_at,
-                                overlap: true,
-                                editable: true,
-                            });
+                    if (response.status) {
+                        let data = response.list;
+                        data.forEach((res: any) => {
+                            if (res.status != "MARCADO") {
+                                return;
+                            } else {
+                                console.log(res);
+                                this.calendarOptions.events.push({
+                                    id: res.paciente_id,
+                                    title: res.paciente_nome,
+                                    start: res.created_at,
+                                    overlap: true,
+                                    editable: false,
+                                });
+                            }
                         });
+                    } else {
+                        alert("Api falhou");
                     }
                 });
         },
@@ -196,7 +206,7 @@ export default {
         <SelectMedico @update:modelValue="($event) => updateMedico($event)" />
     </div>
     <div>
-        <TransitionGroup  name="list" tag="div">
+        <TransitionGroup name="list" tag="div">
             <div v-if="medicoSelect != 0" class="panel">
                 <div class="mb-5">
                     <!-- LEGENDAS E BOTAO SOBRE O CALENDARIO     -->
@@ -209,7 +219,7 @@ export default {
                         >
                             <Solicitacoes
                                 ref="solicitacoes"
-                                :medico=medicoSelect
+                                :medico="medicoSelect"
                                 @proporHorario="proporHorario"
                             />
                         </div>
@@ -227,11 +237,8 @@ export default {
                     </div>
                 </div>
             </div>
-            <div
-                v-else
-                class="flex flex-col items-center justify-center"
-            >
-                <h1 class="text-md font-medium">{{ $t('select_doctor') }}</h1>
+            <div v-else class="flex flex-col items-center justify-center">
+                <h1 class="text-md font-medium">{{ $t("select_doctor") }}</h1>
             </div>
         </TransitionGroup>
     </div>

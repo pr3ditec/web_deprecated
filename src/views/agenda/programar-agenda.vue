@@ -229,7 +229,7 @@ import SelectHorarioInicio from "../../components/layout/Select-time.vue";
 import SelectHorarioFim from "../../components/layout/Select-time.vue";
 import Swal from "sweetalert2";
 import { useMeta } from "@/composables/use-meta";
-import { inject } from "vue";
+import ApiConnection from "../../api/Api";
 
 export default {
     components: {
@@ -240,7 +240,7 @@ export default {
     },
     data() {
         return {
-            request: Object(inject("api")),
+            request: new ApiConnection(),
             selectedDates: [],
             showSchedule: true,
             showAvailableHours: false,
@@ -331,11 +331,11 @@ export default {
                 const response = await this.request.pegarDadosApi(
                     `/consulta/medico/${doctorId}`,
                 );
-
-                this.selectedTimezone = response.horarios[0].timezone;
+                
+                this.selectedTimezone = response.list.horarios[0].timezone;
 
                 console.log(response);
-                this.existingSchedules = response.horarios.map((day) => ({
+                this.existingSchedules = response.list.horarios.map((day) => ({
                     data: day.data,
                     horarios: day.horarios.map((horario) => ({
                         hora: horario.hora,

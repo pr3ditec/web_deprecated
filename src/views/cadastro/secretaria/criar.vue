@@ -1,13 +1,13 @@
 <script lang="ts">
 import ValidacaoInput from "../../../helpers/ValidacaoInput";
 import Response from "../../../api/Response";
-import { inject } from "vue";
+import ApiConnection from "../../../api/Api";
 import { useAppStore } from "@/stores/index";
 
 export default {
     data() {
         return {
-            request: Object(inject("api")),
+            request: new ApiConnection(),
             store: useAppStore(),
             // Formulario para castro
             secretariaFormData: {
@@ -86,7 +86,9 @@ export default {
     },
 
     async created() {
-        this.nacionalidade = await this.request.pegarDadosApi("/nacionalidade");
+        let nacionalidadeResponse =
+            await this.request.pegarDadosApi("/nacionalidade");
+        this.nacionalidade = nacionalidadeResponse.list;
     },
 
     mounted() {

@@ -2,32 +2,29 @@ import axios from "axios";
 
 export default class Api {
     private request: any;
-    private token: string;
-    private origin: string;
 
-    constructor(url: string, token: string, origin: string) {
-        this.token = token;
-        this.origin = origin;
-
+    constructor() {
         this.request = axios.create({
-            baseURL: url,
+            baseURL: "http://localhost:8001",
             timeout: 3000,
             headers: {
-                Authorization: token,
-                "Origin-Request": origin,
+                Authorization: localStorage.getItem("user.token"),
+                "origin-request": "admin",
             },
         });
     }
 
-    public async pegarDadosApi(rota: string, data: any = {}): Promise<Array<any>> {
+    public async pegarDadosApi(
+        rota: string,
+        data: any = {},
+    ): Promise<Array<any>> {
         let response: any = await this.request.get(rota);
-
-        return response.data.list;
+        return await response.data;
     }
 
     public async enviarDadosApi(rota: string, data: any = {}): Promise<any> {
         let response: any = await this.request.post(rota, (data = data));
 
-        return response.data;
+        return await response.data;
     }
 }

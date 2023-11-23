@@ -1,12 +1,12 @@
 <script>
 import ComingSoonCover from "@/views/pages/coming-soon-cover.vue";
-import { inject } from "vue";
+import ApiConnection from "../../../api/Api";
 
 export default {
     data() {
         return {
             // Api para fazer requests
-            request: Object(inject("api")),
+            request: new ApiConnection(),
             // variaveis reativas
             encontrada: true,
             secretaria: {
@@ -23,10 +23,9 @@ export default {
                 await this.request
                     .pegarDadosApi(`/secretaria/${cpf}`)
                     .then((res) => {
-                        console.log(res);
                         if (res.length === undefined) {
                             this.encontrada = true;
-                            this.secretaria = res;
+                            this.secretaria = res.list;
                         } else {
                             this.encontrada = false;
                         }
@@ -45,9 +44,10 @@ export default {
         },
     },
     async created() {
-        this.clinicas = await this.request.pegarDadosApi(
+        let clinicasResponse = await this.request.pegarDadosApi(
             `/medico/clinica/${localStorage.getItem("user.id")}/`,
         );
+        this.clinicas = clinicasResponse.list;
     },
 };
 </script>

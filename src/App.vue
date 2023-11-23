@@ -21,18 +21,10 @@ import authLayout from "@/layouts/auth-layout.vue";
 import { useAppStore } from "@/stores/index";
 import { useMeta } from "@/composables/use-meta";
 import { provide } from "vue";
-import ApiConnection from "./api/Api";
 import { useRouter } from "vue-router";
 
 const store = useAppStore();
 
-// Aqui vai ser feito um compartilhamento com todas as bibliotecas
-let connection = new ApiConnection(
-    "http://localhost:8001",
-    localStorage.getItem("user.token") ?? "",
-    "admin",
-);
-provide("api", connection);
 
 // meta
 useMeta({ title: "Admin" });

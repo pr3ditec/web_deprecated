@@ -1,12 +1,12 @@
 <script>
-import { inject } from "vue";
 import ValidacaoInput from "../../../helpers/ValidacaoInput";
 import Response from "../../../api/Response";
+import ApiConnection from "../../../api/Api";
 
 export default {
     data() {
         return {
-            request: Object(inject("api")),
+            request: new ApiConnection(),
             clinicaFormData: {
                 nome: "",
                 especialidade_id: "0",
@@ -81,17 +81,26 @@ export default {
     },
     watch: {
         async "clinicaEnderecoFormData.estado"(novo) {
-            this.cidades = await this.request.pegarDadosApi(`/cidade/${novo}`);
+            let cidadeResponse = await this.request.pegarDadosApi(
+                `/cidade/${novo}`,
+            );
+            this.cidades = cidadeResponse.list;
         },
     },
     async created() {
-        this.estados = await this.request.pegarDadosApi(
+        let estadoResponse = await this.request.pegarDadosApi(
             "/unidades-federativas",
         );
-        this.tipoEndereco = await this.request.pegarDadosApi("/endereco/tipo");
-        this.especialidades = await this.request.pegarDadosApi(
+        this.estados = estadoResponse.list;
+
+        let tipoEderecoResponse =
+            await this.request.pegarDadosApi("/endereco/tipo");
+        this.tipoEndereco = tipoEderecoResponse.list;
+
+        let especialidadeResponse = await this.request.pegarDadosApi(
             `/medico/especialidade/${localStorage.getItem("user.id")}`,
         );
+        this.especialidades = especialidadeResponse.list;
     },
 };
 </script>
