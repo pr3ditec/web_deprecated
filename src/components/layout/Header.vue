@@ -2163,8 +2163,13 @@ const currentFlag = computed(() => {
 
 /** NOTIFICACOES DO FIREBASE */
 const notifications = ref([]);
-firebase.cadastrarDispositivo();
-firebase.receberMensagens(notifications);
+if (await firebase.testarPermissao()) {
+
+    firebase.cadastrarDispositivo();
+    firebase.receberMensagens(notifications);
+}else{
+    notifications.value.push()
+}
 /** NOTIFICACOES DO FIREBASE */
 
 const messages = ref([
