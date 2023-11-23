@@ -173,7 +173,6 @@ export default {
                             if (res.status != "MARCADO") {
                                 return;
                             } else {
-                                console.log(res);
                                 this.calendarOptions.events.push({
                                     id: res.paciente_id,
                                     title: res.paciente_nome,
