@@ -2,51 +2,77 @@
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
-                <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
+                <a href="javascript:;" class="text-primary hover:underline"
+                    >Dashboard</a
+                >
             </li>
             <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
                 <span>{{ $t("busines_risk") }}</span>
             </li>
         </ul>
         <div class="pt-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6 text-white">
+            <div
+                class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6 text-white"
+            >
                 <div class="panel bg-gradient-to-r from-cyan-500 to-cyan-400">
                     <div class="flex justify-between">
-                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">{{ $t("total_number_of_parcels") }}</div>
+                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">
+                            {{ $t("total_number_of_parcels") }}
+                        </div>
                     </div>
                     <div class="flex items-center mt-5">
-                        <div class="text-2xl font-bold ltr:mr-3 rtl:ml-3">{{ totalParcelas }}</div>
+                        <div class="text-2xl font-bold ltr:mr-3 rtl:ml-3">
+                            {{ totalParcelas }}
+                        </div>
                     </div>
                 </div>
 
-                <div class="panel bg-gradient-to-r from-violet-500 to-violet-400">
+                <div
+                    class="panel bg-gradient-to-r from-violet-500 to-violet-400"
+                >
                     <div class="flex justify-between">
                         <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">
                             {{ $t("total_value_of_installments_paid") }}
                         </div>
                     </div>
                     <div class="flex items-center mt-5">
-                        <div class="text-1xl font-bold ltr:mr-3 rtl:ml-3">{{ totalParcelasPagas }}</div>
-                        <div class="badge bg-white/30">{{ formatValor(adimplente) }}</div>
+                        <div class="text-1xl font-bold ltr:mr-3 rtl:ml-3">
+                            {{ totalParcelasPagas }}
+                        </div>
+                        <div class="badge bg-white/30">
+                            {{ formatValor(adimplente) }}
+                        </div>
                     </div>
                 </div>
 
                 <div class="panel bg-gradient-to-r from-blue-500 to-blue-400">
                     <div class="flex justify-between">
-                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">{{ $t("total_amount_defaulted") }}</div>
+                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">
+                            {{ $t("total_amount_defaulted") }}
+                        </div>
                     </div>
                     <div class="flex items-center mt-5">
-                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">{{ totalInadimplencia }}</div>
-                        <div class="badge bg-white/30">{{ formatValor(inadimplente) }}</div>
+                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">
+                            {{ totalInadimplencia }}
+                        </div>
+                        <div class="badge bg-white/30">
+                            {{ formatValor(inadimplente) }}
+                        </div>
                     </div>
                 </div>
 
-                <div class="panel bg-gradient-to-r from-fuchsia-500 to-fuchsia-400">
+                <div
+                    class="panel bg-gradient-to-r from-fuchsia-500 to-fuchsia-400"
+                >
                     <div class="flex justify-between">
-                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">{{ $t("future_cash") }}</div>
+                        <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">
+                            {{ $t("future_cash") }}
+                        </div>
                     </div>
                     <div class="flex items-center mt-5">
-                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">{{ formatValor(caixaFuturo) }}</div>
+                        <div class="text-3xl font-bold ltr:mr-3 rtl:ml-3">
+                            {{ formatValor(caixaFuturo) }}
+                        </div>
                     </div>
                     <div class="flex items-center font-semibold mt-5">
                         {{ $t("average_installments") }} {{ mediaParcelamento }}
@@ -59,26 +85,43 @@
                     <div class="panel overflow-hidden">
                         <div>
                             <div class="text-center">
-                                <div class="text-lg font-bold">{{ $t("total_installments_paid") }}</div>
+                                <div class="text-lg font-bold">
+                                    {{ $t("total_installments_paid") }}
+                                </div>
                             </div>
                         </div>
                         <div class="relative mt-10 text-center">
                             <div class="grid grid-cols-3 md:grid-cols-1 gap-6">
                                 <div>
                                     <div class="mt-3 font-semibold text-2xl">
-                                        {{ totalParcelasPagas }} - {{ formatValor(adimplente) }}
+                                        {{ totalParcelasPagas }} -
+                                        {{ formatValor(adimplente) }}
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="text-primary">{{ $t("in_compliance") }}</div>
-                                    <div class="text-success mt-2 font-semibold text-2xl">
-                                        {{ parcelaPagaEmDia }} - {{ formatValor(parcelaPagaEmDiaValor) }}
+                                    <div class="text-primary">
+                                        {{ $t("in_compliance") }}
+                                    </div>
+                                    <div
+                                        class="text-success mt-2 font-semibold text-2xl"
+                                    >
+                                        {{ parcelaPagaEmDia }} -
+                                        {{ formatValor(parcelaPagaEmDiaValor) }}
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="text-primary">{{ $t("defaulting") }}</div>
-                                    <div class="text-danger mt-2 font-semibold text-2xl">
-                                        {{ parcelaPagaAtrasada }} - {{ formatValor(parcelaPagaAtrasadaValor) }}
+                                    <div class="text-primary">
+                                        {{ $t("defaulting") }}
+                                    </div>
+                                    <div
+                                        class="text-danger mt-2 font-semibold text-2xl"
+                                    >
+                                        {{ parcelaPagaAtrasada }} -
+                                        {{
+                                            formatValor(
+                                                parcelaPagaAtrasadaValor,
+                                            )
+                                        }}
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +131,8 @@
                 <div class="grid gap-6 xl:grid-flow-row">
                     <div class="panel overflow-hidden">
                         <p class="text-lg dark:text-white-light/90">
-                            {{ $t("busines_risk") }}<span class="text-primary ml-2">%</span>
+                            {{ $t("busines_risk")
+                            }}<span class="text-primary ml-2">%</span>
                         </p>
                         <div class="relative">
                             <apexchart
@@ -112,29 +156,56 @@
 
             <div class="grid grid-cols-1 gap-6">
                 <div class="panel uppercase">
-                    <div class="mb-5 text-lg font-bold">{{ $t("installments") }}</div>
+                    <div class="mb-5 text-lg font-bold">
+                        {{ $t("installments") }}
+                    </div>
                     <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="!text-center">{{ $t("installments") }}</th>
-                                    <th class="!text-center">{{ $t("number_of_installments") }}</th>
-                                    <th class="!text-right">{{ $t("paid_amount") }}</th>
-                                    <th class="!text-right">{{ $t("defaulted_amount") }}</th>
-                                    <th class="!text-center ltr:rounded-r-md rtl:rounded-l-md">INADIMPLÊNCIA</th>
+                                    <th class="!text-center">
+                                        {{ $t("installments") }}
+                                    </th>
+                                    <th class="!text-center">
+                                        {{ $t("number_of_installments") }}
+                                    </th>
+                                    <th class="!text-right">
+                                        {{ $t("paid_amount") }}
+                                    </th>
+                                    <th class="!text-right">
+                                        {{ $t("defaulted_amount") }}
+                                    </th>
+                                    <th
+                                        class="!text-center ltr:rounded-r-md rtl:rounded-l-md"
+                                    >
+                                        INADIMPLÊNCIA
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(value, parcela) in parcelamento" :key="parcela">
+                                <tr
+                                    v-for="(value, parcela) in parcelamento"
+                                    :key="parcela"
+                                >
                                     <td class="!text-center">{{ parcela }}</td>
-                                    <td class="!text-center">{{ value.numeroParcelas }}</td>
-                                    <td class="!text-right">{{ formatValor(value.valorPago) }}</td>
-                                    <td class="!text-right">{{ formatValor(value.valorInadimplente) }}</td>
+                                    <td class="!text-center">
+                                        {{ value.numeroParcelas }}
+                                    </td>
+                                    <td class="!text-right">
+                                        {{ formatValor(value.valorPago) }}
+                                    </td>
+                                    <td class="!text-right">
+                                        {{
+                                            formatValor(value.valorInadimplente)
+                                        }}
+                                    </td>
                                     <td
                                         class="!text-center ltr:rounded-r-md rtl:rounded-l-md"
                                         v-bind:class="{
-                                            'text-success': value.valorInadimplente <= 70,
-                                            'text-danger': value.valorInadimplente > 70,
+                                            'text-success':
+                                                value.valorInadimplente <= 70,
+                                            'text-danger':
+                                                value.valorInadimplente > 70,
                                         }"
                                     >
                                         {{ value.valorInadimplente }} %
@@ -154,6 +225,7 @@ import { ref, inject, computed } from "vue";
 import { useMeta } from "@/composables/use-meta";
 import apexchart from "vue3-apexcharts";
 import { useAppStore } from "@/stores/index";
+import ApiConnection from "../../api/Api";
 useMeta({ title: "Risco Empresarial" });
 
 const labels = ref<string[]>([]);
@@ -166,7 +238,8 @@ export default {
         const store = useAppStore();
 
         const revenueChart = computed(() => {
-            const isDark = store.theme === "dark" || store.isDarkMode ? true : false;
+            const isDark =
+                store.theme === "dark" || store.isDarkMode ? true : false;
             const isRtl = store.rtlClass === "rtl" ? true : false;
             return {
                 chart: {
@@ -223,7 +296,10 @@ export default {
                     tickAmount: 7,
                     labels: {
                         formatter: (value: number) => {
-                            return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+                            return value.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL",
+                            });
                         },
                         offsetX: isRtl ? -30 : -10,
                         offsetY: 0,
@@ -289,7 +365,9 @@ export default {
             };
         });
 
-        const revenueSeries = ref<{ name: string; data: number[]; color?: string }[]>([]);
+        const revenueSeries = ref<
+            { name: string; data: number[]; color?: string }[]
+        >([]);
 
         return {
             revenueChart,
@@ -302,7 +380,7 @@ export default {
         dataInicial.setDate(dataAtual.getDate() - 365);
 
         return {
-            request: Object(inject("api")),
+            request: new ApiConnection(),
             totalParcelas: 0,
             totalParcelasPagas: 0,
             totalInadimplencia: 0,
@@ -339,9 +417,10 @@ export default {
                 return `${date.getFullYear()}-${date.getMonth() + 1}`;
             }
 
-            const data = await this.request.pegarDadosApi(
+            let riscoResponse = await this.request.pegarDadosApi(
                 `relatorio/risco-empresarial/${this.dataInicial}/${this.dataFim}`,
             );
+            const data = riscoResponse.list;
 
             let groupedData = {};
             let tempLabels: string[] = [];
@@ -399,16 +478,23 @@ export default {
                         let dataVencimento = new Date(parcela.vencimento);
                         if (dataVencimento < new Date(this.dataAtual)) {
                             this.parcelaPagaAtrasada++;
-                            this.parcelaPagaAtrasadaValor += parseFloat(parcela.valor);
+                            this.parcelaPagaAtrasadaValor += parseFloat(
+                                parcela.valor,
+                            );
                         } else {
                             this.parcelaPagaEmDia++;
-                            this.parcelaPagaEmDiaValor += parseFloat(parcela.valor);
+                            this.parcelaPagaEmDiaValor += parseFloat(
+                                parcela.valor,
+                            );
                         }
                     }
 
                     // verifico inadimplência
                     let dataVencimento = new Date(parcela.vencimento);
-                    if (!parcela.pagamento && dataVencimento < new Date(this.dataAtual)) {
+                    if (
+                        !parcela.pagamento &&
+                        dataVencimento < new Date(this.dataAtual)
+                    ) {
                         this.totalInadimplencia++;
                         this.inadimplente += parseFloat(parcela.valor);
                     }
@@ -419,7 +505,12 @@ export default {
                     }
 
                     // vejo se a parcela ta paga
-                    if (parcela.historico && parcela.historico.some((h) => h.descricao === "EFETIVADO")) {
+                    if (
+                        parcela.historico &&
+                        parcela.historico.some(
+                            (h) => h.descricao === "EFETIVADO",
+                        )
+                    ) {
                         this.totalParcelasAtendimentos++;
                     }
 
@@ -434,9 +525,11 @@ export default {
                     }
                     this.parcelamento[parcela.parcela].numeroParcelas++;
                     if (parcela.pagamento) {
-                        this.parcelamento[parcela.parcela].valorPago += parseFloat(parcela.valor);
+                        this.parcelamento[parcela.parcela].valorPago +=
+                            parseFloat(parcela.valor);
                     } else if (dataVencimento < new Date(this.dataAtual)) {
-                        this.parcelamento[parcela.parcela].valorInadimplente += parseFloat(parcela.valor);
+                        this.parcelamento[parcela.parcela].valorInadimplente +=
+                            parseFloat(parcela.valor);
                     }
                 });
             });
@@ -445,18 +538,24 @@ export default {
             Object.keys(this.parcelamento).forEach((parcela) => {
                 this.parcelamento[parcela].inadimplencia =
                     this.parcelamento[parcela].valorInadimplente /
-                    (this.parcelamento[parcela].valorPago + this.parcelamento[parcela].valorInadimplente);
+                    (this.parcelamento[parcela].valorPago +
+                        this.parcelamento[parcela].valorInadimplente);
             });
 
             if (this.totalParcelas !== 0) {
-                this.mediaParcelamento = +(this.somaParcelas / this.totalParcelas).toFixed(2);
+                this.mediaParcelamento = +(
+                    this.somaParcelas / this.totalParcelas
+                ).toFixed(2);
             } else {
                 this.mediaParcelamento = 0;
             }
         },
 
         formatValor(valor) {
-            return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+            return valor.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+            });
         },
     },
 };
