@@ -740,8 +740,16 @@
                         >
                             <button type="button" class="relative group block">
                                 <img
+                                    v-show="store.theme === 'light'"
                                     class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
-                                    src="/assets/images/logo.png"
+                                    src="/assets/images/logos/plus-light.png"
+                                    alt=""
+                                />
+
+                                <img
+                                    v-show="store.theme === 'dark'"
+                                    class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
+                                    src="/assets/images/logos/plus-dark.png"
                                     alt=""
                                 />
                             </button>
@@ -755,8 +763,19 @@
                                         >
                                             <div class="flex-none">
                                                 <img
+                                                    v-show="
+                                                        store.theme === 'light'
+                                                    "
                                                     class="rounded-md w-10 h-10 object-cover"
-                                                    src="/assets/images/logo.png"
+                                                    src="/assets/images/logos/plus-light.png"
+                                                    alt=""
+                                                />
+                                                <img
+                                                    v-show="
+                                                        store.theme === 'dark'
+                                                    "
+                                                    class="rounded-md w-10 h-10 object-cover"
+                                                    src="/assets/images/logos/plus-dark.png"
                                                     alt=""
                                                 />
                                             </div>

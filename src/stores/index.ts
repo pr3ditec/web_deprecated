@@ -87,12 +87,6 @@ export const useAppStore = defineStore("app", {
                 this.isDarkMode = false;
             } else if (payload == "dark") {
                 this.isDarkMode = true;
-            } else if (payload == "system") {
-                if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-                    this.isDarkMode = true;
-                } else {
-                    this.isDarkMode = false;
-                }
             }
 
             if (this.isDarkMode) {
@@ -116,7 +110,9 @@ export const useAppStore = defineStore("app", {
             payload = payload || this.rtlClass; // rtl, ltr
             localStorage.setItem("rtlClass", payload);
             this.rtlClass = payload;
-            document.querySelector("html")?.setAttribute("dir", this.rtlClass || "ltr");
+            document
+                .querySelector("html")
+                ?.setAttribute("dir", this.rtlClass || "ltr");
         },
         toggleAnimation(payload: any = null) {
             payload = payload || this.animation; // animate__fadeIn, animate__fadeInDown, animate__fadeInUp, animate__fadeInLeft, animate__fadeInRight, animate__slideInDown, animate__slideInLeft, animate__slideInRight, animate__zoomIn
