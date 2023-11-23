@@ -677,7 +677,7 @@
                                             </div>
                                         </li>
                                     </template>
-                                    <template v-if="notifications.length">
+                                    <template v-if="notifications">
                                         <li>
                                             <div class="p-4">
                                                 <button
@@ -2163,12 +2163,9 @@ const currentFlag = computed(() => {
 
 /** NOTIFICACOES DO FIREBASE */
 const notifications = ref([]);
-if (await firebase.testarPermissao()) {
-
+if (firebase.testarPermissao()) {
     firebase.cadastrarDispositivo();
     firebase.receberMensagens(notifications);
-}else{
-    notifications.value.push()
 }
 /** NOTIFICACOES DO FIREBASE */
 

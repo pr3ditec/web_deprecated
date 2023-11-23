@@ -42,19 +42,23 @@ export default class FirebaseClient {
         return await getToken(this.mensagens);
     }
 
-    public async testarPermissao(): Promise<Boolean> {
-        await Notification.requestPermission().then( permission => {
-            if (permission === "granted") {
-                this.notificacao = true
-            }else{
-                this.notificacao = false
-            }
-        });
+    public testarPermissao(): Boolean {
+        try {
+            Notification.requestPermission().then((permission) => {
+                if (permission === "granted") {
+                    this.notificacao = true;
+                } else {
+                    this.notificacao = false;
+                }
+            });
+        } catch {
+            return this.notificacao;
+        }
         return this.notificacao;
     }
 
     public async cadastrarDispositivo() {
-        const token = await this.recuperarToken()
+        const token = await this.recuperarToken();
         const userAgentData = window.navigator.userAgent.toLocaleLowerCase();
         const versionData = userAgentData.split("(")[1].split(" ");
         let dataAxios = {
@@ -82,7 +86,7 @@ export default class FirebaseClient {
                 : window.navigator.userAgent.includes("Firefox")
                   ? "firefox"
                   : "unknow",
-            token: token
+            token: token,
         };
         axios.post("http://127.0.0.1:8001/dispositivo/admin/", dataAxios, {
             headers: {
