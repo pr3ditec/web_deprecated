@@ -19,10 +19,10 @@ export default {
                 await this.request
                     .pegarDadosApi(`/medico/cpf/${cpf}`)
                     .then(async (res) => {
-                        if (res.length > 0) {
+                        if (res.list.length > 0) {
                             this.encontrada = true;
-                            this.medico = res;
-                            this.clinicas = res[0].clinica;
+                            this.medico = res.list;
+                            this.clinicas = res.list[0].clinica;
                         } else {
                             this.encontrada = false;
                         }
@@ -32,7 +32,7 @@ export default {
         criarVinculo(clinica, medico) {
             console.log(clinica, medico);
         },
-    },  
+    },
     async created() {},
 };
 </script>

@@ -1,6 +1,5 @@
 <script lang="ts">
-import { remove } from "dom7";
-import { inject } from "vue";
+import ApiConnection from "../../api/Api";
 
 export default {
     props: {
@@ -8,15 +7,17 @@ export default {
     },
     data() {
         return {
-            request: Object(inject("api")),
+            // request: Object(inject("api")),
+            request: new ApiConnection(),
             // medicoSelect: 1,
             solicitacaoAgenda: [
                 {
+                    id: 0,
                     paciente_id: 0,
                     paciente_nome: "",
                     especialidade: "",
-                    status: "",
                     horarios: [],
+                    status: "",
                 },
             ],
         };
@@ -32,7 +33,7 @@ export default {
                 item: "",
             };
             this.solicitacaoAgenda.forEach((item: any, index: number) => {
-                if (item.paciente_id == id) {
+                if (item.id == id) {
                     response.item = item;
                     response.index = index;
                 }
@@ -69,17 +70,27 @@ export default {
         await this.request
             .pegarDadosApi(`/pre-agendamento/medico/${this.medico}`)
             .then((response: any) => {
-                this.solicitacaoAgenda = response;
-                this.solicitacaoAgenda.forEach((item) => {
-                    item["horarios"] = [];
-                });
+                if (response.status) {
+                    let data = response.list;
+                    this.solicitacaoAgenda = [];
+                    data.forEach((res: any, index: number) => {
+                        if (res.status == "MARCADO") {
+                            return;
+                        } else {
+                            res["horarios"] = [];
+                            this.solicitacaoAgenda.push(res);
+                        }
+                    });
+                } else {
+                    return alert("falha na api");
+                }
             });
     },
 };
 </script>
 <template>
     <h6 class="uppercase font-bold font-xl mt-3">solicitações</h6>
-    <div v-if="solicitacaoAgenda[0].paciente_id == 0">Carregando</div>
+    <div v-if="solicitacaoAgenda[0].id == 0">Carregando</div>
     <div v-else>
         <TransitionGroup name="list" tag="div">
             <div

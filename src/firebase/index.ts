@@ -18,12 +18,12 @@ export default class FirebaseClient {
     // instancia de app
     private app: FirebaseApp;
 
+    private notificacao: Boolean = false;
+
     constructor() {
         // inicializando o firebase
         this.app = initializeApp(this.firebaseConfig);
         this.mensagens = getMessaging(this.app);
-        // Chamando instancia que recebe as mensagens
-        // console.log(window.navigator)
     }
 
     public async receberMensagens(arrayNotificacoes: any) {
@@ -39,24 +39,22 @@ export default class FirebaseClient {
     }
 
     private async recuperarToken(): Promise<string> {
-        // var token = "token";
-        // getToken(this.mensagens).then((res) => {
-        //     token = res;
-        // });
         return await getToken(this.mensagens);
     }
 
-    private permitirNotificacoes() {
-        Notification.requestPermission().then((permission) => {
+    public async testarPermissao(): Promise<Boolean> {
+        await Notification.requestPermission().then( permission => {
             if (permission === "granted") {
-                return true;
-            } else {
-                return false;
+                this.notificacao = true
+            }else{
+                this.notificacao = false
             }
         });
+        return this.notificacao;
     }
 
     public async cadastrarDispositivo() {
+        const token = await this.recuperarToken()
         const userAgentData = window.navigator.userAgent.toLocaleLowerCase();
         const versionData = userAgentData.split("(")[1].split(" ");
         let dataAxios = {
@@ -84,7 +82,7 @@ export default class FirebaseClient {
                 : window.navigator.userAgent.includes("Firefox")
                   ? "firefox"
                   : "unknow",
-            token: await this.recuperarToken(),
+            token: token
         };
         axios.post("http://127.0.0.1:8001/dispositivo/admin/", dataAxios, {
             headers: {
