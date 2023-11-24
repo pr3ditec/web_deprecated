@@ -30,10 +30,6 @@ export default {
                 width: "100",
                 plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
                 initialView: "timeGridWeek",
-                visibleRange: {
-                    start: "2023-11-21",
-                    end: "2023-11-26",
-                },
                 headerToolbar: {
                     start: "prev,next today",
                     center: "title",
@@ -47,39 +43,51 @@ export default {
                     omitZeroMinute: false,
                     mediriem: "short",
                 },
-                // eventBackgroundColor: "#e7515a",
+                duration: "00:30",
                 eventDurationEditable: false,
-                eventBackgroundColor: "#3b3f5c",
-                eventBorderColor: "#3b3f5c",
-                eventTextColor: "#F8F8FF",
+                eventStartEditable: true,
+                eventResizableFromStart: false,
                 events: [{}],
-
                 // QUANDO UM EVENTO DE FORA É ARRASTADO PARA DENTRO DO CALENDARIO
                 drop: (item: any) =>
                     this.adicionarHorario(item.draggedEl.id, item.dateStr),
 
                 // QUANDO UM EVENTO DE DENTRO DO CALENDARIO É ARRASTADO PARA OUTRO LUGAR
-                eventDragStart: (item: any) =>
-                    this.removerSolicitacao(
+                eventDragStart: (item: any) => {
+                    Object(this.$refs.solicitacoes).removerDadosSolicitacao(
                         item.event.id,
                         FormatoData.formatarParaApi(item.event.start),
-                    ),
-                eventDrop: (item: any) =>
-                    this.adicionarHorario(item.event.id, item.event.start),
-
+                    );
+                },
+                eventDrop: (item: any) => {
+                    Object(this.$refs.solicitacoes).inserirDadosSolicitacao(
+                        item.event.id,
+                        "horarios",
+                        FormatoData.formatarParaApi(item.event.start),
+                    );
+                },
                 // QUANDO UM EVENTO DE DENTRO DO CALENDARIO É PRESSIONADO
                 eventClick: async (click: any) => {
-                    const response = await Response.mesagemConfirmacao(
-                        "warning",
-                        "Remover",
-                        "Cancelar",
-                    );
-                    if (response) {
-                        click.event.remove(); // Remove na parte visual
-                        this.removerSolicitacao(
-                            click.event.id,
-                            FormatoData.formatarParaApi(click.event.start),
+                    if (!click.event.extendedProps.eventFromApi) {
+                        const response = await Response.mesagemConfirmacao(
+                            "warning",
+                            "Remover",
+                            "Cancelar",
                         );
+                        if (response) {
+                            click.event.remove(); // Remove na parte visual
+                            this.removerSolicitacao(
+                                click.event.id,
+                                FormatoData.formatarParaApi(click.event.start),
+                            );
+                        }
+                    }else{
+                        const response = await Response.confirmarPresenca()
+                        if(response.value == 0){
+                            console.log("paciente compareceu")
+                        }else{
+                            console.log("paciente nao compareceu")
+                        }
                     }
                 },
             },
@@ -100,42 +108,38 @@ export default {
         /** EVENTOS DO CALENDARIO - FULLCALENDAR */
 
         /** SOLICITACOES */
-        adicionarHorario(id: number, date: never) {
+        async proporHorario(id: number) {
             let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(
                 id,
             );
 
-            Object(this.$refs.solicitacoes).inserirDadosSolicitacao(
-                item.index,
-                "horarios",
-                FormatoData.formatarParaApi(date),
-            );
-        },
-        proporHorario(id: number) {
-            let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(
-                id,
-            );
-
+            // REMOVENDO DO ARRAY DE SOLICITACOES
             Object(this.$refs.solicitacoes).removerSolicitacao(item.index);
 
+            // TIRANDO A POSSIBILIDADE DE EDICAO DO EVENTO
             let data: any = this.$refs.calendar;
             data.getApi()
                 .getEvents()
-                .forEach((element) => {
+                .forEach((element: any) => {
                     if (element._def.publicId == id) {
-                        element._def.editable = false;
+                        element._def.ui.durationEditable = false;
+                        element._def.ui.startEditable = false;
                     }
                 });
-        },
-        removerSolicitacao(id: number, date: any) {
-            let item = Object(this.$refs.solicitacoes).pegarDadosSolicitacao(
-                id,
-            );
 
-            Object(this.$refs.solicitacoes).removerDadosSolicitacao(
-                item.index,
-                date,
-            ); // validar remocao
+            // ENVIANDO DADOS PARA API
+            await this.request
+                .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
+                    pre_agendamento_id: item.item.id,
+                    horarios_agendamento: JSON.stringify([
+                        { data: "2023-11-30", hora: "09:30" },
+                        { data: "2023-11-28", hora: "09:00" },
+                    ]),
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .then((res) => console.log(res));
         },
         /** SOLICITACOES */
 
@@ -151,10 +155,9 @@ export default {
                         this.$refs.solicitacoes,
                     ).pegarDadosSolicitacao(el.id);
                     return {
-                        id: data.item.paciente_id,
+                        id: data.item.id,
                         title: data.item.paciente_nome,
                         overlap: true,
-                        editable: false,
                     };
                 },
             });
@@ -170,12 +173,23 @@ export default {
                     if (response.status) {
                         let data = response.list;
                         data.forEach((res: any) => {
-                            if (res.status != "MARCADO") {
+                            if (res.status_id == -1) {
                                 return;
-                            } else {
+                            } else if (res.status_id == 1) {
                                 this.calendarOptions.events.push({
-                                    id: res.paciente_id,
+                                    id: res.id,
                                     title: res.paciente_nome,
+                                    start: res.created_at,
+                                    eventFromApi: true,
+                                    overlap: true,
+                                    editable: false,
+                                });
+                            } else if (res.status_id == 2) {
+                                this.calendarOptions.events.push({
+                                    id: res.id,
+                                    title: res.paciente_nome,
+                                    backgroundColor: 'red',
+                                    eventFromApi: true,
                                     start: res.created_at,
                                     overlap: true,
                                     editable: false,

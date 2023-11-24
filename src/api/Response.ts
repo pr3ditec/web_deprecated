@@ -66,4 +66,15 @@ export default class Response {
             }
         });
     }
+
+    public static async confirmarPresenca(): Promise<any> {
+        return await Swal.fire({
+            title: "Paciente compareceu ?",
+            input: "radio",
+            inputOptions: {
+                "0": "Sim",
+                "1": "Não",
+            },
+        });
+    }
 }
