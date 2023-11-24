@@ -6,7 +6,7 @@ export default class Api {
     constructor() {
         this.request = axios.create({
             baseURL: "http://localhost:8001",
-            timeout: 3000,
+            timeout: 5000,
             headers: {
                 Authorization: localStorage.getItem("user.token"),
                 "origin-request": "admin",
@@ -14,10 +14,7 @@ export default class Api {
         });
     }
 
-    public async pegarDadosApi(
-        rota: string,
-        data: any = {},
-    ): Promise<any> {
+    public async pegarDadosApi(rota: string, data: any = {}): Promise<any> {
         let response: any = await this.request.get(rota);
         return await response.data;
     }

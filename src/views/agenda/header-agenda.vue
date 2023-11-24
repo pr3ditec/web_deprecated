@@ -37,7 +37,7 @@ export default {
                 >
                     <div class="flex items-center ltr:mr-4 rtl:ml-4">
                         <div
-                            class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-primary"
+                            class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-danger"
                         ></div>
                         <div>MARCADO</div>
                     </div>
@@ -45,9 +45,9 @@ export default {
                         <div
                             class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-info"
                         ></div>
-                        <div>ATRASADO</div>
+                        <div>ENCAMINHADO AO PACIENTE</div>
                     </div>
-                    <div class="flex items-center ltr:mr-4 rtl:ml-4">
+                    <!-- <div class="flex items-center ltr:mr-4 rtl:ml-4">
                         <div
                             class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-success"
                         ></div>
@@ -58,7 +58,7 @@ export default {
                             class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-danger"
                         ></div>
                         <div>CANCELADO</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div

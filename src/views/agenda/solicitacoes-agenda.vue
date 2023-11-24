@@ -7,19 +7,10 @@ export default {
     },
     data() {
         return {
-            // request: Object(inject("api")),
             request: new ApiConnection(),
-            // medicoSelect: 1,
-            solicitacaoAgenda: [
-                {
-                    id: 0,
-                    paciente_id: 0,
-                    paciente_nome: "",
-                    especialidade: "",
-                    horarios: [],
-                    status: "",
-                },
-            ],
+            idAuxiliar: [],
+            defaultLoading: "Carregando",
+            solicitacaoAgenda: [],
         };
     },
     methods: {
@@ -41,19 +32,25 @@ export default {
             return response;
         },
 
-        inserirDadosSolicitacao(index: number, key: string, value: never) {
+        inserirDadosSolicitacao(id: any, key: string, value: never) {
+            this.idAuxiliar.push(id);
+            let data = this.pegarDadosSolicitacao(id);
             if (key == "horarios") {
-                this.solicitacaoAgenda[index][key].push(value);
+                this.solicitacaoAgenda[data.index][key].push(value);
             } else {
-                this.solicitacaoAgenda[index][key] = value;
+                this.solicitacaoAgenda[data.index][key] = value;
             }
         },
 
-        removerDadosSolicitacao(itemIndex: number, remover: any) {
-            this.solicitacaoAgenda[itemIndex]["horarios"].forEach(
+        removerDadosSolicitacao(id: number, remover: any) {
+            let data = this.pegarDadosSolicitacao(id);
+            this.solicitacaoAgenda[data.index]["horarios"].forEach(
                 (horario, index) => {
-                    if (horario == remover) {
-                        this.solicitacaoAgenda[itemIndex]["horarios"].splice(
+                    if (
+                        horario.data == remover.data &&
+                        horario.hora == remover.hora
+                    ) {
+                        this.solicitacaoAgenda[data.index]["horarios"].splice(
                             index,
                             1,
                         );
@@ -65,6 +62,15 @@ export default {
         removerSolicitacao(solicitacaoIndex: number) {
             this.solicitacaoAgenda.splice(solicitacaoIndex, 1);
         },
+
+        // funcao auxiliar
+        testeInclusao(id: any): boolean {
+            if (this.idAuxiliar.includes(id.toString())) {
+                return true;
+            } else {
+                return false;
+            }
+        },
     },
     async created() {
         await this.request
@@ -72,15 +78,15 @@ export default {
             .then((response: any) => {
                 if (response.status) {
                     let data = response.list;
-                    this.solicitacaoAgenda = [];
                     data.forEach((res: any, index: number) => {
-                        if (res.status == "MARCADO") {
+                        if (res.status_id != -1) {
                             return;
                         } else {
                             res["horarios"] = [];
                             this.solicitacaoAgenda.push(res);
                         }
                     });
+                    this.defaultLoading = "Nenhuma solicitação"
                 } else {
                     return alert("falha na api");
                 }
@@ -90,11 +96,11 @@ export default {
 </script>
 <template>
     <h6 class="uppercase font-bold font-xl mt-3">solicitações</h6>
-    <div v-if="solicitacaoAgenda[0].id == 0">Carregando</div>
+    <div v-if="solicitacaoAgenda.length == 0">{{ defaultLoading }}</div>
     <div v-else>
         <TransitionGroup name="list" tag="div">
             <div
-                :id="solicitacao.paciente_id.toString()"
+                :id="solicitacao.id.toString()"
                 class="d-custom max-w-[30rem] w-full bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none hover:bg-slate-50"
                 v-for="solicitacao in solicitacaoAgenda"
             >
@@ -103,7 +109,7 @@ export default {
                         <img
                             src="/assets/images/logo.png"
                             alt=""
-                            height="24"
+                            height="16"
                             class="w-full h-full object-cover"
                         />
                     </div>
@@ -113,14 +119,14 @@ export default {
                         <h5
                             class="text-[#3b3f5c] text-[15px] font-semibold mb-1 dark:text-white-light"
                         >
-                            {{ solicitacao.paciente_nome }}
+                            {{ solicitacao.paciente_nome }} {{ solicitacao.id }}
                         </h5>
                         <p class="mb-1 text-white-dark">
                             {{ solicitacao.especialidade }}
                         </p>
-                        <span class="badge bg-dark rounded-full">{{
-                            solicitacao.status
-                        }}</span>
+                        <span class="badge bg-dark rounded-full">
+                            {{ solicitacao.status }}</span
+                        >
                         <p class="font-semibold text-white-dark mt-2 sm:mt-4">
                             Maecenas nec mi vel lacus condimentum.
                         </p>
@@ -128,11 +134,14 @@ export default {
                 </div>
                 <div
                     class="flex flex-col mb-4 items-center justify-center"
-                    v-show="solicitacao.horarios.length > 0"
+                    v-show="
+                        solicitacao.horarios.length > 0 &&
+                        testeInclusao(solicitacao.id)
+                    "
                 >
                     <button
                         class="btn btn-sm btn-dark capitalize"
-                        @click="emitProporHorario(solicitacao.paciente_id)"
+                        @click="emitProporHorario(solicitacao.id)"
                     >
                         propor horarios
                     </button>
