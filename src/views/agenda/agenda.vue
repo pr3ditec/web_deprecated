@@ -3,7 +3,7 @@ import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
-import SelectMedico from "../../components/layout/Select-doctor.vue";
+import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import HeaderAgenda from "./header-agenda.vue";
 import Solicitacoes from "./solicitacoes-agenda.vue";
 import ApiConnection from "../../api/Api";

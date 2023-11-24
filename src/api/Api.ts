@@ -17,7 +17,7 @@ export default class Api {
     public async pegarDadosApi(
         rota: string,
         data: any = {},
-    ): Promise<Array<any>> {
+    ): Promise<any> {
         let response: any = await this.request.get(rota);
         return await response.data;
     }

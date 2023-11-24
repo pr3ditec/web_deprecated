@@ -10,7 +10,10 @@
         <div class="flex">
             <div class="w-6/12 p-4">
                 <div class="calendar-wrapper bg-white rounded-lg shadow-md p-4">
-                    <FullCalendar ref="calendar" :options="calendarOptions" />
+                    <FullCalendarComponent
+                        :calendarOptions="calendarOptions"
+                        @calendarMounted="handleCalendarMounted"
+                    />
                 </div>
             </div>
 
@@ -18,24 +21,24 @@
                 <div
                     class="border-1 p-5 sm:align-middle bg-white rounded-lg shadow-md"
                 >
-                    <button
-                        class="mt-3 mb-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    <ButtonSchedules
+                        color="blue"
                         @click="
                             showSchedule = true;
                             showAvailableHours = false;
                         "
                     >
                         {{ $t("release_schedules") }}
-                    </button>
-                    <button
-                        class="mt-3 mb-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                    </ButtonSchedules>
+                    <ButtonSchedules
+                        color="yellow"
                         @click="
                             showSchedule = false;
                             showAvailableHours = true;
                         "
                     >
                         {{ $t("released_times") }}
-                    </button>
+                    </ButtonSchedules>
                     <div v-if="showSchedule">
                         <div class="mt-3">
                             <div>
@@ -77,26 +80,20 @@
                                 </p>
                             </div>
 
-                            <button
-                                class="mb-2"
-                                v-if="showTable"
+                            <ButtonSchedules
+                                :color="isAllSelected ? 'yellow' : 'green'"
                                 @click="selectAll"
+                                v-if="showTable"
                             >
-                                <span
-                                    class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                    v-if="isAllSelected"
-                                >
+                                <span v-if="isAllSelected">
                                     {{ $t("remove_selection") }}
                                 </span>
-                                <span
-                                    class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                    v-else
-                                >
+                                <span v-else>
                                     {{ $t("select_all") }}
                                 </span>
-                            </button>
+                            </ButtonSchedules>
 
-                            <div class="panel mb-4" v-if="showTable">
+                            <div class="mb-4" v-if="showTable">
                                 <table>
                                     <thead>
                                         <tr>
@@ -133,19 +130,15 @@
                         <div
                             class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
                         >
-                            <button
-                                class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                @click="saveHours"
-                            >
+                            <ButtonSchedules color="green" @click="saveHours">
                                 {{ $t("record") }}
-                            </button>
-                            <button
-                                type="button"
-                                class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                @click="isAddEventModal = false"
+                            </ButtonSchedules>
+                            <ButtonSchedules
+                                color="blue"
+                                @click="cancelChanges"
                             >
-                                {{ $t("close") }}
-                            </button>
+                                {{ $t("cancel") }}
+                            </ButtonSchedules>
                         </div>
                     </div>
 
@@ -153,8 +146,12 @@
                         <table class="table-hover">
                             <thead>
                                 <tr class="uppercase">
-                                    <th class="!text-center">{{ $t("date") }}</th>
-                                    <th class="!text-center">{{ $t("schedules") }}</th>
+                                    <th class="!text-center">
+                                        {{ $t("date") }}
+                                    </th>
+                                    <th class="!text-center">
+                                        {{ $t("schedules") }}
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -162,12 +159,7 @@
                                     v-for="day in existingSchedules"
                                     :key="day.data"
                                 >
-                                    <tr
-                                        v-if="
-                                            day.horarios.length > 0 &&
-                                            new Date(day.data) >= new Date()
-                                        "
-                                    >
+                                    <tr v-if="checkDate(day)">
                                         <td class="!text-center">
                                             {{ day.data }}
                                         </td>
@@ -198,19 +190,15 @@
                         <div
                             class="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
                         >
-                            <button
-                                class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                @click="saveChanges"
-                            >
+                            <ButtonSchedules color="green" @click="saveChanges">
                                 {{ $t("record") }}
-                            </button>
-                            <button
-                                type="button"
-                                class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                            </ButtonSchedules>
+                            <ButtonSchedules
+                                color="blue"
                                 @click="cancelChanges"
                             >
                                 {{ $t("cancel") }}
-                            </button>
+                            </ButtonSchedules>
                         </div>
                     </div>
                 </div>
@@ -220,28 +208,31 @@
 </template>
 
 <script lang="ts">
-import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import SelectMedico from "../../components/layout/Select-doctor.vue";
-import SelectHorarioInicio from "../../components/layout/Select-time.vue";
-import SelectHorarioFim from "../../components/layout/Select-time.vue";
+import FullCalendarComponent from "../../components/layout/FullCalendarComponent.vue";
+import SelectMedico from "../../components/layout/SelectDoctor.vue";
+import SelectHorarioInicio from "../../components/layout/SelectTime.vue";
+import SelectHorarioFim from "../../components/layout/SelectTime.vue";
+import ButtonSchedules from "../../components/layout/ButtonSchedules.vue";
 import Swal from "sweetalert2";
 import { useMeta } from "@/composables/use-meta";
 import ApiConnection from "../../api/Api";
 
 export default {
     components: {
-        FullCalendar,
+        FullCalendarComponent,
         SelectMedico,
         SelectHorarioInicio,
         SelectHorarioFim,
+        ButtonSchedules,
     },
     data() {
         return {
             request: new ApiConnection(),
             selectedDates: [],
+            calendarRef: null,
             showSchedule: true,
             showAvailableHours: false,
             isAddEventModal: false,
@@ -286,10 +277,12 @@ export default {
             },
         };
     },
+
     created() {
         useMeta({ title: "Calendar" });
         this.resetModal();
     },
+
     watch: {
         selectedDoctor: {
             immediate: true,
@@ -301,47 +294,79 @@ export default {
                         month: "2-digit",
                         day: "2-digit",
                     });
-                    this.clearSchedule();
+                    this.resetModal();
                     this.fetchDoctorAvailability(newDoctor);
                 }
             },
         },
+
         horarioFim() {
             this.generateTable();
         },
+
         incrementoSelecionado() {
             if (this.incrementoSelecionado) {
                 this.generateTable();
                 this.showTable = true;
             }
         },
+
         horarioInicio() {
             this.generateTable();
             this.showTable = true;
         },
+
         isAddEventModal() {
             if (this.isAddEventModal == false) {
                 this.resetModal();
             }
         },
     },
+
     methods: {
+        handleCalendarMounted(calendarInstance) {
+            this.calendarRef = calendarInstance;
+        },
+
         async fetchDoctorAvailability(doctorId) {
             try {
                 const response = await this.request.pegarDadosApi(
                     `/consulta/medico/${doctorId}`,
                 );
-                
-                this.selectedTimezone = response.list.horarios[0].timezone;
 
-                console.log(response);
-                this.existingSchedules = response.list.horarios.map((day) => ({
-                    data: day.data,
-                    horarios: day.horarios.map((horario) => ({
-                        hora: horario.hora,
-                    })),
-                }));
-                this.markAvailableHours(this.existingSchedules);
+                if (
+                    response &&
+                    typeof response === "object" &&
+                    !Array.isArray(response)
+                ) {
+                    if (response.status) {
+                        this.selectedTimezone =
+                            response.list.horarios[0].timezone;
+
+                        this.existingSchedules = response.list.horarios.map(
+                            (day) => ({
+                                data: day.data,
+                                horarios: day.horarios.map((horario) => ({
+                                    hora: horario.hora,
+                                })),
+                            }),
+                        );
+
+                        this.markAvailableHours(this.existingSchedules);
+                    } else {
+                        this.markAvailableHours(false);
+
+                        console.error(
+                            "Erro ao buscar disponibilidade do médico: ",
+                            response.message,
+                        );
+                    }
+                } else {
+                    console.error(
+                        "A resposta da API não é um objeto: ",
+                        response,
+                    );
+                }
             } catch (error) {
                 console.error(
                     "Erro ao buscar disponibilidade do médico: ",
@@ -349,14 +374,17 @@ export default {
                 );
             }
         },
+
         markAvailableHours(availableHours) {
-            const calendarApi = (this.$refs.calendar as any).getApi();
+            const calendarApi = (this.calendarRef as any).getApi();
             calendarApi.removeAllEvents();
+
             if (!availableHours) {
                 console.error("Nenhum horário disponível retornado pela API");
                 calendarApi.removeAllEvents();
                 return;
             }
+
             this.$nextTick(() => {
                 availableHours.forEach((day) => {
                     const eventDate = new Date(
@@ -375,6 +403,7 @@ export default {
                 });
             });
         },
+
         generateSelectedDates(startDate: Date, endDate: Date) {
             let dates = [];
             for (
@@ -384,29 +413,38 @@ export default {
             ) {
                 dates.push(new Date(d).toISOString().split("T")[0]);
             }
+
             return dates;
         },
+
         resetModal() {
-            this.horarioInicio = null;
-            this.horarioFim = null;
+            this.horarioInicio = "";
+            this.horarioFim = "";
             this.incrementoSelecionado = "30";
             this.isAllSelected = false;
             this.showTable = false;
         },
+
         clearSchedule() {
             this.selectedHours = [];
-            this.table = [];
-            this.rows = null;
-            this.hours = null;
         },
+
         toggleHour(hour) {
             const index = this.selectedHours.indexOf(hour);
+
             if (index >= 0) {
                 this.selectedHours.splice(index, 1);
             } else {
                 this.selectedHours.push(hour);
             }
+
+            if (this.selectedHours.length === this.table.flat().length) {
+                this.isAllSelected = true;
+            } else {
+                this.isAllSelected = false;
+            }
         },
+
         generateHours() {
             let horarios: string[] = [];
             if (this.horarioInicio && this.horarioFim) {
@@ -426,8 +464,10 @@ export default {
                     );
                 }
             }
+
             return horarios;
         },
+
         generateTable() {
             if (
                 this.horarioInicio &&
@@ -449,13 +489,15 @@ export default {
                 }
             }
         },
+
         selectAll() {
             if (this.isAllSelected) {
                 this.selectedHours = [];
+                this.isAllSelected = false;
             } else {
                 this.selectedHours = this.table.flat();
+                this.isAllSelected = true;
             }
-            this.isAllSelected = !this.isAllSelected;
         },
 
         toggleHourDisp(day, index) {
@@ -467,11 +509,13 @@ export default {
                 this.selectedHours.push(hour);
             }
         },
+
         formatDate(dateString, timezone) {
             let date = new Date(dateString + "T00:00:00" + timezone);
             let formattedDate = date.toLocaleDateString("pt-BR");
             return formattedDate;
         },
+
         saveChanges() {
             this.existingSchedules.forEach((day) => {
                 day.horarios = day.horarios.filter(
@@ -483,24 +527,53 @@ export default {
                 (day) => day.horarios.length > 0,
             );
 
-            console.log(schedules);
             this.sendHoursToAPI(schedules);
+            this.resetModal();
         },
+
         cancelChanges() {
-            this.selectedHours = [];
+            this.clearSchedule();
         },
+
+        formatDateCheck(date) {
+            let year = date.getFullYear();
+            let month = (1 + date.getMonth()).toString().padStart(2, "0");
+            let day = date.getDate().toString().padStart(2, "0");
+
+            return year + "-" + month + "-" + day;
+        },
+
+        checkDate(day) {
+            let data = new Date(day.data);
+            let dataLocal = data.toLocaleString("en-US", {
+                timeZone: this.selectedTimezone,
+            });
+            data = new Date(dataLocal);
+
+            let agora = new Date();
+            let agoraLocal = agora.toLocaleString("en-US", {
+                timeZone: this.selectedTimezone,
+            });
+            agora = new Date(agoraLocal);
+
+            return (
+                day.horarios.length > 0 &&
+                this.formatDateCheck(data) >= this.formatDateCheck(agora)
+            );
+        },
+
         async sendHoursToAPI(schedules) {
             try {
                 let data = {
                     medico_id: this.selectedDoctor,
                     horarios_disponiveis: JSON.stringify(schedules),
                 };
-                console.log(data);
+
                 let response = await this.request.enviarDadosApi(
                     "/consulta/criar",
                     data,
                 );
-                console.log(response);
+
                 if (response && !response.error) {
                     this.showMessage("Agenda atualizada com sucesso!");
                     await this.fetchDoctorAvailability(this.selectedDoctor);
@@ -512,27 +585,31 @@ export default {
                 this.showMessage("Erro ao atualizar a agenda.", "error");
             }
         },
+
         async saveHours() {
             this.isAddEventModal = false;
             let horarios = this.selectedHours.map((hour) => ({
                 hora: hour,
             }));
+
             let newSchedule = {
                 data: this.selectedDate,
                 horarios: horarios,
             };
+
             let schedules = [...this.existingSchedules, newSchedule];
+
             try {
                 let data = {
                     medico_id: this.selectedDoctor,
                     horarios_disponiveis: JSON.stringify(schedules),
                 };
-                console.log(data);
+
                 let response = await this.request.enviarDadosApi(
                     "/consulta/criar",
                     data,
                 );
-                console.log(response);
+
                 if (response && !response.error) {
                     this.showMessage("Agenda criada com Sucesso!.");
                     await this.fetchDoctorAvailability(this.selectedDoctor);
@@ -546,6 +623,7 @@ export default {
                 this.showMessage("Erro ao criar a agenda.", "error");
             }
         },
+
         showMessage(msg = "", type = "success") {
             const toast: any = Swal.mixin({
                 toast: true,

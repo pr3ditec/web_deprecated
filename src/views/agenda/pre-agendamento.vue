@@ -1,6 +1,6 @@
 <script lang="ts">
 import Vue3Datatable from "@bhplugin/vue3-datatable";
-import SelectMedico from "../../components/layout/Select-doctor.vue";
+import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import "@bhplugin/vue3-datatable/dist/style.css";
 import { inject } from "vue";
 
