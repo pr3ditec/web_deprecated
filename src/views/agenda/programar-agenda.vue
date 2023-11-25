@@ -76,7 +76,7 @@
                             <div class="mt-2 mb-2">
                                 <p class="text-md mb-3">
                                     {{ $t("you_selected_date") }}:
-                                    {{ selectedDate }}
+                                    {{ formatDate(selectedDate) }}
                                 </p>
                             </div>
 
@@ -142,10 +142,15 @@
                         </div>
                     </div>
 
-                    <div class="table-responsive" v-if="showAvailableHours">
+                    <div
+                        class="table-responsive"
+                        v-if="
+                            showAvailableHours && existingSchedules.length > 0
+                        "
+                    >
                         <table class="table-hover">
                             <thead>
-                                <tr class="uppercase">
+                                <tr class="uppercase" colspan="6">
                                     <th class="!text-center">
                                         {{ $t("date") }}
                                     </th>
@@ -154,6 +159,7 @@
                                     </th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 <template
                                     v-for="day in existingSchedules"
@@ -161,7 +167,7 @@
                                 >
                                     <tr v-if="checkDate(day)">
                                         <td class="!text-center">
-                                            {{ day.data }}
+                                            {{ formatDate(day.data) }}
                                         </td>
 
                                         <td class="!text-center">
@@ -201,6 +207,33 @@
                             </ButtonSchedules>
                         </div>
                     </div>
+
+                    <div
+                        v-else-if="
+                            showAvailableHours && existingSchedules.length <= 0
+                        "
+                    >
+                        <div
+                            class="flex items-center p-3.5 rounded text-warning bg-warning-light dark:bg-warning-dark-light"
+                        >
+                            <span class="ltr:pr-2 rtl:pl-2"
+                                ><strong class="ltr:mr-1 rtl:ml-1"
+                                    >{{ $t("warning") }}!</strong
+                                >{{ $t("doesNotHaveOpenSchedules") }}</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-6/12 p-4" v-else>
+                <div
+                    class="flex items-center p-3.5 rounded text-success bg-success-light dark:bg-success-dark-light"
+                >
+                    <span class="ltr:pr-2 rtl:pl-2"
+                        ><strong class="ltr:mr-1 rtl:ml-1"
+                            >{{ $t("warning") }}!</strong
+                        >{{ $t("pleaseSelectDate") }}</span
+                    >
                 </div>
             </div>
         </div>
@@ -211,6 +244,7 @@
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import moment from "moment-timezone";
 import FullCalendarComponent from "../../components/layout/FullCalendarComponent.vue";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import SelectHorarioInicio from "../../components/layout/SelectTime.vue";
@@ -219,6 +253,11 @@ import ButtonSchedules from "../../components/layout/ButtonSchedules.vue";
 import Swal from "sweetalert2";
 import { useMeta } from "@/composables/use-meta";
 import ApiConnection from "../../api/Api";
+
+interface Day {
+    data: string;
+    horarios: string[];
+}
 
 export default {
     components: {
@@ -242,7 +281,7 @@ export default {
             showTable: false,
             selectedTimezone: null,
             incrementoSelecionado: "30",
-            existingSchedules: [],
+            existingSchedules: [] as Day[],
             selectedHours: [] as string[],
             horarioInicio: null as string | null,
             horarioFim: null as string | null,
@@ -288,13 +327,9 @@ export default {
             immediate: true,
             handler(newDoctor) {
                 if (newDoctor) {
-                    this.selectedDate = new Date().toLocaleDateString("pt-BR", {
-                        timeZone: "America/Sao_Paulo",
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                    });
+                    this.selectedDate = null;
                     this.resetModal();
+                    this.clearSchedule();
                     this.fetchDoctorAvailability(newDoctor);
                 }
             },
@@ -343,14 +378,18 @@ export default {
                         this.selectedTimezone =
                             response.list.horarios[0].timezone;
 
-                        this.existingSchedules = response.list.horarios.map(
-                            (day) => ({
+                        this.existingSchedules = response.list.horarios
+                            .map((day) => ({
                                 data: day.data,
                                 horarios: day.horarios.map((horario) => ({
                                     hora: horario.hora,
                                 })),
-                            }),
-                        );
+                            }))
+                            .sort((a, b) => {
+                                const dateA = Date.parse(a.data);
+                                const dateB = Date.parse(b.data);
+                                return dateA - dateB;
+                            });
 
                         this.markAvailableHours(this.existingSchedules);
                     } else {
@@ -427,6 +466,7 @@ export default {
 
         clearSchedule() {
             this.selectedHours = [];
+            this.existingSchedules = [];
         },
 
         toggleHour(hour) {
@@ -510,12 +550,6 @@ export default {
             }
         },
 
-        formatDate(dateString, timezone) {
-            let date = new Date(dateString + "T00:00:00" + timezone);
-            let formattedDate = date.toLocaleDateString("pt-BR");
-            return formattedDate;
-        },
-
         saveChanges() {
             this.existingSchedules.forEach((day) => {
                 day.horarios = day.horarios.filter(
@@ -544,22 +578,27 @@ export default {
         },
 
         checkDate(day) {
-            let data = new Date(day.data);
-            let dataLocal = data.toLocaleString("en-US", {
-                timeZone: this.selectedTimezone,
-            });
-            data = new Date(dataLocal);
+            let data = moment(day.data).tz(this.selectedTimezone);
+            let agora = moment().tz(this.selectedTimezone);
 
-            let agora = new Date();
-            let agoraLocal = agora.toLocaleString("en-US", {
-                timeZone: this.selectedTimezone,
-            });
-            agora = new Date(agoraLocal);
+            if (day.horarios.length > 0) {
+                if (data.isAfter(agora, "day")) {
+                    return true;
+                } else if (data.isSame(agora, "day")) {
+                    let horarioAtual = agora.hour() * 60 + agora.minutes();
+                    let horarioDisponivel = Math.min(...day.horarios);
 
-            return (
-                day.horarios.length > 0 &&
-                this.formatDateCheck(data) >= this.formatDateCheck(agora)
-            );
+                    if (horarioDisponivel > horarioAtual) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        },
+
+        formatDate(dateString) {
+            return dateString.split("-").reverse().join("/");
         },
 
         async sendHoursToAPI(schedules) {

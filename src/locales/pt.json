@@ -188,5 +188,8 @@
   "release_schedules": "Liberar Horários",
   "cancel": "cancelar",
   "select_doctor": "Selecione um profissional para visualizar agenda",
-  "loading": "Carregando"
+  "loading": "Carregando",
+  "warning": "Aviso",
+  "doesNotHaveOpenSchedules": "Não possui horários liberados!",
+  "pleaseSelectDate": "Por favor selecione uma data!"
 }
