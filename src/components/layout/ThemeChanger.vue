@@ -18,19 +18,8 @@ const store = useAppStore();
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <circle
-                    cx="12"
-                    cy="12"
-                    r="5"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                />
-                <path
-                    d="M12 2V4"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                />
+                <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5" />
+                <path d="M12 2V4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                 <path
                     d="M12 20V22"
                     stroke="currentColor"

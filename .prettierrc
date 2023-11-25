@@ -10,5 +10,12 @@
     "vueIndentInnerHtml": true,
     "vueQuoteProps": "as-needed",
     "vueQuoteStyle": "as-needed",
-    "printWidth": 80
+    "printWidth": 80,
+    "tabWidth": 4,
+    "useTabs": false,
+    "bracketSpacing": true,
+    "bracketSameLine": true,
+    "endOfLine": "lf",
+    "singleAttributePerLine": false,
+    "vueMaxAttributesPerLine": 1
 }
