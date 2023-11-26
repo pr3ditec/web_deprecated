@@ -31,7 +31,7 @@ export default {
     },
 
     props: {
-        selectedDate: String,
+        selectedDates: Array,
         selectedDoctor: String,
         existingSchedules: Array,
         selectedTimezone: String,
@@ -69,16 +69,32 @@ export default {
     methods: {
         async saveHours() {
             this.isAddEventModal = false;
+            let newSchedule;
+
             let horarios = this.selectedHours.map((hour) => ({
                 hora: hour,
             }));
 
-            let newSchedule = {
-                data: this.selectedDate,
-                horarios: horarios,
-            };
+            if (
+                Array.isArray(this.selectedDates) &&
+                this.selectedDates.length
+            ) {
+                this.selectedDates.forEach((date) => {
+                    newSchedule = {
+                        data: date,
+                        horarios: horarios,
+                    };
+                    this.existingSchedules.push(newSchedule);
+                });
+            } else {
+                newSchedule = {
+                    data: "",
+                    horarios: [],
+                };
+                this.existingSchedules.push(newSchedule);
+            }
 
-            let schedules = [...this.existingSchedules, newSchedule];
+            let schedules = [...this.existingSchedules];
 
             try {
                 let data = {
@@ -142,7 +158,11 @@ export default {
         },
 
         formatDate(dateString) {
-            return dateString.split("-").reverse().join("/");
+            if (Array.isArray(dateString)) {
+                return dateString.map((d) => this.formatDate(d)).join(", ");
+            } else {
+                return dateString.split("-").reverse().join("/");
+            }
         },
 
         generateTable() {
@@ -192,6 +212,7 @@ export default {
 
         clearSchedule() {
             this.selectedHours = [];
+            this.isAllSelected = false;
         },
 
         resetModal() {
@@ -289,7 +310,13 @@ export default {
                 <div class="mt-2 mb-2">
                     <p class="text-md mb-3">
                         {{ $t("you_selected_date") }}:
-                        {{ formatDate(selectedDate) }}
+                        <span
+                            v-if="
+                                Array.isArray(selectedDates) &&
+                                selectedDates.length
+                            ">
+                            {{ formatDate(selectedDates) }}
+                        </span>
                     </p>
                 </div>
 

@@ -15,10 +15,10 @@
                         @calendarMounted="handleCalendarMounted" />
                 </div>
             </div>
-            <div class="w-6/12 p-4" v-if="selectedDate">
+            <div class="w-6/12 p-4" v-if="selectedDates">
                 <ScheduleSelection
                     v-if="showSchedule"
-                    :selectedDate="selectedDate"
+                    :selectedDates="selectedDates"
                     :selectedDoctor="selectedDoctor"
                     :existingSchedules="existingSchedules"
                     :selectedTimezone="selectedTimezone"
@@ -64,7 +64,6 @@ export default {
             showSchedule: true,
             isAddEventModal: false,
             selectedDoctor: null,
-            selectedDate: null,
             selectedTimezone: null,
             existingSchedules: [],
 
@@ -80,16 +79,12 @@ export default {
                     start: new Date(),
                 },
                 select: (info) => {
-                    this.selectedDates = this.generateSelectedDates(
-                        new Date(info.startStr),
-                        new Date(info.endStr),
-                    );
-                    console.log("Datas selecionadas: ", this.selectedDates);
-                    this.isAddEventModal = true;
-                },
-                dateClick: (info) => {
-                    this.selectedDate = info.dateStr;
-                    console.log("Data selecionada: ", this.selectedDate);
+                    let start = new Date(info.startStr);
+                    let end = new Date(info.endStr);
+
+                    end.setDate(end.getDate() - 1);
+
+                    this.selectedDates = this.generateSelectedDates(start, end);
                     this.isAddEventModal = true;
                 },
             },
@@ -104,7 +99,7 @@ export default {
             immediate: true,
             handler(newDoctor) {
                 if (newDoctor) {
-                    this.selectedDate = null;
+                    this.selectedDates = [];
                     this.fetchDoctorAvailability(newDoctor);
                 }
             },
