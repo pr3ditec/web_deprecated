@@ -2,7 +2,6 @@
 import { ref, onMounted } from "vue";
 
 import { useAppStore } from "@/stores/index";
-import VueCollapsible from "vue-height-collapsible/vue3";
 
 import TitleDivision from "@/components/layout/sidebar-items/TitleDivision.vue";
 
@@ -12,8 +11,6 @@ import NavItem from "@/components/layout/navs/NavItem.vue";
 import IconChat from "@/components/icons/IconChat.vue";
 
 const store = useAppStore();
-const activeDropdown: any = ref("");
-const subActive: any = ref("");
 
 onMounted(() => {
     const selector = document.querySelector(
@@ -36,10 +33,6 @@ onMounted(() => {
         }
     }
 });
-
-const toggleMobileMenu = () => {
-    store.toggleMobileMenu();
-};
 </script>
 
 <template>
