@@ -25,10 +25,9 @@ export default {
 
 <template>
     <button
-        class="mb-3 mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+        class="capitalize mb-3 mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
         :class="buttonColorClass"
-        @click="handleClick"
-    >
+        @click="handleClick">
         <slot></slot>
     </button>
 </template>
