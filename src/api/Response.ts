@@ -77,4 +77,32 @@ export default class Response {
             },
         });
     }
+
+    public static async proporHorario(): Promise<any> {
+        return await Swal.fire({
+            html: `
+                <div class="flex flex-col gap-1">
+                    <label>Selecione a data</label>
+                    <input id="data" type="date" class="form-input" />
+                    <select id="hora" class="form-select">
+                        <option>teste</option>
+                    </select>
+                </div>
+            `,
+            preConfirm: () => {
+                return new Promise((resolve, reject) => {
+                    resolve({
+                        data: document.getElementById("data")?.value,
+                        hora: document.getElementById("hora")?.value,
+                    });
+                });
+            },
+        }).then((res) => {
+            if (res.isConfirmed) {
+                return res.value;
+            } else {
+                return {};
+            }
+        });
+    }
 }
