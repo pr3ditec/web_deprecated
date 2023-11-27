@@ -3,18 +3,22 @@ import Vue3Datatable from "@bhplugin/vue3-datatable";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import ApiConnection from "../../api/Api";
 import Response from "@/api/Response";
+import Cadastro from "./cadastro.vue";
 import "@bhplugin/vue3-datatable/dist/style.css";
+import { setTransitionHooks } from "vue";
 
 export default {
     components: {
         "vue3-datatable": Vue3Datatable,
         SelectMedico,
+        Cadastro,
     },
     data() {
         return {
             // api
             request: new ApiConnection(),
             medicoSelect: 0,
+            pacienteSelect: {},
             // tabela
             search: "",
             mostrarTabela: false,
@@ -47,6 +51,7 @@ export default {
                     status: "",
                 },
             ],
+            trocar: false,
         };
     },
     methods: {
@@ -55,18 +60,9 @@ export default {
         },
 
         async proporPreAgendamento(data: any) {
-            const dadosModal = await Response.proporHorario();
-            await this.request
-                .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
-                    pre_agendamento_id: data.id,
-                    horarios_agendamento: JSON.stringify([
-                        { data: dadosModal.data, hora: dadosModal.hora },
-                    ]),
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
-                .then((res) => console.log(res));
+            this.trocar = true;
+            this.pacienteSelect = data;
+
         },
     },
     watch: {
@@ -112,41 +108,53 @@ export default {
             <h1 class="text-md font-medium">{{ $t("select_doctor") }}</h1>
         </div>
         <div v-else>
-            <div
-                class="table-responsive p-6 pt-1 gap-1' flex flex-col items-center">
-                <input
-                    v-model="search"
-                    type="text"
-                    class="form-input w-1/2"
-                    placeholder="Pesquisar ......" />
-                <hr
-                    class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
-                <vue3-datatable
-                    v-if="mostrarTabela"
-                    class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
-                    :rows="dadosTabela"
-                    :columns="cols"
-                    :totalRows="dadosTabela?.length"
-                    :sortable="true"
-                    :search="search"
-                    firstArrow="First"
-                    lastArrow="Last"
-                    previousArrow="Prev"
-                    nextArrow="Next">
-                    <template #actions="data">
-                        <div class="flex gap-4">
-                            <button
-                                :disabled="data.status_id != -1"
-                                type="button"
-                                class="btn btn-sm btn-primary capitalize"
-                                @click="proporPreAgendamento(data.value)">
-                                {{ $t("propose") }}
-                            </button>
-                        </div>
-                    </template>
-                </vue3-datatable>
-                <div v-else>{{ $t("loading") }}</div>
-            </div>
+            <TransitionGroup name="list">
+                <div v-if="trocar">
+                    <button
+                        @click="trocar = false"
+                        class="btn btn-sm btn-outline-dark">
+                        &#8592;
+                    </button>
+                    <Cadastro
+                        :medico="medicoSelect"
+                        :dados-paciente="pacienteSelect" />
+                </div>
+                <div
+                    v-else
+                    class="table-responsive p-6 pt-1 gap-1' flex flex-col items-center">
+                    <input
+                        v-model="search"
+                        type="text"
+                        class="form-input w-1/2"
+                        placeholder="Pesquisar ......" />
+                    <hr
+                        class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
+                    <vue3-datatable
+                        v-if="mostrarTabela"
+                        class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
+                        :rows="dadosTabela"
+                        :columns="cols"
+                        :totalRows="dadosTabela?.length"
+                        :sortable="true"
+                        :search="search"
+                        firstArrow="First"
+                        lastArrow="Last"
+                        previousArrow="Prev"
+                        nextArrow="Next">
+                        <template #actions="data">
+                            <div class="flex gap-4">
+                                <button
+                                    type="button"
+                                    class="btn btn-sm btn-primary capitalize"
+                                    @click="proporPreAgendamento(data.value)">
+                                    {{ $t("propose") }}
+                                </button>
+                            </div>
+                        </template>
+                    </vue3-datatable>
+                    <div v-else>{{ $t("loading") }}</div>
+                </div>
+            </TransitionGroup>
         </div>
     </div>
 </template>

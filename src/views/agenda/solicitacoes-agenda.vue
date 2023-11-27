@@ -124,15 +124,15 @@ export default {
 <template>
     <div class="flex flex-row items-center justify-between mt-3">
         <span
-            class="cursor-pointer btn btn-sm btn-info"
+            class="cursor-pointer btn btn-sm btn-outline-dark"
             @click="trocarPagina(0)"
-            >prev</span
+            >&#8592;</span
         >
         <h6 class="uppercase font-bold font-xl">solicitações</h6>
         <h6
-            class="cursor-pointer btn btn-sm btn-danger"
+            class="cursor-pointer btn btn-sm btn-outline-dark"
             @click="trocarPagina(1)">
-            next
+            &rarr;
         </h6>
     </div>
     <div v-if="solicitacaoAgenda.length == 0">{{ defaultLoading }}</div>
