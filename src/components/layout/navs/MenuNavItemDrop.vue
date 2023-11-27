@@ -1,6 +1,8 @@
 <script>
-import { ref, onMounted } from "vue";
+import { ref, computed } from "vue";
 import { useAppStore } from "@/stores/index";
+
+import VueCollapsible from "vue-height-collapsible/vue3";
 
 export default {
     props: {
@@ -11,15 +13,10 @@ export default {
     },
     setup(props) {
         const store = useAppStore();
-        const isActive = ref(false);
-
-        onMounted(() => {
-            isActive.value = store.getActiveDropdown(props.label);
-        });
+        const isActive = computed(() => store.activeDropdown === props.label);
 
         function toggleDropdown() {
-            isActive.value = !isActive.value;
-            store.setActiveDropdown(props.label, isActive.value);
+            store.activeDropdown = isActive.value ? null : props.label;
         }
 
         return {
@@ -36,8 +33,7 @@ export default {
             type="button"
             class="nav-link group w-full"
             :class="{ active: isActive }"
-            @click="toggleDropdown"
-            :aria-label="$t(label)">
+            @click="toggleDropdown">
             <div class="flex items-center">
                 <slot name="icon"></slot>
                 <span
@@ -45,7 +41,9 @@ export default {
                     >{{ $t(label) }}</span
                 >
             </div>
-            <div class="rtl:rotate-180" :class="{ '!rotate-90': isActive }">
+            <div
+                class="rtl:rotate-180"
+                :class="{ '!rotate-90': isActive }">
                 <svg
                     width="16"
                     height="16"
@@ -62,7 +60,7 @@ export default {
             </div>
         </button>
 
-        <vue-collapsible :isOpen="isActive" v-if="isActive">
+        <vue-collapsible :isOpen=isActive v-if="isActive">
             <ul class="sub-menu text-gray-500 capitalize">
                 <slot></slot>
             </ul>
