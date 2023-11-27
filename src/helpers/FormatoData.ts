@@ -6,4 +6,9 @@ export default class FormatoData {
             hora: `${localDate.getHours()}:${localDate.getMinutes()}`
         }
     }
+
+    public static formatarParaPadraoBrasil(data: any){
+        const aux = data.split("-")
+        return `${aux[2]}/${aux[1]}/${aux[0]}`
+    }
 }
