@@ -91,6 +91,7 @@ export default {
     },
     async created() {
         this.buscarDados();
+        // console.log(this.dadosPaciente)
     },
 };
 </script>
