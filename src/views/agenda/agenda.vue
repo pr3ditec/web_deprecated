@@ -43,7 +43,7 @@ export default {
                     omitZeroMinute: false,
                     mediriem: "short",
                 },
-                duration: "00:30",
+                duration: "00:30:00",
                 eventDurationEditable: false,
                 eventStartEditable: true,
                 eventResizableFromStart: false,
@@ -81,12 +81,12 @@ export default {
                                 FormatoData.formatarParaApi(click.event.start),
                             );
                         }
-                    }else{
-                        const response = await Response.confirmarPresenca()
-                        if(response.value == 0){
-                            console.log("paciente compareceu")
-                        }else{
-                            console.log("paciente nao compareceu")
+                    } else {
+                        const response = await Response.confirmarPresenca();
+                        if (response.value == 0) {
+                            console.log("paciente compareceu");
+                        } else {
+                            console.log("paciente nao compareceu");
                         }
                     }
                 },
@@ -132,8 +132,9 @@ export default {
                 .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: item.item.id,
                     horarios_agendamento: JSON.stringify([
-                        { data: "2023-11-30", hora: "09:30" },
-                        { data: "2023-11-28", hora: "09:00" },
+                        item.item.horarios,
+                        // { data: "2023-11-30", hora: "09:30" },
+                        // { data: "2023-11-28", hora: "09:00" },
                     ]),
                 })
                 .catch((err) => {
@@ -188,7 +189,7 @@ export default {
                                 this.calendarOptions.events.push({
                                     id: res.id,
                                     title: res.paciente_nome,
-                                    backgroundColor: 'red',
+                                    backgroundColor: "red",
                                     eventFromApi: true,
                                     start: res.created_at,
                                     overlap: true,
@@ -228,13 +229,11 @@ export default {
                     <div class="flex flex-row justify-between gap-3">
                         <!-- SOLICITACOES -->
                         <div
-                            class="drag-container flex flex-col gap-2 p-4 shadow-md rounded-sm w-2/12 text-center overflow-y-auto"
-                        >
+                            class="drag-container flex flex-col gap-2 p-4 shadow-md rounded-sm w-2/12 text-center overflow-y-auto">
                             <Solicitacoes
                                 ref="solicitacoes"
                                 :medico="medicoSelect"
-                                @proporHorario="proporHorario"
-                            />
+                                @proporHorario="proporHorario" />
                         </div>
                         <!-- SOLICITACOES -->
 
@@ -243,8 +242,7 @@ export default {
                             <FullCalendar
                                 :options="calendarOptions"
                                 style="z-index: -100"
-                                ref="calendar"
-                            ></FullCalendar>
+                                ref="calendar"></FullCalendar>
                         </div>
                         <!-- CALENDARIO -->
                     </div>

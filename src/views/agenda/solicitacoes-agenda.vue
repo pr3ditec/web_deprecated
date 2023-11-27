@@ -11,6 +11,10 @@ export default {
             idAuxiliar: [],
             defaultLoading: "Carregando",
             solicitacaoAgenda: [],
+            paginas: {
+                inicio: 0,
+                fim: 5,
+            },
         };
     },
     methods: {
@@ -71,6 +75,29 @@ export default {
                 return false;
             }
         },
+        trocarPagina(direcao: number) {
+            if (direcao == 0 && this.paginas.inicio != 0) {
+                console.log(this.paginas);
+                this.paginas.fim = this.paginas.inicio;
+                this.paginas.inicio = this.paginas.fim - 5;
+            } else if (
+                direcao == 1 &&
+                this.paginas.fim < this.solicitacaoAgenda.length
+            ) {
+                console.log(this.paginas);
+
+                this.paginas.inicio = this.paginas.fim;
+                this.paginas.fim = this.paginas.inicio + 5;
+            }
+        },
+    },
+    computed: {
+        paginacao() {
+            return this.solicitacaoAgenda.slice(
+                this.paginas.inicio,
+                this.paginas.fim,
+            );
+        },
     },
     async created() {
         await this.request
@@ -86,7 +113,7 @@ export default {
                             this.solicitacaoAgenda.push(res);
                         }
                     });
-                    this.defaultLoading = "Nenhuma solicitação"
+                    this.defaultLoading = "Nenhuma solicitação";
                 } else {
                     return alert("falha na api");
                 }
@@ -95,30 +122,38 @@ export default {
 };
 </script>
 <template>
-    <h6 class="uppercase font-bold font-xl mt-3">solicitações</h6>
+    <div class="flex flex-row items-center justify-between mt-3">
+        <span
+            class="cursor-pointer btn btn-sm btn-info"
+            @click="trocarPagina(0)"
+            >prev</span
+        >
+        <h6 class="uppercase font-bold font-xl">solicitações</h6>
+        <h6
+            class="cursor-pointer btn btn-sm btn-danger"
+            @click="trocarPagina(1)">
+            next
+        </h6>
+    </div>
     <div v-if="solicitacaoAgenda.length == 0">{{ defaultLoading }}</div>
     <div v-else>
         <TransitionGroup name="list" tag="div">
             <div
                 :id="solicitacao.id.toString()"
                 class="d-custom max-w-[30rem] w-full bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none hover:bg-slate-50"
-                v-for="solicitacao in solicitacaoAgenda"
-            >
+                v-for="solicitacao in paginacao">
                 <div class="p-5 flex items-center flex-col sm:flex-row">
                     <div class="mb-3 w-20 h-20 rounded-full overflow-hidden">
                         <img
                             src="/assets/images/logo.png"
                             alt=""
                             height="16"
-                            class="w-full h-full object-cover"
-                        />
+                            class="w-full h-full object-cover" />
                     </div>
                     <div
-                        class="flex-1 ltr:sm:pl-5 rtl:sm:pr-5 text-center sm:text-left"
-                    >
+                        class="flex-1 ltr:sm:pl-5 rtl:sm:pr-5 text-center sm:text-left">
                         <h5
-                            class="text-[#3b3f5c] text-[15px] font-semibold mb-1 dark:text-white-light"
-                        >
+                            class="text-[#3b3f5c] text-[15px] font-semibold mb-1 dark:text-white-light">
                             {{ solicitacao.paciente_nome }} {{ solicitacao.id }}
                         </h5>
                         <p class="mb-1 text-white-dark">
@@ -137,12 +172,10 @@ export default {
                     v-show="
                         solicitacao.horarios.length > 0 &&
                         testeInclusao(solicitacao.id)
-                    "
-                >
+                    ">
                     <button
                         class="btn btn-sm btn-dark capitalize"
-                        @click="emitProporHorario(solicitacao.id)"
-                    >
+                        @click="emitProporHorario(solicitacao.id)">
                         propor horarios
                     </button>
                 </div>

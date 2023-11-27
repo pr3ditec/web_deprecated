@@ -193,5 +193,8 @@
   "doesNotHaveOpenSchedules": "Não possui horários liberados!",
   "pleaseSelectDate": "Por favor selecione uma data!",
   "financier": "Financeiro",
-  "financialReceiving": "financeiro/recebimento"
+  "financialReceiving": "financeiro/recebimento",
+  "actions": "Ações",
+  "propose": "Propor",
+  "remove": "Remover"
 }

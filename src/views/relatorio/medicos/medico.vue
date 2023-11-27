@@ -1,5 +1,5 @@
 <script lang="ts">
-import { inject } from "vue";
+import ApiConnection from "../../../api/Api";
 import MascarasInput from "@/helpers/MascaraInput";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
@@ -11,7 +11,7 @@ export default {
     },
     data() {
         return {
-            request: Object(inject("api")),
+            request: new ApiConnection(),
             mascara: MascarasInput,
 
             // Dados
@@ -90,7 +90,7 @@ export default {
     methods: {},
     async created() {
         await this.request.pegarDadosApi("/medico").then((res: any) => {
-            this.dadosTabela = res;
+            this.dadosTabela = res.list;
         });
     },
     mounted() {
@@ -116,17 +116,14 @@ export default {
         <!-- HEADER -->
 
         <div
-            class="table-responsive p-6 pt-1 gap-1' flex flex-col items-center"
-        >
+            class="table-responsive p-6 pt-1 gap-1' flex flex-col items-center">
             <input
                 v-model="search"
                 type="text"
                 class="form-input w-1/2"
-                placeholder="Pesquisar ......"
-            />
+                placeholder="Pesquisar ......" />
             <hr
-                class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700"
-            />  
+                class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
             <vue3-datatable
                 v-if="mostrarTabela"
                 class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
@@ -138,10 +135,9 @@ export default {
                 firstArrow="First"
                 lastArrow="Last"
                 previousArrow="Prev"
-                nextArrow="Next"
-            >
+                nextArrow="Next">
             </vue3-datatable>
-            <div v-else>{{ $t('loading')}}</div>
+            <div v-else>{{ $t("loading") }}</div>
         </div>
     </div>
 </template>

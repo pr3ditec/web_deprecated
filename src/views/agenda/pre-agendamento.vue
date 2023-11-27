@@ -1,8 +1,9 @@
 <script lang="ts">
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
+import ApiConnection from "../../api/Api";
+import Response from "@/api/Response";
 import "@bhplugin/vue3-datatable/dist/style.css";
-import { inject } from "vue";
 
 export default {
     components: {
@@ -12,7 +13,7 @@ export default {
     data() {
         return {
             // api
-            request: Object(inject("api")),
+            request: new ApiConnection(),
             medicoSelect: 0,
             // tabela
             search: "",
@@ -33,6 +34,11 @@ export default {
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
                     title: this.$t("status"),
                 },
+                {
+                    field: "actions",
+                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    title: this.$t("actions"),
+                },
             ],
             dadosTabela: [
                 {
@@ -48,8 +54,19 @@ export default {
             this.medicoSelect = medico;
         },
 
-        proporAgendamento(data: any) {
-            console.log(data);
+        async proporPreAgendamento(data: any) {
+            const dadosModal = await Response.proporHorario();
+            await this.request
+                .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
+                    pre_agendamento_id: data.id,
+                    horarios_agendamento: JSON.stringify([
+                        { data: dadosModal.data, hora: dadosModal.hora },
+                    ]),
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .then((res) => console.log(res));
         },
     },
     watch: {
@@ -57,7 +74,7 @@ export default {
             await this.request
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medicoSelect}`) // colocar o id do medico
                 .then((response: any) => {
-                    this.dadosTabela = response;
+                    this.dadosTabela = response.list;
                     this.dadosTabela.forEach((item) => {
                         item["horarios"] = [];
                     });
@@ -87,28 +104,23 @@ export default {
         <!-- HEADER -->
         <div>
             <SelectMedico
-                @update:modelValue="($event) => updateMedico($event)"
-            />
+                @update:modelValue="($event) => updateMedico($event)" />
         </div>
         <div
             v-if="medicoSelect == 0"
-            class="flex flex-col items-center justify-center"
-        >
+            class="flex flex-col items-center justify-center">
             <h1 class="text-md font-medium">{{ $t("select_doctor") }}</h1>
         </div>
         <div v-else>
             <div
-                class="table-responsive p-6 pt-1 gap-1' flex flex-col items-center"
-            >
+                class="table-responsive p-6 pt-1 gap-1' flex flex-col items-center">
                 <input
                     v-model="search"
                     type="text"
                     class="form-input w-1/2"
-                    placeholder="Pesquisar ......"
-                />
+                    placeholder="Pesquisar ......" />
                 <hr
-                    class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700"
-                />
+                    class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
                 <vue3-datatable
                     v-if="mostrarTabela"
                     class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
@@ -120,9 +132,18 @@ export default {
                     firstArrow="First"
                     lastArrow="Last"
                     previousArrow="Prev"
-                    nextArrow="Next"
-                    @rowClick="proporAgendamento"
-                >
+                    nextArrow="Next">
+                    <template #actions="data">
+                        <div class="flex gap-4">
+                            <button
+                                :disabled="data.status_id != -1"
+                                type="button"
+                                class="btn btn-sm btn-primary capitalize"
+                                @click="proporPreAgendamento(data.value)">
+                                {{ $t("propose") }}
+                            </button>
+                        </div>
+                    </template>
                 </vue3-datatable>
                 <div v-else>{{ $t("loading") }}</div>
             </div>
