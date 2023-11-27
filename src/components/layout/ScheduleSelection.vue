@@ -69,7 +69,6 @@ export default {
     methods: {
         async saveHours() {
             this.isAddEventModal = false;
-            let newSchedule;
 
             let horarios = this.selectedHours.map((hour) => ({
                 hora: hour,
@@ -80,14 +79,24 @@ export default {
                 this.selectedDates.length
             ) {
                 this.selectedDates.forEach((date) => {
-                    newSchedule = {
-                        data: date,
-                        horarios: horarios,
-                    };
-                    this.existingSchedules.push(newSchedule);
+                    let existingSchedule = this.existingSchedules.find(
+                        (schedule) => schedule.data === date,
+                    );
+
+                    if (existingSchedule) {
+                        // Se a data já existir, adiciona os novos horários
+                        existingSchedule.horarios.push(...horarios);
+                    } else {
+                        // Se a data não existir, crie um novo objeto
+                        let newSchedule = {
+                            data: date,
+                            horarios: horarios,
+                        };
+                        this.existingSchedules.push(newSchedule);
+                    }
                 });
             } else {
-                newSchedule = {
+                let newSchedule = {
                     data: "",
                     horarios: [],
                 };

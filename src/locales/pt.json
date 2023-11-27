@@ -191,5 +191,7 @@
   "loading": "Carregando",
   "warning": "Aviso",
   "doesNotHaveOpenSchedules": "Não possui horários liberados!",
-  "pleaseSelectDate": "Por favor selecione uma data!"
+  "pleaseSelectDate": "Por favor selecione uma data!",
+  "financier": "Financeiro",
+  "financialReceiving": "financeiro/recebimento"
 }

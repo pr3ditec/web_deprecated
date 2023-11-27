@@ -33,7 +33,7 @@ export default {
         } else {
             this.profissionais = [
                 {
-                    usuario_id: localStorage.getItem("doctor.id"),
+                    medico_id: localStorage.getItem("doctor.id"),
                     nome: localStorage.getItem("user.name"),
                 },
             ];

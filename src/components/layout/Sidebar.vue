@@ -8,6 +8,7 @@ import SidebarLogo from "@/components/layout/sidebar-items/SidebarLogo.vue";
 
 import MenuDashboard from "@/components/layout/sidebar-items/MenuDashboard.vue";
 import MenuSchedule from "@/components/layout/sidebar-items/MenuSchedule.vue";
+import MenuFinancer from "@/components/layout/sidebar-items/MenuFinancer.vue";
 import MenuRegister from "@/components/layout/sidebar-items/MenuRegister.vue";
 import MenuGeneralReport from "@/components/layout/sidebar-items/MenuGeneralReport.vue";
 
@@ -71,6 +72,7 @@ const toggleMobileMenu = () => {
                         <MenuDashboard />
                         <MenuSchedule />
                         <MenuRegister />
+                        <MenuFinancer />
                         <MenuGeneralReport />
                         <MenuAuth />
 

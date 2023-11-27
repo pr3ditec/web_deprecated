@@ -89,6 +89,14 @@ const routes: RouteRecordRaw[] = [
     },
     /** RELATORIOS */
 
+    /** FINANCEIRO */
+    {
+        path: "/financeiro",
+        name: "Financeiro de médicos",
+        component: () => import("../views/financeiro/financeiro.vue"),
+    },
+    /** FINANCEIRO */
+
     // auth
     {
         path: "/auth/login",
