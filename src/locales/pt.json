@@ -200,5 +200,6 @@
   "available": "Disponível",
   "to_pacient": "Encaminhado para o paciente",
   "treated": "Atendido",
-  "next_appointment": "Proxímo atendimento"
+  "next_appointment": "Proxímo atendimento",
+  "return": "Retorno"
 }

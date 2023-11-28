@@ -34,6 +34,11 @@ export default {
                         class="h-2.5 w-4.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-primary"></div>
                     <div class="uppercase">{{ $t('next_appointment')}}</div>
                 </div>
+                <div class="flex items-center ml-2">
+                    <div
+                        class="h-2.5 w-4.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-warning"></div>
+                    <div class="uppercase">{{ $t('return')}}</div>
+                </div>
             </div>
         </div>
         <!-- LEGENDAS -->
