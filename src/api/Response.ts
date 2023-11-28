@@ -20,8 +20,10 @@ export default class Response {
         });
     }
 
-    public static mensagemToast(mensagem: any): any {
+    public static mensagemToast(icon: any, mensagem: any): any {
         return Swal.mixin({
+            icon: icon,
+            animation: true,
             text: mensagem,
             toast: true,
             showConfirmButton: false,
@@ -75,6 +77,15 @@ export default class Response {
                 "0": "Sim",
                 "1": "Não",
             },
+        });
+    }
+
+    public static ajuda(mensagem: string) {
+        Swal.fire({
+            icon: "info",
+            animation: true,
+            text: mensagem,
+            showConfirmButton: false,
         });
     }
 }

@@ -131,11 +131,11 @@ export default {
             await this.request
                 .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: item.item.id,
-                    horarios_agendamento: JSON.stringify([
+                    horarios_agendamento: JSON.stringify(
                         item.item.horarios,
                         // { data: "2023-11-30", hora: "09:30" },
                         // { data: "2023-11-28", hora: "09:00" },
-                    ]),
+                    ),
                 })
                 .catch((err) => {
                     console.log(err);
@@ -202,6 +202,7 @@ export default {
                     }
                 });
         },
+
         /** BUSCAR DADOS DE API */
     },
     watch: {
@@ -211,6 +212,7 @@ export default {
             });
         },
     },
+    async created() {},
 };
 </script>
 

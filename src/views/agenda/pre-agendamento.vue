@@ -2,10 +2,8 @@
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import ApiConnection from "../../api/Api";
-import Response from "@/api/Response";
-import Cadastro from "./cadastro.vue";
+import Cadastro from "./cadastro-pre-agendamento.vue";
 import "@bhplugin/vue3-datatable/dist/style.css";
-import { setTransitionHooks } from "vue";
 
 export default {
     components: {
@@ -62,11 +60,8 @@ export default {
         async proporPreAgendamento(data: any) {
             this.trocar = true;
             this.pacienteSelect = data;
-
         },
-    },
-    watch: {
-        async medicoSelect() {
+        async buscarDados() {
             await this.request
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medicoSelect}`) // colocar o id do medico
                 .then((response: any) => {
@@ -77,7 +72,16 @@ export default {
                 });
         },
     },
-    created() {},
+    watch: {
+        async medicoSelect() {
+            this.buscarDados();
+        },
+        trocar() {
+            if (!this.trocar) {
+                this.buscarDados();
+            }
+        },
+    },
     mounted() {
         setTimeout(() => (this.mostrarTabela = true), 500);
     },
@@ -144,6 +148,7 @@ export default {
                         <template #actions="data">
                             <div class="flex gap-4">
                                 <button
+                                    :disabled="data.status_id != -1"
                                     type="button"
                                     class="btn btn-sm btn-primary capitalize"
                                     @click="proporPreAgendamento(data.value)">
@@ -161,6 +166,7 @@ export default {
 <style>
 /* alt-pagination */
 .alt-pagination .bh-pagination .bh-page-item {
-    @apply !w-max min-w-[32px] !rounded;
+    border-radius: 1px;
+    padding: 1rem;
 }
 </style>
