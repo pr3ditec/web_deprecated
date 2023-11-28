@@ -75,4 +75,10 @@ export default class Response {
             showConfirmButton: false,
         });
     }
+
+    public static async proporAgendamento() :Promise<any>{
+        return await Swal.fire({
+            text: ""
+        })
+    }
 }
