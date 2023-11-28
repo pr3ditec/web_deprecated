@@ -126,5 +126,9 @@
   "loading": "Loading",
   "actions": "Actions",
   "propose": "Propose",
-  "remove": "Remove"
+  "remove": "Remove",
+  "available": "Available",
+  "to_pacient": "Sended to pacient",
+  "treated": "Treated",
+  "next_appointment": "Next appointment"
 }
