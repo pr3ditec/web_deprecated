@@ -9,6 +9,7 @@ import Solicitacoes from "./solicitacoes-agenda.vue";
 import ApiConnection from "../../api/Api";
 import FormatoData from "../../helpers/FormatoData";
 import Response from "../../api/Response";
+import ModalPreAgendamento from "./modal-pre-agendamento.vue";
 
 export default {
     components: {
@@ -16,11 +17,13 @@ export default {
         FullCalendar,
         HeaderAgenda,
         Solicitacoes,
+        ModalPreAgendamento,
     },
     data() {
         return {
             request: new ApiConnection(),
             medicoSelect: 0,
+            modal: false,
             calendarOptions: {
                 height: "100vh",
                 width: "100",
@@ -65,7 +68,9 @@ export default {
         updateMedico(medico: any) {
             this.medicoSelect = medico;
         },
-        proporAgendamento() {},
+        proporAgendamento() {
+            this.modal = !this.modal;
+        },
         /** EMITS */
 
         /** GERAR TOKEN PRESENCA */
@@ -184,5 +189,6 @@ export default {
                 </div>
             </div>
         </TransitionGroup>
+        <ModalPreAgendamento v-show="modal" />
     </div>
 </template>
