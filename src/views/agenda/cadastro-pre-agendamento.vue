@@ -56,7 +56,7 @@ export default {
                 events: [{}],
                 eventClick: (click) => {
                     if (click.event._def.ui.backgroundColor == "black") {
-                        click.event.setProp("color", "#04f400");
+                        click.event.setProp("color", "#4361ee");
                     } else {
                         click.event.setProp("color", "black");
                     }
@@ -71,16 +71,18 @@ export default {
                 .then((res) => {
                     res.list.horarios.forEach((element) => {
                         element.horarios.forEach((el, index) => {
-                            this.calendarOptions.events.push({
-                                id: index,
-                                title: "horário dísponivel",
-                                start: `${element.data} ${el.hora}`,
-                                color: "black",
-                                forApi: {
-                                    data: element.data,
-                                    hora: el.hora,
-                                },
-                            });
+                            if (el.agendamento == null) {
+                                this.calendarOptions.events.push({
+                                    id: index,
+                                    title: "horário dísponivel",
+                                    start: `${element.data} ${el.hora}`,
+                                    color: "black",
+                                    forApi: {
+                                        data: element.data,
+                                        hora: el.hora,
+                                    },
+                                });
+                            }
                         });
                     });
                 });

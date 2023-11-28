@@ -49,16 +49,14 @@ export default class Response {
         icon: any,
         confirm: string,
         cancel: string,
+        mensagem: string = ''
     ): Promise<boolean> {
         return await Swal.fire({
             icon: icon,
-            iconColor: "#3b3f5c",
             confirmButtonText: confirm,
-            confirmButtonColor: "#e7515a",
-            focusConfirm: false,
+            text: mensagem,
             showCancelButton: true,
             cancelButtonText: cancel,
-            cancelButtonColor: "#3b3f5c",
             focusCancel: false,
         }).then((response) => {
             if (response.isConfirmed) {
@@ -66,17 +64,6 @@ export default class Response {
             } else {
                 return false;
             }
-        });
-    }
-
-    public static async confirmarPresenca(): Promise<any> {
-        return await Swal.fire({
-            title: "Paciente compareceu ?",
-            input: "radio",
-            inputOptions: {
-                "0": "Sim",
-                "1": "Não",
-            },
         });
     }
 
