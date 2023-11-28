@@ -12,8 +12,7 @@
         </ul>
         <div class="pt-8">
             <div
-                class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6 text-white"
-            >
+                class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6 text-white">
                 <div class="panel bg-gradient-to-r from-cyan-500 to-cyan-400">
                     <div class="flex justify-between">
                         <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">
@@ -28,8 +27,7 @@
                 </div>
 
                 <div
-                    class="panel bg-gradient-to-r from-violet-500 to-violet-400"
-                >
+                    class="panel bg-gradient-to-r from-violet-500 to-violet-400">
                     <div class="flex justify-between">
                         <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">
                             {{ $t("total_value_of_installments_paid") }}
@@ -62,8 +60,7 @@
                 </div>
 
                 <div
-                    class="panel bg-gradient-to-r from-fuchsia-500 to-fuchsia-400"
-                >
+                    class="panel bg-gradient-to-r from-fuchsia-500 to-fuchsia-400">
                     <div class="flex justify-between">
                         <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">
                             {{ $t("future_cash") }}
@@ -103,8 +100,7 @@
                                         {{ $t("in_compliance") }}
                                     </div>
                                     <div
-                                        class="text-success mt-2 font-semibold text-2xl"
-                                    >
+                                        class="text-success mt-2 font-semibold text-2xl">
                                         {{ parcelaPagaEmDia }} -
                                         {{ formatValor(parcelaPagaEmDiaValor) }}
                                     </div>
@@ -114,14 +110,9 @@
                                         {{ $t("defaulting") }}
                                     </div>
                                     <div
-                                        class="text-danger mt-2 font-semibold text-2xl"
-                                    >
+                                        class="text-danger mt-2 font-semibold text-2xl">
                                         {{ parcelaPagaAtrasada }} -
-                                        {{
-                                            formatValor(
-                                                parcelaPagaAtrasadaValor,
-                                            )
-                                        }}
+                                        {{ formatValor(parcelaPagaAtrasadaValor) }}
                                     </div>
                                 </div>
                             </div>
@@ -139,14 +130,11 @@
                                 height="325"
                                 :options="revenueChart"
                                 :series="revenueSeries"
-                                class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                            >
+                                class="bg-white dark:bg-black rounded-lg overflow-hidden">
                                 <div
-                                    class="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]"
-                                >
+                                    class="min-h-[325px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
                                     <span
-                                        class="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"
-                                    ></span>
+                                        class="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
                                 </div>
                             </apexchart>
                         </div>
@@ -176,8 +164,7 @@
                                         {{ $t("defaulted_amount") }}
                                     </th>
                                     <th
-                                        class="!text-center ltr:rounded-r-md rtl:rounded-l-md"
-                                    >
+                                        class="!text-center ltr:rounded-r-md rtl:rounded-l-md">
                                         INADIMPLÊNCIA
                                     </th>
                                 </tr>
@@ -185,8 +172,7 @@
                             <tbody>
                                 <tr
                                     v-for="(value, parcela) in parcelamento"
-                                    :key="parcela"
-                                >
+                                    :key="parcela">
                                     <td class="!text-center">{{ parcela }}</td>
                                     <td class="!text-center">
                                         {{ value.numeroParcelas }}
@@ -203,12 +189,11 @@
                                         class="!text-center ltr:rounded-r-md rtl:rounded-l-md"
                                         v-bind:class="{
                                             'text-success':
-                                                value.valorInadimplente <= 70,
+                                                value.inadimplencia <= 70,
                                             'text-danger':
-                                                value.valorInadimplente > 70,
-                                        }"
-                                    >
-                                        {{ value.valorInadimplente }} %
+                                                value.inadimplencia > 70,
+                                        }">
+                                        {{ value.inadimplencia }} %
                                     </td>
                                 </tr>
                             </tbody>
@@ -400,6 +385,7 @@ export default {
                     valorPago: number;
                     valorInadimplente: number;
                     inadimplencia: number;
+                    valorTotal: number;
                 };
             },
             dataAtual: dataAtual.toISOString().split("T")[0],
@@ -520,10 +506,14 @@ export default {
                             numeroParcelas: 0,
                             valorPago: 0,
                             valorInadimplente: 0,
+                            valorTotal: 0,
                             inadimplencia: 0,
                         };
                     }
                     this.parcelamento[parcela.parcela].numeroParcelas++;
+                    this.parcelamento[parcela.parcela].valorTotal += parseFloat(
+                        parcela.valor,
+                    );
                     if (parcela.pagamento) {
                         this.parcelamento[parcela.parcela].valorPago +=
                             parseFloat(parcela.valor);
@@ -537,9 +527,9 @@ export default {
             // inadimplência para cada parcela
             Object.keys(this.parcelamento).forEach((parcela) => {
                 this.parcelamento[parcela].inadimplencia =
-                    this.parcelamento[parcela].valorInadimplente /
-                    (this.parcelamento[parcela].valorPago +
-                        this.parcelamento[parcela].valorInadimplente);
+                    (this.parcelamento[parcela].valorInadimplente /
+                        this.parcelamento[parcela].valorTotal) *
+                    100;
             });
 
             if (this.totalParcelas !== 0) {
