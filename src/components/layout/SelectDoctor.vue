@@ -48,18 +48,20 @@ export default {
 </script>
 
 <template>
-    <div>
-        <select
-            v-model="selectedProfessional"
-            class="form-select mb-4"
-            @change="updateSelectedProfessional">
-            <option disabled value="">Selecione um profissional</option>
-            <option
-                v-for="profissional in profissionais"
-                :key="profissional.medico_id"
-                :value="profissional.medico_id">
-                {{ profissional.nome }}
-            </option>
-        </select>
+    <div class="flex justify-center">
+        <div class="w-1/2">
+            <select
+                v-model="selectedProfessional"
+                class="form-select mb-6"
+                @change="updateSelectedProfessional">
+                <option disabled value="">Selecione um profissional</option>
+                <option
+                    v-for="profissional in profissionais"
+                    :key="profissional.medico_id"
+                    :value="profissional.medico_id">
+                    {{ profissional.nome }}
+                </option>
+            </select>
+        </div>
     </div>
 </template>
