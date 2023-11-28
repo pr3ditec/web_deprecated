@@ -26,12 +26,12 @@ export default {
                 </div>
                 <div class="flex items-center ltr:mr-4 rtl:ml-4">
                     <div
-                        class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-gray-400"></div>
+                        class="h-2.5 w-4.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-gray-400"></div>
                     <div class="uppercase">{{ $t('treated')}}</div>
                 </div>
                 <div class="flex items-center">
                     <div
-                        class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-primary"></div>
+                        class="h-2.5 w-4.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-primary"></div>
                     <div class="uppercase">{{ $t('next_appointment')}}</div>
                 </div>
             </div>
