@@ -201,5 +201,6 @@
   "to_pacient": "Encaminhado para o paciente",
   "treated": "Atendido",
   "next_appointment": "Proxímo atendimento",
-  "return": "Retorno"
+  "return": "Retorno",
+  "select_patient": "Selecione o paciente"
 }
