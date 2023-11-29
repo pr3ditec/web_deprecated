@@ -202,5 +202,10 @@
   "treated": "Atendido",
   "next_appointment": "Proxímo atendimento",
   "return": "Retorno",
-  "select_patient": "Selecione o paciente"
+  "select_patient": "Selecione o paciente",
+  "rules": "Regras",
+  "last_update": "Ultíma atualização",
+  "status": "Status",
+  "value": "Valor",
+  "update": "atualizar"
 }

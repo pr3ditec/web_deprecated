@@ -132,5 +132,10 @@
   "treated": "Treated",
   "next_appointment": "Next appointment",
   "return": "medical return",
-  "select_patient": "Select patient"
+  "select_patient": "Select patient",
+  "rules": "Rules",
+  "last_update": "Updated at",
+  "status": "Status",
+  "value": "Value",
+  "update": "Update"
 }

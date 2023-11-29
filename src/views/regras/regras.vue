@@ -3,6 +3,7 @@ import MascarasInput from "@/helpers/MascaraInput";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
 import ApiConnection from "@/api/Api";
+import axios from "axios";
 
 export default {
     components: {
@@ -17,12 +18,12 @@ export default {
                 {
                     field: "regra",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("rule"),
+                    title: this.$t("rules"),
                 },
                 {
                     field: "atualizado",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("updated"),
+                    title: this.$t("last_update"),
                 },
                 {
                     field: "status",
@@ -37,7 +38,7 @@ export default {
                 {
                     field: "botao",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("alterar"),
+                    title: this.$t("update"),
                 },
             ],
             dadosTabela: [
@@ -85,13 +86,35 @@ export default {
         };
     },
     methods: {
-        async buscarDados(rota) {},
+        buscarDados(rotas: any) {
+            rotas.forEach(async (rota: any) => {
+                await this.request.pegarDadosApi(rota).then((res) => {
+                    console.log(res.list);
+                });
+            });
+        },
+    },
+
+    async created() {
+        // this.buscarDados([
+        //     "/maximo-parcelamento",
+        //     "/limite-confirmacao-agendamento",
+        //     "/risco-empresarial",
+        // ]);
+        await axios.get('/admin/secretaria/agendamento/').then( res => console.log(res))
     },
 };
 </script>
 <template>
     <div class="container-fluid">
-        <div class="row mb-4 mt-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-4xl font-bold mb-4 capitalize">
+                    {{ $t("rules") }}
+                </h1>
+            </div>
+        </div>
+        <div class="row mb-4 mt-5 w-1/2 mx-auto">
             <input
                 class="form-input"
                 type="text"
@@ -99,7 +122,7 @@ export default {
                 v-model="search" />
         </div>
         <div class="row">
-            <div class="col-6 p-5">
+            <div class="col-12 p-5">
                 <vue3-datatable
                     class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
                     :rows="dadosTabela"
@@ -121,6 +144,7 @@ export default {
                         <div class="flex flex-row">
                             <input
                                 class="form-input form-input-sm w-1/2 p-3"
+                                :class="{ 'border-danger': !data.value.lock }"
                                 type="text"
                                 :value="data.value.valor"
                                 :disabled="data.value.lock" />
@@ -131,7 +155,7 @@ export default {
                             class="btn btn-sm btn-primary uppercase"
                             :class="{ 'btn-danger': !data.value.lock }"
                             @click="data.value.lock = !data.value.lock">
-                            {{ !data.value.lock ? "Alterar" : "Unlock"}}
+                            {{ !data.value.lock ? "Alterar" : "Unlock" }}
                         </button>
                     </template>
                 </vue3-datatable>
@@ -146,7 +170,4 @@ export default {
 }
 </style>
 
-<!-- /maximo-parcelamento  cadastrar e ver -->
-<!-- /risco-empresarial  cadastrar -->
-<!-- /limite-confirmacao-agendamento cadastrar e index? -->
 <!-- /medico/desconto cadastro -->
