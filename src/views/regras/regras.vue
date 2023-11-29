@@ -101,7 +101,11 @@ export default {
         //     "/limite-confirmacao-agendamento",
         //     "/risco-empresarial",
         // ]);
+<<<<<<< Updated upstream
         await axios.get('/admin/secretaria/agendamento/').then( res => console.log(res))
+=======
+        await axios.get('/admin/secretaria/agendamento/').then( res => console.log)
+>>>>>>> Stashed changes
     },
 };
 </script>
