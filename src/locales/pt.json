@@ -196,5 +196,10 @@
   "financialReceiving": "financeiro/recebimento",
   "actions": "Ações",
   "propose": "Propor",
-  "remove": "Remover"
+  "remove": "Remover",
+  "available": "Disponível",
+  "to_pacient": "Encaminhado para o paciente",
+  "treated": "Atendido",
+  "next_appointment": "Proxímo atendimento",
+  "return": "Retorno"
 }

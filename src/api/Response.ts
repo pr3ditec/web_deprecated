@@ -20,8 +20,10 @@ export default class Response {
         });
     }
 
-    public static mensagemToast(mensagem: any): any {
+    public static mensagemToast(icon: any, mensagem: any): any {
         return Swal.mixin({
+            icon: icon,
+            animation: true,
             text: mensagem,
             toast: true,
             showConfirmButton: false,
@@ -47,16 +49,14 @@ export default class Response {
         icon: any,
         confirm: string,
         cancel: string,
+        mensagem: string = ''
     ): Promise<boolean> {
         return await Swal.fire({
             icon: icon,
-            iconColor: "#3b3f5c",
             confirmButtonText: confirm,
-            confirmButtonColor: "#e7515a",
-            focusConfirm: false,
+            text: mensagem,
             showCancelButton: true,
             cancelButtonText: cancel,
-            cancelButtonColor: "#3b3f5c",
             focusCancel: false,
         }).then((response) => {
             if (response.isConfirmed) {
@@ -67,14 +67,12 @@ export default class Response {
         });
     }
 
-    public static async confirmarPresenca(): Promise<any> {
-        return await Swal.fire({
-            title: "Paciente compareceu ?",
-            input: "radio",
-            inputOptions: {
-                "0": "Sim",
-                "1": "Não",
-            },
+    public static ajuda(mensagem: string) {
+        Swal.fire({
+            icon: "info",
+            animation: true,
+            text: mensagem,
+            showConfirmButton: false,
         });
     }
 }
