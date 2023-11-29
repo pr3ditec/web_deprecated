@@ -21,9 +21,16 @@ export default {
     },
     data() {
         return {
+            // API
             request: new ApiConnection(),
+
+            // MEDICO QUE VEM DO EMIT
             medicoSelect: 0,
+
+            // MOSTRAR MODAL, VEM DE EMIT
             modal: false,
+
+            // INICIALIZACAO FULL CALEDAR
             calendarOptions: {
                 height: "100vh",
                 width: "100",
@@ -57,7 +64,9 @@ export default {
                         );
                         /** FLUXO PARA PROPOR AGENDAMENTO */
                     } else if (!click.event._def.extendedProps.eventFromApi) {
-                        this.proporAgendamento();
+                        //@ts-expect-error
+                        this.modal = true;
+                        click.event.setProp("color", "#4361ee");
                     }
                 },
             },
@@ -68,8 +77,21 @@ export default {
         updateMedico(medico: any) {
             this.medicoSelect = medico;
         },
-        proporAgendamento() {
-            this.modal = !this.modal;
+        fecharModal() {
+            this.modal = false;
+        },
+        proporAgendamento(data: any) {
+            this.fecharModal();
+            const evento = this.pegarEventosSelecionados();
+            if (!evento.status) {
+                if (data.tipo == "retorno") {
+                    // marcar consulta de agenda
+                } else {
+                    this.propostaHorarios(data.modalDados.id, evento.horarios);
+                }
+            } else {
+                Response.mensagemToast("error", "Nenhum horario selecionado");
+            }
         },
         /** EMITS */
 
@@ -87,7 +109,6 @@ export default {
                         agenda_id: agenda,
                     })
                     .then((res) => {
-                        console.log(res);
                         if (res.status) {
                             Response.mensagemToast("success", res.message);
                         } else {
@@ -112,9 +133,10 @@ export default {
                                 title: res.paciente,
                                 agenda_id: res.agenda_id,
                                 backgroundColor:
-                                    hoje.toLocaleDateString() > res.data
-                                        ? "#4361ee"
-                                        : "gray",
+                                    hoje.getTime() >
+                                    new Date(res.data).getTime()
+                                        ? "gray"
+                                        : "#4361ee",
                                 display: "block",
                                 eventFromApi: true,
                                 start: `${res.data} ${res.hora}`,
@@ -129,12 +151,22 @@ export default {
             await this.request
                 .pegarDadosApi(`/consulta/medico/${this.medicoSelect}`)
                 .then((res) => {
+                    const hoje = new Date();
                     res.list.horarios.forEach((element: any) => {
+                        // SO MOSTRA OS HORARIOS DISPONIVEIS, QUE TENNHAM A DATA MAIOR QUE A ATUAL
+                        const elementDateTimeStamp = new Date(
+                            element.data,
+                        ).getTime();
+                        if (elementDateTimeStamp < hoje.getTime()) {
+                            return;
+                        }
+                        // SO MOSTRA OS HORARIOS DISPONIVEIS, QUE TENNHAM A DATA MAIOR QUE A ATUAL
+
                         element.horarios.forEach((el: any, index: number) => {
                             if (el.agendamento == null) {
                                 this.calendarOptions.events.push({
                                     id: index,
-                                    title: "horário dísponivel",
+                                    title: "Horário disponível",
                                     start: `${element.data} ${el.hora}`,
                                     color: "black",
                                     forApi: {
@@ -148,11 +180,50 @@ export default {
                 });
         },
         /** BUSCAR DADOS DE API */
+
+        /** ENVIAR PROPOSTA DE HORARIOS PARA PACIENTE */
+        async propostaHorarios(pre_agendamento_id: number, arrayDados: any) {
+            await this.request
+                .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
+                    pre_agendamento_id: pre_agendamento_id,
+                    horarios_agendamento: JSON.stringify(arrayDados),
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+                .then((res) =>
+                    res.status
+                        ? Response.mensagemToast("success", res.message)
+                        : Response.mensagemToast("error", res.message),
+                );
+        },
+        /** ENVIAR PROPOSTA DE HORARIOS PARA PACIENTE */
+
+        /** PEGAR EVENTO(s) SELECIONADO(s) */
+        pegarEventosSelecionados() {
+            let response = {
+                status: false,
+                horarios: [],
+            };
+            //@ts-expect-error
+            this.$refs.calendar
+                .getApi()
+                .getEvents()
+                .forEach((evento: any) => {
+                    if (evento._def.ui.backgroundColor == "#4361ee") {
+                        response["status"] = true;
+                        //@ts-expect-error
+                        response.horarios.push(evento.extendedProps.forApi);
+                    }
+                });
+
+            return response;
+        },
+        /** PEGAR EVENTO(s) SELECIONADO(s) */
     },
     watch: {
         async medicoSelect(novoValor) {
             this.buscarAgendamentos().then(() => {
-                // this.arrastarSolicitacoes();
                 this.buscarHorariosDisponiveis();
             });
         },
@@ -182,6 +253,14 @@ export default {
                         style="z-index: -100"
                         ref="calendar"></FullCalendar>
                 </div>
+                <ModalPreAgendamento
+                    v-show="modal"
+                    :medico="medicoSelect"
+                    :dataAgendar="{}"
+                    @update:modalAgendamento="
+                        ($event) => proporAgendamento($event)
+                    "
+                    @update:fecharModal="fecharModal" />
             </div>
             <div class="row" v-else>
                 <div class="col-12 text-center">
@@ -189,6 +268,5 @@ export default {
                 </div>
             </div>
         </TransitionGroup>
-        <ModalPreAgendamento v-show="modal" />
     </div>
 </template>
