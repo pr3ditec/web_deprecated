@@ -97,6 +97,14 @@ const routes: RouteRecordRaw[] = [
     },
     /** FINANCEIRO */
 
+    /** REGRAS */
+    {
+        path: "/regras",
+        name: "Regras admin",
+        component: () => import("../views/regras/regras.vue")
+    },
+    /** REGRAS */
+
     // auth
     {
         path: "/auth/login",

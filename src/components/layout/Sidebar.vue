@@ -17,6 +17,7 @@ import MenuApps from "@/components/layout/sidebar-items/MenuApps.vue";
 import MenuUserInterface from "@/components/layout/sidebar-items/MenuUserInterface.vue";
 import MenuTableAndForms from "@/components/layout/sidebar-items/MenuTableAndForms.vue";
 import MenuUserAndPages from "@/components/layout/sidebar-items/MenuUserAndPages.vue";
+import MenuRegras from "./sidebar-items/MenuRegras.vue";
 
 const store = useAppStore();
 
@@ -69,6 +70,7 @@ onMounted(() => {
                         <MenuRegister />
                         <MenuFinancer />
                         <MenuGeneralReport />
+                        <MenuRegras />
                         <MenuAuth />
 
                         <!-- ref menus -->
