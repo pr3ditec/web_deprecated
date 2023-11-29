@@ -1,3 +1,5 @@
+<script lang="ts" setup></script>
+
 <template>
     <li class="menu nav-item">
         <ul>
@@ -5,9 +7,3 @@
         </ul>
     </li>
 </template>
-
-<script>
-export default {
-    // Este componente não precisa de lógica por enquanto
-};
-</script>

@@ -14,6 +14,7 @@ export const useAppStore = defineStore("app", {
         navbar: "navbar-sticky",
         locale: "pt",
         sidebar: false,
+        activeDropdown: "",
         languageList: [
             { code: "pt", name: "Portuguese" },
             { code: "en", name: "English" },
