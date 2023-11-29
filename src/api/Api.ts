@@ -15,13 +15,31 @@ export default class Api {
     }
 
     public async pegarDadosApi(rota: string, data: any = {}): Promise<any> {
-        let response: any = await this.request.get(rota);
-        return await response.data;
+        try {
+            let response: any = await this.request.get(rota);
+            return await response.data;
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                if (error.response) {
+                    console.log(error.response.data);
+                    return await error.response.data;
+                }
+            }
+        }
     }
 
     public async enviarDadosApi(rota: string, data: any = {}): Promise<any> {
-        let response: any = await this.request.post(rota, (data = data));
+        try {
+            let response: any = await this.request.post(rota, (data = data));
 
-        return await response.data;
+            return await response.data;
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                if (error.response) {
+                    console.log(error.response.data);
+                    return await error.response.data;
+                }
+            }
+        }
     }
 }
