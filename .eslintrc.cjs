@@ -1,15 +1,18 @@
 module.exports = {
-    parser: 'vue-eslint-parser',
+    parser: "vue-eslint-parser",
     extends: [
         "eslint:recommended",
         "plugin:vue/recommended",
         "plugin:prettier/recommended",
     ],
-    plugins: ['vue', "prettier"],
+    plugins: ["vue", "prettier"],
     rules: {
-        'vue/component-tags-order': ['error', {
-            'order': ['script', 'template', 'style']
-        }],
+        "vue/component-tags-order": [
+            "error",
+            {
+                order: ["script", "template", "style"],
+            },
+        ],
         "prettier/prettier": "error",
     },
 };

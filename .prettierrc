@@ -17,5 +17,6 @@
     "bracketSameLine": true,
     "endOfLine": "lf",
     "singleAttributePerLine": false,
-    "vueMaxAttributesPerLine": 1
+    "vueMaxAttributesPerLine": 1,
+    "blankLinesAroundStatements": "always"
 }
