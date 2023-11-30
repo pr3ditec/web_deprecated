@@ -4,6 +4,8 @@ import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
 import ApiConnection from "@/api/Api";
 import axios from "axios";
+import FormatoData from "@/helpers/FormatoData";
+import Response from "@/api/Response";
 
 export default {
     components: {
@@ -43,69 +45,141 @@ export default {
             ],
             dadosTabela: [
                 {
-                    index: 1,
-                    regra: "Numero de Parcelas",
-                    atualizado: "12/12/2022",
-                    status: true,
-                    valor: "89",
+                    index: 0,
+                    regra: "numero máximo de parcelas",
                     lock: true,
+                    tipoValor: "Qtde.",
+                    get: {
+                        id: "0",
+                        atualizado: "00/00/0000",
+                        valor: "",
+                    },
+                    post: {
+                        rota: "/maximo-parcelamento",
+                        campo: "maximo_parcelamento",
+                    },
                 },
                 {
                     index: 1,
-                    regra: "Desconto do médico",
-                    atualizado: "12/12/2022",
-                    status: true,
-                    valor: "89",
+                    regra: "valor de desconto do médico",
                     lock: true,
+                    tipoValor: "%",
+                    get: {
+                        id: "0",
+                        atualizado: "",
+                        valor: "0",
+                    },
+                    post: {
+                        rota: "/desconto/medico",
+                        campo: "desconto",
+                    },
                 },
                 {
                     index: 2,
-                    regra: "Resposta de secretaria",
-                    atualizado: "12/12/2022",
-                    status: true,
-                    valor: "89",
+                    regra: "tempo de resposta da secretaria",
                     lock: true,
+                    tipoValor: "Dias",
+                    get: {
+                        id: "0",
+                        atualizado: "",
+                        valor: "",
+                    },
+                    post: {
+                        rota: "/admin/secretaria/agendamento",
+                        campo: "valor",
+                    },
                 },
                 {
                     index: 3,
-                    regra: "Risco empresarial",
-                    atualizado: "12/12/2022",
-                    status: true,
-                    valor: "89",
+                    regra: "risco empresarial",
                     lock: true,
+                    tipoValor: "%",
+                    get: {
+                        id: "0",
+                        atualizado: "",
+                        valor: "",
+                    },
+                    post: {
+                        rota: "/risco-empresarial",
+                        campo: "valor",
+                    },
                 },
                 {
                     index: 4,
-                    regra: "Tempo de agendamento token  ",
-                    atualizado: "12/12/2022",
-                    status: true,
-                    valor: "89",
+                    regra: "tempo de agendamento token",
                     lock: true,
+                    tipoValor: "Minutos",
+                    get: {
+                        id: "0",
+                        atualizado: "",
+                        valor: "",
+                    },
+                    post: {
+                        rota: "/limite-confirmacao-agendamento",
+                        campo: "tempo",
+                    },
                 },
             ],
         };
     },
     methods: {
-        buscarDados(rotas: any) {
-            rotas.forEach(async (rota: any) => {
-                await this.request.pegarDadosApi(rota).then((res) => {
-                    console.log(res.list);
-                });
+        addItems(index: number, data: any) {
+            if (data.length == 0) {
+                return;
+            } else {
+                this.dadosTabela[index].get = {
+                    id: data.id,
+                    valor: data[this.dadosTabela[index].post.campo],
+                    atualizado: `${FormatoData.formatarParaPadraoBrasil(
+                        FormatoData.formatarParaApi(data.updated_at)["data"],
+                    )}`,
+                };
+            }
+        },
+
+        buscarTodasRegras() {
+            this.dadosTabela.forEach(async (regra) => {
+                await this.request
+                    .pegarDadosApi(regra.post.rota)
+                    .then((res) => {
+                        this.addItems(regra.index, res.list);
+                    });
             });
+        },
+
+        async atualizarRegra(index: number) {
+            if (this.dadosTabela[index].lock) {
+                this.dadosTabela[index].lock = false;
+            } else {
+                await this.request
+                    .enviarDadosApi(
+                        `${this.dadosTabela[index].post.rota}${this.dadosTabela[index].get.id}`,
+                        {
+                            [this.dadosTabela[index].post.campo]:
+                                this.dadosTabela[index].get.valor,
+                        },
+                    )
+                    .then((res) => {
+                        console.log(res.list);
+                        if (res.list.status) {
+                            Response.mensagemToast(
+                                "success",
+                                "Configuração atualizada",
+                            );
+                        } else {
+                            Response.mensagemToast(
+                                "error",
+                                "Não foi possível alterar configuração",
+                            );
+                        }
+                    })
+                    .finally(() => (this.dadosTabela[index].lock = true));
+            }
         },
     },
 
     async created() {
-        // this.buscarDados([
-        //     "/maximo-parcelamento",
-        //     "/limite-confirmacao-agendamento",
-        //     "/risco-empresarial",
-        // ]);
-<<<<<<< Updated upstream
-        await axios.get('/admin/secretaria/agendamento/').then( res => console.log(res))
-=======
-        await axios.get('/admin/secretaria/agendamento/').then( res => console.log)
->>>>>>> Stashed changes
+        this.buscarTodasRegras();
     },
 };
 </script>
@@ -139,27 +213,47 @@ export default {
                             data.value.regra
                         }}</span>
                     </template>
+                    <template #atualizado="data">
+                        <span>{{ data.value.get.atualizado }}</span>
+                    </template>
                     <template #status="data">
-                        <span class="badge whitespace-nowrap bg-success"
+                        <span
+                            v-if="data.value.get.valor"
+                            class="badge whitespace-nowrap bg-success"
                             >ATIVO</span
+                        >
+                        <span v-else class="badge whitespace-nowrap bg-warning"
+                            >NÂO ENCONTRADO</span
                         >
                     </template>
                     <template #valor="data">
                         <div class="flex flex-row">
-                            <input
-                                class="form-input form-input-sm w-1/2 p-3"
-                                :class="{ 'border-danger': !data.value.lock }"
-                                type="text"
-                                :value="data.value.valor"
-                                :disabled="data.value.lock" />
+                            <div class="flex w-full p-3">
+                                <input
+                                    class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none"
+                                    :class="{
+                                        'border-danger': !data.value.lock,
+                                    }"
+                                    type="text"
+                                    v-model="data.value.get.valor"
+                                    :disabled="data.value.lock" />
+                                <div
+                                    :class="{
+                                        'bg-danger text-white':
+                                            !data.value.lock,
+                                    }"
+                                    class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                                    <span>{{ data.value.tipoValor }}</span>
+                                </div>
+                            </div>
                         </div>
                     </template>
                     <template #botao="data">
                         <button
                             class="btn btn-sm btn-primary uppercase"
                             :class="{ 'btn-danger': !data.value.lock }"
-                            @click="data.value.lock = !data.value.lock">
-                            {{ !data.value.lock ? "Alterar" : "Unlock" }}
+                            @click="atualizarRegra(data.value.index)">
+                            {{ !data.value.lock ? $t("update") : $t("unlock") }}
                         </button>
                     </template>
                 </vue3-datatable>
