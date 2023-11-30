@@ -41,7 +41,12 @@ export default {
     },
     methods: {
         updateSelectedProfessional() {
+            let selectedProfessional = this.profissionais.find(
+                (profissional) =>
+                    profissional.medico_id === this.selectedProfessional,
+            );
             this.$emit("update:modelValue", this.selectedProfessional);
+            this.$emit("selectedProfessionalName", selectedProfessional.nome);
         },
     },
 };

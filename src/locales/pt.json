@@ -207,5 +207,6 @@
   "last_update": "Ultíma atualização",
   "status": "Status",
   "value": "Valor",
-  "update": "atualizar"
+  "update": "atualizar",
+  "noMedicalReceipt": "Não foi localizado recebimento médico"
 }

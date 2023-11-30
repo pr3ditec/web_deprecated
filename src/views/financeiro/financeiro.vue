@@ -1,26 +1,31 @@
 <script>
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
-import SelectDate from "../../components/layout/SelectDate.vue";
 import ApiConnection from "../../api/Api";
+import Swal from "sweetalert2";
 
 export default {
     components: {
         SelectMedico,
-        SelectDate,
     },
     data() {
         return {
             request: new ApiConnection(),
             selectedDoctor: null,
-            startDate: null,
-            endDate: null,
             list: [],
             list2: [],
             totalEfetivado: 0,
             totalProvisionado: 0,
             totalEfetivadoMesAtual: 0,
             totalEfetivadoSemanaAtual: 0,
+            quantidadeEfetivadoMesAtual: 0,
             ultimosCinco: [],
+            nameDoctor: "",
+            formattedStartDate: 0,
+            formattedEndDate: 0,
+            startDate: new Date(
+                new Date().setFullYear(new Date().getFullYear() - 1),
+            ),
+            endDate: new Date(),
         };
     },
     methods: {
@@ -30,12 +35,11 @@ export default {
                 `/financeiro/medico/${doctorId}`,
             );
 
-            console.log(response1);
-
             if (response1.status) {
                 this.list = response1.list.filter(
                     (item) => item.descricao === "PROVISIONADO",
                 );
+
                 this.totalEfetivado = response1.list
                     .filter((item) => item.descricao === "EFETIVADO")
                     .reduce(
@@ -43,8 +47,17 @@ export default {
                             total + parseFloat(item.valor_desconto),
                         0,
                     );
+
+                let efetivadoIds = response1.list
+                    .filter((item) => item.descricao === "EFETIVADO")
+                    .map((item) => item.pre_agendamento_id);
+
                 this.totalProvisionado = response1.list
-                    .filter((item) => item.descricao === "PROVISIONADO")
+                    .filter(
+                        (item) =>
+                            item.descricao === "PROVISIONADO" &&
+                            !efetivadoIds.includes(item.pre_agendamento_id),
+                    )
                     .reduce(
                         (total, item) =>
                             total + parseFloat(item.valor_desconto),
@@ -54,7 +67,7 @@ export default {
                 let dataAtual = new Date();
                 this.totalEfetivadoMesAtual = response1.list
                     .filter((item) => {
-                        let dataItem = new Date(item.updated_at);
+                        let dataItem = new Date(item.created_at);
                         return (
                             item.descricao === "EFETIVADO" &&
                             dataItem.getMonth() === dataAtual.getMonth()
@@ -68,9 +81,10 @@ export default {
 
                 let inicioSemana = dataAtual.getDate() - dataAtual.getDay();
                 let fimSemana = inicioSemana + 6;
+
                 this.totalEfetivadoSemanaAtual = response1.list
                     .filter((item) => {
-                        let dataItem = new Date(item.updated_at);
+                        let dataItem = new Date(item.created_at);
                         return (
                             item.descricao === "EFETIVADO" &&
                             dataItem.getDate() >= inicioSemana &&
@@ -83,28 +97,43 @@ export default {
                         0,
                     );
 
+                this.quantidadeEfetivadoMesAtual = response1.list.filter(
+                    (item) => {
+                        let dataItem = new Date(item.created_at);
+                        return (
+                            item.descricao === "EFETIVADO" &&
+                            dataItem.getMonth() === dataAtual.getMonth()
+                        );
+                    },
+                ).length;
+
                 this.ultimosCinco = response1.list.slice(-5);
             } else {
-                console.error("A resposta da API não é um objeto: ", response1);
+                let menssage = this.$t(response1.messageCode);
+                this.showMessage(menssage, "error");
+                console.error(response1.messageCode);
             }
 
             // Segunda chamada de API
-            let response2 = await this.request.pegarDadosApi(
-                `/financeiro/medico/${doctorId}/${this.startDate}/${this.endDate}`,
-            );
+            this.formattedStartDate = this.startDate
+                .toISOString()
+                .split("T")[0];
+            this.formattedEndDate = this.endDate.toISOString().split("T")[0];
 
-            console.log(response2);
+            let response2 = await this.request.pegarDadosApi(
+                `/financeiro/medico/${doctorId}/${this.formattedStartDate}/${this.formattedEndDate}`,
+            );
 
             if (response2.status) {
                 this.list2 = response2.list;
             } else {
-                console.error("A resposta da API não é um objeto: ", response2);
+                let menssage = this.$t(response1.messageCode);
+                this.showMessage(menssage, "error");
+                console.error(response2.messageCode);
             }
         },
+
         generateReport() {
-            console.log(this.selectedDoctor);
-            console.log(this.startDate);
-            console.log(this.endDate);
             if (this.selectedDoctor && this.startDate && this.endDate) {
                 this.fetchDoctorAvailability(this.selectedDoctor);
             } else {
@@ -112,6 +141,38 @@ export default {
                     "Por favor, selecione um médico e as datas antes de gerar o relatório.",
                 );
             }
+        },
+
+        showMessage(msg = "", type = "success") {
+            const toast = Swal.mixin({
+                toast: true,
+                position: "center",
+                showConfirmButton: false,
+                timer: 3000,
+                customClass: {
+                    container: "toast",
+                },
+            });
+            toast.fire({
+                icon: type,
+                title: msg,
+                padding: "10px 20px",
+            });
+        },
+
+        formatValor(valor) {
+            return valor.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+            });
+        },
+
+        formatDate(data) {
+            return new Date(data).toLocaleDateString("pt-BR");
+        },
+
+        handleSelectedProfessionalName(name) {
+            this.nameDoctor = name;
         },
     },
 };
@@ -122,14 +183,13 @@ export default {
         <h1 class="capitalize text-4xl font-bold mb-5 lead">
             {{ $t("financialReceiving") }}
         </h1>
-        <SelectMedico v-model="selectedDoctor" />
-        <SelectDate
-            @update:start="startDate = $event"
-            @update:end="endDate = $event"
-            @generate="generateReport" />
+        <SelectMedico
+            v-model="selectedDoctor"
+            @change="generateReport"
+            @selectedProfessionalName="handleSelectedProfessionalName" />
     </div>
 
-    <div>
+    <div v-if="selectedDoctor && totalEfetivado">
         <div class="pt-5">
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                 <div class="panel h-full sm:col-span-2 lg:col-span-1">
@@ -143,7 +203,7 @@ export default {
                             <div>
                                 <div>Total Recebido</div>
                                 <div class="text-[#f8538d] text-lg">
-                                    {{ this.totalEfetivado }}
+                                    {{ formatValor(this.totalEfetivado) }}
                                 </div>
                             </div>
                         </div>
@@ -152,7 +212,7 @@ export default {
                             <div>
                                 <div>Valores Provisionados</div>
                                 <div class="text-[#f8538d] text-lg">
-                                    {{ this.totalProvisionado }}
+                                    {{ formatValor(this.totalProvisionado) }}
                                 </div>
                             </div>
                         </div>
@@ -169,7 +229,7 @@ export default {
                     </div>
                     <div class="text-[#e95f2b] text-3xl font-bold my-10">
                         <span class="ltr:mr-2 rtl:ml-2">{{
-                            this.totalEfetivadoSemanaAtual
+                            formatValor(this.totalEfetivadoSemanaAtual)
                         }}</span>
                         <span
                             class="text-black text-sm dark:text-white-light ltr:mr-1 rtl:ml-1">
@@ -191,10 +251,12 @@ export default {
                         <h5 class="font-semibold text-lg">Total Mensal</h5>
 
                         <div class="relative text-xl whitespace-nowrap">
-                            {{ this.totalEfetivadoMesAtual }}
+                            {{ formatValor(this.totalEfetivadoMesAtual) }}
                             <span
                                 class="table text-[#d3d3d3] bg-[#4361ee] rounded p-1 text-xs mt-1 ltr:ml-auto rtl:mr-auto"
-                                >+ 2453 recebimentos/mês</span
+                                >+
+                                {{ this.quantidadeEfetivadoMesAtual }}
+                                recebimento/mês</span
                             >
                         </div>
                     </div>
@@ -206,7 +268,8 @@ export default {
                     <div
                         class="flex items-start justify-between dark:text-white-light mb-5 p-5 border-b border-[#e0e6ed] dark:border-[#1b2e4b]">
                         <h5 class="font-semibold text-lg">
-                            Valores Recebidos / Período
+                            Valores Recebidos / Período <br>
+                            <span class="text-sm text-gray-500">{{ formatDate(this.formattedStartDate) }} - {{ formatDate(this.formattedEndDate) }}</span>
                         </h5>
                         <div class="dropdown"></div>
                     </div>
@@ -215,25 +278,35 @@ export default {
                             <table class="table-hover">
                                 <thead>
                                     <tr>
-                                        <th>ID do Médico</th>
-                                        <th>Recebimento Médico</th>
-                                        <th>Descrição</th>
-                                        <th>Valor Desconto</th>
+                                        <th class="!text-center">
+                                            ID do Médico
+                                        </th>
+                                        <th class="!text-left">Nome</th>
+                                        <th class="!text-center">Descrição</th>
+                                        <th class="!text-right">Valor</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr
                                         v-for="item in list2"
                                         :key="item.medico_id">
-                                        <td>{{ item.medico_id }}</td>
-                                        <td>{{ item.recebimento_medico }}</td>
-                                        <td>
+                                        <td class="!text-center">
+                                            {{ item.medico_id }}
+                                        </td>
+                                        <td class="!text-left">
+                                            {{ this.nameDoctor }}
+                                        </td>
+                                        <td class="!text-center">
                                             <span
                                                 class="badge whitespace-nowrap bg-success"
                                                 >{{ item.descricao }}</span
                                             >
                                         </td>
-                                        <td>{{ item.valor_desconto }}</td>
+                                        <td class="!text-right">
+                                            {{
+                                                formatValor(item.valor_desconto)
+                                            }}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -258,6 +331,7 @@ export default {
                             <div
                                 class="shrink-0 ltr:mr-2 rtl:ml-2 relative z-10 before:w-[2px] before:h-[calc(100%-24px)] before:bg-white-dark/30 before:absolute before:top-10 before:left-4">
                                 <div
+                                    v-if="item.descricao === 'EFETIVADO'"
                                     class="bg-success shadow-success w-8 h-8 rounded-full flex items-center justify-center text-white">
                                     <svg
                                         class="w-4 h-4"
@@ -276,6 +350,31 @@ export default {
                                             stroke-linecap="round" />
                                     </svg>
                                 </div>
+                                <div
+                                    v-else-if="
+                                        item.descricao === 'PROVISIONADO'
+                                    "
+                                    class="bg-primary w-8 h-8 rounded-full flex items-center justify-center text-white">
+                                    <svg
+                                        class="w-4 h-4"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            opacity="0.5"
+                                            d="M4 12.9L7.14286 16.5L15 7.5"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path
+                                            d="M20.0002 7.5625L11.4286 16.5625L11.0002 16"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
                             </div>
                             <div>
                                 <h5 class="font-semibold dark:text-white-light">
@@ -284,13 +383,14 @@ export default {
                                     Descrição: {{ item.descricao }}
                                     <br />
                                     Valor desconto:
-                                    {{ item.valor_desconto }}
+                                    {{ formatValor(item.valor_desconto) }}
                                     <br />
-                                    Data: {{ item.data }}
                                 </h5>
                                 <p class="text-white-dark text-xs">
                                     {{
-                                        new Date(item.data).toLocaleDateString()
+                                        new Date(
+                                            item.created_at,
+                                        ).toLocaleDateString()
                                     }}
                                 </p>
                             </div>
