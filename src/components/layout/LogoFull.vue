@@ -9,8 +9,7 @@ const store = useAppStore();
         <img
             src="/assets/images/logowtext.png"
             alt="Logo"
-            class="filter-shadow"
-        />
+            class="filter-shadow" />
     </div>
 </template>
 
