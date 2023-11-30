@@ -5,19 +5,21 @@ import { useAppStore } from "@/stores/index";
 
 import SidebarLogo from "@/components/layout/sidebar-items/SidebarLogo.vue";
 
+// Prodoction menus - Will be available in production
 import MenuDashboard from "@/components/layout/sidebar-items/_MenuDashboard.vue";
 import MenuSchedule from "@/components/layout/sidebar-items/MenuSchedule.vue";
 import MenuFinancer from "@/components/layout/sidebar-items/MenuFinancer.vue";
 import MenuRegister from "@/components/layout/sidebar-items/MenuRegister.vue";
 import MenuGeneralReport from "@/components/layout/sidebar-items/MenuGeneralReport.vue";
+import MenuRules from "./sidebar-items/MenuRules.vue";
 
 import MenuAuth from "@/components/layout/sidebar-items/MenuAuth.vue";
 
-import MenuApps from "@/components/layout/sidebar-items/MenuApps.vue";
-import MenuUserInterface from "@/components/layout/sidebar-items/MenuUserInterface.vue";
-import MenuTableAndForms from "@/components/layout/sidebar-items/MenuTableAndForms.vue";
-import MenuUserAndPages from "@/components/layout/sidebar-items/MenuUserAndPages.vue";
-import MenuRegras from "./sidebar-items/MenuRegras.vue";
+// Ref menus - Just for reference
+import MenuApps from "@/components/layout/sidebar-items/examples/MenuApps.vue";
+import MenuUserInterface from "@/components/layout/sidebar-items/examples/MenuUserInterface.vue";
+import MenuTableAndForms from "@/components/layout/sidebar-items/examples/MenuTableAndForms.vue";
+import MenuUserAndPages from "@/components/layout/sidebar-items/examples/MenuUserAndPages.vue";
 
 const store = useAppStore();
 
@@ -70,7 +72,7 @@ onMounted(() => {
                         <MenuRegister />
                         <MenuFinancer />
                         <MenuGeneralReport />
-                        <MenuRegras />
+                        <MenuRules />
                         <MenuAuth />
 
                         <!-- ref menus -->
