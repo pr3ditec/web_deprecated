@@ -2,55 +2,80 @@
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse mb-6">
             <li>
-                <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
+                <a href="javascript:;" class="text-primary hover:underline"
+                    >Dashboard</a
+                >
             </li>
             <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
                 <span>Charts</span>
             </li>
         </ul>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div class="panel lg:col-span-2 p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
-                <div class="ring-2 ring-primary/30 rounded-full bg-primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5">
+            <div
+                class="panel lg:col-span-2 p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
+                <div
+                    class="ring-2 ring-primary/30 rounded-full bg-primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-3.5 h-3.5">
                         <path
                             d="M19.0001 9.7041V9C19.0001 5.13401 15.8661 2 12.0001 2C8.13407 2 5.00006 5.13401 5.00006 9V9.7041C5.00006 10.5491 4.74995 11.3752 4.28123 12.0783L3.13263 13.8012C2.08349 15.3749 2.88442 17.5139 4.70913 18.0116C9.48258 19.3134 14.5175 19.3134 19.291 18.0116C21.1157 17.5139 21.9166 15.3749 20.8675 13.8012L19.7189 12.0783C19.2502 11.3752 19.0001 10.5491 19.0001 9.7041Z"
                             stroke="currentColor"
-                            stroke-width="1.5"
-                        />
+                            stroke-width="1.5" />
                         <path
                             opacity="0.5"
                             d="M7.5 19C8.15503 20.7478 9.92246 22 12 22C14.0775 22 15.845 20.7478 16.5 19"
                             stroke="currentColor"
                             stroke-width="1.5"
-                            stroke-linecap="round"
-                        />
+                            stroke-linecap="round" />
                     </svg>
                 </div>
                 <span class="ltr:mr-3 rtl:ml-3">Documentation: </span>
-                <a href="https://www.npmjs.com/package/vue3-apexcharts" target="_blank" class="block hover:underline"
+                <a
+                    href="https://www.npmjs.com/package/vue3-apexcharts"
+                    target="_blank"
+                    class="block hover:underline"
                     >https://www.npmjs.com/package/vue3-apexcharts</a
                 >
             </div>
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white-light">Simple Line</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code1')"
+                    <h5 class="font-semibold text-lg dark:text-white-light">
+                        Simple Line
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code1')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -61,8 +86,7 @@
                         height="300"
                         :options="lineChart"
                         :series="lineChartSeries"
-                        class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                    ></apexchart>
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code1')">
                     <highlight>
@@ -133,23 +157,37 @@ const lineChartSeries = ref([
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white">Simple Area</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code2')"
+                    <h5 class="font-semibold text-lg dark:text-white">
+                        Simple Area
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code2')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -160,8 +198,7 @@ const lineChartSeries = ref([
                         height="300"
                         :options="areaChart"
                         :series="areaChartSeries"
-                        class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                    ></apexchart>
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code2')">
                     <highlight>
@@ -237,23 +274,37 @@ const areaChartSeries = ref([
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white">Simple Column</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code3')"
+                    <h5 class="font-semibold text-lg dark:text-white">
+                        Simple Column
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code3')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -264,8 +315,7 @@ const areaChartSeries = ref([
                         height="300"
                         :options="columnChart"
                         :series="columnChartSeries"
-                        class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                    ></apexchart>
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code3')">
                     <highlight>
@@ -355,23 +405,37 @@ const columnChartSeries = ref([
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white">Simple Column Stacked</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code4')"
+                    <h5 class="font-semibold text-lg dark:text-white">
+                        Simple Column Stacked
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code4')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -382,8 +446,7 @@ const columnChartSeries = ref([
                         height="300"
                         :options="simpleColumnStacked"
                         :series="simpleColumnStackedSeries"
-                        class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                    ></apexchart>
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code4')">
                     <highlight>
@@ -479,30 +542,48 @@ const simpleColumnStackedSeries = ref([
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white">Simple Bar</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code5')"
+                    <h5 class="font-semibold text-lg dark:text-white">
+                        Simple Bar
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code5')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
                     </a>
                 </div>
                 <div class="mb-5">
-                    <apexchart height="300" :options="barChart" :series="barChartSeries" class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
+                    <apexchart
+                        height="300"
+                        :options="barChart"
+                        :series="barChartSeries"
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code5')">
                     <highlight>
@@ -579,22 +660,34 @@ const barChartSeries = ref([
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
                     <h5 class="font-semibold text-lg dark:text-white">Mixed</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code6')"
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code6')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -605,8 +698,7 @@ const barChartSeries = ref([
                         height="300"
                         :options="mixedChart"
                         :series="mixedChartSeries"
-                        class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                    ></apexchart>
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code6')">
                     <highlight>
@@ -720,23 +812,37 @@ const mixedChartSeries = ref([
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white">Basic Radar</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code7')"
+                    <h5 class="font-semibold text-lg dark:text-white">
+                        Basic Radar
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code7')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -747,8 +853,7 @@ const mixedChartSeries = ref([
                         height="300"
                         :options="radarChart"
                         :series="radarChartSeries"
-                        class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                    ></apexchart>
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code7')">
                     <highlight>
@@ -809,30 +914,48 @@ const radarChartSeries = ref([
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white">Basic Pie</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code8')"
+                    <h5 class="font-semibold text-lg dark:text-white">
+                        Basic Pie
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code8')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
                     </a>
                 </div>
                 <div class="mb-5">
-                    <apexchart height="300" :options="pieChart" :series="pieChartSeries" class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
+                    <apexchart
+                        height="300"
+                        :options="pieChart"
+                        :series="pieChartSeries"
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code8')">
                     <highlight>
@@ -890,23 +1013,37 @@ const pieChartSeries = ref([44, 55, 13, 43, 22]);
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white">Basic Donut</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code9')"
+                    <h5 class="font-semibold text-lg dark:text-white">
+                        Basic Donut
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code9')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -917,8 +1054,7 @@ const pieChartSeries = ref([44, 55, 13, 43, 22]);
                         height="300"
                         :options="donutChart"
                         :series="donutChartSeries"
-                        class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                    ></apexchart>
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code9')">
                     <highlight>
@@ -976,23 +1112,37 @@ const donutChartSeries = ref([44, 55, 13]);
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white">Basic Polar Area</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code10')"
+                    <h5 class="font-semibold text-lg dark:text-white">
+                        Basic Polar Area
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code10')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -1003,8 +1153,7 @@ const donutChartSeries = ref([44, 55, 13]);
                         height="300"
                         :options="polarAreaChart"
                         :series="polarAreaChartSeries"
-                        class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                    ></apexchart>
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code10')">
                     <highlight>
@@ -1075,23 +1224,37 @@ const polarAreaChartSeries = ref([14, 23, 21, 17, 15, 10, 12, 17, 21]);
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white">Radial Bar</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code11')"
+                    <h5 class="font-semibold text-lg dark:text-white">
+                        Radial Bar
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code11')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -1102,8 +1265,7 @@ const polarAreaChartSeries = ref([14, 23, 21, 17, 15, 10, 12, 17, 21]);
                         height="300"
                         :options="radialBarChart"
                         :series="radialBarChartSeries"
-                        class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                    ></apexchart>
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code11')">
                     <highlight>
@@ -1172,23 +1334,37 @@ const radialBarChartSeries = ref([44, 55, 41]);
 
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white">Bubble Chart</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code12')"
+                    <h5 class="font-semibold text-lg dark:text-white">
+                        Bubble Chart
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code12')"
                         ><span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -1199,8 +1375,7 @@ const radialBarChartSeries = ref([44, 55, 41]);
                         height="300"
                         :options="bubbleChart"
                         :series="bubbleChartSeries"
-                        class="bg-white dark:bg-black rounded-lg overflow-hidden"
-                    ></apexchart>
+                        class="bg-white dark:bg-black rounded-lg overflow-hidden"></apexchart>
                 </div>
                 <template v-if="codeArr.includes('code12')">
                     <highlight>
@@ -1319,7 +1494,9 @@ const generateData = (baseval, count, yrange) => {
     var series: any = [];
     while (i < count) {
         var x = Math.floor(Math.random() * (750 - 1 + 1)) + 1;
-        var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+        var y =
+            Math.floor(Math.random() * (yrange.max - yrange.min + 1)) +
+            yrange.min;
         var z = Math.floor(Math.random() * (75 - 15 + 1)) + 15;
 
         series.push([x, y, z]);
@@ -1410,7 +1587,20 @@ const areaChart = computed(() => {
                 offsetX: isRtl ? -40 : 0,
             },
         },
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+        ],
         legend: {
             horizontalAlign: "left",
         },
@@ -1426,7 +1616,10 @@ const areaChart = computed(() => {
 const areaChartSeries = ref([
     {
         name: "Income",
-        data: [16800, 16800, 15500, 17800, 15500, 17000, 19000, 16000, 15000, 17000, 14000, 17000],
+        data: [
+            16800, 16800, 15500, 17800, 15500, 17000, 19000, 16000, 15000,
+            17000, 14000, 17000,
+        ],
     },
 ]);
 
@@ -1464,7 +1657,18 @@ const columnChart = computed(() => {
             borderColor: isDark ? "#191e3a" : "#e0e6ed",
         },
         xaxis: {
-            categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+            categories: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+            ],
             axisBorder: {
                 color: isDark ? "#191e3a" : "#e0e6ed",
             },
@@ -1532,7 +1736,14 @@ const simpleColumnStacked = computed(() => {
         },
         xaxis: {
             type: "datetime",
-            categories: ["01/01/2011 GMT", "01/02/2011 GMT", "01/03/2011 GMT", "01/04/2011 GMT", "01/05/2011 GMT", "01/06/2011 GMT"],
+            categories: [
+                "01/01/2011 GMT",
+                "01/02/2011 GMT",
+                "01/03/2011 GMT",
+                "01/04/2011 GMT",
+                "01/05/2011 GMT",
+                "01/06/2011 GMT",
+            ],
             axisBorder: {
                 color: isDark ? "#191e3a" : "#e0e6ed",
             },
@@ -1741,7 +1952,14 @@ const radarChart = computed(() => {
         },
         colors: ["#4361ee"],
         xaxis: {
-            categories: ["January", "February", "March", "April", "May", "June"],
+            categories: [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+            ],
         },
         plotOptions: {
             radar: {
@@ -1847,7 +2065,15 @@ const polarAreaChart = computed(() => {
                 show: false,
             },
         },
-        colors: ["#4361ee", "#805dca", "#00ab55", "#e7515a", "#e2a03f", "#2196f3", "#3b3f5c"],
+        colors: [
+            "#4361ee",
+            "#805dca",
+            "#00ab55",
+            "#e7515a",
+            "#e2a03f",
+            "#2196f3",
+            "#3b3f5c",
+        ],
         stroke: {
             show: false,
         },

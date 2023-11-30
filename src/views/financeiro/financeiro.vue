@@ -203,7 +203,7 @@ export default {
                             <div>
                                 <div>Total Recebido</div>
                                 <div class="text-[#f8538d] text-lg">
-                                    {{ formatValor(this.totalEfetivado) }}
+                                    {{ formatValor(totalEfetivado) }}
                                 </div>
                             </div>
                         </div>
@@ -212,7 +212,7 @@ export default {
                             <div>
                                 <div>Valores Provisionados</div>
                                 <div class="text-[#f8538d] text-lg">
-                                    {{ formatValor(this.totalProvisionado) }}
+                                    {{ formatValor(totalProvisionado) }}
                                 </div>
                             </div>
                         </div>
@@ -229,7 +229,7 @@ export default {
                     </div>
                     <div class="text-[#e95f2b] text-3xl font-bold my-10">
                         <span class="ltr:mr-2 rtl:ml-2">{{
-                            formatValor(this.totalEfetivadoSemanaAtual)
+                            formatValor(totalEfetivadoSemanaAtual)
                         }}</span>
                         <span
                             class="text-black text-sm dark:text-white-light ltr:mr-1 rtl:ml-1">
@@ -251,11 +251,11 @@ export default {
                         <h5 class="font-semibold text-lg">Total Mensal</h5>
 
                         <div class="relative text-xl whitespace-nowrap">
-                            {{ formatValor(this.totalEfetivadoMesAtual) }}
+                            {{ formatValor(totalEfetivadoMesAtual) }}
                             <span
                                 class="table text-[#d3d3d3] bg-[#4361ee] rounded p-1 text-xs mt-1 ltr:ml-auto rtl:mr-auto"
                                 >+
-                                {{ this.quantidadeEfetivadoMesAtual }}
+                                {{ quantidadeEfetivadoMesAtual }}
                                 recebimento/mês</span
                             >
                         </div>
@@ -268,8 +268,11 @@ export default {
                     <div
                         class="flex items-start justify-between dark:text-white-light mb-5 p-5 border-b border-[#e0e6ed] dark:border-[#1b2e4b]">
                         <h5 class="font-semibold text-lg">
-                            Valores Recebidos / Período <br>
-                            <span class="text-sm text-gray-500">{{ formatDate(this.formattedStartDate) }} - {{ formatDate(this.formattedEndDate) }}</span>
+                            Valores Recebidos / Período <br />
+                            <span class="text-sm text-gray-500"
+                                >{{ formatDate(formattedStartDate) }} -
+                                {{ formatDate(formattedEndDate) }}</span
+                            >
                         </h5>
                         <div class="dropdown"></div>
                     </div>
@@ -294,7 +297,7 @@ export default {
                                             {{ item.medico_id }}
                                         </td>
                                         <td class="!text-left">
-                                            {{ this.nameDoctor }}
+                                            {{ nameDoctor }}
                                         </td>
                                         <td class="!text-center">
                                             <span

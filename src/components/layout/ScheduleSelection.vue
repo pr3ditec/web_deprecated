@@ -12,6 +12,15 @@ export default {
         SelectHorarioFim,
         AvailableHours,
     },
+
+    props: {
+        selectedDates: Array,
+        selectedDoctor: String,
+        existingSchedules: Array,
+        selectedTimezone: String,
+        fetchDoctorAvailability: Function,
+        showMessage: Function,
+    },
     data() {
         return {
             request: new ApiConnection(),
@@ -28,15 +37,6 @@ export default {
             isAllSelected: false,
             selectedHours: [],
         };
-    },
-
-    props: {
-        selectedDates: Array,
-        selectedDoctor: String,
-        existingSchedules: Array,
-        selectedTimezone: String,
-        fetchDoctorAvailability: Function,
-        showMessage: Function,
     },
     watch: {
         horarioFim() {
@@ -84,10 +84,10 @@ export default {
                     );
 
                     if (existingSchedule) {
-                        // Se a data já existir, adiciona os novos horários
+                        // Se a data jï¿½ existir, adiciona os novos horï¿½rios
                         existingSchedule.horarios.push(...horarios);
                     } else {
-                        // Se a data não existir, crie um novo objeto
+                        // Se a data nï¿½o existir, crie um novo objeto
                         let newSchedule = {
                             data: date,
                             horarios: horarios,
@@ -304,7 +304,7 @@ export default {
                     <label for="horaFim">{{ $t("end_time") }}:</label>
                     <SelectHorarioFim v-model="horarioFim" />
                 </div>
-                <div class="mt-2" v-if="horarioInicio && horarioFim">
+                <div v-if="horarioInicio && horarioFim" class="mt-2">
                     <label for="incremento"
                         >{{ $t("interval_between_consultations") }}:</label
                     >
@@ -330,9 +330,9 @@ export default {
                 </div>
 
                 <ButtonSchedules
+                    v-if="showTable"
                     :color="isAllSelected ? 'yellow' : 'green'"
-                    @click="selectAll"
-                    v-if="showTable">
+                    @click="selectAll">
                     <span v-if="isAllSelected">
                         {{ $t("remove_selection") }}
                     </span>
@@ -341,7 +341,7 @@ export default {
                     </span>
                 </ButtonSchedules>
 
-                <div class="mb-4" v-if="showTable">
+                <div v-if="showTable" class="mb-4">
                     <table>
                         <thead>
                             <tr>
@@ -357,12 +357,12 @@ export default {
                                 <td v-for="hour in row">
                                     <div
                                         :id="hour"
-                                        @click="toggleHour(hour)"
                                         :class="[
                                             selectedHours.includes(hour)
                                                 ? 'bg-green-500 text-white rounded-full text-center cursor-pointer p-1'
                                                 : 'bg-red-500 text-white text-center rounded-full cursor-pointer p-1',
-                                        ]">
+                                        ]"
+                                        @click="toggleHour(hour)">
                                         {{ hour }}
                                     </div>
                                 </td>
@@ -383,12 +383,12 @@ export default {
 
         <AvailableHours
             v-if="showAvailableHours"
-            :showAvailableHours="showAvailableHours"
-            :existingSchedules="existingSchedules"
-            :selectedHours="selectedHours"
-            :selectedTimezone="selectedTimezone"
-            :saveChanges="saveChanges"
-            :cancelChanges="cancelChanges"
-            :formatDate="formatDate" />
+            :show-available-hours="showAvailableHours"
+            :existing-schedules="existingSchedules"
+            :selected-hours="selectedHours"
+            :selected-timezone="selectedTimezone"
+            :save-changes="saveChanges"
+            :cancel-changes="cancelChanges"
+            :format-date="formatDate" />
     </div>
 </template>

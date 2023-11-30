@@ -21,6 +21,22 @@ export default {
             radioTipo: "consulta",
         };
     },
+    watch: {
+        radioTipo() {
+            if (this.radioTipo == "consulta") {
+                this.limparVariaveis();
+                this.preAgendamentoShowSelect = true;
+            } else {
+                this.limparVariaveis();
+                this.preAgendamentoShowSelect = false;
+            }
+        },
+    },
+    async created() {
+        this.limparVariaveis();
+        this.buscarDadosDePreAgendamento();
+        this.buscarDadosParaRetorno();
+    },
     methods: {
         /** EMITS */
         emitPropostaAgendamento() {
@@ -52,22 +68,6 @@ export default {
             this.selectInput = "";
         },
     },
-    watch: {
-        radioTipo() {
-            if (this.radioTipo == "consulta") {
-                this.limparVariaveis();
-                this.preAgendamentoShowSelect = true;
-            } else {
-                this.limparVariaveis();
-                this.preAgendamentoShowSelect = false;
-            }
-        },
-    },
-    async created() {
-        this.limparVariaveis();
-        this.buscarDadosDePreAgendamento();
-        this.buscarDadosParaRetorno();
-    },
 };
 </script>
 <template>
@@ -91,20 +91,20 @@ export default {
                 <div class="flex flex-row justify-around gap-3 mt-2 mb-2 w-1/2">
                     <label class="inline-flex">
                         <input
+                            v-model="radioTipo"
                             type="radio"
                             name="default_text_color"
                             class="form-radio"
-                            value="consulta"
-                            v-model="radioTipo" />
+                            value="consulta" />
                         <span class="uppercase">{{ $t("appointment") }}</span>
                     </label>
                     <label class="inline-flex">
                         <input
+                            v-model="radioTipo"
                             type="radio"
                             name="default_text_color"
                             class="form-radio peer-checked"
-                            value="retorno"
-                            v-model="radioTipo" />
+                            value="retorno" />
                         <span class="uppercase">{{ $t("return") }}</span>
                     </label>
                 </div>

@@ -101,7 +101,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/regras",
         name: "Regras admin",
-        component: () => import("../views/regras/regras.vue")
+        component: () => import("../views/regras/regras.vue"),
     },
     /** REGRAS */
 

@@ -34,6 +34,17 @@ export default {
         };
     },
 
+    async created() {
+        let nacionalidadeResponse =
+            await this.request.pegarDadosApi("/nacionalidade");
+        this.nacionalidade = nacionalidadeResponse.list;
+    },
+
+    mounted() {
+        // Adicionar via variavel de sessao
+        this.secretariaFormData["medico_id"] = localStorage.getItem("user.id");
+    },
+
     methods: {
         compararSenhas(entrada) {
             if (this.secretariaFormData.password == entrada.target.value) {
@@ -84,17 +95,6 @@ export default {
                 });
         },
     },
-
-    async created() {
-        let nacionalidadeResponse =
-            await this.request.pegarDadosApi("/nacionalidade");
-        this.nacionalidade = nacionalidadeResponse.list;
-    },
-
-    mounted() {
-        // Adicionar via variavel de sessao
-        this.secretariaFormData["medico_id"] = localStorage.getItem("user.id");
-    },
 };
 </script>
 <template>
@@ -106,11 +106,10 @@ export default {
                     $t("name")
                 }}</label>
                 <input
+                    v-model="secretariaFormData.nome"
                     class="form-input"
                     type="text"
-                    placeholder="Ex.: Fernanda"
-                    v-model="secretariaFormData.nome"
-                />
+                    placeholder="Ex.: Fernanda" />
             </div>
 
             <!-- Nome da mae -->
@@ -119,11 +118,10 @@ export default {
                     $t("mother's name")
                 }}</label>
                 <input
+                    v-model="secretariaFormData.nome_mae"
                     class="form-input"
                     type="text"
-                    placeholder="Ex.: Sabrina"
-                    v-model="secretariaFormData.nome_mae"
-                />
+                    placeholder="Ex.: Sabrina" />
             </div>
         </div>
 
@@ -131,28 +129,26 @@ export default {
         <div class="w-full gap-0">
             <label class="capitalize" for="groupFname capitalize">CPF</label>
             <input
-                class="form-input"
                 v-mask="'###.###.###-##'"
+                class="form-input"
                 type="text"
                 placeholder="Ex.: 000.000.000-00"
-                v-on:input="
+                @input="
                     ($event) => {
                         //@ts-expect-error
                         secretariaFormData.cpf = $event.target.value;
                     }
-                "
-            />
+                " />
         </div>
 
         <!-- EMAIL -->
         <div class="w-full gap-0">
             <label class="capitalize" for="groupFname capitalize">E-mail</label>
             <input
+                v-model="secretariaFormData.email"
                 class="form-input"
                 type="text"
-                placeholder="Ex.: secretaria@sauvi.com"
-                v-model="secretariaFormData.email"
-            />
+                placeholder="Ex.: secretaria@sauvi.com" />
         </div>
 
         <!-- DATA DE NASCIMENTO -->
@@ -161,16 +157,15 @@ export default {
                 $t("birthdate")
             }}</label>
             <input
-                class="form-input"
-                v-mask="'##/##/####'"
-                type="text"
-                placeholder="Ex.: 00/00/0000"
                 v-model="secretariaFormData.nascimento"
-            />
+                v-mask="'##/##/####'"
+                class="form-input"
+                type="text"
+                placeholder="Ex.: 00/00/0000" />
         </div>
 
         <!-- SEXO -->
-        <select class="form-select" v-model="secretariaFormData.sexo">
+        <select v-model="secretariaFormData.sexo" class="form-select">
             <option value="0" disabled selected>
                 {{ $t("select") }} {{ $t("gender") }}
             </option>
@@ -181,9 +176,8 @@ export default {
 
         <!-- NACIONALIDADE -->
         <select
-            class="form-select"
             v-model="secretariaFormData.nacionalidade_id"
-        >
+            class="form-select">
             <option value="0" disabled selected>
                 {{ $t("select") }} {{ $t("citizenship") }}
             </option>
@@ -192,8 +186,7 @@ export default {
                 :value="
                     // @ts-expect-error
                     nac.id
-                "
-            >
+                ">
                 {{
                     // @ts-expect-error
                     nac.descricao
@@ -204,10 +197,9 @@ export default {
         <div class="w-full gap-0">
             <label class="capitalize justify-start">{{ $t("password") }}</label>
             <input
-                class="form-input"
-                type="password"
                 v-model="secretariaFormData.password"
-            />
+                class="form-input"
+                type="password" />
         </div>
 
         <div class="w-full gap-0">
@@ -216,13 +208,12 @@ export default {
             >
             <input
                 class="form-input"
-                v-bind:class="classePassword"
-                v-on:keyup="($event) => compararSenhas($event)"
+                :class="classePassword"
                 type="password"
-            />
+                @keyup="($event) => compararSenhas($event)" />
             <span
-                class="flex flex-col items-start text-danger text-xs align-start mt-0 pt-0"
                 v-show="classePassword['border border-red-600']"
+                class="flex flex-col items-start text-danger text-xs align-start mt-0 pt-0"
                 >Senhas nao correspondem</span
             >
         </div>
@@ -230,9 +221,8 @@ export default {
         <div class="flex flex-col items-center font-semibold mt-6">
             <button
                 class="btn btn-primary w-80"
-                v-on:keyup.enter="cadastrarSecretaria"
-                @click="cadastrarSecretaria"
-            >
+                @keyup.enter="cadastrarSecretaria"
+                @click="cadastrarSecretaria">
                 Cadastrar
             </button>
         </div>

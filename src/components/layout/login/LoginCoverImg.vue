@@ -3,7 +3,6 @@
         <img
             src="/assets/images/auth/login.svg"
             alt="Cover Image"
-            class="w-full"
-        />
+            class="w-full" />
     </div>
 </template>

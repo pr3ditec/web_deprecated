@@ -2,29 +2,41 @@
     <div>
         <div class="panel">
             <div class="mb-5">
-                <div class="mb-4 flex items-center sm:flex-row flex-col sm:justify-between justify-center">
+                <div
+                    class="mb-4 flex items-center sm:flex-row flex-col sm:justify-between justify-center">
                     <div class="sm:mb-0 mb-4">
-                        <div class="text-lg font-semibold ltr:sm:text-left rtl:sm:text-right text-center">Calendar</div>
-                        <div class="flex items-center mt-2 flex-wrap sm:justify-start justify-center">
+                        <div
+                            class="text-lg font-semibold ltr:sm:text-left rtl:sm:text-right text-center">
+                            Calendar
+                        </div>
+                        <div
+                            class="flex items-center mt-2 flex-wrap sm:justify-start justify-center">
                             <div class="flex items-center ltr:mr-4 rtl:ml-4">
-                                <div class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-primary"></div>
+                                <div
+                                    class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-primary"></div>
                                 <div>Work</div>
                             </div>
                             <div class="flex items-center ltr:mr-4 rtl:ml-4">
-                                <div class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-info"></div>
+                                <div
+                                    class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-info"></div>
                                 <div>Travel</div>
                             </div>
                             <div class="flex items-center ltr:mr-4 rtl:ml-4">
-                                <div class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-success"></div>
+                                <div
+                                    class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-success"></div>
                                 <div>Personal</div>
                             </div>
                             <div class="flex items-center">
-                                <div class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-danger"></div>
+                                <div
+                                    class="h-2.5 w-2.5 rounded-sm ltr:mr-2 rtl:ml-2 bg-danger"></div>
                                 <div>Important</div>
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary" @click="editEvent()">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        @click="editEvent()">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="24px"
@@ -35,8 +47,7 @@
                             stroke-width="1.5"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                        >
+                            class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
@@ -46,12 +57,14 @@
                 <div class="calendar-wrapper">
                     <FullCalendar ref="calendar" :options="calendarOptions">
                         <template v-slot:eventContent="arg">
-                            <div class="fc-event-main-frame flex items-center px-1 py-0.5 text-white">
+                            <div
+                                class="fc-event-main-frame flex items-center px-1 py-0.5 text-white">
                                 <div class="fc-event-time font-semibold px-0.5">
                                     {{ arg.timeText }}
                                 </div>
                                 <div class="fc-event-title-container">
-                                    <div class="fc-event-title fc-sticky !font-medium px-0.5">
+                                    <div
+                                        class="fc-event-title fc-sticky !font-medium px-0.5">
                                         {{ arg.event.title }}
                                     </div>
                                 </div>
@@ -63,7 +76,10 @@
         </div>
         <!-- add event modal -->
         <TransitionRoot appear :show="isAddEventModal" as="template">
-            <Dialog as="div" @close="isAddEventModal = false" class="relative z-[51]">
+            <Dialog
+                as="div"
+                @close="isAddEventModal = false"
+                class="relative z-[51]">
                 <TransitionChild
                     as="template"
                     enter="duration-300 ease-out"
@@ -71,13 +87,13 @@
                     enter-to="opacity-100"
                     leave="duration-200 ease-in"
                     leave-from="opacity-100"
-                    leave-to="opacity-0"
-                >
+                    leave-to="opacity-0">
                     <DialogOverlay class="fixed inset-0 bg-[black]/60" />
                 </TransitionChild>
 
                 <div class="fixed inset-0 overflow-y-auto">
-                    <div class="flex min-h-full items-center justify-center px-4 py-8">
+                    <div
+                        class="flex min-h-full items-center justify-center px-4 py-8">
                         <TransitionChild
                             as="template"
                             enter="duration-300 ease-out"
@@ -85,14 +101,13 @@
                             enter-to="opacity-100 scale-100"
                             leave="duration-200 ease-in"
                             leave-from="opacity-100 scale-100"
-                            leave-to="opacity-0 scale-95"
-                        >
-                            <DialogPanel class="panel border-0 p-0 rounded-lg overflow-hidden w-full max-w-lg text-black dark:text-white-dark">
+                            leave-to="opacity-0 scale-95">
+                            <DialogPanel
+                                class="panel border-0 p-0 rounded-lg overflow-hidden w-full max-w-lg text-black dark:text-white-dark">
                                 <button
                                     type="button"
                                     class="absolute top-4 ltr:right-4 rtl:left-4 text-gray-400 hover:text-gray-800 dark:hover:text-gray-600 outline-none"
-                                    @click="isAddEventModal = false"
-                                >
+                                    @click="isAddEventModal = false">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24px"
@@ -103,19 +118,29 @@
                                         stroke-width="1.5"
                                         stroke-linecap="round"
                                         stroke-linejoin="round"
-                                        class="w-6 h-6"
-                                    >
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                        class="w-6 h-6">
+                                        <line
+                                            x1="18"
+                                            y1="6"
+                                            x2="6"
+                                            y2="18"></line>
+                                        <line
+                                            x1="6"
+                                            y1="6"
+                                            x2="18"
+                                            y2="18"></line>
                                     </svg>
                                 </button>
-                                <div class="text-lg font-medium bg-[#fbfbfb] dark:bg-[#121c2c] ltr:pl-5 rtl:pr-5 py-3 ltr:pr-[50px] rtl:pl-[50px]">
+                                <div
+                                    class="text-lg font-medium bg-[#fbfbfb] dark:bg-[#121c2c] ltr:pl-5 rtl:pr-5 py-3 ltr:pr-[50px] rtl:pl-[50px]">
                                     {{ params.id ? "Edit Event" : "Add Event" }}
                                 </div>
                                 <div class="p-5">
                                     <form @submit.prevent="saveEvent">
                                         <div class="mb-5">
-                                            <label for="title">Event Title :</label>
+                                            <label for="title"
+                                                >Event Title :</label
+                                            >
                                             <input
                                                 id="title"
                                                 type="text"
@@ -123,13 +148,16 @@
                                                 class="form-input"
                                                 placeholder="Enter Event Title"
                                                 v-model="params.title"
-                                                required
-                                            />
-                                            <div class="text-danger mt-2" id="titleErr"></div>
+                                                required />
+                                            <div
+                                                class="text-danger mt-2"
+                                                id="titleErr"></div>
                                         </div>
 
                                         <div class="mb-5">
-                                            <label for="dateStart">From :</label>
+                                            <label for="dateStart"
+                                                >From :</label
+                                            >
                                             <input
                                                 id="dateStart"
                                                 type="datetime-local"
@@ -138,10 +166,13 @@
                                                 placeholder="Event Start Date"
                                                 v-model="params.start"
                                                 :min="minStartDate"
-                                                @change="startDateChange($event)"
-                                                required
-                                            />
-                                            <div class="text-danger mt-2" id="startDateErr"></div>
+                                                @change="
+                                                    startDateChange($event)
+                                                "
+                                                required />
+                                            <div
+                                                class="text-danger mt-2"
+                                                id="startDateErr"></div>
                                         </div>
                                         <div class="mb-5">
                                             <label for="dateEnd">To :</label>
@@ -153,45 +184,99 @@
                                                 placeholder="Event End Date"
                                                 v-model="params.end"
                                                 :min="minEndDate"
-                                                required
-                                            />
-                                            <div class="text-danger mt-2" id="endDateErr"></div>
+                                                required />
+                                            <div
+                                                class="text-danger mt-2"
+                                                id="endDateErr"></div>
                                         </div>
                                         <div class="mb-5">
-                                            <label for="description">Event Description :</label>
+                                            <label for="description"
+                                                >Event Description :</label
+                                            >
                                             <textarea
                                                 id="description"
                                                 name="description"
                                                 class="form-textarea min-h-[130px]"
                                                 placeholder="Enter Event Description"
-                                                v-model="params.description"
-                                            ></textarea>
+                                                v-model="
+                                                    params.description
+                                                "></textarea>
                                         </div>
                                         <div class="mb-5">
                                             <label>Badge:</label>
                                             <div class="mt-3">
-                                                <label class="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
-                                                    <input type="radio" class="form-radio" name="badge" value="primary" v-model="params.type" />
-                                                    <span class="ltr:pl-2 rtl:pr-2">Work</span>
+                                                <label
+                                                    class="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
+                                                    <input
+                                                        type="radio"
+                                                        class="form-radio"
+                                                        name="badge"
+                                                        value="primary"
+                                                        v-model="params.type" />
+                                                    <span
+                                                        class="ltr:pl-2 rtl:pr-2"
+                                                        >Work</span
+                                                    >
                                                 </label>
-                                                <label class="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
-                                                    <input type="radio" class="form-radio text-info" name="badge" value="info" v-model="params.type" />
-                                                    <span class="ltr:pl-2 rtl:pr-2">Travel</span>
+                                                <label
+                                                    class="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
+                                                    <input
+                                                        type="radio"
+                                                        class="form-radio text-info"
+                                                        name="badge"
+                                                        value="info"
+                                                        v-model="params.type" />
+                                                    <span
+                                                        class="ltr:pl-2 rtl:pr-2"
+                                                        >Travel</span
+                                                    >
                                                 </label>
-                                                <label class="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
-                                                    <input type="radio" class="form-radio text-success" name="badge" value="success" v-model="params.type" />
-                                                    <span class="ltr:pl-2 rtl:pr-2">Personal</span>
+                                                <label
+                                                    class="inline-flex cursor-pointer ltr:mr-3 rtl:ml-3">
+                                                    <input
+                                                        type="radio"
+                                                        class="form-radio text-success"
+                                                        name="badge"
+                                                        value="success"
+                                                        v-model="params.type" />
+                                                    <span
+                                                        class="ltr:pl-2 rtl:pr-2"
+                                                        >Personal</span
+                                                    >
                                                 </label>
-                                                <label class="inline-flex cursor-pointer">
-                                                    <input type="radio" class="form-radio text-danger" name="badge" value="danger" v-model="params.type" />
-                                                    <span class="ltr:pl-2 rtl:pr-2">Important</span>
+                                                <label
+                                                    class="inline-flex cursor-pointer">
+                                                    <input
+                                                        type="radio"
+                                                        class="form-radio text-danger"
+                                                        name="badge"
+                                                        value="danger"
+                                                        v-model="params.type" />
+                                                    <span
+                                                        class="ltr:pl-2 rtl:pr-2"
+                                                        >Important</span
+                                                    >
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="flex justify-end items-center mt-8">
-                                            <button type="button" class="btn btn-outline-danger" @click="isAddEventModal = false">Cancel</button>
-                                            <button type="submit" class="btn btn-primary ltr:ml-4 rtl:mr-4">
-                                                {{ params.id ? "Update Event" : "Create Event" }}
+                                        <div
+                                            class="flex justify-end items-center mt-8">
+                                            <button
+                                                type="button"
+                                                class="btn btn-outline-danger"
+                                                @click="
+                                                    isAddEventModal = false
+                                                ">
+                                                Cancel
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                class="btn btn-primary ltr:ml-4 rtl:mr-4">
+                                                {{
+                                                    params.id
+                                                        ? "Update Event"
+                                                        : "Create Event"
+                                                }}
                                             </button>
                                         </div>
                                     </form>
@@ -207,7 +292,13 @@
 
 <script lang="ts" setup>
 import { computed, onMounted, ref } from "vue";
-import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogOverlay } from "@headlessui/vue";
+import {
+    TransitionRoot,
+    TransitionChild,
+    Dialog,
+    DialogPanel,
+    DialogOverlay,
+} from "@headlessui/vue";
 
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -276,7 +367,8 @@ const getEvents = () => {
             start: now.getFullYear() + "-" + getMonth(now) + "-01T14:30:00",
             end: now.getFullYear() + "-" + getMonth(now) + "-02T14:30:00",
             className: "danger",
-            description: "Aenean fermentum quam vel sapien rutrum cursus. Vestibulum imperdiet finibus odio, nec tincidunt felis facilisis eu.",
+            description:
+                "Aenean fermentum quam vel sapien rutrum cursus. Vestibulum imperdiet finibus odio, nec tincidunt felis facilisis eu.",
         },
         {
             id: 2,
@@ -284,7 +376,8 @@ const getEvents = () => {
             start: now.getFullYear() + "-" + getMonth(now) + "-07T19:30:00",
             end: now.getFullYear() + "-" + getMonth(now) + "-08T14:30:00",
             className: "primary",
-            description: "Etiam a odio eget enim aliquet laoreet. Vivamus auctor nunc ultrices varius lobortis.",
+            description:
+                "Etiam a odio eget enim aliquet laoreet. Vivamus auctor nunc ultrices varius lobortis.",
         },
         {
             id: 3,
@@ -292,7 +385,8 @@ const getEvents = () => {
             start: now.getFullYear() + "-" + getMonth(now) + "-17T14:30:00",
             end: now.getFullYear() + "-" + getMonth(now) + "-18T14:30:00",
             className: "info",
-            description: "Proin et consectetur nibh. Mauris et mollis purus. Ut nec tincidunt lacus. Nam at rutrum justo, vitae egestas dolor.",
+            description:
+                "Proin et consectetur nibh. Mauris et mollis purus. Ut nec tincidunt lacus. Nam at rutrum justo, vitae egestas dolor.",
         },
         {
             id: 4,
@@ -300,7 +394,8 @@ const getEvents = () => {
             start: now.getFullYear() + "-" + getMonth(now) + "-12T10:30:00",
             end: now.getFullYear() + "-" + getMonth(now) + "-13T10:30:00",
             className: "danger",
-            description: "Mauris ut mauris aliquam, fringilla sapien et, dignissim nisl. Pellentesque ornare velit non mollis fringilla.",
+            description:
+                "Mauris ut mauris aliquam, fringilla sapien et, dignissim nisl. Pellentesque ornare velit non mollis fringilla.",
         },
         {
             id: 5,
@@ -308,7 +403,8 @@ const getEvents = () => {
             start: now.getFullYear() + "-" + getMonth(now) + "-12T15:00:00",
             end: now.getFullYear() + "-" + getMonth(now) + "-13T15:00:00",
             className: "info",
-            description: "Integer fermentum bibendum elit in egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
+            description:
+                "Integer fermentum bibendum elit in egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus.",
         },
         {
             id: 6,
@@ -416,7 +512,8 @@ const editDate = (data: any) => {
 
 const dateFormat = (dt: any) => {
     dt = new Date(dt);
-    const month = dt.getMonth() + 1 < 10 ? "0" + (dt.getMonth() + 1) : dt.getMonth() + 1;
+    const month =
+        dt.getMonth() + 1 < 10 ? "0" + (dt.getMonth() + 1) : dt.getMonth() + 1;
     const date = dt.getDate() < 10 ? "0" + dt.getDate() : dt.getDate();
     const hours = dt.getHours() < 10 ? "0" + dt.getHours() : dt.getHours();
     const mins = dt.getMinutes() < 10 ? "0" + dt.getMinutes() : dt.getMinutes();
@@ -447,7 +544,11 @@ const saveEvent = () => {
         //add event
         let maxEventId = 0;
         if (events.value) {
-            maxEventId = events.value.reduce((max: number, character: any) => (character.id > max ? character.id : max), events.value[0].id);
+            maxEventId = events.value.reduce(
+                (max: number, character: any) =>
+                    character.id > max ? character.id : max,
+                events.value[0].id,
+            );
         }
 
         let event = {

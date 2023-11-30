@@ -112,7 +112,11 @@
                                     <div
                                         class="text-danger mt-2 font-semibold text-2xl">
                                         {{ parcelaPagaAtrasada }} -
-                                        {{ formatValor(parcelaPagaAtrasadaValor) }}
+                                        {{
+                                            formatValor(
+                                                parcelaPagaAtrasadaValor,
+                                            )
+                                        }}
                                     </div>
                                 </div>
                             </div>

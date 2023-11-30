@@ -49,7 +49,7 @@ export default class Response {
         icon: any,
         confirm: string,
         cancel: string,
-        mensagem: string = ''
+        mensagem: string = "",
     ): Promise<boolean> {
         return await Swal.fire({
             icon: icon,

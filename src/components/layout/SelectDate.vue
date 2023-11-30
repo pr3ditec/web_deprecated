@@ -6,6 +6,14 @@ export default {
             date2: this.today(),
         };
     },
+    watch: {
+        date1(newDate) {
+            this.$emit("update:start", newDate);
+        },
+        date2(newDate) {
+            this.$emit("update:end", newDate);
+        },
+    },
     methods: {
         generate() {
             this.$emit("update:start", this.date1);
@@ -28,14 +36,6 @@ export default {
             return year + "-" + month + "-" + day;
         },
     },
-    watch: {
-        date1(newDate) {
-            this.$emit("update:start", newDate);
-        },
-        date2(newDate) {
-            this.$emit("update:end", newDate);
-        },
-    },
 };
 </script>
 
@@ -44,19 +44,19 @@ export default {
         <div class="w-2/12">
             <input
                 id="data-inicial"
+                v-model="date1"
                 title="Data Inicial"
                 type="date"
-                class="mb-3 mt-3 rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-0 sm:w-auto sm:text-sm bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500"
-                v-model="date1" />
+                class="mb-3 mt-3 rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-0 sm:w-auto sm:text-sm bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500" />
         </div>
 
         <div class="w-1/12">
             <input
                 id="data-final"
+                v-model="date2"
                 title="Data Final"
                 type="date"
-                class="mb-3 mt-3 rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-0 sm:w-auto sm:text-sm bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500"
-                v-model="date2" />
+                class="mb-3 mt-3 rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mt-0 sm:ml-0 sm:w-auto sm:text-sm bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500" />
         </div>
     </div>
 

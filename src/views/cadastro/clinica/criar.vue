@@ -28,6 +28,29 @@ export default {
             especialidades: {},
         };
     },
+    watch: {
+        async "clinicaEnderecoFormData.estado"(novo) {
+            let cidadeResponse = await this.request.pegarDadosApi(
+                `/cidade/${novo}`,
+            );
+            this.cidades = cidadeResponse.list;
+        },
+    },
+    async created() {
+        let estadoResponse = await this.request.pegarDadosApi(
+            "/unidades-federativas",
+        );
+        this.estados = estadoResponse.list;
+
+        let tipoEderecoResponse =
+            await this.request.pegarDadosApi("/endereco/tipo");
+        this.tipoEndereco = tipoEderecoResponse.list;
+
+        let especialidadeResponse = await this.request.pegarDadosApi(
+            `/medico/especialidade/${localStorage.getItem("user.id")}`,
+        );
+        this.especialidades = especialidadeResponse.list;
+    },
     methods: {
         async cadastrarClinica() {
             // validar campos
@@ -79,29 +102,6 @@ export default {
                 });
         },
     },
-    watch: {
-        async "clinicaEnderecoFormData.estado"(novo) {
-            let cidadeResponse = await this.request.pegarDadosApi(
-                `/cidade/${novo}`,
-            );
-            this.cidades = cidadeResponse.list;
-        },
-    },
-    async created() {
-        let estadoResponse = await this.request.pegarDadosApi(
-            "/unidades-federativas",
-        );
-        this.estados = estadoResponse.list;
-
-        let tipoEderecoResponse =
-            await this.request.pegarDadosApi("/endereco/tipo");
-        this.tipoEndereco = tipoEderecoResponse.list;
-
-        let especialidadeResponse = await this.request.pegarDadosApi(
-            `/medico/especialidade/${localStorage.getItem("user.id")}`,
-        );
-        this.especialidades = especialidadeResponse.list;
-    },
 };
 </script>
 <template>
@@ -114,11 +114,10 @@ export default {
                     $t("name")
                 }}</label>
                 <input
+                    v-model="clinicaFormData.nome"
                     class="form-input"
                     type="text"
-                    placeholder="Ex.: Clinica principal"
-                    v-model="clinicaFormData.nome"
-                />
+                    placeholder="Ex.: Clinica principal" />
             </div>
             <hr />
 
@@ -126,15 +125,14 @@ export default {
             <div class="w-1/2">
                 <label class="capitalize" for="groupFname">CEP</label>
                 <input
-                    class="form-input"
                     v-mask="'#####-###'"
+                    class="form-input"
                     type="text"
                     placeholder="Ex.: 87560-000"
-                    v-on:input="
+                    @input="
                         ($event) =>
                             (clinicaEnderecoFormData.cep = $event.target.value)
-                    "
-                />
+                    " />
             </div>
 
             <!-- Rua -->
@@ -143,11 +141,10 @@ export default {
                     $t("street")
                 }}</label>
                 <input
+                    v-model="clinicaEnderecoFormData.rua"
                     class="form-input"
                     type="text"
-                    placeholder="Ex.: Rua mercelo azevedo"
-                    v-model="clinicaEnderecoFormData.rua"
-                />
+                    placeholder="Ex.: Rua mercelo azevedo" />
             </div>
 
             <!-- Bairro -->
@@ -156,20 +153,18 @@ export default {
                     $t("neighborhood")
                 }}</label>
                 <input
+                    v-model="clinicaEnderecoFormData.bairro"
                     class="form-input"
                     type="text"
-                    placeholder="Ex.: Centro"
-                    v-model="clinicaEnderecoFormData.bairro"
-                />
+                    placeholder="Ex.: Centro" />
             </div>
 
             <hr class="bg-dark" />
 
             <!-- Especialidade -->
             <select
-                class="form-select w-1/2"
                 v-model="clinicaFormData.especialidade_id"
-            >
+                class="form-select w-1/2">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("capabilities") }}
                 </option>
@@ -178,8 +173,7 @@ export default {
                     :value="
                         // @ts-expect-error
                         esspecialidade.id
-                    "
-                >
+                    ">
                     {{
                         // @ts-expect-error
                         esspecialidade.descricao
@@ -188,9 +182,8 @@ export default {
             </select>
             <!-- Estado -->
             <select
-                class="form-select w-1/2"
                 v-model="clinicaEnderecoFormData.estado"
-            >
+                class="form-select w-1/2">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("state") }}
                 </option>
@@ -199,8 +192,7 @@ export default {
                     :value="
                         // @ts-expect-error
                         estado.uf
-                    "
-                >
+                    ">
                     {{
                         // @ts-expect-error
                         estado.nome
@@ -210,9 +202,8 @@ export default {
 
             <!-- Cidade -->
             <select
-                class="form-select w-1/2"
                 v-model="clinicaEnderecoFormData.cidade"
-            >
+                class="form-select w-1/2">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("city") }}
                 </option>
@@ -221,8 +212,7 @@ export default {
                     :value="
                         // @ts-expect-error
                         cidade.id
-                    "
-                >
+                    ">
                     {{
                         // @ts-expect-error
                         cidade.nome
@@ -232,9 +222,8 @@ export default {
 
             <!-- Tipo de endereco -->
             <select
-                class="form-select w-1/2"
                 v-model="clinicaEnderecoFormData.tipo"
-            >
+                class="form-select w-1/2">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("address") }}
                 </option>
@@ -243,8 +232,7 @@ export default {
                     :value="
                         // @ts-expect-error
                         tipo.id
-                    "
-                >
+                    ">
                     {{
                         // @ts-expect-error
                         tipo.descricao
@@ -258,12 +246,11 @@ export default {
                     $t("number")
                 }}</label>
                 <input
-                    class="form-input"
-                    v-mask="'#####'"
-                    type="text"
-                    placeholder="Ex.: 233"
                     v-model="clinicaEnderecoFormData.numero"
-                />
+                    v-mask="'#####'"
+                    class="form-input"
+                    type="text"
+                    placeholder="Ex.: 233" />
             </div>
 
             <!-- Complemento -->
@@ -272,20 +259,18 @@ export default {
                     $t("adjunct")
                 }}</label>
                 <input
+                    v-model="clinicaEnderecoFormData.complemento"
                     class="form-input"
                     type="text"
-                    placeholder="Ex.: Apto 12"
-                    v-model="clinicaEnderecoFormData.complemento"
-                />
+                    placeholder="Ex.: Apto 12" />
             </div>
         </div>
 
         <hr
-            class="w-80 h-0.5 mx-auto bg-slate-700 border-0 rounded dark:bg-slate-700"
-        />
+            class="w-80 h-0.5 mx-auto bg-slate-700 border-0 rounded dark:bg-slate-700" />
 
         <div class="flex flex-col items-center font-semibold mt-6">
-            <button @click="cadastrarClinica()" class="btn btn-primary w-80">
+            <button class="btn btn-primary w-80" @click="cadastrarClinica()">
                 Cadastrar
             </button>
         </div>

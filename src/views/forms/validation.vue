@@ -2,44 +2,58 @@
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
-                <a href="javascript:;" class="text-primary hover:underline">Forms</a>
+                <a href="javascript:;" class="text-primary hover:underline"
+                    >Forms</a
+                >
             </li>
             <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
                 <span>Validation</span>
             </li>
         </ul>
         <div class="pt-5 space-y-8">
-            <div class="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
-                <div class="ring-2 ring-primary/30 rounded-full bg-primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5">
+            <div
+                class="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
+                <div
+                    class="ring-2 ring-primary/30 rounded-full bg-primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-3.5 h-3.5">
                         <path
                             d="M19.0001 9.7041V9C19.0001 5.13401 15.8661 2 12.0001 2C8.13407 2 5.00006 5.13401 5.00006 9V9.7041C5.00006 10.5491 4.74995 11.3752 4.28123 12.0783L3.13263 13.8012C2.08349 15.3749 2.88442 17.5139 4.70913 18.0116C9.48258 19.3134 14.5175 19.3134 19.291 18.0116C21.1157 17.5139 21.9166 15.3749 20.8675 13.8012L19.7189 12.0783C19.2502 11.3752 19.0001 10.5491 19.0001 9.7041Z"
                             stroke="currentColor"
-                            stroke-width="1.5"
-                        />
+                            stroke-width="1.5" />
                         <path
                             opacity="0.5"
                             d="M7.5 19C8.15503 20.7478 9.92246 22 12 22C14.0775 22 15.845 20.7478 16.5 19"
                             stroke="currentColor"
                             stroke-width="1.5"
-                            stroke-linecap="round"
-                        />
+                            stroke-linecap="round" />
                     </svg>
                 </div>
                 <span class="ltr:mr-3 rtl:ml-3">Documentation: </span
-                ><a href="https://www.npmjs.com/package/vuelidate" target="_blank" class="block hover:underline">https://www.npmjs.com/package/vuelidate</a>
+                ><a
+                    href="https://www.npmjs.com/package/vuelidate"
+                    target="_blank"
+                    class="block hover:underline"
+                    >https://www.npmjs.com/package/vuelidate</a
+                >
             </div>
 
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
                 <!-- Basic -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Basic</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Basic
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code1')"
-                        >
+                            @click="toggleCode('code1')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -47,21 +61,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -69,17 +85,39 @@
                     </div>
                     <div class="mb-5">
                         <form class="space-y-5" @submit.prevent="submitForm1()">
-                            <div :class="{ 'has-error': $v1.form1.name.$error, 'has-success': isSubmitForm1 && !$v1.form1.name.$error }">
+                            <div
+                                :class="{
+                                    'has-error': $v1.form1.name.$error,
+                                    'has-success':
+                                        isSubmitForm1 && !$v1.form1.name.$error,
+                                }">
                                 <label for="fullName">Full Name</label>
-                                <input id="fullName" type="text" placeholder="Enter Full Name" class="form-input" v-model="form1.name" />
-                                <template v-if="isSubmitForm1 && !$v1.form1.name.$error">
-                                    <p class="text-[#1abc9c] mt-1">Looks Good!</p>
+                                <input
+                                    id="fullName"
+                                    type="text"
+                                    placeholder="Enter Full Name"
+                                    class="form-input"
+                                    v-model="form1.name" />
+                                <template
+                                    v-if="
+                                        isSubmitForm1 && !$v1.form1.name.$error
+                                    ">
+                                    <p class="text-[#1abc9c] mt-1">
+                                        Looks Good!
+                                    </p>
                                 </template>
-                                <template v-if="isSubmitForm1 && $v1.form1.name.$error">
-                                    <p class="text-danger mt-1">Please fill the Name</p>
+                                <template
+                                    v-if="
+                                        isSubmitForm1 && $v1.form1.name.$error
+                                    ">
+                                    <p class="text-danger mt-1">
+                                        Please fill the Name
+                                    </p>
                                 </template>
                             </div>
-                            <button type="submit" class="btn btn-primary !mt-6">Submit Form</button>
+                            <button type="submit" class="btn btn-primary !mt-6">
+                                Submit Form
+                            </button>
                         </form>
                     </div>
                     <template v-if="codeArr.includes('code1')">
@@ -133,12 +171,13 @@
                 <!-- Email -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Email</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Email
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code2')"
-                        >
+                            @click="toggleCode('code2')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -146,21 +185,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -168,17 +209,40 @@
                     </div>
                     <div class="mb-5">
                         <form class="space-y-5" @submit.prevent="submitForm2()">
-                            <div :class="{ 'has-error': $v2.form2.email.$error, 'has-success': isSubmitForm2 && !$v2.form2.email.$error }">
+                            <div
+                                :class="{
+                                    'has-error': $v2.form2.email.$error,
+                                    'has-success':
+                                        isSubmitForm2 &&
+                                        !$v2.form2.email.$error,
+                                }">
                                 <label for="Email">Email</label>
-                                <input id="Email" type="text" placeholder="Enter Email" class="form-input" v-model="form2.email" />
-                                <template v-if="isSubmitForm2 && !$v2.form2.email.$error">
-                                    <p class="text-[#1abc9c] mt-1">Looks Good!</p>
+                                <input
+                                    id="Email"
+                                    type="text"
+                                    placeholder="Enter Email"
+                                    class="form-input"
+                                    v-model="form2.email" />
+                                <template
+                                    v-if="
+                                        isSubmitForm2 && !$v2.form2.email.$error
+                                    ">
+                                    <p class="text-[#1abc9c] mt-1">
+                                        Looks Good!
+                                    </p>
                                 </template>
-                                <template v-if="isSubmitForm2 && $v2.form2.email.$error">
-                                    <p class="text-danger mt-1">Please fill the Email</p>
+                                <template
+                                    v-if="
+                                        isSubmitForm2 && $v2.form2.email.$error
+                                    ">
+                                    <p class="text-danger mt-1">
+                                        Please fill the Email
+                                    </p>
                                 </template>
                             </div>
-                            <button type="submit" class="btn btn-primary !mt-6">Submit Form</button>
+                            <button type="submit" class="btn btn-primary !mt-6">
+                                Submit Form
+                            </button>
                         </form>
                     </div>
                     <template v-if="codeArr.includes('code2')">
@@ -233,12 +297,13 @@
                 <!-- Select -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Select</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Select
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code3')"
-                        >
+                            @click="toggleCode('code3')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -246,21 +311,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -268,21 +335,44 @@
                     </div>
                     <div class="mb-5">
                         <form class="space-y-5" @submit.prevent="submitForm3()">
-                            <div :class="{ 'has-error': $v3.form3.select.$error, 'has-success': isSubmitForm3 && !$v3.form3.select.$error }">
-                                <select class="form-select text-white-dark" v-model="form3.select">
-                                    <option value="">Open this select menu</option>
+                            <div
+                                :class="{
+                                    'has-error': $v3.form3.select.$error,
+                                    'has-success':
+                                        isSubmitForm3 &&
+                                        !$v3.form3.select.$error,
+                                }">
+                                <select
+                                    class="form-select text-white-dark"
+                                    v-model="form3.select">
+                                    <option value="">
+                                        Open this select menu
+                                    </option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
                                 </select>
-                                <template v-if="isSubmitForm3 && !$v3.form3.select.$error">
-                                    <p class="text-[#1abc9c] mt-1">Example valid custom select feedback</p>
+                                <template
+                                    v-if="
+                                        isSubmitForm3 &&
+                                        !$v3.form3.select.$error
+                                    ">
+                                    <p class="text-[#1abc9c] mt-1">
+                                        Example valid custom select feedback
+                                    </p>
                                 </template>
-                                <template v-if="isSubmitForm3 && $v3.form3.select.$error">
-                                    <p class="text-danger mt-1">Please Select the field</p>
+                                <template
+                                    v-if="
+                                        isSubmitForm3 && $v3.form3.select.$error
+                                    ">
+                                    <p class="text-danger mt-1">
+                                        Please Select the field
+                                    </p>
                                 </template>
                             </div>
-                            <button type="submit" class="btn btn-primary !mt-6">Submit Form</button>
+                            <button type="submit" class="btn btn-primary !mt-6">
+                                Submit Form
+                            </button>
                         </form>
                     </div>
                     <template v-if="codeArr.includes('code3')">
@@ -341,12 +431,13 @@
                 <!-- Custom Styles -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Custom Styles</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Custom Styles
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code4')"
-                        >
+                            @click="toggleCode('code4')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -354,21 +445,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -377,32 +470,83 @@
                     <div class="mb-5">
                         <form class="space-y-5" @submit.prevent="submitForm4()">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                                <div :class="{ 'has-error': $v4.form4.firstName.$error, 'has-success': isSubmitForm4 && !$v4.form4.firstName.$error }">
+                                <div
+                                    :class="{
+                                        'has-error': $v4.form4.firstName.$error,
+                                        'has-success':
+                                            isSubmitForm4 &&
+                                            !$v4.form4.firstName.$error,
+                                    }">
                                     <label for="customFname">First Name</label>
-                                    <input id="customFname" type="text" placeholder="Enter First Name" class="form-input" v-model="form4.firstName" />
-                                    <template v-if="isSubmitForm4 && !$v4.form4.firstName.$error">
-                                        <p class="text-[#1abc9c] mt-1">Looks Good!</p>
+                                    <input
+                                        id="customFname"
+                                        type="text"
+                                        placeholder="Enter First Name"
+                                        class="form-input"
+                                        v-model="form4.firstName" />
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            !$v4.form4.firstName.$error
+                                        ">
+                                        <p class="text-[#1abc9c] mt-1">
+                                            Looks Good!
+                                        </p>
                                     </template>
-                                    <template v-if="isSubmitForm4 && $v4.form4.firstName.$error">
-                                        <p class="text-danger mt-1">Please fill the first name</p>
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            $v4.form4.firstName.$error
+                                        ">
+                                        <p class="text-danger mt-1">
+                                            Please fill the first name
+                                        </p>
                                     </template>
                                 </div>
-                                <div :class="{ 'has-error': $v4.form4.lastName.$error, 'has-success': isSubmitForm4 && !$v4.form4.lastName.$error }">
+                                <div
+                                    :class="{
+                                        'has-error': $v4.form4.lastName.$error,
+                                        'has-success':
+                                            isSubmitForm4 &&
+                                            !$v4.form4.lastName.$error,
+                                    }">
                                     <label for="customLname">Last name</label>
-                                    <input id="customLname" type="text" placeholder="Enter Last Name" class="form-input" v-model="form4.lastName" />
-                                    <template v-if="isSubmitForm4 && !$v4.form4.lastName.$error">
-                                        <p class="text-[#1abc9c] mt-1">Looks Good!</p>
+                                    <input
+                                        id="customLname"
+                                        type="text"
+                                        placeholder="Enter Last Name"
+                                        class="form-input"
+                                        v-model="form4.lastName" />
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            !$v4.form4.lastName.$error
+                                        ">
+                                        <p class="text-[#1abc9c] mt-1">
+                                            Looks Good!
+                                        </p>
                                     </template>
-                                    <template v-if="isSubmitForm4 && $v4.form4.lastName.$error">
-                                        <p class="text-danger mt-1">Please fill the last name</p>
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            $v4.form4.lastName.$error
+                                        ">
+                                        <p class="text-danger mt-1">
+                                            Please fill the last name
+                                        </p>
                                     </template>
                                 </div>
-                                <div :class="{ 'has-error': $v4.form4.userName.$error, 'has-success': isSubmitForm4 && !$v4.form4.userName.$error }">
+                                <div
+                                    :class="{
+                                        'has-error': $v4.form4.userName.$error,
+                                        'has-success':
+                                            isSubmitForm4 &&
+                                            !$v4.form4.userName.$error,
+                                    }">
                                     <label for="customeEmail">Username</label>
                                     <div class="flex">
                                         <div
-                                            class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                                        >
+                                            class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
                                             @
                                         </div>
                                         <input
@@ -410,62 +554,159 @@
                                             type="text"
                                             placeholder="Enter Username"
                                             class="form-input ltr:rounded-l-none rtl:rounded-r-none"
-                                            v-model="form4.userName"
-                                        />
+                                            v-model="form4.userName" />
                                     </div>
-                                    <template v-if="isSubmitForm4 && !$v4.form4.userName.$error">
-                                        <p class="text-[#1abc9c] mt-1">Looks Good!</p>
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            !$v4.form4.userName.$error
+                                        ">
+                                        <p class="text-[#1abc9c] mt-1">
+                                            Looks Good!
+                                        </p>
                                     </template>
-                                    <template v-if="isSubmitForm4 && $v4.form4.userName.$error">
-                                        <p class="text-danger mt-1">Please choose a userName</p>
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            $v4.form4.userName.$error
+                                        ">
+                                        <p class="text-danger mt-1">
+                                            Please choose a userName
+                                        </p>
                                     </template>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
                                 <div
                                     class="md:col-span-2"
-                                    :class="{ 'has-error': $v4.form4.city.$error, 'has-success': isSubmitForm4 && !$v4.form4.city.$error }"
-                                >
+                                    :class="{
+                                        'has-error': $v4.form4.city.$error,
+                                        'has-success':
+                                            isSubmitForm4 &&
+                                            !$v4.form4.city.$error,
+                                    }">
                                     <label for="customeCity">City</label>
-                                    <input id="customeCity" type="text" placeholder="Enter City" class="form-input" v-model="form4.city" />
-                                    <template v-if="isSubmitForm4 && !$v4.form4.city.$error">
-                                        <p class="text-[#1abc9c] mt-1">Looks Good!</p>
+                                    <input
+                                        id="customeCity"
+                                        type="text"
+                                        placeholder="Enter City"
+                                        class="form-input"
+                                        v-model="form4.city" />
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            !$v4.form4.city.$error
+                                        ">
+                                        <p class="text-[#1abc9c] mt-1">
+                                            Looks Good!
+                                        </p>
                                     </template>
-                                    <template v-if="isSubmitForm4 && $v4.form4.city.$error">
-                                        <p class="text-danger mt-1">Please provide a valid city</p>
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            $v4.form4.city.$error
+                                        ">
+                                        <p class="text-danger mt-1">
+                                            Please provide a valid city
+                                        </p>
                                     </template>
                                 </div>
-                                <div :class="{ 'has-error': $v4.form4.state.$error, 'has-success': isSubmitForm4 && !$v4.form4.state.$error }">
+                                <div
+                                    :class="{
+                                        'has-error': $v4.form4.state.$error,
+                                        'has-success':
+                                            isSubmitForm4 &&
+                                            !$v4.form4.state.$error,
+                                    }">
                                     <label for="customeState">State</label>
-                                    <input id="customeState" type="text" placeholder="Enter State" class="form-input" v-model="form4.state" />
-                                    <template v-if="isSubmitForm4 && !$v4.form4.state.$error">
-                                        <p class="text-[#1abc9c] mt-1">Looks Good!</p>
+                                    <input
+                                        id="customeState"
+                                        type="text"
+                                        placeholder="Enter State"
+                                        class="form-input"
+                                        v-model="form4.state" />
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            !$v4.form4.state.$error
+                                        ">
+                                        <p class="text-[#1abc9c] mt-1">
+                                            Looks Good!
+                                        </p>
                                     </template>
-                                    <template v-if="isSubmitForm4 && $v4.form4.state.$error">
-                                        <p class="text-danger mt-1">Please provide a valid state</p>
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            $v4.form4.state.$error
+                                        ">
+                                        <p class="text-danger mt-1">
+                                            Please provide a valid state
+                                        </p>
                                     </template>
                                 </div>
-                                <div :class="{ 'has-error': $v4.form4.zip.$error, 'has-success': isSubmitForm4 && !$v4.form4.zip.$error }">
+                                <div
+                                    :class="{
+                                        'has-error': $v4.form4.zip.$error,
+                                        'has-success':
+                                            isSubmitForm4 &&
+                                            !$v4.form4.zip.$error,
+                                    }">
                                     <label for="customeZip">Zip</label>
-                                    <input id="customeZip" type="text" placeholder="Enter Zip" class="form-input" v-model="form4.zip" />
-                                    <template v-if="isSubmitForm4 && !$v4.form4.zip.$error">
-                                        <p class="text-[#1abc9c] mt-1">Looks Good!</p>
+                                    <input
+                                        id="customeZip"
+                                        type="text"
+                                        placeholder="Enter Zip"
+                                        class="form-input"
+                                        v-model="form4.zip" />
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            !$v4.form4.zip.$error
+                                        ">
+                                        <p class="text-[#1abc9c] mt-1">
+                                            Looks Good!
+                                        </p>
                                     </template>
-                                    <template v-if="isSubmitForm4 && $v4.form4.zip.$error">
-                                        <p class="text-danger mt-1">Please provide a valid zip</p>
+                                    <template
+                                        v-if="
+                                            isSubmitForm4 &&
+                                            $v4.form4.zip.$error
+                                        ">
+                                        <p class="text-danger mt-1">
+                                            Please provide a valid zip
+                                        </p>
                                     </template>
                                 </div>
                             </div>
-                            <div :class="{ 'has-error': $v4.form4.isTerms.$error, 'has-success': isSubmitForm4 && !$v4.form4.isTerms.$error }">
+                            <div
+                                :class="{
+                                    'has-error': $v4.form4.isTerms.$error,
+                                    'has-success':
+                                        isSubmitForm4 &&
+                                        !$v4.form4.isTerms.$error,
+                                }">
                                 <label class="inline-flex cursor-pointer mt-1">
-                                    <input type="checkbox" class="form-checkbox" v-model="form4.isTerms" />
-                                    <span class="text-white-dark">Agree to terms and conditions</span>
+                                    <input
+                                        type="checkbox"
+                                        class="form-checkbox"
+                                        v-model="form4.isTerms" />
+                                    <span class="text-white-dark"
+                                        >Agree to terms and conditions</span
+                                    >
                                 </label>
-                                <template v-if="isSubmitForm4 && $v4.form4.isTerms.$error">
-                                    <p class="text-danger mt-1">You must agree before submitting.</p>
+                                <template
+                                    v-if="
+                                        isSubmitForm4 &&
+                                        $v4.form4.isTerms.$error
+                                    ">
+                                    <p class="text-danger mt-1">
+                                        You must agree before submitting.
+                                    </p>
                                 </template>
                             </div>
-                            <button type="submit" class="btn btn-primary !mt-6">Submit Form</button>
+                            <button type="submit" class="btn btn-primary !mt-6">
+                                Submit Form
+                            </button>
                         </form>
                     </div>
                     <template v-if="codeArr.includes('code4')">
@@ -619,12 +860,13 @@
                 <!-- Browser Default -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Browser Default</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Browser Default
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code5')"
-                        >
+                            @click="toggleCode('code5')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -632,21 +874,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -657,18 +901,29 @@
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                                 <div>
                                     <label for="browserFname">First Name</label>
-                                    <input id="browserFname" type="text" placeholder="Enter First Name" v-model="form5.firstName" class="form-input" required />
+                                    <input
+                                        id="browserFname"
+                                        type="text"
+                                        placeholder="Enter First Name"
+                                        v-model="form5.firstName"
+                                        class="form-input"
+                                        required />
                                 </div>
                                 <div>
                                     <label for="browserLname">Last name</label>
-                                    <input id="browserLname" type="text" placeholder="Enter Last name" v-model="form5.lastName" class="form-input" required />
+                                    <input
+                                        id="browserLname"
+                                        type="text"
+                                        placeholder="Enter Last name"
+                                        v-model="form5.lastName"
+                                        class="form-input"
+                                        required />
                                 </div>
                                 <div>
                                     <label for="browserEmail">Username</label>
                                     <div class="flex">
                                         <div
-                                            class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                                        >
+                                            class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
                                             @
                                         </div>
                                         <input
@@ -677,32 +932,58 @@
                                             placeholder="Enter Username"
                                             v-model="form5.userName"
                                             class="form-input ltr:rounded-l-none rtl:rounded-r-none"
-                                            required
-                                        />
+                                            required />
                                     </div>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
                                 <div class="md:col-span-2">
                                     <label for="browserCity">City</label>
-                                    <input id="browserCity" type="text" placeholder="Enter City" v-model="form5.city" class="form-input" required />
+                                    <input
+                                        id="browserCity"
+                                        type="text"
+                                        placeholder="Enter City"
+                                        v-model="form5.city"
+                                        class="form-input"
+                                        required />
                                 </div>
                                 <div>
                                     <label for="browserState">State</label>
-                                    <input id="browserState" type="text" placeholder="Enter State" v-model="form5.state" class="form-input" required />
+                                    <input
+                                        id="browserState"
+                                        type="text"
+                                        placeholder="Enter State"
+                                        v-model="form5.state"
+                                        class="form-input"
+                                        required />
                                 </div>
                                 <div>
                                     <label for="browserZip">Zip</label>
-                                    <input id="browserZip" type="text" placeholder="Enter Zip" v-model="form5.zip" class="form-input" required />
+                                    <input
+                                        id="browserZip"
+                                        type="text"
+                                        placeholder="Enter Zip"
+                                        v-model="form5.zip"
+                                        class="form-input"
+                                        required />
                                 </div>
                             </div>
                             <div>
-                                <label class="flex items-center cursor-pointer mt-1">
-                                    <input type="checkbox" class="form-checkbox" v-model="form5.isTerms" required />
-                                    <span class="text-white-dark">Agree to terms and conditions</span>
+                                <label
+                                    class="flex items-center cursor-pointer mt-1">
+                                    <input
+                                        type="checkbox"
+                                        class="form-checkbox"
+                                        v-model="form5.isTerms"
+                                        required />
+                                    <span class="text-white-dark"
+                                        >Agree to terms and conditions</span
+                                    >
                                 </label>
                             </div>
-                            <button type="submit" class="btn btn-primary !mt-6">Submit Form</button>
+                            <button type="submit" class="btn btn-primary !mt-6">
+                                Submit Form
+                            </button>
                         </form>
                     </div>
                     <template v-if="codeArr.includes('code5')">
@@ -796,12 +1077,13 @@
                 <!-- Tooltips -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Tooltips</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Tooltips
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code6')"
-                        >
+                            @click="toggleCode('code6')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -809,21 +1091,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -832,32 +1116,87 @@
                     <div class="mb-5">
                         <form class="space-y-5" @submit.prevent="submitForm6()">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                                <div :class="{ 'has-error': $v6.form6.firstName.$error, 'has-success': isSubmitForm6 && !$v6.form6.firstName.$error }">
+                                <div
+                                    :class="{
+                                        'has-error': $v6.form6.firstName.$error,
+                                        'has-success':
+                                            isSubmitForm6 &&
+                                            !$v6.form6.firstName.$error,
+                                    }">
                                     <label for="tlpFname">First Name</label>
-                                    <input id="tlpFname" type="text" placeholder="Enter First Name" class="form-input mb-2" v-model="form6.firstName" />
-                                    <template v-if="isSubmitForm6 && !$v6.form6.firstName.$error">
-                                        <span class="text-white bg-[#1abc9c] py-1 px-2 rounded">Looks Good!</span>
+                                    <input
+                                        id="tlpFname"
+                                        type="text"
+                                        placeholder="Enter First Name"
+                                        class="form-input mb-2"
+                                        v-model="form6.firstName" />
+                                    <template
+                                        v-if="
+                                            isSubmitForm6 &&
+                                            !$v6.form6.firstName.$error
+                                        ">
+                                        <span
+                                            class="text-white bg-[#1abc9c] py-1 px-2 rounded"
+                                            >Looks Good!</span
+                                        >
                                     </template>
-                                    <template v-if="isSubmitForm6 && $v6.form6.firstName.$error">
-                                        <span class="text-white bg-danger py-1 px-2 rounded">Please fill the first Name</span>
+                                    <template
+                                        v-if="
+                                            isSubmitForm6 &&
+                                            $v6.form6.firstName.$error
+                                        ">
+                                        <span
+                                            class="text-white bg-danger py-1 px-2 rounded"
+                                            >Please fill the first Name</span
+                                        >
                                     </template>
                                 </div>
-                                <div :class="{ 'has-error': $v6.form6.lastName.$error, 'has-success': isSubmitForm6 && !$v6.form6.lastName.$error }">
+                                <div
+                                    :class="{
+                                        'has-error': $v6.form6.lastName.$error,
+                                        'has-success':
+                                            isSubmitForm6 &&
+                                            !$v6.form6.lastName.$error,
+                                    }">
                                     <label for="tlpLname">Last name</label>
-                                    <input id="tlpLname" type="text" placeholder="Enter Last Name" class="form-input mb-2" v-model="form6.lastName" />
-                                    <template v-if="isSubmitForm6 && !$v6.form6.lastName.$error">
-                                        <span class="text-white bg-[#1abc9c] py-1 px-2 rounded">Looks Good!</span>
+                                    <input
+                                        id="tlpLname"
+                                        type="text"
+                                        placeholder="Enter Last Name"
+                                        class="form-input mb-2"
+                                        v-model="form6.lastName" />
+                                    <template
+                                        v-if="
+                                            isSubmitForm6 &&
+                                            !$v6.form6.lastName.$error
+                                        ">
+                                        <span
+                                            class="text-white bg-[#1abc9c] py-1 px-2 rounded"
+                                            >Looks Good!</span
+                                        >
                                     </template>
-                                    <template v-if="isSubmitForm6 && $v6.form6.lastName.$error">
-                                        <span class="text-white bg-danger py-1 px-2 rounded">Please fill the last Name</span>
+                                    <template
+                                        v-if="
+                                            isSubmitForm6 &&
+                                            $v6.form6.lastName.$error
+                                        ">
+                                        <span
+                                            class="text-white bg-danger py-1 px-2 rounded"
+                                            >Please fill the last Name</span
+                                        >
                                     </template>
                                 </div>
-                                <div :class="{ 'has-error': $v6.form6.userName.$error, 'has-success': isSubmitForm6 && !$v6.form6.userName.$error }">
+                                <div
+                                    :class="{
+                                        'has-error': $v6.form6.userName.$error,
+                                        'has-success':
+                                            isSubmitForm6 &&
+                                            !$v6.form6.userName.$error,
+                                    }">
                                     <label for="tlpEmail">Username</label>
                                     <div class="flex">
                                         <div
-                                            class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                                        >
+                                            class="bg-[#eee] flex justify-center items-center ltr:rounded-l-md rtl:rounded-r-md px-3 font-semibold border ltr:border-r-0 rtl:border-l-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
                                             @
                                         </div>
                                         <input
@@ -865,15 +1204,28 @@
                                             type="text"
                                             placeholder="Enter Username"
                                             class="form-input ltr:rounded-l-none rtl:rounded-r-none"
-                                            v-model="form6.userName"
-                                        />
+                                            v-model="form6.userName" />
                                     </div>
                                     <div class="mt-2">
-                                        <template v-if="isSubmitForm6 && !$v6.form6.userName.$error">
-                                            <span class="text-white bg-[#1abc9c] py-1 px-2 rounded">Looks Good!</span>
+                                        <template
+                                            v-if="
+                                                isSubmitForm6 &&
+                                                !$v6.form6.userName.$error
+                                            ">
+                                            <span
+                                                class="text-white bg-[#1abc9c] py-1 px-2 rounded"
+                                                >Looks Good!</span
+                                            >
                                         </template>
-                                        <template v-if="isSubmitForm6 && $v6.form6.userName.$error">
-                                            <span class="text-white bg-danger py-1 px-2 rounded">Please choose a userName.</span>
+                                        <template
+                                            v-if="
+                                                isSubmitForm6 &&
+                                                $v6.form6.userName.$error
+                                            ">
+                                            <span
+                                                class="text-white bg-danger py-1 px-2 rounded"
+                                                >Please choose a userName.</span
+                                            >
                                         </template>
                                     </div>
                                 </div>
@@ -881,50 +1233,144 @@
                             <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
                                 <div
                                     class="md:col-span-2"
-                                    :class="{ 'has-error': $v6.form6.city.$error, 'has-success': isSubmitForm6 && !$v6.form6.city.$error }"
-                                >
+                                    :class="{
+                                        'has-error': $v6.form6.city.$error,
+                                        'has-success':
+                                            isSubmitForm6 &&
+                                            !$v6.form6.city.$error,
+                                    }">
                                     <label for="tlpCity">City</label>
-                                    <input id="tlpCity" type="text" placeholder="Enter City" class="form-input mb-2" v-model="form6.city" />
-                                    <template v-if="isSubmitForm6 && !$v6.form6.city.$error">
-                                        <span class="text-white bg-[#1abc9c] py-1 px-2 rounded">Looks Good!</span>
+                                    <input
+                                        id="tlpCity"
+                                        type="text"
+                                        placeholder="Enter City"
+                                        class="form-input mb-2"
+                                        v-model="form6.city" />
+                                    <template
+                                        v-if="
+                                            isSubmitForm6 &&
+                                            !$v6.form6.city.$error
+                                        ">
+                                        <span
+                                            class="text-white bg-[#1abc9c] py-1 px-2 rounded"
+                                            >Looks Good!</span
+                                        >
                                     </template>
-                                    <template v-if="isSubmitForm6 && $v6.form6.city.$error">
-                                        <span class="text-white bg-danger py-1 px-2 rounded">Please provide a valid city.</span>
+                                    <template
+                                        v-if="
+                                            isSubmitForm6 &&
+                                            $v6.form6.city.$error
+                                        ">
+                                        <span
+                                            class="text-white bg-danger py-1 px-2 rounded"
+                                            >Please provide a valid city.</span
+                                        >
                                     </template>
                                 </div>
-                                <div :class="{ 'has-error': $v6.form6.state.$error, 'has-success': isSubmitForm6 && !$v6.form6.state.$error }">
+                                <div
+                                    :class="{
+                                        'has-error': $v6.form6.state.$error,
+                                        'has-success':
+                                            isSubmitForm6 &&
+                                            !$v6.form6.state.$error,
+                                    }">
                                     <label for="tlpState">State</label>
-                                    <input id="tlpState" type="text" placeholder="Enter State" class="form-input mb-2" v-model="form6.state" />
-                                    <template v-if="isSubmitForm6 && !$v6.form6.state.$error">
-                                        <span class="text-white bg-[#1abc9c] py-1 px-2 rounded">Looks Good!</span>
+                                    <input
+                                        id="tlpState"
+                                        type="text"
+                                        placeholder="Enter State"
+                                        class="form-input mb-2"
+                                        v-model="form6.state" />
+                                    <template
+                                        v-if="
+                                            isSubmitForm6 &&
+                                            !$v6.form6.state.$error
+                                        ">
+                                        <span
+                                            class="text-white bg-[#1abc9c] py-1 px-2 rounded"
+                                            >Looks Good!</span
+                                        >
                                     </template>
-                                    <template v-if="isSubmitForm6 && $v6.form6.state.$error">
-                                        <span class="text-white bg-danger py-1 px-2 rounded">Please provide a valid state.</span>
+                                    <template
+                                        v-if="
+                                            isSubmitForm6 &&
+                                            $v6.form6.state.$error
+                                        ">
+                                        <span
+                                            class="text-white bg-danger py-1 px-2 rounded"
+                                            >Please provide a valid state.</span
+                                        >
                                     </template>
                                 </div>
-                                <div :class="{ 'has-error': $v6.form6.zip.$error, 'has-success': isSubmitForm6 && !$v6.form6.zip.$error }">
+                                <div
+                                    :class="{
+                                        'has-error': $v6.form6.zip.$error,
+                                        'has-success':
+                                            isSubmitForm6 &&
+                                            !$v6.form6.zip.$error,
+                                    }">
                                     <label for="tlpZip">Zip</label>
-                                    <input id="tlpZip" type="text" placeholder="Enter Zip" class="form-input mb-2" v-model="form6.zip" />
-                                    <template v-if="isSubmitForm6 && !$v6.form6.zip.$error">
-                                        <span class="text-white bg-[#1abc9c] py-1 px-2 rounded">Looks Good!</span>
+                                    <input
+                                        id="tlpZip"
+                                        type="text"
+                                        placeholder="Enter Zip"
+                                        class="form-input mb-2"
+                                        v-model="form6.zip" />
+                                    <template
+                                        v-if="
+                                            isSubmitForm6 &&
+                                            !$v6.form6.zip.$error
+                                        ">
+                                        <span
+                                            class="text-white bg-[#1abc9c] py-1 px-2 rounded"
+                                            >Looks Good!</span
+                                        >
                                     </template>
-                                    <template v-if="isSubmitForm6 && $v6.form6.zip.$error">
-                                        <span class="text-white bg-danger py-1 px-2 rounded">Please provide a valid Zip.</span>
+                                    <template
+                                        v-if="
+                                            isSubmitForm6 &&
+                                            $v6.form6.zip.$error
+                                        ">
+                                        <span
+                                            class="text-white bg-danger py-1 px-2 rounded"
+                                            >Please provide a valid Zip.</span
+                                        >
                                     </template>
                                 </div>
                             </div>
-                            <div :class="{ 'has-error': $v6.form6.isTerms.$error, 'has-success': isSubmitForm6 && !$v6.form6.isTerms.$error }">
+                            <div
+                                :class="{
+                                    'has-error': $v6.form6.isTerms.$error,
+                                    'has-success':
+                                        isSubmitForm6 &&
+                                        !$v6.form6.isTerms.$error,
+                                }">
                                 <label class="flex items-center cursor-pointer">
-                                    <input type="checkbox" class="form-checkbox" v-model="form6.isTerms" />
-                                    <span class="text-white-dark">Agree to terms and conditions</span>
+                                    <input
+                                        type="checkbox"
+                                        class="form-checkbox"
+                                        v-model="form6.isTerms" />
+                                    <span class="text-white-dark"
+                                        >Agree to terms and conditions</span
+                                    >
                                 </label>
-                                <template v-if="isSubmitForm6 && $v6.form6.isTerms.$error">
+                                <template
+                                    v-if="
+                                        isSubmitForm6 &&
+                                        $v6.form6.isTerms.$error
+                                    ">
                                     <div class="mt-2">
-                                        <span class="text-white bg-danger py-1 px-2 rounded">You must agree before submitting.</span>
+                                        <span
+                                            class="text-white bg-danger py-1 px-2 rounded"
+                                            >You must agree before
+                                            submitting.</span
+                                        >
                                     </div>
                                 </template>
                             </div>
-                            <button type="submit" class="btn btn-primary !mt-6">Submit Form</button>
+                            <button type="submit" class="btn btn-primary !mt-6">
+                                Submit Form
+                            </button>
                         </form>
                     </div>
                     <template v-if="codeArr.includes('code6')">

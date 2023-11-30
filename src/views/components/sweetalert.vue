@@ -2,44 +2,58 @@
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
-                <a href="javascript:;" class="text-primary hover:underline">Components</a>
+                <a href="javascript:;" class="text-primary hover:underline"
+                    >Components</a
+                >
             </li>
             <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
                 <span>Sweet Alerts</span>
             </li>
         </ul>
         <div class="pt-5 space-y-8 sweet-alerts">
-            <div class="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
-                <div class="ring-2 ring-primary/30 rounded-full bg-primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5">
+            <div
+                class="panel p-3 flex items-center text-primary overflow-x-auto whitespace-nowrap">
+                <div
+                    class="ring-2 ring-primary/30 rounded-full bg-primary text-white p-1.5 ltr:mr-3 rtl:ml-3">
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-3.5 h-3.5">
                         <path
                             d="M19.0001 9.7041V9C19.0001 5.13401 15.8661 2 12.0001 2C8.13407 2 5.00006 5.13401 5.00006 9V9.7041C5.00006 10.5491 4.74995 11.3752 4.28123 12.0783L3.13263 13.8012C2.08349 15.3749 2.88442 17.5139 4.70913 18.0116C9.48258 19.3134 14.5175 19.3134 19.291 18.0116C21.1157 17.5139 21.9166 15.3749 20.8675 13.8012L19.7189 12.0783C19.2502 11.3752 19.0001 10.5491 19.0001 9.7041Z"
                             stroke="currentColor"
-                            stroke-width="1.5"
-                        />
+                            stroke-width="1.5" />
                         <path
                             opacity="0.5"
                             d="M7.5 19C8.15503 20.7478 9.92246 22 12 22C14.0775 22 15.845 20.7478 16.5 19"
                             stroke="currentColor"
                             stroke-width="1.5"
-                            stroke-linecap="round"
-                        />
+                            stroke-linecap="round" />
                     </svg>
                 </div>
                 <span class="ltr:mr-3 rtl:ml-3">Documentation: </span
-                ><a href="https://www.npmjs.com/package/sweetalert2" target="_blank" class="block hover:underline">https://www.npmjs.com/package/sweetalert2</a>
+                ><a
+                    href="https://www.npmjs.com/package/sweetalert2"
+                    target="_blank"
+                    class="block hover:underline"
+                    >https://www.npmjs.com/package/sweetalert2</a
+                >
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- basic -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Basic message</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Basic message
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code1')"
-                        >
+                            @click="toggleCode('code1')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -47,21 +61,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -69,7 +85,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-primary" @click="showAlert(1)">Basic message</button>
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                @click="showAlert(1)">
+                                Basic message
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code1')">
@@ -96,12 +117,13 @@
                 <!-- message -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Success message</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Success message
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code2')"
-                        >
+                            @click="toggleCode('code2')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -109,21 +131,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -131,7 +155,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-secondary" @click="showAlert(2)">Success message!</button>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                @click="showAlert(2)">
+                                Success message!
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code2')">
@@ -160,12 +189,13 @@
                 <!-- Dynamic -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Dynamic queue</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Dynamic queue
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code3')"
-                        >
+                            @click="toggleCode('code3')">
                             <span class="flex items-center"
                                 ><svg
                                     width="24"
@@ -173,21 +203,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -195,7 +227,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-success" @click="showAlert(3)">Dynamic queue</button>
+                            <button
+                                type="button"
+                                class="btn btn-success"
+                                @click="showAlert(3)">
+                                Dynamic queue
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code3')">
@@ -244,12 +281,13 @@
                 <!-- A title with text -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">A title with a text under</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            A title with a text under
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code5')"
-                        >
+                            @click="toggleCode('code5')">
                             <span class="flex items-center"
                                 ><svg
                                     width="24"
@@ -257,21 +295,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -279,7 +319,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-danger" @click="showAlert(4)">Title & text</button>
+                            <button
+                                type="button"
+                                class="btn btn-danger"
+                                @click="showAlert(4)">
+                                Title & text
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code5')">
@@ -308,12 +353,13 @@
                 <!-- Chaining modals -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Chaining modals (queue)</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Chaining modals (queue)
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code6')"
-                        >
+                            @click="toggleCode('code6')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -321,21 +367,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -343,7 +391,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-warning" @click="showAlert(5)">Chaining modals (queue)</button>
+                            <button
+                                type="button"
+                                class="btn btn-warning"
+                                @click="showAlert(5)">
+                                Chaining modals (queue)
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code6')">
@@ -410,12 +463,13 @@
                 <!-- Animation -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Custom animation</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Custom animation
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code7')"
-                        >
+                            @click="toggleCode('code7')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -423,21 +477,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -445,12 +501,24 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-info" @click="showAlert(6)">Custom animation</button>
+                            <button
+                                type="button"
+                                class="btn btn-info"
+                                @click="showAlert(6)">
+                                Custom animation
+                            </button>
                         </div>
-                        <div class="fixed inset-0 bg-[black]/60 z-[999] transition-all duration-300 px-4 hidden">
-                            <div class="panel absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 sm:w-[480px] text-center">
-                                <h3 class="text-[#3b3f5c] dark:text-white-light text-2xl font-bold mb-5">Custom animation with Animate.css</h3>
-                                <button type="button" class="btn btn-info">Ok</button>
+                        <div
+                            class="fixed inset-0 bg-[black]/60 z-[999] transition-all duration-300 px-4 hidden">
+                            <div
+                                class="panel absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-11/12 sm:w-[480px] text-center">
+                                <h3
+                                    class="text-[#3b3f5c] dark:text-white-light text-2xl font-bold mb-5">
+                                    Custom animation with Animate.css
+                                </h3>
+                                <button type="button" class="btn btn-info">
+                                    Ok
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -485,12 +553,13 @@
                 <!-- Auto close timer -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Message with auto close timer</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Message with auto close timer
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code8')"
-                        >
+                            @click="toggleCode('code8')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -498,21 +567,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -520,7 +591,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-primary" @click="showAlert(7)">Message timer</button>
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                @click="showAlert(7)">
+                                Message timer
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code8')">
@@ -565,12 +641,13 @@
                 <!-- Custom image -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Message with custom image</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Message with custom image
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code9')"
-                        >
+                            @click="toggleCode('code9')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -578,21 +655,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -600,7 +679,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-secondary" @click="showAlert(8)">Message with custom image</button>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                @click="showAlert(8)">
+                                Message with custom image
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code9')">
@@ -633,12 +717,13 @@
                 <!-- Custom HTML -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Custom HTML description and buttons</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Custom HTML description and buttons
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code10')"
-                        >
+                            @click="toggleCode('code10')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -646,21 +731,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -668,7 +755,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-danger" @click="showAlert(9)">Custom Description & buttons</button>
+                            <button
+                                type="button"
+                                class="btn btn-danger"
+                                @click="showAlert(9)">
+                                Custom Description & buttons
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code10')">
@@ -704,12 +796,13 @@
                 <!-- Warning message -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Warning message, with "Confirm" button</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Warning message, with "Confirm" button
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code11')"
-                        >
+                            @click="toggleCode('code11')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -717,21 +810,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -739,7 +834,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-success" @click="showAlert(10)">Confirm</button>
+                            <button
+                                type="button"
+                                class="btn btn-success"
+                                @click="showAlert(10)">
+                                Confirm
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code11')">
@@ -774,12 +874,13 @@
                 <!-- Cancel -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Execute something else for "Cancel".</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Execute something else for "Cancel".
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code12')"
-                        >
+                            @click="toggleCode('code12')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -787,21 +888,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -809,7 +912,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-warning" @click="showAlert(11)">Addition else for "Cancel".</button>
+                            <button
+                                type="button"
+                                class="btn btn-warning"
+                                @click="showAlert(11)">
+                                Addition else for "Cancel".
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code12')">
@@ -857,12 +965,13 @@
                 <!-- Custom Style -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">A message with custom width, padding and background</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            A message with custom width, padding and background
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code13')"
-                        >
+                            @click="toggleCode('code13')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -870,21 +979,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -892,7 +1003,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-info" @click="showAlert(12)">Custom Message</button>
+                            <button
+                                type="button"
+                                class="btn btn-info"
+                                @click="showAlert(12)">
+                                Custom Message
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code13')">
@@ -921,12 +1037,13 @@
                 <!-- Footer -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">With Footer</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            With Footer
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code14')"
-                        >
+                            @click="toggleCode('code14')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -934,21 +1051,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -956,7 +1075,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-dark" @click="showAlert(13)">With Footer</button>
+                            <button
+                                type="button"
+                                class="btn btn-dark"
+                                @click="showAlert(13)">
+                                With Footer
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code14')">
@@ -986,12 +1110,13 @@
                 <!-- RTL -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">RTL support</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            RTL support
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code15')"
-                        >
+                            @click="toggleCode('code15')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -999,29 +1124,38 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
                         </a>
                     </div>
                     <div class="mb-5">
-                        <div class="flex items-center justify-center" id="rtl-container">
-                            <button type="button" class="btn btn-primary" @click="showAlert(14)">RTL</button>
+                        <div
+                            class="flex items-center justify-center"
+                            id="rtl-container">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                @click="showAlert(14)">
+                                RTL
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code15')">
@@ -1052,12 +1186,13 @@
                 <!-- Mixin -->
                 <div class="panel">
                     <div class="flex items-center justify-between mb-5">
-                        <h5 class="font-semibold text-lg dark:text-white-light">Mixin</h5>
+                        <h5 class="font-semibold text-lg dark:text-white-light">
+                            Mixin
+                        </h5>
                         <a
                             class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
                             href="javascript:;"
-                            @click="toggleCode('code16')"
-                        >
+                            @click="toggleCode('code16')">
                             <span class="flex items-center">
                                 <svg
                                     width="24"
@@ -1065,21 +1200,23 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2"
-                                >
+                                    class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                     <path
                                         d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                        stroke-linecap="round" />
+                                    <path
+                                        opacity="0.5"
+                                        d="M13.9868 5L10.0132 19.8297"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round" />
                                     <path
                                         d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                         stroke="currentColor"
                                         stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
+                                        stroke-linecap="round" />
                                 </svg>
                                 Code
                             </span>
@@ -1087,7 +1224,12 @@
                     </div>
                     <div class="mb-5">
                         <div class="flex items-center justify-center">
-                            <button type="button" class="btn btn-secondary" @click="showAlert(15)">Mixin</button>
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                @click="showAlert(15)">
+                                Mixin
+                            </button>
                         </div>
                     </div>
                     <template v-if="codeArr.includes('code16')">
@@ -1280,7 +1422,10 @@ const showAlert = async (type: number) => {
         Swal.fire({
             icon: "info",
             title: "<i>HTML</i> <u>example</u>",
-            html: "You can use <b>bold text</b>, " + '<a href="//github.com">links</a> ' + "and other HTML tags",
+            html:
+                "You can use <b>bold text</b>, " +
+                '<a href="//github.com">links</a> ' +
+                "and other HTML tags",
             showCloseButton: true,
             showCancelButton: true,
             focusConfirm: false,
@@ -1302,7 +1447,12 @@ const showAlert = async (type: number) => {
             customClass: "sweet-alerts",
         }).then((result) => {
             if (result.value) {
-                Swal.fire({ title: "Deleted!", text: "Your file has been deleted.", icon: "success", customClass: "sweet-alerts" });
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success",
+                    customClass: "sweet-alerts",
+                });
             }
         });
     } else if (type === 11) {
@@ -1327,9 +1477,17 @@ const showAlert = async (type: number) => {
             })
             .then((result) => {
                 if (result.value) {
-                    swalWithBootstrapButtons.fire("Deleted!", "Your file has been deleted.", "success");
+                    swalWithBootstrapButtons.fire(
+                        "Deleted!",
+                        "Your file has been deleted.",
+                        "success",
+                    );
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire("Cancelled", "Your imaginary file is safe :)", "error");
+                    swalWithBootstrapButtons.fire(
+                        "Cancelled",
+                        "Your imaginary file is safe :)",
+                        "error",
+                    );
                 }
             });
     } else if (type === 12) {
@@ -1338,7 +1496,10 @@ const showAlert = async (type: number) => {
             width: 600,
             padding: "7em",
             customClass: "background-modal sweet-alerts",
-            background: "#fff url(" + "/assets/images/sweet-bg.jpg" + ") no-repeat 100% 100%",
+            background:
+                "#fff url(" +
+                "/assets/images/sweet-bg.jpg" +
+                ") no-repeat 100% 100%",
         });
     } else if (type === 13) {
         Swal.fire({

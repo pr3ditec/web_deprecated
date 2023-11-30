@@ -2,7 +2,9 @@
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
-                <a href="javascript:;" class="text-primary hover:underline">Dashboard</a>
+                <a href="javascript:;" class="text-primary hover:underline"
+                    >Dashboard</a
+                >
             </li>
             <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
                 <span>Crypto</span>
@@ -11,22 +13,34 @@
         <div class="flex flex-col xl:flex-row gap-5 relative mt-5">
             <div
                 class="panel absolute xl:relative p-0 flex-none w-80 border-0 overflow-y-auto z-10 xl:block divide-y divide-[#ebedf2] dark:divide-[#191e3a] hidden"
-                :class="{ '!block h-full': isShowCryptoMenu }"
-            >
+                :class="{ '!block h-full': isShowCryptoMenu }">
                 <template v-for="item in coins" :key="item.id">
                     <button
                         type="button"
                         class="w-full flex items-center p-4 hover:bg-gray-100 dark:hover:bg-[#192A3A]"
-                        :class="{ 'bg-gray-100 dark:bg-[#192A3A]': selectedCoinObj ? selectedCoinObj.title === item.title : false }"
-                        @click="setSelectBitCoin(item)"
-                    >
+                        :class="{
+                            'bg-gray-100 dark:bg-[#192A3A]': selectedCoinObj
+                                ? selectedCoinObj.title === item.title
+                                : false,
+                        }"
+                        @click="setSelectBitCoin(item)">
                         <div class="ltr:pr-4 rtl:pl-4">
                             <div class="flex items-baseline font-semibold">
-                                <div class="text-md ltr:mr-1 rtl:ml-1">{{ item.title }}</div>
-                                <div class="text-xs text-white-dark uppercase">{{ `(${item.alias})` }}</div>
+                                <div class="text-md ltr:mr-1 rtl:ml-1">
+                                    {{ item.title }}
+                                </div>
+                                <div class="text-xs text-white-dark uppercase">
+                                    {{ `(${item.alias})` }}
+                                </div>
                             </div>
-                            <div class="flex items-center mt-2" :class="[item.isUp ? 'text-success' : 'text-danger']">
-                                <div class="min-w-20 text-xl ltr:mr-3 rtl:ml-3">{{ `$${item.value}` }}</div>
+                            <div
+                                class="flex items-center mt-2"
+                                :class="[
+                                    item.isUp ? 'text-success' : 'text-danger',
+                                ]">
+                                <div class="min-w-20 text-xl ltr:mr-3 rtl:ml-3">
+                                    {{ `$${item.value}` }}
+                                </div>
 
                                 <span>
                                     <svg
@@ -36,27 +50,34 @@
                                         fill="none"
                                         xmlns="http://www.w3.org/2000/svg"
                                         class="w-4 h-4"
-                                        :class="{ 'rotate-180': item.isUp }"
-                                    >
+                                        :class="{ 'rotate-180': item.isUp }">
                                         <path
                                             d="M12 4L12 20M12 20L18 14M12 20L6 14"
                                             stroke="currentColor"
                                             stroke-width="1.5"
                                             stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                        />
+                                            stroke-linejoin="round" />
                                     </svg>
                                 </span>
-                                <div class="font-medium text-sm">{{ `${item.perc}%` }}</div>
+                                <div class="font-medium text-sm">
+                                    {{ `${item.perc}%` }}
+                                </div>
                             </div>
                         </div>
                         <div class="flex-1 overflow-hidden">
-                            <apexchart height="45" :options="item.isUp ? profiteChartOption : lossChartOption" :series="item.series">
+                            <apexchart
+                                height="45"
+                                :options="
+                                    item.isUp
+                                        ? profiteChartOption
+                                        : lossChartOption
+                                "
+                                :series="item.series">
                                 <!-- loader -->
-                                <div class="min-h-[45px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                                <div
+                                    class="min-h-[45px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
                                     <span
-                                        class="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"
-                                    ></span>
+                                        class="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
                                 </div>
                             </apexchart>
                         </div>
@@ -67,28 +88,63 @@
             <div
                 class="bg-black/60 z-[5] w-full h-full absolute rounded-md hidden"
                 :class="{ '!block xl:!hidden': isShowCryptoMenu }"
-                @click="isShowCryptoMenu = !isShowCryptoMenu"
-            ></div>
+                @click="isShowCryptoMenu = !isShowCryptoMenu"></div>
 
             <div v-if="selectedCoinObj" class="panel p-0 flex-1">
-                <div class="md:flex items-center flex-wrap p-4 border-b border-[#ebedf2] dark:border-[#191e3a]">
+                <div
+                    class="md:flex items-center flex-wrap p-4 border-b border-[#ebedf2] dark:border-[#191e3a]">
                     <div class="flex-1 flex items-start ltr:pr-4 rtl:pl-4">
-                        <button type="button" class="xl:hidden hover:text-primary block ltr:mr-5 rtl:ml-5" @click="isShowCryptoMenu = !isShowCryptoMenu">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6">
-                                <path d="M20 7L4 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                <path opacity="0.5" d="M20 12L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                                <path d="M20 17L4 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <button
+                            type="button"
+                            class="xl:hidden hover:text-primary block ltr:mr-5 rtl:ml-5"
+                            @click="isShowCryptoMenu = !isShowCryptoMenu">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-6 h-6">
+                                <path
+                                    d="M20 7L4 7"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M20 12L4 12"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
+                                <path
+                                    d="M20 17L4 17"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                             </svg>
                         </button>
                         <div>
                             <div class="flex items-center">
-                                <div class="ltr:mr-1 rtl:ml-1 text-md font-semibold">{{ selectedCoinObj.title }}</div>
-                                <div class="font-semibold text-xs text-white-dark uppercase">
+                                <div
+                                    class="ltr:mr-1 rtl:ml-1 text-md font-semibold">
+                                    {{ selectedCoinObj.title }}
+                                </div>
+                                <div
+                                    class="font-semibold text-xs text-white-dark uppercase">
                                     {{ `(${selectedCoinObj.alias})` }}
                                 </div>
                             </div>
-                            <div class="flex items-center mt-2" :class="selectedCoinObj.isUp ? 'text-success' : 'text-danger'">
-                                <div class="min-w-20 text-2xl ltr:mr-3 rtl:ml-3">{{ `$${selectedCoinObj.value}` }}</div>
+                            <div
+                                class="flex items-center mt-2"
+                                :class="
+                                    selectedCoinObj.isUp
+                                        ? 'text-success'
+                                        : 'text-danger'
+                                ">
+                                <div
+                                    class="min-w-20 text-2xl ltr:mr-3 rtl:ml-3">
+                                    {{ `$${selectedCoinObj.value}` }}
+                                </div>
                                 <svg
                                     width="24"
                                     height="24"
@@ -96,42 +152,56 @@
                                     fill="none"
                                     xmlns="http://www.w3.org/2000/svg"
                                     class="w-4 h-4 mb-px"
-                                    :class="{ 'rotate-180': selectedCoinObj.isUp }"
-                                >
+                                    :class="{
+                                        'rotate-180': selectedCoinObj.isUp,
+                                    }">
                                     <path
                                         d="M12 4L12 20M12 20L18 14M12 20L6 14"
                                         stroke="currentColor"
                                         stroke-width="1.5"
                                         stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
+                                        stroke-linejoin="round" />
                                 </svg>
-                                <div class="font-medium text-sm mb-px">{{ `${selectedCoinObj.perc}%` }}</div>
+                                <div class="font-medium text-sm mb-px">
+                                    {{ `${selectedCoinObj.perc}%` }}
+                                </div>
                             </div>
                         </div>
                     </div>
                     <ul
-                        class="ltr:md:ml-auto rtl:md:mr-auto grid grid-cols-2 sm:grid-cols-4 font-semibold sm:divide-x rtl:divide-x-reverse divide-[#ebedf2] dark:divide-[#253b5c] text-white-dark mt-5 sm:mt-0"
-                    >
+                        class="ltr:md:ml-auto rtl:md:mr-auto grid grid-cols-2 sm:grid-cols-4 font-semibold sm:divide-x rtl:divide-x-reverse divide-[#ebedf2] dark:divide-[#253b5c] text-white-dark mt-5 sm:mt-0">
                         <li class="px-4 py-1">
                             Market Cap
-                            <span class="text-lg mt-1.5 block text-black dark:text-white-light">{{ `$${selectedCoinObj.marketcap}B` }}</span>
+                            <span
+                                class="text-lg mt-1.5 block text-black dark:text-white-light"
+                                >{{ `$${selectedCoinObj.marketcap}B` }}</span
+                            >
                         </li>
                         <li class="px-4 py-1">
                             Volume
-                            <span class="text-lg mt-1.5 block text-black dark:text-white-light">{{ `$${selectedCoinObj.volume}B` }} </span>
+                            <span
+                                class="text-lg mt-1.5 block text-black dark:text-white-light"
+                                >{{ `$${selectedCoinObj.volume}B` }}
+                            </span>
                         </li>
                         <li class="px-4 py-1">
                             Supply
-                            <span class="text-lg mt-1.5 block text-black dark:text-white-light">{{ `${selectedCoinObj.supply}M` }}</span>
+                            <span
+                                class="text-lg mt-1.5 block text-black dark:text-white-light"
+                                >{{ `${selectedCoinObj.supply}M` }}</span
+                            >
                         </li>
                         <li class="px-4 py-1">
                             All Time High
-                            <span class="text-lg mt-1.5 block text-black dark:text-white-light">{{ `$${selectedCoinObj.highest}` }}</span>
+                            <span
+                                class="text-lg mt-1.5 block text-black dark:text-white-light"
+                                >{{ `$${selectedCoinObj.highest}` }}</span
+                            >
                         </li>
                     </ul>
                 </div>
-                <div class="p-4 mb-5 border-b border-[#ebedf2] dark:border-[#253b5c] grid grid-rows-1 sm:grid-cols-4 gap-4">
+                <div
+                    class="p-4 mb-5 border-b border-[#ebedf2] dark:border-[#253b5c] grid grid-rows-1 sm:grid-cols-4 gap-4">
                     <div>
                         <div class="font-semibold mb-1.5">Action</div>
                         <select class="form-select text-white-dark">
@@ -154,16 +224,35 @@
                     <div>
                         <div class="font-semibold mb-1.5">Amount</div>
                         <div class="flex relative">
-                            <input type="text" placeholder="" class="form-input ltr:rounded-r-none rtl:rounded-l-none ltr:border-r-0 rtl:border-l-0" />
+                            <input
+                                type="text"
+                                placeholder=""
+                                class="form-input ltr:rounded-r-none rtl:rounded-l-none ltr:border-r-0 rtl:border-l-0" />
                             <div class="dropdown">
-                                <Popper :placement="store.rtlClass === 'rtl' ? 'bottom-start' : 'bottom-end'" offsetDistance="0">
+                                <Popper
+                                    :placement="
+                                        store.rtlClass === 'rtl'
+                                            ? 'bottom-start'
+                                            : 'bottom-end'
+                                    "
+                                    offsetDistance="0">
                                     <button
                                         type="button"
-                                        class="bg-[#f1f2f3] dark:bg-[#1b2e4b] !flex justify-center gap-1 items-center rounded-none px-3 py-2 font-semibold border dark:border-[#253b5c] ltr:rounded-r-md rtl:rounded-l-md"
-                                    >
+                                        class="bg-[#f1f2f3] dark:bg-[#1b2e4b] !flex justify-center gap-1 items-center rounded-none px-3 py-2 font-semibold border dark:border-[#253b5c] ltr:rounded-r-md rtl:rounded-l-md">
                                         BTC
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4">
-                                            <path d="M19 9L12 15L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            class="w-4 h-4">
+                                            <path
+                                                d="M19 9L12 15L5 9"
+                                                stroke="currentColor"
+                                                stroke-width="1.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round" />
                                         </svg>
                                     </button>
                                     <template #content="{ close }">
@@ -195,14 +284,22 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary self-end">Buy</button>
+                    <button type="button" class="btn btn-primary self-end">
+                        Buy
+                    </button>
                 </div>
                 <!-- selected chart -->
                 <div class="flex-1 px-4">
-                    <apexchart height="411" :options="selectedBitCoinChart" :series="selectedCoinObj.series" class="overflow-hidden">
+                    <apexchart
+                        height="411"
+                        :options="selectedBitCoinChart"
+                        :series="selectedCoinObj.series"
+                        class="overflow-hidden">
                         <!-- loader -->
-                        <div class="min-h-[411px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
-                            <span class="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
+                        <div
+                            class="min-h-[411px] grid place-content-center bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08]">
+                            <span
+                                class="animate-spin border-2 border-black dark:border-white !border-l-transparent rounded-full w-5 h-5 inline-flex"></span>
                         </div>
                     </apexchart>
                 </div>

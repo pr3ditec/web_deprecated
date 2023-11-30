@@ -1,44 +1,3 @@
-<template>
-    <div>
-        <h1 class="text-4xl font-bold mb-5 lead">
-            {{ $t("make_an_schedule") }}
-        </h1>
-        <SelectMedico v-model="selectedDoctor" />
-    </div>
-
-    <div v-if="selectedDoctor">
-        <div class="flex">
-            <div class="w-6/12 p-4">
-                <div class="calendar-wrapper bg-white rounded-lg shadow-md p-4">
-                    <FullCalendarComponent
-                        :calendarOptions="calendarOptions"
-                        @calendarMounted="handleCalendarMounted" />
-                </div>
-            </div>
-            <div class="w-6/12 p-4" v-if="selectedDates">
-                <ScheduleSelection
-                    v-if="showSchedule"
-                    :selectedDates="selectedDates"
-                    :selectedDoctor="selectedDoctor"
-                    :existingSchedules="existingSchedules"
-                    :selectedTimezone="selectedTimezone"
-                    :fetchDoctorAvailability="fetchDoctorAvailability"
-                    :showMessage="showMessage" />
-            </div>
-            <div class="w-6/12 p-4" v-else>
-                <div
-                    class="flex items-center p-3.5 rounded text-success bg-success-light dark:bg-success-dark-light">
-                    <span class="ltr:pr-2 rtl:pl-2"
-                        ><strong class="ltr:mr-1 rtl:ml-1"
-                            >{{ $t("warning") }}!</strong
-                        >{{ $t("pleaseSelectDate") }}</span
-                    >
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
 <script>
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -90,10 +49,6 @@ export default {
             },
         };
     },
-
-    created() {
-        useMeta({ title: "Calendar" });
-    },
     watch: {
         selectedDoctor: {
             immediate: true,
@@ -104,6 +59,10 @@ export default {
                 }
             },
         },
+    },
+
+    created() {
+        useMeta({ title: "Calendar" });
     },
 
     methods: {
@@ -219,3 +178,44 @@ export default {
     },
 };
 </script>
+
+<template>
+    <div>
+        <h1 class="text-4xl font-bold mb-5 lead">
+            {{ $t("make_an_schedule") }}
+        </h1>
+        <SelectMedico v-model="selectedDoctor" />
+    </div>
+
+    <div v-if="selectedDoctor">
+        <div class="flex">
+            <div class="w-6/12 p-4">
+                <div class="calendar-wrapper bg-white rounded-lg shadow-md p-4">
+                    <FullCalendarComponent
+                        :calendar-options="calendarOptions"
+                        @calendarMounted="handleCalendarMounted" />
+                </div>
+            </div>
+            <div v-if="selectedDates" class="w-6/12 p-4">
+                <ScheduleSelection
+                    v-if="showSchedule"
+                    :selected-dates="selectedDates"
+                    :selected-doctor="selectedDoctor"
+                    :existing-schedules="existingSchedules"
+                    :selected-timezone="selectedTimezone"
+                    :fetch-doctor-availability="fetchDoctorAvailability"
+                    :show-message="showMessage" />
+            </div>
+            <div v-else class="w-6/12 p-4">
+                <div
+                    class="flex items-center p-3.5 rounded text-success bg-success-light dark:bg-success-dark-light">
+                    <span class="ltr:pr-2 rtl:pl-2"
+                        ><strong class="ltr:mr-1 rtl:ml-1"
+                            >{{ $t("warning") }}!</strong
+                        >{{ $t("pleaseSelectDate") }}</span
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

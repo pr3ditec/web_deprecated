@@ -2,7 +2,9 @@
     <div>
         <ul class="flex space-x-2 rtl:space-x-reverse">
             <li>
-                <a href="javascript:;" class="text-primary hover:underline">Components</a>
+                <a href="javascript:;" class="text-primary hover:underline"
+                    >Components</a
+                >
             </li>
             <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
                 <span>Countdown</span>
@@ -12,23 +14,37 @@
             <!-- Simple Countdown -->
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white-light">Simple Countdown</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code1')">
+                    <h5 class="font-semibold text-lg dark:text-white-light">
+                        Simple Countdown
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code1')">
                         <span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -37,35 +53,55 @@
                 <div class="mb-5 grid grid-cols-4 justify-items-center gap-3">
                     <div>
                         <div
-                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col"
-                        >
-                            <h1 class="text-primary sm:text-3xl text-xl text-center">{{ demo1.days }}</h1>
+                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col">
+                            <h1
+                                class="text-primary sm:text-3xl text-xl text-center">
+                                {{ demo1.days }}
+                            </h1>
                         </div>
-                        <h4 class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">Days</h4>
+                        <h4
+                            class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
+                            Days
+                        </h4>
                     </div>
                     <div>
                         <div
-                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col"
-                        >
-                            <h1 class="text-primary sm:text-3xl text-xl text-center">{{ demo1.hours }}</h1>
+                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col">
+                            <h1
+                                class="text-primary sm:text-3xl text-xl text-center">
+                                {{ demo1.hours }}
+                            </h1>
                         </div>
-                        <h4 class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">Hours</h4>
+                        <h4
+                            class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
+                            Hours
+                        </h4>
                     </div>
                     <div>
                         <div
-                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col"
-                        >
-                            <h1 class="text-primary sm:text-3xl text-xl text-center">{{ demo1.minutes }}</h1>
+                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col">
+                            <h1
+                                class="text-primary sm:text-3xl text-xl text-center">
+                                {{ demo1.minutes }}
+                            </h1>
                         </div>
-                        <h4 class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">Mins</h4>
+                        <h4
+                            class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
+                            Mins
+                        </h4>
                     </div>
                     <div>
                         <div
-                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col"
-                        >
-                            <h1 class="text-primary sm:text-3xl text-xl text-center">{{ demo1.seconds }}</h1>
+                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col">
+                            <h1
+                                class="text-primary sm:text-3xl text-xl text-center">
+                                {{ demo1.seconds }}
+                            </h1>
                         </div>
-                        <h4 class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">Sec</h4>
+                        <h4
+                            class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
+                            Sec
+                        </h4>
                     </div>
                 </div>
                 <template v-if="codeArr.includes('code1')">
@@ -143,23 +179,37 @@ const setTimerDemo1 = () =&gt; {
             <!-- Circle Countdown -->
             <div class="panel">
                 <div class="flex items-center justify-between mb-5">
-                    <h5 class="font-semibold text-lg dark:text-white-light">Circle Countdown</h5>
-                    <a class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600" href="javascript:;" @click="toggleCode('code2')">
+                    <h5 class="font-semibold text-lg dark:text-white-light">
+                        Circle Countdown
+                    </h5>
+                    <a
+                        class="font-semibold hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-600"
+                        href="javascript:;"
+                        @click="toggleCode('code2')">
                         <span class="flex items-center">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
+                            <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path
                                     d="M17 7.82959L18.6965 9.35641C20.239 10.7447 21.0103 11.4389 21.0103 12.3296C21.0103 13.2203 20.239 13.9145 18.6965 15.3028L17 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path opacity="0.5" d="M13.9868 5L10.0132 19.8297" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                                    stroke-linecap="round" />
+                                <path
+                                    opacity="0.5"
+                                    d="M13.9868 5L10.0132 19.8297"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round" />
                                 <path
                                     d="M7.00005 7.82959L5.30358 9.35641C3.76102 10.7447 2.98975 11.4389 2.98975 12.3296C2.98975 13.2203 3.76102 13.9145 5.30358 15.3028L7.00005 16.8296"
                                     stroke="currentColor"
                                     stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
+                                    stroke-linecap="round" />
                             </svg>
                             Code
                         </span>
@@ -168,35 +218,55 @@ const setTimerDemo1 = () =&gt; {
                 <div class="mb-5 grid grid-cols-4 justify-items-center gap-3">
                     <div>
                         <div
-                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col"
-                        >
-                            <h1 class="text-primary sm:text-3xl text-xl text-center">{{ demo2.days }}</h1>
+                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col">
+                            <h1
+                                class="text-primary sm:text-3xl text-xl text-center">
+                                {{ demo2.days }}
+                            </h1>
                         </div>
-                        <h4 class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">Days</h4>
+                        <h4
+                            class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
+                            Days
+                        </h4>
                     </div>
                     <div>
                         <div
-                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col"
-                        >
-                            <h1 class="text-primary sm:text-3xl text-xl text-center">{{ demo2.hours }}</h1>
+                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col">
+                            <h1
+                                class="text-primary sm:text-3xl text-xl text-center">
+                                {{ demo2.hours }}
+                            </h1>
                         </div>
-                        <h4 class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">Hours</h4>
+                        <h4
+                            class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
+                            Hours
+                        </h4>
                     </div>
                     <div>
                         <div
-                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col"
-                        >
-                            <h1 class="text-primary sm:text-3xl text-xl text-center">{{ demo2.minutes }}</h1>
+                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col">
+                            <h1
+                                class="text-primary sm:text-3xl text-xl text-center">
+                                {{ demo2.minutes }}
+                            </h1>
                         </div>
-                        <h4 class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">Mins</h4>
+                        <h4
+                            class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
+                            Mins
+                        </h4>
                     </div>
                     <div>
                         <div
-                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col"
-                        >
-                            <h1 class="text-primary sm:text-3xl text-xl text-center">{{ demo2.seconds }}</h1>
+                            class="w-16 h-16 sm:w-[100px] sm:h-[100px] shadow-[1px_2px_12px_0_rgba(31,45,61,0.10)] rounded-full border border-[#e0e6ed] dark:border-[#1b2e4b] flex justify-center flex-col">
+                            <h1
+                                class="text-primary sm:text-3xl text-xl text-center">
+                                {{ demo2.seconds }}
+                            </h1>
                         </div>
-                        <h4 class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">Sec</h4>
+                        <h4
+                            class="text-[#3b3f5c] text-[15px] mt-4 text-center dark:text-white-dark font-semibold">
+                            Sec
+                        </h4>
                     </div>
                 </div>
                 <template v-if="codeArr.includes('code2')">
@@ -313,8 +383,12 @@ const setTimerDemo1 = () => {
         let distance = countDownDate - now;
 
         demo1.value.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        demo1.value.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        demo1.value.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        demo1.value.hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        demo1.value.minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60),
+        );
         demo1.value.seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         if (distance < 0) {
@@ -334,8 +408,12 @@ const setTimerDemo2 = () => {
         let distance = countDownDate - now;
 
         demo2.value.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        demo2.value.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        demo2.value.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        demo2.value.hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        );
+        demo2.value.minutes = Math.floor(
+            (distance % (1000 * 60 * 60)) / (1000 * 60),
+        );
         demo2.value.seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         if (distance < 0) {

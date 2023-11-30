@@ -9,12 +9,12 @@ import multiMonthPlugin from "@fullcalendar/multimonth";
 import Swal from "sweetalert2";
 
 export default {
+    components: {
+        FullCalendar,
+    },
     props: {
         medico: Number,
         dadosPaciente: Object,
-    },
-    components: {
-        FullCalendar,
     },
     data() {
         return {
@@ -63,6 +63,10 @@ export default {
                 },
             },
         };
+    },
+    async created() {
+        this.buscarDados();
+        Response.ajuda("Clique no horario para selecionar");
     },
     methods: {
         async buscarDados() {
@@ -130,10 +134,6 @@ export default {
                 );
         },
     },
-    async created() {
-        this.buscarDados();
-        Response.ajuda("Clique no horario para selecionar");
-    },
 };
 </script>
 <template>
@@ -151,9 +151,9 @@ export default {
         <div class="row">
             <div class="col-12">
                 <FullCalendar
+                    ref="calendar"
                     :options="calendarOptions"
-                    style="z-index: -100"
-                    ref="calendar"></FullCalendar>
+                    style="z-index: -100"></FullCalendar>
             </div>
         </div>
     </div>

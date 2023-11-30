@@ -46,8 +46,8 @@ export default {
 
 <template>
     <div
-        class="table-responsive"
-        v-if="showAvailableHours && existingSchedules.length > 0">
+        v-if="showAvailableHours && existingSchedules.length > 0"
+        class="table-responsive">
         <table class="table-hover">
             <thead>
                 <tr class="uppercase" colspan="6">
@@ -74,12 +74,12 @@ export default {
                                 )"
                                 :key="index"
                                 class="inline-block m-1 px-2"
-                                @click="toggleHourDisp(day, index)"
                                 :class="[
                                     selectedHours.includes(hour)
                                         ? 'bg-red-500 text-white rounded-full cursor-pointer p-1'
                                         : 'bg-green-500 text-white rounded-full cursor-pointer p-1',
-                                ]">
+                                ]"
+                                @click="toggleHourDisp(day, index)">
                                 {{ hour.hora }}
                             </span>
                         </td>

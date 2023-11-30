@@ -11,6 +11,7 @@ export default {
             clinicas: [],
         };
     },
+    async created() {},
     methods: {
         async pesquisarMedico(cpf) {
             if (cpf.length == 14) {
@@ -32,14 +33,13 @@ export default {
             console.log(clinica, medico);
         },
     },
-    async created() {},
 };
 </script>
 
 <template>
     <div
         class="flex flex-col items-center gap-1 mt-4 w-1/2"
-        v-on:keyup.enter="criarVinculo">
+        @keyup.enter="criarVinculo">
         <h1 class="text-3xl font-bold capitalize">
             {{ $t("join") }} {{ $t("clinic") }}
         </h1>
@@ -49,14 +49,12 @@ export default {
             <div class="flex flex-col w-full justify-center">
                 <!-- bucas do meidico -->
                 <input
+                    v-mask="'###.###.###-##'"
                     class="form-input"
                     type="text"
-                    v-mask="'###.###.###-##'"
                     placeholder="Digite o cpf ........"
-                    v-on:keyup="
-                        ($event) => pesquisarMedico($event.target.value)
-                    " />
-                <span class="text-danger text-sm" v-show="!encontrada"
+                    @keyup="($event) => pesquisarMedico($event.target.value)" />
+                <span v-show="!encontrada" class="text-danger text-sm"
                     >medico não encontrado</span
                 >
                 <label class="capitalize mt-8">{{ $t("clinic") }}</label>
@@ -64,11 +62,11 @@ export default {
                 <div v-for="clinica in clinicas">
                     <Transition>
                         <div
+                            v-show="clinicas.length != 0"
+                            class="w-full mt-2 bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none"
                             @click="
                                 criarVinculo(clinica.id, medico[0].medico_id)
-                            "
-                            class="w-full mt-2 bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none"
-                            v-show="clinicas.length != 0">
+                            ">
                             <div
                                 class="p-5 flex items-center flex-col sm:flex-row">
                                 <div
@@ -123,8 +121,8 @@ export default {
         <div class="flex flex-col items-center font-semibold mt-2">
             <button
                 class="btn btn-primary w-80 capitalize"
-                @click="criarVinculo"
-                :disabled="clinicas.length == 0">
+                :disabled="clinicas.length == 0"
+                @click="criarVinculo">
                 {{ $t("join") }}
             </button>
         </div>
