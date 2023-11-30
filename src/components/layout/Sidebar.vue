@@ -11,7 +11,6 @@ import MenuSchedule from "@/components/layout/sidebar-items/MenuSchedule.vue";
 import MenuFinancer from "@/components/layout/sidebar-items/MenuFinancer.vue";
 import MenuRegister from "@/components/layout/sidebar-items/MenuRegister.vue";
 import MenuGeneralReport from "@/components/layout/sidebar-items/MenuGeneralReport.vue";
-import MenuRules from "./sidebar-items/MenuRules.vue";
 
 import MenuAuth from "@/components/layout/sidebar-items/MenuAuth.vue";
 
@@ -72,7 +71,6 @@ onMounted(() => {
                         <MenuRegister />
                         <MenuFinancer />
                         <MenuGeneralReport />
-                        <MenuRules />
                         <MenuAuth />
 
                         <!-- ref menus -->

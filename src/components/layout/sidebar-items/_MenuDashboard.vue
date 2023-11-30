@@ -14,6 +14,9 @@ import IconChat from "@/components/icons/IconChat.vue";
         <NavItem to="/risco-empresarial" label="busines_risk">
             <IconChat />
         </NavItem>
-        <!-- NavItems... -->
+
+        <NavItem to="/regras" label="regras">
+            <IconChat />
+        </NavItem>
     </MenuNavItem>
 </template>
