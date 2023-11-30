@@ -3,6 +3,7 @@ import Vue3Datatable from "@bhplugin/vue3-datatable";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import ApiConnection from "../../api/Api";
 import Cadastro from "./cadastro-pre-agendamento.vue";
+// import Historico from "./historico-pre-agendamento.vue";
 import "@bhplugin/vue3-datatable/dist/style.css";
 
 export default {
@@ -10,11 +11,13 @@ export default {
         "vue3-datatable": Vue3Datatable,
         SelectMedico,
         Cadastro,
+        // Historico,
     },
     data() {
         return {
             // api
             request: new ApiConnection(),
+            mostrarHistorico: false,
             medicoSelect: 0,
             pacienteSelect: {},
             // tabela
@@ -70,6 +73,10 @@ export default {
                         item["horarios"] = [];
                     });
                 });
+        },
+        verHistoricoAgenda() {
+            this.mostrarHistorico = !this.mostrarHistorico;
+            console.log("skrrr");
         },
     },
     watch: {
@@ -145,6 +152,32 @@ export default {
                         lastArrow="Last"
                         previousArrow="Prev"
                         nextArrow="Next">
+                        <template #status="data">
+                            <div
+                                class="flex flex-row cursor-pointer"
+                                @click="verHistoricoAgenda()">
+                                <span
+                                    v-if="data.value.status_id == -1"
+                                    class="badge bg-secondary"
+                                    >{{ data.value.status }}</span
+                                >
+                                <span
+                                    v-if="data.value.status_id == 1"
+                                    class="badge bg-primary"
+                                    >{{ data.value.status }}</span
+                                >
+                                <span
+                                    v-if="data.value.status_id == 2"
+                                    class="badge bg-success"
+                                    >{{ data.value.status }}</span
+                                >
+                                <span
+                                    v-if="data.value.status_id >= 3"
+                                    class="badge bg-danger"
+                                    >{{ data.value.status }}</span
+                                >
+                            </div>
+                        </template>
                         <template #actions="data">
                             <div class="flex gap-4">
                                 <button
@@ -162,6 +195,7 @@ export default {
             </TransitionGroup>
         </div>
     </div>
+    <!-- <Historico v-show="mostrarHistorico" :dados-paciente="pacienteSelect" /> -->
 </template>
 <style>
 /* alt-pagination */
