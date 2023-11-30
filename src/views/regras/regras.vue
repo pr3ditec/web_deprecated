@@ -51,7 +51,7 @@ export default {
                     tipoValor: "Qtde.",
                     get: {
                         id: "0",
-                        atualizado: "00/00/0000",
+                        atualizado: "",
                         valor: "",
                     },
                     post: {
@@ -123,7 +123,7 @@ export default {
         };
     },
     methods: {
-        addItems(index: number, data: any) {
+        addItems(index: any, data: any) {
             if (data.length == 0) {
                 return;
             } else {
@@ -152,16 +152,12 @@ export default {
                 this.dadosTabela[index].lock = false;
             } else {
                 await this.request
-                    .enviarDadosApi(
-                        `${this.dadosTabela[index].post.rota}${this.dadosTabela[index].get.id}`,
-                        {
-                            [this.dadosTabela[index].post.campo]:
-                                this.dadosTabela[index].get.valor,
-                        },
-                    )
+                    .enviarDadosApi(`${this.dadosTabela[index].post.rota}`, {
+                        [this.dadosTabela[index].post.campo]:
+                            this.dadosTabela[index].get.valor,
+                    })
                     .then((res) => {
-                        console.log(res.list);
-                        if (res.list.status) {
+                        if (res.status) {
                             Response.mensagemToast(
                                 "success",
                                 "Configuração atualizada",
@@ -236,7 +232,10 @@ export default {
                                     }"
                                     type="text"
                                     v-model="data.value.get.valor"
-                                    :disabled="data.value.lock" />
+                                    :disabled="data.value.lock"
+                                    @keypress.enter="
+                                        atualizarRegra(data.value.index)
+                                    " />
                                 <div
                                     :class="{
                                         'bg-danger text-white':
