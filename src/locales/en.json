@@ -138,5 +138,6 @@
     "status": "Status",
     "value": "Value",
     "update": "Update",
-    "unlock": "Unlock"
+    "unlock": "Unlock",
+    "settings": "Settings"
 }

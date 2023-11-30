@@ -15,7 +15,7 @@ import IconChat from "@/components/icons/IconChat.vue";
             <IconChat />
         </NavItem>
 
-        <NavItem to="/regras" label="regras">
+        <NavItem to="/configuracoes" label="settings">
             <IconChat />
         </NavItem>
     </MenuNavItem>

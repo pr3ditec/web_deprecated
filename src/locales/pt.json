@@ -208,5 +208,6 @@
     "status": "Status",
     "value": "Valor",
     "update": "atualizar",
-    "noMedicalReceipt": "Não foi localizado recebimento médico"
+    "noMedicalReceipt": "Não foi localizado recebimento médico",
+    "settings": "Configurações"
 }
