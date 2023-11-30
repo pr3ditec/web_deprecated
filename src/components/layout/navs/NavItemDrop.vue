@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useAppStore } from "@/stores/index";
+const store = useAppStore();
 
 const props = defineProps({
     to: {
@@ -11,8 +12,6 @@ const props = defineProps({
         required: true,
     },
 });
-
-const store = useAppStore();
 
 const toggleMobileMenu = () => {
     store.toggleMobileMenu();

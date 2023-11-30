@@ -1,4 +1,7 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useAppStore } from "@/stores/index";
+const store = useAppStore();
+</script>
 
 <template>
     <li class="menu nav-item">

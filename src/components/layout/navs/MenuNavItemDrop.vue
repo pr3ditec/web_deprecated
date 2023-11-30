@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-import { ref, computed, onMounted } from "vue";
 import { useAppStore } from "@/stores/index";
+const store = useAppStore();
+
+import { ref, computed, onMounted } from "vue";
 import VueCollapsible from "vue-height-collapsible/vue3";
 
 const props = defineProps({
@@ -10,7 +12,6 @@ const props = defineProps({
     },
 });
 
-const store = useAppStore();
 const isActive = computed(() => store.activeDropdown === props.label);
 
 function toggleDropdown() {
