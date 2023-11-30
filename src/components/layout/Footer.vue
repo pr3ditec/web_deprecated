@@ -6,7 +6,7 @@ const store = useAppStore();
 <template>
     <div
         class="dark:text-white-dark text-center ltr:sm:text-left rtl:sm:text-right p-6 mt-auto text-shadow">
-        © {{ new Date().getFullYear() }}. Sauvi<span class="text-red-500"
+        © {{ new Date().getFullYear() }}. Sauvvi<span class="text-red-500"
             >Tech</span
         >
     </div>

@@ -148,7 +148,7 @@ export default {
                 v-model="secretariaFormData.email"
                 class="form-input"
                 type="text"
-                placeholder="Ex.: secretaria@sauvi.com" />
+                placeholder="Ex.: secretaria@sauvvitech.com" />
         </div>
 
         <!-- DATA DE NASCIMENTO -->

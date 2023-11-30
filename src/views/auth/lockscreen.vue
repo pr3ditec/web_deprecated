@@ -193,7 +193,7 @@
                     </div>
                     <p
                         class="absolute bottom-6 w-full text-center dark:text-white">
-                        Sauvi<span class="text-red-500">Tech</span>
+                        Sauvvi<span class="text-red-500">Tech</span>
                         <br />
                         {{ new Date().getFullYear() }}
                     </p>
