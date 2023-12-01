@@ -57,7 +57,7 @@ export default {
                     // EventFromApi é um props customizada colocada para validar se o evento é um agendamento
                     if (
                         click.event._def.extendedProps.eventFromApi &&
-                        click.event._def.ui.backgroundColor == "#4361ee"
+                        click.event._def.ui.backgroundColor == "#161414"
                     ) {
                         this.gerarTokenPresenca(
                             click.event._def.extendedProps.agenda_id,
@@ -66,7 +66,7 @@ export default {
                     } else if (!click.event._def.extendedProps.eventFromApi) {
                         //@ts-expect-error
                         this.modal = true;
-                        click.event.setProp("color", "#4361ee");
+                        click.event.setProp("color", "#161414");
                     }
                 },
             },
@@ -136,7 +136,7 @@ export default {
                                     hoje.getTime() >
                                     new Date(res.data).getTime()
                                         ? "gray"
-                                        : "#4361ee",
+                                        : "#161414",
                                 display: "block",
                                 eventFromApi: true,
                                 start: `${res.data} ${res.hora}`,
@@ -210,7 +210,7 @@ export default {
                 .getApi()
                 .getEvents()
                 .forEach((evento: any) => {
-                    if (evento._def.ui.backgroundColor == "#4361ee") {
+                    if (evento._def.ui.backgroundColor == "#161414") {
                         response["status"] = true;
                         //@ts-expect-error
                         response.horarios.push(evento.extendedProps.forApi);

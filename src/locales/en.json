@@ -183,5 +183,6 @@
     "paidAmount": "paid amount",
     "defaultedAmount": "defaulted amount",
     "removeSelection": "remove selection",
-    "selectAll": "select all"
+    "selectAll": "select all",
+    "settings": "Settings"
 }

@@ -8,7 +8,7 @@ export default class Api {
             baseURL: "http://localhost:8001",
             timeout: 5000,
             headers: {
-                Authorization: localStorage.getItem("user.token"),
+                Authorization: `Bearer ${localStorage.getItem("user.token")}`,
                 "origin-request": "admin",
             },
         });

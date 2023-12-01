@@ -3,7 +3,7 @@ import Vue3Datatable from "@bhplugin/vue3-datatable";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import ApiConnection from "../../api/Api";
 import Cadastro from "./cadastro-pre-agendamento.vue";
-// import Historico from "./historico-pre-agendamento.vue";
+import Historico from "./historico-pre-agendamento.vue";
 import "@bhplugin/vue3-datatable/dist/style.css";
 
 export default {
@@ -11,7 +11,7 @@ export default {
         "vue3-datatable": Vue3Datatable,
         SelectMedico,
         Cadastro,
-        // Historico,
+        Historico,
     },
     data() {
         return {
@@ -155,6 +155,9 @@ export default {
                         <template #status="data">
                             <div
                                 class="flex flex-row cursor-pointer"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="right"
+                                title="clique para ver historico"
                                 @click="verHistoricoAgenda()">
                                 <span
                                     v-if="data.value.status_id == -1"
@@ -195,7 +198,7 @@ export default {
             </TransitionGroup>
         </div>
     </div>
-    <!-- <Historico v-show="mostrarHistorico" :dados-paciente="pacienteSelect" /> -->
+    <Historico v-show="mostrarHistorico" :dados-paciente="pacienteSelect" />
 </template>
 <style>
 /* alt-pagination */
