@@ -204,7 +204,7 @@
     "return": "Retorno",
     "select_patient": "Selecione o paciente",
     "rules": "Regras",
-    "last_update": "Ultíma atualização",
+    "last-update": "Ultíma atualização",
     "status": "Status",
     "value": "Valor",
     "update": "atualizar",

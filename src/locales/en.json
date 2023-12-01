@@ -134,7 +134,7 @@
     "return": "medical return",
     "select_patient": "Select patient",
     "rules": "Rules",
-    "last_update": "Updated at",
+    "last-update": "Updated at",
     "status": "Status",
     "value": "Value",
     "update": "Update",

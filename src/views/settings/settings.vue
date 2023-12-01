@@ -23,7 +23,7 @@ export default {
                 {
                     field: "atualizado",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("last_update"),
+                    title: this.$t("last-update"),
                 },
                 {
                     field: "status",
@@ -127,16 +127,12 @@ export default {
             if (data.length == 0) {
                 return;
             } else {
-                if (index == 2) {
-                    console.log(data[0]);
-                }
                 this.dadosTabela[index].get = {
                     id: index == 2 ? data[0].id : data.id,
                     valor:
                         index == 2
                             ? data[0][this.dadosTabela[index].post.campo]
                             : data[this.dadosTabela[index].post.campo],
-                    //@ts-expect-error
                     categoria:
                         index == 2
                             ? data[0][this.dadosTabela[index].post.categoria]
