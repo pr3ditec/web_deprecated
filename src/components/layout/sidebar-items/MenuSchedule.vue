@@ -15,7 +15,7 @@ import IconChat from "@/components/icons/IconChat.vue";
             <IconChat />
         </template>
         <NavItemDrop to="/agenda" label="schedule" />
-        <NavItemDrop to="/programar-agenda" label="make_an_schedule" />
-        <NavItemDrop to="/pre-agendamento" label="schedule_attempt" />
+        <NavItemDrop to="/programar-agenda" label="makeAnSchedule" />
+        <NavItemDrop to="/pre-agendamento" label="scheduleAttempt" />
     </MenuNavItemDrop>
 </template>

@@ -117,20 +117,20 @@ export default {
                 );
 
                 if (response && !response.error) {
-                    this.showMessage("Agenda criada com Sucesso!.");
+                    this.showMessage(this.$t(response.messageCode));
                     this.resetModal();
                     this.clearSchedule();
 
                     await this.fetchDoctorAvailability(this.selectedDoctor);
                     this.isAddEventModal = true;
                 } else {
-                    this.showMessage("Erro ao criar a agenda.", "error");
+                    this.showMessage(this.$t(response.messageCode), "error");
                     this.resetModal();
                     this.clearSchedule();
                 }
             } catch (error) {
                 console.error("Erro ao salvar a agenda: ", error);
-                this.showMessage("Erro ao criar a agenda.", "error");
+                this.showMessage(this.$t(response.messageCode), "error");
                 this.resetModal();
                 this.clearSchedule();
             }
@@ -260,14 +260,14 @@ export default {
                 );
 
                 if (response && !response.error) {
-                    this.showMessage("Agenda atualizada com sucesso!");
+                    this.showMessage(this.$t(response.messageCode));
                     await this.fetchDoctorAvailability(this.selectedDoctor);
                 } else {
-                    this.showMessage("Erro ao atualizar a agenda.", "error");
+                    this.showMessage(this.$t(response.messageCode), "error");
                 }
             } catch (error) {
+                this.showMessage(this.$t(response.messageCode), "error");
                 console.error("Erro ao atualizar a agenda: ", error);
-                this.showMessage("Erro ao atualizar a agenda.", "error");
             }
         },
     },
@@ -282,7 +282,7 @@ export default {
                 showSchedule = true;
                 showAvailableHours = false;
             ">
-            {{ $t("release_schedules") }}
+            {{ $t("releaseSchedules") }}
         </ButtonSchedules>
         <ButtonSchedules
             color="yellow"
@@ -290,23 +290,23 @@ export default {
                 showSchedule = false;
                 showAvailableHours = true;
             ">
-            {{ $t("released_times") }}
+            {{ $t("releasedTimes") }}
         </ButtonSchedules>
         <div v-if="showSchedule">
             <div class="mt-3">
                 <div>
                     <label for="horaInicio text-letf"
-                        >{{ $t("start_time") }}:</label
+                        >{{ $t("startTime") }}:</label
                     >
                     <SelectHorarioInicio v-model="horarioInicio" />
                 </div>
                 <div>
-                    <label for="horaFim">{{ $t("end_time") }}:</label>
+                    <label for="horaFim">{{ $t("endTime") }}:</label>
                     <SelectHorarioFim v-model="horarioFim" />
                 </div>
                 <div v-if="horarioInicio && horarioFim" class="mt-2">
                     <label for="incremento"
-                        >{{ $t("interval_between_consultations") }}:</label
+                        >{{ $t("intervalBetweenConsultations") }}:</label
                     >
                     <select
                         id="incremento"
@@ -318,7 +318,7 @@ export default {
 
                 <div class="mt-2 mb-2">
                     <p class="text-md mb-3">
-                        {{ $t("you_selected_date") }}:
+                        {{ $t("youSelectedDate") }}:
                         <span
                             v-if="
                                 Array.isArray(selectedDates) &&
@@ -334,10 +334,10 @@ export default {
                     :color="isAllSelected ? 'yellow' : 'green'"
                     @click="selectAll">
                     <span v-if="isAllSelected">
-                        {{ $t("remove_selection") }}
+                        {{ $t("removeSelection") }}
                     </span>
                     <span v-else>
-                        {{ $t("select_all") }}
+                        {{ $t("selectAll") }}
                     </span>
                 </ButtonSchedules>
 

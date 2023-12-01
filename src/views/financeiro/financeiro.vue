@@ -195,13 +195,15 @@ export default {
                 <div class="panel h-full sm:col-span-2 lg:col-span-1">
                     <div
                         class="flex items-center justify-between dark:text-white-light mb-5">
-                        <h5 class="font-semibold text-lg">Statisticas</h5>
+                        <h5 class="font-semibold text-lg">
+                            {{ $t("statistics") }}
+                        </h5>
                     </div>
                     <div
                         class="grid sm:grid-cols-2 gap-8 text-sm text-[#515365] font-bold">
                         <div>
                             <div>
-                                <div>Total Recebido</div>
+                                <div>{{ $t("totalReceived") }}</div>
                                 <div class="text-[#f8538d] text-lg">
                                     {{ formatValor(totalEfetivado) }}
                                 </div>
@@ -210,7 +212,7 @@ export default {
 
                         <div>
                             <div>
-                                <div>Valores Provisionados</div>
+                                <div>{{ $t("provisionedValues") }}</div>
                                 <div class="text-[#f8538d] text-lg">
                                     {{ formatValor(totalProvisionado) }}
                                 </div>
@@ -223,7 +225,7 @@ export default {
                     <div
                         class="flex items-center justify-between dark:text-white-light mb-5">
                         <h5 class="font-semibold text-lg">
-                            Acompanhamento Semanal
+                            {{ $t("weeklyMonitoring") }}
                         </h5>
                         <div class="dropdown"></div>
                     </div>
@@ -248,7 +250,9 @@ export default {
                     ">
                     <div
                         class="flex items-start justify-between text-white-light mb-16 z-[7]">
-                        <h5 class="font-semibold text-lg">Total Mensal</h5>
+                        <h5 class="font-semibold text-lg">
+                            {{ $t("monthlyTotal") }}
+                        </h5>
 
                         <div class="relative text-xl whitespace-nowrap">
                             {{ formatValor(totalEfetivadoMesAtual) }}
@@ -256,7 +260,7 @@ export default {
                                 class="table text-[#d3d3d3] bg-[#4361ee] rounded p-1 text-xs mt-1 ltr:ml-auto rtl:mr-auto"
                                 >+
                                 {{ quantidadeEfetivadoMesAtual }}
-                                recebimento/mês</span
+                                {{ $t("receiptMonth") }}</span
                             >
                         </div>
                     </div>
@@ -268,7 +272,7 @@ export default {
                     <div
                         class="flex items-start justify-between dark:text-white-light mb-5 p-5 border-b border-[#e0e6ed] dark:border-[#1b2e4b]">
                         <h5 class="font-semibold text-lg">
-                            Valores Recebidos / Período <br />
+                            {{ $t("amountsReceivedPeriod") }} <br />
                             <span class="text-sm text-gray-500"
                                 >{{ formatDate(formattedStartDate) }} -
                                 {{ formatDate(formattedEndDate) }}</span
@@ -282,11 +286,17 @@ export default {
                                 <thead>
                                     <tr>
                                         <th class="!text-center">
-                                            ID do Médico
+                                            ID {{ $t("doctor") }}
                                         </th>
-                                        <th class="!text-left">Nome</th>
-                                        <th class="!text-center">Descrição</th>
-                                        <th class="!text-right">Valor</th>
+                                        <th class="!text-left">
+                                            {{ $t("name") }}
+                                        </th>
+                                        <th class="!text-center">
+                                            {{ $t("description") }}
+                                        </th>
+                                        <th class="!text-right">
+                                            {{ $t("value") }}
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -321,7 +331,7 @@ export default {
                     <div
                         class="flex items-start justify-between dark:text-white-light mb-5 -mx-5 p-5 pt-0 border-b border-[#e0e6ed] dark:border-[#1b2e4b]">
                         <h5 class="font-semibold text-lg">
-                            Histórico últimos lançamentos
+                            {{ $t("historyLatestReleases") }}
                         </h5>
                         <div class="dropdown"></div>
                     </div>
@@ -381,11 +391,12 @@ export default {
                             </div>
                             <div>
                                 <h5 class="font-semibold dark:text-white-light">
-                                    Médico ID: {{ item.medico_id }}
+                                    {{ $t("doctor") }} ID: {{ item.medico_id }}
                                     <br />
-                                    Descrição: {{ item.descricao }}
+                                    {{ $t("description") }}:
+                                    {{ item.descricao }}
                                     <br />
-                                    Valor desconto:
+                                    {{ $t("valeu") }}:
                                     {{ formatValor(item.valor_desconto) }}
                                     <br />
                                 </h5>

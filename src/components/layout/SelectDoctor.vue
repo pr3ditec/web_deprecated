@@ -59,7 +59,9 @@ export default {
                 v-model="selectedProfessional"
                 class="form-select mb-6"
                 @change="updateSelectedProfessional">
-                <option disabled value="">Selecione um profissional</option>
+                <option disabled value="">
+                    {{ $t("selectProfessional") }}
+                </option>
                 <option
                     v-for="profissional in profissionais"
                     :key="profissional.medico_id"

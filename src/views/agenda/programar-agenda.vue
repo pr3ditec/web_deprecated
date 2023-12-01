@@ -101,17 +101,15 @@ export default {
                         this.markAvailableHours(this.existingSchedules);
                     } else {
                         this.markAvailableHours(false);
-
-                        console.error(
-                            "Erro ao buscar disponibilidade do médico: ",
-                            response.message,
+                        this.showMessage(
+                            this.$t(response.messageCode),
+                            "error",
                         );
+                        console.error(response1.messageCode);
                     }
                 } else {
-                    console.error(
-                        "A resposta da API não é um objeto: ",
-                        response,
-                    );
+                    this.showMessage(this.$t(response.messageCode), "error");
+                    console.error(response1.messageCode);
                 }
             } catch (error) {
                 console.error(
@@ -136,13 +134,15 @@ export default {
                     const eventDate = new Date(
                         day.data + "T" + day.horarios[0].hora,
                     );
+
                     const eventDateInTimeZone = new Date(
                         eventDate.toLocaleString("en-US", {
                             timeZone: day.timezone,
                         }),
                     );
+
                     calendarApi.addEvent({
-                        title: "DIA LIBERADO",
+                        title: this.$t("releasedDay"),
                         start: eventDateInTimeZone.toISOString(),
                         allDay: true,
                     });
@@ -182,7 +182,7 @@ export default {
 <template>
     <div>
         <h1 class="text-4xl font-bold mb-5 lead">
-            {{ $t("make_an_schedule") }}
+            {{ $t("makeAnSchedule") }}
         </h1>
         <SelectMedico v-model="selectedDoctor" />
     </div>
