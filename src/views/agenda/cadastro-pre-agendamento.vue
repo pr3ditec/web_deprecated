@@ -74,20 +74,23 @@ export default {
                 .pegarDadosApi(`/consulta/medico/${this.medico}`)
                 .then((res) => {
                     res.list.horarios.forEach((element) => {
-                        element.horarios.forEach((el, index) => {
-                            if (el.agendamento == null) {
-                                this.calendarOptions.events.push({
-                                    id: index,
-                                    title: "horário dísponivel",
-                                    start: `${element.data} ${el.hora}`,
-                                    color: "black",
-                                    forApi: {
-                                        data: element.data,
-                                        hora: el.hora,
-                                    },
-                                });
-                            }
-                        });
+                        const hoje = new Date();
+                        if (hoje.getTime() < new Date(element.data).getTime()) {
+                            element.horarios.forEach((el, index) => {
+                                if (el.agendamento == null) {
+                                    this.calendarOptions.events.push({
+                                        id: index,
+                                        title: "horário dísponivel",
+                                        start: `${element.data} ${el.hora}`,
+                                        color: "black",
+                                        forApi: {
+                                            data: element.data,
+                                            hora: el.hora,
+                                        },
+                                    });
+                                }
+                            });
+                        }
                     });
                 });
         },

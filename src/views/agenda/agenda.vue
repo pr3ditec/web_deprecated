@@ -83,7 +83,7 @@ export default {
         proporAgendamento(data: any) {
             this.fecharModal();
             const evento = this.pegarEventosSelecionados();
-            if (!evento.status) {
+            if (evento.status) {
                 if (data.tipo == "retorno") {
                     // marcar consulta de agenda
                 } else {
@@ -214,6 +214,7 @@ export default {
                         response["status"] = true;
                         //@ts-expect-error
                         response.horarios.push(evento.extendedProps.forApi);
+                        evento.setProp("color", "#00AB55");
                     }
                 });
 
