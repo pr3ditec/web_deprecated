@@ -198,7 +198,7 @@
     "propose": "Propor",
     "remove": "Remover",
     "available": "Disponível",
-    "to_pacient": "Encaminhado para um paciente",
+    "to_pacient": "Encaminhado para o paciente",
     "treated": "Atendido",
     "next_appointment": "Proxímo atendimento",
     "return": "Retorno",
@@ -208,6 +208,5 @@
     "status": "Status",
     "value": "Valor",
     "update": "atualizar",
-    "noMedicalReceipt": "Não foi localizado recebimento médico",
-    "settings": "Configurações"
+    "noMedicalReceipt": "Não foi localizado recebimento médico"
 }
