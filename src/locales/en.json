@@ -150,7 +150,7 @@
     "description": "Description",
     "historyLatestReleases": "History latest releases",
     "financialReceiving": "financial/Receiving",
-    "businesRisk": "Busines Risk",
+    "busines-risk": "Busines Risk",
     "schedule": "Schedule",
     "selectProfessional": "Select Professional",
     "availableUserQuery": "Available User Query",
@@ -184,5 +184,7 @@
     "defaultedAmount": "defaulted amount",
     "removeSelection": "remove selection",
     "selectAll": "select all",
-    "settings": "Settings"
+    "settings": "Settings",
+    "active": "Active",
+    "not-found": "Not found"
 }

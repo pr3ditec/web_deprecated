@@ -157,7 +157,7 @@
     "appointment": "consulta",
     "time": "hora",
     "patient": "paciente",
-    "businesRisk": "Risco Empresarial",
+    "busines-risk": "Risco Empresarial",
     "totalNumberParcels": "Quantidade Total de Parcelas",
     "totalValueInstallmentsPaid": "Valor Total de Parcelas Pagas",
     "totalAmountDefaulted": "Valor Total Inadimplência",
@@ -228,5 +228,7 @@
     "availableDoctorHours": "Horários disponível médico",
     "thereAreNoAvailableTimes": "Não há horários disponível",
     "releasedDay": "DIA LIBERADO",
-    "settings": "Configurações"
+    "settings": "Configurações",
+    "active": "Ativo",
+    "not-found": "Não encontrado"
 }
