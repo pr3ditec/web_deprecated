@@ -227,6 +227,6 @@
     "errorCreatingQueryDate": "Erro ao criar data de consulta",
     "availableDoctorHours": "Horários disponível médico",
     "thereAreNoAvailableTimes": "Não há horários disponível",
-    "releasedDay": "DIA LIBERADO"
-
+    "releasedDay": "DIA LIBERADO",
+    "settings": "Configurações"
 }
