@@ -81,10 +81,12 @@ export default {
                         id: "0",
                         atualizado: "",
                         valor: "",
+                        categoria: "2",
                     },
                     post: {
                         rota: "/admin/secretaria/agendamento",
-                        campo: "valor",
+                        campo: "tempo",
+                        categoria: "categoria_secretaria_id",
                     },
                 },
                 {
@@ -125,12 +127,32 @@ export default {
             if (data.length == 0) {
                 return;
             } else {
+                if (index == 2) {
+                    console.log(data[0]);
+                }
                 this.dadosTabela[index].get = {
-                    id: data.id,
-                    valor: data[this.dadosTabela[index].post.campo],
-                    atualizado: `${FormatoData.formatarParaPadraoBrasil(
-                        FormatoData.formatarParaApi(data.updated_at)["data"],
-                    )}`,
+                    id: index == 2 ? data[0].id : data.id,
+                    valor:
+                        index == 2
+                            ? data[0][this.dadosTabela[index].post.campo]
+                            : data[this.dadosTabela[index].post.campo],
+                    //@ts-expect-error
+                    categoria:
+                        index == 2
+                            ? data[0][this.dadosTabela[index].post.categoria]
+                            : data[this.dadosTabela[index].post.categoria],
+                    atualizado:
+                        index == 2
+                            ? `${FormatoData.formatarParaPadraoBrasil(
+                                  FormatoData.formatarParaApi(
+                                      data[0].updated_at,
+                                  )["data"],
+                              )}`
+                            : `${FormatoData.formatarParaPadraoBrasil(
+                                  FormatoData.formatarParaApi(data.updated_at)[
+                                      "data"
+                                  ],
+                              )}`,
                 };
             }
         },
@@ -153,6 +175,9 @@ export default {
                     .enviarDadosApi(`${this.dadosTabela[index].post.rota}`, {
                         [this.dadosTabela[index].post.campo]:
                             this.dadosTabela[index].get.valor,
+                        //@ts-expect-errorX
+                        [this.dadosTabela[index].post.categoria]:
+                            this.dadosTabela[index].get.categoria,
                     })
                     .then((res) => {
                         if (res.status) {
