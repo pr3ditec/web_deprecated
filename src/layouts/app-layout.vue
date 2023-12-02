@@ -6,6 +6,8 @@ import Header from "@/components/layout/Header.vue";
 import Footer from "@/components/layout/Footer.vue";
 import appSetting from "@/app-setting";
 
+import Breadcrumb from "@/components/layout/Breadcrumb.vue";
+
 import { useAppStore } from "@/stores/index";
 const store = useAppStore();
 const showTopButton = ref(false);
@@ -122,6 +124,7 @@ const goToTop = () => {
 
                 <!--  BEGIN CONTENT AREA  -->
                 <div class="p-6 animation">
+                    <Breadcrumb />
                     <router-view></router-view>
                 </div>
                 <!--  END CONTENT AREA  -->
