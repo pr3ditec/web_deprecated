@@ -353,7 +353,7 @@ export default {
                 >
             </li>
             <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                <span>{{ $t("businesRisk") }}</span>
+                <span>{{ $t("busines-risk") }}</span>
             </li>
         </ul>
         <div class="pt-8">
@@ -472,7 +472,7 @@ export default {
                 <div class="grid gap-6 xl:grid-flow-row">
                     <div class="panel overflow-hidden">
                         <p class="text-lg dark:text-white-light/90">
-                            {{ $t("businesRisk")
+                            {{ $t("busines-risk")
                             }}<span class="text-primary ml-2">%</span>
                         </p>
                         <div class="relative">

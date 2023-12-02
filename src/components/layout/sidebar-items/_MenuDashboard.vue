@@ -11,11 +11,11 @@ import IconChat from "@/components/icons/IconChat.vue";
     <TitleDivision title="dashboard" />
 
     <MenuNavItem>
-        <NavItem to="/risco-empresarial" label="businesRisk">
+        <NavItem to="/risco-empresarial" label="busines-risk">
             <IconChat />
         </NavItem>
 
-        <NavItem to="/configuracoes" label="settings">
+        <NavItem to="/settings" label="settings">
             <IconChat />
         </NavItem>
     </MenuNavItem>
