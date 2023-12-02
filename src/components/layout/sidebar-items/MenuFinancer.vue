@@ -4,7 +4,7 @@ import TitleDivision from "@/components/layout/sidebar-items/TitleDivision.vue";
 import MenuNavItem from "@/components/layout/navs/MenuNavItem.vue";
 import NavItem from "@/components/layout/navs/NavItem.vue";
 
-import IconChat from "@/components/icons/IconChat.vue";
+import IconInvoice from "@/components/icons/IconInvoice.vue";
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import IconChat from "@/components/icons/IconChat.vue";
 
     <MenuNavItem>
         <NavItem to="/financeiro" label="financier">
-            <IconChat />
+            <IconInvoice />
         </NavItem>
     </MenuNavItem>
 </template>
