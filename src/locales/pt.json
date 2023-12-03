@@ -232,5 +232,12 @@
     "active": "Ativo",
     "not-found": "Não encontrado",
     "schedule-programming": "Programar agenda",
-    "pre-scheduling": "Pre-agendamento"
+    "pre-scheduling": "Pre-agendamento",
+    "pre-scheduling-registration": "Cadastro Pre-agendamento",
+    "schedule-header": "Agenda Cabeçalho",
+    "pre-scheduling-history": "historico Pre-agendamento",
+    "pre-scheduling-modal": "Modal Pre-agendamento",
+    "schedule-requests": "Solicitacoes agenda",
+    "scheduling": "Agendamento"
+
 }

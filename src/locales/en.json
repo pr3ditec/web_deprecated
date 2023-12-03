@@ -188,5 +188,11 @@
     "active": "Active",
     "not-found": "Not found",
     "schedule-programming": "Schedule programming",
-    "pre-scheduling": "Pre-scheduling"
+    "pre-scheduling": "Pre-scheduling",
+    "pre-scheduling-registration": "Pre-scheduling registration",
+    "schedule-header": "Schedule header",
+    "pre-scheduling-history": "Pre-scheduling history",
+    "pre-scheduling-modal": "Pre-scheduling modal",
+    "schedule-requests": "Schedule requests",
+    "scheduling": "Scheduling"
 }

@@ -4,12 +4,12 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
-import HeaderAgenda from "./header-agenda.vue";
-import Solicitacoes from "./solicitacoes-agenda.vue";
+import HeaderAgenda from "./schedule-header.vue";
+import Solicitacoes from "./schedule-requests.vue";
 import ApiConnection from "../../api/Api";
 import FormatoData from "../../helpers/FormatoData";
 import Response from "../../api/Response";
-import ModalPreAgendamento from "./modal-pre-agendamento.vue";
+import ModalPreAgendamento from "./pre-scheduling-modal.vue";
 
 export default {
     components: {

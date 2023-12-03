@@ -2,8 +2,8 @@
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import ApiConnection from "../../api/Api";
-import Cadastro from "./cadastro-pre-agendamento.vue";
-import Historico from "./historico-pre-agendamento.vue";
+import Cadastro from "./pre-scheduling-registration.vue";
+import Historico from "./pre-scheduling-history.vue";
 import "@bhplugin/vue3-datatable/dist/style.css";
 
 export default {

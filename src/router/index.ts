@@ -49,17 +49,17 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/schedule-programming",
         name: "Schedule Programming",
-        component: () => import("../views/agenda/schedule-programming.vue"),
+        component: () => import("../views/scheduling/schedule-programming.vue"),
     },
     {
         path: "/schedule",
-        name: "Agenda",
-        component: () => import("../views/agenda/schedule.vue"),
+        name: "schedule",
+        component: () => import("../views/scheduling/schedule.vue"),
     },
     {
         path: "/pre-scheduling",
         name: "Pre scheduling",
-        component: () => import("../views/agenda/pre-scheduling.vue"),
+        component: () => import("../views/scheduling/pre-scheduling.vue"),
     },
     /** AGENDA */
 
