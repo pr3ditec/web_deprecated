@@ -1,3 +1,29 @@
+<script lang="ts" setup>
+import { computed, reactive } from "vue";
+import { useI18n } from "vue-i18n";
+import appSetting from "@/app-setting";
+import { useAppStore } from "@/stores/index";
+import { useRouter } from "vue-router";
+import { useMeta } from "@/composables/use-meta";
+
+useMeta({ title: "Lockscreen" });
+
+const router = useRouter();
+const store = useAppStore();
+
+// multi language
+const i18n = reactive(useI18n());
+const changeLanguage = (item: any) => {
+    i18n.locale = item.code;
+    appSetting.toggleLanguage(item);
+};
+const currentFlag = computed(() => {
+    return `/assets/images/flags/${i18n.locale.toUpperCase()}.svg`;
+});
+
+const userName = store.getUserName();
+</script>
+
 <template>
     <div>
         <div class="absolute inset-0">
@@ -202,28 +228,3 @@
         </div>
     </div>
 </template>
-<script lang="ts" setup>
-import { computed, reactive } from "vue";
-import { useI18n } from "vue-i18n";
-import appSetting from "@/app-setting";
-import { useAppStore } from "@/stores/index";
-import { useRouter } from "vue-router";
-import { useMeta } from "@/composables/use-meta";
-
-useMeta({ title: "Lockscreen" });
-
-const router = useRouter();
-const store = useAppStore();
-
-// multi language
-const i18n = reactive(useI18n());
-const changeLanguage = (item: any) => {
-    i18n.locale = item.code;
-    appSetting.toggleLanguage(item);
-};
-const currentFlag = computed(() => {
-    return `/assets/images/flags/${i18n.locale.toUpperCase()}.svg`;
-});
-
-const userName = store.getUserName();
-</script>

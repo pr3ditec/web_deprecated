@@ -1,3 +1,64 @@
+<script lang="ts" setup>
+import { ref, onMounted, computed, watch } from "vue";
+
+import { useRoute } from "vue-router";
+import { useAppStore } from "@/stores/index";
+
+import LangChanger from "@/components/layout/LangChanger.vue";
+import ThemeChanger from "@/components/layout/ThemeChanger.vue";
+
+import HeaderMessages from "@/components/layout/header/HeaderMessages.vue";
+import HeaderNotification from "@/components/layout/header/HeaderNotification.vue";
+
+const store = useAppStore();
+const route = useRoute();
+const search = ref(false);
+
+onMounted(() => {
+    setActiveDropdown();
+});
+
+watch(route, (to, from) => {
+    setActiveDropdown();
+});
+
+const setActiveDropdown = () => {
+    const selector = document.querySelector(
+        'ul.horizontal-menu a[href="' + window.location.pathname + '"]',
+    );
+    if (selector) {
+        selector.classList.add("active");
+        const all: any = document.querySelectorAll(
+            "ul.horizontal-menu .nav-link.active",
+        );
+        for (let i = 0; i < all.length; i++) {
+            all[0]?.classList.remove("active");
+        }
+        const ul: any = selector.closest("ul.sub-menu");
+        if (ul) {
+            let ele: any = ul.closest("li.menu").querySelectorAll(".nav-link");
+            if (ele) {
+                ele = ele[0];
+                setTimeout(() => {
+                    ele?.classList.add("active");
+                });
+            }
+        }
+    }
+};
+
+const userName = computed(() => {
+    let fullName = store.getUserName();
+    if (fullName === null) {
+        return null;
+    }
+
+    let firstName = fullName.split(" ")[0];
+
+    return firstName;
+});
+</script>
+
 <template>
     <header
         class="z-40"
@@ -145,6 +206,7 @@
                         </li>
                     </ul>
                 </div>
+
                 <div
                     class="sm:flex-1 ltr:sm:ml-0 ltr:ml-auto sm:rtl:mr-0 rtl:mr-auto flex items-center space-x-1.5 lg:space-x-2 rtl:space-x-reverse dark:text-[#d0d2d6]">
                     <div class="sm:ltr:mr-auto sm:rtl:ml-auto">
@@ -235,389 +297,11 @@
                         </button>
                     </div>
 
+                    <LangChanger />
                     <ThemeChanger />
+                    <HeaderMessages />
 
-                    <div class="dropdown shrink-0">
-                        <Popper
-                            :placement="
-                                store.rtlClass === 'rtl'
-                                    ? 'bottom-end'
-                                    : 'bottom-start'
-                            "
-                            offsetDistance="8">
-                            <button
-                                type="button"
-                                class="block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60">
-                                <img
-                                    :src="currentFlag"
-                                    alt="flag"
-                                    class="w-5 h-5 object-cover rounded-full" />
-                            </button>
-                            <template #content="{ close }">
-                                <ul
-                                    class="!px-2 text-dark dark:text-white-dark grid grid-cols-2 gap-2 font-semibold dark:text-white-light/90 w-[280px]">
-                                    <template
-                                        v-for="item in store.languageList"
-                                        :key="item.code">
-                                        <li>
-                                            <button
-                                                type="button"
-                                                class="w-full hover:text-primary"
-                                                :class="{
-                                                    'bg-primary/10 text-primary':
-                                                        i18n.locale ===
-                                                        item.code,
-                                                }"
-                                                @click="
-                                                    changeLanguage(item),
-                                                        close()
-                                                ">
-                                                <img
-                                                    class="w-5 h-5 object-cover rounded-full"
-                                                    :src="`/assets/images/flags/${item.code.toUpperCase()}.svg`"
-                                                    alt="" />
-                                                <span
-                                                    class="ltr:ml-3 rtl:mr-3"
-                                                    >{{ item.name }}</span
-                                                >
-                                            </button>
-                                        </li>
-                                    </template>
-                                </ul>
-                            </template>
-                        </Popper>
-                    </div>
-
-                    <div class="dropdown shrink-0">
-                        <Popper
-                            :placement="
-                                store.rtlClass === 'rtl'
-                                    ? 'bottom-start'
-                                    : 'bottom-end'
-                            "
-                            offsetDistance="8">
-                            <button
-                                type="button"
-                                class="block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60">
-                                <svg
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M22 10C22.0185 10.7271 22 11.0542 22 12C22 15.7712 22 17.6569 20.8284 18.8284C19.6569 20 17.7712 20 14 20H10C6.22876 20 4.34315 20 3.17157 18.8284C2 17.6569 2 15.7712 2 12C2 8.22876 2 6.34315 3.17157 5.17157C4.34315 4 6.22876 4 10 4H13"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round" />
-                                    <path
-                                        d="M6 8L8.1589 9.79908C9.99553 11.3296 10.9139 12.0949 12 12.0949C13.0861 12.0949 14.0045 11.3296 15.8411 9.79908"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round" />
-                                    <circle
-                                        cx="19"
-                                        cy="5"
-                                        r="3"
-                                        stroke="currentColor"
-                                        stroke-width="1.5" />
-                                </svg>
-                            </button>
-                            <template #content="{ close }">
-                                <ul
-                                    class="top-11 !py-0 text-dark dark:text-white-dark w-[300px] sm:w-[375px] text-xs">
-                                    <li class="mb-5">
-                                        <div
-                                            class="overflow-hidden relative rounded-t-md !p-5 text-white">
-                                            <div
-                                                class="absolute h-full w-full bg-[url('/assets/images/menu-heade.jpg')] bg-no-repeat bg-center bg-cover inset-0"></div>
-                                            <h4
-                                                class="font-semibold relative z-10 text-lg">
-                                                Messages
-                                            </h4>
-                                        </div>
-                                    </li>
-                                    <template
-                                        v-for="msg in messages"
-                                        :key="msg.id">
-                                        <li>
-                                            <div
-                                                class="flex items-center py-3 px-5">
-                                                <div v-html="msg.image"></div>
-                                                <span
-                                                    class="px-3 dark:text-gray-500">
-                                                    <div
-                                                        class="font-semibold text-sm dark:text-white-light/90"
-                                                        v-text="
-                                                            msg.title
-                                                        "></div>
-                                                    <div
-                                                        v-text="
-                                                            msg.message
-                                                        "></div>
-                                                </span>
-                                                <span
-                                                    class="font-semibold bg-white-dark/20 rounded text-dark/60 px-1 ltr:ml-auto rtl:mr-auto whitespace-pre dark:text-white-dark ltr:mr-2 rtl:ml-2"
-                                                    v-text="msg.time"></span>
-                                                <button
-                                                    type="button"
-                                                    class="text-neutral-300 hover:text-danger"
-                                                    @click="
-                                                        removeMessage(msg.id)
-                                                    ">
-                                                    <svg
-                                                        width="20"
-                                                        height="20"
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <circle
-                                                            opacity="0.5"
-                                                            cx="12"
-                                                            cy="12"
-                                                            r="10"
-                                                            stroke="currentColor"
-                                                            stroke-width="1.5" />
-                                                        <path
-                                                            d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5"
-                                                            stroke="currentColor"
-                                                            stroke-width="1.5"
-                                                            stroke-linecap="round" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </li>
-                                    </template>
-                                    <template v-if="messages.length">
-                                        <li
-                                            class="border-t border-white-light text-center dark:border-white/10 mt-5">
-                                            <div
-                                                class="flex items-center py-4 px-5 text-primary font-semibold group dark:text-gray-400 justify-center cursor-pointer"
-                                                @click="close()">
-                                                <span
-                                                    class="group-hover:underline ltr:mr-1 rtl:ml-1"
-                                                    >VIEW ALL ACTIVITIES</span
-                                                >
-
-                                                <svg
-                                                    class="w-4 h-4 group-hover:translate-x-1 transition duration-300 ltr:ml-1 rtl:mr-1"
-                                                    viewBox="0 0 24 24"
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M4 12H20M20 12L14 6M20 12L14 18"
-                                                        stroke="currentColor"
-                                                        stroke-width="1.5"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
-                                            </div>
-                                        </li>
-                                    </template>
-                                    <template v-if="!messages.length">
-                                        <li class="mb-5">
-                                            <div
-                                                class="!grid place-content-center hover:!bg-transparent text-lg min-h-[200px]">
-                                                <div
-                                                    class="mx-auto ring-4 ring-primary/30 rounded-full mb-4 text-primary">
-                                                    <svg
-                                                        width="40"
-                                                        height="40"
-                                                        viewBox="0 0 20 20"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            opacity="0.5"
-                                                            d="M20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20C15.5228 20 20 15.5228 20 10Z"
-                                                            fill="currentColor" />
-                                                        <path
-                                                            d="M10 4.25C10.4142 4.25 10.75 4.58579 10.75 5V11C10.75 11.4142 10.4142 11.75 10 11.75C9.58579 11.75 9.25 11.4142 9.25 11V5C9.25 4.58579 9.58579 4.25 10 4.25Z"
-                                                            fill="currentColor" />
-                                                        <path
-                                                            d="M10 15C10.5523 15 11 14.5523 11 14C11 13.4477 10.5523 13 10 13C9.44772 13 9 13.4477 9 14C9 14.5523 9.44772 15 10 15Z"
-                                                            fill="currentColor" />
-                                                    </svg>
-                                                </div>
-                                                No data available.
-                                            </div>
-                                        </li>
-                                    </template>
-                                </ul>
-                            </template>
-                        </Popper>
-                    </div>
-
-                    <div class="dropdown shrink-0">
-                        <Popper
-                            :placement="
-                                store.rtlClass === 'rtl'
-                                    ? 'bottom-end'
-                                    : 'bottom-start'
-                            "
-                            offsetDistance="8">
-                            <button
-                                type="button"
-                                class="relative block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60">
-                                <svg
-                                    width="20"
-                                    height="20"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M19.0001 9.7041V9C19.0001 5.13401 15.8661 2 12.0001 2C8.13407 2 5.00006 5.13401 5.00006 9V9.7041C5.00006 10.5491 4.74995 11.3752 4.28123 12.0783L3.13263 13.8012C2.08349 15.3749 2.88442 17.5139 4.70913 18.0116C9.48258 19.3134 14.5175 19.3134 19.291 18.0116C21.1157 17.5139 21.9166 15.3749 20.8675 13.8012L19.7189 12.0783C19.2502 11.3752 19.0001 10.5491 19.0001 9.7041Z"
-                                        stroke="currentColor"
-                                        stroke-width="1.5" />
-                                    <path
-                                        d="M7.5 19C8.15503 20.7478 9.92246 22 12 22C14.0775 22 15.845 20.7478 16.5 19"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round" />
-                                    <path
-                                        d="M12 6V10"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round" />
-                                </svg>
-
-                                <span
-                                    class="flex absolute w-3 h-3 ltr:right-0 rtl:left-0 top-0">
-                                    <span
-                                        class="animate-ping absolute ltr:-left-[3px] rtl:-right-[3px] -top-[3px] inline-flex h-full w-full rounded-full bg-success/50 opacity-75"></span>
-                                    <span
-                                        class="relative inline-flex rounded-full w-[6px] h-[6px] bg-success"></span>
-                                </span>
-                            </button>
-                            <template #content="{ close }">
-                                <ul
-                                    class="!py-0 text-dark dark:text-white-dark w-[300px] sm:w-[350px] divide-y dark:divide-white/10">
-                                    <li>
-                                        <div
-                                            class="flex items-center px-4 py-2 justify-between font-semibold">
-                                            <h4 class="text-lg">
-                                                Notification
-                                            </h4>
-                                            <template
-                                                v-if="notifications.length">
-                                                <span
-                                                    class="badge bg-primary/80"
-                                                    v-text="
-                                                        notifications.length +
-                                                        'New'
-                                                    "></span>
-                                            </template>
-                                        </div>
-                                    </li>
-                                    <template
-                                        v-for="notification in notifications"
-                                        :key="notification.id">
-                                        <li class="dark:text-white-light/90">
-                                            <div
-                                                class="group flex items-center px-4 py-2">
-                                                <div
-                                                    class="grid place-content-center rounded">
-                                                    <div
-                                                        class="w-12 h-12 relative">
-                                                        <img
-                                                            class="w-12 h-12 rounded-full object-cover"
-                                                            :src="`/assets/images/${
-                                                                notification.profile ??
-                                                                null
-                                                            }`"
-                                                            alt="" />
-                                                        <span
-                                                            class="bg-success w-2 h-2 rounded-full block absolute right-[6px] bottom-0"></span>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="ltr:pl-3 rtl:pr-3 flex flex-auto">
-                                                    <div
-                                                        class="ltr:pr-3 rtl:pl-3 font-bold">
-                                                        <h6
-                                                            v-html="
-                                                                notification.titulo
-                                                            "></h6>
-                                                        <span
-                                                            class="text-xs block font-normal dark:text-gray-500"
-                                                            v-text="
-                                                                notification.mensagem
-                                                            "></span>
-                                                    </div>
-                                                    <button
-                                                        type="button"
-                                                        class="ltr:ml-auto rtl:mr-auto text-neutral-300 hover:text-danger opacity-0 group-hover:opacity-100"
-                                                        @click="
-                                                            removeNotification(
-                                                                notification.id,
-                                                            )
-                                                        ">
-                                                        <svg
-                                                            width="20"
-                                                            height="20"
-                                                            viewBox="0 0 24 24"
-                                                            fill="none"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <circle
-                                                                opacity="0.5"
-                                                                cx="12"
-                                                                cy="12"
-                                                                r="10"
-                                                                stroke="currentColor"
-                                                                stroke-width="1.5" />
-                                                            <path
-                                                                d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5"
-                                                                stroke="currentColor"
-                                                                stroke-width="1.5"
-                                                                stroke-linecap="round" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </template>
-                                    <template v-if="notifications">
-                                        <li>
-                                            <div class="p-4">
-                                                <button
-                                                    class="btn btn-primary block w-full btn-small"
-                                                    @click="close()">
-                                                    Read All Notifications
-                                                </button>
-                                            </div>
-                                        </li>
-                                    </template>
-                                    <template v-if="!notifications.length">
-                                        <li>
-                                            <div
-                                                class="!grid place-content-center hover:!bg-transparent text-lg min-h-[200px]">
-                                                <div
-                                                    class="mx-auto ring-4 ring-primary/30 rounded-full mb-4 text-primary">
-                                                    <svg
-                                                        width="40"
-                                                        height="40"
-                                                        viewBox="0 0 20 20"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            opacity="0.5"
-                                                            d="M20 10C20 4.47715 15.5228 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20C15.5228 20 20 15.5228 20 10Z"
-                                                            fill="currentColor" />
-                                                        <path
-                                                            d="M10 4.25C10.4142 4.25 10.75 4.58579 10.75 5V11C10.75 11.4142 10.4142 11.75 10 11.75C9.58579 11.75 9.25 11.4142 9.25 11V5C9.25 4.58579 9.58579 4.25 10 4.25Z"
-                                                            fill="currentColor" />
-                                                        <path
-                                                            d="M10 15C10.5523 15 11 14.5523 11 14C11 13.4477 10.5523 13 10 13C9.44772 13 9 13.4477 9 14C9 14.5523 9.44772 15 10 15Z"
-                                                            fill="currentColor" />
-                                                    </svg>
-                                                </div>
-                                                Nenhuma notificação.
-                                            </div>
-                                        </li>
-                                    </template>
-                                </ul>
-                            </template>
-                        </Popper>
-                    </div>
+                    <HeaderNotification />
 
                     <div class="dropdown shrink-0">
                         <Popper
@@ -1912,121 +1596,3 @@
         </div>
     </header>
 </template>
-
-<script lang="ts" setup>
-import { ref, onMounted, computed, reactive, watch } from "vue";
-import { useI18n } from "vue-i18n";
-
-import appSetting from "@/app-setting";
-
-import { useRoute } from "vue-router";
-import { useAppStore } from "@/stores/index";
-import ThemeChanger from "@/components/layout/ThemeChanger.vue";
-import FirebaseClient from "@/firebase";
-
-const store = useAppStore();
-const route = useRoute();
-const search = ref(false);
-const firebase: FirebaseClient = new FirebaseClient();
-
-// multi language
-const i18n = reactive(useI18n());
-const changeLanguage = (item: any) => {
-    i18n.locale = item.code;
-    appSetting.toggleLanguage(item);
-};
-const currentFlag = computed(() => {
-    return `/assets/images/flags/${i18n.locale.toUpperCase()}.svg`;
-});
-
-/** NOTIFICACOES DO FIREBASE */
-const notifications = ref([]);
-if (firebase.testarPermissao()) {
-    firebase.cadastrarDispositivo();
-    firebase.receberMensagens(notifications);
-}
-/** NOTIFICACOES DO FIREBASE */
-
-const messages = ref([
-    {
-        id: 1,
-        image: '<span class="grid place-content-center w-9 h-9 rounded-full bg-success-light dark:bg-success text-success dark:text-success-light"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span>',
-        title: "Congratulations!",
-        message: "Your OS has been updated.",
-        time: "1hr",
-    },
-    {
-        id: 2,
-        image: '<span class="grid place-content-center w-9 h-9 rounded-full bg-info-light dark:bg-info text-info dark:text-info-light"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></span>',
-        title: "Did you know?",
-        message: "You can switch between artboards.",
-        time: "2hr",
-    },
-    {
-        id: 3,
-        image: '<span class="grid place-content-center w-9 h-9 rounded-full bg-danger-light dark:bg-danger text-danger dark:text-danger-light"> <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></span>',
-        title: "Something went wrong!",
-        message: "Send Reposrt",
-        time: "2days",
-    },
-    {
-        id: 4,
-        image: '<span class="grid place-content-center w-9 h-9 rounded-full bg-warning-light dark:bg-warning text-warning dark:text-warning-light"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">    <circle cx="12" cy="12" r="10"></circle>    <line x1="12" y1="8" x2="12" y2="12"></line>    <line x1="12" y1="16" x2="12.01" y2="16"></line></svg></span>',
-        title: "Warning",
-        message: "Your password strength is low.",
-        time: "5days",
-    },
-]);
-
-onMounted(() => {
-    setActiveDropdown();
-});
-
-watch(route, (to, from) => {
-    setActiveDropdown();
-});
-
-const setActiveDropdown = () => {
-    const selector = document.querySelector(
-        'ul.horizontal-menu a[href="' + window.location.pathname + '"]',
-    );
-    if (selector) {
-        selector.classList.add("active");
-        const all: any = document.querySelectorAll(
-            "ul.horizontal-menu .nav-link.active",
-        );
-        for (let i = 0; i < all.length; i++) {
-            all[0]?.classList.remove("active");
-        }
-        const ul: any = selector.closest("ul.sub-menu");
-        if (ul) {
-            let ele: any = ul.closest("li.menu").querySelectorAll(".nav-link");
-            if (ele) {
-                ele = ele[0];
-                setTimeout(() => {
-                    ele?.classList.add("active");
-                });
-            }
-        }
-    }
-};
-
-const removeNotification = (value: number) => {
-    notifications.value = notifications.value.filter((d) => d.id !== value);
-};
-
-const removeMessage = (value: number) => {
-    messages.value = messages.value.filter((d) => d.id !== value);
-};
-
-const userName = computed(() => {
-    let fullName = store.getUserName();
-    if (fullName === null) {
-        return null;
-    }
-
-    let firstName = fullName.split(" ")[0];
-
-    return firstName;
-});
-</script>

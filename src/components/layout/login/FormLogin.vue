@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { computed, reactive, ref } from "vue";
-import { useI18n } from "vue-i18n";
 import { useAppStore } from "@/stores/index";
 import { useRouter } from "vue-router";
 import { useMeta } from "@/composables/use-meta";
@@ -11,9 +10,6 @@ useMeta({ title: "Login" });
 
 const router = useRouter();
 const store = useAppStore();
-
-// multi language
-const i18n = reactive(useI18n());
 
 const loginForm = reactive({
     login: "marlene@email.com",

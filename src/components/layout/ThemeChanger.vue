@@ -3,6 +3,7 @@ import { useAppStore } from "@/stores/index";
 
 const store = useAppStore();
 </script>
+
 <template>
     <div class="w-max">
         <a
