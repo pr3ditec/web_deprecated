@@ -11,13 +11,13 @@ import IconCalendar from "@/components/icons/IconCalendar.vue";
     <TitleDivision title="schedule" />
 
     <MenuNavItem>
-        <NavItem to="/agenda" label="schedule">
+        <NavItem to="/schedule" label="schedule">
             <IconCalendar />
         </NavItem>
-        <NavItem to="/programar-agenda" label="makeAnSchedule">
+        <NavItem to="/schedule-programming" label="makeAnSchedule">
             <IconCalendar />
         </NavItem>
-        <NavItem to="/pre-agendamento" label="scheduleAttempt">
+        <NavItem to="/pre-scheduling" label="scheduleAttempt">
             <IconCalendar />
         </NavItem>
     </MenuNavItem>

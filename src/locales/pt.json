@@ -230,5 +230,7 @@
     "releasedDay": "DIA LIBERADO",
     "settings": "Configurações",
     "active": "Ativo",
-    "not-found": "Não encontrado"
+    "not-found": "Não encontrado",
+    "schedule-programming": "Programar agenda",
+    "pre-scheduling": "Pre-agendamento"
 }

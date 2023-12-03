@@ -47,19 +47,19 @@ const routes: RouteRecordRaw[] = [
 
     /** AGENDA */
     {
-        path: "/programar-agenda",
-        name: "Programar Agenda",
-        component: () => import("../views/agenda/programar-agenda.vue"),
+        path: "/schedule-programming",
+        name: "Schedule Programming",
+        component: () => import("../views/agenda/schedule-programming.vue"),
     },
     {
-        path: "/agenda",
+        path: "/schedule",
         name: "Agenda",
-        component: () => import("../views/agenda/agenda.vue"),
+        component: () => import("../views/agenda/schedule.vue"),
     },
     {
-        path: "/pre-agendamento",
-        name: "Pre Agendamento",
-        component: () => import("../views/agenda/pre-agendamento.vue"),
+        path: "/pre-scheduling",
+        name: "Pre scheduling",
+        component: () => import("../views/agenda/pre-scheduling.vue"),
     },
     /** AGENDA */
 

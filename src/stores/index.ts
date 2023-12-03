@@ -2,6 +2,37 @@ import { defineStore } from "pinia";
 import i18n from "@/i18n";
 import appSetting from "@/app-setting";
 
+const permissions = {
+    doctor: {
+        dashboard: false,
+        schedule: true,
+        register: true,
+        financer: true,
+        GeneralReport: false,
+    },
+    secretary: {
+        dashboard: false,
+        schedule: true,
+        register: false,
+        financer: false,
+        GeneralReport: false,
+    },
+    developer: {
+        dashboard: true,
+        schedule: true,
+        register: true,
+        financer: true,
+        GeneralReport: true,
+    },
+    manager: {
+        dashboard: true,
+        schedule: false,
+        register: false,
+        financer: false,
+        GeneralReport: true,
+    },
+};
+
 export const useAppStore = defineStore("app", {
     state: () => ({
         isDarkMode: false,
@@ -156,6 +187,34 @@ export const useAppStore = defineStore("app", {
             if (window.innerWidth < 1024) {
                 this.toggleSidebar();
             }
+        },
+        getUserPermissions() {
+            const userType = {
+                doctor: localStorage.getItem("doctor.id") != "null",
+                secretary: localStorage.getItem("secretary.id") != "null",
+                developer: localStorage.getItem("dev.id") != "null",
+                manager: localStorage.getItem("manager.id") != "null"
+            };
+
+            const userPermissions = {};
+
+            for (const type in userType) {
+                if (userType[type]) {
+                    userPermissions[type] = permissions[type];
+                }
+            }
+
+            return userPermissions;
+        },
+
+        checkPermission(routeName: string) {
+            const permissions = this.getUserPermissions();
+            for (const userType in permissions) {
+                if (permissions[userType][routeName]) {
+                    return true;
+                }
+            }
+            return false;
         },
     },
     getters: {},

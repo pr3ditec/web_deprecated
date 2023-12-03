@@ -186,5 +186,7 @@
     "selectAll": "select all",
     "settings": "Settings",
     "active": "Active",
-    "not-found": "Not found"
+    "not-found": "Not found",
+    "schedule-programming": "Schedule programming",
+    "pre-scheduling": "Pre-scheduling"
 }
