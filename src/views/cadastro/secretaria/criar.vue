@@ -3,6 +3,7 @@ import ValidacaoInput from "../../../helpers/ValidacaoInput";
 import Response from "../../../api/Response";
 import ApiConnection from "../../../api/Api";
 import { useAppStore } from "@/stores/index";
+import FormatoData from "@/helpers/FormatoData";
 
 export default {
     data() {
@@ -37,6 +38,7 @@ export default {
     async created() {
         let nacionalidadeResponse =
             await this.request.pegarDadosApi("/nacionalidade");
+        console.log(nacionalidadeResponse);
         this.nacionalidade = nacionalidadeResponse.list;
     },
 
@@ -81,12 +83,14 @@ export default {
                 .replaceAll(".", "")
                 .replaceAll("-", "");
             // salvando dados da secretaria
+
             await this.request
                 .enviarDadosApi(
                     "medico/clinica/secretaria",
                     this.secretariaFormData,
                 )
                 .then((res) => {
+                    // console.log(res)
                     if (res.status == false) {
                         return Response.mensagemErro(res.message);
                     } else {
@@ -157,11 +161,9 @@ export default {
                 $t("birthdate")
             }}</label>
             <input
-                v-model="secretariaFormData.nascimento"
-                v-mask="'##/##/####'"
+                type="date"
                 class="form-input"
-                type="text"
-                placeholder="Ex.: 00/00/0000" />
+                v-model="secretariaFormData.nascimento" />
         </div>
 
         <!-- SEXO -->

@@ -30,10 +30,6 @@ export default {
     <div class="grid space-y-6 grid-cols-1 items-center">
         <!-- HEADER -->
         <div>
-            <h1 class="text-4xl font-bold mb-4 capitalize">
-                {{ $t("secretary") }}
-            </h1>
-
             <div class="flex flex-row gap-4 align-items-center">
                 <h6 class="text-xl font-bold mb-4 capitalize">
                     {{ $t("create") }}
