@@ -49,23 +49,22 @@ export default {
             riscoEmpresarialTabela: [],
         };
     },
-    async created() {
-        this.buscarRiscoEmpresarial();
-    },
     methods: {
         /** RISCO-EMPRESARIAL */
         async buscarRiscoEmpresarial() {
             await this.request
                 .pegarDadosApi("/risco-empresarial")
-                .then((res) => {
+                .then(async (res) => {
                     if (res.status) {
+                        res.list.forEach((item) => {
+                            item["lock"] = true;
+                        });
                         this.riscoEmpresarialTabela = res.list;
                     }
                 });
         },
 
         async atualizarRiscoEmpresarial(estado, valor) {
-            return console.log(valor);
             await this.request
                 .enviarDadosApi("/risco-empresarial", {
                     estado_id: estado,
@@ -79,6 +78,9 @@ export default {
         },
 
         /** RISCO-EMPRESARIAL */
+    },
+    async created() {
+        this.buscarRiscoEmpresarial();
     },
 };
 </script>
@@ -117,15 +119,20 @@ export default {
                     <input
                         v-model="data.value.valor"
                         class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none"
+                        :class="{ 'border border-danger': !data.value.lock }"
                         type="text"
-                        :disabled="true"
+                        :disabled="data.value.lock"
                         @keypress.enter="
-                            atualizarRiscoEmpresarial(
-                                data.value.estado_id,
-                                data.value.valor,
-                            )
+                            () => {
+                                data.value.lock = !data.value.lock;
+                                atualizarRiscoEmpresarial(
+                                    data.value.estado_id,
+                                    data.value.valor,
+                                );
+                            }
                         " />
                     <div
+                        :class="{ 'bg-danger text-white': !data.value.lock }"
                         class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
                         <span>%</span>
                     </div>
@@ -135,13 +142,17 @@ export default {
         <template #botao="data">
             <button
                 class="btn btn-sm btn-primary uppercase"
+                :class="{ 'btn-danger': !data.value.lock }"
                 @click="
-                    atualizarRiscoEmpresarial(
-                        data.value.estado_id,
-                        data.value.valor,
-                    )
+                    data.value.lock = !data.value.lock;
+                    !data.value.lock
+                        ? null
+                        : atualizarRiscoEmpresarial(
+                              data.value.estado_id,
+                              data.value.valor,
+                          );
                 ">
-                {{ $t("unlock") }}
+                {{ data.value.lock ? $t("unlock") : $t("update") }}
             </button>
         </template>
     </vue3-datatable>
