@@ -180,13 +180,9 @@ export default {
 </script>
 
 <template>
-    <div>
-        <h1 class="text-4xl font-bold mb-5 lead">
-            {{ $t("makeAnSchedule") }}
-        </h1>
+    <div class="row mt-5 p-4">
         <SelectMedico v-model="selectedDoctor" />
     </div>
-
     <div v-if="selectedDoctor">
         <div class="flex">
             <div class="w-6/12 p-4">

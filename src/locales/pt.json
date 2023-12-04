@@ -238,5 +238,9 @@
     "pre-scheduling-history": "historico Pre-agendamento",
     "pre-scheduling-modal": "Modal Pre-agendamento",
     "schedule-requests": "Solicitacoes agenda",
-    "scheduling": "Agendamento"
+    "scheduling": "Agendamento",
+    "ask-for-join": "Solicitar vinculo",
+    "ask": "Solicitar",
+    "doctorAlreadyHasLinkWithAnotherClinic": "Médico já está vinculado com outra clinica",
+    "linkRequestMade": "Solicitação feita   "
 }

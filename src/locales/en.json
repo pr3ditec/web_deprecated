@@ -194,5 +194,9 @@
     "pre-scheduling-history": "Pre-scheduling history",
     "pre-scheduling-modal": "Pre-scheduling modal",
     "schedule-requests": "Schedule requests",
-    "scheduling": "Scheduling"
+    "scheduling": "Scheduling",
+    "ask-for-join": "Request a link",
+    "ask": "Request",
+    "doctorAlreadyHasLinkWithAnotherClinic": "Doctor already has link with another clinic",
+    "linkRequestMade": "Link request made"
 }

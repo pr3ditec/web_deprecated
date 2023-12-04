@@ -1,6 +1,7 @@
 <script>
 import ComingSoonCover from "@/views/pages/coming-soon-cover.vue";
 import ApiConnection from "../../../api/Api";
+import Response from "@/api/Response";
 
 export default {
     data() {
@@ -43,9 +44,17 @@ export default {
             }
         },
 
-        criarVinculo() {
+        async criarVinculo() {
             if (this.secretaria.nome != "") {
-                console.log("Vinculo solicitado"); // rota ainda nao implementada
+                await this.request
+                    .enviarDadosApi("/secretaria/medico", {
+                        secretaria_id: this.secretaria.secretaria_id,
+                    })
+                    .then((res) => {
+                        res.status
+                            ? Response.mensagemToast("success", res.message)
+                            : Response.mensagemToast("error", res.message);
+                    });
             }
         },
     },
@@ -56,7 +65,7 @@ export default {
     <div
         class="flex flex-col items-center gap-1 mt-4 w-1/2"
         @keyup.enter="criarVinculo">
-        <h1 class="text-3xl font-bold">Vincular com secretária</h1>
+        <h1 class="text-3xl font-bold">{{ $t("ask-for-join") }}</h1>
         <hr />
         <div class="w-full flex flex-col gap-0 p-6">
             <label>{{ $t("secretary") }}</label>
@@ -80,7 +89,7 @@ export default {
                             <div
                                 class="mb-5 w-20 h-20 rounded-full overflow-hidden">
                                 <img
-                                    src="/assets/images/profile-12.jpeg"
+                                    src="/assets/images/logo.png"
                                     alt=""
                                     class="w-full h-full object-cover" />
                             </div>
@@ -113,6 +122,7 @@ export default {
         <div class="flex flex-col items-center font-semibold mt-2">
             <button
                 class="btn btn-primary w-80"
+                :class="{ 'btn-dark': secretaria.nome == '' }"
                 :disabled="secretaria.nome == ''"
                 @click="criarVinculo">
                 Solicitar vinculo

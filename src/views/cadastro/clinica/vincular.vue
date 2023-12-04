@@ -1,14 +1,16 @@
 <script>
+import Response from "@/api/Response";
 import ApiConnection from "../../../api/Api";
 export default {
     data() {
         return {
             // Api para fazer requests
             request: new ApiConnection(),
+            especialidade: [],
+            especialidadeSelect: 0,
             // variaveis reativas
             encontrada: true,
-            medico: {},
-            clinicas: [],
+            dadosClinicas: [],
         };
     },
     async created() {},
@@ -19,19 +21,63 @@ export default {
                 await this.request
                     .pegarDadosApi(`/medico/cpf/${cpf}`)
                     .then(async (res) => {
-                        if (res.list.length > 0) {
+                        if (res.status) {
                             this.encontrada = true;
-                            this.medico = res.list;
-                            this.clinicas = res.list[0].clinica;
+                            this.dadosClinicas = res.list;
                         } else {
                             this.encontrada = false;
                         }
                     });
             }
         },
-        criarVinculo(clinica, medico) {
-            console.log(clinica, medico);
+        async criarVinculo(clinica) {
+            if (this.especialidadeSelect == 0) {
+                return;
+            } else {
+                await Response.mesagemConfirmacao(
+                    "question",
+                    this.$t("ask"),
+                    this.$t("cancel"),
+                    this.$t("ask-for-join"),
+                ).then((res) => {
+                    if (res) {
+                        this.request
+                            .enviarDadosApi("/clinica/medico", {
+                                clinica_id: clinica,
+                                medico_id: localStorage.getItem("doctor.id"),
+                                especialidade_id: this.especialidadeSelect,
+                            })
+                            .then((response) => {
+                                console.log(response);
+                                response.status
+                                    ? Response.mensagemToast(
+                                          "success",
+                                          this.$t(response.messageCode),
+                                      )
+                                    : Response.mensagemToast(
+                                          "error",
+                                          this.$t(response.messageCode),
+                                      );
+                            });
+                    }
+                });
+            }
         },
+
+        async pegarEspecialidades() {
+            this.request
+                .pegarDadosApi(
+                    `/medico/especialidade/${localStorage.getItem(
+                        "doctor.id",
+                    )}`,
+                )
+                .then((res) => {
+                    this.especialidade = res.list;
+                });
+        },
+    },
+    created() {
+        this.pegarEspecialidades();
     },
 };
 </script>
@@ -59,20 +105,26 @@ export default {
                 >
                 <label class="capitalize mt-8">{{ $t("clinic") }}</label>
                 <!-- CARD COM CLINICA -->
-                <div v-for="clinica in clinicas">
+                <div v-for="clinica in dadosClinicas.clinica">
+                    <select class="form-input" v-model="especialidadeSelect">
+                        <option value="0">
+                            Selecione uma de suas especialidade
+                        </option>
+                        <option v-for="item in especialidade" :value="item.id">
+                            {{ item.descricao }}
+                        </option>
+                    </select>
                     <Transition>
                         <div
-                            v-show="clinicas.length != 0"
-                            class="w-full mt-2 bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none"
-                            @click="
-                                criarVinculo(clinica.id, medico[0].medico_id)
-                            ">
+                            v-show="dadosClinicas.clinica.length != 0"
+                            class="w-full mt-2 bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none hover:border-slate-900"
+                            @click="criarVinculo(clinica.id)">
                             <div
                                 class="p-5 flex items-center flex-col sm:flex-row">
                                 <div
                                     class="mb-5 w-20 h-20 rounded-full overflow-hidden">
                                     <img
-                                        src="/assets/images/profile-34.jpeg"
+                                        src="/assets/images/logo.png"
                                         alt=""
                                         class="w-full h-full object-cover" />
                                 </div>
@@ -83,17 +135,11 @@ export default {
                                         {{ clinica.nome }}
                                     </h5>
                                     <p class="mb-2 text-white-dark">
-                                        {{ medico[0].nome }}
+                                        {{ dadosClinicas.nome }}
                                     </p>
                                     <span
-                                        v-if="clinica.ativo"
                                         class="badge bg-primary rounded-full"
-                                        >Ativo</span
-                                    >
-                                    <span
-                                        v-else
-                                        class="badge bg-danger rounded-full"
-                                        >Inativo</span
+                                        >{{ $t("active") }}</span
                                     >
                                     <p
                                         class="font-semibold text-white-dark mt-4 sm:mt-8">
@@ -107,24 +153,8 @@ export default {
                         </div>
                     </Transition>
                 </div>
-
-                <!-- Select das clinicas -->
-                <!-- <select class="form-select mt-5">
-                    <option selected disabled>Selecione a clínica</option>
-                    <option v-for="clinica in clinicas" :value="clinica.id">
-                        {{ clinica.nome }}
-                    </option>
-                </select> -->
             </div>
         </div>
         <hr />
-        <div class="flex flex-col items-center font-semibold mt-2">
-            <button
-                class="btn btn-primary w-80 capitalize"
-                :disabled="clinicas.length == 0"
-                @click="criarVinculo">
-                {{ $t("join") }}
-            </button>
-        </div>
     </div>
 </template>

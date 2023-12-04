@@ -10,8 +10,6 @@ export default {
             clinicaFormData: {
                 nome: "",
                 especialidade_id: "0",
-            },
-            clinicaEnderecoFormData: {
                 cep: "",
                 rua: "",
                 bairro: "",
@@ -20,7 +18,6 @@ export default {
                 tipo: "0",
                 numero: "",
                 complemento: "",
-                clinica_id: "0",
             },
             estados: {},
             tipoEndereco: {},
@@ -29,7 +26,7 @@ export default {
         };
     },
     watch: {
-        async "clinicaEnderecoFormData.estado"(novo) {
+        async "clinicaFormData.estado"(novo) {
             let cidadeResponse = await this.request.pegarDadosApi(
                 `/cidade/${novo}`,
             );
@@ -56,49 +53,24 @@ export default {
             // validar campos
             if (
                 ValidacaoInput.inputVazio(this.clinicaFormData)["status"] ==
-                    false ||
-                ValidacaoInput.inputVazio(this.clinicaEnderecoFormData)[
-                    "status"
-                ] == false
+                false
             ) {
                 return Response.mensagemErro("Campos naos podem estar vazios");
             }
 
             // sanitizar
-            this.clinicaEnderecoFormData["cep"] = this.clinicaEnderecoFormData[
+            this.clinicaFormData["cep"] = this.clinicaFormData[
                 "cep"
             ].replaceAll("-", "");
+            this.clinicaFormData.cidade =
+                this.clinicaFormData.cidade.toString();
 
             this.request
                 .enviarDadosApi("/medico/clinica", this.clinicaFormData)
                 .then((res) => {
-                    if (res.status == true) {
-                        // console.log(res)
-                        // adiciona o id que foi criado pela clinica
-                        this.clinicaEnderecoFormData["clinica_id"] =
-                            res.list.id;
-                        this.clinicaEnderecoFormData["cidade"] =
-                            this.clinicaEnderecoFormData["cidade"].toString();
-
-                        this.request
-                            .enviarDadosApi(
-                                "medico/clinica/endereco",
-                                this.clinicaEnderecoFormData,
-                            )
-                            .then((res) => {
-                                console.log(res);
-
-                                if (res.status == false) {
-                                    return Response.mensagemErro(res.message);
-                                } else {
-                                    return Response.mensagemSucesso(
-                                        res.message,
-                                    );
-                                }
-                            });
-                    } else {
-                        return Response.mensagemErro(res.message);
-                    }
+                    res.status
+                        ? Response.mensagemToast("success", res.message)
+                        : Response.mensagemToast("error", res.message);
                 });
         },
     },
@@ -130,8 +102,7 @@ export default {
                     type="text"
                     placeholder="Ex.: 87560-000"
                     @input="
-                        ($event) =>
-                            (clinicaEnderecoFormData.cep = $event.target.value)
+                        ($event) => (clinicaFormData.cep = $event.target.value)
                     " />
             </div>
 
@@ -141,7 +112,7 @@ export default {
                     $t("street")
                 }}</label>
                 <input
-                    v-model="clinicaEnderecoFormData.rua"
+                    v-model="clinicaFormData.rua"
                     class="form-input"
                     type="text"
                     placeholder="Ex.: Rua mercelo azevedo" />
@@ -153,7 +124,7 @@ export default {
                     $t("neighborhood")
                 }}</label>
                 <input
-                    v-model="clinicaEnderecoFormData.bairro"
+                    v-model="clinicaFormData.bairro"
                     class="form-input"
                     type="text"
                     placeholder="Ex.: Centro" />
@@ -181,9 +152,7 @@ export default {
                 </option>
             </select>
             <!-- Estado -->
-            <select
-                v-model="clinicaEnderecoFormData.estado"
-                class="form-select w-1/2">
+            <select v-model="clinicaFormData.estado" class="form-select w-1/2">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("state") }}
                 </option>
@@ -201,9 +170,7 @@ export default {
             </select>
 
             <!-- Cidade -->
-            <select
-                v-model="clinicaEnderecoFormData.cidade"
-                class="form-select w-1/2">
+            <select v-model="clinicaFormData.cidade" class="form-select w-1/2">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("city") }}
                 </option>
@@ -221,9 +188,7 @@ export default {
             </select>
 
             <!-- Tipo de endereco -->
-            <select
-                v-model="clinicaEnderecoFormData.tipo"
-                class="form-select w-1/2">
+            <select v-model="clinicaFormData.tipo" class="form-select w-1/2">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("address") }}
                 </option>
@@ -246,7 +211,7 @@ export default {
                     $t("number")
                 }}</label>
                 <input
-                    v-model="clinicaEnderecoFormData.numero"
+                    v-model="clinicaFormData.numero"
                     v-mask="'#####'"
                     class="form-input"
                     type="text"
@@ -259,7 +224,7 @@ export default {
                     $t("adjunct")
                 }}</label>
                 <input
-                    v-model="clinicaEnderecoFormData.complemento"
+                    v-model="clinicaFormData.complemento"
                     class="form-input"
                     type="text"
                     placeholder="Ex.: Apto 12" />
