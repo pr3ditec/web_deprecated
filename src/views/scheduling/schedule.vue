@@ -42,12 +42,12 @@ export default {
                     end: "dayGridMonth,timeGridWeek,timeGridDay",
                 },
                 locale: "pt",
-                // slotLabelFormat: {
-                //     hour: "numeric",
-                //     minute: "2-digit",
-                //     omitZeroMinute: false,
-                //     mediriem: "short",
-                // },
+                slotLabelFormat: {
+                    hour: "numeric",
+                    minute: "2-digit",
+                    omitZeroMinute: false,
+                    mediriem: "short",
+                },
                 duration: "00:30:00",
                 eventDurationEditable: false,
                 eventStartEditable: false,
@@ -234,10 +234,7 @@ export default {
 </script>
 <template>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="text-4xl font-bold mb-4">Agenda</h1>
-            </div>
+        <div class="row mt-5 p-4">
             <div class="col-12">
                 <SelectMedico
                     @update:modelValue="($event) => updateMedico($event)" />

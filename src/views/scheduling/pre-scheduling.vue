@@ -98,10 +98,6 @@ export default {
     <div class="grid space-y-6 grid-cols-1 items-center">
         <!-- HEADER -->
         <div>
-            <h1 class="text-4xl font-bold mb-4 capitalize">
-                {{ $t("scheduleAttempt") }}
-            </h1>
-
             <div class="flex flex-row gap-4 align-items-center">
                 <h6 class="text-xl font-bold mb-4 capitalize">
                     {{ $t("list") }}
@@ -198,7 +194,7 @@ export default {
             </TransitionGroup>
         </div>
     </div>
-    <Historico v-show="mostrarHistorico" :dados-paciente="pacienteSelect" />
+    <!-- <Historico v-show="mostrarHistorico" :dados-paciente="pacienteSelect" /> -->
 </template>
 <style>
 /* alt-pagination */

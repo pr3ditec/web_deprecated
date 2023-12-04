@@ -85,6 +85,7 @@ export default {
 };
 </script>
 <template>
+    <hr>
     <div class="row mt-5">
         <div class="col-12 mt-5">
             <h1 class="text-2xl font-bold mb-4 capitalize">
@@ -159,7 +160,7 @@ export default {
 </template>
 <style>
 /* alt-pagination */
-.alt-pagination .bh-pagination .bh-page-item {
+/* .alt-pagination .bh-pagination .bh-page-item {
     @apply !w-max min-w-[32px] !rounded;
-}
+} */
 </style>
