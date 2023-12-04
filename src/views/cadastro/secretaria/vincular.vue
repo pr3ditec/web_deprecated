@@ -65,7 +65,7 @@ export default {
     <div
         class="flex flex-col items-center gap-1 mt-4 w-1/2"
         @keyup.enter="criarVinculo">
-        <h1 class="text-3xl font-bold">{{ $t('ask-for-join') }}</h1>
+        <h1 class="text-3xl font-bold">{{ $t("ask-for-join") }}</h1>
         <hr />
         <div class="w-full flex flex-col gap-0 p-6">
             <label>{{ $t("secretary") }}</label>
@@ -89,7 +89,7 @@ export default {
                             <div
                                 class="mb-5 w-20 h-20 rounded-full overflow-hidden">
                                 <img
-                                    src="/assets/images/profile-12.jpeg"
+                                    src="/assets/images/logo.png"
                                     alt=""
                                     class="w-full h-full object-cover" />
                             </div>
