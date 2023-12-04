@@ -193,7 +193,7 @@ export const useAppStore = defineStore("app", {
                 doctor: localStorage.getItem("doctor.id") != "null",
                 secretary: localStorage.getItem("secretary.id") != "null",
                 developer: localStorage.getItem("dev.id") != "null",
-                manager: localStorage.getItem("manager.id") != "null"
+                manager: localStorage.getItem("manager.id") != "null",
             };
 
             const userPermissions = {};

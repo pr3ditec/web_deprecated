@@ -46,7 +46,9 @@
     background-color: #fff;
 }
 
-#slider3 .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+#slider3
+    .swiper-pagination
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
     background: #4361ee;
 }
 

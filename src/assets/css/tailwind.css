@@ -574,7 +574,9 @@ hover:text-primary hover:before:!bg-primary ltr:before:mr-2 rtl:before:ml-2 dark
     @apply text-white;
 }
 
-.apexcharts-canvas .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+.apexcharts-canvas
+    .apexcharts-tooltip.apexcharts-theme-light
+    .apexcharts-tooltip-title {
     @apply border-dark bg-[#060818];
 }
 
@@ -600,10 +602,16 @@ hover:text-primary hover:before:!bg-primary ltr:before:mr-2 rtl:before:ml-2 dark
     color: #e0e6ed !important;
 }
 
-.dark .apexcharts-canvas .apexcharts-radialbar-track.apexcharts-track .apexcharts-radialbar-area {
+.dark
+    .apexcharts-canvas
+    .apexcharts-radialbar-track.apexcharts-track
+    .apexcharts-radialbar-area {
     stroke: #191e3a;
 }
-.dark .apexcharts-canvas .apexcharts-series-markers.apexcharts-series-bubble .apexcharts-marker {
+.dark
+    .apexcharts-canvas
+    .apexcharts-series-markers.apexcharts-series-bubble
+    .apexcharts-marker {
     stroke: #191e3a;
 }
 

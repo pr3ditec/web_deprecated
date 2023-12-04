@@ -30,8 +30,7 @@ defineExpose({
 <template>
     <ul
         v-if="breadcrumbItems.length > 0 && breadcrumbItems[0] !== ''"
-        class="flex space-x-2 rtl:space-x-reverse cursor-default justify-start
-        mb-2 border-b-2 border-black-light">
+        class="flex space-x-2 rtl:space-x-reverse cursor-default justify-start mb-2 border-b-2 border-black-light">
         <li v-for="(item, index) in breadcrumbItems" :key="index">
             <span v-if="index === 0" class="">
                 {{ humanize($t(item)) }}

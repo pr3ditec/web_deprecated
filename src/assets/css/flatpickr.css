@@ -29,7 +29,11 @@
     color: #bfc9d4;
 }
 
-.dark .flatpickr-calendar .flatpickr-months .flatpickr-monthDropdown-months .flatpickr-monthDropdown-month {
+.dark
+    .flatpickr-calendar
+    .flatpickr-months
+    .flatpickr-monthDropdown-months
+    .flatpickr-monthDropdown-month {
     background-color: #1b2e4b;
 }
 
@@ -46,7 +50,11 @@
     top: 10px;
 }
 
-.dark .flatpickr-calendar .flatpickr-months .numInputWrapper span.arrowUp:after {
+.dark
+    .flatpickr-calendar
+    .flatpickr-months
+    .numInputWrapper
+    span.arrowUp:after {
     border-bottom-color: #bfc9d4;
 }
 
@@ -58,7 +66,12 @@
     top: 34%;
 }
 
-.dark .flatpickr-calendar .flatpickr-months .numInputWrapper span .arrowDown:after {
+.dark
+    .flatpickr-calendar
+    .flatpickr-months
+    .numInputWrapper
+    span
+    .arrowDown:after {
     border-top-color: #bfc9d4;
 }
 
@@ -129,7 +142,11 @@
     border-bottom-color: #009688;
 }
 
-.dark .flatpickr-calendar .flatpickr-time .numInputWrapper span.arrowDown::after {
+.dark
+    .flatpickr-calendar
+    .flatpickr-time
+    .numInputWrapper
+    span.arrowDown::after {
     border-top-color: #009688;
 }
 

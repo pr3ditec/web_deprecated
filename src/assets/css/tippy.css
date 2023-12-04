@@ -2,7 +2,8 @@
     background-color: #4361ee;
 }
 
-.tippy-box[data-theme~="primary"][data-placement^="top"] > .tippy-arrow::before {
+.tippy-box[data-theme~="primary"][data-placement^="top"]
+    > .tippy-arrow::before {
     border-top-color: #4361ee;
 }
 
@@ -10,7 +11,8 @@
     background-color: #00ab55;
 }
 
-.tippy-box[data-theme~="success"][data-placement^="top"] > .tippy-arrow::before {
+.tippy-box[data-theme~="success"][data-placement^="top"]
+    > .tippy-arrow::before {
     border-top-color: #00ab55;
 }
 
@@ -34,7 +36,8 @@
     background-color: #e2a03f;
 }
 
-.tippy-box[data-theme~="warning"][data-placement^="top"] > .tippy-arrow::before {
+.tippy-box[data-theme~="warning"][data-placement^="top"]
+    > .tippy-arrow::before {
     border-top-color: #e2a03f;
 }
 
@@ -42,7 +45,8 @@
     background-color: #805dca;
 }
 
-.tippy-box[data-theme~="secondary"][data-placement^="top"] > .tippy-arrow::before {
+.tippy-box[data-theme~="secondary"][data-placement^="top"]
+    > .tippy-arrow::before {
     border-top-color: #805dca;
 }
 

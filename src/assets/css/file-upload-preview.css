@@ -25,7 +25,9 @@
     transition: color 0.2s ease-in-out;
 }
 
-.custom-file-container .label-container .custom-file-container__image-clear:hover {
+.custom-file-container
+    .label-container
+    .custom-file-container__image-clear:hover {
     color: #777;
 }
 
@@ -149,7 +151,10 @@
     margin-top: 0;
 }
 
-.dark .custom-file-container .label-container .custom-file-container__image-clear {
+.dark
+    .custom-file-container
+    .label-container
+    .custom-file-container__image-clear {
     color: #888ea8;
 }
 
@@ -165,15 +170,20 @@
     color: #fff;
 }
 
-.dark .custom-file-container .custom-file-container__image-multi-preview__single-image-clear {
+.dark
+    .custom-file-container
+    .custom-file-container__image-multi-preview__single-image-clear {
     background-color: #3b3f5c;
 }
 
-.dark .custom-file-container .custom-file-container__image-multi-preview__single-image-clear__icon {
+.dark
+    .custom-file-container
+    .custom-file-container__image-multi-preview__single-image-clear__icon {
     color: #d0d2d6;
 }
 
-.custom-file-container .custom-file-container__image-multi-preview__single-image-clear__icon {
+.custom-file-container
+    .custom-file-container__image-multi-preview__single-image-clear__icon {
     margin-top: 0px;
 }
 
@@ -187,7 +197,9 @@
     float: right;
 }
 
-.rtl .custom-file-container .custom-file-container__image-multi-preview__single-image-clear {
+.rtl
+    .custom-file-container
+    .custom-file-container__image-multi-preview__single-image-clear {
     left: auto;
     right: -6px;
 }
