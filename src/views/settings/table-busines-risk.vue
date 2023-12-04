@@ -49,6 +49,9 @@ export default {
             riscoEmpresarialTabela: [],
         };
     },
+    async created() {
+        this.buscarRiscoEmpresarial();
+    },
     methods: {
         /** RISCO-EMPRESARIAL */
         async buscarRiscoEmpresarial() {
@@ -77,9 +80,6 @@ export default {
 
         /** RISCO-EMPRESARIAL */
     },
-    async created() {
-        this.buscarRiscoEmpresarial();
-    },
 };
 </script>
 <template>
@@ -94,7 +94,7 @@ export default {
         class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
         :rows="riscoEmpresarialTabela"
         :columns="cols"
-        :totalRows="riscoEmpresarialTabela?.length"
+        :total-rows="riscoEmpresarialTabela?.length"
         :sortable="true">
         <template #nome="data">
             <span class="text-md font-semibold uppercase">{{
@@ -115,9 +115,9 @@ export default {
             <div class="flex flex-row">
                 <div class="flex w-full p-3">
                     <input
+                        v-model="data.value.valor"
                         class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none"
                         type="text"
-                        v-model="data.value.valor"
                         :disabled="true"
                         @keypress.enter="
                             atualizarRiscoEmpresarial(

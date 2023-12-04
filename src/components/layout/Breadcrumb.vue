@@ -37,8 +37,8 @@ defineExpose({
             </span>
 
             <span
-                class="before:content-['/'] before:mr-2 rtl:before:ml-2"
-                v-else>
+                v-else
+                class="before:content-['/'] before:mr-2 rtl:before:ml-2">
                 {{ humanize($t(item)) }}
             </span>
         </li>
