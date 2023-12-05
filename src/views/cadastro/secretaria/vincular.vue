@@ -74,7 +74,7 @@ export default {
                     v-mask="'###.###.###-##'"
                     class="form-input"
                     type="text"
-                    placeholder="Digite o cpf ........"
+                    placeholder="Digite o cpf ..."
                     @keyup="
                         ($event) => pesquisarSecretaria($event.target.value)
                     " />
