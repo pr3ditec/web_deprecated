@@ -2,6 +2,7 @@ import { FirebaseApp, initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import Response from "../api/Response";
 import axios from "axios";
+import Api from "@/api/Api";
 
 export default class FirebaseClient {
     // configs
@@ -24,16 +25,15 @@ export default class FirebaseClient {
         // inicializando o firebase
         this.app = initializeApp(this.firebaseConfig);
         this.mensagens = getMessaging(this.app);
+        console.log(this.recuperarToken());
     }
 
     public async receberMensagens(arrayNotificacoes: any) {
         onMessage(this.mensagens, (payload) => {
             Response.notificacaoToast();
             arrayNotificacoes.value.push({
-                id: 1,
-                profile: "user-profile.jpeg",
-                mensagem: payload.data?.mensagem,
-                titulo: payload.data?.titulo,
+                mensagem: payload.notification?.title,
+                titulo: payload.notification?.body,
             });
         });
     }
@@ -42,22 +42,8 @@ export default class FirebaseClient {
         return await getToken(this.mensagens);
     }
 
-    public testarPermissao(): Boolean {
-        try {
-            Notification.requestPermission().then((permission) => {
-                if (permission === "granted") {
-                    this.notificacao = true;
-                } else {
-                    this.notificacao = false;
-                }
-            });
-        } catch {
-            return this.notificacao;
-        }
-        return this.notificacao;
-    }
-
     public async cadastrarDispositivo() {
+        const request = new Api();
         const token = await this.recuperarToken();
         const userAgentData = window.navigator.userAgent.toLocaleLowerCase();
         const versionData = userAgentData.split("(")[1].split(" ");
@@ -88,11 +74,6 @@ export default class FirebaseClient {
                   : "unknow",
             token: token,
         };
-        axios.post("http://127.0.0.1:8001/dispositivo/admin/", dataAxios, {
-            headers: {
-                "origin-request": "admin",
-                Authorization: localStorage.getItem("user.token"),
-            },
-        });
+        request.enviarDadosApi("/dispositivo/admin", dataAxios);
     }
 }
