@@ -12,10 +12,13 @@ const search = ref(false);
 const firebase: FirebaseClient = new FirebaseClient();
 
 const notifications = ref([]);
-if (firebase.testarPermissao()) {
-    firebase.cadastrarDispositivo();
-    firebase.receberMensagens(notifications);
-}
+
+Notification.requestPermission().then((permission) => {
+    if (permission === "granted") {
+        firebase.cadastrarDispositivo();
+        firebase.receberMensagens(notifications);
+    }
+});
 
 const removeNotification = (value: number) => {
     notifications.value = notifications.value.filter((d) => d.id !== value);
@@ -121,9 +124,7 @@ const setActiveDropdown = () => {
                                     <div class="w-12 h-12 relative">
                                         <img
                                             class="w-12 h-12 rounded-full object-cover"
-                                            :src="`/assets/images/${
-                                                notification.profile ?? null
-                                            }`"
+                                            :src="`/assets/images/logo.png`"
                                             alt="" />
                                         <span
                                             class="bg-success w-2 h-2 rounded-full block absolute right-[6px] bottom-0"></span>
@@ -131,7 +132,7 @@ const setActiveDropdown = () => {
                                 </div>
                                 <div class="ltr:pl-3 rtl:pr-3 flex flex-auto">
                                     <div class="ltr:pr-3 rtl:pl-3 font-bold">
-                                        <h6 v-html="notification.titulo"></h6>
+                                        <h6>{{ notification.titulo }}</h6>
                                         <span
                                             class="text-xs block font-normal dark:text-gray-500"
                                             v-text="
