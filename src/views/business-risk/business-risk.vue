@@ -1,12 +1,10 @@
-<script lang="ts">
-import { ref, inject, computed } from "vue";
-import { useMeta } from "@/composables/use-meta";
+<script>
+import { ref, computed } from "vue";
 import apexchart from "vue3-apexcharts";
 import { useAppStore } from "@/stores/index";
 import ApiConnection from "../../api/Api";
-useMeta({ title: "Risco Empresarial" });
 
-const labels = ref<string[]>([]);
+const labels = ref([]);
 
 export default {
     components: {
@@ -14,7 +12,6 @@ export default {
     },
     setup() {
         const store = useAppStore();
-
         const revenueChart = computed(() => {
             const isDark =
                 store.theme === "dark" || store.isDarkMode ? true : false;
@@ -73,7 +70,7 @@ export default {
                 yaxis: {
                     tickAmount: 7,
                     labels: {
-                        formatter: (value: number) => {
+                        formatter: (value) => {
                             return value.toLocaleString("pt-BR", {
                                 style: "currency",
                                 currency: "BRL",
@@ -142,11 +139,7 @@ export default {
                 },
             };
         });
-
-        const revenueSeries = ref<
-            { name: string; data: number[]; color?: string }[]
-        >([]);
-
+        const revenueSeries = ref([]);
         return {
             revenueChart,
             revenueSeries,
@@ -156,7 +149,6 @@ export default {
         const dataAtual = new Date();
         const dataInicial = new Date();
         dataInicial.setDate(dataAtual.getDate() - 365);
-
         return {
             request: new ApiConnection(),
             totalParcelas: 0,
@@ -172,15 +164,7 @@ export default {
             parcelaPagaAtrasadaValor: 0,
             parcelaPagaEmDia: 0,
             parcelaPagaEmDiaValor: 0,
-            parcelamento: {} as {
-                [key: string]: {
-                    numeroParcelas: number;
-                    valorPago: number;
-                    valorInadimplente: number;
-                    inadimplencia: number;
-                    valorTotal: number;
-                };
-            },
+            parcelamento: {},
             dataAtual: dataAtual.toISOString().split("T")[0],
             dataInicial: dataInicial.toISOString().split("T")[0],
             dataFim: dataAtual.toISOString().split("T")[0],
@@ -195,145 +179,143 @@ export default {
                 const date = new Date(dateString);
                 return `${date.getFullYear()}-${date.getMonth() + 1}`;
             }
-
             let riscoResponse = await this.request.pegarDadosApi(
                 `relatorio/risco-empresarial/${this.dataInicial}/${this.dataFim}`,
             );
             const data = riscoResponse.list;
-
             let groupedData = {};
-            let tempLabels: string[] = [];
+            let tempLabels = [];
+            if (riscoResponse.status) {
+                data.forEach((item) => {
+                    let porcentagem = item.risco_empresarial.porcentagem;
 
-            data.forEach((item) => {
-                let porcentagem = item.risco_empresarial.porcentagem;
+                    item.parcelas.forEach((parcela) => {
+                        let data = getMonthYear(parcela.vencimento);
+                        let valor = parseFloat(parcela.valor);
 
-                item.parcelas.forEach((parcela) => {
-                    let data = getMonthYear(parcela.vencimento);
-                    let valor = parseFloat(parcela.valor);
-
-                    if (!groupedData.hasOwnProperty(porcentagem)) {
-                        groupedData[porcentagem] = {};
-                    }
-
-                    if (!groupedData[porcentagem].hasOwnProperty(data)) {
-                        groupedData[porcentagem][data] = valor;
-                        if (!tempLabels.includes(data)) {
-                            tempLabels.push(data);
+                        if (!groupedData.hasOwnProperty(porcentagem)) {
+                            groupedData[porcentagem] = {};
                         }
-                    } else {
-                        groupedData[porcentagem][data] += valor;
-                    }
-                });
-            });
 
-            let seriesData: { name: string; data: number[] }[] = [];
-
-            for (let porcentagem in groupedData) {
-                let dataSeries: number[] = [];
-                tempLabels.forEach((label) => {
-                    dataSeries.push(groupedData[porcentagem][label] || 0);
-                });
-                seriesData.push({
-                    name: porcentagem + "%",
-                    data: dataSeries,
-                });
-            }
-
-            this.revenueSeries = seriesData;
-            labels.value = tempLabels.sort();
-
-            data.forEach((item) => {
-                item.parcelas.forEach((parcela) => {
-                    this.somaParcelas += parseFloat(parcela.valor);
-
-                    // somando o total de parcelas
-                    this.totalParcelas++;
-
-                    // verifico se foi pago a parcela
-                    if (parcela.pagamento) {
-                        this.totalParcelasPagas++;
-                        this.adimplente += parseFloat(parcela.valor);
-
-                        let dataVencimento = new Date(parcela.vencimento);
-                        if (dataVencimento < new Date(this.dataAtual)) {
-                            this.parcelaPagaAtrasada++;
-                            this.parcelaPagaAtrasadaValor += parseFloat(
-                                parcela.valor,
-                            );
+                        if (!groupedData[porcentagem].hasOwnProperty(data)) {
+                            groupedData[porcentagem][data] = valor;
+                            if (!tempLabels.includes(data)) {
+                                tempLabels.push(data);
+                            }
                         } else {
-                            this.parcelaPagaEmDia++;
-                            this.parcelaPagaEmDiaValor += parseFloat(
-                                parcela.valor,
-                            );
+                            groupedData[porcentagem][data] += valor;
                         }
-                    }
-
-                    // verifico inadimplência
-                    let dataVencimento = new Date(parcela.vencimento);
-                    if (
-                        !parcela.pagamento &&
-                        dataVencimento < new Date(this.dataAtual)
-                    ) {
-                        this.totalInadimplencia++;
-                        this.inadimplente += parseFloat(parcela.valor);
-                    }
-
-                    // colocar no caixa futuro
-                    if (!parcela.pagamento) {
-                        this.caixaFuturo += parseFloat(parcela.valor);
-                    }
-
-                    // vejo se a parcela ta paga
-                    if (
-                        parcela.historico &&
-                        parcela.historico.some(
-                            (h) => h.descricao === "EFETIVADO",
-                        )
-                    ) {
-                        this.totalParcelasAtendimentos++;
-                    }
-
-                    // agrupa as parcelas
-                    if (!this.parcelamento[parcela.parcela]) {
-                        this.parcelamento[parcela.parcela] = {
-                            numeroParcelas: 0,
-                            valorPago: 0,
-                            valorInadimplente: 0,
-                            valorTotal: 0,
-                            inadimplencia: 0,
-                        };
-                    }
-                    this.parcelamento[parcela.parcela].numeroParcelas++;
-                    this.parcelamento[parcela.parcela].valorTotal += parseFloat(
-                        parcela.valor,
-                    );
-                    if (parcela.pagamento) {
-                        this.parcelamento[parcela.parcela].valorPago +=
-                            parseFloat(parcela.valor);
-                    } else if (dataVencimento < new Date(this.dataAtual)) {
-                        this.parcelamento[parcela.parcela].valorInadimplente +=
-                            parseFloat(parcela.valor);
-                    }
+                    });
                 });
-            });
 
-            // inadimplência para cada parcela
-            Object.keys(this.parcelamento).forEach((parcela) => {
-                this.parcelamento[parcela].inadimplencia =
-                    (this.parcelamento[parcela].valorInadimplente /
-                        this.parcelamento[parcela].valorTotal) *
-                    100;
-            });
+                let seriesData = [];
 
-            if (this.totalParcelas !== 0) {
-                this.mediaParcelamento = +(
-                    this.somaParcelas / this.totalParcelas
-                ).toFixed(2);
-            } else {
-                this.mediaParcelamento = 0;
+                for (let porcentagem in groupedData) {
+                    let dataSeries = [];
+                    tempLabels.forEach((label) => {
+                        dataSeries.push(groupedData[porcentagem][label] || 0);
+                    });
+                    seriesData.push({
+                        name: porcentagem + "%",
+                        data: dataSeries,
+                    });
+                }
+
+                this.revenueSeries = seriesData;
+                labels.value = tempLabels.sort();
+
+                data.forEach((item) => {
+                    item.parcelas.forEach((parcela) => {
+                        this.somaParcelas += parseFloat(parcela.valor);
+
+                        // somando o total de parcelas
+                        this.totalParcelas++;
+
+                        // verifico se foi pago a parcela
+                        if (parcela.pagamento) {
+                            this.totalParcelasPagas++;
+                            this.adimplente += parseFloat(parcela.valor);
+
+                            let dataVencimento = new Date(parcela.vencimento);
+                            if (dataVencimento < new Date(this.dataAtual)) {
+                                this.parcelaPagaAtrasada++;
+                                this.parcelaPagaAtrasadaValor += parseFloat(
+                                    parcela.valor,
+                                );
+                            } else {
+                                this.parcelaPagaEmDia++;
+                                this.parcelaPagaEmDiaValor += parseFloat(
+                                    parcela.valor,
+                                );
+                            }
+                        }
+
+                        // verifico inadimplência
+                        let dataVencimento = new Date(parcela.vencimento);
+                        if (
+                            !parcela.pagamento &&
+                            dataVencimento < new Date(this.dataAtual)
+                        ) {
+                            this.totalInadimplencia++;
+                            this.inadimplente += parseFloat(parcela.valor);
+                        }
+
+                        // colocar no caixa futuro
+                        if (!parcela.pagamento) {
+                            this.caixaFuturo += parseFloat(parcela.valor);
+                        }
+
+                        // vejo se a parcela ta paga
+                        if (
+                            parcela.historico &&
+                            parcela.historico.some(
+                                (h) => h.descricao === "EFETIVADO",
+                            )
+                        ) {
+                            this.totalParcelasAtendimentos++;
+                        }
+
+                        // agrupa as parcelas
+                        if (!this.parcelamento[parcela.parcela]) {
+                            this.parcelamento[parcela.parcela] = {
+                                numeroParcelas: 0,
+                                valorPago: 0,
+                                valorInadimplente: 0,
+                                valorTotal: 0,
+                                inadimplencia: 0,
+                            };
+                        }
+                        this.parcelamento[parcela.parcela].numeroParcelas++;
+                        this.parcelamento[parcela.parcela].valorTotal +=
+                            parseFloat(parcela.valor);
+                        if (parcela.pagamento) {
+                            this.parcelamento[parcela.parcela].valorPago +=
+                                parseFloat(parcela.valor);
+                        } else if (dataVencimento < new Date(this.dataAtual)) {
+                            this.parcelamento[
+                                parcela.parcela
+                            ].valorInadimplente += parseFloat(parcela.valor);
+                        }
+                    });
+                });
+
+                // inadimplência para cada parcela
+                Object.keys(this.parcelamento).forEach((parcela) => {
+                    this.parcelamento[parcela].inadimplencia =
+                        (this.parcelamento[parcela].valorInadimplente /
+                            this.parcelamento[parcela].valorTotal) *
+                        100;
+                });
+
+                if (this.totalParcelas !== 0) {
+                    this.mediaParcelamento = +(
+                        this.somaParcelas / this.totalParcelas
+                    ).toFixed(2);
+                } else {
+                    this.mediaParcelamento = 0;
+                }
             }
         },
-
         formatValor(valor) {
             return valor.toLocaleString("pt-BR", {
                 style: "currency",
@@ -346,16 +328,6 @@ export default {
 
 <template>
     <div>
-        <ul class="flex space-x-2 rtl:space-x-reverse">
-            <li>
-                <a href="javascript:;" class="text-primary hover:underline"
-                    >Dashboard</a
-                >
-            </li>
-            <li class="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
-                <span>{{ $t("busines-risk") }}</span>
-            </li>
-        </ul>
         <div class="pt-8">
             <div
                 class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-6 text-white">
@@ -514,8 +486,8 @@ export default {
                                         {{ $t("defaultedAmount") }}
                                     </th>
                                     <th
-                                        class="!text-center ltr:rounded-r-md rtl:rounded-l-md">
-                                        INADIMPLÊNCIA
+                                        class="!text-center uppercase ltr:rounded-r-md rtl:rounded-l-md">
+                                        {{ $t("defaulted") }}
                                     </th>
                                 </tr>
                             </thead>

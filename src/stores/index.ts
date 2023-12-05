@@ -4,11 +4,11 @@ import appSetting from "@/app-setting";
 
 const permissions = {
     doctor: {
-        dashboard: false,
+        dashboard: true,
         schedule: true,
         register: true,
         financer: true,
-        GeneralReport: false,
+        GeneralReport: true,
     },
     secretary: {
         dashboard: false,

@@ -232,15 +232,16 @@
     "active": "Ativo",
     "not-found": "Não encontrado",
     "schedule-programming": "Programar agenda",
-    "pre-scheduling": "Pre-agendamento",
-    "pre-scheduling-registration": "Cadastro Pre-agendamento",
+    "pre-scheduling": "Pré-agendamento",
+    "pre-scheduling-registration": "Cadastro Pré-agendamento",
     "schedule-header": "Agenda Cabeçalho",
-    "pre-scheduling-history": "historico Pre-agendamento",
-    "pre-scheduling-modal": "Modal Pre-agendamento",
-    "schedule-requests": "Solicitacoes agenda",
+    "pre-scheduling-history": "histórico Pré-agendamento",
+    "pre-scheduling-modal": "Modal Pré-agendamento",
+    "schedule-requests": "Solicitacões agenda",
     "scheduling": "Agendamento",
     "ask-for-join": "Solicitar vinculo",
     "ask": "Solicitar",
     "doctorAlreadyHasLinkWithAnotherClinic": "Médico já está vinculado com outra clinica",
-    "linkRequestMade": "Solicitação feita   "
+    "linkRequestMade": "Solicitação feita",
+    "business-risk": "Risco Empresarial"
 }

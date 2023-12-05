@@ -38,10 +38,10 @@ const routes: RouteRecordRaw[] = [
 
     /** RISCO */
     {
-        path: "/risco-empresarial",
+        path: "/business-risk",
         name: "risco",
         component: () =>
-            import("../views/risco-empresarial/risco-empresarial.vue"),
+            import("../views/business-risk/business-risk.vue"),
     },
     /** RISCO */
 

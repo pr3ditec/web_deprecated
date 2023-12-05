@@ -11,7 +11,7 @@ import IconComponents from "@/components/icons/IconComponents.vue";
     <TitleDivision title="dashboard" />
 
     <MenuNavItem>
-        <NavItem to="/risco-empresarial" label="busines-risk">
+        <NavItem to="/business-risk" label="busines-risk">
             <IconComponents />
         </NavItem>
 

@@ -198,5 +198,6 @@
     "ask-for-join": "Request a link",
     "ask": "Request",
     "doctorAlreadyHasLinkWithAnotherClinic": "Doctor already has link with another clinic",
-    "linkRequestMade": "Link request made"
+    "linkRequestMade": "Link request made",
+    "business-risk": "Business Risk"
 }
