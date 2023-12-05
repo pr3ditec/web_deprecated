@@ -199,5 +199,6 @@
     "ask": "Request",
     "doctorAlreadyHasLinkWithAnotherClinic": "Doctor already has link with another clinic",
     "linkRequestMade": "Link request made",
-    "business-risk": "Business Risk"
+    "business-risk": "Business Risk",
+    "doctor-settings": "Doctor Settings"
 }
