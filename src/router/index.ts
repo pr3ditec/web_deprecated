@@ -40,8 +40,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/business-risk",
         name: "risco",
-        component: () =>
-            import("../views/business-risk/business-risk.vue"),
+        component: () => import("../views/business-risk/business-risk.vue"),
     },
     /** RISCO */
 
@@ -102,6 +101,11 @@ const routes: RouteRecordRaw[] = [
         path: "/settings",
         name: "Regras admin",
         component: () => import("../views/settings/settings.vue"),
+    },
+    {
+        path: "/doctor-settings",
+        name: "Configurações do médico",
+        component: () => import("../views/doctor-settings/doctor-settings.vue"),
     },
     /** REGRAS */
 

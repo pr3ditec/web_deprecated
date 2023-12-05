@@ -243,5 +243,6 @@
     "ask": "Solicitar",
     "doctorAlreadyHasLinkWithAnotherClinic": "Médico já está vinculado com outra clinica",
     "linkRequestMade": "Solicitação feita",
-    "business-risk": "Risco Empresarial"
+    "business-risk": "Risco Empresarial",
+    "doctor-settings": "Configurações do Médico"
 }

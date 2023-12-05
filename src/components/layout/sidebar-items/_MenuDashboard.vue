@@ -18,5 +18,9 @@ import IconComponents from "@/components/icons/IconComponents.vue";
         <NavItem to="/settings" label="settings">
             <IconComponents />
         </NavItem>
+
+        <NavItem to="/doctor-settings" label="doctor-settings">
+            <IconComponents />
+        </NavItem>
     </MenuNavItem>
 </template>

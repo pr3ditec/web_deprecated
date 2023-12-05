@@ -38,7 +38,6 @@ export default class Response {
             icon: "info",
             toast: true,
             showConfirmButton: false,
-            width: "8em",
             background: store.isDarkMode ? "dark" : "white",
             timer: 800,
             position: "top",
@@ -58,6 +57,7 @@ export default class Response {
             showCancelButton: true,
             cancelButtonText: cancel,
             focusCancel: false,
+            position: "bottom-left",
         }).then((response) => {
             if (response.isConfirmed) {
                 return true;
