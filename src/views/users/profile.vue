@@ -7,7 +7,11 @@ export default {
         return {
             request: new Api(),
             dadosUsuario: [],
-            fotoUsuario: "",
+            formUsuario: {
+                email: "",
+                senha: "",
+                senha_repetir: "",
+            },
         };
     },
     methods: {
@@ -15,13 +19,13 @@ export default {
             this.request
                 .pegarDadosApi(`/usuario/${localStorage.getItem("user.id")}`)
                 .then((res) => {
-                    console.log(res.list);
                     this.dadosUsuario = res.list;
                 });
         },
 
         atualizarDadosUsuario() {
-            this.request("/", {}).then((res) => {
+            return console.log("implementar");
+            this.request.enviarDadosApi("/usuario", data).then((res) => {
                 res.status
                     ? Response.mensagemToast("success", res.message)
                     : Response.mensagemToast("error", res.message);
@@ -44,7 +48,10 @@ export default {
             <div class="mb-5">
                 <div class="flex flex-col justify-center items-center">
                     <img
-                        :src="dadosUsuario.foto_perfil ?? '/assets//images/profile-34.jpeg'"
+                        :src="
+                            dadosUsuario.foto_perfil ??
+                            '/assets//images/profile-34.jpeg'
+                        "
                         alt=""
                         class="w-24 h-24 rounded-full object-cover mb-5" />
                     <p class="font-semibold text-primary text-xl">
@@ -248,62 +255,59 @@ export default {
                             alt=""
                             class="w-20 h-20 md:w-32 md:h-32 rounded-full object-cover mx-auto" />
                     </div>
-                    <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-5">
-                        <div>
-                            <label for="name">{{ $t("full-name") }}</label>
-                            <input
-                                id="name"
-                                type="text"
-                                :placeholder="dadosUsuario.nome"
-                                class="form-input" />
-                        </div>
-                        <div>
-                            <label for="profession">{{
-                                $t("profession")
-                            }}</label>
-                            <input
-                                id="profession"
-                                type="text"
-                                placeholder="Médico"
-                                class="form-input" />
-                        </div>
-                        <div>
-                            <label for="country">{{ $t("citizenship") }}</label>
-                            <select
-                                id="country"
-                                class="form-select text-white-dark">
-                                <option selected>{{ $t("brazilian") }}</option>
-                                <option>{{ $t("foreign") }}</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="address">{{ $t("address") }}</label>
-                            <input
-                                id="address"
-                                type="text"
-                                :placeholder="dadosUsuario.endereco_medico"
-                                class="form-input" />
-                        </div>
-                        <div>
-                            <label for="phone">{{ $t("phone") }}</label>
-                            <input
-                                id="phone"
-                                type="text"
-                                :placeholder="dadosUsuario.telefone_medico"
-                                class="form-input" />
-                        </div>
+                    <div class="flex flex-col w-full gap-4">
                         <div>
                             <label for="email">Email</label>
                             <input
                                 id="email"
                                 type="email"
-                                :placeholder="dadosUsuario.email"
+                                v-model="formUsuario.email"
                                 class="form-input" />
+                        </div>
+                        <div>
+                            <label for="password">{{ $t("password") }}</label>
+                            <input
+                                id="password"
+                                type="password"
+                                v-model="formUsuario['senha']"
+                                class="form-input" />
+                            <label
+                                v-if="
+                                    formUsuario.senha.length > 0 &&
+                                    formUsuario.senha.length < 8
+                                "
+                                class="text-danger text-sm mt-0"
+                                >{{ $t("password-short") }}</label
+                            >
+                        </div>
+                        <div>
+                            <label for="repeat-password">{{
+                                $t("repeat-password")
+                            }}</label>
+                            <input
+                                id="repeat-password"
+                                type="password"
+                                v-model="formUsuario.senha_repetir"
+                                class="form-input" />
+                            <label
+                                v-if="
+                                    formUsuario.senha !=
+                                    formUsuario.senha_repetir
+                                "
+                                class="text-danger text-sm mt-0"
+                                >{{ $t("password-match") }}</label
+                            >
                         </div>
                         <div class="sm:col-span-2 mt-3">
                             <button
                                 type="button"
                                 class="btn btn-primary capitalize"
+                                :disabled="
+                                    formUsuario.email.length > 0 &&
+                                    (formUsuario.senha !=
+                                        formUsuario.senha_repetir ||
+                                        formUsuario.senha_repetir < 8)
+                                "
                                 @click="atualizarDadosUsuario()">
                                 {{ $t("update") }}
                             </button>

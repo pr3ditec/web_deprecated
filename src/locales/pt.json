@@ -249,5 +249,8 @@
     "profession": "Profissão",
     "brazilian": "Brasileiro",
     "foreign": "Estrangeiro",
-    "phone": "Número de telefone"
+    "phone": "Número de telefone",
+    "password-match": "Senhas não correspondem",
+    "password-short": "Senhas precisam ter ao menos 8 caracteres",
+    "repeat-password": "Repita a senha"
 }
