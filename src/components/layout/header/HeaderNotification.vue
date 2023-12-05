@@ -4,7 +4,6 @@ import { useI18n } from "vue-i18n";
 
 import { useRoute } from "vue-router";
 import { useAppStore } from "@/stores/index";
-import ThemeChanger from "@/components/layout/ThemeChanger.vue";
 import FirebaseClient from "@/firebase";
 
 const store = useAppStore();
@@ -17,6 +16,10 @@ if (firebase.testarPermissao()) {
     firebase.cadastrarDispositivo();
     firebase.receberMensagens(notifications);
 }
+
+const removeNotification = (value: number) => {
+    notifications.value = notifications.value.filter((d) => d.id !== value);
+};
 
 onMounted(() => {
     setActiveDropdown();

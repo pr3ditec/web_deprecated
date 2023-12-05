@@ -1,9 +1,12 @@
 <script lang="ts" setup>
 import { useMeta } from "@/composables/use-meta";
 import { useAppStore } from "@/stores/index";
+
 const store = useAppStore();
+
 useMeta({ title: "Error 404" });
 </script>
+
 <template>
     <div
         class="relative flex min-h-screen items-center justify-center overflow-hidden">
@@ -18,9 +21,11 @@ useMeta({ title: "Error 404" });
                     "
                     alt="404"
                     class="mx-auto -mt-10 w-full max-w-xs object-cover md:-mt-14 md:max-w-xl" />
+
                 <p class="mt-5 text-base dark:text-white">
                     The page you requested was not found!
                 </p>
+
                 <router-link
                     to="/"
                     class="btn btn-gradient mx-auto !mt-7 w-max border-0 uppercase shadow-none"

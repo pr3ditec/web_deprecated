@@ -608,6 +608,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import("../views/pages/maintenence.vue"),
         meta: { layout: "auth" },
     },
+    {
+        path: "/:pathMatch(.*)*",
+        name: "NotFound",
+        component: () => import("../views/pages/error404.vue"),
+    },
 ];
 
 const router = createRouter({
