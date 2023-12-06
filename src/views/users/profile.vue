@@ -152,7 +152,7 @@ export default {
                                 stroke="currentColor"
                                 stroke-width="1.5" />
                         </svg>
-                        {{ dadosUsuario.nacionalidade }}
+                        {{ dadosUsuario.nacionalidade    }}
                     </li>
                     <li>
                         <a href="javascript:;" class="flex items-center gap-2">
