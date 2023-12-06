@@ -215,5 +215,7 @@
     "change-password": "Change password",
     "capabilities": "Capabilities",
     "return-time": "Time",
-    "days": "Days"
+    "days": "Days",
+    "error-searching-clinic": "Error on searching clinic",
+    "success-registering-return": "Success registering return"
 }

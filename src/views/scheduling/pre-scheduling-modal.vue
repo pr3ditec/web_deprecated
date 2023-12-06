@@ -61,6 +61,7 @@ export default {
             await this.request
                 .pegarDadosApi(`/agendamento/medico/${this.medico}`)
                 .then((response) => {
+                    console.log(response);
                     this.retornoAgenda = response.list;
                 });
         },
@@ -130,7 +131,8 @@ export default {
                 </div>
                 <button
                     class="btn btn-sm btn-primary mt-4 w-1/2 uppercase"
-                    @click="emitPropostaAgendamento()">
+                    @click="emitPropostaAgendamento()"
+                    :disabled="selectInput == ''">
                     marcar {{ radioTipo }}
                 </button>
             </div>

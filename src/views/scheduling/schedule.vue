@@ -85,7 +85,10 @@ export default {
             const evento = this.pegarEventosSelecionados();
             if (evento.status) {
                 if (data.tipo == "retorno") {
-                    // marcar consulta de agenda
+                    this.propostaDeRetorno(
+                        data.modalDados.pre_agendamento_id,
+                        evento.horarios,
+                    );
                 } else {
                     this.propostaHorarios(data.modalDados.id, evento.horarios);
                 }
@@ -193,11 +196,37 @@ export default {
                 })
                 .then((res) =>
                     res.status
-                        ? Response.mensagemToast("success", res.message)
-                        : Response.mensagemToast("error", res.message),
+                        ? Response.mensagemToast(
+                              "success",
+                              this.$t(res.messageCode),
+                          )
+                        : Response.mensagemToast(
+                              "error",
+                              this.$t(res.messageCode),
+                          ),
                 );
         },
         /** ENVIAR PROPOSTA DE HORARIOS PARA PACIENTE */
+
+        /** PROPOSTA DE RETORNO */
+        async propostaDeRetorno(pre_agendamento_id: number, arrayDados: any) {
+            await this.request
+                .enviarDadosApi("/pre-agendamento/retorno", {
+                    pre_agendamento_id: pre_agendamento_id,
+                })
+                .then((res) => {
+                    res.status
+                        ? Response.mensagemToast(
+                              "success",
+                              this.$t(res.messageCode),
+                          )
+                        : Response.mensagemToast(
+                              "error",
+                              this.$t(res.messageCode),
+                          );
+                });
+        },
+        /** PROPOSTA DE RETORNO */
 
         /** PEGAR EVENTO(s) SELECIONADO(s) */
         pegarEventosSelecionados() {
