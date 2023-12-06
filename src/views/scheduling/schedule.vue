@@ -216,8 +216,14 @@ export default {
                 })
                 .then((res) => {
                     res.status
-                        ? Response.mensagemToast("success", res.message)
-                        : Response.mensagemToast("error", res.message);
+                        ? Response.mensagemToast(
+                              "success",
+                              this.$t(res.messageCode),
+                          )
+                        : Response.mensagemToast(
+                              "error",
+                              this.$t(res.messageCode),
+                          );
                 });
         },
         /** PROPOSTA DE RETORNO */
