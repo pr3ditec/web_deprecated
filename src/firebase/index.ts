@@ -25,7 +25,6 @@ export default class FirebaseClient {
         // inicializando o firebase
         this.app = initializeApp(this.firebaseConfig);
         this.mensagens = getMessaging(this.app);
-        console.log(this.recuperarToken());
     }
 
     public async receberMensagens(arrayNotificacoes: any) {
