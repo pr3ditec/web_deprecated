@@ -29,7 +29,7 @@ export default {
 
         atualizarDadosUsuario() {
             this.request
-                .enviarDadosApi("/usuario", {
+                .enviarDadosApi(`/usuario/${localStorage.getItem("user.id")}`, {
                     email: this.dadosUsuario.email,
                     senha: this.formUsuario.antiga_senha,
                     nova_senha: this.formUsuario.nova_senha,
