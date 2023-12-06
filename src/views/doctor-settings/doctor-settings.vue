@@ -16,24 +16,17 @@ export default {
                 {
                     field: "nome",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("name"),
-                },
-                {
-                    field: "updated_at",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: this.$t("last-update"),
-                    slotMode: true,
-                    cellRenderer(item) {
-                        const data = FormatoData.formatarParaApi(
-                            item.updated_at,
-                        );
-                        return FormatoData.formatarParaPadraoBrasil(data.data);
-                    },
+                    title: this.$t("capabilities"),
                 },
                 {
                     field: "status",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
                     title: this.$t("status"),
+                },
+                {
+                    field: "dias",
+                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    title: this.$t("return-time"),
                 },
                 {
                     field: "valor",
@@ -46,15 +39,7 @@ export default {
                     title: this.$t("update"),
                 },
             ],
-            rows: [
-                {
-                    nome: "valor retorno",
-                    updated_at: new Date(),
-                    ativo: "1",
-                    valor: "200.00",
-                    lock: true,
-                },
-            ],
+            rows: [],
         };
     },
     async created() {
@@ -64,29 +49,39 @@ export default {
         /** CONFIGURACOES-MEDICO */
         async buscarConfigMedico() {
             await this.request
-                .pegarDadosApi("/risco-empresarial")
+                .pegarDadosApi(`/medico/${localStorage.getItem("doctor.id")}`)
                 .then(async (res) => {
-                    // if (res.status) {
-                    //     res.list.forEach((item) => {
-                    //         item["lock"] = true;
-                    //     });
-                    //     this.rows = res.list;
-                    // }
+                    if (res.status) {
+                        res.list.especialidades.forEach((item: any) => {
+                            item["lock"] = true;
+                        });
+                        this.rows = res.list.especialidades;
+                    }
                 });
         },
 
-        async atualizarConfigMedico() {
-            return console.log("ainda não implementado na api");
-            // await this.request
-            //     .enviarDadosApi("/risco-empresarial", {
-            //         estado_id: estado,
-            //         valor: valor,
-            //     })
-            //     .then((res) => {
-            //         res.status
-            //             ? Response.mensagemToast("success", res.message)
-            //             : Response.mensagemToast("error", res.message);
-            //     });
+        async atualizarConfigMedico(
+            dias_retorno: any,
+            valor_retorno: any,
+            especialidade_id: any,
+            valor_especialidade: any,
+        ) {
+            await this.request
+                .enviarDadosApi("/medico/especialidade", {
+                    especialidades: JSON.stringify([
+                        {
+                            dias_retorno: dias_retorno,
+                            valor_retorno: valor_retorno,
+                            valor: valor_especialidade,
+                            especialidade_id: especialidade_id,
+                        },
+                    ]),
+                })
+                .then((res) => {
+                    res.status
+                        ? Response.mensagemToast("success", res.message)
+                        : Response.mensagemToast("error", res.message);
+                });
         },
 
         /** CONFIGURACOES-MEDICO */
@@ -110,12 +105,12 @@ export default {
         :sortable="true">
         <template #nome="data">
             <span class="text-md font-semibold uppercase">{{
-                data.value.nome
+                data.value.descricao
             }}</span>
         </template>
         <template #status="data">
             <span
-                v-if="data.value.ativo"
+                v-if="data.value.valor_retorno"
                 class="badge whitespace-nowrap bg-success uppercase"
                 >{{ $t("active") }}</span
             >
@@ -123,21 +118,32 @@ export default {
                 $t("not-found")
             }}</span>
         </template>
+        <template #dias="data">
+            <div class="flex flex-row">
+                <div class="flex w-full p-3">
+                    <input
+                        v-model="data.value.dias_retorno"
+                        class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none"
+                        :class="{ 'border border-danger': !data.value.lock }"
+                        type="text"
+                        :disabled="data.value.lock" />
+                    <div
+                        :class="{ 'bg-danger text-white': !data.value.lock }"
+                        class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                        <span>{{ $t("days") }}</span>
+                    </div>
+                </div>
+            </div>
+        </template>
         <template #valor="data">
             <div class="flex flex-row">
                 <div class="flex w-full p-3">
                     <input
-                        v-model="data.value.valor"
+                        v-model="data.value.valor_retorno"
                         class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none"
                         :class="{ 'border border-danger': !data.value.lock }"
                         type="text"
-                        :disabled="data.value.lock"
-                        @keypress.enter="
-                            () => {
-                                data.value.lock = !data.value.lock;
-                                atualizarConfigMedico();
-                            }
-                        " />
+                        :disabled="data.value.lock" />
                     <div
                         :class="{ 'bg-danger text-white': !data.value.lock }"
                         class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
@@ -152,7 +158,14 @@ export default {
                 :class="{ 'btn-danger': !data.value.lock }"
                 @click="
                     data.value.lock = !data.value.lock;
-                    !data.value.lock ? null : atualizarConfigMedico();
+                    !data.value.lock
+                        ? null
+                        : atualizarConfigMedico(
+                              data.value.dias_retorno,
+                              data.value.valor_retorno,
+                              data.value.id,
+                              data.value.valor,
+                          );
                 ">
                 {{ data.value.lock ? $t("unlock") : $t("update") }}
             </button>
