@@ -212,5 +212,8 @@
     "repeat-password": "Repeat the password",
     "old-password": "Last password",
     "new-password": "New password",
-    "change-password": "Change password"
+    "change-password": "Change password",
+    "capabilities": "Capabilities",
+    "return-time": "Time",
+    "days": "Days"
 }
