@@ -57,6 +57,9 @@ export default {
             ],
         };
     },
+    async created() {
+        this.buscarConfigMedico();
+    },
     methods: {
         /** CONFIGURACOES-MEDICO */
         async buscarConfigMedico() {
@@ -87,9 +90,6 @@ export default {
         },
 
         /** CONFIGURACOES-MEDICO */
-    },
-    async created() {
-        this.buscarConfigMedico();
     },
 };
 </script>

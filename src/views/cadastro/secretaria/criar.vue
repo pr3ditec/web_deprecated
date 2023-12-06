@@ -161,9 +161,9 @@ export default {
                 $t("birthdate")
             }}</label>
             <input
+                v-model="secretariaFormData.nascimento"
                 type="date"
-                class="form-input"
-                v-model="secretariaFormData.nascimento" />
+                class="form-input" />
         </div>
 
         <!-- SEXO -->

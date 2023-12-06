@@ -27,7 +27,7 @@ useMeta({ title: "Login" });
             <div
                 class="relative flex w-full max-w-[1502px] flex-col justify-between overflow-hidden rounded-md bg-white/60 backdrop-blur-lg dark:bg-black/50 lg:min-h-[758px] lg:flex-row lg:gap-10 xl:gap-0">
                 <div
-                    class="relative hidden w-full items-center justify-center bg-[linear-gradient(-137deg,rgba(139,18,98,1)_0%,rgba(133,97,238,1)_100%)] p-5 lg:inline-flex lg:max-w-[835px] xl:-ms-28 ltr:xl:skew-x-[14deg] rtl:xl:skew-x-[-14deg]">
+                    class="relative hidden w-full items-center justify-center linear-background p-5 lg:inline-flex lg:max-w-[835px] xl:-ms-28 ltr:xl:skew-x-[14deg] rtl:xl:skew-x-[-14deg]">
                     <!-- <div class="absolute inset-y-0 w-8 from-primary/10 via-transparent to-transparent ltr:-right-10 ltr:bg-gradient-to-r rtl:-left-10 rtl:bg-gradient-to-l xl:w-16 ltr:xl:-right-20 rtl:xl:-left-20"></div> -->
 
                     <div class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg]">
@@ -59,3 +59,26 @@ useMeta({ title: "Login" });
         </div>
     </div>
 </template>
+
+<style scoped>
+.linear-background {
+    background: linear-gradient(
+        -137deg,
+        rgb(139, 18, 98, 1) 0%,
+        rgba(133, 97, 238, 1) 100%
+    );
+}
+
+.dark .linear-background {
+    background: linear-gradient(
+        -137deg,
+        rgb(139, 18, 98, 1) 0%,
+        rgba(133, 97, 238, 1) 100%
+    );
+}
+
+.text-shadow {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: none;
+}
+</style>

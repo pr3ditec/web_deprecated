@@ -1,15 +1,13 @@
 <script lang="ts" setup>
-import { computed, reactive, ref } from "vue";
-import { useAppStore } from "@/stores/index";
-import { useRouter } from "vue-router";
-import { useMeta } from "@/composables/use-meta";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-useMeta({ title: "Login" });
-
-const router = useRouter();
+import { useAppStore } from "@/stores/index";
 const store = useAppStore();
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+import { computed, reactive, ref } from "vue";
 
 const loginForm = reactive({
     login: "marlene@email.com",

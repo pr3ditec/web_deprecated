@@ -49,6 +49,9 @@ export default {
             riscoEmpresarialTabela: [],
         };
     },
+    async created() {
+        this.buscarRiscoEmpresarial();
+    },
     methods: {
         /** RISCO-EMPRESARIAL */
         async buscarRiscoEmpresarial() {
@@ -79,13 +82,10 @@ export default {
 
         /** RISCO-EMPRESARIAL */
     },
-    async created() {
-        this.buscarRiscoEmpresarial();
-    },
 };
 </script>
 <template>
-    <hr>
+    <hr />
     <div class="row mt-5">
         <div class="col-12 mt-5">
             <h1 class="text-2xl font-bold mb-4 capitalize">

@@ -47,7 +47,7 @@ export const useAppStore = defineStore("app", {
         sidebar: false,
         activeDropdown: "",
         languageList: [
-            { code: "pt", name: "Portuguese" },
+            { code: "pt", name: "Português" },
             { code: "en", name: "English" },
         ],
         isShowMainLoader: true,

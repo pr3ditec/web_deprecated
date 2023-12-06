@@ -509,7 +509,7 @@ export default {
                                     </td>
                                     <td
                                         class="!text-center ltr:rounded-r-md rtl:rounded-l-md"
-                                        v-bind:class="{
+                                        :class="{
                                             'text-success':
                                                 value.inadimplencia <= 70,
                                             'text-danger':

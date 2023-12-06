@@ -14,6 +14,9 @@ export default {
         };
     },
     async created() {},
+    created() {
+        this.pegarEspecialidades();
+    },
     methods: {
         async pesquisarMedico(cpf) {
             if (cpf.length == 14) {
@@ -76,9 +79,6 @@ export default {
                 });
         },
     },
-    created() {
-        this.pegarEspecialidades();
-    },
 };
 </script>
 
@@ -106,7 +106,7 @@ export default {
                 <label class="capitalize mt-8">{{ $t("clinic") }}</label>
                 <!-- CARD COM CLINICA -->
                 <div v-for="clinica in dadosClinicas.clinica">
-                    <select class="form-input" v-model="especialidadeSelect">
+                    <select v-model="especialidadeSelect" class="form-input">
                         <option value="0">
                             Selecione uma de suas especialidade
                         </option>
