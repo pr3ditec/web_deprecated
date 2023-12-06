@@ -62,6 +62,14 @@ export default {
             }
         },
         /** LIEBERAR BOTAO E SENHAS NOVAS */
+
+        /** FORMATANDO NASCIMENTO */
+        nascimentoFormatado() {
+            return FormatoData.formatarParaPadraoBrasil(
+                FormatoData.formatarParaApi(this.dadosUsuario.nascimento).data,
+            );
+        },
+        /** FORMATANDO NASCIMENTO */
     },
     async created() {
         this.buscarDadosUsuario();
@@ -122,7 +130,7 @@ export default {
                                 stroke-width="1.5"
                                 stroke-linecap="round" />
                         </svg>
-                        {{ dadosUsuario.nascimento }}
+                        {{ nascimentoFormatado }}
                     </li>
                     <li class="flex items-center gap-2">
                         <svg
