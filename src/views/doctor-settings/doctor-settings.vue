@@ -53,7 +53,6 @@ export default {
                             item["lock"] = true;
                         });
                         this.rows = res.list.especialidades;
-                        console.log(res.list.especialidades);
                     }
                 });
         },
@@ -66,12 +65,14 @@ export default {
         ) {
             await this.request
                 .enviarDadosApi("/medico/especialidade", {
-                    especialidades: JSON.stringify([{
-                        dias_retorno: dias_retorno,
-                        valor_retorno: valor_retorno,
-                        valor: valor_especialidade,
-                        especialidade_id: especialidade_id,
-                    }]),
+                    especialidades: JSON.stringify([
+                        {
+                            dias_retorno: dias_retorno,
+                            valor_retorno: valor_retorno,
+                            valor: valor_especialidade,
+                            especialidade_id: especialidade_id,
+                        },
+                    ]),
                 })
                 .then((res) => {
                     res.status
