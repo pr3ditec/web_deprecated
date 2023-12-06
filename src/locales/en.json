@@ -209,5 +209,8 @@
     "address": "Address",
     "password-match": "Passwords doesn't match",
     "password-short": "Password must have 8 characters at least",
-    "repeat-password": "Repeat the password"
+    "repeat-password": "Repeat the password",
+    "old-password": "Last password",
+    "new-password": "New password",
+    "change-password": "Change password"
 }

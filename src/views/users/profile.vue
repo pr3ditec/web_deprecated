@@ -1,5 +1,6 @@
 <script>
 import Api from "@/api/Api";
+import Response from "@/api/Response";
 import FormatoData from "@/helpers/FormatoData";
 
 export default {
@@ -8,9 +9,9 @@ export default {
             request: new Api(),
             dadosUsuario: [],
             formUsuario: {
-                email: "",
-                senha: "",
-                senha_repetir: "",
+                antiga_senha: "",
+                nova_senha: "",
+                repetir_nova_senha: "",
             },
         };
     },
@@ -19,18 +20,48 @@ export default {
             this.request
                 .pegarDadosApi(`/usuario/${localStorage.getItem("user.id")}`)
                 .then((res) => {
-                    this.dadosUsuario = res.list;
+                    console.log(res);
+                    if (res.status) {
+                        this.dadosUsuario = res.list;
+                    }
                 });
         },
 
         atualizarDadosUsuario() {
-            return console.log("implementar");
-            this.request.enviarDadosApi("/usuario", data).then((res) => {
-                res.status
-                    ? Response.mensagemToast("success", res.message)
-                    : Response.mensagemToast("error", res.message);
-            });
+            this.request
+                .enviarDadosApi("/usuario", {
+                    email: this.dadosUsuario.email,
+                    senha: this.formUsuario.antiga_senha,
+                    nova_senha: this.formUsuario.nova_senha,
+                })
+                .then((res) => {
+                    res.status
+                        ? Response.mensagemToast("success", res.message)
+                        : Response.mensagemToast("error", res.message);
+                });
         },
+    },
+    computed: {
+        /** LIEBERAR BOTAO E SENHAS NOVAS */
+        habilitarNovaSenha() {
+            if (this.formUsuario.antiga_senha.length < 8) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        habilitarBotao() {
+            if (
+                this.formUsuario.nova_senha !=
+                    this.formUsuario.repetir_nova_senha ||
+                this.formUsuario.repetir_nova_senha.length < 8
+            ) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        /** LIEBERAR BOTAO E SENHAS NOVAS */
     },
     async created() {
         this.buscarDadosUsuario();
@@ -165,76 +196,8 @@ export default {
                                 stroke-linecap="round" />
                         </svg>
                         <span class="whitespace-nowrap" dir="ltr">{{
-                            dadosUsuario.telefone_medico.length == 0
-                                ? "vazio"
-                                : dadosUsuario.telefone_medico
+                            dadosUsuario.telefone_medico ?? "vazio"
                         }}</span>
-                    </li>
-                </ul>
-                <ul class="mt-7 flex items-center justify-center gap-2">
-                    <li>
-                        <a
-                            class="btn btn-info flex items-center justify-center rounded-full w-10 h-10 p-0"
-                            href="javascript:;">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24px"
-                                height="24px"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="w-5 h-5">
-                                <path
-                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            class="btn btn-danger flex items-center justify-center rounded-full w-10 h-10 p-0"
-                            href="javascript:;">
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="w-5 h-5">
-                                <path
-                                    d="M3.33946 16.9997C6.10089 21.7826 12.2168 23.4214 16.9997 20.66C18.9493 19.5344 20.3765 17.8514 21.1962 15.9286C22.3875 13.1341 22.2958 9.83304 20.66 6.99972C19.0242 4.1664 16.2112 2.43642 13.1955 2.07088C11.1204 1.81935 8.94932 2.21386 6.99972 3.33946C2.21679 6.10089 0.578039 12.2168 3.33946 16.9997Z"
-                                    stroke="currentColor"
-                                    stroke-width="1.5" />
-                                <path
-                                    opacity="0.5"
-                                    d="M16.9497 20.5732C16.9497 20.5732 16.0107 13.9821 14.0004 10.5001C11.99 7.01803 7.05018 3.42681 7.05018 3.42681M7.57711 20.8175C9.05874 16.3477 16.4525 11.3931 21.8635 12.5801M16.4139 3.20898C14.926 7.63004 7.67424 12.5123 2.28857 11.4516"
-                                    stroke="currentColor"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round" />
-                            </svg>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            class="btn btn-dark flex items-center justify-center rounded-full w-10 h-10 p-0"
-                            href="javascript:;">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24px"
-                                height="24px"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.5"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="w-5 h-5">
-                                <path
-                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                            </svg>
-                        </a>
                     </li>
                 </ul>
             </div>
@@ -244,7 +207,9 @@ export default {
         <div class="panel col-span-4 xl:col-span-4">
             <form
                 class="border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 mb-5 bg-white dark:bg-[#0e1726]">
-                <h6 class="text-lg font-bold mb-5">{{ $t("settings") }}</h6>
+                <h6 class="text-lg font-bold mb-5">
+                    {{ $t("change-password") }}
+                </h6>
                 <div class="flex flex-col sm:flex-row">
                     <div class="ltr:sm:mr-4 rtl:sm:ml-4 w-full sm:w-2/12 mb-5">
                         <img
@@ -256,62 +221,73 @@ export default {
                             class="w-20 h-20 md:w-32 md:h-32 rounded-full object-cover mx-auto" />
                     </div>
                     <div class="flex flex-col w-full gap-4">
+                        <!-- SENHA ANTIGA -->
                         <div>
-                            <label for="email">Email</label>
-                            <input
-                                id="email"
-                                type="email"
-                                v-model="formUsuario.email"
-                                class="form-input" />
-                        </div>
-                        <div>
-                            <label for="password">{{ $t("password") }}</label>
-                            <input
-                                id="password"
-                                type="password"
-                                v-model="formUsuario['senha']"
-                                class="form-input" />
-                            <label
-                                v-if="
-                                    formUsuario.senha.length > 0 &&
-                                    formUsuario.senha.length < 8
-                                "
-                                class="text-danger text-sm mt-0"
-                                >{{ $t("password-short") }}</label
-                            >
-                        </div>
-                        <div>
-                            <label for="repeat-password">{{
-                                $t("repeat-password")
+                            <label for="old_password">{{
+                                $t("old-password")
                             }}</label>
                             <input
-                                id="repeat-password"
+                                id="old_password"
                                 type="password"
-                                v-model="formUsuario.senha_repetir"
-                                class="form-input" />
-                            <label
-                                v-if="
-                                    formUsuario.senha !=
-                                    formUsuario.senha_repetir
-                                "
-                                class="text-danger text-sm mt-0"
-                                >{{ $t("password-match") }}</label
-                            >
+                                class="form-input"
+                                v-model="formUsuario.antiga_senha" />
                         </div>
+                        <!-- SENHA ANTIGA -->
+
+                        <!-- NOVA SENHA -->
+                        <div class="flex flex-row justify-around gap-2">
+                            <div class="w-full">
+                                <label for="password">{{
+                                    $t("new-password")
+                                }}</label>
+                                <input
+                                    id="password"
+                                    type="password"
+                                    v-model="formUsuario['nova_senha']"
+                                    :disabled="habilitarNovaSenha"
+                                    class="form-input" />
+                                <label
+                                    v-if="
+                                        formUsuario.nova_senha.length > 0 &&
+                                        formUsuario.nova_senha.length < 8
+                                    "
+                                    class="text-danger text-sm mt-0"
+                                    >{{ $t("password-short") }}</label
+                                >
+                            </div>
+                            <div class="w-full">
+                                <label for="repeat-password">{{
+                                    $t("repeat-password")
+                                }}</label>
+                                <input
+                                    id="repeat-password"
+                                    type="password"
+                                    v-model="formUsuario.repetir_nova_senha"
+                                    :disabled="habilitarNovaSenha"
+                                    class="form-input" />
+                                <label
+                                    v-if="
+                                        formUsuario.nova_senha !=
+                                        formUsuario.repetir_nova_senha
+                                    "
+                                    class="text-danger text-sm mt-0"
+                                    >{{ $t("password-match") }}</label
+                                >
+                            </div>
+                        </div>
+                        <!-- NOVA SENHA -->
+
+                        <!-- BUTTON FORM -->
                         <div class="sm:col-span-2 mt-3">
                             <button
                                 type="button"
                                 class="btn btn-primary capitalize"
-                                :disabled="
-                                    formUsuario.email.length > 0 &&
-                                    (formUsuario.senha !=
-                                        formUsuario.senha_repetir ||
-                                        formUsuario.senha_repetir < 8)
-                                "
+                                :disabled="habilitarBotao"
                                 @click="atualizarDadosUsuario()">
                                 {{ $t("update") }}
                             </button>
                         </div>
+                        <!-- BUTTON FORM -->
                     </div>
                 </div>
             </form>

@@ -252,5 +252,8 @@
     "phone": "Número de telefone",
     "password-match": "Senhas não correspondem",
     "password-short": "Senhas precisam ter ao menos 8 caracteres",
-    "repeat-password": "Repita a senha"
+    "repeat-password": "Repita a senha",
+    "old-password": "Senha antiga",
+    "new-password": "Nova senha",
+    "change-password": "Trocar senha"
 }
