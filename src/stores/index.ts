@@ -204,7 +204,9 @@ export const useAppStore = defineStore("app", {
 
         checkPermission(routeName: string) {
             const permissions = this.getUserPermissions();
-            return permissions.includes(routeName);
+            return (
+                Array.isArray(permissions) && permissions.includes(routeName)
+            );
         },
     },
     getters: {},
