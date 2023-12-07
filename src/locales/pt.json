@@ -565,5 +565,8 @@
     "error-registering-return": "Erro ao registrar retorno",
     "error-when-creating-pre-schedule": "Erro ao criar pré-agendamento",
     "document-not-registered": "Documento não cadastrado",
-    "uf-not-registered": "UF não cadastrado"
+    "uf-not-registered": "UF não cadastrado",
+    "no-time-selected": "Nenhum horário selecionado",
+    "generate-token": "Gerar token",
+    "want-generate-token": "Deseja gerar token para paciente ?"
 }

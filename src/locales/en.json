@@ -219,7 +219,6 @@
     "error-searching-clinic": "Error on searching clinic",
     "success-registering-return": "Success registering return",
     "timezone-clinic-not-found": "Timezone not found",
-
     "minimum-time-for-scheduling-token-generation": "Minimum time for scheduling token generation",
     "error-when-searching-for-minimum-time-for-token-generation": "Error when searching for minimum time for token generation",
     "minimum-time-for-saved-token-generation": "Minimum time for saved token generation",
@@ -524,5 +523,8 @@
     "error-registering-return": "Error registering return",
     "error-when-creating-pre-schedule": "Error when creating pre-schedule",
     "document-not-registered": "Document not registered",
-    "uf-not-registered": "UF not registered"
+    "uf-not-registered": "UF not registered",
+    "no-time-selected": "No time selected",
+    "generate-token": "Generate token",
+    "want-generate-token": "Want generate token for pacient ?"
 }
