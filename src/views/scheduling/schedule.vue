@@ -93,7 +93,7 @@ export default {
                     this.propostaHorarios(data.modalDados.id, evento.horarios);
                 }
             } else {
-                Response.mensagemToast("error", "Nenhum horario selecionado");
+                Response.mensagemToast("error", this.$t("no-time-selected"));
             }
         },
         /** EMITS */
@@ -102,9 +102,9 @@ export default {
         async gerarTokenPresenca(agenda: number) {
             const data = await Response.mesagemConfirmacao(
                 "question",
-                "Gerar token",
-                "cancelar",
-                "Deseja gerar token para paciente ?",
+                this.$t("generate-token"),
+                this.$t("cancel"),
+                this.$t("want-generate-token"),
             );
             if (data) {
                 this.request
@@ -190,9 +190,6 @@ export default {
                 .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: pre_agendamento_id,
                     horarios_agendamento: JSON.stringify(arrayDados),
-                })
-                .catch((err) => {
-                    console.log(err);
                 })
                 .then((res) =>
                     res.status

@@ -568,5 +568,11 @@
     "uf-not-registered": "UF não cadastrado",
     "no-time-selected": "Nenhum horário selecionado",
     "generate-token": "Gerar token",
-    "want-generate-token": "Deseja gerar token para paciente ?"
+    "want-generate-token": "Deseja gerar token para paciente ?",
+    "empty-data": "Dados não podem estar vazios",
+    "invalid-email": "E-mail inválido",
+    "secretary-linked": "Secretária vinculada com a Sauvvi Tech",
+    "secretary-not-found": "Secretária não encotnrada",
+    "select-capabilites": "Selecione as especialidades",
+    "clinic-linked": "Clinica vinculada com Sauvvi Tech"
 }

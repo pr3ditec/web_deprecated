@@ -30,7 +30,7 @@ export default {
                 await this.request
                     .pegarDadosApi(`/secretaria/${cpf}`)
                     .then((res) => {
-                        if (res.length === undefined) {
+                        if (res.status) {
                             this.encontrada = true;
                             this.secretaria = res.list;
                         } else {
@@ -52,8 +52,8 @@ export default {
                     })
                     .then((res) => {
                         res.status
-                            ? Response.mensagemToast("success", res.message)
-                            : Response.mensagemToast("error", res.message);
+                            ? Response.mensagemToast("success", res.messageCode)
+                            : Response.mensagemToast("error", res.messageCode);
                     });
             }
         },
@@ -78,9 +78,9 @@ export default {
                     @keyup="
                         ($event) => pesquisarSecretaria($event.target.value)
                     " />
-                <span v-show="!encontrada" class="text-danger text-sm"
-                    >secretaria não encontrada</span
-                >
+                <span v-show="!encontrada" class="text-danger text-sm">{{
+                    $t("secretary-not-found")
+                }}</span>
                 <Transition>
                     <div
                         v-show="secretaria.nome != ''"
@@ -107,10 +107,7 @@ export default {
                                 >
                                 <p
                                     class="font-semibold text-white-dark mt-4 sm:mt-8">
-                                    Maecenas nec mi vel lacus condimentum
-                                    rhoncus dignissim egestas orci. Integer
-                                    blandit porta placerat. Vestibulum in
-                                    ultricies.
+                                    {{ $t("secretary-linked") }}
                                 </p>
                             </div>
                         </div>

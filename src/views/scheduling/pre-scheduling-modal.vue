@@ -61,7 +61,6 @@ export default {
             await this.request
                 .pegarDadosApi(`/agendamento/medico/${this.medico}`)
                 .then((response) => {
-                    console.log(response);
                     this.retornoAgenda = response.list;
                 });
         },

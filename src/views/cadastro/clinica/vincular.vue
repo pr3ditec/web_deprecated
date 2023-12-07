@@ -100,15 +100,15 @@ export default {
                     type="text"
                     placeholder="Digite o cpf ........"
                     @keyup="($event) => pesquisarMedico($event.target.value)" />
-                <span v-show="!encontrada" class="text-danger text-sm"
-                    >medico não encontrado</span
-                >
+                <span v-show="!encontrada" class="text-danger text-sm">{{
+                    $t("doctor-not-found")
+                }}</span>
                 <label class="capitalize mt-8">{{ $t("clinic") }}</label>
                 <!-- CARD COM CLINICA -->
                 <div v-for="clinica in dadosClinicas.clinica">
                     <select v-model="especialidadeSelect" class="form-input">
                         <option value="0">
-                            Selecione uma de suas especialidade
+                            {{ $t("select-capabilites") }}
                         </option>
                         <option v-for="item in especialidade" :value="item.id">
                             {{ item.descricao }}
@@ -143,10 +143,7 @@ export default {
                                     >
                                     <p
                                         class="font-semibold text-white-dark mt-4 sm:mt-8">
-                                        Maecenas nec mi vel lacus condimentum
-                                        rhoncus dignissim egestas orci. Integer
-                                        blandit porta placerat. Vestibulum in
-                                        ultricies.
+                                        {{ $t("clinic-linked") }}
                                     </p>
                                 </div>
                             </div>

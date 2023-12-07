@@ -526,5 +526,12 @@
     "uf-not-registered": "UF not registered",
     "no-time-selected": "No time selected",
     "generate-token": "Generate token",
-    "want-generate-token": "Want generate token for pacient ?"
+    "want-generate-token": "Want generate token for pacient ?",
+    "empty-data": "Data cannot be empty",
+    "invalid-email": "Inválid e-mail",
+    "secretary-linked": "Secretary linked with Sauvvi Tech",
+    "secretary-not-found": "Secretary not found",
+    "select-capabilites": "Select capabilites",
+    "clinic-linked": "Clinic linked with Sauvvi Tech"
+
 }
