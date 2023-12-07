@@ -187,7 +187,7 @@
     "scheduleAttempt": "Pré agendamento",
     "releaseSchedules": "Liberar Horários",
     "cancel": "cancelar",
-    "select_doctor": "Selecione um profissional para visualizar agenda",
+    "select-doctor": "Selecione um profissional para visualizar agenda",
     "loading": "Carregando",
     "warning": "Aviso",
     "doesNotHaveOpenSchedules": "Não possui horários liberados!",
