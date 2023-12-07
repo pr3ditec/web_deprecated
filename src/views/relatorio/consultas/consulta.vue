@@ -3,6 +3,8 @@ import ApiConnection from "../../../api/Api";
 import MascarasInput from "@/helpers/MascaraInput";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
+import { useAppStore } from "@/stores";
+import FormatoData from "@/helpers/FormatoData";
 
 export default {
     components: {
@@ -12,6 +14,7 @@ export default {
         return {
             request: new ApiConnection(),
             mascara: MascarasInput,
+            store: useAppStore(),
 
             // Dados
             mostrarTabela: false,
@@ -19,22 +22,27 @@ export default {
             cols: [
                 {
                     field: "medico",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-zinc-100",
                     title: this.$t("doctor"),
                 },
                 {
                     field: "paciente",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-zinc-100",
                     title: this.$t("patient"),
                 },
                 {
                     field: "data",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-zinc-100",
                     title: this.$t("date"),
+                    cellRenderer: (data: any) => {
+                        return FormatoData.formatarParaPadraoBrasil(
+                            FormatoData.formatarParaApi(data.data)["data"],
+                        );
+                    },
                 },
                 {
                     field: "hora",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-zinc-100",
                     title: this.$t("time"),
                 },
             ],
@@ -55,6 +63,13 @@ export default {
             .then((res: any) => {
                 this.dadosTabela = res.list;
             });
+    },
+    computed: {
+        cellClasse() {
+            if (this.store.isDarkMode) {
+                return "text-white";
+            }
+        },
     },
     mounted() {
         setTimeout(() => (this.mostrarTabela = true), 500);
@@ -83,7 +98,7 @@ export default {
             <input
                 v-model="search"
                 type="text"
-                class="form-input w-1/2"
+                class="form-input w-1/2 dark:text-white"
                 placeholder="Pesquisar ..." />
             <hr
                 class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
@@ -95,10 +110,9 @@ export default {
                 :totalRows="dadosTabela?.length"
                 :sortable="true"
                 :search="search"
-                firstArrow="First"
-                lastArrow="Last"
-                previousArrow="Prev"
-                nextArrow="Next">
+                rowClasse="bg-zinc-200"
+                skin="table-hover"
+                :cellClass="cellClasse">
             </vue3-datatable>
             <div v-else>{{ $t("loading") }}</div>
         </div>

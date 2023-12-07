@@ -5,6 +5,7 @@ import ApiConnection from "../../api/Api";
 import Cadastro from "./pre-scheduling-registration.vue";
 import Historico from "./pre-scheduling-history.vue";
 import "@bhplugin/vue3-datatable/dist/style.css";
+import { useAppStore } from "@/stores";
 
 export default {
     components: {
@@ -17,6 +18,8 @@ export default {
         return {
             // api
             request: new ApiConnection(),
+            store: useAppStore(),
+
             mostrarHistorico: false,
             medicoSelect: 0,
             pacienteSelect: {},
@@ -26,22 +29,22 @@ export default {
             cols: [
                 {
                     field: "paciente_nome",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-white",
                     title: this.$t("name") + " " + this.$t("patient"),
                 },
                 {
                     field: "especialidade",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-white",
                     title: this.$t("capabilities"),
                 },
                 {
                     field: "status",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-white",
                     title: this.$t("status"),
                 },
                 {
                     field: "actions",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-white",
                     title: this.$t("actions"),
                 },
             ],
@@ -77,6 +80,13 @@ export default {
         verHistoricoAgenda() {
             this.mostrarHistorico = !this.mostrarHistorico;
             console.log("skrrr");
+        },
+    },
+    computed: {
+        cellClasse() {
+            if (this.store.isDarkMode) {
+                return "text-white";
+            }
         },
     },
     watch: {
@@ -132,7 +142,7 @@ export default {
                     <input
                         v-model="search"
                         type="text"
-                        class="form-input w-1/2"
+                        class="form-input w-1/2 dark:text-white"
                         placeholder="Pesquisar ......" />
                     <hr
                         class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
@@ -144,6 +154,8 @@ export default {
                         :totalRows="dadosTabela?.length"
                         :sortable="true"
                         :search="search"
+                        :cellClass="cellClasse"
+                        skin="table-hover"
                         firstArrow="First"
                         lastArrow="Last"
                         previousArrow="Prev"

@@ -3,7 +3,7 @@ import ApiConnection from "../../../api/Api";
 import MascarasInput from "@/helpers/MascaraInput";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
-import { MenuItems } from "@headlessui/vue";
+import { useAppStore } from "@/stores";
 
 export default {
     components: {
@@ -13,6 +13,7 @@ export default {
         return {
             request: new ApiConnection(),
             mascara: MascarasInput,
+            store: useAppStore(),
 
             // Dados
             mostrarTabela: false,
@@ -20,12 +21,12 @@ export default {
             cols: [
                 {
                     field: "nome",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-zinc-100",
                     title: this.$t("name"),
                 },
                 {
                     field: "telefone",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-zinc-100",
                     title: this.$t("telephone"),
                     cellRenderer: (item: any) => {
                         if (item.telefone.length == 0) {
@@ -36,7 +37,7 @@ export default {
                 },
                 {
                     field: "documento",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-zinc-100",
                     title: this.$t("cpf"),
                     cellRenderer: (item: any) => {
                         if (item.documento.length == 0) {
@@ -49,7 +50,7 @@ export default {
                 },
                 {
                     field: "documento",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-zinc-100",
                     title: this.$t("cnpj"),
                     cellRenderer: (item: any) => {
                         return MascarasInput.cnpj(
@@ -60,7 +61,7 @@ export default {
                 {
                     field: "endereco",
                     title: this.$t("city"),
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass: "font-extrabold uppercase dark:text-zinc-100",
                     cellClass: "uppercase",
                     cellRenderer: (item: any) => {
                         if (item.endereco.length == 0) {
@@ -87,7 +88,13 @@ export default {
             ],
         };
     },
-    methods: {},
+    computed: {
+        cellClasse() {
+            if (this.store.isDarkMode) {
+                return "text-white";
+            }
+        },
+    },
     async created() {
         await this.request.pegarDadosApi("/medico").then((res: any) => {
             this.dadosTabela = res.list;
@@ -120,7 +127,7 @@ export default {
             <input
                 v-model="search"
                 type="text"
-                class="form-input w-1/2"
+                class="form-input w-1/2 dark:text-white"
                 placeholder="Pesquisar ......" />
             <hr
                 class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
@@ -135,7 +142,9 @@ export default {
                 firstArrow="First"
                 lastArrow="Last"
                 previousArrow="Prev"
-                nextArrow="Next">
+                nextArrow="Next"
+                skin="table-hover"
+                :cellClass="cellClasse">
             </vue3-datatable>
             <div v-else>{{ $t("loading") }}</div>
         </div>
