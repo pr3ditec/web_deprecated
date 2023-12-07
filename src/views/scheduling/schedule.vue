@@ -7,7 +7,6 @@ import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import HeaderAgenda from "./schedule-header.vue";
 import Solicitacoes from "./schedule-requests.vue";
 import ApiConnection from "../../api/Api";
-import FormatoData from "../../helpers/FormatoData";
 import Response from "../../api/Response";
 import ModalPreAgendamento from "./pre-scheduling-modal.vue";
 
@@ -29,6 +28,7 @@ export default {
 
             // MOSTRAR MODAL, VEM DE EMIT
             modal: false,
+            dataAgendarModal: {},
 
             // INICIALIZACAO FULL CALEDAR
             calendarOptions: {
@@ -66,6 +66,8 @@ export default {
                     } else if (!click.event._def.extendedProps.eventFromApi) {
                         //@ts-expect-error
                         this.modal = true;
+                        this.dataAgendarModal =
+                            click.event._def.extendedProps.forApi.data;
                         click.event.setProp("color", "#161414");
                     }
                 },
@@ -145,8 +147,6 @@ export default {
                                 start: `${res.data} ${res.hora}`,
                             });
                         });
-                    } else {
-                        alert("Api falhou");
                     }
                 });
         },
@@ -278,9 +278,9 @@ export default {
                         ref="calendar"></FullCalendar>
                 </div>
                 <ModalPreAgendamento
-                    v-show="modal"
+                    v-if="modal"
                     :medico="medicoSelect"
-                    :dataAgendar="{}"
+                    :dataAgendar="dataAgendarModal"
                     @update:modalAgendamento="
                         ($event) => proporAgendamento($event)
                     "

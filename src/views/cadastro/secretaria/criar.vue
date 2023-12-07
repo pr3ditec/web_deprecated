@@ -37,7 +37,6 @@ export default {
     async created() {
         let nacionalidadeResponse =
             await this.request.pegarDadosApi("/nacionalidade");
-        console.log(nacionalidadeResponse);
         this.nacionalidade = nacionalidadeResponse.list;
     },
 
@@ -95,7 +94,6 @@ export default {
                     this.secretariaFormData,
                 )
                 .then((res) => {
-                    // console.log(res)
                     if (res.status == false) {
                         return Response.mensagemErro(res.messageCode);
                     } else {
