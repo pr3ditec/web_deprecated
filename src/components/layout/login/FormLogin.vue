@@ -37,6 +37,7 @@ const submitForm = async () => {
             store.setSecretaryId(response.data.list.secretaria_id);
             store.setDevId(response.data.list.desenvolvedor_id);
             store.setManagerId(response.data.list.gestor_id);
+            store.setPermissoes(response.data.list.permissoes);
 
             router.push("/");
         } else {

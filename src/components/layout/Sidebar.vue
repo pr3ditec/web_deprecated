@@ -66,21 +66,11 @@ onMounted(() => {
                     <ul
                         class="relative font-semibold space-y-0.5 p-4 py-0 mb-10">
                         <!-- production menus -->
-                        <div v-if="store.checkPermission('dashboard')">
-                            <MenuDashboard />
-                        </div>
-                        <div v-if="store.checkPermission('schedule')">
-                            <MenuSchedule />
-                        </div>
-                        <div v-if="store.checkPermission('register')">
-                            <MenuRegister />
-                        </div>
-                        <div v-if="store.checkPermission('financer')">
-                            <MenuFinancer />
-                        </div>
-                        <div v-if="store.checkPermission('GeneralReport')">
-                            <MenuGeneralReport />
-                        </div>
+                        <MenuDashboard />
+                        <MenuSchedule />
+                        <MenuRegister />
+                        <MenuFinancer />
+                        <MenuGeneralReport />
 
                         <MenuAuth />
 

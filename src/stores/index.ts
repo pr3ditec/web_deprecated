@@ -107,6 +107,15 @@ export const useAppStore = defineStore("app", {
             return localStorage.getItem("manager.id");
         },
 
+        setPermissoes(permissoes) {
+            localStorage.setItem("user.permissoes", JSON.stringify(permissoes));
+        },
+
+        getPermissoes() {
+            const permissoes = localStorage.getItem("user.permissoes");
+            return permissoes ? JSON.parse(permissoes) : null;
+        },
+
         setMainLayout(payload: any = null) {
             this.mainLayout = payload; //app , auth
         },
@@ -189,32 +198,13 @@ export const useAppStore = defineStore("app", {
             }
         },
         getUserPermissions() {
-            const userType = {
-                doctor: localStorage.getItem("doctor.id") != "null",
-                secretary: localStorage.getItem("secretary.id") != "null",
-                developer: localStorage.getItem("dev.id") != "null",
-                manager: localStorage.getItem("manager.id") != "null",
-            };
-
-            const userPermissions = {};
-
-            for (const type in userType) {
-                if (userType[type]) {
-                    userPermissions[type] = permissions[type];
-                }
-            }
-
-            return userPermissions;
+            const permissoes = this.getPermissoes();
+            return permissoes ? permissoes : {};
         },
 
         checkPermission(routeName: string) {
             const permissions = this.getUserPermissions();
-            for (const userType in permissions) {
-                if (permissions[userType][routeName]) {
-                    return true;
-                }
-            }
-            return false;
+            return permissions.includes(routeName);
         },
     },
     getters: {},
