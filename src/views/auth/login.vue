@@ -64,7 +64,7 @@ useMeta({ title: "Login" });
 .linear-background {
     background: linear-gradient(
         -137deg,
-        rgb(139, 18, 98, 1) 0%,
+        rgb(231, 81, 90, 1) 0%,
         rgba(133, 97, 238, 1) 100%
     );
 }
@@ -72,7 +72,7 @@ useMeta({ title: "Login" });
 .dark .linear-background {
     background: linear-gradient(
         -137deg,
-        rgb(139, 18, 98, 1) 0%,
+        rgb(231, 81, 90, 1) 0%,
         rgba(133, 97, 238, 1) 100%
     );
 }
