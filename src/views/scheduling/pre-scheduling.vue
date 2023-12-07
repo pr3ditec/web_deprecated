@@ -122,7 +122,7 @@ export default {
         <div
             v-if="medicoSelect == 0"
             class="flex flex-col items-center justify-center">
-            <h1 class="text-md font-medium">{{ $t("select_doctor") }}</h1>
+            <h1 class="text-md font-medium">{{ $t("select-doctor") }}</h1>
         </div>
         <div v-else>
             <TransitionGroup name="list">
@@ -192,7 +192,7 @@ export default {
                         <template #actions="data">
                             <div class="flex gap-4">
                                 <button
-                                    :disabled="data.status_id != -1"
+                                    :disabled="data.value.status_id != -1"
                                     type="button"
                                     class="btn btn-sm btn-primary capitalize"
                                     @click="proporPreAgendamento(data.value)">
