@@ -69,8 +69,8 @@ export default {
                 .enviarDadosApi("/medico/clinica", this.clinicaFormData)
                 .then((res) => {
                     res.status
-                        ? Response.mensagemToast("success", res.message)
-                        : Response.mensagemToast("error", res.message);
+                        ? Response.mensagemToast("success", res.messageCode)
+                        : Response.mensagemToast("error", res.messageCode);
                 });
         },
     },
@@ -236,7 +236,7 @@ export default {
 
         <div class="flex flex-col items-center font-semibold mt-6">
             <button class="btn btn-primary w-80" @click="cadastrarClinica()">
-                Cadastrar
+                {{ $t("register") }}
             </button>
         </div>
         <!-- FORMULARIO -->

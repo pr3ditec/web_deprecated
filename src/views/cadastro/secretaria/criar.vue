@@ -3,7 +3,6 @@ import ValidacaoInput from "../../../helpers/ValidacaoInput";
 import Response from "../../../api/Response";
 import ApiConnection from "../../../api/Api";
 import { useAppStore } from "@/stores/index";
-import FormatoData from "@/helpers/FormatoData";
 
 export default {
     data() {
@@ -65,18 +64,24 @@ export default {
                 ValidacaoInput.inputVazio(this.secretariaFormData)["status"] ==
                 false
             ) {
-                return Response.mensagemErro("Campos não podem estar vazios");
+                return Response.mensagemToast("error", this.$t("empty-data"));
             }
             // testa se o email ter formato valido
             if (
                 ValidacaoInput.email(this.secretariaFormData.email)["status"] ==
                 false
             ) {
-                return Response.mensagemErro("tipo de email invalido");
+                return Response.mensagemToast(
+                    "error",
+                    this.$t("invalid-email"),
+                );
             }
             // testa se as senhas correspondem
             if (this.classePassword["border border-red-600"] == true) {
-                return Response.mensagemErro("senhas não correspondem");
+                return Response.mensagemToast(
+                    "error",
+                    this.$t("password-match"),
+                );
             }
             // limpando cpf
             this.secretariaFormData["cpf"] = this.secretariaFormData["cpf"]
@@ -92,9 +97,9 @@ export default {
                 .then((res) => {
                     // console.log(res)
                     if (res.status == false) {
-                        return Response.mensagemErro(res.message);
+                        return Response.mensagemErro(res.messageCode);
                     } else {
-                        return Response.mensagemSucesso(res.message);
+                        return Response.mensagemSucesso(res.messageCode);
                     }
                 });
         },

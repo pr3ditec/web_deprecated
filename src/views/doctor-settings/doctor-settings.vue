@@ -1,6 +1,5 @@
 <script lang="ts">
 import ApiConnection from "@/api/Api";
-import FormatoData from "@/helpers/FormatoData";
 import Response from "@/api/Response";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
@@ -79,8 +78,8 @@ export default {
                 })
                 .then((res) => {
                     res.status
-                        ? Response.mensagemToast("success", res.message)
-                        : Response.mensagemToast("error", res.message);
+                        ? Response.mensagemToast("success", res.messageCode)
+                        : Response.mensagemToast("error", res.messageCode);
                 });
         },
 
