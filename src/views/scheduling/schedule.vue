@@ -288,7 +288,7 @@ export default {
             </div>
             <div class="row" v-else>
                 <div class="col-12 text-center">
-                    <p>Selecione um médico para ver sua agenda</p>
+                    <p>{{ $t("select-doctor") }}</p>
                 </div>
             </div>
         </TransitionGroup>

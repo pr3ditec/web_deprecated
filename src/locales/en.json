@@ -122,7 +122,7 @@
     "signin": "Signin",
     "signup": "Signup",
     "signout": "Signout",
-    "select_doctor": "Select a doctor to see his agenda",
+    "select-doctor": "Select a doctor to see his agenda",
     "loading": "Loading",
     "actions": "Actions",
     "propose": "Propose",
