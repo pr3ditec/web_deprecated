@@ -8,7 +8,7 @@ export default {
         Multiselect,
     },
     props: {
-        dataAgendar: Object,
+        dataAgendar: Promise,
         medico: Number,
     },
     data() {
@@ -61,8 +61,31 @@ export default {
             await this.request
                 .pegarDadosApi(`/agendamento/medico/${this.medico}`)
                 .then((response) => {
-                    this.retornoAgenda = response.list;
+                    response.list.forEach((agendamento) => {
+                        if (
+                            this.validarDataRetorno(
+                                agendamento.data,
+                                agendamento.retorno,
+                            )
+                        ) {
+                            this.retornoAgenda.push(agendamento);
+                        }
+                    });
                 });
+        },
+
+        validarDataRetorno(consulta, retorno) {
+            var response = false;
+            const consultaToDate = new Date(consulta);
+            const dataClicked = new Date(this.dataAgendar);
+            if (
+                consultaToDate.getDate() + retorno["dias_retorno"] >
+                dataClicked.getDate()
+            ) {
+                response = true;
+            }
+
+            return response;
         },
         limparVariaveis() {
             this.selectInput = "";
@@ -73,6 +96,7 @@ export default {
 <template>
     <Transition :duration="200">
         <div
+            @keyup.esc="emitFecharModal()"
             class="absolute inset-0 flex items-center justify-center w-full h-full top-0 left-0 bg-dark bg-opacity-50"
             style="z-index: 2000 !important">
             <div
