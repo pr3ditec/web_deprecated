@@ -9,8 +9,8 @@ dependencies:
         specifier: ^6.1.10
         version: 6.1.10(@fullcalendar/core@6.1.10)
     firebase:
-        specifier: ^10.7.0
-        version: 10.7.0
+        specifier: ^10.7.1
+        version: 10.7.1
     moment:
         specifier: ^2.29.4
         version: 2.29.4
@@ -21,7 +21,7 @@ dependencies:
 devDependencies:
     "@bhplugin/vue3-datatable":
         specifier: ^1.1.3
-        version: 1.1.3(typescript@5.3.2)
+        version: 1.1.3(typescript@5.3.3)
     "@fullcalendar/core":
         specifier: ^6.1.10
         version: 6.1.10
@@ -36,10 +36,10 @@ devDependencies:
         version: 6.1.10(@fullcalendar/core@6.1.10)
     "@fullcalendar/vue3":
         specifier: ^6.1.10
-        version: 6.1.10(@fullcalendar/core@6.1.10)(vue@3.3.9)
+        version: 6.1.10(@fullcalendar/core@6.1.10)(vue@3.3.10)
     "@headlessui/vue":
         specifier: ^1.7.16
-        version: 1.7.16(vue@3.3.9)
+        version: 1.7.16(vue@3.3.10)
     "@intlify/unplugin-vue-i18n":
         specifier: ^1.5.0
         version: 1.5.0(vue-i18n@9.8.0)
@@ -51,28 +51,28 @@ devDependencies:
         version: 1.0.2
     "@tailwindcss/forms":
         specifier: ^0.5.7
-        version: 0.5.7(tailwindcss@3.3.5)
+        version: 0.5.7(tailwindcss@3.3.6)
     "@tailwindcss/typography":
         specifier: ^0.5.10
-        version: 0.5.10(tailwindcss@3.3.5)
+        version: 0.5.10(tailwindcss@3.3.6)
     "@types/quill":
         specifier: ^2.0.14
         version: 2.0.14
     "@vitejs/plugin-vue":
         specifier: ^4.5.1
-        version: 4.5.1(vite@4.5.0)(vue@3.3.9)
+        version: 4.5.1(vite@4.5.1)(vue@3.3.10)
     "@vuelidate/core":
         specifier: ^2.0.3
-        version: 2.0.3(vue@3.3.9)
+        version: 2.0.3(vue@3.3.10)
     "@vuelidate/validators":
         specifier: ^2.0.4
-        version: 2.0.4(vue@3.3.9)
+        version: 2.0.4(vue@3.3.10)
     "@vueuse/head":
         specifier: ^2.0.0
-        version: 2.0.0(vue@3.3.9)
+        version: 2.0.0(vue@3.3.10)
     apexcharts:
-        specifier: ^3.44.1
-        version: 3.44.1
+        specifier: ^3.44.2
+        version: 3.44.2
     autoprefixer:
         specifier: ^10.4.16
         version: 10.4.16(postcss@8.4.32)
@@ -99,7 +99,7 @@ devDependencies:
         version: 4.6.13
     pinia:
         specifier: ^2.1.7
-        version: 2.1.7(typescript@5.3.2)(vue@3.3.9)
+        version: 2.1.7(typescript@5.3.3)(vue@3.3.10)
     postcss:
         specifier: ^8.4.32
         version: 8.4.32
@@ -113,77 +113,77 @@ devDependencies:
         specifier: ^8.4.7
         version: 8.4.7
     tailwindcss:
-        specifier: ^3.3.5
-        version: 3.3.5
+        specifier: ^3.3.6
+        version: 3.3.6
     typescript:
-        specifier: ^5.3.2
-        version: 5.3.2
+        specifier: ^5.3.3
+        version: 5.3.3
     vdom:
         specifier: 0.0.22
         version: 0.0.22
     vite:
-        specifier: ^4.5.0
-        version: 4.5.0
+        specifier: ^4.5.1
+        version: 4.5.1
     vue:
-        specifier: ^3.3.9
-        version: 3.3.9(typescript@5.3.2)
+        specifier: ^3.3.10
+        version: 3.3.10(typescript@5.3.3)
     vue-awesome-swiper:
         specifier: ^5.0.1
-        version: 5.0.1(swiper@8.4.7)(vue@3.3.9)
+        version: 5.0.1(swiper@8.4.7)(vue@3.3.10)
     vue-clipboard3:
         specifier: ^2.0.0
         version: 2.0.0
     vue-countup-v3:
         specifier: ^1.4.0
-        version: 1.4.0(vue@3.3.9)
+        version: 1.4.0(vue@3.3.10)
     vue-draggable-next:
         specifier: ^2.2.1
-        version: 2.2.1(sortablejs@1.15.1)(vue@3.3.9)
+        version: 2.2.1(sortablejs@1.15.1)(vue@3.3.10)
     vue-easy-lightbox:
         specifier: ^1.16.0
-        version: 1.16.0(vue@3.3.9)
+        version: 1.16.0(vue@3.3.10)
     vue-eslint-parser:
         specifier: ^9.3.2
         version: 9.3.2(eslint@8.55.0)
     vue-flatpickr-component:
         specifier: ^11.0.3
-        version: 11.0.3(vue@3.3.9)
+        version: 11.0.3(vue@3.3.10)
     vue-height-collapsible:
         specifier: ^0.1.1
-        version: 0.1.1(vue@3.3.9)
+        version: 0.1.1(vue@3.3.10)
     vue-i18n:
         specifier: ^9.8.0
-        version: 9.8.0(vue@3.3.9)
+        version: 9.8.0(vue@3.3.10)
     vue-router:
         specifier: ^4.2.5
-        version: 4.2.5(vue@3.3.9)
+        version: 4.2.5(vue@3.3.10)
     vue-simple-range-slider:
         specifier: ^1.1.0
-        version: 1.1.0(vue@3.3.9)
+        version: 1.1.0(vue@3.3.10)
     vue-the-mask:
         specifier: ^0.11.1
         version: 0.11.1
     vue-tsc:
-        specifier: ^1.8.24
-        version: 1.8.24(typescript@5.3.2)
+        specifier: ^1.8.25
+        version: 1.8.25(typescript@5.3.3)
     vue3-apexcharts:
         specifier: ^1.4.4
-        version: 1.4.4(apexcharts@3.44.1)(vue@3.3.9)
+        version: 1.4.4(apexcharts@3.44.2)(vue@3.3.10)
     vue3-form-wizard:
         specifier: ^0.2.1
         version: 0.2.1
     vue3-number-spinner:
         specifier: ^0.0.9
-        version: 0.0.9(typescript@5.3.2)
+        version: 0.0.9(typescript@5.3.3)
     vue3-perfect-scrollbar:
         specifier: ^1.6.1
         version: 1.6.1(postcss@8.4.32)
     vue3-popper:
         specifier: ^1.5.0
-        version: 1.5.0(vue@3.3.9)
+        version: 1.5.0(vue@3.3.10)
     vue3-quill:
         specifier: ^0.3.1
-        version: 0.3.1(typescript@5.3.2)
+        version: 0.3.1(typescript@5.3.3)
 
 packages:
     /@aashutoshrathi/word-wrap@1.2.6:
@@ -241,13 +241,13 @@ packages:
             to-fast-properties: 2.0.0
         dev: true
 
-    /@bhplugin/vue3-datatable@1.1.3(typescript@5.3.2):
+    /@bhplugin/vue3-datatable@1.1.3(typescript@5.3.3):
         resolution:
             {
                 integrity: sha512-tle6jYEcIuriwnrZzjikHHS5c+gUsbGnbe+/ELN06NLr4eMHgohjsVAg5ZEU3um6zwk4T0zwKB1rEID8Gl8zAA==,
             }
         dependencies:
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         transitivePeerDependencies:
             - typescript
         dev: true
@@ -573,7 +573,7 @@ packages:
         engines: { node: ">=14" }
         dev: false
 
-    /@firebase/analytics-compat@0.2.6(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24):
+    /@firebase/analytics-compat@0.2.6(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-4MqpVLFkGK7NJf/5wPEEP7ePBJatwYpyjgJ+wQHQGHfzaCDgntOnl9rL2vbVGGKCnRqWtZDIWhctB86UWXaX2Q==,
@@ -581,9 +581,9 @@ packages:
         peerDependencies:
             "@firebase/app-compat": 0.x
         dependencies:
-            "@firebase/analytics": 0.10.0(@firebase/app@0.9.24)
+            "@firebase/analytics": 0.10.0(@firebase/app@0.9.25)
             "@firebase/analytics-types": 0.8.0
-            "@firebase/app-compat": 0.2.24
+            "@firebase/app-compat": 0.2.25
             "@firebase/component": 0.6.4
             "@firebase/util": 1.9.3
             tslib: 2.6.2
@@ -598,7 +598,7 @@ packages:
             }
         dev: false
 
-    /@firebase/analytics@0.10.0(@firebase/app@0.9.24):
+    /@firebase/analytics@0.10.0(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-Locv8gAqx0e+GX/0SI3dzmBY5e9kjVDtD+3zCFLJ0tH2hJwuCAiL+5WkHuxKj92rqQj/rvkBUCfA1ewlX2hehg==,
@@ -606,25 +606,25 @@ packages:
         peerDependencies:
             "@firebase/app": 0.x
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/component": 0.6.4
-            "@firebase/installations": 0.6.4(@firebase/app@0.9.24)
+            "@firebase/installations": 0.6.4(@firebase/app@0.9.25)
             "@firebase/logger": 0.4.0
             "@firebase/util": 1.9.3
             tslib: 2.6.2
         dev: false
 
-    /@firebase/app-check-compat@0.3.7(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24):
+    /@firebase/app-check-compat@0.3.8(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25):
         resolution:
             {
-                integrity: sha512-cW682AxsyP1G+Z0/P7pO/WT2CzYlNxoNe5QejVarW2o5ZxeWSSPAiVEwpEpQR/bUlUmdeWThYTMvBWaopdBsqw==,
+                integrity: sha512-EaETtChR4UgMokJFw+r6jfcIyCTUZSe0a6ivF37D9MxlG9G3wzK1COyXgxoX96GzXmDPc2aubX4PxCrdVHhrnA==,
             }
         peerDependencies:
             "@firebase/app-compat": 0.x
         dependencies:
-            "@firebase/app-check": 0.8.0(@firebase/app@0.9.24)
+            "@firebase/app-check": 0.8.1(@firebase/app@0.9.25)
             "@firebase/app-check-types": 0.5.0
-            "@firebase/app-compat": 0.2.24
+            "@firebase/app-compat": 0.2.25
             "@firebase/component": 0.6.4
             "@firebase/logger": 0.4.0
             "@firebase/util": 1.9.3
@@ -647,28 +647,28 @@ packages:
             }
         dev: false
 
-    /@firebase/app-check@0.8.0(@firebase/app@0.9.24):
+    /@firebase/app-check@0.8.1(@firebase/app@0.9.25):
         resolution:
             {
-                integrity: sha512-dRDnhkcaC2FspMiRK/Vbp+PfsOAEP6ZElGm9iGFJ9fDqHoPs0HOPn7dwpJ51lCFi1+2/7n5pRPGhqF/F03I97g==,
+                integrity: sha512-zi3vbM5tb/eGRWyiqf+1DXbxFu9Q07dnm46rweodgUpH9B8svxYkHfNwYWx7F5mjHU70SQDuaojH1We5ws9OKA==,
             }
         peerDependencies:
             "@firebase/app": 0.x
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/component": 0.6.4
             "@firebase/logger": 0.4.0
             "@firebase/util": 1.9.3
             tslib: 2.6.2
         dev: false
 
-    /@firebase/app-compat@0.2.24:
+    /@firebase/app-compat@0.2.25:
         resolution:
             {
-                integrity: sha512-+l+vvxXGfPtb1oRQaqbNJWq/QWuC2n2njI/XLNMu2lu5sSLbdDOXHzidr6fbaLOOpESo4Gnagimp5dSnGQnaVg==,
+                integrity: sha512-B/JtCp1FsTuzlh1tIGQpYM2AXps21/zlzpFsk5LRsROOTRhBcR2N45AyaONPFD06C0yS0Tw19foxADzHyOSC3A==,
             }
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/component": 0.6.4
             "@firebase/logger": 0.4.0
             "@firebase/util": 1.9.3
@@ -682,10 +682,10 @@ packages:
             }
         dev: false
 
-    /@firebase/app@0.9.24:
+    /@firebase/app@0.9.25:
         resolution:
             {
-                integrity: sha512-hka/F1zNZ1mNE1cEj0uP6WNltuTZNldHkyqNLYCvfkXT4Ly+pChuUheRl0qccDWFLws9HyVXCNTtlfMmR+iq4w==,
+                integrity: sha512-fX22gL5USXhOK21Hlh3oTeOzQZ6th6S2JrjXNEpBARmwzuUkqmVGVdsOCIFYIsLpK0dQE3o8xZnLrRg5wnzZ/g==,
             }
         dependencies:
             "@firebase/component": 0.6.4
@@ -695,16 +695,16 @@ packages:
             tslib: 2.6.2
         dev: false
 
-    /@firebase/auth-compat@0.5.0(@firebase/app-compat@0.2.24)(@firebase/app-types@0.9.0)(@firebase/app@0.9.24):
+    /@firebase/auth-compat@0.5.1(@firebase/app-compat@0.2.25)(@firebase/app-types@0.9.0)(@firebase/app@0.9.25):
         resolution:
             {
-                integrity: sha512-jinbExdXRIDHEcNRQiQbz3qykWl7mvIXKNNLbbBqv04LWrsflhDgX54axfy3RIrZhiD8nD1btwSzJrZkt8jL8A==,
+                integrity: sha512-rgDZnrDoekRvtzXVji8Z61wxxkof6pTkjYEkybILrjM8tGP9tx4xa9qGpF4ax3AzF+rKr7mIa9NnoXEK4UNqmQ==,
             }
         peerDependencies:
             "@firebase/app-compat": 0.x
         dependencies:
-            "@firebase/app-compat": 0.2.24
-            "@firebase/auth": 1.5.0(@firebase/app@0.9.24)
+            "@firebase/app-compat": 0.2.25
+            "@firebase/auth": 1.5.1(@firebase/app@0.9.25)
             "@firebase/auth-types": 0.12.0(@firebase/app-types@0.9.0)(@firebase/util@1.9.3)
             "@firebase/component": 0.6.4
             "@firebase/util": 1.9.3
@@ -736,10 +736,10 @@ packages:
             "@firebase/util": 1.9.3
         dev: false
 
-    /@firebase/auth@1.5.0(@firebase/app@0.9.24):
+    /@firebase/auth@1.5.1(@firebase/app@0.9.25):
         resolution:
             {
-                integrity: sha512-GWkG0j/vy7MVK8qN5DLToJ/UdaP7cjJ2ksHeb8oqWZe5KoJJVqz2+Wg2fqH/hLRIXarj6KQH0ZvEOXGvFXFHmA==,
+                integrity: sha512-sVi7rq2YneLGJFqHa5S6nDfCHix9yuVV3RLhj/pWPlB4a36ofXal4E6PJwpeMc8uLjWEr1aovYN1jkXWNB6Avw==,
             }
         peerDependencies:
             "@firebase/app": 0.x
@@ -748,7 +748,7 @@ packages:
             "@react-native-async-storage/async-storage":
                 optional: true
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/component": 0.6.4
             "@firebase/logger": 0.4.0
             "@firebase/util": 1.9.3
@@ -766,14 +766,14 @@ packages:
             tslib: 2.6.2
         dev: false
 
-    /@firebase/database-compat@1.0.1:
+    /@firebase/database-compat@1.0.2:
         resolution:
             {
-                integrity: sha512-ky82yLIboLxtAIWyW/52a6HLMVTzD2kpZlEilVDok73pNPLjkJYowj8iaIWK5nTy7+6Gxt7d00zfjL6zckGdXQ==,
+                integrity: sha512-09ryJnXDvuycsxn8aXBzLhBTuCos3HEnCOBWY6hosxfYlNCGnLvG8YMlbSAt5eNhf7/00B095AEfDsdrrLjxqA==,
             }
         dependencies:
             "@firebase/component": 0.6.4
-            "@firebase/database": 1.0.1
+            "@firebase/database": 1.0.2
             "@firebase/database-types": 1.0.0
             "@firebase/logger": 0.4.0
             "@firebase/util": 1.9.3
@@ -790,12 +790,13 @@ packages:
             "@firebase/util": 1.9.3
         dev: false
 
-    /@firebase/database@1.0.1:
+    /@firebase/database@1.0.2:
         resolution:
             {
-                integrity: sha512-VAhF7gYwunW4Lw/+RQZvW8dlsf2r0YYqV9W0Gi2Mz8+0TGg1mBJWoUtsHfOr8kPJXhcLsC4eP/z3x6L/Fvjk/A==,
+                integrity: sha512-8X6NBJgUQzDz0xQVaCISoOLINKat594N2eBbMR3Mu/MH/ei4WM+aAMlsNzngF22eljXu1SILP5G3evkyvsG3Ng==,
             }
         dependencies:
+            "@firebase/app-check-interop-types": 0.3.0
             "@firebase/auth-interop-types": 0.2.1
             "@firebase/component": 0.6.4
             "@firebase/logger": 0.4.0
@@ -804,7 +805,7 @@ packages:
             tslib: 2.6.2
         dev: false
 
-    /@firebase/firestore-compat@0.3.23(@firebase/app-compat@0.2.24)(@firebase/app-types@0.9.0)(@firebase/app@0.9.24):
+    /@firebase/firestore-compat@0.3.23(@firebase/app-compat@0.2.25)(@firebase/app-types@0.9.0)(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-uUTBiP0GLVBETaOCfB11d33OWB8x1r2G1Xrl0sRK3Va0N5LJ/GRvKVSGfM7VScj+ypeHe8RpdwKoCqLpN1e+uA==,
@@ -812,9 +813,9 @@ packages:
         peerDependencies:
             "@firebase/app-compat": 0.x
         dependencies:
-            "@firebase/app-compat": 0.2.24
+            "@firebase/app-compat": 0.2.25
             "@firebase/component": 0.6.4
-            "@firebase/firestore": 4.4.0(@firebase/app@0.9.24)
+            "@firebase/firestore": 4.4.0(@firebase/app@0.9.25)
             "@firebase/firestore-types": 3.0.0(@firebase/app-types@0.9.0)(@firebase/util@1.9.3)
             "@firebase/util": 1.9.3
             tslib: 2.6.2
@@ -836,7 +837,7 @@ packages:
             "@firebase/util": 1.9.3
         dev: false
 
-    /@firebase/firestore@4.4.0(@firebase/app@0.9.24):
+    /@firebase/firestore@4.4.0(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-VeDXD9PUjvcWY1tInBOMTIu2pijR3YYy+QAe5cxCo1Q1vW+aA/mpQHhebPM1J6b4Zd1MuUh8xpBRvH9ujKR56A==,
@@ -845,7 +846,7 @@ packages:
         peerDependencies:
             "@firebase/app": 0.x
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/component": 0.6.4
             "@firebase/logger": 0.4.0
             "@firebase/util": 1.9.3
@@ -856,7 +857,7 @@ packages:
             undici: 5.26.5
         dev: false
 
-    /@firebase/functions-compat@0.3.6(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24):
+    /@firebase/functions-compat@0.3.6(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-RQpO3yuHtnkqLqExuAT2d0u3zh8SDbeBYK5EwSCBKI9mjrFeJRXBnd3pEG+x5SxGJLy56/5pQf73mwt0OuH5yg==,
@@ -864,9 +865,9 @@ packages:
         peerDependencies:
             "@firebase/app-compat": 0.x
         dependencies:
-            "@firebase/app-compat": 0.2.24
+            "@firebase/app-compat": 0.2.25
             "@firebase/component": 0.6.4
-            "@firebase/functions": 0.11.0(@firebase/app@0.9.24)
+            "@firebase/functions": 0.11.0(@firebase/app@0.9.25)
             "@firebase/functions-types": 0.6.0
             "@firebase/util": 1.9.3
             tslib: 2.6.2
@@ -881,7 +882,7 @@ packages:
             }
         dev: false
 
-    /@firebase/functions@0.11.0(@firebase/app@0.9.24):
+    /@firebase/functions@0.11.0(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-n1PZxKnJ++k73Q8khTPwihlbeKo6emnGzE0hX6QVQJsMq82y/XKmNpw2t/q30VJgwaia3ZXU1fd1C5wHncL+Zg==,
@@ -889,7 +890,7 @@ packages:
         peerDependencies:
             "@firebase/app": 0.x
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/app-check-interop-types": 0.3.0
             "@firebase/auth-interop-types": 0.2.1
             "@firebase/component": 0.6.4
@@ -899,7 +900,7 @@ packages:
             undici: 5.26.5
         dev: false
 
-    /@firebase/installations-compat@0.2.4(@firebase/app-compat@0.2.24)(@firebase/app-types@0.9.0)(@firebase/app@0.9.24):
+    /@firebase/installations-compat@0.2.4(@firebase/app-compat@0.2.25)(@firebase/app-types@0.9.0)(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-LI9dYjp0aT9Njkn9U4JRrDqQ6KXeAmFbRC0E7jI7+hxl5YmRWysq5qgQl22hcWpTk+cm3es66d/apoDU/A9n6Q==,
@@ -907,9 +908,9 @@ packages:
         peerDependencies:
             "@firebase/app-compat": 0.x
         dependencies:
-            "@firebase/app-compat": 0.2.24
+            "@firebase/app-compat": 0.2.25
             "@firebase/component": 0.6.4
-            "@firebase/installations": 0.6.4(@firebase/app@0.9.24)
+            "@firebase/installations": 0.6.4(@firebase/app@0.9.25)
             "@firebase/installations-types": 0.5.0(@firebase/app-types@0.9.0)
             "@firebase/util": 1.9.3
             tslib: 2.6.2
@@ -929,7 +930,7 @@ packages:
             "@firebase/app-types": 0.9.0
         dev: false
 
-    /@firebase/installations@0.6.4(@firebase/app@0.9.24):
+    /@firebase/installations@0.6.4(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-u5y88rtsp7NYkCHC3ElbFBrPtieUybZluXyzl7+4BsIz4sqb4vSAuwHEUgCgCeaQhvsnxDEU6icly8U9zsJigA==,
@@ -937,7 +938,7 @@ packages:
         peerDependencies:
             "@firebase/app": 0.x
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/component": 0.6.4
             "@firebase/util": 1.9.3
             idb: 7.0.1
@@ -953,7 +954,7 @@ packages:
             tslib: 2.6.2
         dev: false
 
-    /@firebase/messaging-compat@0.2.5(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24):
+    /@firebase/messaging-compat@0.2.5(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-qHQZxm4hEG8/HFU/ls5/bU+rpnlPDoZoqi3ATMeb6s4hovYV9+PfV5I7ZrKV5eFFv47Hx1PWLe5uPnS4e7gMwQ==,
@@ -961,9 +962,9 @@ packages:
         peerDependencies:
             "@firebase/app-compat": 0.x
         dependencies:
-            "@firebase/app-compat": 0.2.24
+            "@firebase/app-compat": 0.2.25
             "@firebase/component": 0.6.4
-            "@firebase/messaging": 0.12.5(@firebase/app@0.9.24)
+            "@firebase/messaging": 0.12.5(@firebase/app@0.9.25)
             "@firebase/util": 1.9.3
             tslib: 2.6.2
         transitivePeerDependencies:
@@ -977,7 +978,7 @@ packages:
             }
         dev: false
 
-    /@firebase/messaging@0.12.5(@firebase/app@0.9.24):
+    /@firebase/messaging@0.12.5(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-i/rrEI2k9ueFhdIr8KQsptWGskrsnkC5TkohCTrJKz9P0C/PbNv14IAMkwhMJTqIur5VwuOnrUkc9Kdz7awekw==,
@@ -985,16 +986,16 @@ packages:
         peerDependencies:
             "@firebase/app": 0.x
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/component": 0.6.4
-            "@firebase/installations": 0.6.4(@firebase/app@0.9.24)
+            "@firebase/installations": 0.6.4(@firebase/app@0.9.25)
             "@firebase/messaging-interop-types": 0.2.0
             "@firebase/util": 1.9.3
             idb: 7.1.1
             tslib: 2.6.2
         dev: false
 
-    /@firebase/performance-compat@0.2.4(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24):
+    /@firebase/performance-compat@0.2.4(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-nnHUb8uP9G8islzcld/k6Bg5RhX62VpbAb/Anj7IXs/hp32Eb2LqFPZK4sy3pKkBUO5wcrlRWQa6wKOxqlUqsg==,
@@ -1002,10 +1003,10 @@ packages:
         peerDependencies:
             "@firebase/app-compat": 0.x
         dependencies:
-            "@firebase/app-compat": 0.2.24
+            "@firebase/app-compat": 0.2.25
             "@firebase/component": 0.6.4
             "@firebase/logger": 0.4.0
-            "@firebase/performance": 0.6.4(@firebase/app@0.9.24)
+            "@firebase/performance": 0.6.4(@firebase/app@0.9.25)
             "@firebase/performance-types": 0.2.0
             "@firebase/util": 1.9.3
             tslib: 2.6.2
@@ -1020,7 +1021,7 @@ packages:
             }
         dev: false
 
-    /@firebase/performance@0.6.4(@firebase/app@0.9.24):
+    /@firebase/performance@0.6.4(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-HfTn/bd8mfy/61vEqaBelNiNnvAbUtME2S25A67Nb34zVuCSCRIX4SseXY6zBnOFj3oLisaEqhVcJmVPAej67g==,
@@ -1028,15 +1029,15 @@ packages:
         peerDependencies:
             "@firebase/app": 0.x
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/component": 0.6.4
-            "@firebase/installations": 0.6.4(@firebase/app@0.9.24)
+            "@firebase/installations": 0.6.4(@firebase/app@0.9.25)
             "@firebase/logger": 0.4.0
             "@firebase/util": 1.9.3
             tslib: 2.6.2
         dev: false
 
-    /@firebase/remote-config-compat@0.2.4(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24):
+    /@firebase/remote-config-compat@0.2.4(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-FKiki53jZirrDFkBHglB3C07j5wBpitAaj8kLME6g8Mx+aq7u9P7qfmuSRytiOItADhWUj7O1JIv7n9q87SuwA==,
@@ -1044,10 +1045,10 @@ packages:
         peerDependencies:
             "@firebase/app-compat": 0.x
         dependencies:
-            "@firebase/app-compat": 0.2.24
+            "@firebase/app-compat": 0.2.25
             "@firebase/component": 0.6.4
             "@firebase/logger": 0.4.0
-            "@firebase/remote-config": 0.4.4(@firebase/app@0.9.24)
+            "@firebase/remote-config": 0.4.4(@firebase/app@0.9.25)
             "@firebase/remote-config-types": 0.3.0
             "@firebase/util": 1.9.3
             tslib: 2.6.2
@@ -1062,7 +1063,7 @@ packages:
             }
         dev: false
 
-    /@firebase/remote-config@0.4.4(@firebase/app@0.9.24):
+    /@firebase/remote-config@0.4.4(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-x1ioTHGX8ZwDSTOVp8PBLv2/wfwKzb4pxi0gFezS5GCJwbLlloUH4YYZHHS83IPxnua8b6l0IXUaWd0RgbWwzQ==,
@@ -1070,15 +1071,15 @@ packages:
         peerDependencies:
             "@firebase/app": 0.x
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/component": 0.6.4
-            "@firebase/installations": 0.6.4(@firebase/app@0.9.24)
+            "@firebase/installations": 0.6.4(@firebase/app@0.9.25)
             "@firebase/logger": 0.4.0
             "@firebase/util": 1.9.3
             tslib: 2.6.2
         dev: false
 
-    /@firebase/storage-compat@0.3.3(@firebase/app-compat@0.2.24)(@firebase/app-types@0.9.0)(@firebase/app@0.9.24):
+    /@firebase/storage-compat@0.3.3(@firebase/app-compat@0.2.25)(@firebase/app-types@0.9.0)(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-WNtjYPhpOA1nKcRu5lIodX0wZtP8pI0VxDJnk6lr+av7QZNS1s6zvr+ERDTve+Qu4Hq/ZnNaf3kBEQR2ccXn6A==,
@@ -1086,9 +1087,9 @@ packages:
         peerDependencies:
             "@firebase/app-compat": 0.x
         dependencies:
-            "@firebase/app-compat": 0.2.24
+            "@firebase/app-compat": 0.2.25
             "@firebase/component": 0.6.4
-            "@firebase/storage": 0.12.0(@firebase/app@0.9.24)
+            "@firebase/storage": 0.12.0(@firebase/app@0.9.25)
             "@firebase/storage-types": 0.8.0(@firebase/app-types@0.9.0)(@firebase/util@1.9.3)
             "@firebase/util": 1.9.3
             tslib: 2.6.2
@@ -1110,7 +1111,7 @@ packages:
             "@firebase/util": 1.9.3
         dev: false
 
-    /@firebase/storage@0.12.0(@firebase/app@0.9.24):
+    /@firebase/storage@0.12.0(@firebase/app@0.9.25):
         resolution:
             {
                 integrity: sha512-SGs02Y/mmWBRsqZiYLpv4Sf7uZYZzMWVNN+aKiDqPsFBCzD6hLvGkXz+u98KAl8FqcjgB8BtSu01wm4pm76KHA==,
@@ -1118,7 +1119,7 @@ packages:
         peerDependencies:
             "@firebase/app": 0.x
         dependencies:
-            "@firebase/app": 0.9.24
+            "@firebase/app": 0.9.25
             "@firebase/component": 0.6.4
             "@firebase/util": 1.9.3
             tslib: 2.6.2
@@ -1194,7 +1195,7 @@ packages:
             "@fullcalendar/daygrid": 6.1.10(@fullcalendar/core@6.1.10)
         dev: true
 
-    /@fullcalendar/vue3@6.1.10(@fullcalendar/core@6.1.10)(vue@3.3.9):
+    /@fullcalendar/vue3@6.1.10(@fullcalendar/core@6.1.10)(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-YMYBQx0TlWNuN4G6ra2dkf5cCF5aVi/2zDLGLvLqe2Nk2o7uNbTkrCSG40061OepWQlJv+hYqm1JukLRmyqi4Q==,
@@ -1204,7 +1205,7 @@ packages:
             vue: ^3.0.11
         dependencies:
             "@fullcalendar/core": 6.1.10
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
     /@grpc/grpc-js@1.9.12:
@@ -1232,7 +1233,7 @@ packages:
             yargs: 17.7.2
         dev: false
 
-    /@headlessui/vue@1.7.16(vue@3.3.9):
+    /@headlessui/vue@1.7.16(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-nKT+nf/q6x198SsyK54mSszaQl/z+QxtASmgMEJtpxSX2Q0OPJX0upS/9daDyiECpeAsvjkoOrm2O/6PyBQ+Qg==,
@@ -1241,7 +1242,7 @@ packages:
         peerDependencies:
             vue: ^3.2.0
         dependencies:
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
     /@humanwhocodes/config-array@0.11.13:
@@ -1297,7 +1298,7 @@ packages:
             magic-string: 0.30.5
             mlly: 1.4.2
             source-map-js: 1.0.2
-            vue-i18n: 9.8.0(vue@3.3.9)
+            vue-i18n: 9.8.0(vue@3.3.10)
             yaml-eslint-parser: 1.2.2
         dev: true
 
@@ -1352,7 +1353,7 @@ packages:
             "@intlify/bundle-utils": 7.4.0(vue-i18n@9.8.0)
             "@intlify/shared": 9.8.0
             "@rollup/pluginutils": 5.1.0
-            "@vue/compiler-sfc": 3.3.9
+            "@vue/compiler-sfc": 3.3.10
             debug: 4.3.4
             fast-glob: 3.3.2
             js-yaml: 4.1.0
@@ -1361,7 +1362,7 @@ packages:
             picocolors: 1.0.0
             source-map-js: 1.0.2
             unplugin: 1.5.1
-            vue-i18n: 9.8.0(vue@3.3.9)
+            vue-i18n: 9.8.0(vue@3.3.10)
         transitivePeerDependencies:
             - rollup
             - supports-color
@@ -1577,7 +1578,7 @@ packages:
         engines: { node: ">= 4.0.0", npm: ">= 3.0.0" }
         dev: true
 
-    /@tailwindcss/forms@0.5.7(tailwindcss@3.3.5):
+    /@tailwindcss/forms@0.5.7(tailwindcss@3.3.6):
         resolution:
             {
                 integrity: sha512-QE7X69iQI+ZXwldE+rzasvbJiyV/ju1FGHH0Qn2W3FKbuYtqp8LKcy6iSw79fVUT5/Vvf+0XgLCeYVG+UV6hOw==,
@@ -1586,10 +1587,10 @@ packages:
             tailwindcss: ">=3.0.0 || >= 3.0.0-alpha.1"
         dependencies:
             mini-svg-data-uri: 1.4.4
-            tailwindcss: 3.3.5
+            tailwindcss: 3.3.6
         dev: true
 
-    /@tailwindcss/typography@0.5.10(tailwindcss@3.3.5):
+    /@tailwindcss/typography@0.5.10(tailwindcss@3.3.6):
         resolution:
             {
                 integrity: sha512-Pe8BuPJQJd3FfRnm6H0ulKIGoMEQS+Vq01R6M5aCrFB/ccR/shT+0kXLjouGC1gFLm9hopTFN+DMP0pfwRWzPw==,
@@ -1601,7 +1602,7 @@ packages:
             lodash.isplainobject: 4.0.6
             lodash.merge: 4.6.2
             postcss-selector-parser: 6.0.10
-            tailwindcss: 3.3.5
+            tailwindcss: 3.3.6
         dev: true
 
     /@trysound/sax@0.2.0:
@@ -1684,7 +1685,7 @@ packages:
             "@unhead/shared": 1.8.8
         dev: true
 
-    /@unhead/vue@1.8.8(vue@3.3.9):
+    /@unhead/vue@1.8.8(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-isHpVnSSE5SP+ObsZG/i+Jq9tAQ2u1AbGrktXKmL7P5FRxwPjhATYnJFdGpxXeXfuaFgRFKzGKs29xo4MMVODw==,
@@ -1696,10 +1697,10 @@ packages:
             "@unhead/shared": 1.8.8
             hookable: 5.5.3
             unhead: 1.8.8
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /@vitejs/plugin-vue@4.5.1(vite@4.5.0)(vue@3.3.9):
+    /@vitejs/plugin-vue@4.5.1(vite@4.5.1)(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-DaUzYFr+2UGDG7VSSdShKa9sIWYBa1LL8KC0MNOf2H5LjcTPjob0x8LbkqXWmAtbANJCkpiQTj66UVcQkN2s3g==,
@@ -1709,8 +1710,8 @@ packages:
             vite: ^4.0.0 || ^5.0.0
             vue: ^3.2.25
         dependencies:
-            vite: 4.5.0
-            vue: 3.3.9(typescript@5.3.2)
+            vite: 4.5.1
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
     /@volar/language-core@1.11.1:
@@ -1741,54 +1742,54 @@ packages:
             path-browserify: 1.0.1
         dev: true
 
-    /@vue/compiler-core@3.3.9:
+    /@vue/compiler-core@3.3.10:
         resolution:
             {
-                integrity: sha512-+/Lf68Vr/nFBA6ol4xOtJrW+BQWv3QWKfRwGSm70jtXwfhZNF4R/eRgyVJYoxFRhdCTk/F6g99BP0ffPgZihfQ==,
+                integrity: sha512-doe0hODR1+i1menPkRzJ5MNR6G+9uiZHIknK3Zn5OcIztu6GGw7u0XUzf3AgB8h/dfsZC9eouzoLo3c3+N/cVA==,
             }
         dependencies:
             "@babel/parser": 7.23.5
-            "@vue/shared": 3.3.9
+            "@vue/shared": 3.3.10
             estree-walker: 2.0.2
             source-map-js: 1.0.2
         dev: true
 
-    /@vue/compiler-dom@3.3.9:
+    /@vue/compiler-dom@3.3.10:
         resolution:
             {
-                integrity: sha512-nfWubTtLXuT4iBeDSZ5J3m218MjOy42Vp2pmKVuBKo2/BLcrFUX8nCSr/bKRFiJ32R8qbdnnnBgRn9AdU5v0Sg==,
+                integrity: sha512-NCrqF5fm10GXZIK0GrEAauBqdy+F2LZRt3yNHzrYjpYBuRssQbuPLtSnSNjyR9luHKkWSH8we5LMB3g+4z2HvA==,
             }
         dependencies:
-            "@vue/compiler-core": 3.3.9
-            "@vue/shared": 3.3.9
+            "@vue/compiler-core": 3.3.10
+            "@vue/shared": 3.3.10
         dev: true
 
-    /@vue/compiler-sfc@3.3.9:
+    /@vue/compiler-sfc@3.3.10:
         resolution:
             {
-                integrity: sha512-wy0CNc8z4ihoDzjASCOCsQuzW0A/HP27+0MDSSICMjVIFzk/rFViezkR3dzH+miS2NDEz8ywMdbjO5ylhOLI2A==,
+                integrity: sha512-xpcTe7Rw7QefOTRFFTlcfzozccvjM40dT45JtrE3onGm/jBLZ0JhpKu3jkV7rbDFLeeagR/5RlJ2Y9SvyS0lAg==,
             }
         dependencies:
             "@babel/parser": 7.23.5
-            "@vue/compiler-core": 3.3.9
-            "@vue/compiler-dom": 3.3.9
-            "@vue/compiler-ssr": 3.3.9
-            "@vue/reactivity-transform": 3.3.9
-            "@vue/shared": 3.3.9
+            "@vue/compiler-core": 3.3.10
+            "@vue/compiler-dom": 3.3.10
+            "@vue/compiler-ssr": 3.3.10
+            "@vue/reactivity-transform": 3.3.10
+            "@vue/shared": 3.3.10
             estree-walker: 2.0.2
             magic-string: 0.30.5
             postcss: 8.4.32
             source-map-js: 1.0.2
         dev: true
 
-    /@vue/compiler-ssr@3.3.9:
+    /@vue/compiler-ssr@3.3.10:
         resolution:
             {
-                integrity: sha512-NO5oobAw78R0G4SODY5A502MGnDNiDjf6qvhn7zD7TJGc8XDeIEw4fg6JU705jZ/YhuokBKz0A5a/FL/XZU73g==,
+                integrity: sha512-12iM4jA4GEbskwXMmPcskK5wImc2ohKm408+o9iox3tfN9qua8xL0THIZtoe9OJHnXP4eOWZpgCAAThEveNlqQ==,
             }
         dependencies:
-            "@vue/compiler-dom": 3.3.9
-            "@vue/shared": 3.3.9
+            "@vue/compiler-dom": 3.3.10
+            "@vue/shared": 3.3.10
         dev: true
 
     /@vue/devtools-api@6.5.1:
@@ -1798,10 +1799,10 @@ packages:
             }
         dev: true
 
-    /@vue/language-core@1.8.24(typescript@5.3.2):
+    /@vue/language-core@1.8.25(typescript@5.3.3):
         resolution:
             {
-                integrity: sha512-2ClHvij0WlsDWryPzXJCSpPc6rusZFNoVtRZGgGGkKCmKuIREDDKmH8j+1tYyxPYyH0qL6pZ6+IHD8KIm5nWAw==,
+                integrity: sha512-NJk/5DnAZlpvXX8BdWmHI45bWGLViUaS3R/RMrmFSvFMSbJKuEODpM4kR0F0Ofv5SFzCWuNiMhxameWpVdQsnA==,
             }
         peerDependencies:
             typescript: "*"
@@ -1811,80 +1812,80 @@ packages:
         dependencies:
             "@volar/language-core": 1.11.1
             "@volar/source-map": 1.11.1
-            "@vue/compiler-dom": 3.3.9
-            "@vue/shared": 3.3.9
+            "@vue/compiler-dom": 3.3.10
+            "@vue/shared": 3.3.10
             computeds: 0.0.1
             minimatch: 9.0.3
             muggle-string: 0.3.1
             path-browserify: 1.0.1
-            typescript: 5.3.2
+            typescript: 5.3.3
             vue-template-compiler: 2.7.15
         dev: true
 
-    /@vue/reactivity-transform@3.3.9:
+    /@vue/reactivity-transform@3.3.10:
         resolution:
             {
-                integrity: sha512-HnUFm7Ry6dFa4Lp63DAxTixUp8opMtQr6RxQCpDI1vlh12rkGIeYqMvJtK+IKyEfEOa2I9oCkD1mmsPdaGpdVg==,
+                integrity: sha512-0xBdk+CKHWT+Gev8oZ63Tc0qFfj935YZx+UAynlutnrDZ4diFCVFMWixn65HzjE3S1iJppWOo6Tt1OzASH7VEg==,
             }
         dependencies:
             "@babel/parser": 7.23.5
-            "@vue/compiler-core": 3.3.9
-            "@vue/shared": 3.3.9
+            "@vue/compiler-core": 3.3.10
+            "@vue/shared": 3.3.10
             estree-walker: 2.0.2
             magic-string: 0.30.5
         dev: true
 
-    /@vue/reactivity@3.3.9:
+    /@vue/reactivity@3.3.10:
         resolution:
             {
-                integrity: sha512-VmpIqlNp+aYDg2X0xQhJqHx9YguOmz2UxuUJDckBdQCNkipJvfk9yA75woLWElCa0Jtyec3lAAt49GO0izsphw==,
+                integrity: sha512-H5Z7rOY/JLO+e5a6/FEXaQ1TMuOvY4LDVgT+/+HKubEAgs9qeeZ+NhADSeEtrNQeiKLDuzeKc8v0CUFpB6Pqgw==,
             }
         dependencies:
-            "@vue/shared": 3.3.9
+            "@vue/shared": 3.3.10
         dev: true
 
-    /@vue/runtime-core@3.3.9:
+    /@vue/runtime-core@3.3.10:
         resolution:
             {
-                integrity: sha512-xxaG9KvPm3GTRuM4ZyU8Tc+pMVzcu6eeoSRQJ9IE7NmCcClW6z4B3Ij6L4EDl80sxe/arTtQ6YmgiO4UZqRc+w==,
+                integrity: sha512-DZ0v31oTN4YHX9JEU5VW1LoIVgFovWgIVb30bWn9DG9a7oA415idcwsRNNajqTx8HQJyOaWfRKoyuP2P2TYIag==,
             }
         dependencies:
-            "@vue/reactivity": 3.3.9
-            "@vue/shared": 3.3.9
+            "@vue/reactivity": 3.3.10
+            "@vue/shared": 3.3.10
         dev: true
 
-    /@vue/runtime-dom@3.3.9:
+    /@vue/runtime-dom@3.3.10:
         resolution:
             {
-                integrity: sha512-e7LIfcxYSWbV6BK1wQv9qJyxprC75EvSqF/kQKe6bdZEDNValzeRXEVgiX7AHI6hZ59HA4h7WT5CGvm69vzJTQ==,
+                integrity: sha512-c/jKb3ny05KJcYk0j1m7Wbhrxq7mZYr06GhKykDMNRRR9S+/dGT8KpHuNQjv3/8U4JshfkAk6TpecPD3B21Ijw==,
             }
         dependencies:
-            "@vue/runtime-core": 3.3.9
-            "@vue/shared": 3.3.9
+            "@vue/runtime-core": 3.3.10
+            "@vue/shared": 3.3.10
             csstype: 3.1.2
         dev: true
 
-    /@vue/server-renderer@3.3.9(vue@3.3.9):
+    /@vue/server-renderer@3.3.10(vue@3.3.10):
         resolution:
             {
-                integrity: sha512-w0zT/s5l3Oa3ZjtLW88eO4uV6AQFqU8X5GOgzq7SkQQu6vVr+8tfm+OI2kDBplS/W/XgCBuFXiPw6T5EdwXP0A==,
+                integrity: sha512-0i6ww3sBV3SKlF3YTjSVqKQ74xialMbjVYGy7cOTi7Imd8ediE7t72SK3qnvhrTAhOvlQhq6Bk6nFPdXxe0sAg==,
             }
         peerDependencies:
-            vue: 3.3.9
+            vue: 3.3.10
         dependencies:
-            "@vue/compiler-ssr": 3.3.9
-            "@vue/shared": 3.3.9
-            vue: 3.3.9(typescript@5.3.2)
+            "@vue/compiler-ssr": 3.3.10
+            "@vue/shared": 3.3.10
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /@vue/shared@3.3.9:
+    /@vue/shared@3.3.10:
         resolution:
             {
-                integrity: sha512-ZE0VTIR0LmYgeyhurPTpy4KzKsuDyQbMSdM49eKkMnT5X4VfFBLysMzjIZhLEFQYjjOVVfbvUDHckwjDFiO2eA==,
+                integrity: sha512-2y3Y2J1a3RhFa0WisHvACJR2ncvWiVHcP8t0Inxo+NKz+8RKO4ZV8eZgCxRgQoA6ITfV12L4E6POOL9HOU5nqw==,
             }
         dev: true
 
-    /@vuelidate/core@2.0.3(vue@3.3.9):
+    /@vuelidate/core@2.0.3(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-AN6l7KF7+mEfyWG0doT96z+47ljwPpZfi9/JrNMkOGLFv27XVZvKzRLXlmDPQjPl/wOB1GNnHuc54jlCLRNqGA==,
@@ -1896,11 +1897,11 @@ packages:
             "@vue/composition-api":
                 optional: true
         dependencies:
-            vue: 3.3.9(typescript@5.3.2)
-            vue-demi: 0.13.11(vue@3.3.9)
+            vue: 3.3.10(typescript@5.3.3)
+            vue-demi: 0.13.11(vue@3.3.10)
         dev: true
 
-    /@vuelidate/validators@2.0.4(vue@3.3.9):
+    /@vuelidate/validators@2.0.4(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-odTxtUZ2JpwwiQ10t0QWYJkkYrfd0SyFYhdHH44QQ1jDatlZgTh/KRzrWVmn/ib9Gq7H4hFD4e8ahoo5YlUlDw==,
@@ -1912,11 +1913,11 @@ packages:
             "@vue/composition-api":
                 optional: true
         dependencies:
-            vue: 3.3.9(typescript@5.3.2)
-            vue-demi: 0.13.11(vue@3.3.9)
+            vue: 3.3.10(typescript@5.3.3)
+            vue-demi: 0.13.11(vue@3.3.10)
         dev: true
 
-    /@vueuse/head@2.0.0(vue@3.3.9):
+    /@vueuse/head@2.0.0(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-ykdOxTGs95xjD4WXE4na/umxZea2Itl0GWBILas+O4oqS7eXIods38INvk3XkJKjqMdWPcpCyLX/DioLQxU1KA==,
@@ -1927,8 +1928,8 @@ packages:
             "@unhead/dom": 1.8.8
             "@unhead/schema": 1.8.8
             "@unhead/ssr": 1.8.8
-            "@unhead/vue": 1.8.8(vue@3.3.9)
-            vue: 3.3.9(typescript@5.3.2)
+            "@unhead/vue": 1.8.8(vue@3.3.10)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
     /@yr/monotone-cubic-spline@1.0.3:
@@ -2004,10 +2005,10 @@ packages:
             picomatch: 2.3.1
         dev: true
 
-    /apexcharts@3.44.1:
+    /apexcharts@3.44.2:
         resolution:
             {
-                integrity: sha512-nWd6bWf8E+c3YOsB0j0R4MOebMv1rBRWsK6aA11jF+pbag9IuBl4zrT4L42fxmDdLMcf5t3trWIXiGJmbLi2tA==,
+                integrity: sha512-QWOFS/SC1TDsuI8VudVuIwLhs1qE6kwixRvmABMUgTVeVzizRWgQh8pdEIgwl+Zvr0TlM3vHPz6Dc5NP1hJ7BA==,
             }
         dependencies:
             "@yr/monotone-cubic-spline": 1.0.3
@@ -2150,7 +2151,7 @@ packages:
         hasBin: true
         dependencies:
             caniuse-lite: 1.0.30001566
-            electron-to-chromium: 1.4.601
+            electron-to-chromium: 1.4.607
             node-releases: 2.0.14
             update-browserslist-db: 1.0.13(browserslist@4.22.2)
         dev: true
@@ -2333,10 +2334,10 @@ packages:
             }
         dev: true
 
-    /core-js@3.33.3:
+    /core-js@3.34.0:
         resolution:
             {
-                integrity: sha512-lo0kOocUlLKmm6kv/FswQL8zbkH7mVsLJ/FULClOhv8WRVmKLVcs6XPNQAzstfeJTCHMyButEwG+z1kHxHoDZw==,
+                integrity: sha512-aDdvlDder8QmY91H88GzNi9EtQi2TjvQhpCX6B1v/dAZHU1AuLgHvRh54RiOerpEhEW46Tkf+vgAViB/CWC0ag==,
             }
         requiresBuild: true
         dev: true
@@ -2699,10 +2700,10 @@ packages:
             domhandler: 4.3.1
         dev: true
 
-    /electron-to-chromium@1.4.601:
+    /electron-to-chromium@1.4.607:
         resolution:
             {
-                integrity: sha512-SpwUMDWe9tQu8JX5QCO1+p/hChAi9AE9UpoC3rcHVc+gdCGlbT3SGb5I1klgb952HRIyvt9wZhSz9bNBYz9swA==,
+                integrity: sha512-YUlnPwE6eYxzwBnFmawA8LiLRfm70R2aJRIUv0n03uHt/cUzzYACOogmvk8M2+hVzt/kB80KJXx7d5f5JofPvQ==,
             }
         dev: true
 
@@ -3129,37 +3130,37 @@ packages:
             path-exists: 4.0.0
         dev: true
 
-    /firebase@10.7.0:
+    /firebase@10.7.1:
         resolution:
             {
-                integrity: sha512-t6ZwJQhmq0m7kSssVeu5a1DdmZ0YEBWgNFtpmcvU3PiffWdGVlri6yaX/BK5i4cRtGuQjVPPAEmB90TCpLF5GQ==,
+                integrity: sha512-Mlt7y7zQ43FtKp4SCyYie3tnrOL3UMF2XXiV4ZXMrC0d0wtcOYmABuybhkJpJCKILpdekxr39wjnaai0DZlWFg==,
             }
         dependencies:
-            "@firebase/analytics": 0.10.0(@firebase/app@0.9.24)
-            "@firebase/analytics-compat": 0.2.6(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24)
-            "@firebase/app": 0.9.24
-            "@firebase/app-check": 0.8.0(@firebase/app@0.9.24)
-            "@firebase/app-check-compat": 0.3.7(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24)
-            "@firebase/app-compat": 0.2.24
+            "@firebase/analytics": 0.10.0(@firebase/app@0.9.25)
+            "@firebase/analytics-compat": 0.2.6(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25)
+            "@firebase/app": 0.9.25
+            "@firebase/app-check": 0.8.1(@firebase/app@0.9.25)
+            "@firebase/app-check-compat": 0.3.8(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25)
+            "@firebase/app-compat": 0.2.25
             "@firebase/app-types": 0.9.0
-            "@firebase/auth": 1.5.0(@firebase/app@0.9.24)
-            "@firebase/auth-compat": 0.5.0(@firebase/app-compat@0.2.24)(@firebase/app-types@0.9.0)(@firebase/app@0.9.24)
-            "@firebase/database": 1.0.1
-            "@firebase/database-compat": 1.0.1
-            "@firebase/firestore": 4.4.0(@firebase/app@0.9.24)
-            "@firebase/firestore-compat": 0.3.23(@firebase/app-compat@0.2.24)(@firebase/app-types@0.9.0)(@firebase/app@0.9.24)
-            "@firebase/functions": 0.11.0(@firebase/app@0.9.24)
-            "@firebase/functions-compat": 0.3.6(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24)
-            "@firebase/installations": 0.6.4(@firebase/app@0.9.24)
-            "@firebase/installations-compat": 0.2.4(@firebase/app-compat@0.2.24)(@firebase/app-types@0.9.0)(@firebase/app@0.9.24)
-            "@firebase/messaging": 0.12.5(@firebase/app@0.9.24)
-            "@firebase/messaging-compat": 0.2.5(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24)
-            "@firebase/performance": 0.6.4(@firebase/app@0.9.24)
-            "@firebase/performance-compat": 0.2.4(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24)
-            "@firebase/remote-config": 0.4.4(@firebase/app@0.9.24)
-            "@firebase/remote-config-compat": 0.2.4(@firebase/app-compat@0.2.24)(@firebase/app@0.9.24)
-            "@firebase/storage": 0.12.0(@firebase/app@0.9.24)
-            "@firebase/storage-compat": 0.3.3(@firebase/app-compat@0.2.24)(@firebase/app-types@0.9.0)(@firebase/app@0.9.24)
+            "@firebase/auth": 1.5.1(@firebase/app@0.9.25)
+            "@firebase/auth-compat": 0.5.1(@firebase/app-compat@0.2.25)(@firebase/app-types@0.9.0)(@firebase/app@0.9.25)
+            "@firebase/database": 1.0.2
+            "@firebase/database-compat": 1.0.2
+            "@firebase/firestore": 4.4.0(@firebase/app@0.9.25)
+            "@firebase/firestore-compat": 0.3.23(@firebase/app-compat@0.2.25)(@firebase/app-types@0.9.0)(@firebase/app@0.9.25)
+            "@firebase/functions": 0.11.0(@firebase/app@0.9.25)
+            "@firebase/functions-compat": 0.3.6(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25)
+            "@firebase/installations": 0.6.4(@firebase/app@0.9.25)
+            "@firebase/installations-compat": 0.2.4(@firebase/app-compat@0.2.25)(@firebase/app-types@0.9.0)(@firebase/app@0.9.25)
+            "@firebase/messaging": 0.12.5(@firebase/app@0.9.25)
+            "@firebase/messaging-compat": 0.2.5(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25)
+            "@firebase/performance": 0.6.4(@firebase/app@0.9.25)
+            "@firebase/performance-compat": 0.2.4(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25)
+            "@firebase/remote-config": 0.4.4(@firebase/app@0.9.25)
+            "@firebase/remote-config-compat": 0.2.4(@firebase/app-compat@0.2.25)(@firebase/app@0.9.25)
+            "@firebase/storage": 0.12.0(@firebase/app@0.9.25)
+            "@firebase/storage-compat": 0.3.3(@firebase/app-compat@0.2.25)(@firebase/app-types@0.9.0)(@firebase/app@0.9.25)
             "@firebase/util": 1.9.3
         transitivePeerDependencies:
             - "@react-native-async-storage/async-storage"
@@ -4349,7 +4350,7 @@ packages:
         engines: { node: ">=0.10.0" }
         dev: true
 
-    /pinia@2.1.7(typescript@5.3.2)(vue@3.3.9):
+    /pinia@2.1.7(typescript@5.3.3)(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-+C2AHFtcFqjPih0zpYuvof37SFxMQ7OEG2zV9jRI12i9BOy3YQVAHwdKtyyc8pDcDyIc33WCIsZaCFWU7WWxGQ==,
@@ -4365,9 +4366,9 @@ packages:
                 optional: true
         dependencies:
             "@vue/devtools-api": 6.5.1
-            typescript: 5.3.2
-            vue: 3.3.9(typescript@5.3.2)
-            vue-demi: 0.14.6(vue@3.3.9)
+            typescript: 5.3.3
+            vue: 3.3.10(typescript@5.3.3)
+            vue-demi: 0.14.6(vue@3.3.10)
         dev: true
 
     /pirates@4.0.6:
@@ -5455,10 +5456,10 @@ packages:
             tslib: 2.6.2
         dev: true
 
-    /tailwindcss@3.3.5:
+    /tailwindcss@3.3.6:
         resolution:
             {
-                integrity: sha512-5SEZU4J7pxZgSkv7FP1zY8i2TIAOooNZ1e/OGtxIEv6GltpoiXUqWvLy89+a10qYTB1N5Ifkuw9lqQkN9sscvA==,
+                integrity: sha512-AKjF7qbbLvLaPieoKeTjG1+FyNZT6KaJMJPFeQyLfIp7l82ggH1fbHJSsYIvnbTFQOlkh+gBYpyby5GT1LIdLw==,
             }
         engines: { node: ">=14.0.0" }
         hasBin: true
@@ -5579,10 +5580,10 @@ packages:
         engines: { node: ">=10" }
         dev: true
 
-    /typescript@5.3.2:
+    /typescript@5.3.3:
         resolution:
             {
-                integrity: sha512-6l+RyNy7oAHDfxC4FzSJcz9vnjTKxrLpDG5M2Vu4SHRVNg6xzqZp6LYSR9zjqQTu8DU/f5xwxUdADOkbrIX2gQ==,
+                integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==,
             }
         engines: { node: ">=14.17" }
         hasBin: true
@@ -5686,10 +5687,10 @@ packages:
             x-is-array: 0.1.0
         dev: true
 
-    /vite@4.5.0:
+    /vite@4.5.1:
         resolution:
             {
-                integrity: sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==,
+                integrity: sha512-AXXFaAJ8yebyqzoNB9fu2pHoo/nWX+xZlaRwoeYUxEqBO+Zj4msE5G+BhGBll9lYEKv9Hfks52PAF2X7qDYXQA==,
             }
         engines: { node: ^14.18.0 || >=16.0.0 }
         hasBin: true
@@ -5734,7 +5735,7 @@ packages:
             x-is-array: 0.1.0
         dev: true
 
-    /vue-awesome-swiper@5.0.1(swiper@8.4.7)(vue@3.3.9):
+    /vue-awesome-swiper@5.0.1(swiper@8.4.7)(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-mWjFJzUqA4lG+DmsmibvMpoiBnl+IH2SSeiiQ3i5M0t1y9FknTxnGT0DsMb2YdJLgjYMEK3sYOWzqgLnZMH8Lg==,
@@ -5744,7 +5745,7 @@ packages:
             vue: 3.x
         dependencies:
             swiper: 8.4.7
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
     /vue-clipboard3@2.0.0:
@@ -5756,7 +5757,7 @@ packages:
             clipboard: 2.0.11
         dev: true
 
-    /vue-countup-v3@1.4.0(vue@3.3.9):
+    /vue-countup-v3@1.4.0(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-Tt5c28V/9J8Y34uJeHfyFqbsQfUcMoHgwG3OVJ8Sj1PKMpk0i0zqy0gmHCqvZJE/zp26IUNdEmrS08cKGENHrA==,
@@ -5765,10 +5766,10 @@ packages:
             vue: ^3.0.0
         dependencies:
             countup.js: 2.8.0
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /vue-demi@0.13.11(vue@3.3.9):
+    /vue-demi@0.13.11(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==,
@@ -5783,10 +5784,10 @@ packages:
             "@vue/composition-api":
                 optional: true
         dependencies:
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /vue-demi@0.14.6(vue@3.3.9):
+    /vue-demi@0.14.6(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==,
@@ -5801,10 +5802,10 @@ packages:
             "@vue/composition-api":
                 optional: true
         dependencies:
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /vue-draggable-next@2.2.1(sortablejs@1.15.1)(vue@3.3.9):
+    /vue-draggable-next@2.2.1(sortablejs@1.15.1)(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-EAMS1IRHF0kZO0o5PMOinsQsXIqsrKT1hKmbICxG3UEtn7zLFkLxlAtajcCcUTisNvQ6TtCB5COjD9a1raNADw==,
@@ -5814,10 +5815,10 @@ packages:
             vue: ^3.2.2
         dependencies:
             sortablejs: 1.15.1
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /vue-easy-lightbox@1.16.0(vue@3.3.9):
+    /vue-easy-lightbox@1.16.0(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-9ckBIi56kTNkfbxioTBLKR3xnFjmkIs4SOvePn6XUciR+Dzuav0tgNjqDHkfsoo3nxIpUmfpQAT0YDl9TpJ5jA==,
@@ -5826,7 +5827,7 @@ packages:
         peerDependencies:
             vue: ^3.0.0
         dependencies:
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
     /vue-eslint-parser@9.3.2(eslint@8.55.0):
@@ -5850,7 +5851,7 @@ packages:
             - supports-color
         dev: true
 
-    /vue-flatpickr-component@11.0.3(vue@3.3.9):
+    /vue-flatpickr-component@11.0.3(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-SYNW/lqK1q9gzr5kQpNDwnlgUIDnXJpG1AmoDxVyOYVtUD7mLaDU1w+MJLFI644NYtwh9NrCt5LpojlsjtbvqA==,
@@ -5860,10 +5861,10 @@ packages:
             vue: ^3.2.0
         dependencies:
             flatpickr: 4.6.13
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /vue-height-collapsible@0.1.1(vue@3.3.9):
+    /vue-height-collapsible@0.1.1(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-GnjExhRPMA/YaGkOb18AImeGGyjnHLsUKtKHSmnqGPpaSbRgh44nlLqgXOl9nL+HFAlTZ4a4gpUaDno1HyZnHw==,
@@ -5872,10 +5873,10 @@ packages:
         peerDependencies:
             vue: 2.6.x || 3.x.x
         dependencies:
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /vue-i18n@9.8.0(vue@3.3.9):
+    /vue-i18n@9.8.0(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-Izho+6PYjejsTq2mzjcRdBZ5VLRQoSuuexvR8029h5CpN03FYqiqBrShMyf2I1DKkN6kw/xmujcbvC+4QybpsQ==,
@@ -5887,10 +5888,10 @@ packages:
             "@intlify/core-base": 9.8.0
             "@intlify/shared": 9.8.0
             "@vue/devtools-api": 6.5.1
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /vue-router@4.2.5(vue@3.3.9):
+    /vue-router@4.2.5(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-DIUpKcyg4+PTQKfFPX88UWhlagBEBEfJ5A8XDXRJLUnZOvcpMF8o/dnL90vpVkGaPbjvXazV/rC1qBKrZlFugw==,
@@ -5899,10 +5900,10 @@ packages:
             vue: ^3.2.0
         dependencies:
             "@vue/devtools-api": 6.5.1
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /vue-simple-range-slider@1.1.0(vue@3.3.9):
+    /vue-simple-range-slider@1.1.0(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-q2Gch3PhV3YNwG8XoWt7ZXzJeTH2qoMCnMaZb+ArNHmfQRMYEOg0D/jLlL9VtMw1oLNMcYfx4KJ33dTckU/rlA==,
@@ -5910,8 +5911,8 @@ packages:
         peerDependencies:
             vue: ">=3.2.0||>=2.7.0"
         dependencies:
-            vue: 3.3.9(typescript@5.3.2)
-            vue-demi: 0.13.11(vue@3.3.9)
+            vue: 3.3.10(typescript@5.3.3)
+            vue-demi: 0.13.11(vue@3.3.10)
         transitivePeerDependencies:
             - "@vue/composition-api"
         dev: true
@@ -5933,22 +5934,22 @@ packages:
             }
         dev: true
 
-    /vue-tsc@1.8.24(typescript@5.3.2):
+    /vue-tsc@1.8.25(typescript@5.3.3):
         resolution:
             {
-                integrity: sha512-eH1CSj231OzVEY5Hi7wS6ubzyOEwgr5jCptR0Ddf2SitGcaXIsPVDvrprm3eolCdyhDt3WS1Eb2F4fGX9BsUUw==,
+                integrity: sha512-lHsRhDc/Y7LINvYhZ3pv4elflFADoEOo67vfClAfF2heVHpHmVquLSjojgCSIwzA4F0Pc4vowT/psXCYcfk+iQ==,
             }
         hasBin: true
         peerDependencies:
             typescript: "*"
         dependencies:
             "@volar/typescript": 1.11.1
-            "@vue/language-core": 1.8.24(typescript@5.3.2)
+            "@vue/language-core": 1.8.25(typescript@5.3.3)
             semver: 7.5.4
-            typescript: 5.3.2
+            typescript: 5.3.3
         dev: true
 
-    /vue3-apexcharts@1.4.4(apexcharts@3.44.1)(vue@3.3.9):
+    /vue3-apexcharts@1.4.4(apexcharts@3.44.2)(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-TH89uZrxGjaDvkaYAISvj8+k6Bf1rUKFillc8oJirs5XZEPiwM1ELKZQ786wz0rfPqkSHHny2lqqUCK7Rw+LcQ==,
@@ -5957,8 +5958,8 @@ packages:
             apexcharts: "> 3.0.0"
             vue: "> 3.0.0"
         dependencies:
-            apexcharts: 3.44.1
-            vue: 3.3.9(typescript@5.3.2)
+            apexcharts: 3.44.2
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
     /vue3-form-wizard@0.2.1:
@@ -5968,14 +5969,14 @@ packages:
             }
         dev: true
 
-    /vue3-number-spinner@0.0.9(typescript@5.3.2):
+    /vue3-number-spinner@0.0.9(typescript@5.3.3):
         resolution:
             {
                 integrity: sha512-6RLMPductN+Xo3+keMxJ7GjLkIUrdiZoJ2TQAnM1TWXHd+ROGG9W/gZEs5Nssf0P5oZy2lqVyTLSfHe0bcWaFA==,
             }
         dependencies:
-            core-js: 3.33.3
-            vue: 3.3.9(typescript@5.3.2)
+            core-js: 3.34.0
+            vue: 3.3.10(typescript@5.3.3)
         transitivePeerDependencies:
             - typescript
         dev: true
@@ -5993,7 +5994,7 @@ packages:
             - postcss
         dev: true
 
-    /vue3-popper@1.5.0(vue@3.3.9):
+    /vue3-popper@1.5.0(vue@3.3.10):
         resolution:
             {
                 integrity: sha512-xaEnx90YBnlSg5G2yWqm2DHWHg+DB99UVRp4VsyTF0QLXyHrqSuE1Xo5+sG0AQq/lBcrGMlk5NU5xE2MDLKViw==,
@@ -6004,26 +6005,26 @@ packages:
         dependencies:
             "@popperjs/core": 2.11.8
             debounce: 1.2.1
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         dev: true
 
-    /vue3-quill@0.3.1(typescript@5.3.2):
+    /vue3-quill@0.3.1(typescript@5.3.3):
         resolution:
             {
                 integrity: sha512-uZL2laR13R9AJLidtq6oCk7PQ8tJ/U92bcjdK5hsDd3eANmu0nQlf4LKE71wTaih5MnIL7LSZYIFhRs344zPIQ==,
             }
         dependencies:
-            core-js: 3.33.3
+            core-js: 3.34.0
             quill: 1.3.7
-            vue: 3.3.9(typescript@5.3.2)
+            vue: 3.3.10(typescript@5.3.3)
         transitivePeerDependencies:
             - typescript
         dev: true
 
-    /vue@3.3.9(typescript@5.3.2):
+    /vue@3.3.10(typescript@5.3.3):
         resolution:
             {
-                integrity: sha512-sy5sLCTR8m6tvUk1/ijri3Yqzgpdsmxgj6n6yl7GXXCXqVbmW2RCXe9atE4cEI6Iv7L89v5f35fZRRr5dChP9w==,
+                integrity: sha512-zg6SIXZdTBwiqCw/1p+m04VyHjLfwtjwz8N57sPaBhEex31ND0RYECVOC1YrRwMRmxFf5T1dabl6SGUbMKKuVw==,
             }
         peerDependencies:
             typescript: "*"
@@ -6031,12 +6032,12 @@ packages:
             typescript:
                 optional: true
         dependencies:
-            "@vue/compiler-dom": 3.3.9
-            "@vue/compiler-sfc": 3.3.9
-            "@vue/runtime-dom": 3.3.9
-            "@vue/server-renderer": 3.3.9(vue@3.3.9)
-            "@vue/shared": 3.3.9
-            typescript: 5.3.2
+            "@vue/compiler-dom": 3.3.10
+            "@vue/compiler-sfc": 3.3.10
+            "@vue/runtime-dom": 3.3.10
+            "@vue/server-renderer": 3.3.10(vue@3.3.10)
+            "@vue/shared": 3.3.10
+            typescript: 5.3.3
         dev: true
 
     /webpack-sources@3.2.3:
