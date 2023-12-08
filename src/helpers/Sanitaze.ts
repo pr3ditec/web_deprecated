@@ -1,9 +1,11 @@
-class Sanitaze {
+export default class Sanitaze {
     constructor() {}
 
-    public static allItems(data: any): any {
-        let responseData = {};
-
-        data.forEach((item) => {});
+    public static clearItems(dataArray: Object): any {
+        const keys = Object.keys(dataArray);
+        keys.forEach((key) => {
+            dataArray[key] = "";
+        });
+        return dataArray;
     }
 }
