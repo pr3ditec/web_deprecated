@@ -89,7 +89,6 @@ function hasChildPermission(component) {
                     class="h-[calc(100vh-80px)] relative">
                     <ul
                         class="relative font-semibold space-y-0.5 p-4 py-0 mb-10">
-
                         <div v-if="hasChildPermission('MenuDashboard')">
                             <MenuDashboard />
                         </div>
