@@ -15,7 +15,7 @@ const notifications = ref([]);
 
 Notification.requestPermission().then((permission) => {
     if (permission === "granted") {
-        firebase.cadastrarDispositivo();
+        firebase.validarCadastroDispositivo();
         firebase.receberMensagens(notifications);
     }
 });

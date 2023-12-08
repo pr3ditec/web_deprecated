@@ -3,6 +3,7 @@ import ValidacaoInput from "../../../helpers/ValidacaoInput";
 import Response from "../../../api/Response";
 import ApiConnection from "../../../api/Api";
 import { useAppStore } from "@/stores/index";
+import Sanitaze from "@/helpers/Sanitaze";
 
 export default {
     data() {
@@ -97,6 +98,9 @@ export default {
                     if (res.status == false) {
                         return Response.mensagemErro(res.messageCode);
                     } else {
+                        this.secretariaFormData = Sanitaze.clearItems(
+                            this.secretariaFormData,
+                        );
                         return Response.mensagemSucesso(res.messageCode);
                     }
                 });
@@ -105,7 +109,7 @@ export default {
 };
 </script>
 <template>
-    <div class="flex flex-col items-center gap-5 mt-4 w-1/2">
+    <div class="flex flex-col items-center gap-5 mt-4 w-1/2 dark:text-white">
         <div class="flex flex-row gap-1 w-full">
             <!-- Nome da secretaria -->
             <div class="w-1/2">
@@ -114,7 +118,7 @@ export default {
                 }}</label>
                 <input
                     v-model="secretariaFormData.nome"
-                    class="form-input"
+                    class="form-input dark:text-white"
                     type="text"
                     placeholder="Ex.: Fernanda" />
             </div>
@@ -126,7 +130,7 @@ export default {
                 }}</label>
                 <input
                     v-model="secretariaFormData.nome_mae"
-                    class="form-input"
+                    class="form-input dark:text-white"
                     type="text"
                     placeholder="Ex.: Sabrina" />
             </div>
@@ -137,7 +141,7 @@ export default {
             <label class="capitalize" for="groupFname capitalize">CPF</label>
             <input
                 v-mask="'###.###.###-##'"
-                class="form-input"
+                class="form-input dark:text-white"
                 type="text"
                 placeholder="Ex.: 000.000.000-00"
                 @input="
@@ -153,7 +157,7 @@ export default {
             <label class="capitalize" for="groupFname capitalize">E-mail</label>
             <input
                 v-model="secretariaFormData.email"
-                class="form-input"
+                class="form-input dark:text-white"
                 type="text"
                 placeholder="Ex.: secretaria@sauvvitech.com" />
         </div>
@@ -166,11 +170,13 @@ export default {
             <input
                 v-model="secretariaFormData.nascimento"
                 type="date"
-                class="form-input" />
+                class="form-input dark:text-white" />
         </div>
 
         <!-- SEXO -->
-        <select v-model="secretariaFormData.sexo" class="form-select">
+        <select
+            v-model="secretariaFormData.sexo"
+            class="form-select dark:text-white">
             <option value="0" disabled selected>
                 {{ $t("select") }} {{ $t("gender") }}
             </option>
@@ -182,7 +188,7 @@ export default {
         <!-- NACIONALIDADE -->
         <select
             v-model="secretariaFormData.nacionalidade_id"
-            class="form-select">
+            class="form-select dark:text-white">
             <option value="0" disabled selected>
                 {{ $t("select") }} {{ $t("citizenship") }}
             </option>
@@ -203,7 +209,7 @@ export default {
             <label class="capitalize justify-start">{{ $t("password") }}</label>
             <input
                 v-model="secretariaFormData.password"
-                class="form-input"
+                class="form-input dark:text-white"
                 type="password" />
         </div>
 
@@ -212,7 +218,7 @@ export default {
                 >{{ $t("repeat") }} {{ $t("password") }}</label
             >
             <input
-                class="form-input"
+                class="form-input dark:text-white"
                 :class="classePassword"
                 type="password"
                 @keyup="($event) => compararSenhas($event)" />
@@ -228,7 +234,7 @@ export default {
                 class="btn btn-primary w-80"
                 @keyup.enter="cadastrarSecretaria"
                 @click="cadastrarSecretaria">
-                Cadastrar
+                {{ $t("register") }}
             </button>
         </div>
     </div>

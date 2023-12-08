@@ -64,10 +64,9 @@ export default {
                     headerClass: "font-extrabold uppercase dark:text-zinc-100",
                     cellClass: "uppercase",
                     cellRenderer: (item: any) => {
-                        if (item.endereco.length == 0) {
-                            return "";
-                        }
-                        return Object(item.endereco[0]).cidade;
+                        return item.endereco
+                            ? Object(item.endereco[0]).cidade
+                            : "";
                     },
                 },
             ],
@@ -96,12 +95,12 @@ export default {
         },
     },
     async created() {
-        await this.request.pegarDadosApi("/medico").then((res: any) => {
-            this.dadosTabela = res.list;
-        });
-    },
-    mounted() {
-        setTimeout(() => (this.mostrarTabela = true), 500);
+        await this.request
+            .pegarDadosApi("/medico")
+            .then((res: any) => {
+                this.dadosTabela = res.list;
+            })
+            .finally(() => (this.mostrarTabela = true));
     },
 };
 </script>

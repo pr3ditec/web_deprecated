@@ -72,7 +72,7 @@ export default {
             <div class="flex flex-col w-full justify-center">
                 <input
                     v-mask="'###.###.###-##'"
-                    class="form-input"
+                    class="form-input dark:text-white"
                     type="text"
                     placeholder="Digite o cpf ..."
                     @keyup="
@@ -106,7 +106,7 @@ export default {
                                     >Ativo</span
                                 >
                                 <p
-                                    class="font-semibold text-white-dark mt-4 sm:mt-8">
+                                    class="font-semibold text-white-dark mt-4 sm:mt-8 dark:text-white">
                                     {{ $t("secretary-linked") }}
                                 </p>
                             </div>

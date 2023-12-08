@@ -130,6 +130,7 @@
     "available": "Available",
     "to_pacient": "Sended to pacient",
     "treated": "Treated",
+    "appointment": "Appointment",
     "next_appointment": "Next appointment",
     "return": "medical return",
     "select_patient": "Select patient",
@@ -532,5 +533,6 @@
     "secretary-linked": "Secretary linked with Sauvvi Tech",
     "secretary-not-found": "Secretary not found",
     "select-capabilites": "Select capabilites",
-    "clinic-linked": "Clinic linked with Sauvvi Tech"
+    "clinic-linked": "Clinic linked with Sauvvi Tech",
+    "select-time": "Select time"
 }

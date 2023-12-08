@@ -57,7 +57,7 @@ export default {
         <div class="w-1/2">
             <select
                 v-model="selectedProfessional"
-                class="form-select mb-6"
+                class="form-select mb-6 dark:text-white"
                 @change="updateSelectedProfessional">
                 <option disabled value="">
                     {{ $t("selectProfessional") }}
