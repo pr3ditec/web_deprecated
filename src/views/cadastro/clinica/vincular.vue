@@ -96,7 +96,7 @@ export default {
                 <!-- bucas do meidico -->
                 <input
                     v-mask="'###.###.###-##'"
-                    class="form-input"
+                    class="form-input dark:text-white"
                     type="text"
                     placeholder="Digite o cpf ........"
                     @keyup="($event) => pesquisarMedico($event.target.value)" />
@@ -106,7 +106,7 @@ export default {
                 <label class="capitalize mt-8">{{ $t("clinic") }}</label>
                 <!-- CARD COM CLINICA -->
                 <div v-for="clinica in dadosClinicas.clinica">
-                    <select v-model="especialidadeSelect" class="form-input">
+                    <select v-model="especialidadeSelect" class="form-input dark:text-white">
                         <option value="0">
                             {{ $t("select-capabilites") }}
                         </option>
@@ -142,7 +142,7 @@ export default {
                                         >{{ $t("active") }}</span
                                     >
                                     <p
-                                        class="font-semibold text-white-dark mt-4 sm:mt-8">
+                                        class="font-semibold text-white-dark mt-4 sm:mt-8 dark:text-white">
                                         {{ $t("clinic-linked") }}
                                     </p>
                                 </div>
