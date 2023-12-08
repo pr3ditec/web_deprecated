@@ -130,6 +130,7 @@
     "available": "Available",
     "to_pacient": "Sended to pacient",
     "treated": "Treated",
+    "appointment": "Appointment",
     "next_appointment": "Next appointment",
     "return": "medical return",
     "select_patient": "Select patient",
