@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 
 import { useAppStore } from "@/stores/index";
 
@@ -21,6 +21,22 @@ import MenuTableAndForms from "@/components/layout/sidebar-items/examples/MenuTa
 import MenuUserAndPages from "@/components/layout/sidebar-items/examples/MenuUserAndPages.vue";
 
 const store = useAppStore();
+
+const permissions = ref({
+    MenuDashboard: [
+        "rel-risco-empresarial",
+        "gravar-risco-empresarial",
+        "cadastro-valor-consulta",
+    ],
+    MenuSchedule: [
+        "medico-agenda",
+        "horarios-atendimento-medico",
+        "pre-agendamento-agenda",
+    ],
+    MenuRegister: ["secretaria-medico", "cadastro-clinica"],
+    MenuFinancer: ["medico-financeiro"],
+    MenuGeneralReport: ["busca-medicos", "medico-agenda"],
+});
 
 onMounted(() => {
     const pathname = window.location.pathname;
@@ -48,6 +64,14 @@ onMounted(() => {
         }
     }
 });
+
+function hasChildPermission(component) {
+    return computed(() => {
+        return permissions.value[component].some((permission) =>
+            store.checkPermission(permission),
+        );
+    });
+}
 </script>
 
 <template>
@@ -65,16 +89,25 @@ onMounted(() => {
                     class="h-[calc(100vh-80px)] relative">
                     <ul
                         class="relative font-semibold space-y-0.5 p-4 py-0 mb-10">
-                        <!-- production menus -->
-                        <MenuDashboard />
-                        <MenuSchedule />
-                        <MenuRegister />
-                        <MenuFinancer />
-                        <MenuGeneralReport />
+
+                        <div v-if="hasChildPermission('MenuDashboard')">
+                            <MenuDashboard />
+                        </div>
+                        <div v-if="hasChildPermission('MenuSchedule')">
+                            <MenuSchedule />
+                        </div>
+                        <div v-if="hasChildPermission('MenuRegister')">
+                            <MenuRegister />
+                        </div>
+                        <div v-if="hasChildPermission('MenuFinancer')">
+                            <MenuFinancer />
+                        </div>
+                        <div v-if="hasChildPermission('MenuGeneralReport')">
+                            <MenuGeneralReport />
+                        </div>
 
                         <MenuAuth />
 
-                        <!-- ref menus -->
                         <MenuApps />
                         <MenuUserInterface />
                         <MenuTableAndForms />
