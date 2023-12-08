@@ -41,8 +41,20 @@ export default class FirebaseClient {
         return await getToken(this.mensagens);
     }
 
-    public async cadastrarDispositivo() {
+    public async validarCadastroDispositivo() {
         const request = new Api();
+        const token = await this.recuperarToken();
+
+        await request
+            .pegarDadosApi(`dispositivo/admin/token/${token}`)
+            .then((res) => {
+                if (!res.status) {
+                    this.cadastrarDispositivo(request);
+                }
+            });
+    }
+
+    public async cadastrarDispositivo(request) {
         const token = await this.recuperarToken();
         const userAgentData = window.navigator.userAgent.toLocaleLowerCase();
         const versionData = userAgentData.split("(")[1].split(" ");
