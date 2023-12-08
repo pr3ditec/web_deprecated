@@ -616,6 +616,7 @@ const routes: RouteRecordRaw[] = [
         path: "/:pathMatch(.*)*",
         name: "NotFound",
         component: () => import("../views/pages/error404.vue"),
+        meta: { layout: "auth" },
     },
 ];
 
