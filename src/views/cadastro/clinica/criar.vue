@@ -52,17 +52,10 @@ export default {
     methods: {
         async cadastrarClinica() {
             // validar campos
-            if (
-                ValidacaoInput.inputVazio(this.clinicaFormData)["status"] ==
-                false
-            ) {
+            if (!ValidacaoInput.inputVazio(this.clinicaFormData)["status"]) {
                 return Response.mensagemErro("Campos naos podem estar vazios");
             }
 
-            // sanitizar
-            this.clinicaFormData["cep"] = this.clinicaFormData[
-                "cep"
-            ].replaceAll("-", "");
             this.clinicaFormData.cidade =
                 this.clinicaFormData.cidade.toString();
 
@@ -156,7 +149,9 @@ export default {
                 </option>
             </select>
             <!-- Estado -->
-            <select v-model="clinicaFormData.estado" class="form-select w-1/2 dark:text-white">
+            <select
+                v-model="clinicaFormData.estado"
+                class="form-select w-1/2 dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("state") }}
                 </option>
@@ -174,7 +169,9 @@ export default {
             </select>
 
             <!-- Cidade -->
-            <select v-model="clinicaFormData.cidade" class="form-select w-1/2 dark:text-white">
+            <select
+                v-model="clinicaFormData.cidade"
+                class="form-select w-1/2 dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("city") }}
                 </option>
@@ -192,7 +189,9 @@ export default {
             </select>
 
             <!-- Tipo de endereco -->
-            <select v-model="clinicaFormData.tipo" class="form-select w-1/2 dark:text-white">
+            <select
+                v-model="clinicaFormData.tipo"
+                class="form-select w-1/2 dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("address") }}
                 </option>
@@ -236,7 +235,7 @@ export default {
         </div>
 
         <hr
-            class="w-80 h-0.5 mx-auto bg-slate-700 border-0 rounded dark:bg-slate-400 " />
+            class="w-80 h-0.5 mx-auto bg-slate-700 border-0 rounded dark:bg-slate-400" />
 
         <div class="flex flex-col items-center font-semibold mt-6">
             <button class="btn btn-primary w-80" @click="cadastrarClinica()">
