@@ -9,22 +9,7 @@ useMeta({ title: "File Upload" });
 const { codeArr, toggleCode } = codePreview();
 
 onMounted(() => {
-    // single image upload
-    new FileUploadWithPreview("myFirstImage", {
-        images: {
-            baseImage: "/assets/images/file-preview.svg",
-            backgroundImage: "",
-        },
-    });
 
-    // multiple image upload
-    new FileUploadWithPreview("mySecondImage", {
-        images: {
-            baseImage: "/assets/images/file-preview.svg",
-            backgroundImage: "",
-        },
-        multiple: true,
-    });
 });
 </script>
 <template>

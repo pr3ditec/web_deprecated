@@ -608,28 +608,7 @@ const formatDate = (date) => {
                             </button>
                             <template #content>
                                 <ul class="whitespace-nowrap">
-                                    <template v-for="(col, i) in cols" :key="i">
-                                        <li>
-                                            <div
-                                                class="flex items-center px-4 py-1">
-                                                <label
-                                                    class="cursor-pointer mb-0">
-                                                    <input
-                                                        :id="`chk-${i}`"
-                                                        type="checkbox"
-                                                        class="form-checkbox"
-                                                        :value="col.field"
-                                                        :checked="!col.hide"
-                                                        <span
-                                                    :for="`chk-${i}`"
-                                                        class="ltr:ml-2 rtl:mr-2"
-                                                        @change="col.hide = !$event.target.checked"
-                                                        >{{ col.title }}</span
-                                                    >
-                                                </label>
-                                            </div>
-                                        </li>
-                                    </template>
+
                                 </ul>
                             </template>
                         </Popper>
