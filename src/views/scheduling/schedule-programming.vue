@@ -187,7 +187,7 @@ export default {
         <div class="flex">
             <div class="w-6/12 p-4">
                 <div
-                    class="calendar-wrapper bg-white dark:bg-slate-900 rounded-lg shadow-md p-4">
+                    class="calendar-wrapper bg-white dark:bg-slate-900 rounded-lg shadow-md p-4 dark:text-white">
                     <FullCalendarComponent
                         :calendar-options="calendarOptions"
                         @calendarMounted="handleCalendarMounted" />

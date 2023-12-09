@@ -259,7 +259,7 @@ export default {
 };
 </script>
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid dark:text-white">
         <div class="row mt-5 p-4">
             <div class="col-12">
                 <SelectMedico
@@ -271,7 +271,7 @@ export default {
                 <div class="col-12">
                     <HeaderAgenda />
                 </div>
-                <div class="col-12">
+                <div class="col-12 dark:text-white">
                     <FullCalendar
                         :options="calendarOptions"
                         style="z-index: -100"

@@ -94,15 +94,16 @@ export default {
         </div>
     </div>
     <vue3-datatable
-        class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
+        class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap dark:text-white"
         :rows="riscoEmpresarialTabela"
         :columns="cols"
         :total-rows="riscoEmpresarialTabela?.length"
         :sortable="true">
         <template #nome="data">
-            <span class="text-md font-semibold uppercase">{{
-                data.value.estado_nome
-            }}</span>
+            <span
+                class="text-md font-semibold uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
+                >{{ data.value.estado_nome }}</span
+            >
         </template>
         <template #status="data">
             <span
@@ -119,7 +120,7 @@ export default {
                 <div class="flex w-full p-3">
                     <input
                         v-model="data.value.valor"
-                        class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none"
+                        class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none dark:text-white"
                         :class="{ 'border border-danger': !data.value.lock }"
                         type="text"
                         :disabled="data.value.lock"
@@ -134,7 +135,7 @@ export default {
                         " />
                     <div
                         :class="{ 'bg-danger text-white': !data.value.lock }"
-                        class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                        class="bg-[#eee] dark:bg-[#111] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
                         <span>%</span>
                     </div>
                 </div>

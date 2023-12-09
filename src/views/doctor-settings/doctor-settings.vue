@@ -97,15 +97,16 @@ export default {
         </div>
     </div>
     <vue3-datatable
-        class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
+        class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap dark:text-white"
         :rows="rows"
         :columns="cols"
         :total-rows="rows?.length"
         :sortable="true">
         <template #nome="data">
-            <span class="text-md font-semibold uppercase">{{
-                data.value.descricao
-            }}</span>
+            <span
+                class="text-md font-semibold uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
+                >{{ data.value.descricao }}</span
+            >
         </template>
         <template #status="data">
             <span
@@ -118,11 +119,11 @@ export default {
             }}</span>
         </template>
         <template #dias="data">
-            <div class="flex flex-row">
+            <div class="flex flex-row dark:text-white">
                 <div class="flex w-full p-3">
                     <input
                         v-model="data.value.dias_retorno"
-                        class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none"
+                        class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none dark:text-white"
                         :class="{ 'border border-danger': !data.value.lock }"
                         type="text"
                         :disabled="data.value.lock" />
@@ -135,11 +136,11 @@ export default {
             </div>
         </template>
         <template #valor="data">
-            <div class="flex flex-row">
+            <div class="flex flex-row dark:text-white">
                 <div class="flex w-full p-3">
                     <input
                         v-model="data.value.valor_retorno"
-                        class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none"
+                        class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none dark:text-white"
                         :class="{ 'border border-danger': !data.value.lock }"
                         type="text"
                         :disabled="data.value.lock" />
@@ -153,7 +154,7 @@ export default {
         </template>
         <template #botao="data">
             <button
-                class="btn btn-sm btn-primary uppercase"
+                class="btn btn-sm btn-primary uppercase dark:text-white"
                 :class="{ 'btn-danger': !data.value.lock }"
                 @click="
                     data.value.lock = !data.value.lock;

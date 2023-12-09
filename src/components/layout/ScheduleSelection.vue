@@ -276,7 +276,7 @@ export default {
 
 <template>
     <div
-        class="border-1 p-5 sm:align-middle bg-white dark:bg-slate-900 rounded-lg shadow-md">
+        class="border-1 p-5 sm:align-middle bg-white dark:bg-slate-900 rounded-lg shadow-md dark:text-white">
         <ButtonSchedules
             color="blue"
             @click="

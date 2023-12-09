@@ -200,7 +200,7 @@ export default {
                         </h5>
                     </div>
                     <div
-                        class="grid sm:grid-cols-2 gap-8 text-sm text-[#515365] font-bold">
+                        class="grid sm:grid-cols-2 gap-8 text-sm text-[#515365] font-bold dark:text-white">
                         <div>
                             <div>
                                 <div>{{ $t("totalReceived") }}</div>
@@ -270,10 +270,10 @@ export default {
             <div class="grid lg:grid-cols-3 gap-6 mb-6">
                 <div class="panel h-full p-0 lg:col-span-2">
                     <div
-                        class="flex items-start justify-between dark:text-white-light mb-5 p-5 border-b border-[#e0e6ed] dark:border-[#1b2e4b]">
+                        class="flex items-start justify-between dark:text-white mb-5 p-5 border-b border-[#e0e6ed] dark:border-[#1b2e4b]">
                         <h5 class="font-semibold text-lg">
                             {{ $t("amountsReceivedPeriod") }} <br />
-                            <span class="text-sm text-gray-500"
+                            <span class="text-sm text-gray-500 dark:text-white"
                                 >{{ formatDate(formattedStartDate) }} -
                                 {{ formatDate(formattedEndDate) }}</span
                             >
@@ -281,7 +281,7 @@ export default {
                         <div class="dropdown"></div>
                     </div>
                     <div class="table-responsive">
-                        <div class="bg-white shadow rounded-lg p-6">
+                        <div class="shadow rounded-lg p-6 dark:text-white">
                             <table class="table-hover">
                                 <thead>
                                     <tr>

@@ -186,18 +186,22 @@ export default {
             </div>
         </div>
         <vue3-datatable
-            class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap mb-4"
+            class="w-full shadow-md rounded p-2 alt-pagination mb-4 dark:text-white"
             :rows="regrasTabela"
             :columns="cols"
             :totalRows="regrasTabela?.length"
             :sortable="true">
             <template #nome="data">
-                <span class="text-md font-semibold uppercase">{{
-                    data.value.nome
-                }}</span>
+                <span
+                    class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
+                    >{{ data.value.nome }}</span
+                >
             </template>
             <template #atualizado="data">
-                <span>{{ data.value.get.atualizado }}</span>
+                <span
+                    class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
+                    >{{ data.value.get.atualizado }}</span
+                >
             </template>
             <template #status="data">
                 <span
@@ -215,7 +219,7 @@ export default {
                 <div class="flex flex-row">
                     <div class="flex w-full p-3">
                         <input
-                            class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none"
+                            class="form-input form-input-sm ltr:rounded-r-none rtl:rounded-l-none dark:text-white"
                             :class="{
                                 'border-danger': !data.value.lock,
                             }"
@@ -229,7 +233,7 @@ export default {
                             :class="{
                                 'bg-danger text-white': !data.value.lock,
                             }"
-                            class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
+                            class="bg-[#eee] dark:bg-[#111] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
                             <span>{{ data.value.tipoValor }}</span>
                         </div>
                     </div>
