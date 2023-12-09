@@ -1,6 +1,7 @@
 <template>
     <span class="text-shadow">Sauvvi</span>
     <span class="text-red-500 text-shadow">Tech</span>
+    <span class="text-gray-500 text-xs">&reg;</span>
 </template>
 
 <style scoped>
