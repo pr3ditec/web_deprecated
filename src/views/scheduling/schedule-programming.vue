@@ -54,7 +54,7 @@ export default {
             immediate: true,
             handler(newDoctor) {
                 if (newDoctor) {
-                    this.selectedDates = [];
+                    this.selectedDates = "";
                     this.fetchDoctorAvailability(newDoctor);
                 }
             },
