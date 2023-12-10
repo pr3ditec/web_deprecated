@@ -10,8 +10,8 @@ const router = useRouter();
 import { computed, reactive, ref } from "vue";
 
 const loginForm = reactive({
-    login: "marlene@email.com",
-    password: "marlene123",
+    login: "",
+    password: "",
 });
 
 const req = {
