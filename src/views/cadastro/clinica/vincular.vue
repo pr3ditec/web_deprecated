@@ -106,7 +106,9 @@ export default {
                 <label class="capitalize mt-8">{{ $t("clinic") }}</label>
                 <!-- CARD COM CLINICA -->
                 <div v-for="clinica in dadosClinicas.clinica">
-                    <select v-model="especialidadeSelect" class="form-input dark:text-white">
+                    <select
+                        v-model="especialidadeSelect"
+                        class="form-input dark:text-white">
                         <option value="0">
                             {{ $t("select-capabilites") }}
                         </option>

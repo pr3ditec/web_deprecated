@@ -395,7 +395,8 @@ export default {
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 xl:grid-cols-2 gap-6 mb-2 dark:text-white">
+            <div
+                class="grid grid-cols-2 xl:grid-cols-2 gap-6 mb-2 dark:text-white">
                 <div class="grid gap-6 xl:grid-flow-row">
                     <div class="panel overflow-hidden">
                         <div>

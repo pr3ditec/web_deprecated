@@ -15,32 +15,6 @@ export default {
             },
         };
     },
-    methods: {
-        buscarDadosUsuario() {
-            this.request
-                .pegarDadosApi(`/usuario/${localStorage.getItem("user.id")}`)
-                .then((res) => {
-                    console.log(res);
-                    if (res.status) {
-                        this.dadosUsuario = res.list;
-                    }
-                });
-        },
-
-        atualizarDadosUsuario() {
-            this.request
-                .enviarDadosApi(`/usuario/${localStorage.getItem("user.id")}`, {
-                    email: this.dadosUsuario.email,
-                    senha: this.formUsuario.antiga_senha,
-                    nova_senha: this.formUsuario.nova_senha,
-                })
-                .then((res) => {
-                    res.status
-                        ? Response.mensagemToast("success", res.message)
-                        : Response.mensagemToast("error", res.message);
-                });
-        },
-    },
     computed: {
         /** LIEBERAR BOTAO E SENHAS NOVAS */
         habilitarNovaSenha() {
@@ -73,6 +47,32 @@ export default {
     },
     async created() {
         this.buscarDadosUsuario();
+    },
+    methods: {
+        buscarDadosUsuario() {
+            this.request
+                .pegarDadosApi(`/usuario/${localStorage.getItem("user.id")}`)
+                .then((res) => {
+                    console.log(res);
+                    if (res.status) {
+                        this.dadosUsuario = res.list;
+                    }
+                });
+        },
+
+        atualizarDadosUsuario() {
+            this.request
+                .enviarDadosApi(`/usuario/${localStorage.getItem("user.id")}`, {
+                    email: this.dadosUsuario.email,
+                    senha: this.formUsuario.antiga_senha,
+                    nova_senha: this.formUsuario.nova_senha,
+                })
+                .then((res) => {
+                    res.status
+                        ? Response.mensagemToast("success", res.message)
+                        : Response.mensagemToast("error", res.message);
+                });
+        },
     },
 };
 </script>
@@ -236,9 +236,9 @@ export default {
                             }}</label>
                             <input
                                 id="old_password"
+                                v-model="formUsuario.antiga_senha"
                                 type="password"
-                                class="form-input"
-                                v-model="formUsuario.antiga_senha" />
+                                class="form-input" />
                         </div>
                         <!-- SENHA ANTIGA -->
 
@@ -250,8 +250,8 @@ export default {
                                 }}</label>
                                 <input
                                     id="password"
-                                    type="password"
                                     v-model="formUsuario['nova_senha']"
+                                    type="password"
                                     :disabled="habilitarNovaSenha"
                                     class="form-input" />
                                 <label
@@ -269,8 +269,8 @@ export default {
                                 }}</label>
                                 <input
                                     id="repeat-password"
-                                    type="password"
                                     v-model="formUsuario.repetir_nova_senha"
+                                    type="password"
                                     :disabled="habilitarNovaSenha"
                                     class="form-input" />
                                 <label

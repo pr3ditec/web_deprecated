@@ -15,6 +15,4 @@ useMeta({ title: "Carousel" });
 const { codeArr, toggleCode } = codePreview();
 const items = ref(["carousel1.jpeg", "carousel2.jpeg", "carousel3.jpeg"]);
 </script>
-<template>
-
-</template>
+<template></template>

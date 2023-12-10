@@ -607,9 +607,7 @@ const formatDate = (date) => {
                                 </svg>
                             </button>
                             <template #content>
-                                <ul class="whitespace-nowrap">
-
-                                </ul>
+                                <ul class="whitespace-nowrap"></ul>
                             </template>
                         </Popper>
                     </div>

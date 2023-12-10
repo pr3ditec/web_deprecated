@@ -6,6 +6,7 @@ import FormLogin from "@/components/layout/login/FormLogin.vue";
 import LogoSmallCircle from "@/components/layout/LogoSmallCircle.vue";
 import LogoFull from "@/components/layout/LogoFull.vue";
 import TextSauvvi from "@/components/layout/TextSauvvi.vue";
+import LocalhostIndicator from "@/components/layout/LocalhostIndicator.vue";
 
 useMeta({ title: "Login" });
 </script>
@@ -30,8 +31,10 @@ useMeta({ title: "Login" });
                     class="relative hidden w-full items-center justify-center linear-background p-5 lg:inline-flex lg:max-w-[835px] xl:-ms-28 ltr:xl:skew-x-[14deg] rtl:xl:skew-x-[-14deg]">
                     <!-- <div class="absolute inset-y-0 w-8 from-primary/10 via-transparent to-transparent ltr:-right-10 ltr:bg-gradient-to-r rtl:-left-10 rtl:bg-gradient-to-l xl:w-16 ltr:xl:-right-20 rtl:xl:-left-20"></div> -->
 
-                    <div class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg]">
+                    <div
+                        class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg] text-center">
                         <LogoFull />
+                        <LocalhostIndicator />
                     </div>
                 </div>
 

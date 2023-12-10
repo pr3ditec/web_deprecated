@@ -19,7 +19,7 @@ export default {
     <div>
         <select
             v-model="selectedHour"
-            class="form-select mb-4 form-select mb-4 dark:text-white"
+            class="form-select mb-4 dark:text-white"
             @change="updateSelectedHorario">
             <option value="">{{ $t("select-time") }}</option>
             <option

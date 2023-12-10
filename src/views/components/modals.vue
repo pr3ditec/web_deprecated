@@ -47,6 +47,4 @@ const modal20 = ref(false);
 const modal21 = ref(false);
 const modal22 = ref(false);
 </script>
-<template>
-
-</template>
+<template></template>

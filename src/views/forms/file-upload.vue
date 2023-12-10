@@ -8,9 +8,7 @@ useMeta({ title: "File Upload" });
 
 const { codeArr, toggleCode } = codePreview();
 
-onMounted(() => {
-
-});
+onMounted(() => {});
 </script>
 <template>
     <div>
