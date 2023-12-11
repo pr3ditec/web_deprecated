@@ -74,8 +74,11 @@ export default {
                 .pegarDadosApi(`/consulta/medico/${this.medico}`)
                 .then((res) => {
                     res.list.horarios.forEach((element) => {
-                        const hoje = new Date();
-                        if (hoje.getTime() < new Date(element.data).getTime()) {
+                        const hoje = new Date().getTime();
+                        if (
+                            hoje - 86400000 <
+                            new Date(element.data).getTime()
+                        ) {
                             element.horarios.forEach((el, index) => {
                                 if (el.agendamento == null) {
                                     this.calendarOptions.events.push({
@@ -126,9 +129,6 @@ export default {
                 .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: this.dadosPaciente.id,
                     horarios_agendamento: JSON.stringify(arrayDados),
-                })
-                .catch((err) => {
-                    console.log(err);
                 })
                 .then((res) =>
                     res.status

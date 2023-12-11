@@ -72,6 +72,7 @@ export default {
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medicoSelect}`) // colocar o id do medico
                 .then((response: any) => {
                     this.dadosTabela = response.list;
+                    console.log(response.list);
                     this.dadosTabela.forEach((item) => {
                         item["horarios"] = [];
                     });
@@ -159,9 +160,14 @@ export default {
                                 title="clique para ver historico"
                                 @click="verHistoricoAgenda()">
                                 <span
-                                    v-if="data.value.status_id == -1"
+                                    v-if="data.value.status_id == -1 && data.value.origem == null"
                                     class="badge bg-secondary"
                                     >{{ data.value.status }}</span
+                                >
+                                <span
+                                    v-if="data.value.status_id == -1 && data.value.origem"
+                                    class="badge bg-info uppercase"
+                                    >{{ $t("retorno") }}</span
                                 >
                                 <span
                                     v-if="data.value.status_id == 1"
@@ -183,7 +189,7 @@ export default {
                         <template #actions="data">
                             <div class="flex gap-4">
                                 <button
-                                    :disabled="data.value.status_id != -1"
+                                    :disabled="data.value.status_id != -1 || data.value.origem != null"
                                     type="button"
                                     class="btn btn-sm btn-primary capitalize"
                                     @click="proporPreAgendamento(data.value)">

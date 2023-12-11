@@ -54,7 +54,11 @@ export default {
             await this.request
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medico}`)
                 .then((response) => {
-                    this.preAgendamento = response.list;
+                    response.list.forEach((item) => {
+                        if (item.status_id == -1) {
+                            this.preAgendamento.push(item);
+                        }
+                    });
                 });
         },
         async buscarDadosParaRetorno() {

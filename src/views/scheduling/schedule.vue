@@ -115,9 +115,15 @@ export default {
                     })
                     .then((res) => {
                         if (res.status) {
-                            Response.mensagemToast("success", res.message);
+                            Response.mensagemToast(
+                                "success",
+                                this.$t("res.message"),
+                            );
                         } else {
-                            Response.mensagemToast("error", res.message);
+                            Response.mensagemToast(
+                                "error",
+                                this.$t("res.message"),
+                            );
                         }
                     });
             }
@@ -154,13 +160,14 @@ export default {
             await this.request
                 .pegarDadosApi(`/consulta/medico/${this.medicoSelect}`)
                 .then((res) => {
-                    const hoje = new Date();
+                    const hoje = new Date().getTime();
                     res.list.horarios.forEach((element: any) => {
                         // SO MOSTRA OS HORARIOS DISPONIVEIS, QUE TENNHAM A DATA MAIOR QUE A ATUAL
                         const elementDateTimeStamp = new Date(
                             element.data,
                         ).getTime();
-                        if (elementDateTimeStamp < hoje.getTime()) {
+
+                        if (elementDateTimeStamp < hoje - 86400000) {
                             return;
                         }
                         // SO MOSTRA OS HORARIOS DISPONIVEIS, QUE TENNHAM A DATA MAIOR QUE A ATUAL
