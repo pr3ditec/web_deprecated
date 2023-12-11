@@ -52,13 +52,13 @@ export default {
         <Transition>
             <div v-show="criar" class="flex flex-col items-center gap-5 mt-4">
                 <!-- Compónente de criacao -->
-                <Criar />
+                <Create />
             </div>
         </Transition>
 
         <Transition>
             <div v-show="!criar" class="flex flex-col items-center gap-5 mt-4">
-                <Vincular />
+                <Join />
             </div>
         </Transition>
 
