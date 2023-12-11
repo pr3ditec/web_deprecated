@@ -84,7 +84,8 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/relatorios/appointment",
         name: "Relatório de consultas",
-        component: () => import("../views/relatorio/appointments/appointment.vue"),
+        component: () =>
+            import("../views/relatorio/appointments/appointment.vue"),
     },
     /** RELATORIOS */
 
