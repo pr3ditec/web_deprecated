@@ -1,22 +1,22 @@
 <script setup>
-import { ref } from "vue";
-import Host from "@/api/Host";
+import { onMounted, ref } from "vue";
 import { useMeta } from "@/composables/use-meta";
+
+import { isLocalhost } from "@/helpers/Host";
 
 useMeta({ title: "Localhost Indicator" });
 
-let host = new Host();
-let isLocalhost = ref(false);
+let indicator = ref(false);
 
-(async () => {
-    isLocalhost.value = await host.isLocalhost();
-    console.log("isLocalhost", isLocalhost.value);
-})();
+onMounted(async () => {
+    indicator.value = await isLocalhost();
+  console.log("indicator", indicator.value);
+});
 </script>
 
 <template>
     <span
-        v-if="isLocalhost"
+        v-if="indicator"
         class="text-black dark:text-white font-extrabold font-mono text-center">
         LOCALHOST
     </span>

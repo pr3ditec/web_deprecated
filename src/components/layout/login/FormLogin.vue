@@ -7,7 +7,13 @@ const store = useAppStore();
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-import { computed, reactive, ref } from "vue";
+import { getBaseURL } from "@/helpers/Host";
+
+import { onMounted, reactive, ref } from "vue";
+
+onMounted(async () => {
+    req.url = (await getBaseURL()) + "/admin/login";
+});
 
 const loginForm = reactive({
     login: "",
@@ -16,8 +22,8 @@ const loginForm = reactive({
 
 const req = {
     method: "post",
-    maxBodyLength: Infinity,
-    url: "http://localhost:8001/admin/login",
+    maxBodyLength: 10000,
+    url: "",
     data: loginForm,
 };
 
@@ -27,6 +33,8 @@ const submitForm = async () => {
     submitBtnDisabled.value = true;
 
     try {
+        console.log("req", req);
+
         const response = await axios.request(req);
 
         if (response.data.status) {
@@ -285,3 +293,4 @@ const submitForm = async () => {
     box-shadow: none;
 }
 </style>
+@/helpers/Host
