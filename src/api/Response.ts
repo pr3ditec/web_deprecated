@@ -57,7 +57,7 @@ export default class Response {
             showCancelButton: true,
             cancelButtonText: cancel,
             focusCancel: false,
-            position: "bottom-left",
+            position: "center",
         }).then((response) => {
             if (response.isConfirmed) {
                 return true;
