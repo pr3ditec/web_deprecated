@@ -179,10 +179,7 @@ export default {
 </script>
 
 <template>
-    <div>
-        <h1 class="capitalize text-4xl font-bold mb-5 lead">
-            {{ $t("financialReceiving") }}
-        </h1>
+    <div class="row mt-5 p-4">
         <SelectMedico
             v-model="selectedDoctor"
             @change="generateReport"

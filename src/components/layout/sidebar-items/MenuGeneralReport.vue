@@ -22,13 +22,13 @@ const showTitle = computed(() => {
 
     <MenuNavItem>
         <div v-if="store.checkPermission('busca-medicos')">
-            <NavItem to="/relatorios/medicos" label="doctor">
+            <NavItem to="/relatorios/doctor" label="doctor">
                 <IconDatatables />
             </NavItem>
         </div>
 
         <div v-if="store.checkPermission('medico-agenda')">
-            <NavItem to="/relatorios/consultas" label="appointment">
+            <NavItem to="/relatorios/appointment" label="appointment">
                 <IconDatatables />
             </NavItem>
         </div>

@@ -6,7 +6,7 @@
             class="flex items-center space-x-2 rtl:space-x-reverse dark:text-[#d0d2d6]">
             <li>
                 <router-link
-                    to="/apps/calendar"
+                    to="/schedule"
                     class="block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60">
                     <svg
                         width="20"
@@ -42,7 +42,7 @@
 
             <li>
                 <router-link
-                    to="/apps/todolist"
+                    to="/pre-scheduling"
                     class="block p-2 rounded-full bg-white-light/40 dark:bg-dark/40 hover:text-primary hover:bg-white-light/90 dark:hover:bg-dark/60">
                     <svg
                         width="20"

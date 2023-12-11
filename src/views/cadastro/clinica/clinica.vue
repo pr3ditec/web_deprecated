@@ -29,7 +29,7 @@ export default {
 <template>
     <div class="grid space-y-6 grid-cols-1 items-center dark:text-white">
         <!-- HEADER -->
-        <div>
+        <div class="row mt-3 p-4">
             <div class="flex flex-row gap-4 align-items-center">
                 <h6 class="text-xl font-bold mb-4 capitalize">
                     {{ $t("create") }}

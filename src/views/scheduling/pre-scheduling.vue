@@ -105,16 +105,7 @@ export default {
 };
 </script>
 <template>
-    <div class="grid space-y-6 grid-cols-1 items-center">
-        <!-- HEADER -->
-        <div>
-            <div class="flex flex-row gap-4 align-items-center">
-                <h6 class="text-xl font-bold mb-4 capitalize">
-                    {{ $t("list") }}
-                </h6>
-            </div>
-        </div>
-        <!-- HEADER -->
+    <div class="grid space-y-6 grid-cols-1 items-center mt-5 p-4">
         <div>
             <SelectMedico
                 @update:modelValue="($event) => updateMedico($event)" />

@@ -77,22 +77,22 @@ const routes: RouteRecordRaw[] = [
 
     /** RELATORIOS */
     {
-        path: "/relatorios/medicos",
+        path: "/relatorios/doctor",
         name: "Relatório de médicos",
-        component: () => import("../views/relatorio/medicos/medico.vue"),
+        component: () => import("../views/relatorio/doctors/doctor.vue"),
     },
     {
-        path: "/relatorios/consultas",
+        path: "/relatorios/appointment",
         name: "Relatório de consultas",
-        component: () => import("../views/relatorio/consultas/consulta.vue"),
+        component: () => import("../views/relatorio/appointments/appointment.vue"),
     },
     /** RELATORIOS */
 
     /** FINANCEIRO */
     {
-        path: "/financeiro",
-        name: "Financeiro de médicos",
-        component: () => import("../views/financeiro/financeiro.vue"),
+        path: "/financier",
+        name: "Doctors Financial",
+        component: () => import("../views/financier/financier.vue"),
     },
     /** FINANCEIRO */
 

@@ -19,7 +19,7 @@ const showTitle = computed(() => {
 
     <MenuNavItem>
         <div v-if="store.checkPermission('medico-financeiro')">
-            <NavItem to="/financeiro" label="financier">
+            <NavItem to="/financier" label="financier">
                 <IconInvoice />
             </NavItem>
         </div>

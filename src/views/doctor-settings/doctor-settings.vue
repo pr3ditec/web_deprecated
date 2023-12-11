@@ -88,16 +88,8 @@ export default {
 };
 </script>
 <template>
-    <hr />
-    <div class="row mt-5">
-        <div class="col-12 mt-5">
-            <h1 class="text-2xl font-bold mb-4 capitalize">
-                {{ $t("doctor-settings") }}
-            </h1>
-        </div>
-    </div>
     <vue3-datatable
-        class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap dark:text-white"
+        class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap dark:text-white mt-5 p-5"
         :rows="rows"
         :columns="cols"
         :total-rows="rows?.length"
