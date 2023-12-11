@@ -1,5 +1,4 @@
 <script lang="ts">
-import ApiConnection from "@/api/Api";
 import Response from "@/api/Response";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";

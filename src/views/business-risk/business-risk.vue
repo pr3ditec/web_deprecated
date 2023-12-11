@@ -2,7 +2,6 @@
 import { ref, computed } from "vue";
 import apexchart from "vue3-apexcharts";
 import { useAppStore } from "@/stores/index";
-import ApiConnection from "../../api/Api";
 
 const labels = ref([]);
 
@@ -150,7 +149,6 @@ export default {
         const dataInicial = new Date();
         dataInicial.setDate(dataAtual.getDate() - 365);
         return {
-            request: new ApiConnection(),
             totalParcelas: 0,
             totalParcelasPagas: 0,
             totalInadimplencia: 0,
@@ -179,7 +177,7 @@ export default {
                 const date = new Date(dateString);
                 return `${date.getFullYear()}-${date.getMonth() + 1}`;
             }
-            let riscoResponse = await this.request.pegarDadosApi(
+            let riscoResponse = await this.$api.pegarDadosApi(
                 `relatorio/risco-empresarial/${this.dataInicial}/${this.dataFim}`,
             );
             const data = riscoResponse.list;
