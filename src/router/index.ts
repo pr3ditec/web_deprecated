@@ -64,14 +64,14 @@ const routes: RouteRecordRaw[] = [
 
     /** CADASTRO */
     {
-        path: "/secretaria",
-        name: "secretaria",
-        component: () => import("../views/cadastro/secretaria/secretaria.vue"),
+        path: "/secretary",
+        name: "Secretary",
+        component: () => import("../views/register/secretary/secretary.vue"),
     },
     {
-        path: "/clinica",
-        name: "clinica",
-        component: () => import("../views/cadastro/clinica/clinica.vue"),
+        path: "/clinic",
+        name: "Clinic",
+        component: () => import("../views/register/clinic/clinic.vue"),
     },
     /** CADASTRO */
 

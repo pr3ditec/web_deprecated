@@ -118,7 +118,7 @@ export default {
                     </select>
                     <Transition>
                         <div
-                            v-show="dadosClinicas.clinica.length != 0"
+                            v-show="encontrada"
                             class="w-full mt-2 bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none hover:border-slate-900"
                             @click="criarVinculo(clinica.id)">
                             <div

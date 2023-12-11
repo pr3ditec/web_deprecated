@@ -1,11 +1,11 @@
 <script>
-import Criar from "./criar.vue";
-import Vincular from "./vincular.vue";
+import Create from "./create.vue";
+import Join from "./join.vue";
 
 export default {
     components: {
-        Criar,
-        Vincular,
+        Create,
+        Join,
     },
     data() {
         return {
@@ -58,7 +58,6 @@ export default {
 
         <Transition>
             <div v-show="!criar" class="flex flex-col items-center gap-5 mt-4">
-                <!-- Componente de vincular -->
                 <Vincular />
             </div>
         </Transition>
