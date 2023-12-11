@@ -47,7 +47,7 @@ export default {
     },
 
     methods: {
-        compararSenhas(entrada) {
+        compararSenhas(entrada: any) {
             if (this.secretariaFormData.password == entrada.target.value) {
                 this.classePassword["border border-zinc-200"] = true;
                 this.classePassword["border border-red-600"] = false;
@@ -76,6 +76,15 @@ export default {
                     this.$t("invalid-email"),
                 );
             }
+
+            //testa se a senha possui mais de 8 caracteres
+            if (this.secretariaFormData.password.length < 8) {
+                return Response.mensagemToast(
+                    "error",
+                    this.$t("password-short"),
+                );
+            }
+
             // testa se as senhas correspondem
             if (this.classePassword["border border-red-600"] == true) {
                 return Response.mensagemToast(
@@ -96,12 +105,11 @@ export default {
                 )
                 .then((res) => {
                     if (res.status == false) {
-                        return Response.mensagemErro(res.messageCode);
+                        return Response.mensagemErro(this.$t(res.messageCode));
                     } else {
-                        this.secretariaFormData = Sanitaze.clearItems(
-                            this.secretariaFormData,
-                        );
-                        return Response.mensagemSucesso(res.messageCode);
+                        return Response.mensagemSucesso(
+                            this.$t(res.messageCode),
+                        ).then(() => window.location.reload());
                     }
                 });
         },
@@ -225,7 +233,7 @@ export default {
             <span
                 v-show="classePassword['border border-red-600']"
                 class="flex flex-col items-start text-danger text-xs align-start mt-0 pt-0"
-                >Senhas nao correspondem</span
+                >{{ $t("password-match") }}</span
             >
         </div>
 
