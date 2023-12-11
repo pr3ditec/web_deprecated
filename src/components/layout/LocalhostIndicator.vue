@@ -10,7 +10,6 @@ let indicator = ref(false);
 
 onMounted(async () => {
     indicator.value = await isLocalhost();
-  console.log("indicator", indicator.value);
 });
 </script>
 
