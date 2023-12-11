@@ -132,7 +132,7 @@ export default {
             <!-- Especialidade -->
             <select
                 v-model="clinicaFormData.especialidade_id"
-                class="form-select w-1/2 dark:text-white">
+                class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("capabilities") }}
                 </option>
@@ -151,7 +151,7 @@ export default {
             <!-- Estado -->
             <select
                 v-model="clinicaFormData.estado"
-                class="form-select w-1/2 dark:text-white">
+                class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("state") }}
                 </option>
@@ -171,7 +171,7 @@ export default {
             <!-- Cidade -->
             <select
                 v-model="clinicaFormData.cidade"
-                class="form-select w-1/2 dark:text-white">
+                class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("city") }}
                 </option>
@@ -191,7 +191,7 @@ export default {
             <!-- Tipo de endereco -->
             <select
                 v-model="clinicaFormData.tipo"
-                class="form-select w-1/2 dark:text-white">
+                class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("address") }}
                 </option>
