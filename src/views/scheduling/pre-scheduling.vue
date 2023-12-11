@@ -1,7 +1,6 @@
 <script lang="ts">
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
-import ApiConnection from "../../api/Api";
 import Cadastro from "./pre-scheduling-registration.vue";
 import Historico from "./pre-scheduling-history.vue";
 import "@bhplugin/vue3-datatable/dist/style.css";
@@ -16,8 +15,6 @@ export default {
     },
     data() {
         return {
-            // api
-            request: new ApiConnection(),
             store: useAppStore(),
 
             mostrarHistorico: false,
@@ -68,7 +65,7 @@ export default {
             this.pacienteSelect = data;
         },
         async buscarDados() {
-            await this.request
+            await this.$api
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medicoSelect}`) // colocar o id do medico
                 .then((response: any) => {
                     this.dadosTabela = response.list;

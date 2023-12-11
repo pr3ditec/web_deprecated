@@ -6,7 +6,6 @@ import FullCalendarComponent from "../../components/layout/FullCalendarComponent
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import ScheduleSelection from "../../components/layout/ScheduleSelection.vue";
 import { useMeta } from "@/composables/use-meta";
-import ApiConnection from "../../api/Api";
 import Swal from "sweetalert2";
 
 export default {
@@ -17,7 +16,6 @@ export default {
     },
     data() {
         return {
-            request: new ApiConnection(),
             selectedDates: [],
             calendarRef: null,
             showSchedule: true,
@@ -72,7 +70,7 @@ export default {
 
         async fetchDoctorAvailability(doctorId) {
             try {
-                const response = await this.request.pegarDadosApi(
+                const response = await this.$api.pegarDadosApi(
                     `/consulta/medico/${doctorId}`,
                 );
 

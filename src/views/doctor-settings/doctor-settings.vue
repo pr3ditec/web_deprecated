@@ -12,7 +12,6 @@ export default {
     },
     data() {
         return {
-            request: new ApiConnection(),
             cols: [
                 {
                     field: "nome",
@@ -49,7 +48,8 @@ export default {
     methods: {
         /** CONFIGURACOES-MEDICO */
         async buscarConfigMedico() {
-            await this.request
+            //@ts-expect-error
+            await this.$api
                 .pegarDadosApi(`/medico/${localStorage.getItem("doctor.id")}`)
                 .then(async (res) => {
                     if (res.status) {
@@ -67,7 +67,8 @@ export default {
             especialidade_id: any,
             valor_especialidade: any,
         ) {
-            await this.request
+            //@ts-expect-error
+            await this.$api
                 .enviarDadosApi("/medico/especialidade", {
                     especialidades: JSON.stringify([
                         {

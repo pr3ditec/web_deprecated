@@ -1,5 +1,4 @@
 <script lang="ts">
-import ApiConnection from "../../api/Api";
 
 export default {
     props: {
@@ -7,7 +6,6 @@ export default {
     },
     data() {
         return {
-            request: new ApiConnection(),
             idAuxiliar: [],
             defaultLoading: "Carregando",
             solicitacaoAgenda: [],
@@ -100,7 +98,7 @@ export default {
         },
     },
     async created() {
-        await this.request
+        await this.$api
             .pegarDadosApi(`/pre-agendamento/medico/${this.medico}`)
             .then((response: any) => {
                 if (response.status) {

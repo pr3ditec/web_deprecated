@@ -1,13 +1,9 @@
 <script>
-import ComingSoonCover from "@/views/pages/coming-soon-cover.vue";
-import ApiConnection from "../../../api/Api";
 import Response from "@/api/Response";
 
 export default {
     data() {
         return {
-            // Api para fazer requests
-            request: new ApiConnection(),
             // variaveis reativas
             encontrada: true,
             secretaria: {
@@ -17,7 +13,7 @@ export default {
         };
     },
     async created() {
-        let clinicasResponse = await this.request.pegarDadosApi(
+        let clinicasResponse = await this.$api.pegarDadosApi(
             `/medico/clinica/${localStorage.getItem("user.id")}/`,
         );
         this.clinicas = clinicasResponse.list;
@@ -27,7 +23,7 @@ export default {
             // escolher mascara
             if (cpf.length == 14) {
                 cpf = cpf.replaceAll(".", "").replaceAll("-", "");
-                await this.request
+                await this.$api
                     .pegarDadosApi(`/secretaria/${cpf}`)
                     .then((res) => {
                         if (res.status) {
@@ -46,7 +42,7 @@ export default {
 
         async criarVinculo() {
             if (this.secretaria.nome != "") {
-                await this.request
+                await this.$api
                     .enviarDadosApi("/secretaria/medico", {
                         secretaria_id: this.secretaria.secretaria_id,
                     })

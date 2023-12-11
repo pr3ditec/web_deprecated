@@ -1,5 +1,4 @@
 <script>
-import ApiConnection from "@/api/Api";
 import Multiselect from "@suadelabs/vue3-multiselect";
 import "@suadelabs/vue3-multiselect/dist/vue3-multiselect.css";
 
@@ -13,7 +12,6 @@ export default {
     },
     data() {
         return {
-            request: new ApiConnection(),
             selectInput: "",
             preAgendamentoShowSelect: true,
             preAgendamento: [],
@@ -51,7 +49,7 @@ export default {
         /** EMITS */
 
         async buscarDadosDePreAgendamento() {
-            await this.request
+            await this.$api
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medico}`)
                 .then((response) => {
                     response.list.forEach((item) => {
@@ -62,7 +60,7 @@ export default {
                 });
         },
         async buscarDadosParaRetorno() {
-            await this.request
+            await this.$api
                 .pegarDadosApi(`/agendamento/medico/${this.medico}`)
                 .then((response) => {
                     response.list.forEach((agendamento) => {

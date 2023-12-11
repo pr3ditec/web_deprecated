@@ -6,7 +6,6 @@ import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import HeaderAgenda from "./schedule-header.vue";
 import Solicitacoes from "./schedule-requests.vue";
-import ApiConnection from "../../api/Api";
 import Response from "../../api/Response";
 import ModalPreAgendamento from "./pre-scheduling-modal.vue";
 
@@ -21,7 +20,6 @@ export default {
     data() {
         return {
             // API
-            request: new ApiConnection(),
 
             // MEDICO QUE VEM DO EMIT
             medicoSelect: 0,
@@ -109,7 +107,7 @@ export default {
                 this.$t("want-generate-token"),
             );
             if (data) {
-                this.request
+                this.$api
                     .enviarDadosApi("/token/agendamento", {
                         agenda_id: agenda,
                     })
@@ -133,7 +131,7 @@ export default {
         /** BUSCAR DADOS DE API */
         async buscarAgendamentos() {
             if (this.medicoSelect == 0) return;
-            await this.request
+            await this.$api
                 .pegarDadosApi(`/agendamento/medico/${this.medicoSelect}`)
                 .then((response: any) => {
                     const hoje = new Date();
@@ -157,9 +155,9 @@ export default {
                 });
         },
         async buscarHorariosDisponiveis() {
-            await this.request
+            await this.$api
                 .pegarDadosApi(`/consulta/medico/${this.medicoSelect}`)
-                .then((res) => {
+                .then((res: any) => {
                     const hoje = new Date().getTime();
                     res.list.horarios.forEach((element: any) => {
                         // SO MOSTRA OS HORARIOS DISPONIVEIS, QUE TENNHAM A DATA MAIOR QUE A ATUAL
@@ -193,12 +191,12 @@ export default {
 
         /** ENVIAR PROPOSTA DE HORARIOS PARA PACIENTE */
         async propostaHorarios(pre_agendamento_id: number, arrayDados: any) {
-            await this.request
+            await this.$api
                 .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: pre_agendamento_id,
                     horarios_agendamento: JSON.stringify(arrayDados),
                 })
-                .then((res) =>
+                .then((res: any) =>
                     res.status
                         ? Response.mensagemToast(
                               "success",
@@ -214,11 +212,11 @@ export default {
 
         /** PROPOSTA DE RETORNO */
         async propostaDeRetorno(pre_agendamento_id: number, arrayDados: any) {
-            await this.request
+            await this.$api
                 .enviarDadosApi("/pre-agendamento/retorno", {
                     pre_agendamento_id: pre_agendamento_id,
                 })
-                .then((res) => {
+                .then((res: any) => {
                     res.status
                         ? Response.mensagemToast(
                               "success",

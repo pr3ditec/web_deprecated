@@ -1,7 +1,6 @@
 <script>
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
-import ApiConnection from "@/api/Api";
 import FormatoData from "@/helpers/FormatoData";
 import Response from "@/api/Response";
 
@@ -11,7 +10,6 @@ export default {
     },
     data() {
         return {
-            request: new ApiConnection(),
             cols: [
                 {
                     field: "nome",
@@ -55,7 +53,7 @@ export default {
     methods: {
         /** RISCO-EMPRESARIAL */
         async buscarRiscoEmpresarial() {
-            await this.request
+            await this.$api
                 .pegarDadosApi("/risco-empresarial")
                 .then(async (res) => {
                     if (res.status) {
@@ -68,7 +66,7 @@ export default {
         },
 
         async atualizarRiscoEmpresarial(estado, valor) {
-            await this.request
+            await this.$api
                 .enviarDadosApi("/risco-empresarial", {
                     estado_id: estado,
                     valor: valor,

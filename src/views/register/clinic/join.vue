@@ -1,11 +1,8 @@
 <script>
 import Response from "@/api/Response";
-import ApiConnection from "../../../api/Api";
 export default {
     data() {
         return {
-            // Api para fazer requests
-            request: new ApiConnection(),
             especialidade: [],
             especialidadeSelect: 0,
             // variaveis reativas
@@ -21,7 +18,7 @@ export default {
         async pesquisarMedico(cpf) {
             if (cpf.length == 14) {
                 cpf = cpf.replaceAll(".", "").replaceAll("-", "");
-                await this.request
+                await this.$api
                     .pegarDadosApi(`/medico/cpf/${cpf}`)
                     .then(async (res) => {
                         if (res.status) {
@@ -44,7 +41,7 @@ export default {
                     this.$t("ask-for-join"),
                 ).then((res) => {
                     if (res) {
-                        this.request
+                        this.$api
                             .enviarDadosApi("/clinica/medico", {
                                 clinica_id: clinica,
                                 medico_id: localStorage.getItem("doctor.id"),
@@ -68,7 +65,7 @@ export default {
         },
 
         async pegarEspecialidades() {
-            this.request
+            this.$api
                 .pegarDadosApi(
                     `/medico/especialidade/${localStorage.getItem(
                         "doctor.id",
