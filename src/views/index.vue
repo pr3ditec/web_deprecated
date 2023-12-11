@@ -11,7 +11,8 @@ const userName = computed(() => {
 const userType = computed(() => {
     let data = "";
     ["Doctor", "Secretary", "Dev", "Manager"].forEach((id) => {
-        if (store[`get${id}Id`]()) {
+        if (store[`get${id}Id`]() != "null") {
+            console.log(id);
             data = id;
         }
     });
