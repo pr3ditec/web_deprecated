@@ -213,8 +213,9 @@ export default {
         async propostaDeRetorno(pre_agendamento_id: number, arrayDados: any) {
             //@ts-expect-error
             await this.$api
-                .enviarDadosApi("/pre-agendamento/retorno", {
+                .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: pre_agendamento_id,
+                    horarios_agendamento: JSON.stringify(arrayDados),
                 })
                 .then((res: any) => {
                     res.status
