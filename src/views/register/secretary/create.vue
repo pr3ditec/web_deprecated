@@ -184,7 +184,7 @@ export default {
         <!-- SEXO -->
         <select
             v-model="secretariaFormData.sexo"
-            class="form-select dark:text-white">
+            class="form-select lowercase dark:text-white">
             <option value="0" disabled selected>
                 {{ $t("select") }} {{ $t("gender") }}
             </option>
@@ -196,7 +196,7 @@ export default {
         <!-- NACIONALIDADE -->
         <select
             v-model="secretariaFormData.nacionalidade_id"
-            class="form-select dark:text-white">
+            class="form-select lowercase dark:text-white">
             <option value="0" disabled selected>
                 {{ $t("select") }} {{ $t("citizenship") }}
             </option>
