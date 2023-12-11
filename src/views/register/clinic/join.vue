@@ -1,11 +1,8 @@
 <script>
 import Response from "@/api/Response";
-import ApiConnection from "../../../api/Api";
 export default {
     data() {
         return {
-            // Api para fazer requests
-            request: new ApiConnection(),
             especialidade: [],
             especialidadeSelect: 0,
             // variaveis reativas
@@ -21,7 +18,7 @@ export default {
         async pesquisarMedico(cpf) {
             if (cpf.length == 14) {
                 cpf = cpf.replaceAll(".", "").replaceAll("-", "");
-                await this.request
+                await this.$api
                     .pegarDadosApi(`/medico/cpf/${cpf}`)
                     .then(async (res) => {
                         if (res.status) {
@@ -44,7 +41,7 @@ export default {
                     this.$t("ask-for-join"),
                 ).then((res) => {
                     if (res) {
-                        this.request
+                        this.$api
                             .enviarDadosApi("/clinica/medico", {
                                 clinica_id: clinica,
                                 medico_id: localStorage.getItem("doctor.id"),
@@ -68,7 +65,7 @@ export default {
         },
 
         async pegarEspecialidades() {
-            this.request
+            this.$api
                 .pegarDadosApi(
                     `/medico/especialidade/${localStorage.getItem(
                         "doctor.id",
@@ -118,7 +115,7 @@ export default {
                     </select>
                     <Transition>
                         <div
-                            v-show="dadosClinicas.clinica.length != 0"
+                            v-show="encontrada"
                             class="w-full mt-2 bg-white shadow-[4px_6px_10px_-3px_#bfc9d4] rounded border border-[#e0e6ed] dark:border-[#1b2e4b] dark:bg-[#191e3a] dark:shadow-none hover:border-slate-900"
                             @click="criarVinculo(clinica.id)">
                             <div

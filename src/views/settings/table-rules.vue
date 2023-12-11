@@ -1,7 +1,6 @@
 <script lang="ts">
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
-import ApiConnection from "@/api/Api";
 import FormatoData from "@/helpers/FormatoData";
 import Response from "@/api/Response";
 
@@ -11,7 +10,6 @@ export default {
     },
     data() {
         return {
-            request: new ApiConnection(),
             cols: [
                 {
                     field: "nome",
@@ -119,7 +117,9 @@ export default {
                             : data[this.regrasTabela[index].post.campo],
                     categoria:
                         index == 2
+                            //@ts-expect-error
                             ? data[0][this.regrasTabela[index].post.categoria]
+                            //@ts-expect-error
                             : data[this.regrasTabela[index].post.categoria],
                     atualizado:
                         index == 2
@@ -139,7 +139,8 @@ export default {
 
         buscarTodasRegras() {
             this.regrasTabela.forEach(async (regra) => {
-                await this.request
+                //@ts-expect-error
+                await this.$api
                     .pegarDadosApi(regra.post.rota)
                     .then((res) => {
                         this.addRegras(regra.index, res.list);
@@ -151,7 +152,8 @@ export default {
             if (this.regrasTabela[index].lock) {
                 this.regrasTabela[index].lock = false;
             } else {
-                await this.request
+                //@ts-expect-error
+                await this.$api
                     .enviarDadosApi(`${this.regrasTabela[index].post.rota}`, {
                         [this.regrasTabela[index].post.campo]:
                             this.regrasTabela[index].get.valor,
@@ -161,9 +163,9 @@ export default {
                     })
                     .then((res) => {
                         if (res.status) {
-                            Response.mensagemToast("success", res.message);
+                            Response.mensagemToast("success", this.$t(res.messageCode));
                         } else {
-                            Response.mensagemToast("error", res.message);
+                            Response.mensagemToast("error", this.$t(res.messageCode));
                         }
                     })
                     .finally(() => (this.regrasTabela[index].lock = true));

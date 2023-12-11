@@ -1,11 +1,9 @@
 <script>
-import ApiConnection from "../../api/Api";
 
 export default {
     name: "SelectProfissional",
     data() {
         return {
-            request: new ApiConnection(),
             selectedProfessional: "",
             profissionais: [],
         };
@@ -16,7 +14,7 @@ export default {
             localStorage.getItem("secretary.id") != "null"
         ) {
             try {
-                let response = await this.request.pegarDadosApi(
+                let response = await this.$api.pegarDadosApi(
                     `/medico/clinica/secretaria/${localStorage.getItem(
                         "secretary.id",
                     )}`,

@@ -1,6 +1,5 @@
 <script>
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
-import ApiConnection from "../../api/Api";
 import Swal from "sweetalert2";
 
 export default {
@@ -9,7 +8,6 @@ export default {
     },
     data() {
         return {
-            request: new ApiConnection(),
             selectedDoctor: null,
             list: [],
             list2: [],
@@ -31,7 +29,7 @@ export default {
     methods: {
         async fetchDoctorAvailability(doctorId) {
             // Primeira chamada de API
-            let response1 = await this.request.pegarDadosApi(
+            let response1 = await this.$api.pegarDadosApi(
                 `/financeiro/medico/${doctorId}`,
             );
 
@@ -120,7 +118,7 @@ export default {
                 .split("T")[0];
             this.formattedEndDate = this.endDate.toISOString().split("T")[0];
 
-            let response2 = await this.request.pegarDadosApi(
+            let response2 = await this.$api.pegarDadosApi(
                 `/financeiro/medico/${doctorId}/${this.formattedStartDate}/${this.formattedEndDate}`,
             );
 

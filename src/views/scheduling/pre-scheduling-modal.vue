@@ -1,5 +1,4 @@
 <script>
-import ApiConnection from "@/api/Api";
 import Multiselect from "@suadelabs/vue3-multiselect";
 import "@suadelabs/vue3-multiselect/dist/vue3-multiselect.css";
 
@@ -13,7 +12,6 @@ export default {
     },
     data() {
         return {
-            request: new ApiConnection(),
             selectInput: "",
             preAgendamentoShowSelect: true,
             preAgendamento: [],
@@ -35,7 +33,7 @@ export default {
     async created() {
         this.limparVariaveis();
         this.buscarDadosDePreAgendamento();
-        this.buscarDadosParaRetorno();
+        // this.buscarDadosParaRetorno();
     },
     methods: {
         /** EMITS */
@@ -51,14 +49,20 @@ export default {
         /** EMITS */
 
         async buscarDadosDePreAgendamento() {
-            await this.request
+            await this.$api
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medico}`)
                 .then((response) => {
-                    this.preAgendamento = response.list;
+                    response.list.forEach((item) => {
+                        if (item.status_id == -1 && item.origem == null) {
+                            this.preAgendamento.push(item);
+                        } else if (item.status_id == -1 && item.origem) {
+                            this.retornoAgenda.push(item);
+                        }
+                    });
                 });
         },
         async buscarDadosParaRetorno() {
-            await this.request
+            await this.$api
                 .pegarDadosApi(`/agendamento/medico/${this.medico}`)
                 .then((response) => {
                     response.list.forEach((agendamento) => {
@@ -97,8 +101,7 @@ export default {
     <Transition :duration="200">
         <div
             class="absolute inset-0 flex items-center justify-center w-full h-full top-0 left-0 bg-dark bg-opacity-50"
-            style="z-index: 2000 !important"
-            @keyup.esc="emitFecharModal()">
+            style="z-index: 2000 !important">
             <div
                 class="flex flex-col items-center bg-white shadow-lg w-1/3 mx-auto p-5 rounded-lg dark:bg-slate-900 rounded-lg shadow-md dark:text-white">
                 <div class="flex flex-row w-full justify-end">
@@ -146,8 +149,8 @@ export default {
                         v-show="!preAgendamentoShowSelect"
                         v-model="selectInput"
                         :options="retornoAgenda"
-                        track-by="agenda_id"
-                        label="paciente"
+                        track-by="id"
+                        label="paciente_nome"
                         class="custom-multiselect"
                         :searchable="true"
                         placeholder="Selecione um paciente"></multiselect>

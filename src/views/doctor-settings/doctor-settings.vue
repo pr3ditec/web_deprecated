@@ -1,16 +1,16 @@
 <script lang="ts">
-import ApiConnection from "@/api/Api";
 import Response from "@/api/Response";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
+import SettingsHelp from "./settings-help.vue";
 
 export default {
     components: {
         "vue3-datatable": Vue3Datatable,
+        "settings-help": SettingsHelp,
     },
     data() {
         return {
-            request: new ApiConnection(),
             cols: [
                 {
                     field: "nome",
@@ -47,7 +47,8 @@ export default {
     methods: {
         /** CONFIGURACOES-MEDICO */
         async buscarConfigMedico() {
-            await this.request
+            //@ts-expect-error
+            await this.$api
                 .pegarDadosApi(`/medico/${localStorage.getItem("doctor.id")}`)
                 .then(async (res) => {
                     if (res.status) {
@@ -65,7 +66,8 @@ export default {
             especialidade_id: any,
             valor_especialidade: any,
         ) {
-            await this.request
+            //@ts-expect-error
+            await this.$api
                 .enviarDadosApi("/medico/especialidade", {
                     especialidades: JSON.stringify([
                         {
@@ -163,4 +165,5 @@ export default {
             </button>
         </template>
     </vue3-datatable>
+    <settings-help></settings-help>
 </template>

@@ -1,9 +1,7 @@
 <script lang="ts">
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import SelectMedico from "../../components/layout/SelectDoctor.vue";
-import ApiConnection from "../../api/Api";
 import Cadastro from "./pre-scheduling-registration.vue";
-import Historico from "./pre-scheduling-history.vue";
 import "@bhplugin/vue3-datatable/dist/style.css";
 import { useAppStore } from "@/stores";
 
@@ -12,12 +10,9 @@ export default {
         "vue3-datatable": Vue3Datatable,
         SelectMedico,
         Cadastro,
-        Historico,
     },
     data() {
         return {
-            // api
-            request: new ApiConnection(),
             store: useAppStore(),
 
             mostrarHistorico: false,
@@ -68,18 +63,16 @@ export default {
             this.pacienteSelect = data;
         },
         async buscarDados() {
-            await this.request
-                .pegarDadosApi(`/pre-agendamento/medico/${this.medicoSelect}`) // colocar o id do medico
+            //@ts-expect-error
+            await this.$api
+                .pegarDadosApi(`/pre-agendamento/medico/${this.medicoSelect}`)
                 .then((response: any) => {
-                    this.dadosTabela = response.list;
-                    this.dadosTabela.forEach((item) => {
+                    this.dadosTabela = [];
+                    response.list.forEach((item: any) => {
                         item["horarios"] = [];
+                        this.dadosTabela.push(item);
                     });
                 });
-        },
-        verHistoricoAgenda() {
-            this.mostrarHistorico = !this.mostrarHistorico;
-            console.log("skrrr");
         },
     },
     computed: {
@@ -156,12 +149,16 @@ export default {
                                 class="flex flex-row cursor-pointer"
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="right"
-                                title="clique para ver historico"
-                                @click="verHistoricoAgenda()">
+                                title="clique para ver historico">
                                 <span
                                     v-if="data.value.status_id == -1"
-                                    class="badge bg-secondary"
-                                    >{{ data.value.status }}</span
+                                    class="badge bg-secondary uppercase"
+                                    >{{
+                                        data.value.pre_agendamento_horarios
+                                            .length == 0
+                                            ? $t("return")
+                                            : data.value.status
+                                    }}</span
                                 >
                                 <span
                                     v-if="data.value.status_id == 1"
@@ -197,7 +194,6 @@ export default {
             </TransitionGroup>
         </div>
     </div>
-    <!-- <Historico v-show="mostrarHistorico" :dados-paciente="pacienteSelect" /> -->
 </template>
 <style>
 /* alt-pagination */

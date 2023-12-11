@@ -1,13 +1,11 @@
 <script>
 import ValidacaoInput from "../../../helpers/ValidacaoInput";
 import Response from "../../../api/Response";
-import ApiConnection from "../../../api/Api";
 import Sanitaze from "@/helpers/Sanitaze";
 
 export default {
     data() {
         return {
-            request: new ApiConnection(),
             clinicaFormData: {
                 nome: "",
                 especialidade_id: "0",
@@ -28,23 +26,23 @@ export default {
     },
     watch: {
         async "clinicaFormData.estado"(novo) {
-            let cidadeResponse = await this.request.pegarDadosApi(
+            let cidadeResponse = await this.$api.pegarDadosApi(
                 `/cidade/${novo}`,
             );
             this.cidades = cidadeResponse.list;
         },
     },
     async created() {
-        let estadoResponse = await this.request.pegarDadosApi(
+        let estadoResponse = await this.$api.pegarDadosApi(
             "/unidades-federativas",
         );
         this.estados = estadoResponse.list;
 
         let tipoEderecoResponse =
-            await this.request.pegarDadosApi("/endereco/tipo");
+            await this.$api.pegarDadosApi("/endereco/tipo");
         this.tipoEndereco = tipoEderecoResponse.list;
 
-        let especialidadeResponse = await this.request.pegarDadosApi(
+        let especialidadeResponse = await this.$api.pegarDadosApi(
             `/medico/especialidade/${localStorage.getItem("user.id")}`,
         );
         this.especialidades = especialidadeResponse.list;
@@ -59,15 +57,15 @@ export default {
             this.clinicaFormData.cidade =
                 this.clinicaFormData.cidade.toString();
 
-            this.request
+            this.$api
                 .enviarDadosApi("/medico/clinica", this.clinicaFormData)
                 .then((res) => {
                     this.clinicaFormData = Sanitaze.clearItems(
                         this.clinicaFormData,
                     );
                     res.status
-                        ? Response.mensagemToast("success", res.messageCode)
-                        : Response.mensagemToast("error", res.messageCode);
+                        ? Response.mensagemToast("success", this.$t(res.messageCode))
+                        : Response.mensagemToast("error", this.$t(res.messageCode));
                 });
         },
     },
@@ -132,7 +130,7 @@ export default {
             <!-- Especialidade -->
             <select
                 v-model="clinicaFormData.especialidade_id"
-                class="form-select w-1/2 dark:text-white">
+                class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("capabilities") }}
                 </option>
@@ -151,7 +149,7 @@ export default {
             <!-- Estado -->
             <select
                 v-model="clinicaFormData.estado"
-                class="form-select w-1/2 dark:text-white">
+                class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("state") }}
                 </option>
@@ -171,7 +169,7 @@ export default {
             <!-- Cidade -->
             <select
                 v-model="clinicaFormData.cidade"
-                class="form-select w-1/2 dark:text-white">
+                class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("city") }}
                 </option>
@@ -191,7 +189,7 @@ export default {
             <!-- Tipo de endereco -->
             <select
                 v-model="clinicaFormData.tipo"
-                class="form-select w-1/2 dark:text-white">
+                class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("address") }}
                 </option>

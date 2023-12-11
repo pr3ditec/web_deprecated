@@ -4,7 +4,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import Response from "@/api/Response";
-import ApiConnection from "../../api/Api";
 import multiMonthPlugin from "@fullcalendar/multimonth";
 import Swal from "sweetalert2";
 
@@ -18,7 +17,6 @@ export default {
     },
     data() {
         return {
-            request: new ApiConnection(),
             horariosProposta: [{}],
             calendarOptions: {
                 height: "80vh",
@@ -70,12 +68,15 @@ export default {
     },
     methods: {
         async buscarDados() {
-            await this.request
+            await this.$api
                 .pegarDadosApi(`/consulta/medico/${this.medico}`)
                 .then((res) => {
                     res.list.horarios.forEach((element) => {
-                        const hoje = new Date();
-                        if (hoje.getTime() < new Date(element.data).getTime()) {
+                        const hoje = new Date().getTime();
+                        if (
+                            hoje - 86400000 <
+                            new Date(element.data).getTime()
+                        ) {
                             element.horarios.forEach((el, index) => {
                                 if (el.agendamento == null) {
                                     this.calendarOptions.events.push({
@@ -122,13 +123,10 @@ export default {
         },
 
         async proporAgendamento(arrayDados) {
-            await this.request
+            await this.$api
                 .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: this.dadosPaciente.id,
                     horarios_agendamento: JSON.stringify(arrayDados),
-                })
-                .catch((err) => {
-                    console.log(err);
                 })
                 .then((res) =>
                     res.status

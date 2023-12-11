@@ -1,5 +1,4 @@
 <script lang="ts">
-import ApiConnection from "../../../api/Api";
 import MascarasInput from "@/helpers/MascaraInput";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
@@ -12,7 +11,6 @@ export default {
     },
     data() {
         return {
-            request: new ApiConnection(),
             mascara: MascarasInput,
             store: useAppStore(),
 
@@ -58,7 +56,8 @@ export default {
     },
     methods: {},
     async created() {
-        await this.request
+        //@ts-expect-error
+        await this.$api
             .pegarDadosApi("/agendamento/medico/1")
             .then((res: any) => {
                 this.dadosTabela = res.list;
