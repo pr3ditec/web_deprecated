@@ -52,8 +52,14 @@ export default {
                     })
                     .then((res) => {
                         res.status
-                            ? Response.mensagemToast("success", res.messageCode)
-                            : Response.mensagemToast("error", res.messageCode);
+                            ? Response.mensagemToast(
+                                  "success",
+                                  this.$t(res.messageCode),
+                              )
+                            : Response.mensagemToast(
+                                  "error",
+                                  this.$t(res.messageCode),
+                              );
                     });
             }
         },
@@ -122,7 +128,7 @@ export default {
                 :class="{ 'btn-dark': secretaria.nome == '' }"
                 :disabled="secretaria.nome == ''"
                 @click="criarVinculo">
-                Solicitar vinculo
+                {{ $t("ask-for-join") }}
             </button>
         </div>
     </div>

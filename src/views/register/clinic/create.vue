@@ -66,8 +66,8 @@ export default {
                         this.clinicaFormData,
                     );
                     res.status
-                        ? Response.mensagemToast("success", res.messageCode)
-                        : Response.mensagemToast("error", res.messageCode);
+                        ? Response.mensagemToast("success", this.$t(res.messageCode))
+                        : Response.mensagemToast("error", this.$t(res.messageCode));
                 });
         },
     },
