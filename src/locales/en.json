@@ -534,5 +534,6 @@
     "secretary-not-found": "Secretary not found",
     "select-capabilites": "Select capabilites",
     "clinic-linked": "Clinic linked with Sauvvi Tech",
-    "select-time": "Select time"
+    "select-time": "Select time",
+    "help": "Help"
 }

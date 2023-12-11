@@ -3,10 +3,12 @@ import ApiConnection from "@/api/Api";
 import Response from "@/api/Response";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
+import SettingsHelp from "./settings-help.vue";
 
 export default {
     components: {
         "vue3-datatable": Vue3Datatable,
+        "settings-help": SettingsHelp,
     },
     data() {
         return {
@@ -163,4 +165,5 @@ export default {
             </button>
         </template>
     </vue3-datatable>
+    <settings-help></settings-help>
 </template>
