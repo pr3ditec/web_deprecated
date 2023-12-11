@@ -56,7 +56,6 @@ export default {
                         if (item.status_id == -1 && item.origem == null) {
                             this.preAgendamento.push(item);
                         } else if (item.status_id == -1 && item.origem) {
-                            console.log(item)
                             this.retornoAgenda.push(item);
                         }
                     });

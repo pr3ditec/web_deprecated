@@ -68,7 +68,6 @@ export default {
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medicoSelect}`)
                 .then((response: any) => {
                     this.dadosTabela = [];
-                    console.log(this.dadosTabela);
                     response.list.forEach((item: any) => {
                         item["horarios"] = [];
                         this.dadosTabela.push(item);
