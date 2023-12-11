@@ -5,19 +5,24 @@ import { computed } from "vue";
 const store = useAppStore();
 
 const userName = computed(() => {
-    console.log("userName", store.getUserName());
     return store.getUserName();
 });
 
-const userId = computed(() => {
-    console.log("userId", store.getUserId());
-    return store.getUserId();
+const userType = computed(() => {
+    let data = "";
+    ["Doctor", "Secretary", "Dev", "Manager"].forEach((id) => {
+        if (store[`get${id}Id`]()) {
+            data = id;
+        }
+    });
+
+    return data;
 });
 </script>
 
 <template>
     <div class="text-center text-lg">
         {{ $t("hello") }}, {{ userName }}
-        <span class="text-xs">[{{ userId }}]</span>
+        <span class="text-xs">{{ $t(userType) }}</span>
     </div>
 </template>
