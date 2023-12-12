@@ -92,9 +92,9 @@ export default {
             }
         },
 
-        placeholder(){
-            return this.$t('search-by-name')
-        }
+        placeholder() {
+            return this.$t("search-by-name");
+        },
     },
     async created() {
         //@ts-expect-error
@@ -116,7 +116,7 @@ export default {
                 v-model="search"
                 type="text"
                 class="form-input w-1/2 dark:text-white"
-                :placeholder=placeholder />
+                :placeholder="placeholder" />
             <hr
                 class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
             <vue3-datatable
@@ -127,6 +127,9 @@ export default {
                 :totalRows="dadosTabela?.length"
                 :sortable="true"
                 :search="search"
+                :paginationInfo="`${$t('total-data')} ${
+                    dadosTabela.length
+                }, ${$t('per-page')}`"
                 firstArrow="First"
                 lastArrow="Last"
                 previousArrow="Prev"

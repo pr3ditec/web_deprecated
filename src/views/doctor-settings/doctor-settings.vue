@@ -111,6 +111,9 @@ export default {
         :columns="cols"
         :total-rows="rows?.length"
         :loading="loading"
+        :paginationInfo="`${$t('total-data')} ${rows.length}, ${$t(
+            'per-page',
+        )}`"
         :sortable="true">
         <template #nome="data">
             <span

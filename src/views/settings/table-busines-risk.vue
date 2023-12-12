@@ -10,6 +10,7 @@ export default {
     },
     data() {
         return {
+            pageSize: 10,
             cols: [
                 {
                     field: "nome",
@@ -96,6 +97,9 @@ export default {
         :rows="riscoEmpresarialTabela"
         :columns="cols"
         :total-rows="riscoEmpresarialTabela?.length"
+        :paginationInfo="`${$t('total-data')} ${
+            riscoEmpresarialTabela.length
+        }, ${$t('per-page')}`"
         :sortable="true">
         <template #nome="data">
             <span

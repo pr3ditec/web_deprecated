@@ -544,5 +544,7 @@
     "capabilities-help-text": "The capabilitie's name linked with the doctor",
     "status-help-text": "Current status from the selected rule",
     "time-help-text": "Time for an schedule be an medical return",
-    "value-help-text": "Value for an medical return"
+    "value-help-text": "Value for an medical return",
+    "total-data": "Total amount of rows",
+    "per-page": "showing per page"
 }

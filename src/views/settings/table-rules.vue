@@ -196,6 +196,9 @@ export default {
             :rows="regrasTabela"
             :columns="cols"
             :totalRows="regrasTabela?.length"
+            :paginationInfo="`${$t('total-data')} ${regrasTabela.length}, ${$t(
+                'per-page',
+            )}`"
             :sortable="true">
             <template #nome="data">
                 <span

@@ -136,6 +136,9 @@ export default {
                         :rows="dadosTabela"
                         :columns="cols"
                         :totalRows="dadosTabela?.length"
+                        :paginationInfo="`${$t('total-data')} ${
+                            dadosTabela.length
+                        }, ${$t('per-page')}`"
                         :sortable="true"
                         :search="search"
                         :cellClass="cellClasse"
