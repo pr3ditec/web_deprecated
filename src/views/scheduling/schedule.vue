@@ -38,12 +38,6 @@ export default {
                     end: "dayGridMonth,timeGridWeek,timeGridDay",
                 },
                 locale: "pt",
-                slotLabelFormat: {
-                    hour: "numeric",
-                    minute: "2-digit",
-                    omitZeroMinute: false,
-                    mediriem: "short",
-                },
                 duration: "00:30:00",
                 eventDurationEditable: false,
                 eventStartEditable: false,
@@ -64,8 +58,21 @@ export default {
                         this.modal = true;
                         this.dataAgendarModal =
                             click.event._def.extendedProps.forApi.data;
-                        click.event.setProp("color", "#161414");
+                        if (click.event._def.ui.backgroundColor == "00AB55") {
+                            click.event.setProp("color", "#00AB54");
+                        } else {
+                            click.event.setProp("color", "#161414");
+                        }
                     }
+                },
+                //label format
+                slotLabelFormat: function (date: any) {
+                    if (date.date.minute == 0)
+                        return (
+                            date.date.hour.toString().padStart(2, "0") + ":00"
+                        );
+
+                    return date.date.minute;
                 },
             },
         };

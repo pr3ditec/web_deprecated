@@ -536,5 +536,13 @@
     "select-capabilites": "Select capabilites",
     "clinic-linked": "Clinic linked with Sauvvi Tech",
     "select-time": "Select time",
-    "help": "Help"
+    "help": "Help",
+    "required-fields": "Fields are required",
+    "search-by-name": "Search by the name .....",
+    "search-by-doctor": "Search by the doctor .....",
+    "time-help": "Time",
+    "capabilities-help-text": "The capabilitie's name linked with the doctor",
+    "status-help-text": "Current status from the selected rule",
+    "time-help-text": "Time for an schedule be an medical return",
+    "value-help-text": "Value for an medical return"
 }

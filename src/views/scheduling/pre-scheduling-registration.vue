@@ -40,12 +40,6 @@ export default {
                     end: "multiMonthYear,dayGridMonth,timeGridWeek,timeGridDay",
                 },
                 locale: "pt",
-                slotLabelFormat: {
-                    hour: "numeric",
-                    minute: "2-digit",
-                    omitZeroMinute: false,
-                    mediriem: "short",
-                },
                 duration: "00:30:00",
                 eventDurationEditable: false,
                 eventStartEditable: false,
@@ -58,6 +52,15 @@ export default {
                     } else {
                         click.event.setProp("color", "black");
                     }
+                },
+                //label format
+                slotLabelFormat: function (date) {
+                    if (date.date.minute == 0)
+                        return (
+                            date.date.hour.toString().padStart(2, "0") + ":00"
+                        );
+
+                    return date.date.minute;
                 },
             },
         };

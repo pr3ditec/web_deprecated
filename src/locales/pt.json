@@ -577,5 +577,13 @@
     "select-capabilites": "Selecione as especialidades",
     "clinic-linked": "Clinica vinculada com Sauvvi Tech",
     "select-time": "Selecione ume horário",
-    "help": "Ajuda"
+    "help": "Ajuda",
+    "required-fields": "Campos são obrigatórios",
+    "search-by-name": "Pesquise pelo nome .....",
+    "search-by-doctor": "Pesquise pelo medico .....",
+    "time-help": "Tempo",
+    "capabilities-help-text": "O nome da especialidade que está vinculada com o médico",
+    "status-help-text": "Status atual da regra vinculada com a especialidade",
+    "time-help-text": "O tempo escolhido para que uma consulta seja considerada um retorno",
+    "value-help-text": "Valor cobrado para consultas marcadas como retorno"
 }

@@ -11,6 +11,8 @@ export default {
     },
     data() {
         return {
+            loading: true,
+            showHelp: false,
             cols: [
                 {
                     field: "nome",
@@ -50,14 +52,15 @@ export default {
             //@ts-expect-error
             await this.$api
                 .pegarDadosApi(`/medico/${localStorage.getItem("doctor.id")}`)
-                .then(async (res) => {
+                .then(async (res: any) => {
                     if (res.status) {
                         res.list.especialidades.forEach((item: any) => {
                             item["lock"] = true;
                         });
                         this.rows = res.list.especialidades;
                     }
-                });
+                })
+                .finally(() => (this.loading = false));
         },
 
         async atualizarConfigMedico(
@@ -78,7 +81,7 @@ export default {
                         },
                     ]),
                 })
-                .then((res) => {
+                .then((res: any) => {
                     res.status
                         ? Response.mensagemToast("success", res.messageCode)
                         : Response.mensagemToast("error", res.messageCode);
@@ -90,11 +93,24 @@ export default {
 };
 </script>
 <template>
+    <!-- AJUDA -->
+    <button
+        class="btn btn-sm btn-outline-primary text-lg"
+        @mouseover="showHelp = true"
+        @mouseleave="showHelp = false">
+        ?
+    </button>
+    <Transition :duration="200">
+        <settings-help v-show="showHelp"></settings-help>
+    </Transition>
+    <!-- AJUDA -->
+
     <vue3-datatable
         class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap dark:text-white mt-5 p-5"
         :rows="rows"
         :columns="cols"
         :total-rows="rows?.length"
+        :loading="loading"
         :sortable="true">
         <template #nome="data">
             <span
@@ -165,5 +181,4 @@ export default {
             </button>
         </template>
     </vue3-datatable>
-    <settings-help></settings-help>
 </template>

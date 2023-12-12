@@ -7,7 +7,7 @@ export default {
         Multiselect,
     },
     props: {
-        dataAgendar: Promise,
+        dataAgendar: Object,
         medico: Number,
     },
     data() {

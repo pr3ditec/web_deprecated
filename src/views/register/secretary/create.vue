@@ -34,6 +34,7 @@ export default {
 
     async created() {
         let nacionalidadeResponse =
+            //@ts-expect-error
             await this.$api.pegarDadosApi("/nacionalidade");
         this.nacionalidade = nacionalidadeResponse.list;
     },
@@ -95,6 +96,7 @@ export default {
                 .replaceAll("-", "");
             // salvando dados da secretaria
 
+            //@ts-expect-error
             await this.$api
                 .enviarDadosApi(
                     "medico/clinica/secretaria",
@@ -118,9 +120,9 @@ export default {
         <div class="flex flex-row gap-1 w-full">
             <!-- Nome da secretaria -->
             <div class="w-1/2">
-                <label class="capitalize" for="groupFname capitalize">{{
-                    $t("name")
-                }}</label>
+                <label class="capitalize" for="groupFname capitalize"
+                    >{{ $t("name") }}*</label
+                >
                 <input
                     v-model="secretariaFormData.nome"
                     class="form-input dark:text-white"
@@ -130,9 +132,9 @@ export default {
 
             <!-- Nome da mae -->
             <div class="w-1/2">
-                <label class="capitalize" for="groupFname capitalize">{{
-                    $t("mother's name")
-                }}</label>
+                <label class="capitalize" for="groupFname capitalize"
+                    >{{ $t("mother's name") }}*</label
+                >
                 <input
                     v-model="secretariaFormData.nome_mae"
                     class="form-input dark:text-white"
@@ -143,7 +145,7 @@ export default {
 
         <!-- CPF  -->
         <div class="w-full gap-0">
-            <label class="capitalize" for="groupFname capitalize">CPF</label>
+            <label class="capitalize" for="groupFname capitalize">CPF*</label>
             <input
                 v-mask="'###.###.###-##'"
                 class="form-input dark:text-white"
@@ -159,7 +161,9 @@ export default {
 
         <!-- EMAIL -->
         <div class="w-full gap-0">
-            <label class="capitalize" for="groupFname capitalize">E-mail</label>
+            <label class="capitalize" for="groupFname capitalize"
+                >E-mail*</label
+            >
             <input
                 v-model="secretariaFormData.email"
                 class="form-input dark:text-white"
@@ -169,9 +173,9 @@ export default {
 
         <!-- DATA DE NASCIMENTO -->
         <div class="w-full gap-0">
-            <label class="justify-start capitalize">{{
-                $t("birthdate")
-            }}</label>
+            <label class="justify-start capitalize"
+                >{{ $t("birthdate") }}*</label
+            >
             <input
                 v-model="secretariaFormData.nascimento"
                 type="date"
@@ -183,7 +187,7 @@ export default {
             v-model="secretariaFormData.sexo"
             class="form-select lowercase dark:text-white">
             <option value="0" disabled selected>
-                {{ $t("select") }} {{ $t("gender") }}
+                {{ $t("select") }} {{ $t("gender") }}*
             </option>
             <option class="capitalize" value="F">{{ $t("female") }}</option>
             <option class="capitalize" value="M">{{ $t("male") }}</option>
@@ -195,7 +199,7 @@ export default {
             v-model="secretariaFormData.nacionalidade_id"
             class="form-select lowercase dark:text-white">
             <option value="0" disabled selected>
-                {{ $t("select") }} {{ $t("citizenship") }}
+                {{ $t("select") }} {{ $t("citizenship") }}*
             </option>
             <option
                 v-for="nac in nacionalidade"
@@ -211,7 +215,9 @@ export default {
         </select>
 
         <div class="w-full gap-0">
-            <label class="capitalize justify-start">{{ $t("password") }}</label>
+            <label class="capitalize justify-start"
+                >{{ $t("password") }}*</label
+            >
             <input
                 v-model="secretariaFormData.password"
                 class="form-input dark:text-white"
@@ -220,7 +226,7 @@ export default {
 
         <div class="w-full gap-0">
             <label class="capitalize justify-start"
-                >{{ $t("repeat") }} {{ $t("password") }}</label
+                >{{ $t("repeat") }} {{ $t("password") }}*</label
             >
             <input
                 class="form-input dark:text-white"
@@ -233,7 +239,9 @@ export default {
                 >{{ $t("password-match") }}</span
             >
         </div>
-
+        <div class="w-full">
+            <span class="text-sm lowercase">* {{ $t("required-fields") }}</span>
+        </div>
         <div class="flex flex-col items-center font-semibold mt-6">
             <button
                 class="btn btn-primary w-80"

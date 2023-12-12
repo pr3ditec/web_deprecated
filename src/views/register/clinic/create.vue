@@ -74,7 +74,8 @@ export default {
                               "error",
                               this.$t(res.messageCode),
                           );
-                });
+                })
+                .finally(() => window.location.reload());
         },
     },
 };
@@ -85,9 +86,9 @@ export default {
         <div class="flex flex-col items-center gap-5 mt-4">
             <!-- Nome da clinica -->
             <div class="w-1/2">
-                <label class="capitalize" for="groupFname">{{
-                    $t("name")
-                }}</label>
+                <label class="capitalize" for="groupFname"
+                    >{{ $t("name") }}*</label
+                >
                 <input
                     v-model="clinicaFormData.nome"
                     class="form-input dark:text-white"
@@ -98,7 +99,7 @@ export default {
 
             <!-- CEP -->
             <div class="w-1/2">
-                <label class="capitalize" for="groupFname">CEP</label>
+                <label class="capitalize" for="groupFname">CEP*</label>
                 <input
                     v-mask="'#####-###'"
                     class="form-input dark:text-white"
@@ -111,9 +112,9 @@ export default {
 
             <!-- Rua -->
             <div class="w-1/2">
-                <label class="capitalize" for="groupFname">{{
-                    $t("street")
-                }}</label>
+                <label class="capitalize" for="groupFname"
+                    >{{ $t("street") }}*</label
+                >
                 <input
                     v-model="clinicaFormData.rua"
                     class="form-input dark:text-white"
@@ -123,9 +124,9 @@ export default {
 
             <!-- Bairro -->
             <div class="w-1/2">
-                <label class="capitalize" for="groupFname">{{
-                    $t("neighborhood")
-                }}</label>
+                <label class="capitalize" for="groupFname"
+                    >{{ $t("neighborhood") }}*</label
+                >
                 <input
                     v-model="clinicaFormData.bairro"
                     class="form-input dark:text-white"
@@ -140,7 +141,7 @@ export default {
                 v-model="clinicaFormData.especialidade_id"
                 class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
-                    {{ $t("select") }} {{ $t("capabilities") }}
+                    {{ $t("select") }} {{ $t("capabilities") }}*
                 </option>
                 <option
                     v-for="esspecialidade in especialidades"
@@ -179,7 +180,7 @@ export default {
                 v-model="clinicaFormData.cidade"
                 class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
-                    {{ $t("select") }} {{ $t("city") }}
+                    {{ $t("select") }} {{ $t("city") }}*
                 </option>
                 <option
                     v-for="cidade in cidades"
@@ -199,7 +200,7 @@ export default {
                 v-model="clinicaFormData.tipo"
                 class="form-select w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
-                    {{ $t("select") }} {{ $t("address") }}
+                    {{ $t("select") }} {{ $t("address") }}*
                 </option>
                 <option
                     v-for="tipo in tipoEndereco"
@@ -216,9 +217,9 @@ export default {
 
             <!-- Numero -->
             <div class="w-1/2">
-                <label class="capitalize" for="groupFname">{{
-                    $t("number")
-                }}</label>
+                <label class="capitalize" for="groupFname"
+                    >{{ $t("number") }}*</label
+                >
                 <input
                     v-model="clinicaFormData.numero"
                     v-mask="'#####'"
@@ -229,17 +230,21 @@ export default {
 
             <!-- Complemento -->
             <div class="w-1/2">
-                <label class="capitalize" for="groupFname">{{
-                    $t("adjunct")
-                }}</label>
+                <label class="capitalize" for="groupFname"
+                    >{{ $t("adjunct") }}*</label
+                >
                 <input
                     v-model="clinicaFormData.complemento"
                     class="form-input dark:text-white"
                     type="text"
                     placeholder="Ex.: Apto 12" />
             </div>
+            <div class="w-1/2">
+                <span class="text-sm lowercase"
+                    >* {{ $t("required-fields") }}</span
+                >
+            </div>
         </div>
-
         <hr
             class="w-80 h-0.5 mx-auto bg-slate-700 border-0 rounded dark:bg-slate-400" />
 
