@@ -51,7 +51,7 @@ export default {
         async cadastrarClinica() {
             // validar campos
             if (!ValidacaoInput.inputVazio(this.clinicaFormData)["status"]) {
-                return Response.mensagemErro("Campos naos podem estar vazios");
+                return Response.mensagemErro("Por favor, preencha todos os campos.");
             }
 
             this.clinicaFormData.cidade =
