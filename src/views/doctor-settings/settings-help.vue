@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col gap-2 mt-4 p-3">
-        <p class="text-lg capitalize font-bold">{{ $t('help') }}</p>
+        <p class="text-lg capitalize font-bold">{{ $t("help") }}</p>
         <p class="text-sm">
             <b class="capitalize">especialidade: </b> O nome da especialidade
             que está vinculada com o médico

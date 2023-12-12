@@ -51,7 +51,9 @@ export default {
         async cadastrarClinica() {
             // validar campos
             if (!ValidacaoInput.inputVazio(this.clinicaFormData)["status"]) {
-                return Response.mensagemErro("Por favor, preencha todos os campos.");
+                return Response.mensagemErro(
+                    "Por favor, preencha todos os campos.",
+                );
             }
 
             this.clinicaFormData.cidade =
@@ -64,8 +66,14 @@ export default {
                         this.clinicaFormData,
                     );
                     res.status
-                        ? Response.mensagemToast("success", this.$t(res.messageCode))
-                        : Response.mensagemToast("error", this.$t(res.messageCode));
+                        ? Response.mensagemToast(
+                              "success",
+                              this.$t(res.messageCode),
+                          )
+                        : Response.mensagemToast(
+                              "error",
+                              this.$t(res.messageCode),
+                          );
                 });
         },
     },

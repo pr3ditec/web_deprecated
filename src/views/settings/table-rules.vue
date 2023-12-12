@@ -117,10 +117,10 @@ export default {
                             : data[this.regrasTabela[index].post.campo],
                     categoria:
                         index == 2
-                            //@ts-expect-error
-                            ? data[0][this.regrasTabela[index].post.categoria]
-                            //@ts-expect-error
-                            : data[this.regrasTabela[index].post.categoria],
+                            ? //@ts-expect-error
+                              data[0][this.regrasTabela[index].post.categoria]
+                            : //@ts-expect-error
+                              data[this.regrasTabela[index].post.categoria],
                     atualizado:
                         index == 2
                             ? `${FormatoData.formatarParaPadraoBrasil(
@@ -140,11 +140,9 @@ export default {
         buscarTodasRegras() {
             this.regrasTabela.forEach(async (regra) => {
                 //@ts-expect-error
-                await this.$api
-                    .pegarDadosApi(regra.post.rota)
-                    .then((res) => {
-                        this.addRegras(regra.index, res.list);
-                    });
+                await this.$api.pegarDadosApi(regra.post.rota).then((res) => {
+                    this.addRegras(regra.index, res.list);
+                });
             });
         },
 
@@ -163,9 +161,15 @@ export default {
                     })
                     .then((res) => {
                         if (res.status) {
-                            Response.mensagemToast("success", this.$t(res.messageCode));
+                            Response.mensagemToast(
+                                "success",
+                                this.$t(res.messageCode),
+                            );
                         } else {
-                            Response.mensagemToast("error", this.$t(res.messageCode));
+                            Response.mensagemToast(
+                                "error",
+                                this.$t(res.messageCode),
+                            );
                         }
                     })
                     .finally(() => (this.regrasTabela[index].lock = true));
