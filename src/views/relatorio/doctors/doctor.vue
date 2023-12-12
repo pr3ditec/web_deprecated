@@ -139,4 +139,7 @@ export default {
 .alt-pagination .bh-pagination .bh-page-item {
     @apply !w-max min-w-[32px] !rounded;
 }
+.dark .bh-pagination-info {
+    color: white;
+}
 </style>

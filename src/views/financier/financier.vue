@@ -276,7 +276,7 @@ export default {
                         <div class="dropdown"></div>
                     </div>
                     <div class="table-responsive">
-                        <div class="shadow rounded-lg p-6 dark:text-white">
+                        <div class="shadow rounded-lg p-6 dark:text-white capitalize">
                             <table class="table-hover">
                                 <thead>
                                     <tr>

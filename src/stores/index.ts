@@ -2,37 +2,6 @@ import { defineStore } from "pinia";
 import i18n from "@/i18n";
 import appSetting from "@/app-setting";
 
-const permissions = {
-    doctor: {
-        dashboard: true,
-        schedule: true,
-        register: true,
-        financer: true,
-        GeneralReport: true,
-    },
-    secretary: {
-        dashboard: false,
-        schedule: true,
-        register: false,
-        financer: false,
-        GeneralReport: false,
-    },
-    developer: {
-        dashboard: true,
-        schedule: true,
-        register: true,
-        financer: true,
-        GeneralReport: true,
-    },
-    manager: {
-        dashboard: true,
-        schedule: false,
-        register: false,
-        financer: false,
-        GeneralReport: true,
-    },
-};
-
 export const useAppStore = defineStore("app", {
     state: () => ({
         isDarkMode: false,

@@ -12,7 +12,7 @@ const userType = computed(() => {
     let data = "";
     ["Doctor", "Secretary", "Dev", "Manager"].forEach((id) => {
         if (store[`get${id}Id`]() != "null") {
-            data = id;
+            data = id.toLowerCase();
         }
     });
 
