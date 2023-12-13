@@ -157,8 +157,7 @@ export default {
                                     v-if="data.value.status_id == -1"
                                     class="badge bg-secondary uppercase"
                                     >{{
-                                        data.value.pre_agendamento_horarios
-                                            .length == 0
+                                        data.value.origem
                                             ? $t("return")
                                             : data.value.status
                                     }}</span

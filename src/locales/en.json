@@ -546,5 +546,6 @@
     "time-help-text": "Time for an schedule be an medical return",
     "value-help-text": "Value for an medical return",
     "total-data": "Total amount of rows",
-    "per-page": "showing per page"
+    "per-page": "showing per page",
+    "search-by-patient": "Search by patient"
 }

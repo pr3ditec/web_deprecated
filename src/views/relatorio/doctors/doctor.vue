@@ -14,7 +14,7 @@ export default {
             store: useAppStore(),
 
             // Dados
-            mostrarTabela: false,
+            loading: true,
             search: "",
             cols: [
                 {
@@ -41,9 +41,7 @@ export default {
                         if (item.documento.length == 0) {
                             return "";
                         }
-                        return MascarasInput.cpf(
-                            Object(item.documento[0]).numero,
-                        );
+                        return MascarasInput.cpf(item.documento[0].numero);
                     },
                 },
                 {
@@ -54,6 +52,18 @@ export default {
                         return MascarasInput.cnpj(
                             Object(item.documento[1]).numero ?? "",
                         );
+                    },
+                },
+                {
+                    field: "documento",
+                    headerClass: "font-extrabold uppercase dark:text-zinc-100",
+                    title: this.$t("crm"),
+                    cellRenderer: (item: any) => {
+                        try {
+                            return item.documento[2].numero;
+                        } catch {
+                            return "";
+                        }
                     },
                 },
                 {
@@ -103,7 +113,7 @@ export default {
             .then((res: any) => {
                 this.dadosTabela = res.list;
             })
-            .finally(() => (this.mostrarTabela = true));
+            .finally(() => (this.loading = false));
     },
 };
 </script>
@@ -120,7 +130,6 @@ export default {
             <hr
                 class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
             <vue3-datatable
-                v-if="mostrarTabela"
                 class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap"
                 :rows="dadosTabela"
                 :columns="cols"
@@ -137,7 +146,6 @@ export default {
                 skin="table-hover"
                 :cellClass="cellClasse">
             </vue3-datatable>
-            <div v-else>{{ $t("loading") }}</div>
         </div>
     </div>
 </template>

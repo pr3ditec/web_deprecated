@@ -17,6 +17,7 @@ export default {
             // Dados
             mostrarTabela: false,
             search: "",
+            loading: true,
             cols: [
                 {
                     field: "medico",
@@ -54,14 +55,21 @@ export default {
             ],
         };
     },
-    methods: {},
+    methods: {
+        async buscarConsultas() {
+            //@ts-expect-error
+            await this.$api
+                .pegarDadosApi(
+                    `/agendamento/medico/${localStorage.getItem("doctor.id")}`,
+                )
+                .then((res: any) => {
+                    this.dadosTabela = res.list;
+                })
+                .finally(() => (this.loading = false));
+        },
+    },
     async created() {
-        //@ts-expect-error
-        await this.$api
-            .pegarDadosApi("/agendamento/medico/1")
-            .then((res: any) => {
-                this.dadosTabela = res.list;
-            });
+        this.buscarConsultas();
     },
     computed: {
         cellClasse() {
@@ -71,7 +79,7 @@ export default {
         },
 
         placeholder() {
-            return this.$t("search-by-doctor");
+            return this.$t("search-by-patient");
         },
     },
     mounted() {
@@ -102,6 +110,7 @@ export default {
                 }, ${$t('per-page')}`"
                 :sortable="true"
                 :search="search"
+                :loading="loading"
                 rowClasse="bg-zinc-200"
                 skin="table-hover"
                 :cellClass="cellClasse">

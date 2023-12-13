@@ -10,6 +10,7 @@ export default {
     },
     data() {
         return {
+            loading: true,
             cols: [
                 {
                     field: "nome",
@@ -140,9 +141,12 @@ export default {
         buscarTodasRegras() {
             this.regrasTabela.forEach(async (regra) => {
                 //@ts-expect-error
-                await this.$api.pegarDadosApi(regra.post.rota).then((res) => {
-                    this.addRegras(regra.index, res.list);
-                });
+                await this.$api
+                    .pegarDadosApi(regra.post.rota)
+                    .then((res: any) => {
+                        this.addRegras(regra.index, res.list);
+                    })
+                    .finally(() => (this.loading = false));
             });
         },
 
@@ -159,7 +163,7 @@ export default {
                         [this.regrasTabela[index].post.categoria]:
                             this.regrasTabela[index].get.categoria,
                     })
-                    .then((res) => {
+                    .then((res: any) => {
                         if (res.status) {
                             Response.mensagemToast(
                                 "success",
@@ -196,6 +200,7 @@ export default {
             :rows="regrasTabela"
             :columns="cols"
             :totalRows="regrasTabela?.length"
+            :loading="loading"
             :paginationInfo="`${$t('total-data')} ${regrasTabela.length}, ${$t(
                 'per-page',
             )}`"

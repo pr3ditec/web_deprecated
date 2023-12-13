@@ -83,8 +83,14 @@ export default {
                 })
                 .then((res: any) => {
                     res.status
-                        ? Response.mensagemToast("success", res.messageCode)
-                        : Response.mensagemToast("error", res.messageCode);
+                        ? Response.mensagemToast(
+                              "success",
+                              this.$t(res.messageCode),
+                          )
+                        : Response.mensagemToast(
+                              "error",
+                              this.$t(res.messageCode),
+                          );
                 });
         },
 
@@ -161,7 +167,7 @@ export default {
                     <div
                         :class="{ 'bg-danger text-white': !data.value.lock }"
                         class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]">
-                        <span>%</span>
+                        <span>$</span>
                     </div>
                 </div>
             </div>

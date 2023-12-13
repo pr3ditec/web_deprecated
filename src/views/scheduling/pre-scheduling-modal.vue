@@ -33,7 +33,6 @@ export default {
     async created() {
         this.limparVariaveis();
         this.buscarDadosDePreAgendamento();
-        // this.buscarDadosParaRetorno();
     },
     methods: {
         /** EMITS */
@@ -52,27 +51,18 @@ export default {
             await this.$api
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medico}`)
                 .then((response) => {
+                    const hoje = new Date().getTime();
                     response.list.forEach((item) => {
                         if (item.status_id == -1 && item.origem == null) {
                             this.preAgendamento.push(item);
-                        } else if (item.status_id == -1 && item.origem) {
-                            this.retornoAgenda.push(item);
-                        }
-                    });
-                });
-        },
-        async buscarDadosParaRetorno() {
-            await this.$api
-                .pegarDadosApi(`/agendamento/medico/${this.medico}`)
-                .then((response) => {
-                    response.list.forEach((agendamento) => {
-                        if (
-                            this.validarDataRetorno(
-                                agendamento.data,
-                                agendamento.retorno,
-                            )
+                        } else if (item.status_id == -1 && item.origem
                         ) {
-                            this.retornoAgenda.push(agendamento);
+                            if (
+                                new Date(item.data_limite_retorno).getTime >=
+                                hoje
+                            ) {
+                                this.retornoAgenda.push(item);
+                            }
                         }
                     });
                 });

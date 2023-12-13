@@ -47,7 +47,8 @@ export default {
                     // EventFromApi é um props customizada colocada para validar se o evento é um agendamento
                     if (
                         click.event._def.extendedProps.eventFromApi &&
-                        click.event._def.ui.backgroundColor == "#161414"
+                        new Date(click.event._instance.range.start).getDate() ==
+                            new Date().getDate()
                     ) {
                         this.gerarTokenPresenca(
                             click.event._def.extendedProps.agenda_id,

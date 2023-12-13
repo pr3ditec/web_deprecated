@@ -10,7 +10,7 @@ export default {
     },
     data() {
         return {
-            pageSize: 10,
+            loading: true,
             cols: [
                 {
                     field: "nome",
@@ -63,7 +63,8 @@ export default {
                         });
                         this.riscoEmpresarialTabela = res.list;
                     }
-                });
+                })
+                .finally(() => (this.loading = false));
         },
 
         async atualizarRiscoEmpresarial(estado, valor) {
@@ -100,6 +101,7 @@ export default {
         :paginationInfo="`${$t('total-data')} ${
             riscoEmpresarialTabela.length
         }, ${$t('per-page')}`"
+        :loading="loading"
         :sortable="true">
         <template #nome="data">
             <span

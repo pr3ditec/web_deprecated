@@ -589,5 +589,6 @@
     "showing": "mostarndo",
     "of": "de",
     "total-data": "Total de registros",
-    "per-page": "mostrando por página"
+    "per-page": "mostrando por página",
+    "search-by-patient": "Pesquisar pelo paciente"
 }
