@@ -125,7 +125,7 @@ export default {
             if (response2.status) {
                 this.list2 = response2.list;
             } else {
-                let menssage = this.$t(response1.messageCode);
+                let menssage = this.$t(response2.messageCode);
                 this.showMessage(menssage, "error");
                 console.error(response2.messageCode);
             }
@@ -184,7 +184,7 @@ export default {
             @selectedProfessionalName="handleSelectedProfessionalName" />
     </div>
 
-    <div v-if="selectedDoctor && totalEfetivado">
+    <div v-if="selectedDoctor">
         <div class="pt-5">
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
                 <div class="panel h-full sm:col-span-2 lg:col-span-1">
@@ -268,7 +268,9 @@ export default {
                         class="flex items-start justify-between dark:text-white mb-5 p-5 border-b border-[#e0e6ed] dark:border-[#1b2e4b]">
                         <h5 class="font-semibold text-lg">
                             {{ $t("amountsReceivedPeriod") }} <br />
-                            <span class="text-sm text-gray-500 dark:text-white"
+                            <span
+                                class="text-sm text-gray-500 dark:text-white"
+                                v-if="formattedStartDate"
                                 >{{ formatDate(formattedStartDate) }} -
                                 {{ formatDate(formattedEndDate) }}</span
                             >
@@ -387,12 +389,13 @@ export default {
                             </div>
                             <div>
                                 <h5 class="font-semibold dark:text-white-light">
-                                    {{ $t("doctor") }} ID: {{ item.medico_id }}
+                                    {{ $t("scheduling") }} ID:
+                                    {{ item.pre_agendamento_id }}
                                     <br />
                                     {{ $t("description") }}:
                                     {{ item.descricao }}
                                     <br />
-                                    {{ $t("valeu") }}:
+                                    {{ $t("value") }}:
                                     {{ formatValor(item.valor_desconto) }}
                                     <br />
                                 </h5>

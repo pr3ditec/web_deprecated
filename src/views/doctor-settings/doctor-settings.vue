@@ -95,18 +95,19 @@ export default {
 <template>
     <!-- AJUDA -->
     <button
-        class="btn btn-sm btn-outline-primary text-lg"
+        class="whitespace-wrap bg-red-700 hover:bg-red-700 text-white font-bold py-0 px-1 rounded-full border-2 border-red-700 text-sm mt-5"
         @mouseover="showHelp = true"
         @mouseleave="showHelp = false">
         ?
     </button>
+
     <Transition :duration="200">
         <settings-help v-show="showHelp"></settings-help>
     </Transition>
     <!-- AJUDA -->
 
     <vue3-datatable
-        class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap dark:text-white mt-5 p-5"
+        class="w-full shadow-md rounded alt-pagination whitespace-wrap dark:text-white mt-2"
         :rows="rows"
         :columns="cols"
         :total-rows="rows?.length"
