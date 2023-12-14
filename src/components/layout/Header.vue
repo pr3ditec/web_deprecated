@@ -30,7 +30,7 @@ import HeaderProfileDropdown from "@/components/layout/header/HeaderProfileDropd
                     <HeaderSearch />
                     <LangChanger />
                     <ThemeChanger />
-                    <HeaderMessages />
+                    <!-- <HeaderMessages /> -->
 
                     <HeaderNotification />
 
