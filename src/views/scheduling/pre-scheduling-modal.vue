@@ -55,8 +55,7 @@ export default {
                     response.list.forEach((item) => {
                         if (item.status_id == -1 && item.origem == null) {
                             this.preAgendamento.push(item);
-                        } else if (item.status_id == -1 && item.origem
-                        ) {
+                        } else if (item.status_id == -1 && item.origem) {
                             if (
                                 new Date(item.data_limite_retorno).getTime >=
                                 hoje

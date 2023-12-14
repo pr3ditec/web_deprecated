@@ -98,7 +98,7 @@ export default {
         :rows="riscoEmpresarialTabela"
         :columns="cols"
         :total-rows="riscoEmpresarialTabela?.length"
-        :paginationInfo="`${$t('total-data')} ${
+        :pagination-info="`${$t('total-data')} ${
             riscoEmpresarialTabela.length
         }, ${$t('per-page')}`"
         :loading="loading"

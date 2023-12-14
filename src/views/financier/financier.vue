@@ -269,8 +269,8 @@ export default {
                         <h5 class="font-semibold text-lg">
                             {{ $t("amountsReceivedPeriod") }} <br />
                             <span
-                                class="text-sm text-gray-500 dark:text-white"
                                 v-if="formattedStartDate"
+                                class="text-sm text-gray-500 dark:text-white"
                                 >{{ formatDate(formattedStartDate) }} -
                                 {{ formatDate(formattedEndDate) }}</span
                             >
