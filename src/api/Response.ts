@@ -39,7 +39,7 @@ export default class Response {
             toast: true,
             showConfirmButton: false,
             background: store.isDarkMode ? "dark" : "white",
-            timer: 800,
+            timer: 1500,
             position: "top",
         }).fire();
     }
