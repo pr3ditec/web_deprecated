@@ -7,6 +7,7 @@ import SelectMedico from "../../components/layout/SelectDoctor.vue";
 import ScheduleSelection from "../../components/layout/ScheduleSelection.vue";
 import { useMeta } from "@/composables/use-meta";
 import Swal from "sweetalert2";
+import { useAppStore } from "@/stores";
 
 export default {
     components: {
@@ -16,6 +17,7 @@ export default {
     },
     data() {
         return {
+            store: useAppStore(),
             selectedDates: [],
             calendarRef: null,
             showSchedule: true,
@@ -70,7 +72,7 @@ export default {
 
         async fetchDoctorAvailability(doctorId) {
             try {
-                const response = await this.$api.pegarDadosApi(
+                const response = await this.store.request.pegarDadosApi(
                     `/consulta/medico/${doctorId}`,
                 );
 

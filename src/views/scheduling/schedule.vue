@@ -3,14 +3,15 @@ import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
-import SelectMedico from "../../components/layout/SelectDoctor.vue";
+import SelectDoctor from "@/components/layout/SelectDoctor.vue";
 import HeaderAgenda from "./schedule-header.vue";
-import Response from "../../api/Response";
+import Response from "@/api/Response";
 import ModalPreAgendamento from "./pre-scheduling-modal.vue";
+import { useAppStore } from "@/stores";
 
 export default {
     components: {
-        SelectMedico,
+        SelectDoctor,
         FullCalendar,
         HeaderAgenda,
         ModalPreAgendamento,
@@ -18,7 +19,7 @@ export default {
     data() {
         return {
             // API
-
+            store: useAppStore(),
             // MEDICO QUE VEM DO EMIT
             medicoSelect: 0,
 
@@ -110,8 +111,7 @@ export default {
                 this.$t("want-generate-token"),
             );
             if (data) {
-                //@ts-expect-error
-                this.$api
+                this.store.request
                     .enviarDadosApi("/token/agendamento", {
                         agenda_id: agenda,
                     })
@@ -135,8 +135,7 @@ export default {
         /** BUSCAR DADOS DE API */
         async buscarAgendamentos() {
             if (this.medicoSelect == 0) return;
-            //@ts-expect-error
-            await this.$api
+            await this.store.request
                 .pegarDadosApi(`/agendamento/medico/${this.medicoSelect}`)
                 .then((response: any) => {
                     const hoje = new Date();
@@ -160,8 +159,7 @@ export default {
                 });
         },
         async buscarHorariosDisponiveis() {
-            //@ts-expect-error
-            await this.$api
+            await this.store.request!
                 .pegarDadosApi(`/consulta/medico/${this.medicoSelect}`)
                 .then((res: any) => {
                     const hoje = new Date().getTime();
@@ -197,8 +195,7 @@ export default {
 
         /** ENVIAR PROPOSTA DE HORARIOS PARA PACIENTE */
         async propostaHorarios(pre_agendamento_id: number, arrayDados: any) {
-            //@ts-expect-error
-            await this.$api
+            await this.store.request
                 .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: pre_agendamento_id,
                     horarios_agendamento: JSON.stringify(arrayDados),
@@ -219,8 +216,7 @@ export default {
 
         /** PROPOSTA DE RETORNO */
         async propostaDeRetorno(pre_agendamento_id: number, arrayDados: any) {
-            //@ts-expect-error
-            await this.$api
+            await this.store.request!
                 .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: pre_agendamento_id,
                     horarios_agendamento: JSON.stringify(arrayDados),
@@ -276,7 +272,7 @@ export default {
     <div class="container-fluid dark:text-white">
         <div class="row mt-5 p-4">
             <div class="col-12">
-                <SelectMedico
+                <SelectDoctor
                     @update:modelValue="($event) => updateMedico($event)" />
             </div>
         </div>

@@ -107,8 +107,7 @@ export default {
         },
     },
     async created() {
-        //@ts-expect-error
-        await this.$api
+        await this.store.request!
             .pegarDadosApi("/medico")
             .then((res: any) => {
                 this.dadosTabela = res.list;

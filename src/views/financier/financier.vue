@@ -1,13 +1,15 @@
 <script>
-import SelectMedico from "../../components/layout/SelectDoctor.vue";
+import SelectDoctor from "@/components/layout/SelectDoctor.vue";
 import Swal from "sweetalert2";
+import { useAppStore } from "@/stores";
 
 export default {
     components: {
-        SelectMedico,
+        SelectDoctor,
     },
     data() {
         return {
+            store: useAppStore(),
             selectedDoctor: null,
             list: [],
             list2: [],
@@ -29,7 +31,7 @@ export default {
     methods: {
         async fetchDoctorAvailability(doctorId) {
             // Primeira chamada de API
-            let response1 = await this.$api.pegarDadosApi(
+            let response1 = await this.store.request.pegarDadosApi(
                 `/financeiro/medico/${doctorId}`,
             );
 
@@ -118,7 +120,7 @@ export default {
                 .split("T")[0];
             this.formattedEndDate = this.endDate.toISOString().split("T")[0];
 
-            let response2 = await this.$api.pegarDadosApi(
+            let response2 = await this.store.request.pegarDadosApi(
                 `/financeiro/medico/${doctorId}/${this.formattedStartDate}/${this.formattedEndDate}`,
             );
 
@@ -178,7 +180,7 @@ export default {
 
 <template>
     <div class="row mt-5 p-4">
-        <SelectMedico
+        <SelectDoctor
             v-model="selectedDoctor"
             @change="generateReport"
             @selectedProfessionalName="handleSelectedProfessionalName" />

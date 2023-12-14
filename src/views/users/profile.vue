@@ -2,11 +2,12 @@
 import Api from "@/api/Api";
 import Response from "@/api/Response";
 import FormatoData from "@/helpers/FormatoData";
+import { useAppStore } from "@/stores";
 
 export default {
     data() {
         return {
-            request: new Api(),
+            store: useAppStore(),
             dadosUsuario: [],
             formUsuario: {
                 antiga_senha: "",
@@ -50,7 +51,7 @@ export default {
     },
     methods: {
         buscarDadosUsuario() {
-            this.request
+            this.store.request
                 .pegarDadosApi(`/usuario/${localStorage.getItem("user.id")}`)
                 .then((res) => {
                     console.log(res);
@@ -61,7 +62,7 @@ export default {
         },
 
         atualizarDadosUsuario() {
-            this.request
+            this.store.request
                 .enviarDadosApi(`/usuario/${localStorage.getItem("user.id")}`, {
                     email: this.dadosUsuario.email,
                     senha: this.formUsuario.antiga_senha,

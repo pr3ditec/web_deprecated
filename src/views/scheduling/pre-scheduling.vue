@@ -1,6 +1,6 @@
 <script lang="ts">
 import Vue3Datatable from "@bhplugin/vue3-datatable";
-import SelectMedico from "../../components/layout/SelectDoctor.vue";
+import SelectDoctor from "@/components/layout/SelectDoctor.vue";
 import Cadastro from "./pre-scheduling-registration.vue";
 import "@bhplugin/vue3-datatable/dist/style.css";
 import { useAppStore } from "@/stores";
@@ -8,13 +8,12 @@ import { useAppStore } from "@/stores";
 export default {
     components: {
         "vue3-datatable": Vue3Datatable,
-        SelectMedico,
+        SelectDoctor,
         Cadastro,
     },
     data() {
         return {
             store: useAppStore(),
-
             mostrarHistorico: false,
             medicoSelect: 0,
             pacienteSelect: {},
@@ -63,8 +62,7 @@ export default {
             this.pacienteSelect = data;
         },
         async buscarDados() {
-            //@ts-expect-error
-            await this.$api
+            await this.store.request
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medicoSelect}`)
                 .then((response: any) => {
                     this.dadosTabela = [];
@@ -80,6 +78,9 @@ export default {
             if (this.store.isDarkMode) {
                 return "text-white";
             }
+        },
+        placeholder() {
+            return this.$t("search-by-patient");
         },
     },
     watch: {
@@ -100,7 +101,7 @@ export default {
 <template>
     <div class="grid space-y-6 grid-cols-1 items-center mt-5 p-4">
         <div>
-            <SelectMedico
+            <SelectDoctor
                 @update:modelValue="($event) => updateMedico($event)" />
         </div>
         <div
@@ -127,7 +128,7 @@ export default {
                         v-model="search"
                         type="text"
                         class="form-input w-1/2 dark:text-white"
-                        placeholder="Pesquisar ......" />
+                        :placeholder="placeholder" />
                     <hr
                         class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
                     <vue3-datatable

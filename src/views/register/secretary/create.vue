@@ -1,6 +1,6 @@
 <script lang="ts">
-import ValidacaoInput from "../../../helpers/ValidacaoInput";
-import Response from "../../../api/Response";
+import Validacao from "@/helpers/ValidacaoInput";
+import Response from "@/api/Response";
 import { useAppStore } from "@/stores/index";
 
 export default {
@@ -34,8 +34,7 @@ export default {
 
     async created() {
         let nacionalidadeResponse =
-            //@ts-expect-error
-            await this.$api.pegarDadosApi("/nacionalidade");
+            await this.store.request.pegarDadosApi("/nacionalidade");
         this.nacionalidade = nacionalidadeResponse.list;
     },
 
@@ -59,14 +58,13 @@ export default {
         async cadastrarSecretaria() {
             // testa os campos vazios
             if (
-                ValidacaoInput.inputVazio(this.secretariaFormData)["status"] ==
-                false
+                Validacao.inputVazio(this.secretariaFormData)["status"] == false
             ) {
                 return Response.mensagemToast("error", this.$t("empty-data"));
             }
             // testa se o email ter formato valido
             if (
-                ValidacaoInput.email(this.secretariaFormData.email)["status"] ==
+                Validacao.email(this.secretariaFormData.email)["status"] ==
                 false
             ) {
                 return Response.mensagemToast(
@@ -96,8 +94,7 @@ export default {
                 .replaceAll("-", "");
             // salvando dados da secretaria
 
-            //@ts-expect-error
-            await this.$api
+            await this.store.request
                 .enviarDadosApi(
                     "medico/clinica/secretaria",
                     this.secretariaFormData,

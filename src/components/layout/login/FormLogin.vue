@@ -46,6 +46,8 @@ const submitForm = async () => {
             store.setDevId(response.data.list.desenvolvedor_id);
             store.setManagerId(response.data.list.gestor_id);
             store.setPermissoes(response.data.list.permissoes);
+            // Instanciando a conexao global do axios
+            store.setRequest(response.data.list.token);
 
             router.push("/");
         } else {

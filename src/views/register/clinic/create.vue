@@ -1,11 +1,13 @@
 <script>
-import ValidacaoInput from "../../../helpers/ValidacaoInput";
-import Response from "../../../api/Response";
+import Validacao from "@/helpers/ValidacaoInput";
+import Response from "@/api/Response";
 import Sanitaze from "@/helpers/Sanitaze";
+import { useAppStore } from "@/stores";
 
 export default {
     data() {
         return {
+            store: useAppStore(),
             clinicaFormData: {
                 nome: "",
                 especialidade_id: "0",
@@ -26,23 +28,23 @@ export default {
     },
     watch: {
         async "clinicaFormData.estado"(novo) {
-            let cidadeResponse = await this.$api.pegarDadosApi(
+            let cidadeResponse = await this.store.request.pegarDadosApi(
                 `/cidade/${novo}`,
             );
             this.cidades = cidadeResponse.list;
         },
     },
     async created() {
-        let estadoResponse = await this.$api.pegarDadosApi(
+        let estadoResponse = await this.store.request.pegarDadosApi(
             "/unidades-federativas",
         );
         this.estados = estadoResponse.list;
 
         let tipoEderecoResponse =
-            await this.$api.pegarDadosApi("/endereco/tipo");
+            await this.store.request.pegarDadosApi("/endereco/tipo");
         this.tipoEndereco = tipoEderecoResponse.list;
 
-        let especialidadeResponse = await this.$api.pegarDadosApi(
+        let especialidadeResponse = await this.store.request.pegarDadosApi(
             `/medico/especialidade/${localStorage.getItem("user.id")}`,
         );
         this.especialidades = especialidadeResponse.list;
@@ -50,7 +52,7 @@ export default {
     methods: {
         async cadastrarClinica() {
             // validar campos
-            if (!ValidacaoInput.inputVazio(this.clinicaFormData)["status"]) {
+            if (!Validacao.inputVazio(this.clinicaFormData)["status"]) {
                 return Response.mensagemErro(
                     "Por favor, preencha todos os campos.",
                 );
@@ -59,7 +61,7 @@ export default {
             this.clinicaFormData.cidade =
                 this.clinicaFormData.cidade.toString();
 
-            this.$api
+            this.store.request
                 .enviarDadosApi("/medico/clinica", this.clinicaFormData)
                 .then((res) => {
                     this.clinicaFormData = Sanitaze.clearItems(

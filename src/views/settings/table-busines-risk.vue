@@ -3,6 +3,7 @@ import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
 import FormatoData from "@/helpers/FormatoData";
 import Response from "@/api/Response";
+import { useAppStore } from "@/stores";
 
 export default {
     components: {
@@ -10,6 +11,7 @@ export default {
     },
     data() {
         return {
+            store: useAppStore(),
             loading: true,
             cols: [
                 {
@@ -54,7 +56,7 @@ export default {
     methods: {
         /** RISCO-EMPRESARIAL */
         async buscarRiscoEmpresarial() {
-            await this.$api
+            await this.store.request
                 .pegarDadosApi("/risco-empresarial")
                 .then(async (res) => {
                     if (res.status) {
@@ -68,7 +70,7 @@ export default {
         },
 
         async atualizarRiscoEmpresarial(estado, valor) {
-            await this.$api
+            await this.store.request
                 .enviarDadosApi("/risco-empresarial", {
                     estado_id: estado,
                     valor: valor,

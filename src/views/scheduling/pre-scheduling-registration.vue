@@ -2,10 +2,10 @@
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
+import interactionPlugin from "@fullcalendar/interaction";
 import Response from "@/api/Response";
 import multiMonthPlugin from "@fullcalendar/multimonth";
-import Swal from "sweetalert2";
+import { useAppStore } from "@/stores";
 
 export default {
     components: {
@@ -17,6 +17,7 @@ export default {
     },
     data() {
         return {
+            store: useAppStore(),
             horariosProposta: [{}],
             calendarOptions: {
                 height: "80vh",
@@ -71,7 +72,7 @@ export default {
     },
     methods: {
         async buscarDados() {
-            await this.$api
+            await this.store.request
                 .pegarDadosApi(`/consulta/medico/${this.medico}`)
                 .then((res) => {
                     res.list.horarios.forEach((element) => {
@@ -126,7 +127,7 @@ export default {
         },
 
         async proporAgendamento(arrayDados) {
-            await this.$api
+            await this.store.request
                 .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: this.dadosPaciente.id,
                     horarios_agendamento: JSON.stringify(arrayDados),

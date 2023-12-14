@@ -7,11 +7,6 @@ const app = createApp(App);
 import VueTheMask from "vue-the-mask";
 app.use(VueTheMask);
 
-//API connection
-import Api from "./api/Api";
-const api = new Api();
-app.config.globalProperties.$api = api;
-
 // pinia store
 import { createPinia } from "pinia";
 const pinia = createPinia();

@@ -3,6 +3,7 @@ import Response from "@/api/Response";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
 import SettingsHelp from "./settings-help.vue";
+import { useAppStore } from "@/stores";
 
 export default {
     components: {
@@ -11,6 +12,7 @@ export default {
     },
     data() {
         return {
+            store: useAppStore(),
             loading: true,
             showHelp: false,
             cols: [
@@ -49,8 +51,7 @@ export default {
     methods: {
         /** CONFIGURACOES-MEDICO */
         async buscarConfigMedico() {
-            //@ts-expect-error
-            await this.$api
+            await this.store.request
                 .pegarDadosApi(`/medico/${localStorage.getItem("doctor.id")}`)
                 .then(async (res: any) => {
                     if (res.status) {
@@ -69,8 +70,7 @@ export default {
             especialidade_id: any,
             valor_especialidade: any,
         ) {
-            //@ts-expect-error
-            await this.$api
+            await this.store.request
                 .enviarDadosApi("/medico/especialidade", {
                     especialidades: JSON.stringify([
                         {

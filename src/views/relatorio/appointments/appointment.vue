@@ -57,9 +57,8 @@ export default {
     },
     methods: {
         async buscarConsultas() {
-            //@ts-expect-error
-            await this.$api
-                .pegarDadosApi(
+            await this.store
+                .request!.pegarDadosApi(
                     `/agendamento/medico/${localStorage.getItem("doctor.id")}`,
                 )
                 .then((res: any) => {

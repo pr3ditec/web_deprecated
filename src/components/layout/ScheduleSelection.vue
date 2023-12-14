@@ -3,6 +3,7 @@ import ButtonSchedules from "@/components/layout/ButtonSchedules.vue";
 import SelectHorarioInicio from "@/components/layout/SelectTime.vue";
 import SelectHorarioFim from "@/components/layout/SelectTime.vue";
 import AvailableHours from "@/components/layout/AvailableHours.vue";
+import { useAppStore } from "@/stores";
 
 export default {
     components: {
@@ -22,6 +23,7 @@ export default {
     },
     data() {
         return {
+            store: useAppStore(),
             showSchedule: true,
             showAvailableHours: false,
             horarioInicio: "",
@@ -109,7 +111,7 @@ export default {
                     horarios_disponiveis: JSON.stringify(schedules),
                 };
 
-                let response = await this.$api.enviarDadosApi(
+                let response = await this.store.request.enviarDadosApi(
                     "/consulta/criar",
                     data,
                 );
@@ -252,7 +254,7 @@ export default {
                     horarios_disponiveis: JSON.stringify(schedules),
                 };
 
-                let response = await this.$api.enviarDadosApi(
+                let response = await this.store.request.enviarDadosApi(
                     "/consulta/criar",
                     data,
                 );

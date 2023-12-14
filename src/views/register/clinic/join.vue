@@ -1,8 +1,10 @@
 <script>
 import Response from "@/api/Response";
+import { useAppStore } from "@/stores";
 export default {
     data() {
         return {
+            store: useAppStore(),
             especialidade: [],
             especialidadeSelect: 0,
             // variaveis reativas
@@ -18,7 +20,7 @@ export default {
         async pesquisarMedico(cpf) {
             if (cpf.length == 14) {
                 cpf = cpf.replaceAll(".", "").replaceAll("-", "");
-                await this.$api
+                await this.store.request
                     .pegarDadosApi(`/medico/cpf/${cpf}`)
                     .then(async (res) => {
                         if (res.status) {
@@ -41,7 +43,7 @@ export default {
                     this.$t("ask-for-join"),
                 ).then((res) => {
                     if (res) {
-                        this.$api
+                        this.store.request
                             .enviarDadosApi("/clinica/medico", {
                                 clinica_id: clinica,
                                 medico_id: localStorage.getItem("doctor.id"),
@@ -65,7 +67,7 @@ export default {
         },
 
         async pegarEspecialidades() {
-            this.$api
+            this.store.request
                 .pegarDadosApi(
                     `/medico/especialidade/${localStorage.getItem(
                         "doctor.id",

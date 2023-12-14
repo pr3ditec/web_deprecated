@@ -1,4 +1,5 @@
 <script>
+import { useAppStore } from "@/stores";
 import Multiselect from "@suadelabs/vue3-multiselect";
 import "@suadelabs/vue3-multiselect/dist/vue3-multiselect.css";
 
@@ -12,6 +13,7 @@ export default {
     },
     data() {
         return {
+            store: useAppStore(),
             selectInput: "",
             preAgendamentoShowSelect: true,
             preAgendamento: [],
@@ -48,7 +50,7 @@ export default {
         /** EMITS */
 
         async buscarDadosDePreAgendamento() {
-            await this.$api
+            await this.store.request
                 .pegarDadosApi(`/pre-agendamento/medico/${this.medico}`)
                 .then((response) => {
                     const hoje = new Date().getTime();

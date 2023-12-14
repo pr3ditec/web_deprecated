@@ -4,11 +4,11 @@ import axios from "axios";
 export default class Api {
     private request: any;
 
-    constructor() {
+    constructor(token: any) {
         this.request = axios.create({
             timeout: 5000,
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("user.token")}`,
+                Authorization: `Bearer ${token ?? localStorage.getItem('user.token')}`,
                 "origin-request": "admin",
             },
         });

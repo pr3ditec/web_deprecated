@@ -177,7 +177,7 @@ export default {
                 const date = new Date(dateString);
                 return `${date.getFullYear()}-${date.getMonth() + 1}`;
             }
-            let riscoResponse = await this.$api.pegarDadosApi(
+            let riscoResponse = await this.store.request.pegarDadosApi(
                 `relatorio/risco-empresarial/${this.dataInicial}/${this.dataFim}`,
             );
             const data = riscoResponse.list;

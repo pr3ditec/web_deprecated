@@ -1,9 +1,11 @@
 <script>
 import Response from "@/api/Response";
+import { useAppStore } from "@/stores";
 
 export default {
     data() {
         return {
+            store: useAppStore(),
             // variaveis reativas
             encontrada: true,
             secretaria: {
@@ -13,7 +15,7 @@ export default {
         };
     },
     async created() {
-        let clinicasResponse = await this.$api.pegarDadosApi(
+        let clinicasResponse = await this.store.request.pegarDadosApi(
             `/medico/clinica/${localStorage.getItem("user.id")}/`,
         );
         this.clinicas = clinicasResponse.list;
@@ -23,7 +25,7 @@ export default {
             // escolher mascara
             if (cpf.length == 14) {
                 cpf = cpf.replaceAll(".", "").replaceAll("-", "");
-                await this.$api
+                await this.store.request
                     .pegarDadosApi(`/secretaria/${cpf}`)
                     .then((res) => {
                         if (res.status) {
@@ -42,7 +44,7 @@ export default {
 
         async criarVinculo() {
             if (this.secretaria.nome != "") {
-                await this.$api
+                await this.store.request
                     .enviarDadosApi("/secretaria/medico", {
                         secretaria_id: this.secretaria.secretaria_id,
                     })

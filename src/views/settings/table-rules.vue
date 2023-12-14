@@ -3,6 +3,7 @@ import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
 import FormatoData from "@/helpers/FormatoData";
 import Response from "@/api/Response";
+import { useAppStore } from "@/stores";
 
 export default {
     components: {
@@ -10,6 +11,7 @@ export default {
     },
     data() {
         return {
+            store: useAppStore(),
             loading: true,
             cols: [
                 {
@@ -138,10 +140,9 @@ export default {
             }
         },
 
-        buscarTodasRegras() {
+        async buscarTodasRegras() {
             this.regrasTabela.forEach(async (regra) => {
-                //@ts-expect-error
-                await this.$api
+                await this.store.request!
                     .pegarDadosApi(regra.post.rota)
                     .then((res: any) => {
                         this.addRegras(regra.index, res.list);
@@ -154,8 +155,7 @@ export default {
             if (this.regrasTabela[index].lock) {
                 this.regrasTabela[index].lock = false;
             } else {
-                //@ts-expect-error
-                await this.$api
+                await this.store.request!
                     .enviarDadosApi(`${this.regrasTabela[index].post.rota}`, {
                         [this.regrasTabela[index].post.campo]:
                             this.regrasTabela[index].get.valor,
@@ -181,8 +181,8 @@ export default {
         },
         /** REGRAS */
     },
-    created() {
-        this.buscarTodasRegras();
+    async created() {
+        await this.buscarTodasRegras();
     },
 };
 </script>

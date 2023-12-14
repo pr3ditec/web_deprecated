@@ -1,8 +1,11 @@
 <script>
+import { useAppStore } from "@/stores";
+
 export default {
     name: "SelectProfissional",
     data() {
         return {
+            store: useAppStore(),
             selectedProfessional: "",
             profissionais: [],
         };
@@ -13,7 +16,7 @@ export default {
             localStorage.getItem("secretary.id") != "null"
         ) {
             try {
-                let response = await this.$api.pegarDadosApi(
+                let response = await this.store.request.pegarDadosApi(
                     `/medico/clinica/secretaria/${localStorage.getItem(
                         "secretary.id",
                     )}`,
