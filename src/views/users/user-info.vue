@@ -46,8 +46,8 @@ export default {
 };
 </script>
 <template>
-    <div class="flex flex-row">
-        <div class="w-1/3">
+    <div class="flex flex-col md:flex-row">
+        <div class="w-full md:w-1/3">
             <div class="flex items-center justify-between mb-5">
                 <h5 class="font-semibold text-lg dark:text-white-light">
                     {{ $t("profile") }}
@@ -180,7 +180,7 @@ export default {
             </div>
         </div>
         <!-- Sgunda metade -->
-        <div class="w-2/3">
+        <div class="w-full md:w-2/3">
             <form
                 class="flex flex-col h-full border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 mb-5 bg-white dark:bg-[#0e1726]">
                 <h6 class="text-lg font-bold mb-5">

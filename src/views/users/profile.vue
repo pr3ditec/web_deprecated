@@ -2,10 +2,12 @@
 import Response from "@/api/Response";
 import { useAppStore } from "@/stores";
 import userInfo from "./user-info.vue";
+import clinicInfo from "./clinic-info.vue";
 
 export default {
     components: {
         userInfo,
+        clinicInfo,
     },
     data() {
         return {
@@ -18,10 +20,6 @@ export default {
         this.buscarDadosUsuario();
     },
     methods: {
-        /** EMIT */
-
-        /** EMIT */
-
         async buscarDadosUsuario() {
             await this.store.request
                 .pegarDadosApi(`/usuario/${this.store.getUserId()}`)
@@ -46,7 +44,6 @@ export default {
                     },
                 )
                 .then((res) => {
-                    console.log(res);
                     res.status
                         ? Response.mensagemToast(
                               "success",
@@ -76,6 +73,10 @@ export default {
                 :dados-usuario="dadosUsuario" />
         </div>
         <!-- SEGUNDO PAINEL -->
-        <div class="panel col-span-4 xl:col-span-4"></div>
+        <div
+            class="panel col-span-4 xl:col-span-4 h-full"
+            style="height: 50vh !important">
+            <clinicInfo />
+        </div>
     </div>
 </template>
