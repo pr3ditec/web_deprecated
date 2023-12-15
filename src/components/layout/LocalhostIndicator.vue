@@ -4,8 +4,6 @@ import { useMeta } from "@/composables/use-meta";
 
 import { isLocalhost } from "@/helpers/Host";
 
-useMeta({ title: "Localhost Indicator" });
-
 let indicator = ref(false);
 
 onMounted(async () => {
