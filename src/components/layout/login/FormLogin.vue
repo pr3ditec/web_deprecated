@@ -275,7 +275,7 @@ const submitForm = async () => {
             </div>
         </div>
 
-        <div v-if="false">
+        <div v-if="true">
             <div class="text-center dark:text-white mt-10">
                 Don't have an account ?
 
