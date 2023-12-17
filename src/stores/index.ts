@@ -41,8 +41,16 @@ export const useAppStore = defineStore("app", {
         setUserLogin(token) {
             localStorage.setItem("user.token", token);
         },
-        setUserLogout() {
+        logout() {
             localStorage.removeItem("user.token");
+            localStorage.removeItem("user.id");
+            localStorage.removeItem("user.name");
+            localStorage.removeItem("user.email");
+            localStorage.removeItem("user.permissoes");
+            localStorage.removeItem("doctor.id");
+            localStorage.removeItem("secretary.id");
+            localStorage.removeItem("dev.id");
+            localStorage.removeItem("manager.id");
         },
         getUserToken() {
             return localStorage.getItem("user.token");

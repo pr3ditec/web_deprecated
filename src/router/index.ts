@@ -135,6 +135,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import("../views/auth/password-reset.vue"),
         meta: { layout: "auth" },
     },
+    {
+        path: "/auth/logout",
+        name: "logout",
+        component: () => import("../views/auth/logout.vue"),
+        meta: { layout: "auth" },
+    },
 
     // users
     {

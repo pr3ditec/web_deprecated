@@ -33,6 +33,8 @@ const submitForm = async () => {
     submitBtnDisabled.value = true;
 
     try {
+        store.logout();
+
         console.log("req", req);
 
         const response = await axios.request(req);

@@ -206,7 +206,7 @@ const userName = computed(() => {
                     <li
                         class="border-t border-white-light dark:border-white-light/10">
                         <router-link
-                            to="/auth/login"
+                            to="/auth/logout"
                             class="text-danger !py-3"
                             @click="close()">
                             <svg
