@@ -95,6 +95,11 @@ const routes: RouteRecordRaw[] = [
         name: "Doctors Financial",
         component: () => import("../views/financier/financier.vue"),
     },
+    {
+        path: "/financier/admin",
+        name: "Admin Financial",
+        component: () => import("../views/financier/overdue-list.vue"),
+    },
     /** FINANCEIRO */
 
     /** REGRAS */

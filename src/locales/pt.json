@@ -590,5 +590,11 @@
     "of": "de",
     "total-data": "Total de registros",
     "per-page": "mostrando por página",
-    "search-by-patient": "Pesquisar pelo paciente"
+    "search-by-patient": "Pesquisar pelo paciente",
+    "admin-financier": "Financeiro administrativo",
+    "valueInstallments": "Valor de parcelas",
+    "show-more": "Ver mais",
+    "empty-table": "Tabela vazia",
+    "defaulter": "Inadimplente",
+    "no-phone": "Sem dados"
 }

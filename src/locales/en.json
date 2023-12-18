@@ -547,5 +547,11 @@
     "value-help-text": "Value for an medical return",
     "total-data": "Total amount of rows",
     "per-page": "showing per page",
-    "search-by-patient": "Search by patient"
+    "search-by-patient": "Search by patient",
+    "admin-financier": "Admin financier",
+    "valueInstallments": "Installmnents value",
+    "show-more": "Show more",
+    "empty-table": "Empty table",
+    "defaulter": "Defaulters",
+    "no-phone": "No data"
 }
