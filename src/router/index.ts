@@ -110,15 +110,24 @@ const routes: RouteRecordRaw[] = [
     /** REGRAS */
     {
         path: "/settings",
-        name: "Regras admin",
+        name: "Admin settings",
         component: () => import("../views/settings/settings.vue"),
     },
     {
         path: "/doctor-settings",
-        name: "Configurações do médico",
+        name: "Doctor's settings",
         component: () => import("../views/doctor-settings/doctor-settings.vue"),
     },
     /** REGRAS */
+
+    /** REDEFINIR SENHA */
+    {
+        path: "/users/change-password/:token",
+        name: "Change password",
+        component: () => import("../views/password/change-password.vue"),
+        meta: { layout: "auth" },
+    },
+    /** REDEFINIR SENHA */
 
     // auth
     {

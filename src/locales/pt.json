@@ -598,5 +598,9 @@
     "defaulter": "Inadimplente",
     "no-phone": "Sem dados",
     "investor": "investidor",
-    "email-already-exist": "email já existente"
+    "email-already-exist": "email já existente",
+    "type-password": "Digite a senha",
+    "type-email": "Digite o seu email",
+    "do-login": "Voltar para login",
+    "errorValidation": "Erro na validação"
 }

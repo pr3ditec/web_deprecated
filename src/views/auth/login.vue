@@ -7,8 +7,16 @@ import LogoSmallCircle from "@/components/layout/LogoSmallCircle.vue";
 import LogoFull from "@/components/layout/LogoFull.vue";
 import TextSauvvi from "@/components/layout/TextSauvvi.vue";
 import LocalhostIndicator from "@/components/layout/LocalhostIndicator.vue";
+import FormRequestPassword from "@/views/password/request-password.vue";
+import { ref } from "vue";
 
 useMeta({ title: "Login" });
+
+const login = ref(true);
+
+function mostrarLogin(value: boolean) {
+    login.value = value;
+}
 </script>
 
 <template>
@@ -49,8 +57,12 @@ useMeta({ title: "Login" });
                         <LangChanger />
                     </div>
 
-                    <FormLogin />
-
+                    <FormLogin
+                        v-show="login"
+                        @update:trocar="mostrarLogin(false)" />
+                    <FormRequestPassword
+                        v-show="!login"
+                        @update:trocar="mostrarLogin(true)" />
                     <p
                         class="absolute lg:bottom-6 md:bottom-1 bottom-1 w-full text-center dark:text-white mt-10">
                         <TextSauvvi />

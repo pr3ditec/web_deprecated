@@ -287,6 +287,13 @@ const submitForm = async () => {
                     SIGN UP
                 </router-link>
             </div>
+            <div class="text-center dark:text-white">
+                <label
+                    @click="$emit('update:trocar')"
+                    class="cursor-pointer text-center text-priamry underline transition hover:text-black dark:hover:text-white"
+                    >{{ $t("password_recovery") }}</label
+                >
+            </div>
         </div>
     </div>
 </template>
