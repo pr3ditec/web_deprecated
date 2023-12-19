@@ -2,7 +2,6 @@
 import { useAppStore } from "@/stores";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
-import "@/assets/css/leaflet.css";
 
 export default {
     components: {
