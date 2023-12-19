@@ -553,5 +553,7 @@
     "show-more": "Show more",
     "empty-table": "Empty table",
     "defaulter": "Defaulters",
-    "no-phone": "No data"
+    "no-phone": "No data",
+    "investor": "investor",
+    "email-already-exist": "email already exist"
 }

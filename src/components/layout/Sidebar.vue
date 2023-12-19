@@ -7,6 +7,7 @@ import SidebarLogo from "@/components/layout/sidebar-items/SidebarLogo.vue";
 
 // Prodoction menus - Will be available in production
 import MenuDashboard from "@/components/layout/sidebar-items/_MenuDashboard.vue";
+import MenuInvestor from "@/components/layout/sidebar-items/MenuInvestor.vue";
 import MenuSchedule from "@/components/layout/sidebar-items/MenuSchedule.vue";
 import MenuFinancer from "@/components/layout/sidebar-items/MenuFinancer.vue";
 import MenuRegister from "@/components/layout/sidebar-items/MenuRegister.vue";
@@ -92,6 +93,11 @@ function hasChildPermission(component) {
                         <div v-if="hasChildPermission('MenuDashboard')">
                             <MenuDashboard />
                         </div>
+
+                        <div>
+                            <MenuInvestor />
+                        </div>
+
                         <div v-if="hasChildPermission('MenuSchedule')">
                             <MenuSchedule />
                         </div>

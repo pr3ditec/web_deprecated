@@ -596,5 +596,7 @@
     "show-more": "Ver mais",
     "empty-table": "Tabela vazia",
     "defaulter": "Inadimplente",
-    "no-phone": "Sem dados"
+    "no-phone": "Sem dados",
+    "investor": "investidor",
+    "email-already-exist": "email já existente"
 }
