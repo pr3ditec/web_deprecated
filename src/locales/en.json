@@ -559,5 +559,6 @@
     "type-password": "Type password",
     "type-email": "Type the email",
     "do-login": "Go to login",
-    "errorValidation": "Validation error"
+    "errorValidation": "Validation error",
+    "cep-not-found": "Cep cannot be found by api"
 }

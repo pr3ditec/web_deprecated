@@ -602,5 +602,6 @@
     "type-password": "Digite a senha",
     "type-email": "Digite o seu email",
     "do-login": "Voltar para login",
-    "errorValidation": "Erro na validação"
+    "errorValidation": "Erro na validação",
+    "cep-not-found": "Cep não pode ser encontrado"
 }

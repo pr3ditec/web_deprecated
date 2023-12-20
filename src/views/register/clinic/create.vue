@@ -1,13 +1,19 @@
 <script>
-import Validacao from "@/helpers/ValidacaoInput";
 import Response from "@/api/Response";
+import IconLoading from "@/components/icons/IconLoading.vue";
 import Sanitaze from "@/helpers/Sanitaze";
+import Validacao from "@/helpers/ValidacaoInput";
 import { useAppStore } from "@/stores";
+import axios from "axios";
 
 export default {
+    components: {
+        IconLoading,
+    },
     data() {
         return {
             store: useAppStore(),
+            loadingCep: false,
             clinicaFormData: {
                 nome: "",
                 especialidade_id: "0",
@@ -79,6 +85,39 @@ export default {
                 })
                 .finally(() => window.location.reload());
         },
+
+        async pesquisarCep(cep) {
+            if (cep.length == 9) {
+                this.loadingCep = true;
+                await axios
+                    .get(`https://brasilapi.com.br/api/cep/v2/${cep}`)
+                    .then((res) => {
+                        this.inserirDadosCep(
+                            res.data.street,
+                            res.data.neighborhood,
+                            res.data.state,
+                        );
+                    })
+                    .catch((err) => {
+                        this.inserirDadosCep();
+                        Response.mensagemToast(
+                            "error",
+                            this.$t("cep-not-found"),
+                        );
+                    })
+                    .finally(() => (this.loadingCep = false));
+            } else if (cep.length > 0) {
+                // Limpa os dados
+                this.inserirDadosCep();
+            }
+        },
+
+        inserirDadosCep(rua = "", bairro = "", estado = 0) {
+            this.clinicaFormData.rua = rua;
+            this.clinicaFormData.bairro = bairro;
+            this.clinicaFormData.estado = estado;
+            this.clinicaFormData.cidade = 0;
+        },
     },
 };
 </script>
@@ -107,10 +146,14 @@ export default {
                     class="form-input dark:text-white"
                     type="text"
                     placeholder="Ex.: 87560-000"
+                    @keyup="(event) => pesquisarCep(event.target.value)"
                     @input="
                         ($event) => (clinicaFormData.cep = $event.target.value)
                     " />
             </div>
+
+            <!-- LOADING -->
+            <IconLoading v-if="loadingCep" />
 
             <!-- Rua -->
             <div class="w-1/2">
