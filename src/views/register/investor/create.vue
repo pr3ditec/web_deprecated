@@ -16,6 +16,7 @@ export default {
                 nascimento: "",
                 nacionalidade_id: "0",
                 sexo: "0",
+                tipo_usuario: "6",
             },
 
             nacionalidade: {
@@ -107,9 +108,6 @@ export default {
                                 this.$t(res.messageCode),
                             );
                         } else {
-                            // return Response.mensagemSucesso(
-                            //     this.$t(res.messageCode),
-                            // ).then(() => window.location.reload());
                             Response.mensagemSucesso(this.$t(res.messageCode));
                             // Avança para a próxima etapa do form-wizard
                             this.$emit('nextTab');
@@ -125,7 +123,7 @@ export default {
 </script>
 
 <template>
-    <div class="flex flex-col items-center gap-5 mt-4 w-1/2 dark:text-white">
+    <div class="p-6 panel h-full flex flex-col items-center gap-5 mt-4 w-1/2 dark:text-white">
         <div class="flex flex-row gap-1 w-full">
             <!-- Nome do Investidor -->
             <div class="w-1/2">

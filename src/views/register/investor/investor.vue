@@ -24,7 +24,7 @@ export default {
 <template>
     <form-wizard ref="wizard" color="#4361ee" class="circle">
         <tab-content :customIcon="IconRegister">
-            <p>Cadastro de dados do Investidor</p>
+            <p class="text-center text-2xl font-bold text-blue-600">Cadastro de dados do Investidor</p>
             <div
                 class="grid space-y-6 grid-cols-1 items-center dark:text-white">
                 <Transition>
@@ -35,7 +35,7 @@ export default {
             </div>
         </tab-content>
         <tab-content :customIcon="IconRegister">
-            <p>Perguntas para o investidor</p>
+            <p class="text-center text-2xl font-bold text-blue-600">Perguntas para o investidor</p>
             <div
                 class="grid space-y-6 grid-cols-1 items-center dark:text-white">
                 <Transition>
@@ -46,7 +46,7 @@ export default {
             </div>
         </tab-content>
         <tab-content :customIcon="IconRegister">
-            <p>Wonderful transition effects.</p>
+            <p class="text-center text-2xl font-bold text-blue-600">Anexar Documentos</p>
         </tab-content>
     </form-wizard>
 </template>
