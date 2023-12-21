@@ -4,6 +4,7 @@ import Response from "@/api/Response";
 import { useAppStore } from "@/stores/index";
 
 export default {
+    props: ["userId"],
     data() {
         return {
             store: useAppStore(),
@@ -109,9 +110,9 @@ export default {
                             );
                         } else {
                             Response.mensagemSucesso(this.$t(res.messageCode));
+                            this.$emit("updateUserId", res.list.id);
                             // Avança para a próxima etapa do form-wizard
-                            this.$emit('nextTab');
-
+                            this.$emit("nextTab");
                         }
                     });
             } catch (error) {
@@ -123,7 +124,8 @@ export default {
 </script>
 
 <template>
-    <div class="p-6 panel h-full flex flex-col items-center gap-5 mt-4 w-1/2 dark:text-white">
+    <div
+        class="p-6 panel h-full flex flex-col items-center gap-5 mt-4 w-1/2 dark:text-white">
         <div class="flex flex-row gap-1 w-full">
             <!-- Nome do Investidor -->
             <div class="w-1/2">

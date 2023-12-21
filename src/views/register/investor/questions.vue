@@ -1,6 +1,5 @@
 <script>
-// import Validacao from "@/helpers/ValidacaoInput";
-// import Response from "@/api/Response";
+import Response from "@/api/Response";
 import { useAppStore } from "@/stores/index";
 
 export default {
@@ -19,11 +18,49 @@ export default {
     },
     methods: {
         async enviarRespostas() {
-            console.log(this.investidorFormQuestion);
-            // await this.store.request.enviarDadosApi(
-            //     "/perguntas-investidor/salvar",
-            //     this.investidorFormQuestion,
-            // );
+            try {
+                console.log(this.investidorFormQuestion);
+
+                // Verificar se todas as perguntas foram respondidas
+                for (let pergunta of this.perguntasInvestidor.list) {
+                    if (
+                        !this.investidorFormQuestion.hasOwnProperty(pergunta.id)
+                    ) {
+                        return Response.mensagemErro(
+                            this.$t("Please-fill-in-all-questions"),
+                        );
+                    }
+                }
+
+                const formattedData = Object.entries(
+                    this.investidorFormQuestion,
+                ).map(([pergunta, resposta]) => ({
+                    pergunta: parseInt(pergunta),
+                    resposta,
+                }));
+
+                let data = {
+                    respostas: JSON.stringify(formattedData),
+                };
+
+                console.log(formattedData);
+                await this.store.request
+                    .enviarDadosApi("/perguntas-investidor-usuario", data)
+                    .then((res) => {
+                        console.log(res);
+                        if (res.status == false) {
+                            return Response.mensagemErro(
+                                this.$t(res.messageCode),
+                            );
+                        } else {
+                            Response.mensagemSucesso(this.$t(res.messageCode));
+                            // Avança para a próxima etapa do form-wizard
+                            this.$emit("nextTab");
+                        }
+                    });
+            } catch (error) {
+                console.error("Ocorreu um erro:", error);
+            }
         },
     },
 };
@@ -51,7 +88,9 @@ export default {
                 <label>{{ resposta.descricao }}</label>
             </div>
         </div>
-        <button @click="enviarRespostas" class="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 focus:ring-green-500">
+        <button
+            @click="enviarRespostas"
+            class="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 focus:ring-green-500">
             Enviar Respostas
         </button>
     </div>

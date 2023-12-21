@@ -603,5 +603,6 @@
     "type-email": "Digite o seu email",
     "do-login": "Voltar para login",
     "errorValidation": "Erro na validação",
-    "cep-not-found": "Cep não pode ser encontrado"
+    "cep-not-found": "Cep não pode ser encontrado",
+    "Please-fill-in-all-questions": "Favor preencher todas as perguntas"
 }

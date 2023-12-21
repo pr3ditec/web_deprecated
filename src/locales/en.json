@@ -560,5 +560,6 @@
     "type-email": "Type the email",
     "do-login": "Go to login",
     "errorValidation": "Validation error",
-    "cep-not-found": "Cep cannot be found by api"
+    "cep-not-found": "Cep cannot be found by api",
+    "Please-fill-in-all-questions": "Please fill in all questions"
 }
