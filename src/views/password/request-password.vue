@@ -1,6 +1,6 @@
 <script>
 import { useAppStore } from "@/stores";
-import Response from "@/api/response";
+import Response from "@/api/Response";
 export default {
     data() {
         return {
@@ -64,7 +64,7 @@ export default {
         <div class="text-center dark:text-white">
             <label
                 @click="$emit('update:trocar')"
-                class="cursor-pointer text-center text-priamry underline transition hover:text-black dark:hover:text-white"
+                class="cursor-pointer text-center text-primary underline transition hover:text-black dark:hover:text-white"
                 >{{ $t("do-login") }}</label
             >
         </div>

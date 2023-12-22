@@ -607,5 +607,6 @@
     "Please-fill-in-all-questions": "Favor preencher todas as perguntas",
     "approve-investor-registration": "Aprovar Cadastro Investidor",
     "photo-is-mandatory": "A foto é obrigatória",
-    "you-must-send-your-drivers-license-or-id": "Você deve enviar a CNH ou o RG (frente e verso)"
+    "you-must-send-your-drivers-license-or-id": "Você deve enviar a CNH ou o RG (frente e verso)",
+    "error-recovering-password": "Erro ao recuperar senha"
 }
