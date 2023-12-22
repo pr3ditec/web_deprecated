@@ -7,64 +7,94 @@ export default {
     data() {
         return {
             store: useAppStore(),
-            rgcpf: "",
+            rgf: "",
+            rgv: "",
+            cnh: "",
             foto: "",
-            // comprovante: "",
+            enviando: false,
         };
     },
     methods: {
         toBase64(id) {
-            let fileInput = this.$refs[id].files[0];
-            let reader = new FileReader();
-            reader.readAsDataURL(fileInput);
-            reader.onload = () => {
-                this[id] = reader.result.split(",")[1];
-            };
-            reader.onerror = (error) => {
-                console.log("Erro ao converter para Base64:", error);
-            };
+            return new Promise((resolve, reject) => {
+                let fileInput = this.$refs[id].files[0];
+                if (fileInput) {
+                    let reader = new FileReader();
+                    reader.readAsDataURL(fileInput);
+                    reader.onload = () => {
+                        this[id] = reader.result.split(",")[1];
+                        resolve();
+                    };
+                    reader.onerror = (error) => {
+                        console.log("Erro ao converter para Base64:", error);
+                        reject(error);
+                    };
+                } else {
+                    console.log("Nenhum arquivo selecionado.");
+                    reject(new Error("Nenhum arquivo selecionado."));
+                }
+            });
         },
+
         async enviarDocumentos() {
+            this.enviando = true;
             try {
-                let data = {
-                    selfie: this.foto,
-                    documento_frente: this.rgcpf,
-                };
+                let promises = [];
+                if (this.$refs["foto"].files[0])
+                    promises.push(this.toBase64("foto"));
+                if (this.$refs["cnh"].files[0])
+                    promises.push(this.toBase64("cnh"));
+                if (this.$refs["rgf"].files[0])
+                    promises.push(this.toBase64("rgf"));
+                if (this.$refs["rgv"].files[0])
+                    promises.push(this.toBase64("rgv"));
+
+                await Promise.all(promises);
+
+                if (!this.foto) {
+                    this.enviando = false;
+                    return Response.mensagemErro(this.$t("photo-is-mandatory"));
+                }
+
+                if (!this.cnh && (!this.rgf || !this.rgv)) {
+                    this.enviando = false;
+                    return Response.mensagemErro(
+                        this.$t("you-must-send-your-drivers-license-or-id"),
+                    );
+                }
+
+                let data = {};
+                if (this.cnh) {
+                    data = {
+                        selfie: this.foto,
+                        documento_frente: this.cnh,
+                    };
+                } else {
+                    data = {
+                        selfie: this.foto,
+                        documento_frente: this.rgf,
+                        documento_verso: this.rgv,
+                    };
+                }
+                console.log(data);
 
                 await this.store.request
                     .enviarDadosApi("/foto/validar", data)
                     .then((res) => {
                         console.log(res);
                         if (res.status == false) {
+                            this.enviando = false;
                             return Response.mensagemErro(
                                 this.$t(res.messageCode),
                             );
                         } else {
+                            this.enviando = false;
                             Response.mensagemSucesso(this.$t(res.messageCode));
                             // Avança para a próxima etapa do form-wizard
                             this.$emit("nextTab");
                         }
                     });
                 console.log(this.userId);
-
-                // data = {
-                //     comprovante_residencia: this.comprovante,
-                //     paciente_id: this.userId,
-                // };
-                // await this.store.request
-                //     .enviarDadosApi("/comprovante-residencia/validar", data)
-                //     .then((res) => {
-                //         console.log(res);
-                //         if (res.status == false) {
-                //             return Response.mensagemErro(
-                //                 this.$t(res.messageCode),
-                //             );
-                //         } else {
-                //             Response.mensagemSucesso(this.$t(res.messageCode));
-                //             // Avança para a próxima etapa do form-wizard
-                //             this.$emit("nextTab");
-                //         }
-                //     });
             } catch (error) {
                 console.error("Ocorreu um erro:", error);
             }
@@ -74,35 +104,71 @@ export default {
 </script>
 
 <template>
-    <div class="p-8 panel h-full">
+    <div class="p-8 panel h-full bg-gray-100 rounded-lg shadow-md">
         <div class="mb-4">
-            <label for="rgcpf">RG ou CPF - Frente e Verso:</label>
-            <input
-                type="file"
-                id="rgcpf"
-                ref="rgcpf"
-                @change="toBase64('rgcpf')" />
+            <p class="text-red-500">
+                * A foto do rosto é obrigatória. Você pode escolher entre enviar
+                a CNH ou o RG (frente e verso).
+            </p>
         </div>
+
         <div class="mb-4">
-            <label for="foto">foto:</label>
+            <label
+                for="foto"
+                class="block text-sm font-medium text-gray-700 dark:text-white"
+                >Foto:</label
+            >
             <input
                 type="file"
                 id="foto"
                 ref="foto"
-                @change="toBase64('foto')" />
+                @change="toBase64('foto')"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
         </div>
 
-        <!-- <div class="mb-4">
-            <label for="comprovante">Comprovante de Endereço:</label>
+        <div class="mb-4">
+            <label
+                for="cnh"
+                class="block text-sm font-medium text-gray-700 dark:text-white"
+                >CNH:</label
+            >
             <input
                 type="file"
-                id="comprovante"
-                ref="comprovante"
-                @change="toBase64('comprovante')" />
-        </div> -->
+                id="cnh"
+                ref="cnh"
+                @change="toBase64('cnh')"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+        <div class="mb-4">
+            <label
+                for="rgf"
+                class="block text-sm font-medium text-gray-700 dark:text-white"
+                >RG Frente:</label
+            >
+            <input
+                type="file"
+                id="rgf"
+                ref="rgf"
+                @change="toBase64('rgf')"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
+        <div class="mb-4">
+            <label
+                for="rgv"
+                class="block text-sm font-medium text-gray-700 dark:text-white"
+                >RG Verso:</label
+            >
+            <input
+                type="file"
+                id="rgv"
+                ref="rgv"
+                @change="toBase64('rgv')"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white dark:bg-gray-800 dark:border-gray-600 dark:text-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+        </div>
         <button
             @click="enviarDocumentos"
-            class="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 focus:ring-green-500">
+            :disabled="enviando"
+            class="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 transition duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-110">
             Enviar Documentos
         </button>
     </div>

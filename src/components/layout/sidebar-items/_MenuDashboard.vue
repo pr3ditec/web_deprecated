@@ -39,5 +39,9 @@ const showTitle = computed(() => {
                 <IconComponents />
             </NavItem>
         </div>
+
+        <NavItem to="/approve-investor-registration" label="approve-investor-registration">
+            <IconComponents />
+        </NavItem>
     </MenuNavItem>
 </template>

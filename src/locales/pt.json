@@ -604,5 +604,8 @@
     "do-login": "Voltar para login",
     "errorValidation": "Erro na validação",
     "cep-not-found": "Cep não pode ser encontrado",
-    "Please-fill-in-all-questions": "Favor preencher todas as perguntas"
+    "Please-fill-in-all-questions": "Favor preencher todas as perguntas",
+    "approve-investor-registration": "Aprovar Cadastro Investidor",
+    "photo-is-mandatory": "A foto é obrigatória",
+    "you-must-send-your-drivers-license-or-id": "Você deve enviar a CNH ou o RG (frente e verso)"
 }

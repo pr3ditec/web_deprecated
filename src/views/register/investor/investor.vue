@@ -41,7 +41,10 @@ export default {
                 class="grid space-y-6 grid-cols-1 items-center dark:text-white">
                 <Transition>
                     <div class="flex flex-col items-center gap-5 mt-4">
-                        <Create @nextTab="nextTab" :userId="userId" @updateUserId="updateUserId" />
+                        <Create
+                            @nextTab="nextTab"
+                            :userId="userId"
+                            @updateUserId="updateUserId" />
                     </div>
                 </Transition>
             </div>
@@ -66,6 +69,11 @@ export default {
             <div class="flex flex-col items-center gap-5 mt-4">
                 <DocumentsUpload :userId="userId" />
             </div>
+        </tab-content>
+        <tab-content :customIcon="IconRegister">
+            <p class="text-center text-2xl font-bold text-blue-600">
+                Termo de Aceite
+            </p>
         </tab-content>
     </form-wizard>
 </template>

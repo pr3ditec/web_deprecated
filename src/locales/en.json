@@ -561,5 +561,8 @@
     "do-login": "Go to login",
     "errorValidation": "Validation error",
     "cep-not-found": "Cep cannot be found by api",
-    "Please-fill-in-all-questions": "Please fill in all questions"
+    "Please-fill-in-all-questions": "Please fill in all questions",
+    "approve-investor-registration": "Approve Investor Registration",
+    "photo-is-mandatory": "Photo is mandatory",
+    "you-must-send-your-drivers-license-or-id": "You must send your driver's license or ID (front and back)"
 }
