@@ -22,7 +22,7 @@ async function getBaseURL(): Promise<string> {
     if (isLocal) {
         return "http://localhost:8001";
     } else {
-        return "http://api.sauvvitech.com";
+        return "https://api.sauvvitech.com";
     }
 }
 
