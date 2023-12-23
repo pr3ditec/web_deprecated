@@ -5,7 +5,7 @@ export default class Response {
     public static mensagemErro(mensagem: string): any {
         return Swal.fire({
             icon: "error",
-            timer: 1000,
+            timer: 2000,
             showConfirmButton: false,
             text: mensagem,
         });

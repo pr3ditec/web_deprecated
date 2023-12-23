@@ -608,5 +608,6 @@
     "approve-investor-registration": "Aprovar Cadastro Investidor",
     "photo-is-mandatory": "A foto é obrigatória",
     "you-must-send-your-drivers-license-or-id": "Você deve enviar a CNH ou o RG (frente e verso)",
-    "error-recovering-password": "Erro ao recuperar senha"
+    "error-recovering-password": "Erro ao recuperar senha",
+    "please-complete-previous-step-proceed": "Favor finalizar a etapa anterior para prosseguir"
 }

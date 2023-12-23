@@ -38,7 +38,6 @@ export default {
             await this.store.request.pegarDadosApi("/nacionalidade");
         if (nacionalidadeResponse) {
             this.nacionalidade = nacionalidadeResponse.list;
-            console.log(nacionalidadeResponse);
         }
     },
 
@@ -52,6 +51,11 @@ export default {
 
             this.classePassword["border border-zinc-200"] = false;
             this.classePassword["border border-red-600"] = true;
+        },
+
+        finalize() {
+            // Finalizar o componente
+            this.$emit("finalize", "Create");
         },
 
         async cadastrarInvestidor() {
@@ -111,6 +115,7 @@ export default {
                         } else {
                             Response.mensagemSucesso(this.$t(res.messageCode));
                             this.$emit("updateUserId", res.list.id);
+                            this.finalize();
                             // Avança para a próxima etapa do form-wizard
                             this.$emit("nextTab");
                         }

@@ -3,7 +3,7 @@ import Response from "@/api/Response";
 import { useAppStore } from "@/stores/index";
 
 export default {
-    props: ["userId"],
+    props: ["userId", "verificacaoFinalizacao"],
     data() {
         return {
             store: useAppStore(),
@@ -36,7 +36,23 @@ export default {
             });
         },
 
+        finalize() {
+            // Finalizar o componente
+            this.$emit("finalize", "Documents");
+        },
+
         async enviarDocumentos() {
+            if (
+                !this.verificacaoFinalizacao.some(
+                    (obj) => obj.Questions === "finalizado",
+                )
+            ) {
+                this.$emit("prevTab");
+                return Response.mensagemErro(
+                    this.$t("please-complete-previous-step-proceed"),
+                );
+            }
+
             this.enviando = true;
             try {
                 let promises = [];
@@ -76,12 +92,10 @@ export default {
                         documento_verso: this.rgv,
                     };
                 }
-                console.log(data);
 
                 await this.store.request
                     .enviarDadosApi("/foto/validar", data)
                     .then((res) => {
-                        console.log(res);
                         if (res.status == false) {
                             this.enviando = false;
                             return Response.mensagemErro(
@@ -90,11 +104,11 @@ export default {
                         } else {
                             this.enviando = false;
                             Response.mensagemSucesso(this.$t(res.messageCode));
+                            this.finalize();
                             // Avança para a próxima etapa do form-wizard
                             this.$emit("nextTab");
                         }
                     });
-                console.log(this.userId);
             } catch (error) {
                 console.error("Ocorreu um erro:", error);
             }

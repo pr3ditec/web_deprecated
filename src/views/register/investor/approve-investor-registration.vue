@@ -26,6 +26,16 @@ export default {
                     title: "Nome",
                 },
                 {
+                    field: "cpf",
+                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    title: "CPF",
+                },
+                {
+                    field: "nascimento",
+                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    title: "Nascimento",
+                },
+                {
                     field: "email",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
                     title: "Email",
@@ -74,6 +84,7 @@ export default {
                 console.error("Ocorreu um erro:", error);
             }
         },
+
         async recusar(id) {
             try {
                 const data = {
@@ -93,6 +104,12 @@ export default {
                     });
             } catch (error) {
                 console.error("Ocorreu um erro:", error);
+            }
+        },
+
+        formatDate(dateString) {
+            if (dateString) {
+                return dateString.split("-").reverse().join("/");
             }
         },
     },
@@ -121,6 +138,18 @@ export default {
                         <span
                             class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
                             >{{ data.value.nome }}</span
+                        >
+                    </template>
+                    <template #cpf="data">
+                        <span
+                            class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
+                            >{{ data.value.cpf }}</span
+                        >
+                    </template>
+                    <template #nascimento="data">
+                        <span
+                            class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
+                            >{{ formatDate(data.value.nascimento) }}</span
                         >
                     </template>
                     <template #email="data">

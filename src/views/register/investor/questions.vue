@@ -3,6 +3,7 @@ import Response from "@/api/Response";
 import { useAppStore } from "@/stores/index";
 
 export default {
+    props: ["verificacaoFinalizacao"],
     data() {
         return {
             store: useAppStore(),
@@ -18,9 +19,19 @@ export default {
     },
     methods: {
         async enviarRespostas() {
-            try {
-                console.log(this.investidorFormQuestion);
 
+            if (
+                !this.verificacaoFinalizacao.some(
+                    (obj) => obj.Create === "finalizado",
+                )
+            ) {
+                this.$emit("prevTab");
+                return Response.mensagemErro(
+                    this.$t("please-complete-previous-step-proceed"),
+                );
+            }
+
+            try {
                 // Verificar se todas as perguntas foram respondidas
                 for (let pergunta of this.perguntasInvestidor.list) {
                     if (
@@ -43,7 +54,6 @@ export default {
                     respostas: JSON.stringify(formattedData),
                 };
 
-                console.log(formattedData);
                 await this.store.request
                     .enviarDadosApi("/perguntas-investidor-usuario", data)
                     .then((res) => {
@@ -54,6 +64,7 @@ export default {
                             );
                         } else {
                             Response.mensagemSucesso(this.$t(res.messageCode));
+                            this.finalize();
                             // Avança para a próxima etapa do form-wizard
                             this.$emit("nextTab");
                         }
@@ -61,6 +72,10 @@ export default {
             } catch (error) {
                 console.error("Ocorreu um erro:", error);
             }
+        },
+        finalize() {
+            // Finalizar o componente
+            this.$emit("finalize", "Questions");
         },
     },
 };
