@@ -124,10 +124,9 @@ export default {
         )}`"
         :sortable="true">
         <template #nome="data">
-            <span
-                class="text-md font-semibold uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                >{{ data.value.descricao }}</span
-            >
+            <span class="text-md font-semibold uppercase">{{
+                data.value.descricao
+            }}</span>
         </template>
         <template #status="data">
             <span

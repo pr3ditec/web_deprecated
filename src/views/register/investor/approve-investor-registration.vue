@@ -133,7 +133,7 @@ export default {
         <div class="row">
             <div class="col-12 p-5">
                 <vue3-datatable
-                    class="w-full shadow-md rounded p-2 alt-pagination mb-4 dark:text-white hover:shadow-none"
+                    class="w-full shadow-md rounded p-2 alt-pagination mb-4 dark:text-white"
                     :columns="cols"
                     :rows="users"
                     skin="bh-table-stripped"
@@ -142,34 +142,21 @@ export default {
                     )}`"
                     :sortable="true">
                     <template #id="data">
-                        <span
-                            class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                            >{{ data.value.id }}</span
-                        >
+                        <span class="uppercase">{{ data.value.id }}</span>
                     </template>
                     <template #name="data">
-                        <span
-                            class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                            >{{ data.value.nome }}</span
-                        >
+                        <span class="uppercase">{{ data.value.nome }}</span>
                     </template>
                     <template #cpf="data">
-                        <span
-                            class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                            >{{ data.value.cpf }}</span
-                        >
+                        <span class="uppercase">{{ data.value.cpf }}</span>
                     </template>
                     <template #nascimento="data">
-                        <span
-                            class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                            >{{ formatDate(data.value.nascimento) }}</span
-                        >
+                        <span class="uppercase">{{
+                            formatDate(data.value.nascimento)
+                        }}</span>
                     </template>
                     <template #email="data">
-                        <span
-                            class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                            >{{ data.value.email }}</span
-                        >
+                        <span class="uppercase">{{ data.value.email }}</span>
                     </template>
                     <template #action="data">
                         <div class="flex space-x-4">

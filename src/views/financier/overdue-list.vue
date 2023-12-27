@@ -43,8 +43,8 @@ export default {
                     dados[index]["data_vencimento"],
                 ).getTime();
                 // inadimplente
-                // if (!dados[index].pago && data_parcela > hoje) {
-                if (true) {
+                if (!dados[index].pago && data_parcela > hoje) {
+                // if (true) {
                     dados[index]["status"] = "defaulter";
                     dados[index]["num_parcelas"] = dados.length;
                     this.defaulterRow.push(dados[index]);

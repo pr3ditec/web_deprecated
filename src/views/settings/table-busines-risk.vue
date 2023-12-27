@@ -107,10 +107,9 @@ export default {
         :loading="loading"
         :sortable="true">
         <template #nome="data">
-            <span
-                class="text-md font-semibold uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                >{{ data.value.estado_nome }}</span
-            >
+            <span class="text-md font-semibold uppercase">{{
+                data.value.estado_nome
+            }}</span>
         </template>
         <template #status="data">
             <span

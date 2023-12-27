@@ -210,16 +210,10 @@ export default {
             )}`"
             :sortable="true">
             <template #nome="data">
-                <span
-                    class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                    >{{ data.value.nome }}</span
-                >
+                <span class="uppercase">{{ data.value.nome }}</span>
             </template>
             <template #atualizado="data">
-                <span
-                    class="uppercase dark:badge dark:border-[#17263c] dark:bg-[#1b2e4b]"
-                    >{{ data.value.get.atualizado }}</span
-                >
+                <span class="uppercase">{{ data.value.get.atualizado }}</span>
             </template>
             <template #status="data">
                 <span
