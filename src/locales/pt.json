@@ -621,5 +621,11 @@
     "acceptance-term": "Termo de Aceite",
     "action": "Ação",
     "telephone-type": "Tipo telefone",
-    "additional-investor-data": "Dados complementares do Investidor"
+    "additional-investor-data": "Dados complementares do Investidor",
+    "app-overview": "Visão Geral do App",
+    "total-download": "Downloads totais",
+    "month-download": "Downloads mensais",
+    "total-month-download": "Downloads totais por mês",
+    "downloaded": "Baixados",
+    "removed": "Removidos"
 }

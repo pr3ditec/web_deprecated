@@ -578,5 +578,11 @@
     "acceptance-term": "Acceptance term",
     "action": "action",
     "telephone-type": "Telephone Type",
-    "additional-investor-data": "Additional Investor Data"
+    "additional-investor-data": "Additional Investor Data",
+    "app-overview": "App Overview",
+    "total-download": "Total downloads",
+    "month-download": "Month downloads",
+    "total-month-download": "Total downloads per month",
+    "downloaded": "Downloaded",
+    "removed": "Removed"
 }

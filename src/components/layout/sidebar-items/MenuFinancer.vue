@@ -23,10 +23,5 @@ const showTitle = computed(() => {
                 <IconInvoice />
             </NavItem>
         </div>
-        <div v-if="store.checkPermission('visualizar-todas-parcelas')">
-            <NavItem to="/financier/admin" label="admin-financier">
-                <IconInvoice />
-            </NavItem>
-        </div>
     </MenuNavItem>
 </template>
