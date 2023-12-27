@@ -23,7 +23,7 @@ export default {
                 {
                     field: "name",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: "Nome",
+                    title: this.$t("name"),
                 },
                 {
                     field: "cpf",
@@ -33,7 +33,7 @@ export default {
                 {
                     field: "nascimento",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: "Nascimento",
+                    title: this.$t("birthdate"),
                 },
                 {
                     field: "email",
@@ -43,7 +43,7 @@ export default {
                 {
                     field: "action",
                     headerClass: "flex flex-row gap-1 font-extrabold uppercase",
-                    title: "Ação",
+                    title: this.$t("action"),
                     type: "button",
                 },
             ],
@@ -53,16 +53,28 @@ export default {
         const response = await this.store.request.pegarDadosApi(
             "/usuario-investidor",
         );
-        if (Array.isArray(response.list)) {
-            this.users = response.list;
+
+        if (response.status) {
+            if (Array.isArray(response.list)) {
+                this.users = response.list;
+            } else {
+                console.error(
+                    "A propriedade 'list' dos dados recebidos não é um array:",
+                    response,
+                );
+            }
         } else {
-            console.error(
-                "A propriedade 'list' dos dados recebidos não é um array:",
-                response,
-            );
+            console.error(this.$t(response.messageCode));
         }
     },
     methods: {
+        async visualizar(id) {
+            const response = await this.store.request.pegarDadosApi(
+                `/perguntas-investidor-usuario/${id}`,
+            );
+            console.log(response);
+        },
+
         async aprovar(id) {
             try {
                 const data = {
@@ -91,7 +103,7 @@ export default {
                     usuario_id: id,
                 };
                 await this.store.request
-                    .enviarDadosApi("/usuario-investidor-aprovar", data)
+                    .enviarDadosApi("/usuario-investidor-recusar", data)
                     .then((res) => {
                         console.log(res);
                         if (res.status == false) {
@@ -162,7 +174,7 @@ export default {
                         <div class="flex space-x-4">
                             <button
                                 class="btn btn-sm btn-primary uppercase mb-2"
-                                @click="aprovar(data.value.id)">
+                                @click="visualizar(data.value.id)">
                                 Visualizar
                             </button>
                             <button

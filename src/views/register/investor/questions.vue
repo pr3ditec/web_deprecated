@@ -83,7 +83,7 @@ export default {
 
 <template>
     <div class="p-6 panel h-full">
-        <div v-if="loading">Carregando...</div>
+        <div v-if="loading">{{ $t("loading") }}...</div>
         <div
             v-for="(pergunta, index) in perguntasInvestidor.list"
             :key="index"
@@ -106,7 +106,7 @@ export default {
         <button
             @click="enviarRespostas"
             class="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 focus:ring-green-500">
-            Enviar Respostas
+            {{ $t("send-responses")}}
         </button>
     </div>
 </template>

@@ -597,7 +597,7 @@
     "empty-table": "Tabela vazia",
     "defaulter": "Inadimplente",
     "no-phone": "Sem dados",
-    "investor": "investidor",
+    "investor": "Investidor",
     "email-already-exist": "email já existente",
     "type-password": "Digite a senha",
     "type-email": "Digite o seu email",
@@ -609,5 +609,17 @@
     "photo-is-mandatory": "A foto é obrigatória",
     "you-must-send-your-drivers-license-or-id": "Você deve enviar a CNH ou o RG (frente e verso)",
     "error-recovering-password": "Erro ao recuperar senha",
-    "please-complete-previous-step-proceed": "Favor finalizar a etapa anterior para prosseguir"
+    "please-complete-previous-step-proceed": "Favor finalizar a etapa anterior para prosseguir",
+    "enter-name": "insira o nome",
+    "mothers-name": "Nome da Mãe",
+    "confirm-password": "confirmar senha",
+    "already-have-an-account": "Já tem uma conta",
+    "enter-your-details-to-register": "Digite seus dados para se cadastrar",
+    "send-responses": "Enviar Respostas",
+    "questions-for-the-investor": "Perguntas para o investidor",
+    "attach-documents": "Anexar Documentos",
+    "acceptance-term": "Termo de Aceite",
+    "action": "Ação",
+    "telephone-type": "Tipo telefone",
+    "additional-investor-data": "Dados complementares do Investidor"
 }

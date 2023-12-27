@@ -46,7 +46,7 @@ export default {
     <form-wizard ref="wizard" color="#4361ee" class="circle">
         <tab-content :customIcon="IconRegister">
             <p class="text-center text-2xl font-bold text-blue-600">
-                Cadastro de dados do Investidor
+                {{ $t("additional-investor-data") }}
             </p>
             <div
                 class="grid space-y-6 grid-cols-1 items-center dark:text-white">
@@ -63,7 +63,7 @@ export default {
         </tab-content>
         <tab-content :customIcon="IconRegister">
             <p class="text-center text-2xl font-bold text-blue-600">
-                Perguntas para o investidor
+                {{ $t("questions-for-the-investor") }}
             </p>
             <div
                 class="grid space-y-6 grid-cols-1 items-center dark:text-white">
@@ -80,7 +80,7 @@ export default {
         </tab-content>
         <tab-content :customIcon="IconRegister">
             <p class="text-center text-2xl font-bold text-blue-600">
-                Anexar Documentos
+                {{ $t("attach-documents") }}
             </p>
             <div class="flex flex-col items-center gap-5 mt-4">
                 <DocumentsUpload
@@ -93,7 +93,7 @@ export default {
         </tab-content>
         <tab-content :customIcon="IconRegister">
             <p class="text-center text-2xl font-bold text-blue-600">
-                Termo de Aceite
+                {{ $t("acceptance-term") }}
             </p>
             <div class="flex flex-col items-center gap-5 mt-4">
                 <PrivacyPolicy

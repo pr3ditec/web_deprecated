@@ -105,8 +105,27 @@ export default {
                             this.enviando = false;
                             Response.mensagemSucesso(this.$t(res.messageCode));
                             this.finalize();
+                            this.cadastrarDocumentoCelcoin();
                             // Avança para a próxima etapa do form-wizard
                             this.$emit("nextTab");
+                        }
+                    });
+            } catch (error) {
+                console.error("Ocorreu um erro:", error);
+            }
+        },
+
+        async cadastrarDocumentoCelcoin() {
+            try {
+                await this.store.request
+                    .enviarDadosApi("celcoin/pessoa/documento-cadastrar")
+                    .then((res) => {
+                        if (res.status == false) {
+                            return Response.mensagemErro(
+                                this.$t(res.messageCode),
+                            );
+                        } else {
+                            Response.mensagemSucesso(this.$t(res.messageCode));
                         }
                     });
             } catch (error) {

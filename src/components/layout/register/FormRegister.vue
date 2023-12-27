@@ -1,52 +1,198 @@
-<script lang="ts" setup>
-import axios from "axios";
-import Swal from "sweetalert2";
+<script lang="ts">
+import IconUser from "@/components/icons/IconUser.vue";
+import IconEmail from "@/components/icons/IconEmail.vue";
+import IconPassword from "@/components/icons/IconPassword.vue";
+import IconRegister from "@/components/icons/IconRegister.vue";
+import Validacao from "@/helpers/ValidacaoInput";
+import Response from "@/api/Response";
 
 import { useAppStore } from "@/stores/index";
-const store = useAppStore();
-
 import { useRouter } from "vue-router";
-const router = useRouter();
 
-import { useMeta } from "@/composables/use-meta";
-import { computed, reactive, ref } from "vue";
+export default {
+    components: {
+        IconUser,
+        IconEmail,
+        IconPassword,
+        IconRegister,
+    },
+    data() {
+        return {
+            store: useAppStore(),
+            router: useRouter(),
+            submitBtnDisabled: false,
+            investidorFormData: {
+                nome: "",
+                cpf: "",
+                email: "",
+                password: "",
+                nome_mae: "",
+                nascimento: "",
+                nacionalidade_id: "0",
+                sexo: "0",
+                tipo_usuario: "6",
+            },
+
+            nacionalidade: {
+                id: "",
+                descricao: "",
+                created_at: "",
+                updated_at: "",
+            },
+
+            classePassword: {
+                "border border-red-600": false,
+            },
+        };
+    },
+
+    async created() {
+        let nacionalidadeResponse =
+            await this.store.request.pegarDadosApi("/nacionalidade");
+        if (nacionalidadeResponse) {
+            this.nacionalidade = nacionalidadeResponse.list;
+        }
+    },
+    methods: {
+        compararSenhas(entrada: any) {
+            if (this.investidorFormData.password == entrada.target.value) {
+                this.classePassword["border border-zinc-200"] = true;
+                this.classePassword["border border-red-600"] = false;
+                return;
+            }
+
+            this.classePassword["border border-zinc-200"] = false;
+            this.classePassword["border border-red-600"] = true;
+        },
+
+        async cadastrarInvestidor() {
+            try {
+                // testa os campos vazios
+                if (
+                    Validacao.inputVazio(this.investidorFormData)["status"] ==
+                    false
+                ) {
+                    return Response.mensagemToast(
+                        "error",
+                        this.$t("empty-data"),
+                    );
+                }
+                // testa se o email ter formato valido
+                if (
+                    Validacao.email(this.investidorFormData.email)["status"] ==
+                    false
+                ) {
+                    return Response.mensagemToast(
+                        "error",
+                        this.$t("invalid-email"),
+                    );
+                }
+
+                //testa se a senha possui mais de 8 caracteres
+                if (this.investidorFormData.password.length < 8) {
+                    return Response.mensagemToast(
+                        "error",
+                        this.$t("password-short"),
+                    );
+                }
+
+                // testa se as senhas correspondem
+                if (this.classePassword["border border-red-600"] == true) {
+                    return Response.mensagemToast(
+                        "error",
+                        this.$t("password-match"),
+                    );
+                }
+                // limpando cpf
+                this.investidorFormData["cpf"] = this.investidorFormData["cpf"]
+                    .replaceAll(".", "")
+                    .replaceAll("-", "");
+
+                this.submitBtnDisabled = true;
+                await this.store.request
+                    .enviarDadosApi(
+                        "/usuario/cadastro",
+                        this.investidorFormData,
+                    )
+                    .then((res) => {
+                        console.log(res);
+                        if (res.status == false) {
+                            return Response.mensagemErro(
+                                this.$t(res.messageCode),
+                            );
+                        } else {
+                            Response.mensagemSucesso(this.$t(res.messageCode));
+                            this.router.push("/auth/login");
+                        }
+                    });
+            } catch (error) {
+                console.error("Ocorreu um erro:", error);
+            }
+        },
+    },
+};
 </script>
 
 <template>
     <div class="w-full max-w-[440px] lg:mt-16">
-        <div class="mb-10">
+        <div class="mb-5">
             <h1
                 class="text-3xl font-extrabold uppercase !leading-snug text-primary md:text-4xl">
-                Sign Up
+                {{ $t("signup") }}
             </h1>
             <p class="text-base font-bold leading-normal text-white-dark">
-                Enter your email and password to register
+                {{ $t("enter-your-details-to-register") }}
             </p>
         </div>
 
-        <form
-            class="space-y-5 dark:text-white"
-            @submit.prevent="router.push('/')">
+        <div class="space-y-5 dark:text-white capitalize">
             <div>
-                <label for="Name">Name</label>
+                <label for="Name">{{ $t("name") }}</label>
                 <div class="relative text-white-dark">
                     <input
+                        v-model="investidorFormData.nome"
                         id="Name"
                         type="text"
                         placeholder="Enter Name"
-                        class="form-input ps-10 placeholder:text-white-dark" />
+                        class="form-input ps-10 dark:text-white" />
                     <span class="absolute start-4 top-1/2 -translate-y-1/2">
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 18 18"
-                            fill="none">
-                            <circle cx="9" cy="4.5" r="3" fill="#888EA8" />
-                            <path
-                                opacity="0.5"
-                                d="M15 13.125C15 14.989 15 16.5 9 16.5C3 16.5 3 14.989 3 13.125C3 11.261 5.68629 9.75 9 9.75C12.3137 9.75 15 11.261 15 13.125Z"
-                                fill="#888EA8" />
-                        </svg>
+                        <IconUser />
+                    </span>
+                </div>
+            </div>
+
+            <div>
+                <label for="mother">{{ $t("mother's name") }}</label>
+                <div class="relative text-white-dark">
+                    <input
+                        v-model="investidorFormData.nome_mae"
+                        id="mother"
+                        type="text"
+                        placeholder="Enter Name mother"
+                        class="form-input ps-10 dark:text-white" />
+                    <span class="absolute start-4 top-1/2 -translate-y-1/2">
+                        <IconUser />
+                    </span>
+                </div>
+            </div>
+
+            <div>
+                <label for="cpf">CPF</label>
+                <div class="relative text-white-dark">
+                    <input
+                        v-mask="'###.###.###-##'"
+                        id="cpf"
+                        type="text"
+                        placeholder="Enter CPF"
+                        class="form-input ps-10 dark:text-white"
+                        @input="
+                            ($event) => {
+                                //@ts-expect-error
+                                investidorFormData.cpf = $event.target.value;
+                            }
+                        " />
+                    <span class="absolute start-4 top-1/2 -translate-y-1/2">
+                        <IconRegister />
                     </span>
                 </div>
             </div>
@@ -55,76 +201,124 @@ import { computed, reactive, ref } from "vue";
                 <label for="Email">Email</label>
                 <div class="relative text-white-dark">
                     <input
+                        v-model="investidorFormData.email"
                         id="Email"
                         type="email"
                         placeholder="Enter Email"
-                        class="form-input ps-10 placeholder:text-white-dark" />
+                        class="form-input ps-10 dark:text-white" />
                     <span class="absolute start-4 top-1/2 -translate-y-1/2">
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 18 18"
-                            fill="none">
-                            <path
-                                opacity="0.5"
-                                d="M10.65 2.25H7.35C4.23873 2.25 2.6831 2.25 1.71655 3.23851C0.75 4.22703 0.75 5.81802 0.75 9C0.75 12.182 0.75 13.773 1.71655 14.7615C2.6831 15.75 4.23873 15.75 7.35 15.75H10.65C13.7613 15.75 15.3169 15.75 16.2835 14.7615C17.25 13.773 17.25 12.182 17.25 9C17.25 5.81802 17.25 4.22703 16.2835 3.23851C15.3169 2.25 13.7613 2.25 10.65 2.25Z"
-                                fill="currentColor" />
-                            <path
-                                d="M14.3465 6.02574C14.609 5.80698 14.6445 5.41681 14.4257 5.15429C14.207 4.89177 13.8168 4.8563 13.5543 5.07507L11.7732 6.55931C11.0035 7.20072 10.4691 7.6446 10.018 7.93476C9.58125 8.21564 9.28509 8.30993 9.00041 8.30993C8.71572 8.30993 8.41956 8.21564 7.98284 7.93476C7.53168 7.6446 6.9973 7.20072 6.22761 6.55931L4.44652 5.07507C4.184 4.8563 3.79384 4.89177 3.57507 5.15429C3.3563 5.41681 3.39177 5.80698 3.65429 6.02574L5.4664 7.53583C6.19764 8.14522 6.79033 8.63914 7.31343 8.97558C7.85834 9.32604 8.38902 9.54743 9.00041 9.54743C9.6118 9.54743 10.1425 9.32604 10.6874 8.97558C11.2105 8.63914 11.8032 8.14522 12.5344 7.53582L14.3465 6.02574Z"
-                                fill="currentColor" />
-                        </svg>
+                        <IconEmail />
                     </span>
                 </div>
             </div>
 
             <div>
-                <label for="Password">Password</label>
+                <label for="Email">{{ $t("birthdate") }}</label>
                 <div class="relative text-white-dark">
                     <input
+                        v-model="investidorFormData.nascimento"
+                        type="date"
+                        class="form-input dark:text-white" />
+                </div>
+            </div>
+
+            <div>
+                <div class="relative text-white-dark">
+                    <select
+                        v-model="investidorFormData.sexo"
+                        class="form-select capitalize dark:text-white">
+                        <option value="0" disabled selected>
+                            {{ $t("select") }} {{ $t("gender") }}
+                        </option>
+                        <option value="F">
+                            {{ $t("female") }}
+                        </option>
+                        <option value="M">
+                            {{ $t("male") }}
+                        </option>
+                        <option value="X">
+                            {{ $t("other") }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <div class="relative text-white-dark">
+                    <select
+                        v-model="investidorFormData.nacionalidade_id"
+                        class="form-select capitalize dark:text-white">
+                        <option value="0" disabled selected>
+                            {{ $t("select") }} {{ $t("citizenship") }}
+                        </option>
+                        <option
+                            v-for="nac in nacionalidade"
+                            :value="
+                                // @ts-expect-error
+                                nac.id
+                            ">
+                            {{
+                                // @ts-expect-error
+                                nac.descricao
+                            }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label for="Password">{{ $t("password") }}</label>
+                <div class="relative text-white-dark">
+                    <input
+                        v-model="investidorFormData.password"
                         id="Password"
                         type="password"
                         placeholder="Enter Password"
                         class="form-input ps-10 placeholder:text-white-dark" />
                     <span class="absolute start-4 top-1/2 -translate-y-1/2">
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 18 18"
-                            fill="none">
-                            <path
-                                opacity="0.5"
-                                d="M1.5 12C1.5 9.87868 1.5 8.81802 2.15901 8.15901C2.81802 7.5 3.87868 7.5 6 7.5H12C14.1213 7.5 15.182 7.5 15.841 8.15901C16.5 8.81802 16.5 9.87868 16.5 12C16.5 14.1213 16.5 15.182 15.841 15.841C15.182 16.5 14.1213 16.5 12 16.5H6C3.87868 16.5 2.81802 16.5 2.15901 15.841C1.5 15.182 1.5 14.1213 1.5 12Z"
-                                fill="currentColor" />
-                            <path
-                                d="M6 12.75C6.41421 12.75 6.75 12.4142 6.75 12C6.75 11.5858 6.41421 11.25 6 11.25C5.58579 11.25 5.25 11.5858 5.25 12C5.25 12.4142 5.58579 12.75 6 12.75Z"
-                                fill="currentColor" />
-                            <path
-                                d="M9 12.75C9.41421 12.75 9.75 12.4142 9.75 12C9.75 11.5858 9.41421 11.25 9 11.25C8.58579 11.25 8.25 11.5858 8.25 12C8.25 12.4142 8.58579 12.75 9 12.75Z"
-                                fill="currentColor" />
-                            <path
-                                d="M12.75 12C12.75 12.4142 12.4142 12.75 12 12.75C11.5858 12.75 11.25 12.4142 11.25 12C11.25 11.5858 11.5858 11.25 12 11.25C12.4142 11.25 12.75 11.5858 12.75 12Z"
-                                fill="currentColor" />
-                            <path
-                                d="M5.0625 6C5.0625 3.82538 6.82538 2.0625 9 2.0625C11.1746 2.0625 12.9375 3.82538 12.9375 6V7.50268C13.363 7.50665 13.7351 7.51651 14.0625 7.54096V6C14.0625 3.20406 11.7959 0.9375 9 0.9375C6.20406 0.9375 3.9375 3.20406 3.9375 6V7.54096C4.26488 7.51651 4.63698 7.50665 5.0625 7.50268V6Z"
-                                fill="currentColor" />
-                        </svg>
+                        <IconPassword />
                     </span>
                 </div>
             </div>
 
+            <div>
+                <label for="Confirme-password">{{
+                    $t("confirm-password")
+                }}</label>
+                <div class="relative text-white-dark">
+                    <input
+                        id="Confirme-password"
+                        :class="classePassword"
+                        type="password"
+                        placeholder="Enter Password"
+                        class="form-input ps-10 placeholder:text-white-dark"
+                        @keyup="($event) => compararSenhas($event)" />
+                    <span class="absolute start-4 top-1/2 -translate-y-1/2">
+                        <IconPassword />
+                    </span>
+                    <span
+                        v-show="classePassword['border border-red-600']"
+                        class="flex flex-col items-start text-danger text-xs align-start mt-0 pt-0"
+                        >{{ $t("password-match") }}</span
+                    >
+                </div>
+            </div>
+
             <button
-                type="submit"
-                class="btn btn-gradient text-shadow bg-primary !mt-6 w-full border-2 border-black-dark-light uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]">
-                Sign Up
+                class="btn btn-gradient text-shadow bg-primary !mt-6 w-full border-2 border-black-dark-light uppercase shadow-[0_10px_20px_-10px_rgba(67,97,238,0.44)]"
+                @keyup.enter="cadastrarInvestidor"
+                @click="cadastrarInvestidor"
+                :disabled="submitBtnDisabled">
+                {{ $t("signup") }}
             </button>
-        </form>
+        </div>
 
         <div class="text-center dark:text-white mt-4">
-            Already have an account ?
+            {{ $t("already-have-an-account") }} ?
             <router-link
                 to="/auth/login"
                 class="uppercase text-primary underline transition hover:text-black dark:hover:text-white">
-                SIGN IN
+                {{ $t("signin") }}
             </router-link>
         </div>
     </div>

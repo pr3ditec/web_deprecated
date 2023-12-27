@@ -566,5 +566,17 @@
     "photo-is-mandatory": "Photo is mandatory",
     "you-must-send-your-drivers-license-or-id": "You must send your driver's license or ID (front and back)",
     "error-recovering-password": "Error recovering password",
-    "please-complete-previous-step-proceed": "Please complete the previous step to proceed"
+    "please-complete-previous-step-proceed": "Please complete the previous step to proceed",
+    "enter-name": "enter name",
+    "mothers-name": "Mother's name",
+    "confirm-password": "confirm password",
+    "already-have-an-account": "Already have an account",
+    "enter-your-details-to-register": "Enter your details to register",
+    "send-responses": "Send Responses",
+    "questions-for-the-investor": "Questions for the investor",
+    "attach-documents": "Attach Documents",
+    "acceptance-term": "Acceptance term",
+    "action": "action",
+    "telephone-type": "Telephone Type",
+    "additional-investor-data": "Additional Investor Data"
 }
