@@ -143,7 +143,7 @@ export default {
                         :sortable="true"
                         :search="search"
                         :cellClass="cellClasse"
-                        skin="table-hover"
+                        skin="bh-table-stripped"
                         firstArrow="First"
                         lastArrow="Last"
                         previousArrow="Prev"

@@ -98,6 +98,7 @@ export default {
     <vue3-datatable
         class="w-full shadow-md rounded p-2 alt-pagination whitespace-wrap dark:text-white"
         :rows="riscoEmpresarialTabela"
+        skin="bh-table-stripped"
         :columns="cols"
         :total-rows="riscoEmpresarialTabela?.length"
         :pagination-info="`${$t('total-data')} ${

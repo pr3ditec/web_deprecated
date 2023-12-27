@@ -111,7 +111,7 @@ export default {
                 :search="search"
                 :loading="loading"
                 rowClasse="bg-zinc-200"
-                skin="table-hover"
+                skin="bh-table-stripped"
                 :cellClass="cellClasse">
             </vue3-datatable>
             <div v-else>{{ $t("loading") }}</div>

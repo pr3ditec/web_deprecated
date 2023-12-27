@@ -117,6 +117,7 @@ export default {
         :rows="rows"
         :columns="cols"
         :total-rows="rows?.length"
+        skin="bh-table-stripped"
         :loading="loading"
         :paginationInfo="`${$t('total-data')} ${rows.length}, ${$t(
             'per-page',

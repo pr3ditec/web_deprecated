@@ -142,8 +142,8 @@ export default {
 
         async buscarTodasRegras() {
             this.regrasTabela.forEach(async (regra) => {
-                await this.store.request!
-                    .pegarDadosApi(regra.post.rota)
+                await this.store
+                    .request!.pegarDadosApi(regra.post.rota)
                     .then((res: any) => {
                         this.addRegras(regra.index, res.list);
                     })
@@ -155,14 +155,17 @@ export default {
             if (this.regrasTabela[index].lock) {
                 this.regrasTabela[index].lock = false;
             } else {
-                await this.store.request!
-                    .enviarDadosApi(`${this.regrasTabela[index].post.rota}`, {
-                        [this.regrasTabela[index].post.campo]:
-                            this.regrasTabela[index].get.valor,
-                        //@ts-expect-errorX
-                        [this.regrasTabela[index].post.categoria]:
-                            this.regrasTabela[index].get.categoria,
-                    })
+                await this.store
+                    .request!.enviarDadosApi(
+                        `${this.regrasTabela[index].post.rota}`,
+                        {
+                            [this.regrasTabela[index].post.campo]:
+                                this.regrasTabela[index].get.valor,
+                            //@ts-expect-errorX
+                            [this.regrasTabela[index].post.categoria]:
+                                this.regrasTabela[index].get.categoria,
+                        },
+                    )
                     .then((res: any) => {
                         if (res.status) {
                             Response.mensagemToast(
@@ -198,6 +201,7 @@ export default {
         <vue3-datatable
             class="w-full shadow-md rounded p-2 alt-pagination mb-4 dark:text-white"
             :rows="regrasTabela"
+            skin="bh-table-stripped"
             :columns="cols"
             :totalRows="regrasTabela?.length"
             :loading="loading"

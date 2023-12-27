@@ -136,6 +136,7 @@ export default {
                     class="w-full shadow-md rounded p-2 alt-pagination mb-4 dark:text-white hover:shadow-none"
                     :columns="cols"
                     :rows="users"
+                    skin="bh-table-stripped"
                     :paginationInfo="`${$t('total-data')} ${users.length}, ${$t(
                         'per-page',
                     )}`"

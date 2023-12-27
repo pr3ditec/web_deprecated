@@ -61,6 +61,7 @@ export default {
                 class="w-full shadow-md rounded alt-pagination whitespace-wrap dark:text-white mt-2"
                 :rows="clinicas"
                 :columns="cols"
+                skin="bh-table-stripped"
                 :total-rows="clinicas?.length"
                 :sortable="true"
                 :loading="loading"

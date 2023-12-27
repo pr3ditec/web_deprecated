@@ -107,8 +107,8 @@ export default {
         },
     },
     async created() {
-        await this.store.request!
-            .pegarDadosApi("/medico")
+        await this.store
+            .request!.pegarDadosApi("/medico")
             .then((res: any) => {
                 this.dadosTabela = res.list;
             })
@@ -142,7 +142,7 @@ export default {
                 lastArrow="Last"
                 previousArrow="Prev"
                 nextArrow="Next"
-                skin="table-hover"
+                skin="bh-table-stripped"
                 :cellClass="cellClasse">
             </vue3-datatable>
         </div>
