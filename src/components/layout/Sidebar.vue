@@ -12,6 +12,7 @@ import MenuSchedule from "@/components/layout/sidebar-items/MenuSchedule.vue";
 import MenuFinancer from "@/components/layout/sidebar-items/MenuFinancer.vue";
 import MenuRegister from "@/components/layout/sidebar-items/MenuRegister.vue";
 import MenuGeneralReport from "@/components/layout/sidebar-items/MenuGeneralReport.vue";
+import MenuDocumentation from "@/components/layout/sidebar-items/MenuDocumentation.vue";
 
 import MenuAuth from "@/components/layout/sidebar-items/MenuAuth.vue";
 
@@ -37,6 +38,7 @@ const permissions = ref({
     MenuRegister: ["secretaria-medico", "cadastro-clinica"],
     MenuFinancer: ["medico-financeiro"],
     MenuGeneralReport: ["busca-medicos", "medico-agenda"],
+    MenuDocumentation: ["documentacao"]
 });
 
 onMounted(() => {
@@ -96,6 +98,10 @@ function hasChildPermission(component) {
 
                         <div>
                             <MenuInvestor />
+                        </div>
+
+                        <div v-if="hasChildPermission('MenuDocumentation')">
+                            <MenuDocumentation />
                         </div>
 
                         <div v-if="hasChildPermission('MenuSchedule')">

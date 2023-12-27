@@ -584,5 +584,11 @@
     "month-download": "Month downloads",
     "total-month-download": "Total downloads per month",
     "downloaded": "Downloaded",
-    "removed": "Removed"
+    "removed": "Removed",
+    "non-existent": "Non existent",
+    "without-authorization": "Without authorization",
+    "no-doctor-found-with-cpf-provided": "No doctor found with CPF provided",
+    "no-doctor-found-with-crm-provided": "No doctor found with CRM provided",
+    "unable-to-recover-data": "Unable to recover data",
+    "return-data": "Return data"
 }

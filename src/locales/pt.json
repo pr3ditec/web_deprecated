@@ -627,5 +627,11 @@
     "month-download": "Downloads mensais",
     "total-month-download": "Downloads totais por mês",
     "downloaded": "Baixados",
-    "removed": "Removidos"
+    "removed": "Removidos",
+    "non-existent": "Não existente",
+    "without-authorization": "Sem autorização",
+    "no-doctor-found-with-cpf-provided": "Nenhum médico encontrado com o CPF fornecido",
+    "no-doctor-found-with-crm-provided": "Nenhum médico encontrado com o CRM fornecido",
+    "unable-to-recover-data": "Não foi possível recuperar os dados",
+    "return-data": "Dados retorno"
 }

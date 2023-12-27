@@ -656,6 +656,14 @@ const routes: RouteRecordRaw[] = [
         component: () => import("../views/pages/error404.vue"),
         meta: { layout: "auth" },
     },
+
+    /** DOCUMENTAÇÃO */
+    {
+        path: "/documentation",
+        name: "Documentation",
+        component: () => import("../views/documentation/documentation.vue"),
+    },
+    /** DOCUMENTAÇÃO */
 ];
 
 const router = createRouter({
