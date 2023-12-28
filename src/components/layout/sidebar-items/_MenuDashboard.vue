@@ -48,13 +48,13 @@ const showTitle = computed(() => {
                 <IconInvoice />
             </NavItem>
         </div>
-        <MenuNavItem>
-            <div v-if="store.checkPermission('rel-risco-empresarial')">
-                <NavItem to="/report/app-overview" label="app-overview">
-                    <IconDatatables />
-                </NavItem>
-            </div>
-        </MenuNavItem>
+
+        <div v-if="store.checkPermission('rel-risco-empresarial')">
+            <NavItem to="/report/app-overview" label="app-overview">
+                <IconDatatables />
+            </NavItem>
+        </div>
+
         <NavItem
             to="/approve-investor-registration"
             label="approve-investor-registration">

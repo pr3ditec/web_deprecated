@@ -33,7 +33,7 @@ export default {
                 !this.selectedTipoTelefoneId
             ) {
                 return Response.mensagemErro(
-                    "Por favor, preencha todos os campos.",
+                    this.$t("please-fill-in-all-fields"),
                 );
             }
 

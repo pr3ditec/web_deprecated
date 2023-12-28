@@ -121,12 +121,12 @@ export default {
         async recusar(id) {
             this.usuario_id = id;
             const { value: motivo } = await Swal.fire({
-                title: "Insira o motivo",
+                title: this.$t("enter-reason"),
                 input: "text",
                 showCancelButton: true,
                 inputValidator: (value) => {
                     if (!value) {
-                        return "Você precisa inserir um motivo!";
+                        return this.$t("you-need-to-enter-a-reason");
                     }
                 },
             });

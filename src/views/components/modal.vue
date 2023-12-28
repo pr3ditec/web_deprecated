@@ -18,13 +18,30 @@ export default {
                 </div>
 
                 <div class="modal-body border-b-2 border-gray-300">
-                    <div v-for="(item, index) in questionnaire" :key="index">
+                    <div v-if="questionnaire.length === 0">
+                        <div
+                            class="flex items-center p-3.5 rounded text-warning bg-warning-light dark:bg-success-dark-light">
+                            <span class="ltr:pr-2 rtl:pl-2"
+                                ><strong class="ltr:mr-1 rtl:ml-1"
+                                    >{{ $t("warning") }}!</strong
+                                >{{
+                                    $t(
+                                        "user-did-not-respond-to-the-questionnaire",
+                                    )
+                                }}</span
+                            >
+                        </div>
+                    </div>
+                    <div
+                        v-else
+                        v-for="(item, index) in questionnaire"
+                        :key="index">
                         <h2 class="text-xl font-bold mb-3">
-                            <strong>Pergunta:</strong>
+                            <strong>{{ $t("question") }}:</strong>
                             {{ item.pergunta.descricao }}
                         </h2>
                         <p class="items-center mb-3">
-                            <strong>Resposta:</strong>
+                            <strong>{{ $t("response") }}:</strong>
                             {{ item.resposta.descricao }}
                         </p>
                     </div>
@@ -35,7 +52,7 @@ export default {
                         <button
                             class="modal-default-button px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 focus:ring-green-500"
                             @click="$emit('close')">
-                            Fechar
+                            {{ $t("close") }}
                         </button>
                     </slot>
                 </div>

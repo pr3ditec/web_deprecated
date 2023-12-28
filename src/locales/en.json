@@ -596,5 +596,18 @@
     "user-has-already-been-rejected-as-an-investor": "User has already been rejected as an investor",
     "questionnaire-carried-out-by": "Questionnaire carried out by",
     "retention-rate": "Retention Rate",
-    "user-active": "Active users"
+    "user-active": "Active users",
+    "user-did-not-respond-to-the-questionnaire": "User did not respond to the questionnaire",
+    "question": "Question",
+    "response": "Response",
+    "you-need-to-enter-a-reason": "You need to enter a reason!",
+    "enter-reason": "Enter reason",
+    "please-fill-in-all-fields": "Please fill in all fields",
+    "investment-registration": "Investment Registration",
+    "register-category": "Register Category",
+    "register-item": "Register Item",
+    "register-product": "Register Product",
+    "register-from-item-to-product": "Register from item to product",
+    "category": "Category",
+    "period": "period"
 }

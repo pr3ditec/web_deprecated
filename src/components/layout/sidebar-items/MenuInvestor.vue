@@ -26,5 +26,11 @@ const store = useAppStore();
                 <IconRegister />
             </NavItem>
         </div>
+
+        <div>
+            <NavItem to="/investment-registration" label="investment-registration">
+                <IconRegister />
+            </NavItem>
+        </div>
     </MenuNavItem>
 </template>

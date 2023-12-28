@@ -639,5 +639,18 @@
     "user-has-already-been-rejected-as-an-investor": "Usuário já foi recusado como investidor",
     "questionnaire-carried-out-by": "Questionário realizado por",
     "retention-rate": "Taxa de retenção",
-    "user-active": "Usuarios ativos"
+    "user-active": "Usuarios ativos",
+    "user-did-not-respond-to-the-questionnaire": "Usuário não respondeu o questionário",
+    "question": "Pergunta",
+    "response": "Resposta",
+    "you-need-to-enter-a-reason": "Você precisa inserir um motivo!",
+    "enter-reason": "Insira o motivo",
+    "please-fill-in-all-fields": "Por favor, preencha todos os campos",
+    "investment-registration": "Cadastro de investimento",
+    "register-category": "Cadastrar Categoria",
+    "register-item": "Cadastrar Item",
+    "register-product": "Cadastrar Produto",
+    "register-from-item-to-product": "Cadastro de item para produto",
+    "category": "Categoria",
+    "period": "período"
 }
