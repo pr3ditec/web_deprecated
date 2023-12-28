@@ -2,16 +2,26 @@
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
 import Response from "@/api/Response";
+import Modal from "./../../components/modal.vue";
+import Swal from "sweetalert2";
 import { useAppStore } from "@/stores/index";
 
 export default {
     components: {
         Vue3Datatable,
+        Modal,
     },
     data() {
         return {
+            showModal: false,
             store: useAppStore(),
             users: [],
+            motivo: "",
+            usuario_id: null,
+            selectedUser: null,
+            questionnaire: null,
+            userName: null,
+            darkMode: false,
             cols: [
                 {
                     field: "id",
@@ -42,7 +52,8 @@ export default {
                 },
                 {
                     field: "action",
-                    headerClass: "flex flex-row gap-1 font-extrabold uppercase",
+                    headerClass:
+                        "flex flex-row text-center gap-1 font-extrabold uppercase",
                     title: this.$t("action"),
                     type: "button",
                 },
@@ -67,12 +78,22 @@ export default {
             console.error(this.$t(response.messageCode));
         }
     },
+
+    watch: {
+        "store.theme": function (newVal, oldVal) {
+            this.darkMode = newVal === "dark";
+        },
+    },
+
     methods: {
         async visualizar(id) {
             const response = await this.store.request.pegarDadosApi(
                 `/perguntas-investidor-usuario/${id}`,
             );
-            console.log(response);
+
+            this.questionnaire = response.list;
+            this.userName = this.users.find((user) => user.id === id).nome;
+            this.showModal = true;
         },
 
         async aprovar(id) {
@@ -80,10 +101,10 @@ export default {
                 const data = {
                     usuario_id: id,
                 };
+
                 await this.store.request
                     .enviarDadosApi("/usuario-investidor-aprovar", data)
                     .then((res) => {
-                        console.log(res);
                         if (res.status == false) {
                             return Response.mensagemErro(
                                 this.$t(res.messageCode),
@@ -98,24 +119,41 @@ export default {
         },
 
         async recusar(id) {
-            try {
-                const data = {
-                    usuario_id: id,
-                };
-                await this.store.request
-                    .enviarDadosApi("/usuario-investidor-recusar", data)
-                    .then((res) => {
-                        console.log(res);
-                        if (res.status == false) {
-                            return Response.mensagemErro(
-                                this.$t(res.messageCode),
-                            );
-                        } else {
-                            Response.mensagemSucesso(this.$t(res.messageCode));
-                        }
-                    });
-            } catch (error) {
-                console.error("Ocorreu um erro:", error);
+            this.usuario_id = id;
+            const { value: motivo } = await Swal.fire({
+                title: "Insira o motivo",
+                input: "text",
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    if (!value) {
+                        return "Você precisa inserir um motivo!";
+                    }
+                },
+            });
+
+            if (motivo) {
+                try {
+                    const data = {
+                        usuario_id: id,
+                        motivo: JSON.stringify({ motivo: motivo }),
+                    };
+
+                    await this.store.request
+                        .enviarDadosApi("/usuario-investidor-recusar", data)
+                        .then((res) => {
+                            if (res.status == false) {
+                                return Response.mensagemErro(
+                                    this.$t(res.messageCode),
+                                );
+                            } else {
+                                Response.mensagemSucesso(
+                                    this.$t(res.messageCode),
+                                );
+                            }
+                        });
+                } catch (error) {
+                    console.error("Ocorreu um erro:", error);
+                }
             }
         },
 
@@ -133,7 +171,7 @@ export default {
         <div class="row">
             <div class="col-12 p-5">
                 <vue3-datatable
-                    class="w-full shadow-md rounded p-2 alt-pagination mb-4 dark:text-white"
+                    class="w-full shadow-md rounded p-2 alt-pagination mb-4 dark:text-white hover:shadow-none"
                     :columns="cols"
                     :rows="users"
                     skin="bh-table-stripped"
@@ -162,18 +200,19 @@ export default {
                         <div class="flex space-x-4">
                             <button
                                 class="btn btn-sm btn-primary uppercase mb-2"
+                                id="show-modal"
                                 @click="visualizar(data.value.id)">
-                                Visualizar
+                                {{ $t("preview") }}
                             </button>
                             <button
                                 class="btn btn-sm btn-success uppercase mb-2"
                                 @click="aprovar(data.value.id)">
-                                Aprovar
+                                {{ $t("approve") }}
                             </button>
                             <button
                                 class="btn btn-sm btn-danger uppercase mb-2"
                                 @click="recusar(data.value.id)">
-                                Recusar
+                                {{ $t("refuse") }}
                             </button>
                         </div>
                     </template>
@@ -181,15 +220,20 @@ export default {
             </div>
         </div>
     </div>
+
+    <Teleport to="body">
+        <Modal
+            :show="showModal"
+            :questionnaire="questionnaire"
+            :userName="userName"
+            :darkMode="darkMode"
+            @close="showModal = false">
+            <template #header>
+                <h3>
+                    {{ $t("questionnaire-carried-out-by") }}: {{ userName }}
+                </h3>
+            </template>
+            <template #body></template>
+        </Modal>
+    </Teleport>
 </template>
-
-<style>
-.vue3-datatable:hover {
-    background-color: inherit !important;
-    transition: none !important;
-}
-
-.vue3-datatable {
-    width: 100%;
-}
-</style>

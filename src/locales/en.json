@@ -590,5 +590,9 @@
     "no-doctor-found-with-cpf-provided": "No doctor found with CPF provided",
     "no-doctor-found-with-crm-provided": "No doctor found with CRM provided",
     "unable-to-recover-data": "Unable to recover data",
-    "return-data": "Return data"
+    "return-data": "Return data",
+    "approve": "Approve",
+    "refuse": "Refuse",
+    "user-has-already-been-rejected-as-an-investor": "User has already been rejected as an investor",
+    "questionnaire-carried-out-by": "Questionnaire carried out by"
 }

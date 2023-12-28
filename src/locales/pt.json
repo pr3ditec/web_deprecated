@@ -633,5 +633,9 @@
     "no-doctor-found-with-cpf-provided": "Nenhum médico encontrado com o CPF fornecido",
     "no-doctor-found-with-crm-provided": "Nenhum médico encontrado com o CRM fornecido",
     "unable-to-recover-data": "Não foi possível recuperar os dados",
-    "return-data": "Dados retorno"
+    "return-data": "Dados retorno",
+    "approve": "Aprovar",
+    "refuse": "Recusar",
+    "user-has-already-been-rejected-as-an-investor": "Usuário já foi recusado como investidor",
+    "questionnaire-carried-out-by": "Questionário realizado por"
 }
