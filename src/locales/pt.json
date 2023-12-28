@@ -637,5 +637,7 @@
     "approve": "Aprovar",
     "refuse": "Recusar",
     "user-has-already-been-rejected-as-an-investor": "Usuário já foi recusado como investidor",
-    "questionnaire-carried-out-by": "Questionário realizado por"
+    "questionnaire-carried-out-by": "Questionário realizado por",
+    "retention-rate": "Taxa de retenção",
+    "user-active": "Usuarios ativos"
 }

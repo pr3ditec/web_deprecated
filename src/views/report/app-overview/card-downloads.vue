@@ -10,6 +10,7 @@ export default {
         dataSeries: Array,
         textSeries: String,
         colorSeries: String,
+        totalText: String,
     },
     computed: {
         apexOptions() {
@@ -59,31 +60,15 @@ export default {
                             labels: {
                                 show: true,
                                 name: {
-                                    show: true,
-                                    fontSize: "29px",
-                                    offsetY: -10,
+                                    show: false,
                                 },
                                 value: {
                                     show: true,
-                                    fontSize: "26px",
+                                    fontSize: "36px",
                                     color: "#000",
                                     offsetY: 16,
                                     formatter: (val) => {
                                         return val;
-                                    },
-                                },
-                                total: {
-                                    show: true,
-                                    label: "Total",
-                                    color: "#888ea8",
-                                    fontSize: "29px",
-                                    formatter: (w) => {
-                                        return w.globals.seriesTotals.reduce(
-                                            function (a, b) {
-                                                return a + b;
-                                            },
-                                            0,
-                                        );
                                     },
                                 },
                             },
@@ -96,10 +81,11 @@ export default {
 };
 </script>
 <template>
-    <div class="flex flex-col w-full md:w-2/4 shadow-md p-3 rounded-md">
+    <div class="flex flex-col shadow-md p-3 rounded-md">
         <h1 class="text-lg font-semibold">{{ textSeries }}</h1>
         <hr class="w-full md:w-3/4 mt-2" />
         <div class="mx-auto w-full">
+            <h1 class="text-md font-semibold">{{ totalText }}</h1>
             <apexchart
                 height="300"
                 :options="apexOptions"
