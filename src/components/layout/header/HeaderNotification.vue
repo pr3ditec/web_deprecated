@@ -91,6 +91,7 @@ const setActiveDropdown = () => {
                 </svg>
 
                 <span
+                    v-if="notifications.length > 0"
                     class="flex absolute w-3 h-3 ltr:right-0 rtl:left-0 top-0">
                     <span
                         class="animate-ping absolute ltr:-left-[3px] rtl:-right-[3px] -top-[3px] inline-flex h-full w-full rounded-full bg-success/50 opacity-75"></span>

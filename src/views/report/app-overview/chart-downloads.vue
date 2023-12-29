@@ -33,7 +33,8 @@ export default {
                     width: 2,
                     colors: ["transparent"],
                 },
-                colors: ["#ff0000", "#4361ee"],
+                // colors: ["#ff0000", "#4361ee"],
+                colors: ["#4361ee"],
                 dropShadow: {
                     enabled: true,
                     blur: 3,

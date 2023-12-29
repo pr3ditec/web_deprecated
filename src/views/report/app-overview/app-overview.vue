@@ -17,14 +17,14 @@ export default {
                 total_ativos: 0,
                 taxa_retencao: 0,
             },
-            todosMesesdownload: [
-                {
-                    name: this.$t("removed"),
-                    data: [58, 44, 55, 57, 56, 61, 58, 63, 60, 66, 56, 63],
-                },
+            estadosDownload: [
+                // {
+                //     name: this.$t("removed"),
+                //     data: [58, 44, 55, 57, 56, 61, 58, 63, 60, 66, 56, 63],
+                // },
                 {
                     name: this.$t("downloaded"),
-                    data: [91, 76, 85, 101, 98, 87, 105, 91, 114, 94, 66, 70],
+                    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 },
             ],
         };
@@ -35,8 +35,17 @@ export default {
                 .pegarDadosApi("/relatorio-app")
                 .then((res) => {
                     this.dadosAplicativo = res.list;
+                    this.adicionandoDadosPorMes(
+                        this.dadosAplicativo.estados_num_download,
+                    );
                 })
                 .finally(() => (this.isLoading = false));
+        },
+
+        adicionandoDadosPorMes(dados) {
+            dados.forEach((dado) => {
+                this.estadosDownload[0].data[dado.mes - 1] = dado.numero;
+            });
         },
     },
     computed: {
@@ -92,7 +101,7 @@ export default {
                         dadosAplicativo.estado_download.paciente.mais_downloads
                             .quantidade,
                     ]"
-                    :text-series="'Estado com mais downloads por paciente'"
+                    :text-series="this.$t('patient-download-state-max')"
                     :total-text="
                         dadosAplicativo.estado_download.paciente.mais_downloads
                             .estado
@@ -105,7 +114,7 @@ export default {
                         dadosAplicativo.estado_download.paciente.menos_downloads
                             .quantidade,
                     ]"
-                    :text-series="'Estado com meno downloads por paciente'"
+                    :text-series="this.$t('patient-download-state-min')"
                     :total-text="
                         dadosAplicativo.estado_download.paciente.menos_downloads
                             .estado
@@ -123,7 +132,7 @@ export default {
                         dadosAplicativo.estado_download.medico.mais_downloads
                             .quantidade,
                     ]"
-                    :text-series="'Estado com mais downloads por médico'"
+                    :text-series="this.$t('doctor-download-state-max')"
                     :total-text="
                         dadosAplicativo.estado_download.medico.mais_downloads
                             .estado
@@ -136,7 +145,7 @@ export default {
                         dadosAplicativo.estado_download.medico.menos_downloads
                             .quantidade,
                     ]"
-                    :text-series="'Estado com menos downloads por médico'"
+                    :text-series="this.$t('doctor-download-state-min')"
                     :total-text="
                         dadosAplicativo.estado_download.medico.menos_downloads
                             .quantidade
@@ -149,7 +158,7 @@ export default {
         <div class="flex flex-col p-3">
             <chartDownloads
                 :text-series="todosDownloadsPorMes"
-                :data-series="todosMesesdownload" />
+                :data-series="estadosDownload" />
         </div>
     </div>
 </template>

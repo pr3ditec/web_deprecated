@@ -652,5 +652,9 @@
     "register-product": "Cadastrar Produto",
     "register-from-item-to-product": "Cadastro de item para produto",
     "category": "Categoria",
-    "period": "período"
+    "period": "período",
+    "doctor-download-state-min": "Estado com menos downloads por médico",
+    "doctor-download-state-max": "Estado com mais downloads por médico",
+    "patient-download-state-min": "Estado com mais downloads por paciente",
+    "patient-download-state-max": "Estado com menos downloads por paciente"
 }

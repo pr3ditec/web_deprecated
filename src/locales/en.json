@@ -609,5 +609,9 @@
     "register-product": "Register Product",
     "register-from-item-to-product": "Register from item to product",
     "category": "Category",
-    "period": "period"
+    "period": "period",
+    "doctor-download-state-min": "Doctor's minor download rate per state",
+    "doctor-download-state-max": "Doctor's major download rate per state",
+    "patient-download-state-min": "Patient's minor download rate per state",
+    "patient-download-state-max": "Patient's major download rate per state"
 }
