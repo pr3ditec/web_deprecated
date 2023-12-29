@@ -48,9 +48,8 @@ export default {
                     // EventFromApi é um props customizada colocada para validar se o evento é um agendamento
                     if (
                         click.event._def.extendedProps.eventFromApi &&
-                        new Date(
-                            click.event._def.extendedProps.startControl,
-                        ).getDate() == new Date().getDate()
+                        new Date(click.event._instance.range.start).getDate() ==
+                            new Date().getDate()
                     ) {
                         this.gerarTokenPresenca(
                             click.event._def.extendedProps.agenda_id,
@@ -120,12 +119,12 @@ export default {
                         if (res.status) {
                             Response.mensagemToast(
                                 "success",
-                                this.$t(res.message),
+                                this.$t("res.message"),
                             );
                         } else {
                             Response.mensagemToast(
                                 "error",
-                                this.$t(res.message),
+                                this.$t("res.message"),
                             );
                         }
                     });
@@ -154,15 +153,14 @@ export default {
                                 display: "block",
                                 eventFromApi: true,
                                 start: `${res.data} ${res.hora}`,
-                                startControl: `${res.data} ${res.hora}`,
                             });
                         });
                     }
                 });
         },
         async buscarHorariosDisponiveis() {
-            await this.store
-                .request!.pegarDadosApi(`/consulta/medico/${this.medicoSelect}`)
+            await this.store.request!
+                .pegarDadosApi(`/consulta/medico/${this.medicoSelect}`)
                 .then((res: any) => {
                     const hoje = new Date().getTime();
                     res.list.horarios.forEach((element: any) => {
@@ -218,8 +216,8 @@ export default {
 
         /** PROPOSTA DE RETORNO */
         async propostaDeRetorno(pre_agendamento_id: number, arrayDados: any) {
-            await this.store
-                .request!.enviarDadosApi("/pre-agendamento/horarios/cadastro", {
+            await this.store.request!
+                .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: pre_agendamento_id,
                     horarios_agendamento: JSON.stringify(arrayDados),
                 })
