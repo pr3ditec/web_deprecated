@@ -1,34 +1,38 @@
-<script lang="ts" setup>
-import { ref } from "vue";
+<script>
 import { useRouter } from "vue-router";
 import Response from "@/api/Response";
-import { defineProps, defineEmits } from "vue";
 
-const props = defineProps(["verificacaoFinalizacao"]);
+export default {
+    props: ["verificacaoFinalizacao"],
+    emits: ["prevTab"],
+    data() {
+        return {
+            showModal: false,
+        };
+    },
+    created() {
+        this.router = useRouter();
+    },
+    methods: {
+        aceitarPolitica() {
+            if (
+                !this.verificacaoFinalizacao.some(
+                    (obj) => obj.Documents === "finalizado",
+                )
+            ) {
+                this.$emit("prevTab");
+                return Response.mensagemErro(
+                    this.$t("please-complete-previous-step-proceed"),
+                );
+            }
 
-const emit = defineEmits(["prevTab"]);
-
-const showModal = ref(false);
-const router = useRouter();
-
-const aceitarPolitica = () => {
-    if (
-        !props.verificacaoFinalizacao.some(
-            (obj) => obj.Documents === "finalizado",
-        )
-    ) {
-        emit("prevTab");
-        return Response.mensagemErro(
-            `<p v-html="this.$t('please-complete-previous-step-proceed')"></p>`,
-        );
-    }
-
-    showModal.value = true;
-};
-
-const redirectLogin = () => {
-    showModal.value = false;
-    router.push("/auth/login");
+            this.showModal = true;
+        },
+        redirectLogin() {
+            this.showModal = false;
+            this.router.push("/auth/login");
+        },
+    },
 };
 </script>
 

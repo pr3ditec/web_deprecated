@@ -13,6 +13,12 @@ export default {
 
     methods: {
         async cadastrarCategoria() {
+            if (!this.nome) {
+                return Response.mensagemErro(
+                    this.$t("please-fill-in-all-fields"),
+                );
+            }
+
             this.submitBtnDisabled = true;
 
             try {
@@ -50,7 +56,7 @@ export default {
 
 <template>
     <div
-        class="p-6 panel h-full flex flex-col items-center gap-5 mt-4 w-1/2 dark:text-white capitalize">
+        class="h-full flex flex-col items-center w-1/2 dark:text-white capitalize">
         <div class="flex flex-row gap-1 w-full"></div>
         <div class="w-80">
             <label for="categoria">{{ $t("category") }}</label>
