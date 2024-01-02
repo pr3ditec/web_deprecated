@@ -350,7 +350,7 @@ export default {
                                     `data-response-${item.status}`
                                 ">
                                 <div
-                                    class="p-4 pl-20 text-[15px] border-t text-white-dark border-[#d3d3d3] dark:border-[#1b2e4b]"
+                                    class="p-4 pl-20 text-[15px] text-white-dark"
                                     v-for="data_return in item.data_return"
                                     :key="data_return">
                                     <span
@@ -361,7 +361,7 @@ export default {
                                         {{ data_return.type }}
                                     </span>
                                     <div
-                                        class="p-4 pl-20 text-[15px] border-t text-white-dark border-[#d3d3d3] dark:border-[#1b2e4b]"
+                                        class="p-4 pl-10 text-[15px] text-white-dark"
                                         v-show="
                                             'data_item' in data_return &&
                                             data_return.data_item.length > 0
@@ -375,6 +375,42 @@ export default {
                                         <span class="text-xs">
                                             {{ data_item.type }}
                                         </span>
+                                        <div
+                                            class="p-4 pl-10 text-[15px] text-white-dark"
+                                            v-show="
+                                                'data_sub_item' in data_item &&
+                                                data_item.data_sub_item.length >
+                                                    0
+                                            "
+                                            v-for="data_sub_item in data_item.data_sub_item"
+                                            :key="data_sub_item">
+                                            <span
+                                                class="uppercase text-sm text-dark dark:text-dark-light">
+                                                {{ data_sub_item.name }}:
+                                            </span>
+                                            <span class="text-xs">
+                                                {{ data_sub_item.type }}
+                                            </span>
+
+                                            <div
+                                                class="p-4 pl-10 text-[15px] text-white-dark"
+                                                v-show="
+                                                    'extra_sub_item' in
+                                                        data_sub_item &&
+                                                    data_sub_item.extra_sub_item
+                                                        .length > 0
+                                                "
+                                                v-for="extra_sub_item in data_sub_item.extra_sub_item"
+                                                :key="extra_sub_item">
+                                                <span
+                                                    class="uppercase text-sm text-dark dark:text-dark-light">
+                                                    {{ extra_sub_item.name }}:
+                                                </span>
+                                                <span class="text-xs">
+                                                    {{ extra_sub_item.type }}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </vue-collapsible>
