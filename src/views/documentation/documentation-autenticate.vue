@@ -22,43 +22,16 @@ export default {
                 status: '200',
                 messages: ['user-data'],
                 data_return: [
-                    {
-                        name: 'id',
-                        type: 'integer',
-                    },
-                    {
-                        name: 'nome',
-                        type: 'string',
-                    },
-                    {
-                        name: 'cpf',
-                        type: 'string',
-                    },
-                    {
-                        name: 'nascimento',
-                        type: 'string (format Y-m-d)',
-                    },
-                    {
-                        name: 'sexo',
-                        type: 'char',
-                    },
-                    {
-                        name: 'email',
-                        type: 'string',
-                    },
-                    {
-                        name: 'nacionalidade_id',
-                        type: 'integer',
-                    },
-                    {
-                        name: 'nacionalidade',
-                        type: 'string',
-                    },
-                    {
-                        name: 'nome_mae',
-                        type: 'string',
-                    },
-                ]
+                    { name: 'id', type: 'integer' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'cpf', type: 'string' },
+                    { name: 'nascimento', type: 'string (format Y-m-d)' },
+                    { name: 'sexo', type: 'string' },
+                    { name: 'email', type: 'string' },
+                    { name: 'nacionalidade_id', type: 'integer' },
+                    { name: 'nacionalidade', type: 'string' },
+                    { name: 'nome_mae', type: 'string' },
+                ],
             },
             {
                 status: '400',
@@ -79,6 +52,40 @@ export default {
             {
                 status: '200',
                 messages: ['user-data'],
+                data_return: [
+                    { name: 'id', type: 'integer' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'cpf', type: 'string' },
+                    { name: 'nascimento', type: 'string (format Y-m-d)' },
+                    { name: 'sexo', type: 'string' },
+                    { name: 'email', type: 'string' },
+                    { name: 'nacionalidade_id', type: 'integer' },
+                    { name: 'nacionalidade', type: 'string' },
+                    { name: 'nome_mae', type: 'string' },
+                    { name: 'endereco_medico', type: 'string | null' },
+                    {
+                        name: 'telefone_medico',
+                        type: 'array | null',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'pais_id', type: 'int' },
+                            { name: 'telefone', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    { name: 'endereco_paciente', type: 'string | null' },
+                    {
+                        name: 'telefone_paciente',
+                        type: 'array | null',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'pais_id', type: 'int' },
+                            { name: 'telefone', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    { name: 'foto_perfil', type: 'string(base64) | null' },
+                ],
             },
             {
                 status: '401',
@@ -99,6 +106,12 @@ export default {
             {
                 status: '200',
                 messages: ['timezone-of-user'],
+                data_return: [
+                    { name: 'id', type: 'integer' },
+                    { name: 'usuario_id', type: 'integer' },
+                    { name: 'timezone_id', type: 'integer' },
+                    { name: 'timezone', type: 'string' },
+                ],
             },
             {
                 status: '401',
@@ -142,6 +155,29 @@ export default {
             {
                 status: '200',
                 messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'id', type: 'integer' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'cpf', type: 'string' },
+                    { name: 'nascimento', type: 'string (format Y-m-d)' },
+                    { name: 'sexo', type: 'string' },
+                    { name: 'email', type: 'string' },
+                    { name: 'nacionalidade_id', type: 'integer' },
+                    { name: 'nacionalidade', type: 'string' },
+                    { name: 'nome_mae', type: 'string' },
+                    { name: 'endereco_paciente', type: 'string | null' },
+                    {
+                        name: 'telefone_paciente',
+                        type: 'array | null',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'pais_id', type: 'int' },
+                            { name: 'telefone', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    { name: 'foto_perfil', type: 'string(base64) | null' },
+                ],
             },
             {
                 status: '401',
@@ -162,6 +198,49 @@ export default {
             {
                 status: '200',
                 messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'paciente_id', type: 'int' },
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'ocupacao', type: 'string' },
+                    {
+                        name: 'documento',
+                        type: 'array | null',
+                        data_item: [
+                            { name: 'numero', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'endereco',
+                        type: 'array | null',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'estado_id', type: 'int' },
+                            { name: 'cep', type: 'string' },
+                            { name: 'rua', type: 'string' },
+                            { name: 'numero', type: 'int' },
+                            { name: 'complemento', type: 'string' },
+                            { name: 'bairro', type: 'string' },
+                            { name: 'cidade', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'telefone',
+                        type: 'array | null',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'pais_id', type: 'int' },
+                            { name: 'telefone', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    { name: 'comprovante_residencia', type: 'bool' },
+                    {
+                        name: 'pre_agendamento_horarios_encaminhado',
+                        type: 'bool',
+                    },
+                ],
             },
             {
                 status: '401',
@@ -182,6 +261,53 @@ export default {
             {
                 status: '200',
                 messages: ['patient-pre-appointments-found'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'paciente_id', type: 'int' },
+                    { name: 'medico_id', type: 'int' },
+                    { name: 'risco_empresarial_id', type: 'int' },
+                    { name: 'desconto_medico_id', type: 'int' },
+                    { name: 'consulta_id', type: 'int' },
+                    { name: 'qtd_parcelas', type: 'int' },
+                    { name: 'created_at', type: 'string' },
+                    { name: 'updated_at', type: 'string' },
+                    { name: 'medico_nome', type: 'string' },
+                    { name: 'especialidade', type: 'string' },
+                    { name: 'status_id', type: 'int' },
+                    { name: 'status', type: 'string' },
+                    {
+                        name: 'pre_agendamento_horarios',
+                        type: 'array',
+                        data_item: [
+                            { name: 'data', type: 'string' },
+                            { name: 'hora', type: 'string' },
+                            { name: 'status', type: 'string' },
+                            { name: 'status_id', type: 'int' },
+                            { name: 'timezone', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'periodo_atendimento_paciente',
+                        type: 'array',
+                        data_item: [
+                            { name: 'descricao', type: 'string' },
+                            { name: ' pre_agendamento_id:', type: 'int' },
+                        ],
+                    },
+                    { name: 'pode_criar_retorno', type: 'bool' },
+                    { name: 'data_limite_retorno', type: 'string' },
+                    {
+                        name: 'pre_agendamento_agenda',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'data', type: 'string' },
+                            { name: 'hora', type: 'string' },
+                            { name: 'status', type: 'string' },
+                            { name: 'status_id', type: 'int' },
+                        ],
+                    },
+                ],
             },
             {
                 status: '401',
@@ -189,7 +315,10 @@ export default {
             },
             {
                 status: '400',
-                messages: ['no-pre-bookings-found', 'error-when-searching-for-pre-appointments-from-the-patient'],
+                messages: [
+                    'no-pre-bookings-found',
+                    'error-when-searching-for-pre-appointments-from-the-patient',
+                ],
             },
         ]"
         :showDetailsRoute="showDetailsRoute" />
@@ -202,6 +331,53 @@ export default {
             {
                 status: '200',
                 messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'medico_id', type: 'int' },
+                    {
+                        name: 'documento',
+                        type: 'array',
+                        data_item: [
+                            { name: 'numero', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'endereco',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'estado_id', type: 'int' },
+                            { name: 'cep', type: 'string' },
+                            { name: 'rua', type: 'string' },
+                            { name: 'numero', type: 'int' },
+                            { name: 'complemento', type: 'string' },
+                            { name: 'bairro', type: 'string' },
+                            { name: 'cidade', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'telefone',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'pais_id', type: 'int' },
+                            { name: 'telefone', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'especialidade',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'descricao', type: 'string' },
+                            { name: 'medico_especialidade_id', type: 'int' },
+                            { name: 'valor', type: 'float' },
+                        ],
+                    },
+                ],
             },
             {
                 status: '401',
@@ -222,6 +398,96 @@ export default {
             {
                 status: '200',
                 messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'medico_id', type: 'int' },
+                    {
+                        name: 'documento',
+                        type: 'array',
+                        data_item: [
+                            { name: 'numero', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'endereco',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'estado_id', type: 'int' },
+                            { name: 'cep', type: 'string' },
+                            { name: 'rua', type: 'string' },
+                            { name: 'numero', type: 'int' },
+                            { name: 'complemento', type: 'string' },
+                            { name: 'bairro', type: 'string' },
+                            { name: 'cidade', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'telefone',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'pais_id', type: 'int' },
+                            { name: 'telefone', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'pix',
+                        type: 'array',
+                        data_item: [
+                            { name: 'chave', type: 'string' },
+                            { name: 'tipo_chave', type: 'string' },
+                        ]
+                    },
+                    { name: 'has_consulta', type: 'bool' },
+                    { name: 'ultima_consulta_cadastrada', type: 'string' },
+                    { name: 'proxima_consulta', type: 'string' },
+                    {
+                        name: 'clinica',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'nome', type: 'string' },
+                            { name: 'cep', type: 'string' },
+                            { name: 'rua', type: 'string' },
+                            { name: 'numero', type: 'string' },
+                            { name: 'bairro', type: 'string' },
+                            { name: 'cidade', type: 'string' },
+                            { name: 'uf', type: 'string' },
+                            { name: 'estado', type: 'string' },
+                        ]
+                    },
+                    {
+                        name: 'pre_agendamentos_pendente',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'paciente_id', type: 'int' },
+                            { name: 'medico_id', type: 'int' },
+                            { name: 'risco_empresarial_id', type: 'int' },
+                            { name: 'desconto_medico_id', type: 'int' },
+                            { name: 'consulta_id', type: 'int' },
+                            { name: 'qtd_parcelas', type: 'int' },
+                            { name: 'paciente_nome', type: 'string' },
+                        ]
+                    },
+                    {
+                        name: 'especialidades',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'descricao', type: 'string' },
+                            { name: 'medico_especialidade_id', type: 'int' },
+                            { name: 'valor', type: 'float' },
+                            { name: 'valor_retorno', type: 'float | null' },
+                            { name: 'dias_retorno', type: 'int | null' },
+                            { name: 'clinica', type: 'bool' },
+                        ]
+                    }
+                ],
             },
             {
                 status: '401',
@@ -229,7 +495,10 @@ export default {
             },
             {
                 status: '400',
-                messages: ['no-doctor-found-with-id-provided', 'doctor-not-found'],
+                messages: [
+                    'no-doctor-found-with-id-provided',
+                    'doctor-not-found',
+                ],
             },
         ]"
         :showDetailsRoute="showDetailsRoute" />
@@ -242,6 +511,96 @@ export default {
             {
                 status: '200',
                 messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'medico_id', type: 'int' },
+                    {
+                        name: 'documento',
+                        type: 'array',
+                        data_item: [
+                            { name: 'numero', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'endereco',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'estado_id', type: 'int' },
+                            { name: 'cep', type: 'string' },
+                            { name: 'rua', type: 'string' },
+                            { name: 'numero', type: 'int' },
+                            { name: 'complemento', type: 'string' },
+                            { name: 'bairro', type: 'string' },
+                            { name: 'cidade', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'telefone',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'pais_id', type: 'int' },
+                            { name: 'telefone', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'pix',
+                        type: 'array',
+                        data_item: [
+                            { name: 'chave', type: 'string' },
+                            { name: 'tipo_chave', type: 'string' },
+                        ]
+                    },
+                    { name: 'has_consulta', type: 'bool' },
+                    { name: 'ultima_consulta_cadastrada', type: 'string' },
+                    { name: 'proxima_consulta', type: 'string' },
+                    {
+                        name: 'clinica',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'nome', type: 'string' },
+                            { name: 'cep', type: 'string' },
+                            { name: 'rua', type: 'string' },
+                            { name: 'numero', type: 'string' },
+                            { name: 'bairro', type: 'string' },
+                            { name: 'cidade', type: 'string' },
+                            { name: 'uf', type: 'string' },
+                            { name: 'estado', type: 'string' },
+                        ]
+                    },
+                    {
+                        name: 'pre_agendamentos_pendente',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'paciente_id', type: 'int' },
+                            { name: 'medico_id', type: 'int' },
+                            { name: 'risco_empresarial_id', type: 'int' },
+                            { name: 'desconto_medico_id', type: 'int' },
+                            { name: 'consulta_id', type: 'int' },
+                            { name: 'qtd_parcelas', type: 'int' },
+                            { name: 'paciente_nome', type: 'string' },
+                        ]
+                    },
+                    {
+                        name: 'especialidades',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'descricao', type: 'string' },
+                            { name: 'medico_especialidade_id', type: 'int' },
+                            { name: 'valor', type: 'float' },
+                            { name: 'valor_retorno', type: 'float | null' },
+                            { name: 'dias_retorno', type: 'int | null' },
+                            { name: 'clinica', type: 'bool' },
+                        ]
+                    }
+                ],
             },
             {
                 status: '401',
@@ -249,7 +608,10 @@ export default {
             },
             {
                 status: '400',
-                messages: ['no-doctor-found-with-cpf-provided', 'doctor-not-found'],
+                messages: [
+                    'no-doctor-found-with-cpf-provided',
+                    'doctor-not-found',
+                ],
             },
         ]"
         :showDetailsRoute="showDetailsRoute" />
@@ -262,6 +624,96 @@ export default {
             {
                 status: '200',
                 messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'medico_id', type: 'int' },
+                    {
+                        name: 'documento',
+                        type: 'array',
+                        data_item: [
+                            { name: 'numero', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'endereco',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'estado_id', type: 'int' },
+                            { name: 'cep', type: 'string' },
+                            { name: 'rua', type: 'string' },
+                            { name: 'numero', type: 'int' },
+                            { name: 'complemento', type: 'string' },
+                            { name: 'bairro', type: 'string' },
+                            { name: 'cidade', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'telefone',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'pais_id', type: 'int' },
+                            { name: 'telefone', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'pix',
+                        type: 'array',
+                        data_item: [
+                            { name: 'chave', type: 'string' },
+                            { name: 'tipo_chave', type: 'string' },
+                        ]
+                    },
+                    { name: 'has_consulta', type: 'bool' },
+                    { name: 'ultima_consulta_cadastrada', type: 'string' },
+                    { name: 'proxima_consulta', type: 'string' },
+                    {
+                        name: 'clinica',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'nome', type: 'string' },
+                            { name: 'cep', type: 'string' },
+                            { name: 'rua', type: 'string' },
+                            { name: 'numero', type: 'string' },
+                            { name: 'bairro', type: 'string' },
+                            { name: 'cidade', type: 'string' },
+                            { name: 'uf', type: 'string' },
+                            { name: 'estado', type: 'string' },
+                        ]
+                    },
+                    {
+                        name: 'pre_agendamentos_pendente',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'paciente_id', type: 'int' },
+                            { name: 'medico_id', type: 'int' },
+                            { name: 'risco_empresarial_id', type: 'int' },
+                            { name: 'desconto_medico_id', type: 'int' },
+                            { name: 'consulta_id', type: 'int' },
+                            { name: 'qtd_parcelas', type: 'int' },
+                            { name: 'paciente_nome', type: 'string' },
+                        ]
+                    },
+                    {
+                        name: 'especialidades',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'descricao', type: 'string' },
+                            { name: 'medico_especialidade_id', type: 'int' },
+                            { name: 'valor', type: 'float' },
+                            { name: 'valor_retorno', type: 'float | null' },
+                            { name: 'dias_retorno', type: 'int | null' },
+                            { name: 'clinica', type: 'bool' },
+                        ]
+                    }
+                ],
             },
             {
                 status: '401',
@@ -269,7 +721,10 @@ export default {
             },
             {
                 status: '400',
-                messages: ['no-doctor-found-with-crm-provided', 'doctor-not-found'],
+                messages: [
+                    'no-doctor-found-with-crm-provided',
+                    'doctor-not-found',
+                ],
             },
         ]"
         :showDetailsRoute="showDetailsRoute" />
@@ -282,6 +737,96 @@ export default {
             {
                 status: '200',
                 messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'medico_id', type: 'int' },
+                    {
+                        name: 'documento',
+                        type: 'array',
+                        data_item: [
+                            { name: 'numero', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'endereco',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'estado_id', type: 'int' },
+                            { name: 'cep', type: 'string' },
+                            { name: 'rua', type: 'string' },
+                            { name: 'numero', type: 'int' },
+                            { name: 'complemento', type: 'string' },
+                            { name: 'bairro', type: 'string' },
+                            { name: 'cidade', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'telefone',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'pais_id', type: 'int' },
+                            { name: 'telefone', type: 'string' },
+                            { name: 'tipo', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'pix',
+                        type: 'array',
+                        data_item: [
+                            { name: 'chave', type: 'string' },
+                            { name: 'tipo_chave', type: 'string' },
+                        ]
+                    },
+                    { name: 'has_consulta', type: 'bool' },
+                    { name: 'ultima_consulta_cadastrada', type: 'string' },
+                    { name: 'proxima_consulta', type: 'string' },
+                    {
+                        name: 'clinica',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'nome', type: 'string' },
+                            { name: 'cep', type: 'string' },
+                            { name: 'rua', type: 'string' },
+                            { name: 'numero', type: 'string' },
+                            { name: 'bairro', type: 'string' },
+                            { name: 'cidade', type: 'string' },
+                            { name: 'uf', type: 'string' },
+                            { name: 'estado', type: 'string' },
+                        ]
+                    },
+                    {
+                        name: 'pre_agendamentos_pendente',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'paciente_id', type: 'int' },
+                            { name: 'medico_id', type: 'int' },
+                            { name: 'risco_empresarial_id', type: 'int' },
+                            { name: 'desconto_medico_id', type: 'int' },
+                            { name: 'consulta_id', type: 'int' },
+                            { name: 'qtd_parcelas', type: 'int' },
+                            { name: 'paciente_nome', type: 'string' },
+                        ]
+                    },
+                    {
+                        name: 'especialidades',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'descricao', type: 'string' },
+                            { name: 'medico_especialidade_id', type: 'int' },
+                            { name: 'valor', type: 'float' },
+                            { name: 'valor_retorno', type: 'float | null' },
+                            { name: 'dias_retorno', type: 'int | null' },
+                            { name: 'clinica', type: 'bool' },
+                        ]
+                    }
+                ],
             },
             {
                 status: '401',
@@ -302,6 +847,10 @@ export default {
             {
                 status: '200',
                 messages: ['doctor-active-specialties'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'descricao', type: 'string' }
+                ]
             },
             {
                 status: '401',
@@ -317,6 +866,27 @@ export default {
         method="GET"
         route="medico/clinica/[medicoId]"
         color="bg-success"
+        details="Retorna todas as clínicas do médico"
+        :responses="[
+            {
+                status: '200',
+                messages: ['clinic-details'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'especialidade_id', type: 'int' },
+                    { name: 'descricao', type: 'string' },
+                ]
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+            {
+                status: '400',
+                messages: ['no-clinic-linked-to-doctor'],
+            },
+        ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="GET"

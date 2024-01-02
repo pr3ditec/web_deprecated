@@ -38,6 +38,14 @@ export default {
             type: Number,
             default: 1,
         },
+        responseItemAccordians: {
+            type: Number,
+            default: 1,
+        },
+        responseSubItemAccordians: {
+            type: Number,
+            default: 1,
+        },
     },
     methods: {
         formatRoute() {
@@ -78,7 +86,7 @@ export default {
             <div class="border border-[#d3d3d3] rounded dark:border-[#1b2e4b]">
                 <button
                     type="button"
-                    class="p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]"
+                    class="p-4 w-full flex items-center text-white-dark"
                     :class="{
                         '!text-primary': accordians === 1,
                     }"
@@ -124,7 +132,7 @@ export default {
             <div class="border border-[#d3d3d3] dark:border-[#1b2e4b] rounded">
                 <button
                     type="button"
-                    class="p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]"
+                    class="p-4 w-full flex items-center text-white-dark"
                     :class="{
                         '!text-primary': accordians === 2,
                     }"
@@ -163,7 +171,7 @@ export default {
                         :key="item.item">
                         <button
                             type="button"
-                            class="p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]"
+                            class="p-4 w-full flex items-center text-white-dark"
                             :class="{
                                 '!text-primary': subAccordians === item.item,
                             }"
@@ -215,7 +223,7 @@ export default {
             <div class="border border-[#d3d3d3] dark:border-[#1b2e4b] rounded">
                 <button
                     type="button"
-                    class="p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]"
+                    class="p-4 w-full flex items-center text-white-dark"
                     :class="{
                         '!text-primary': accordians === 3,
                     }"
@@ -253,7 +261,7 @@ export default {
                         :key="item.status">
                         <button
                             type="button"
-                            class="p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]"
+                            class="p-4 w-full flex items-center text-white-dark"
                             :class="{
                                 '!text-primary':
                                     acoordiansStatus === item.status,
@@ -296,7 +304,7 @@ export default {
                             </div>
                             <button
                                 type="button"
-                                class="p-4 w-full flex items-center text-white-dark dark:bg-[#1b2e4b]"
+                                class="p-4 w-full flex items-center text-white-dark"
                                 v-show="
                                     'data_return' in item &&
                                     item.data_return.length > 0
@@ -345,12 +353,29 @@ export default {
                                     class="p-4 pl-20 text-[15px] border-t text-white-dark border-[#d3d3d3] dark:border-[#1b2e4b]"
                                     v-for="data_return in item.data_return"
                                     :key="data_return">
-                                    <span class="uppercase text-sm text-dark dark:text-dark-light">
-                                        {{ data_return.name }}: 
+                                    <span
+                                        class="uppercase text-sm text-dark dark:text-dark-light">
+                                        {{ data_return.name }}:
                                     </span>
                                     <span class="text-xs">
                                         {{ data_return.type }}
                                     </span>
+                                    <div
+                                        class="p-4 pl-20 text-[15px] border-t text-white-dark border-[#d3d3d3] dark:border-[#1b2e4b]"
+                                        v-show="
+                                            'data_item' in data_return &&
+                                            data_return.data_item.length > 0
+                                        "
+                                        v-for="data_item in data_return.data_item"
+                                        :key="data_item">
+                                        <span
+                                            class="uppercase text-sm text-dark dark:text-dark-light">
+                                            {{ data_item.name }}:
+                                        </span>
+                                        <span class="text-xs">
+                                            {{ data_item.type }}
+                                        </span>
+                                    </div>
                                 </div>
                             </vue-collapsible>
                         </vue-collapsible>

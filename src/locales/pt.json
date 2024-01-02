@@ -657,5 +657,6 @@
     "doctor-download-state-max": "Estado com mais downloads por médico",
     "patient-download-state-min": "Estado com mais downloads por paciente",
     "patient-download-state-max": "Estado com menos downloads por paciente",
-    "product": "Produto"
+    "product": "Produto",
+    "no-authentication": "Sem autenticação"
 }
