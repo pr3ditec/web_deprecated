@@ -1102,7 +1102,31 @@ export default {
         method="GET"
         route="consulta/valor/[medicoId]/[especialidadeId]"
         color="bg-success"
+        details="Retornar o valor da consulta do médico"
         :responses="[
+            {
+                status: '200',
+                messages: ['customer-consultation-value'],
+                data_return: [
+                    { name: 'valor', type: 'float' },
+                    { name: 'maximo_parcelamento', type: 'int' },
+                    {
+                        name: 'parcelamento',
+                        type: 'array',
+                        data_item: [
+                            { name: 'payment', type: 'string' },
+                            { name: 'iof', type: 'string' },
+                            { name: 'balance', type: 'string' },
+                            { name: 'interest', type: 'string' },
+                            { name: 'principal', type: 'string' },
+                        ]
+                    }
+                ]
+            },
+            {
+                status: '400',
+                messages: ['error-calculating-query-value']
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -1113,7 +1137,21 @@ export default {
         method="GET"
         route="secretaria/[cpf]"
         color="bg-success"
+        details="Retorna os dados da secretária"
         :responses="[
+            {
+                status: '200',
+                messages: ['secretariat-data'],
+                data_return: [
+                    { name: 'nome', type: 'string' },
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'secretaria_id', type: 'int' },
+                ]
+            },
+            {
+                status: '400',
+                messages: ['no-secretary-with-this-cpf-was-found'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -1124,7 +1162,22 @@ export default {
         method="GET"
         route="secretaria/medico/[secretariaId]"
         color="bg-success"
+        details="Retorna as solicitações de vínculo do médico com a secretária"
         :responses="[
+            {
+                status: '200',
+                messages: ['link-requests'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'secretaria_id', type: 'int' },
+                    { name: 'medico_id', type: 'int' },
+                    { name: 'ativo', type: 'int' },
+                ]
+            },
+            {
+                status: '400',
+                messages: ['user-cannot-see-secretary-requests', 'no-link-requests'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
