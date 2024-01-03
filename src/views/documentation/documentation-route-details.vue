@@ -124,7 +124,7 @@ export default {
                     <div
                         class="space-y-2 p-4 text-white-dark text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]">
                         <p>
-                            {{ details }}
+                            {{ $t(details) }}
                         </p>
                     </div>
                 </vue-collapsible>
