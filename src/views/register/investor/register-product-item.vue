@@ -17,12 +17,13 @@ export default {
             itensVinculados: [],
             itensNaoVinculados: [],
             submitBtnDisabled: false,
+            mostrarItens: false,
         };
     },
     async created() {
         const produtoResponse =
             await this.store.request.pegarDadosApi("/invest/produto");
-        console.log(produtoResponse);
+
         if (produtoResponse.status == true) {
             this.produtos = produtoResponse.list;
         } else {
@@ -30,7 +31,7 @@ export default {
         }
         const ItemResponse =
             await this.store.request.pegarDadosApi("/invest/item");
-        console.log(ItemResponse);
+
         if (ItemResponse.status == true) {
             this.itens = ItemResponse.list;
         } else {
@@ -39,42 +40,41 @@ export default {
     },
     watch: {
         async produtoId(newProdutoId) {
-            // Carregar itens vinculados
+            this.mostrarItens = false;
+
             const responseVinculados = await this.store.request.pegarDadosApi(
                 `/invest/produto-item/${newProdutoId}`,
             );
-            console.log(responseVinculados);
+
             if (responseVinculados.status == true) {
                 this.itensVinculados = responseVinculados.list;
             } else {
                 this.itensVinculados = [];
-                Response.mensagemErro(this.$t(responseVinculados.messageCode));
             }
 
-            console.log(this.itensVinculados);
-
-            // Carregar itens não vinculados
             const responseNaoVinculados =
                 await this.store.request.pegarDadosApi("/invest/item");
-            console.log(responseNaoVinculados);
+
             if (responseNaoVinculados.status == true) {
                 this.itensNaoVinculados = responseNaoVinculados.list;
             } else {
                 this.itensNaoVinculados = [];
-                Response.mensagemErro(
-                    this.$t(responseNaoVinculados.messageCode),
-                );
             }
 
-            console.log(this.itensNaoVinculados);
+            this.itensNaoVinculados = this.itensNaoVinculados.filter(
+                (itemNaoVinculado) =>
+                    !this.itensVinculados.some(
+                        (itemVinculado) =>
+                            itemVinculado.id === itemNaoVinculado.id,
+                    ),
+            );
+
+            this.mostrarItens = true;
         },
     },
     methods: {
-        log(event) {
-            console.log(event);
-        },
         async cadastrarProdutoItem() {
-            if (!this.produto_id || !Array.isArray(this.itensIds)) {
+            if (!this.produtoId || !this.itensVinculados) {
                 return Response.mensagemErro(
                     this.$t("please-fill-in-all-fields"),
                 );
@@ -83,17 +83,16 @@ export default {
             this.submitBtnDisabled = true;
 
             try {
+                let itensIds = this.itensVinculados.map((item) => item.id);
+
                 let data = {
                     produto_id: this.produtoId,
-                    itensIds: this.periodo,
+                    itens: itensIds,
                 };
-
-                console.log(data);
 
                 await this.store.request
                     .enviarDadosApi("/invest/produto-item", data)
                     .then((res) => {
-                        console.log(res);
                         if (res.status == false) {
                             this.submitBtnDisabled = false;
                             return Response.mensagemErro(
@@ -109,33 +108,44 @@ export default {
                 console.error("Ocorreu um erro:", error);
             }
         },
-        async atualizarItensProduto() {
-            const todosItensIds = [
-                ...this.itensVinculados,
-                ...this.itensNaoVinculados,
-            ].map((item) => item.id);
 
-            console.log(todosItensIds);
-            // const response = await this.store.request.enviarDadosApi(
-            //     `/invest/produto-item/${this.produtoId}`,
-            //     todosItensIds,
-            // );
-            if (response.status == true) {
-                Response.mensagemSucesso(
-                    this.$t("product-items-updated-successfully"),
+        atualizarItensProduto(moved) {
+            if (
+                moved.from === this.itensNaoVinculados &&
+                moved.to === this.itensVinculados
+            ) {
+                // item arrastado de itensNaoVinculados para itensVinculados
+                this.itensNaoVinculados = this.itensNaoVinculados.filter(
+                    (item) => item.id !== moved.element.id,
                 );
-            } else {
-                Response.mensagemErro(this.$t(response.messageCode));
+                this.itensVinculados.push(moved.element);
+            } else if (
+                moved.from === this.itensVinculados &&
+                moved.to === this.itensNaoVinculados
+            ) {
+                // item arrastado de itensVinculados para itensNaoVinculados
+                this.itensVinculados = this.itensVinculados.filter(
+                    (item) => item.id !== moved.element.id,
+                );
+                this.itensNaoVinculados.push(moved.element);
             }
+        },
+
+        formatValor(valor) {
+            return valor.toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+            });
         },
     },
 };
 </script>
 
 <template>
-    <div class="h-full flex flex-col items-center dark:text-white capitalize">
-        <div class="flex flex-row gap-1 w-full">
-            <div class="w-80">
+    <div
+        class="h-full flex flex-col items-center text-black dark:text-white bg-white dark:bg-gray-800 capitalize">
+        <div class="flex flex-row gap-1 w-full justify-center">
+            <div class="w-8/12">
                 <div class="text-white-dark">
                     <select
                         v-model="produtoId"
@@ -150,30 +160,68 @@ export default {
                 </div>
             </div>
         </div>
-        <div class="flex m-10">
-            <VueDraggableNext
-                class="dragArea list-group w-half"
-                :list="itensVinculados"
-                @change="atualizarItensProduto">
-                <div
-                    class="list-group-item bg-gray-300 m-1 p-3 rounded-md text-center"
-                    v-for="item in itensVinculados"
-                    :key="item.id">
-                    {{ item.categoria }}
-                </div>
-            </VueDraggableNext>
-            <VueDraggableNext
-                class="dragArea list-group w-half"
-                :list="itensNaoVinculados"
-                @change="atualizarItensProduto">
-                <div
-                    class="list-group-item bg-gray-300 m-1 p-3 rounded-md text-center"
-                    v-for="item in itensNaoVinculados"
-                    :key="item.id">
-                    {{ item.categoria }}
-                </div>
-            </VueDraggableNext>
+
+        <div v-if="mostrarItens" class="flex m-12">
+            <div
+                class="border-2 border-gray-300 p-2 rounded-md dark:text-white">
+                <h2 class="text-center font-bold mb-2">
+                    {{ $t("items-available-for-bonding") }}
+                </h2>
+                <VueDraggableNext
+                    class="dragArea list-group w-half dark:text-white dark:bg-gray-800 w-80"
+                    :list="itensNaoVinculados"
+                    group="items"
+                    @change="atualizarItensProduto($event)">
+                    <div
+                        class="list-group-item bg-white dark:bg-gray-800 m-1 p-3 rounded-md shadow-lg flex items-center justify-between dark:text-white"
+                        v-for="item in itensNaoVinculados"
+                        :key="item.id">
+                        <div class="flex items-center">
+                            <div>
+                                <p>
+                                    {{ $t("category") }}: {{ item.categoria }}
+                                </p>
+                                <p>{{ $t("period") }}: {{ item.periodo }}</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            {{ $t("value") }}: {{ formatValor(item.valor) }}
+                        </div>
+                    </div>
+                </VueDraggableNext>
+            </div>
+
+            <div class="border-2 border-gray-300 p-2 rounded-md">
+                <h2 class="text-center font-bold mb-2">
+                    {{ $t("linked-items") }}
+                </h2>
+                <VueDraggableNext
+                    class="dragArea list-group w-half dark:text-white dark:bg-gray-800 w-80"
+                    :list="itensVinculados"
+                    group="items"
+                    @change="atualizarItensProduto($event)">
+                    <div
+                        class="list-group-item bg-white dark:bg-gray-800 m-1 p-3 rounded-md shadow-lg flex items-center justify-between dark:text-white"
+                        v-for="item in itensVinculados"
+                        :key="item.id">
+                        <div class="flex items-center">
+                            <div>
+                                <p>
+                                    {{ $t("category") }}: {{ item.categoria }}
+                                </p>
+                                <p>{{ $t("period") }}: {{ item.periodo }}</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            {{ $t("value") }}: {{ formatValor(item.valor) }}
+                        </div>
+                    </div>
+                </VueDraggableNext>
+            </div>
         </div>
+
         <div class="flex flex-col items-center font-semibold mt-6 w-80">
             <button
                 @click="cadastrarProdutoItem()"

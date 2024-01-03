@@ -615,5 +615,8 @@
     "patient-download-state-min": "Patient's minor download rate per state",
     "patient-download-state-max": "Patient's major download rate per state",
     "product": "Product",
-    "no-authentication": "No authentication"
+    "no-authentication": "No authentication",
+    "there-is-no-data-to-show": "there-is-no-data-to-show",
+    "items-available-for-bonding": "Items available for Bonding",
+    "linked-items": "Linked Items"
 }

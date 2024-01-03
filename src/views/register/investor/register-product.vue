@@ -28,12 +28,9 @@ export default {
                     descricao: this.descricao,
                 };
 
-                console.log(data);
-
                 await this.store.request
                     .enviarDadosApi("/invest/produto", data)
                     .then((res) => {
-                        console.log(res);
                         if (res.status == false) {
                             this.submitBtnDisabled = false;
                             return Response.mensagemErro(
@@ -70,7 +67,7 @@ export default {
                     v-model="descricao"
                     class="form-input dark:text-white w-full"
                     type="text"
-                    placeholder="Insira a descrção do produto" />
+                    placeholder="Insira a descrição do produto" />
             </div>
         </div>
 

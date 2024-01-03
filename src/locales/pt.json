@@ -658,5 +658,8 @@
     "patient-download-state-min": "Estado com mais downloads por paciente",
     "patient-download-state-max": "Estado com menos downloads por paciente",
     "product": "Produto",
-    "no-authentication": "Sem autenticação"
+    "no-authentication": "Sem autenticação",
+    "there-is-no-data-to-show": "Não há dados para mostrar",
+    "items-available-for-bonding": "Itens disponíveis para Vinculo",
+    "linked-items": "Itens Vinculados"
 }
