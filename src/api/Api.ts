@@ -6,7 +6,7 @@ export default class Api {
 
     constructor(token: any) {
         this.request = axios.create({
-            timeout: 5000,
+            timeout: 10000,
             headers: {
                 Authorization: `Bearer ${
                     token ?? localStorage.getItem("user.token")

@@ -674,5 +674,11 @@
     "returns-the-patients-dependents": "Returns the patient's dependents",
     "validates-existence-of-the-device-token": "Validates existence of the device token",
     "returns-the-valid-pre-scheduling-limit": "Returns the valid pre-scheduling limit",
-    "returns-valid-pre-scheduling-limit-types": "Returns valid pre-scheduling limit types"
+    "returns-valid-pre-scheduling-limit-types": "Returns valid pre-scheduling limit types",
+    "mark": "Mark",
+    "direct-appointment": "Direct appointment",
+    "select-date": "Select appointment date",
+    "select-hour": "Select appointment time",
+    "parcels": "Parcels",
+    "pre-booking-created": "Booking created"
 }

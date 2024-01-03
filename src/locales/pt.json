@@ -717,5 +717,11 @@
     "returns-the-patients-dependents": "Retorna os dependentes do paciente",
     "validates-existence-of-the-device-token": "Valida existência do token do dispositivo",
     "returns-the-valid-pre-scheduling-limit": "Retorna o limite de pre-agendamento válido",
-    "returns-valid-pre-scheduling-limit-types": "Retorna os tipos de limite de pre-agendamento válidos"
+    "returns-valid-pre-scheduling-limit-types": "Retorna os tipos de limite de pre-agendamento válidos",
+    "mark": "Marcar",
+    "direct-appointment": "Marcar diretamente",
+    "select-date": "Selecione o dia do atendimento",
+    "select-hour": "Selecione o horário do atendimento",
+    "parcels": "Parcelas",
+    "pre-booking-created": "Atendimento marcado"
 }

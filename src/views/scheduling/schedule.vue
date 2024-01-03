@@ -8,6 +8,7 @@ import HeaderAgenda from "./schedule-header.vue";
 import Response from "@/api/Response";
 import ModalPreAgendamento from "./pre-scheduling-modal.vue";
 import { useAppStore } from "@/stores";
+import directScheduling from "./direct-scheduling.vue";
 
 export default {
     components: {
@@ -15,6 +16,7 @@ export default {
         FullCalendar,
         HeaderAgenda,
         ModalPreAgendamento,
+        directScheduling,
     },
     data() {
         return {
@@ -26,6 +28,10 @@ export default {
             // MOSTRAR MODAL, VEM DE EMIT
             modal: false,
             dataAgendarModal: {},
+
+            // consulta direta
+            directSchedule: false,
+            auxHorarios: [],
 
             // INICIALIZACAO FULL CALEDAR
             calendarOptions: {
@@ -138,6 +144,7 @@ export default {
             await this.store.request
                 .pegarDadosApi(`/agendamento/medico/${this.medicoSelect}`)
                 .then((response: any) => {
+                    console.log(response);
                     const hoje = new Date();
                     if (response.status) {
                         const data = response.list;
@@ -159,8 +166,8 @@ export default {
                 });
         },
         async buscarHorariosDisponiveis() {
-            await this.store.request!
-                .pegarDadosApi(`/consulta/medico/${this.medicoSelect}`)
+            await this.store
+                .request!.pegarDadosApi(`/consulta/medico/${this.medicoSelect}`)
                 .then((res: any) => {
                     const hoje = new Date().getTime();
                     res.list.horarios.forEach((element: any) => {
@@ -173,6 +180,8 @@ export default {
                             return;
                         }
                         // SO MOSTRA OS HORARIOS DISPONIVEIS, QUE TENNHAM A DATA MAIOR QUE A ATUAL
+                        //@ts-expect-error
+                        this.auxHorarios.push(element);
 
                         element.horarios.forEach((el: any, index: number) => {
                             if (el.agendamento == null) {
@@ -216,8 +225,8 @@ export default {
 
         /** PROPOSTA DE RETORNO */
         async propostaDeRetorno(pre_agendamento_id: number, arrayDados: any) {
-            await this.store.request!
-                .enviarDadosApi("/pre-agendamento/horarios/cadastro", {
+            await this.store
+                .request!.enviarDadosApi("/pre-agendamento/horarios/cadastro", {
                     pre_agendamento_id: pre_agendamento_id,
                     horarios_agendamento: JSON.stringify(arrayDados),
                 })
@@ -277,7 +286,27 @@ export default {
             </div>
         </div>
         <TransitionGroup name="list">
-            <div class="row" v-if="medicoSelect != 0">
+            <div class="p-2">
+                <button
+                    v-show="medicoSelect != 0"
+                    @click="directSchedule = true"
+                    class="btn btn-dark btn-sm ml-auto">
+                    {{ $t("direct-appointment") }}
+                </button>
+            </div>
+            <!-- MARCAR CONSULTA DIRETAMENTE -->
+            <div v-if="medicoSelect != 0 && directSchedule == true" class="">
+                <directScheduling
+                    @close-direct="directSchedule = false"
+                    :medico="medicoSelect"
+                    :horarios="auxHorarios" />
+            </div>
+            <!-- MARCAR CONSULTA DIRETAMENTE -->
+
+            <!-- CONSULTA VIA AGENDE E PROPOSTA DE HORARIOS -->
+            <div
+                class="row"
+                v-else-if="medicoSelect != 0 && directSchedule == false">
                 <div class="col-12">
                     <HeaderAgenda />
                 </div>
@@ -296,6 +325,8 @@ export default {
                     "
                     @update:fecharModal="fecharModal" />
             </div>
+            <!-- CONSULTA VIA AGENDE E PROPOSTA DE HORARIOS -->
+
             <div class="row" v-else>
                 <div class="col-12 text-center">
                     <p>{{ $t("select-doctor") }}</p>
