@@ -24,6 +24,7 @@ export default {
             store: useAppStore(),
             // MEDICO QUE VEM DO EMIT
             medicoSelect: 0,
+            isLoading: 0,
 
             // MOSTRAR MODAL, VEM DE EMIT
             modal: false,
@@ -144,7 +145,6 @@ export default {
             await this.store.request
                 .pegarDadosApi(`/agendamento/medico/${this.medicoSelect}`)
                 .then((response: any) => {
-                    console.log(response);
                     const hoje = new Date();
                     if (response.status) {
                         const data = response.list;
@@ -198,7 +198,8 @@ export default {
                             }
                         });
                     });
-                });
+                })
+                .finally(() => (this.isLoading = 2));
         },
         /** BUSCAR DADOS DE API */
 
@@ -269,6 +270,7 @@ export default {
     },
     watch: {
         async medicoSelect(novoValor) {
+            this.isLoading = 1;
             this.buscarAgendamentos().then(() => {
                 this.buscarHorariosDisponiveis();
             });
@@ -285,53 +287,61 @@ export default {
                     @update:modelValue="($event) => updateMedico($event)" />
             </div>
         </div>
-        <TransitionGroup name="list">
-            <div class="p-2">
-                <button
-                    v-show="medicoSelect != 0"
-                    @click="directSchedule = true"
-                    class="btn btn-dark btn-sm ml-auto">
-                    {{ $t("direct-appointment") }}
-                </button>
-            </div>
-            <!-- MARCAR CONSULTA DIRETAMENTE -->
-            <div v-if="medicoSelect != 0 && directSchedule == true" class="">
-                <directScheduling
-                    @close-direct="directSchedule = false"
-                    :medico="medicoSelect"
-                    :horarios="auxHorarios" />
-            </div>
-            <!-- MARCAR CONSULTA DIRETAMENTE -->
+        <div v-if="isLoading == 1" class="flex flex-row justify-center">
+            <span
+                class="animate-spin border-4 border-transparent border-l-primary rounded-full w-12 h-12 inline-block align-middle m-auto mb-10"></span>
+        </div>
+        <div v-else>
+            <TransitionGroup name="list">
+                <div class="p-2">
+                    <button
+                        v-show="medicoSelect != 0"
+                        @click="directSchedule = true"
+                        class="btn btn-dark btn-sm ml-auto">
+                        {{ $t("direct-appointment") }}
+                    </button>
+                </div>
+                <!-- MARCAR CONSULTA DIRETAMENTE -->
+                <div
+                    v-if="medicoSelect != 0 && directSchedule == true"
+                    class="">
+                    <directScheduling
+                        @close-direct="directSchedule = false"
+                        :medico="medicoSelect"
+                        :horarios="auxHorarios" />
+                </div>
+                <!-- MARCAR CONSULTA DIRETAMENTE -->
 
-            <!-- CONSULTA VIA AGENDE E PROPOSTA DE HORARIOS -->
-            <div
-                class="row"
-                v-else-if="medicoSelect != 0 && directSchedule == false">
-                <div class="col-12">
-                    <HeaderAgenda />
+                <!-- CONSULTA VIA AGENDA E PROPOSTA DE HORARIOS -->
+                <div
+                    class="row"
+                    v-else-if="medicoSelect != 0 && directSchedule == false">
+                    <div class="col-12">
+                        <HeaderAgenda />
+                    </div>
+                    <div class="col-12 dark:text-white">
+                        <FullCalendar
+                            :options="calendarOptions"
+                            style="z-index: -100"
+                            ref="calendar"></FullCalendar>
+                    </div>
+                    <ModalPreAgendamento
+                        v-if="modal"
+                        :medico="medicoSelect"
+                        :dataAgendar="dataAgendarModal"
+                        @update:modalAgendamento="
+                            ($event) => proporAgendamento($event)
+                        "
+                        @update:fecharModal="fecharModal" />
                 </div>
-                <div class="col-12 dark:text-white">
-                    <FullCalendar
-                        :options="calendarOptions"
-                        style="z-index: -100"
-                        ref="calendar"></FullCalendar>
-                </div>
-                <ModalPreAgendamento
-                    v-if="modal"
-                    :medico="medicoSelect"
-                    :dataAgendar="dataAgendarModal"
-                    @update:modalAgendamento="
-                        ($event) => proporAgendamento($event)
-                    "
-                    @update:fecharModal="fecharModal" />
-            </div>
-            <!-- CONSULTA VIA AGENDE E PROPOSTA DE HORARIOS -->
+                <!-- CONSULTA VIA AGENDE E PROPOSTA DE HORARIOS -->
 
-            <div class="row" v-else>
-                <div class="col-12 text-center">
-                    <p>{{ $t("select-doctor") }}</p>
+                <div class="row" v-else>
+                    <div class="col-12 text-center">
+                        <p>{{ $t("select-doctor") }}</p>
+                    </div>
                 </div>
-            </div>
-        </TransitionGroup>
+            </TransitionGroup>
+        </div>
     </div>
 </template>

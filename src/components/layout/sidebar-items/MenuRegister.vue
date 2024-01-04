@@ -21,7 +21,7 @@ const showTitle = computed(() => {
     <TitleDivision v-if="showTitle" title="register" />
 
     <MenuNavItem>
-        <div v-if="store.checkPermission('secretaria-medico')">
+        <div v-if="store.checkPermission('cadastro-clinica')">
             <NavItem to="/secretary" label="secretary">
                 <IconRegister />
             </NavItem>

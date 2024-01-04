@@ -20,6 +20,7 @@ export default {
             parcelas: 1,
             paciente: {},
             especialidade: -1,
+            especialidades: [],
             encontrada: false,
         };
     },
@@ -62,7 +63,6 @@ export default {
                     }:00`,
                 })
                 .then((res) => {
-                    console.log(res);
                     res.status
                         ? Response.mensagemToast(
                               "success",
@@ -72,7 +72,8 @@ export default {
                               "error",
                               this.$t(res.messageCode),
                           );
-                });
+                })
+                .finally(() => window.location.reload());
         },
         dataParaPadrao(data) {
             return FormatoData.formatarParaPadraoBrasil(data);

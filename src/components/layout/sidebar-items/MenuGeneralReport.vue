@@ -27,7 +27,7 @@ const showTitle = computed(() => {
             </NavItem>
         </div>
 
-        <div v-if="store.checkPermission('medico-agenda')">
+        <div v-if="store.checkPermission('medico-medicos')">
             <NavItem to="/report/appointment" label="appointment">
                 <IconDatatables />
             </NavItem>
