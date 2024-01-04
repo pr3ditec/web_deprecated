@@ -87,6 +87,11 @@ const routes: RouteRecordRaw[] = [
         component: () => import("../views/register/investor/investment-registration.vue"),
     },
     {
+        path: "/investment",
+        name: "Investment",
+        component: () => import("../views/register/investor/investment.vue"),
+    },
+    {
         path: "/approve-investor-registration",
         name: "approve investor registration",
         component: () =>

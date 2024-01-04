@@ -723,5 +723,7 @@
     "select-date": "Selecione o dia do atendimento",
     "select-hour": "Selecione o horário do atendimento",
     "parcels": "Parcelas",
-    "pre-booking-created": "Atendimento marcado"
+    "pre-booking-created": "Atendimento marcado",
+    "investment": "Ivestimento",
+    "invest": "investir"
 }

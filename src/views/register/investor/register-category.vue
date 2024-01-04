@@ -29,7 +29,6 @@ export default {
                 await this.store.request
                     .enviarDadosApi("/invest/categoria", data)
                     .then((res) => {
-                        console.log(res);
                         if (res.status == false) {
                             this.submitBtnDisabled = false;
                             return Response.mensagemErro(
@@ -37,12 +36,6 @@ export default {
                             );
                         } else {
                             Response.mensagemSucesso(this.$t(res.messageCode));
-                            this.$emit(
-                                "updateUserId",
-                                localStorage.getItem("user.id"),
-                            );
-                            this.finalize();
-                            this.$emit("nextTab");
                         }
                     });
             } catch (error) {

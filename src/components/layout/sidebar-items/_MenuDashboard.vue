@@ -17,7 +17,8 @@ const showTitle = computed(() => {
         store.checkPermission("rel-risco-empresarial") ||
         store.checkPermission("gravar-risco-empresarial") ||
         store.checkPermission("cadastro-valor-consulta") ||
-        store.checkPermission("visualizar-todas-parcelas")
+        store.checkPermission("visualizar-todas-parcelas") ||
+        store.checkPermission("aprovar-recusar-investidor")
     );
 });
 </script>
@@ -55,10 +56,12 @@ const showTitle = computed(() => {
             </NavItem>
         </div>
 
-        <NavItem
-            to="/approve-investor-registration"
-            label="approve-investor-registration">
-            <IconComponents />
-        </NavItem>
+        <div v-if="store.checkPermission('aprovar-recusar-investidor')">
+            <NavItem
+                to="/approve-investor-registration"
+                label="approve-investor-registration">
+                <IconComponents />
+            </NavItem>
+        </div>
     </MenuNavItem>
 </template>

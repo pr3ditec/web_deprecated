@@ -680,5 +680,8 @@
     "select-date": "Select appointment date",
     "select-hour": "Select appointment time",
     "parcels": "Parcels",
-    "pre-booking-created": "Booking created"
+    "pre-booking-created": "Booking created",
+    "investment": "Investment",
+    "invest": "invest"
+
 }

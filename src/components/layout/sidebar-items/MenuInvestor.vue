@@ -1,20 +1,13 @@
 <script lang="ts" setup>
-// import { computed } from "vue";
 import { useAppStore } from "@/stores/index";
 import TitleDivision from "@/components/layout/sidebar-items/TitleDivision.vue";
 
 import MenuNavItem from "@/components/layout/navs/MenuNavItem.vue";
 import NavItem from "@/components/layout/navs/NavItem.vue";
 
+import IconInvoice from "@/components/icons/IconInvoice.vue";
 import IconRegister from "@/components/icons/IconRegister.vue";
 const store = useAppStore();
-
-// const showTitle = computed(() => {
-//     return (
-//         store.checkPermission("") ||
-//         store.checkPermission("")
-//     );
-// });
 </script>
 
 <template>
@@ -27,9 +20,19 @@ const store = useAppStore();
             </NavItem>
         </div>
 
-        <div>
-            <NavItem to="/investment-registration" label="investment-registration">
+        <div v-if="store.checkPermission('categoria-investimento')">
+            <NavItem
+                to="/investment-registration"
+                label="investment-registration">
                 <IconRegister />
+            </NavItem>
+        </div>
+
+        <div v-if="store.checkPermission('produtos-itens-investimento')">
+            <NavItem
+                to="/investment"
+                label="investment">
+                <IconInvoice />
             </NavItem>
         </div>
     </MenuNavItem>

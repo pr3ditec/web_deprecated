@@ -47,7 +47,6 @@ export default {
                 await this.store.request
                     .enviarDadosApi("/invest/item", data)
                     .then((res) => {
-                        console.log(res);
                         if (res.status == false) {
                             this.submitBtnDisabled = false;
                             return Response.mensagemErro(
