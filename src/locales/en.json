@@ -716,5 +716,8 @@
     "make-payment-through-galax-return": "Make payment through Galax return",
     "request-password-recovery": "Request password recovery",
     "email-sent": "Email sent",
-    "user-already-requested-password-recovery": "User already requested password recovery"
+    "user-already-requested-password-recovery": "User already requested password recovery",
+    "same-senha-field": "Same senha field",
+    "password-changed": "Password changed",
+    "change-user-password": "Change user password"
 }

@@ -164,12 +164,16 @@ export default {
                     { name: 'paciente_id', type: 'int | null' },
                     { name: 'secretaria_id', type: 'int | null' },
                     { name: 'timezone_id', type: 'int | null' },
-                ]
+                ],
             },
             {
                 status: '400',
-                messages: ['token-not-provided', 'invalid-token', 'token-successfully-verified']
-            }
+                messages: [
+                    'token-not-provided',
+                    'invalid-token',
+                    'token-successfully-verified',
+                ],
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
@@ -189,12 +193,16 @@ export default {
                     { name: 'desenvolvedor_id', type: 'int | null' },
                     { name: 'gestor_id', type: 'int | null' },
                     { name: 'timezone_id', type: 'int | null' },
-                ]
+                ],
             },
             {
                 status: '400',
-                messages: ['token-not-provided', 'invalid-token', 'token-successfully-verified']
-            }
+                messages: [
+                    'token-not-provided',
+                    'invalid-token',
+                    'token-successfully-verified',
+                ],
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
@@ -210,7 +218,7 @@ export default {
                     { name: 'id', type: 'int' },
                     { name: 'nome', type: 'string' },
                 ],
-            }
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
@@ -226,7 +234,7 @@ export default {
                     { name: 'id', type: 'int' },
                     { name: 'descricao', type: 'string' },
                 ],
-            }
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
@@ -251,14 +259,14 @@ export default {
                             { name: 'descricao', type: 'string' },
                             { name: 'message_code', type: 'string' },
                             { name: 'ativo', type: 'int' },
-                        ]
+                        ],
                     },
                 ],
             },
             {
                 status: '400',
                 messages: ['error-when-searching'],
-            }
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
@@ -332,12 +340,17 @@ export default {
                     { name: 'email', type: 'string' },
                     { name: 'nome_mae', type: 'string' },
                     { name: 'nascimento', type: 'string' },
-                ]
+                ],
             },
             {
                 status: '400',
-                messages: ['error-registering-user', 'user-already-exist', 'invalid-cpf', 'email-already-exist'],
-            }
+                messages: [
+                    'error-registering-user',
+                    'user-already-exist',
+                    'invalid-cpf',
+                    'email-already-exist',
+                ],
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
@@ -363,12 +376,17 @@ export default {
                     { name: 'timezone_id', type: 'int' },
                     { name: 'permissoes', type: 'array' },
                     { name: 'tipos_usuario', type: 'array' },
-                ]
+                ],
             },
             {
                 status: '400',
-                messages: ['login-or-password-invalid', 'user-without-type', 'error-recording-app-login', 'error-when-logging-in']
-            }
+                messages: [
+                    'login-or-password-invalid',
+                    'user-without-type',
+                    'error-recording-app-login',
+                    'error-when-logging-in',
+                ],
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
@@ -396,12 +414,17 @@ export default {
                     { name: 'timezone_id', type: 'int' },
                     { name: 'permissoes', type: 'array' },
                     { name: 'tipos_usuario', type: 'array' },
-                ]
+                ],
             },
             {
                 status: '400',
-                messages: ['login-or-password-invalid', 'user-without-type', 'error-recording-app-login', 'error-when-logging-in']
-            }
+                messages: [
+                    'login-or-password-invalid',
+                    'user-without-type',
+                    'error-recording-app-login',
+                    'error-when-logging-in',
+                ],
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
@@ -412,18 +435,21 @@ export default {
         :parameters="[
             { item: 'nome', requests: ['required', 'string'] },
             { item: 'cpf', requests: ['required', 'string'] },
-            { item: 'data_nascimento', requests: ['required', 'date-format-d-m-y'] },
+            {
+                item: 'data_nascimento',
+                requests: ['required', 'date-format-d-m-y'],
+            },
             { item: 'nome_mae', requests: ['required', 'string'] },
         ]"
         :responses="[
-            { 
+            {
                 status: '200',
                 messages: ['valid-cpf'],
             },
             {
                 status: '400',
-                messages: ['invalid-key', 'invalid-data', 'invalid-cpf']
-            }
+                messages: ['invalid-key', 'invalid-data', 'invalid-cpf'],
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
@@ -434,12 +460,16 @@ export default {
         :responses="[
             {
                 status: '200',
-                messages: ['payment-confirmed']
+                messages: ['payment-confirmed'],
             },
             {
                 status: '400',
-                messages: ['payment-type-not-specified', 'error-recording-payment-type', 'error-saving-payment-details']
-            }
+                messages: [
+                    'payment-type-not-specified',
+                    'error-recording-payment-type',
+                    'error-saving-payment-details',
+                ],
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
@@ -448,17 +478,57 @@ export default {
         color="bg-primary"
         details="request-password-recovery"
         :parameters="[
-            { item: 'email', requests: ['required', 'email', 'exists-in-the-table-usuario-email'] },
+            {
+                item: 'email',
+                requests: [
+                    'required',
+                    'email',
+                    'exists-in-the-table-usuario-email',
+                ],
+            },
         ]"
         :responses="[
             {
                 status: '200',
-                messages: ['email-sent']
+                messages: ['email-sent'],
             },
             {
                 status: '400',
-                messages: ['user-already-requested-password-recovery', 'user-not-found', 'error-recovering-password']
-            }
+                messages: [
+                    'user-already-requested-password-recovery',
+                    'user-not-found',
+                    'error-recovering-password',
+                ],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+
+    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b]"></div>
+
+    <DocumentationCard
+        method="PATCH"
+        route="recuperacao-senha/[token]"
+        color="bg-secondary"
+        details="change-user-password"
+        :parameters="[
+            {
+                item: 'senha',
+                requests: ['required', 'min-8-characters'],
+            },
+            {
+                item: 'senha_confirmacao',
+                requests: ['required', 'same-senha-field'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '200',
+                messages: ['password-changed'],
+            },
+            {
+                status: '400',
+                messages: ['invalid-token', 'error-recovering-password'],
+            },
         ]"
         :showDetailsRoute="showDetailsRoute" />
 </template>

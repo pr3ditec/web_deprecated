@@ -759,5 +759,8 @@
     "make-payment-through-galax-return": "Realizar o pagamento atráves do retorno da galax",
     "request-password-recovery": "Solicitar recuperação de senha",
     "email-sent": "E-mail enviado",
-    "user-already-requested-password-recovery": "Usuário já solicitou recuperação de senha"
+    "user-already-requested-password-recovery": "Usuário já solicitou recuperação de senha",
+    "same-senha-field": "Igual campo senha",
+    "password-changed": "Senha alterada",
+    "change-user-password": "Alterar senha do usuário"
 }
