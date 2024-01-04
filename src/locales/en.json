@@ -719,5 +719,10 @@
     "user-already-requested-password-recovery": "User already requested password recovery",
     "same-senha-field": "Same senha field",
     "password-changed": "Password changed",
-    "change-user-password": "Change user password"
+    "change-user-password": "Change user password",
+    "error-when-register": "Error when register",
+    "email-already-registered": "Email already registered",
+    "register-new-contact": "Register new contact",
+    "register-new-newsletter": "Register new newsletter",
+    "success-when-register": "Success when register"
 }

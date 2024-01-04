@@ -503,6 +503,84 @@ export default {
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
+    <DocumentationCard
+        method="POST"
+        route="site/cadastrar/contato"
+        color="bg-primary"
+        details="register-new-contact"
+        :parameters="[
+            {
+                item: 'nome',
+                requests: [
+                    'required',
+                    'string',
+                ],
+            },
+            {
+                item: 'email',
+                requests: [
+                    'required',
+                    'email',
+                ],
+            },
+            {
+                item: 'assunto',
+                requests: [
+                    'required',
+                    'string',
+                ],
+            },
+            {
+                item: 'mensagem',
+                requests: [
+                    'required',
+                    'string',
+                ],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['success-when-register'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-when-register',
+                ],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+
+    <DocumentationCard
+        method="POST"
+        route="site/cadastrar/newsletter"
+        color="bg-primary"
+        details="register-new-newsletter"
+        :parameters="[
+            {
+                item: 'email',
+                requests: [
+                    'required',
+                    'email',
+                ],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['success-when-register'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'email-already-registered',
+                    'error-when-register',
+                ],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+
     <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b]"></div>
 
     <DocumentationCard

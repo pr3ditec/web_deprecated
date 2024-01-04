@@ -762,5 +762,10 @@
     "user-already-requested-password-recovery": "Usuário já solicitou recuperação de senha",
     "same-senha-field": "Igual campo senha",
     "password-changed": "Senha alterada",
-    "change-user-password": "Alterar senha do usuário"
+    "change-user-password": "Alterar senha do usuário",
+    "error-when-register": "Erro ao cadastrar",
+    "email-already-registered": "E-mail já cadastrado",
+    "register-new-contact": "Cadastro novo contato",
+    "register-new-newsletter": "Cadastro novo newsletter",
+    "success-when-register": "Sucesso ao cadastrar"
 }
