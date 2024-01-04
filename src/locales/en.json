@@ -695,6 +695,26 @@
     "validates-whether-the-given-token-exists-for-a-user-and-is-active": "Validates whether the given token exists for a user and is active.",
     "return-all-types-of-registered-pix-for-payment-by-the-doctor": "Return all types of registered pix for payment by the doctor.",
     "returns-all-service-periods-registered-by-the-admin": "Returns all service periods registered by the admin.",
-    "returns-all-questions-and-answers-to-the-investor": "Returns all questions and answers to the investor."
-
+    "returns-all-questions-and-answers-to-the-investor": "Returns all questions and answers to the investor.",
+    "max-14-characters": "Max 14 characters",
+    "one-character": "One character",
+    "min-8-characters": "Min 8 characters",
+    "required": "Required",
+    "email": "Email",
+    "date-format-y-m-d": "Date format: Y-m-d",
+    "date-format-d-m-y": "Date format: d/m/Y",
+    "exists-in-the-table-nacionalidade": "Exists in the table nacionalidade",
+    "exists-in-the-table-clinica": "Exists in the table clinica",
+    "exists-in-the-table-medico": "Exists in the table medico",
+    "exists-in-the-table-timezone": "Exists in the table timezone",
+    "exists-in-the-table-tipo-usuario": "Exists in the table tipo_usuario",
+    "exists-in-the-table-usuario-email": "Exists in the table usuario.email",
+    "register-new-users": "Register new users",
+    "user-login-mobile": "User login app mobile",
+    "user-login-web": "User login web",
+    "validate-whether-the-data-passed-is-from-a-cpf": "Validate whether the data passed is from a CPF",
+    "make-payment-through-galax-return": "Make payment through Galax return",
+    "request-password-recovery": "Request password recovery",
+    "email-sent": "Email sent",
+    "user-already-requested-password-recovery": "User already requested password recovery"
 }

@@ -268,35 +268,197 @@ export default {
         method="POST"
         route="usuario/cadastro"
         color="bg-primary"
+        details="register-new-users"
+        :parameters="[
+            {
+                item: 'nome',
+                requests: ['required'],
+            },
+            {
+                item: 'cpf',
+                requests: ['required', 'max-14-characters'],
+            },
+            {
+                item: 'email',
+                requests: ['email'],
+            },
+            {
+                item: 'password',
+                requests: ['required', 'min-8-characters'],
+            },
+            {
+                item: 'nome_mae',
+                requests: ['required'],
+            },
+            {
+                item: 'nascimento',
+                requests: ['required', 'date-format-y-m-d'],
+            },
+            {
+                item: 'nacionalidade_id',
+                requests: ['required', 'exists-in-the-table-nacionalidade'],
+            },
+            {
+                item: 'clinica_id',
+                requests: ['int', 'exists-in-the-table-clinica'],
+            },
+            {
+                item: 'medico_id',
+                requests: ['int', 'exists-in-the-table-medico'],
+            },
+            {
+                item: 'sexo',
+                requests: ['required', 'one-character', 'M, F, X'],
+            },
+            {
+                item: 'timezone',
+                requests: ['string', 'exists-in-the-table-timezone'],
+            },
+            {
+                item: 'tipo_usuario',
+                requests: ['int', 'exists-in-the-table-tipo-usuario'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['registered-user'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'nacionalidade_id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'cpf', type: 'string' },
+                    { name: 'sexo', type: 'char' },
+                    { name: 'email', type: 'string' },
+                    { name: 'nome_mae', type: 'string' },
+                    { name: 'nascimento', type: 'string' },
+                ]
+            },
+            {
+                status: '400',
+                messages: ['error-registering-user', 'user-already-exist', 'invalid-cpf', 'email-already-exist'],
+            }
+        ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="POST"
         route="app/login"
         color="bg-primary"
+        details="user-login-mobile"
+        :parameters="[
+            { item: 'login', requests: ['required', 'string'] },
+            { item: 'password', requests: ['required', 'string'] },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['login-successfully'],
+                data_return: [
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'cpf', type: 'string' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'token', type: 'string' },
+                    { name: 'medico_id', type: 'int' },
+                    { name: 'paciente_id', type: 'int' },
+                    { name: 'timezone_id', type: 'int' },
+                    { name: 'permissoes', type: 'array' },
+                    { name: 'tipos_usuario', type: 'array' },
+                ]
+            },
+            {
+                status: '400',
+                messages: ['login-or-password-invalid', 'user-without-type', 'error-recording-app-login', 'error-when-logging-in']
+            }
+        ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="POST"
         route="admin/login"
         color="bg-primary"
-        :showDetailsRoute="showDetailsRoute" />
-    <DocumentationCard
-        method="POST"
-        route="endereco/tipo"
-        color="bg-primary"
-        :showDetailsRoute="showDetailsRoute" />
-    <DocumentationCard
-        method="POST"
-        route="telefone/tipo"
-        color="bg-primary"
+        details="user-login-web"
+        :parameters="[
+            { item: 'login', requests: ['required', 'string'] },
+            { item: 'password', requests: ['required', 'string'] },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['login-successfully'],
+                data_return: [
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'cpf', type: 'string' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'token', type: 'string' },
+                    { name: 'medico_id', type: 'int' },
+                    { name: 'secretaria_id', type: 'int' },
+                    { name: 'desenvolvedor_id', type: 'int' },
+                    { name: 'gestor_id', type: 'int' },
+                    { name: 'timezone_id', type: 'int' },
+                    { name: 'permissoes', type: 'array' },
+                    { name: 'tipos_usuario', type: 'array' },
+                ]
+            },
+            {
+                status: '400',
+                messages: ['login-or-password-invalid', 'user-without-type', 'error-recording-app-login', 'error-when-logging-in']
+            }
+        ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="POST"
         route="cpf"
         color="bg-primary"
+        details="validate-whether-the-data-passed-is-from-a-cpf"
+        :parameters="[
+            { item: 'nome', requests: ['required', 'string'] },
+            { item: 'cpf', requests: ['required', 'string'] },
+            { item: 'data_nascimento', requests: ['required', 'date-format-d-m-y'] },
+            { item: 'nome_mae', requests: ['required', 'string'] },
+        ]"
+        :responses="[
+            { 
+                status: '200',
+                messages: ['valid-cpf'],
+            },
+            {
+                status: '400',
+                messages: ['invalid-key', 'invalid-data', 'invalid-cpf']
+            }
+        ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="POST"
         route="galax/pagamento"
         color="bg-primary"
+        details="make-payment-through-galax-return"
+        :responses="[
+            {
+                status: '200',
+                messages: ['payment-confirmed']
+            },
+            {
+                status: '400',
+                messages: ['payment-type-not-specified', 'error-recording-payment-type', 'error-saving-payment-details']
+            }
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="recuperacao-senha"
+        color="bg-primary"
+        details="request-password-recovery"
+        :parameters="[
+            { item: 'email', requests: ['required', 'email', 'exists-in-the-table-usuario-email'] },
+        ]"
+        :responses="[
+            {
+                status: '200',
+                messages: ['email-sent']
+            },
+            {
+                status: '400',
+                messages: ['user-already-requested-password-recovery', 'user-not-found', 'error-recovering-password']
+            }
+        ]"
         :showDetailsRoute="showDetailsRoute" />
 </template>

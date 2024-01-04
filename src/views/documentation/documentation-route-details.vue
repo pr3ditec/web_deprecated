@@ -173,6 +173,7 @@ export default {
                             type="button"
                             class="p-4 w-full flex items-center text-white-dark"
                             :class="{
+                                'underline': item.requests.includes('required'),
                                 '!text-primary': subAccordians === item.item,
                             }"
                             @click="
@@ -207,7 +208,7 @@ export default {
                                 class="p-4 pl-10 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]"
                                 v-for="requests in item.requests"
                                 :key="requests">
-                                {{ requests }}
+                                {{ $t(requests) }}
                             </div>
                         </vue-collapsible>
                     </div>

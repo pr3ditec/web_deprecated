@@ -2105,11 +2105,14 @@ export default {
                 data_return: [
                     { name: 'id', type: 'int' },
                     { name: 'desconto', type: 'float' },
-                ]
+                ],
             },
             {
                 status: '400',
-                messages: ['medical-discount-not-found', 'error-when-searching'],
+                messages: [
+                    'medical-discount-not-found',
+                    'error-when-searching',
+                ],
             },
             {
                 status: '401',
@@ -2139,9 +2142,9 @@ export default {
                             { name: 'tipo_usuario_id', type: 'int' },
                             { name: 'permissao_id', type: 'int' },
                             { name: 'ativo', type: 'int' },
-                        ]
+                        ],
                     },
-                ]
+                ],
             },
             {
                 status: '400',
@@ -2175,9 +2178,9 @@ export default {
                             { name: 'tipo_usuario_id', type: 'int' },
                             { name: 'permissao_id', type: 'int' },
                             { name: 'ativo', type: 'int' },
-                        ]
+                        ],
                     },
-                ]
+                ],
             },
             {
                 status: '400',
@@ -2201,7 +2204,13 @@ export default {
             },
             {
                 status: '400',
-                messages: ['api-key-not-found', 'uf-not-registered', 'unable-to-verify-crm-validity', 'invalid-crm', 'crm-does-not-have-the-same-name-as-the-person-who-requested-it'],
+                messages: [
+                    'api-key-not-found',
+                    'uf-not-registered',
+                    'unable-to-verify-crm-validity',
+                    'invalid-crm',
+                    'crm-does-not-have-the-same-name-as-the-person-who-requested-it',
+                ],
             },
             {
                 status: '401',
@@ -2229,13 +2238,16 @@ export default {
                         data_item: [
                             { name: 'numero', type: 'string' },
                             { name: 'tipo_documento', type: 'string' },
-                        ]
+                        ],
                     },
-                ]
+                ],
             },
             {
                 status: '400',
-                messages: ['dependents-not-found', 'error-in-searching-dependents'],
+                messages: [
+                    'dependents-not-found',
+                    'error-in-searching-dependents',
+                ],
             },
             {
                 status: '401',
@@ -2277,11 +2289,14 @@ export default {
                     { name: 'tipo_limite', type: 'string' },
                     { name: 'valor', type: 'float' },
                     { name: 'created_at', type: 'string' },
-                ]
+                ],
             },
             {
                 status: '400',
-                messages: ['error-when-searching', 'limit-pre-scheduling-not-found'],
+                messages: [
+                    'error-when-searching',
+                    'limit-pre-scheduling-not-found',
+                ],
             },
             {
                 status: '401',
@@ -2302,11 +2317,14 @@ export default {
                     { name: 'id', type: 'int' },
                     { name: 'descricao', type: 'string' },
                     { name: 'ativo', type: 'int' },
-                ]
+                ],
             },
             {
                 status: '400',
-                messages: ['error-when-searching', 'limit-pre-scheduling-not-found'],
+                messages: [
+                    'error-when-searching',
+                    'limit-pre-scheduling-not-found',
+                ],
             },
             {
                 status: '401',
@@ -2326,7 +2344,7 @@ export default {
                 data_return: [
                     { name: 'id', type: 'int' },
                     { name: 'descricao', type: 'string' },
-                ]
+                ],
             },
             {
                 status: '401',
@@ -2346,7 +2364,7 @@ export default {
                 data_return: [
                     { name: 'id', type: 'int' },
                     { name: 'descricao', type: 'string' },
-                ]
+                ],
             },
             {
                 status: '401',
@@ -2487,6 +2505,16 @@ export default {
                 messages: ['without-authorization'],
             },
         ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="endereco/tipo"
+        color="bg-primary"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="telefone/tipo"
+        color="bg-primary"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="POST"
