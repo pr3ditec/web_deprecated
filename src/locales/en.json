@@ -682,6 +682,19 @@
     "parcels": "Parcels",
     "pre-booking-created": "Booking created",
     "investment": "Investment",
-    "invest": "invest"
+    "invest": "invest",
+    "returns-all-recorded-timezones": "Returns all recorded timezones",
+    "search-for-the-timezone-based-on-the-zip-code": "Search for the timezone based on the zip code.",
+    "returns-all-registered-states": "Returns all registered states",
+    "returns-all-registered-cities": "Returns all registered cities",
+    "returns-all-cities-in-a-state": "Returns all cities in a state",
+    "returns-all-types-of-registered-addresses": "Returns all types of registered addresses",
+    "show-all-registered-phone-types": "Show all registered phone types",
+    "validate-that-the-past-zip-code-exists-and-return-the-zip-code-data": "Validate that the past zip code exists and return the zip code data",
+    "return-all-registered-nationalities": "Return all registered nationalities",
+    "validates-whether-the-given-token-exists-for-a-user-and-is-active": "Validates whether the given token exists for a user and is active.",
+    "return-all-types-of-registered-pix-for-payment-by-the-doctor": "Return all types of registered pix for payment by the doctor.",
+    "returns-all-service-periods-registered-by-the-admin": "Returns all service periods registered by the admin.",
+    "returns-all-questions-and-answers-to-the-investor": "Returns all questions and answers to the investor."
 
 }

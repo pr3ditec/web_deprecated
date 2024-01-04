@@ -725,5 +725,18 @@
     "parcels": "Parcelas",
     "pre-booking-created": "Atendimento marcado",
     "investment": "Ivestimento",
-    "invest": "investir"
+    "invest": "investir",
+    "returns-all-recorded-timezones": "Retorna todos os timezones gravados",
+    "search-for-the-timezone-based-on-the-zip-code": "Buscar o timezone à partir do CEP.",
+    "returns-all-registered-states": "Retorna todos os estados cadastrados",
+    "returns-all-registered-cities": "Retorna todos as cidades cadastrados",
+    "returns-all-cities-in-a-state": "Retorna todas as cidades de um estado",
+    "returns-all-types-of-registered-addresses": "Retorna todos os tipos de endereço cadastrado",
+    "show-all-registered-phone-types": "Mostrar todos os tipos de telefone cadastrado",
+    "validate-that-the-past-zip-code-exists-and-return-the-zip-code-data": "Validar se o CEP passado existe e retornar os dados do CEP",
+    "return-all-registered-nationalities": "Retornar todas as nacionalidades cadastradas",
+    "validates-whether-the-given-token-exists-for-a-user-and-is-active": "Valida se o token informado existe para um usuário e está ativo.",
+    "return-all-types-of-registered-pix-for-payment-by-the-doctor": "Retorno todos os tipos de pix cadastrados para pagamento do médico.",
+    "returns-all-service-periods-registered-by-the-admin": "Retorna todos os períodos de atendimento cadastrados pelo admin.",
+    "returns-all-questions-and-answers-to-the-investor": "Retorna todas as perguntas e respostas para o investidor."
 }

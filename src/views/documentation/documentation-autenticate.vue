@@ -22,13 +22,13 @@ export default {
                 status: '200',
                 messages: ['user-data'],
                 data_return: [
-                    { name: 'id', type: 'integer' },
+                    { name: 'id', type: 'int' },
                     { name: 'nome', type: 'string' },
                     { name: 'cpf', type: 'string' },
                     { name: 'nascimento', type: 'string (format Y-m-d)' },
                     { name: 'sexo', type: 'string' },
                     { name: 'email', type: 'string' },
-                    { name: 'nacionalidade_id', type: 'integer' },
+                    { name: 'nacionalidade_id', type: 'int' },
                     { name: 'nacionalidade', type: 'string' },
                     { name: 'nome_mae', type: 'string' },
                 ],
@@ -53,13 +53,13 @@ export default {
                 status: '200',
                 messages: ['user-data'],
                 data_return: [
-                    { name: 'id', type: 'integer' },
+                    { name: 'id', type: 'int' },
                     { name: 'nome', type: 'string' },
                     { name: 'cpf', type: 'string' },
                     { name: 'nascimento', type: 'string (format Y-m-d)' },
                     { name: 'sexo', type: 'string' },
                     { name: 'email', type: 'string' },
-                    { name: 'nacionalidade_id', type: 'integer' },
+                    { name: 'nacionalidade_id', type: 'int' },
                     { name: 'nacionalidade', type: 'string' },
                     { name: 'nome_mae', type: 'string' },
                     { name: 'endereco_medico', type: 'string | null' },
@@ -107,9 +107,9 @@ export default {
                 status: '200',
                 messages: ['timezone-of-user'],
                 data_return: [
-                    { name: 'id', type: 'integer' },
-                    { name: 'usuario_id', type: 'integer' },
-                    { name: 'timezone_id', type: 'integer' },
+                    { name: 'id', type: 'int' },
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'timezone_id', type: 'int' },
                     { name: 'timezone', type: 'string' },
                 ],
             },
@@ -156,13 +156,13 @@ export default {
                 status: '200',
                 messages: ['data-recovered-successfully'],
                 data_return: [
-                    { name: 'id', type: 'integer' },
+                    { name: 'id', type: 'int' },
                     { name: 'nome', type: 'string' },
                     { name: 'cpf', type: 'string' },
                     { name: 'nascimento', type: 'string (format Y-m-d)' },
                     { name: 'sexo', type: 'string' },
                     { name: 'email', type: 'string' },
-                    { name: 'nacionalidade_id', type: 'integer' },
+                    { name: 'nacionalidade_id', type: 'int' },
                     { name: 'nacionalidade', type: 'string' },
                     { name: 'nome_mae', type: 'string' },
                     { name: 'endereco_paciente', type: 'string | null' },
@@ -2307,6 +2307,46 @@ export default {
             {
                 status: '400',
                 messages: ['error-when-searching', 'limit-pre-scheduling-not-found'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="endereco/tipo"
+        color="bg-success"
+        details="returns-all-types-of-registered-addresses"
+        :responses="[
+            {
+                status: '200',
+                messages: ['address-types'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'descricao', type: 'string' },
+                ]
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="telefone/tipo"
+        color="bg-success"
+        details="show-all-registered-phone-types"
+        :responses="[
+            {
+                status: '200',
+                messages: ['phone-types'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'descricao', type: 'string' },
+                ]
             },
             {
                 status: '401',
