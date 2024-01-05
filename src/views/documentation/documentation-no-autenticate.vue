@@ -4,6 +4,10 @@ import DocumentationCard from "@/components/layout/documentation/DocumentationCa
 export default {
     props: {
         showDetailsRoute: Function,
+        autenticate: {
+            type: Boolean,
+            default: false,
+        },
     },
     components: {
         DocumentationCard,
@@ -17,6 +21,7 @@ export default {
         route="timezone"
         color="bg-success"
         details="returns-all-recorded-timezones"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -33,6 +38,7 @@ export default {
         route="timezone/cep/[cep]"
         color="bg-success"
         details="search-for-the-timezone-based-on-the-zip-code"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -53,6 +59,7 @@ export default {
         route="unidades-federativas"
         color="bg-success"
         details="returns-all-registered-states"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -70,6 +77,7 @@ export default {
         route="cidade"
         color="bg-success"
         details="returns-all-registered-cities"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -88,6 +96,7 @@ export default {
         route="cidade/[estadoId]"
         color="bg-success"
         details="returns-all-cities-in-a-state"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -106,6 +115,7 @@ export default {
         route="endereco/cep/[cep]"
         color="bg-success"
         details="validate-that-the-past-zip-code-exists-and-return-the-zip-code-data"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -137,6 +147,7 @@ export default {
         route="nacionalidade"
         color="bg-success"
         details="return-all-registered-nationalities"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -153,6 +164,7 @@ export default {
         route="app/token/verificar"
         color="bg-success"
         details="validates-whether-the-given-token-exists-for-a-user-and-is-active"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -181,6 +193,7 @@ export default {
         route="admin/token/verificar"
         color="bg-success"
         details="validates-whether-the-given-token-exists-for-a-user-and-is-active"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -210,6 +223,7 @@ export default {
         route="tipo-pix"
         color="bg-success"
         details="return-all-types-of-registered-pix-for-payment-by-the-doctor"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -226,6 +240,7 @@ export default {
         route="periodo-atendimento"
         color="bg-success"
         details="returns-all-service-periods-registered-by-the-admin"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -242,6 +257,7 @@ export default {
         route="perguntas-investidor"
         color="bg-success"
         details="returns-all-questions-and-answers-to-the-investor"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -327,6 +343,7 @@ export default {
                 requests: ['int', 'exists-in-the-table-tipo-usuario'],
             },
         ]"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '201',
@@ -362,6 +379,7 @@ export default {
             { item: 'login', requests: ['required', 'string'] },
             { item: 'password', requests: ['required', 'string'] },
         ]"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '201',
@@ -398,6 +416,7 @@ export default {
             { item: 'login', requests: ['required', 'string'] },
             { item: 'password', requests: ['required', 'string'] },
         ]"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '201',
@@ -441,6 +460,7 @@ export default {
             },
             { item: 'nome_mae', requests: ['required', 'string'] },
         ]"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -457,6 +477,7 @@ export default {
         route="galax/pagamento"
         color="bg-primary"
         details="make-payment-through-galax-return"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -487,6 +508,7 @@ export default {
                 ],
             },
         ]"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -538,6 +560,7 @@ export default {
                 ],
             },
         ]"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '201',
@@ -566,6 +589,7 @@ export default {
                 ],
             },
         ]"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '201',
@@ -598,6 +622,7 @@ export default {
                 requests: ['required', 'same-senha-field'],
             },
         ]"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',

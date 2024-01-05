@@ -14,6 +14,10 @@ export default {
             type: String,
             default: "",
         },
+        header: {
+            type: Array,
+            default: [],
+        },
         parameters: {
             type: Array,
             default: [],
@@ -45,6 +49,10 @@ export default {
         responseSubItemAccordians: {
             type: Number,
             default: 1,
+        },
+        autenticate: {
+            type: Boolean,
+            default: true,
         },
     },
     methods: {
@@ -78,7 +86,7 @@ export default {
         },
         routeLength() {
             return this.route.length;
-        }
+        },
     },
 };
 </script>
@@ -134,7 +142,7 @@ export default {
                     </div>
                 </vue-collapsible>
             </div>
-            <div class="border border-[#d3d3d3] dark:border-[#1b2e4b] rounded">
+            <div class="border border-[#d3d3d3] dark:border-[#1b2e4b] rounded" v-show="autenticate">
                 <button
                     type="button"
                     class="p-4 w-full flex items-center text-white-dark"
@@ -146,7 +154,7 @@ export default {
                             ? (accordians = null)
                             : (accordians = 2)
                     ">
-                    <span class="uppercase font-bold">Body Params</span>
+                    <span class="uppercase font-bold">Header</span>
                     <div
                         class="ltr:ml-auto rtl:mr-auto"
                         :class="{
@@ -169,6 +177,51 @@ export default {
                     </div>
                 </button>
                 <vue-collapsible :isOpen="accordians === 2">
+                    <div
+                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]">
+                        Authorization
+                    </div>
+                    <div
+                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]">
+                        Origin-Request
+                    </div>
+                </vue-collapsible>
+            </div>
+            <div class="border border-[#d3d3d3] dark:border-[#1b2e4b] rounded">
+                <button
+                    type="button"
+                    class="p-4 w-full flex items-center text-white-dark"
+                    :class="{
+                        '!text-primary': accordians === 3,
+                    }"
+                    @click="
+                        accordians === 3
+                            ? (accordians = null)
+                            : (accordians = 3)
+                    ">
+                    <span class="uppercase font-bold">Body Params</span>
+                    <div
+                        class="ltr:ml-auto rtl:mr-auto"
+                        :class="{
+                            'rotate-180': accordians === 3,
+                        }">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-4 h-4">
+                            <path
+                                d="M19 9L12 15L5 9"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </button>
+                <vue-collapsible :isOpen="accordians === 3">
                     <div
                         class="p-2 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]"
                         v-if="parameters.length != 0"
@@ -231,18 +284,18 @@ export default {
                     type="button"
                     class="p-4 w-full flex items-center text-white-dark"
                     :class="{
-                        '!text-primary': accordians === 3,
+                        '!text-primary': accordians === 4,
                     }"
                     @click="
-                        accordians === 3
+                        accordians === 4
                             ? (accordians = null)
-                            : (accordians = 3)
+                            : (accordians = 4)
                     ">
                     <span class="uppercase font-bold">Response</span>
                     <div
                         class="ltr:ml-auto rtl:mr-auto"
                         :class="{
-                            'rotate-180': accordians === 3,
+                            'rotate-180': accordians === 4,
                         }">
                         <svg
                             width="24"
@@ -260,7 +313,7 @@ export default {
                         </svg>
                     </div>
                 </button>
-                <vue-collapsible :isOpen="accordians === 3">
+                <vue-collapsible :isOpen="accordians === 4">
                     <div
                         class="p-2 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]"
                         v-for="item in responses"

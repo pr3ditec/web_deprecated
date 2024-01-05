@@ -18,6 +18,7 @@ export default {
             searchText: "",
             route: "",
             details: "",
+            autenticate: true,
             parameters: [],
             responses: [],
         };
@@ -31,35 +32,48 @@ export default {
                 routeClass.scrollIntoView();
             }
         },
-        showDetailsRoute(route, details, parameters, responses) {
+        showDetailsRoute(route, details, parameters, responses, autenticate) {
             this.detailsRoute = true;
             this.route = route;
             this.details = details;
             this.parameters = parameters;
             this.responses = responses;
             this.isShowMailMenu = !this.isShowMailMenu;
+            this.autenticate = autenticate;
         },
         searchRoute() {
             let routes = document.getElementsByClassName("documentation-route");
-            let divideRoutes = document.getElementsByClassName("divider-routes");
+            let divideRoutes =
+                document.getElementsByClassName("divider-routes");
             let routeClass = document.querySelector(".route-class");
 
             for (let i = 0; i < routes.length; i++) {
                 let route = routes[i];
                 let routeLower = route.textContent?.toLowerCase();
 
-                if (routeLower && routeLower.indexOf(this.searchText.toLowerCase()) !== -1) {
-                    if (this.selectedTab != 'autenticate' && this.selectedTab != 'no-autenticate') {
-                        this.selectedTab = 'admin';
+                if (
+                    routeLower &&
+                    routeLower.indexOf(this.searchText.toLowerCase()) !== -1
+                ) {
+                    if (
+                        this.selectedTab != "autenticate" &&
+                        this.selectedTab != "no-autenticate"
+                    ) {
+                        this.selectedTab = "admin";
                     }
 
-                    route.parentElement?.parentElement?.classList.remove("hidden");
+                    route.parentElement?.parentElement?.classList.remove(
+                        "hidden",
+                    );
                     if (divideRoutes[i]) {
                         divideRoutes[i].classList.remove("hidden");
                     }
                 } else {
-                    if (this.selectedTab != 'autenticate' && this.selectedTab != 'no-autenticate') {
-                        this.selectedTab = 'all';
+                    if (
+                        this.selectedTab != "autenticate" &&
+                        this.selectedTab != "no-autenticate"
+                    ) {
+                        this.selectedTab = "all";
                     }
 
                     route.parentElement?.parentElement?.classList.add("hidden");
@@ -72,7 +86,7 @@ export default {
             if (routeClass) {
                 routeClass.scrollIntoView();
             }
-        }
+        },
     },
 };
 </script>
@@ -88,8 +102,8 @@ export default {
                 class="panel xl:block p-4 dark:gray-50 w-[350px] max-w-full flex-none space-y-3 xl:relative absolute z-10 xl:h-auto hidden ltr:xl:rounded-r-md ltr:rounded-r-none rtl:xl:rounded-l-md rtl:rounded-l-none overflow-hidden"
                 :class="{ '!block': isShowMailMenu }">
                 <div class="flex flex-col h-full">
-                    <div class="space-y-1">
-                        <div class="relative group space-y-1">
+                    <div class="space-y-1 mb-2">
+                        <div class="relative group space-y-1 mb-1">
                             <input
                                 type="text"
                                 placeholder="Search Routes"
@@ -199,6 +213,10 @@ export default {
                             </div>
                         </button>
                     </div>
+
+                    <div
+                        class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b]"></div>
+
                     <perfect-scrollbar
                         :options="{
                             swipeEasing: true,
@@ -206,12 +224,14 @@ export default {
                         }"
                         class="relative ltr:pr-3.5 rtl:pl-3.5 ltr:-mr-3.5 rtl:-ml-3.5 h-full grow">
                         <div class="space-y-1">
-                            <div
-                                class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] route-class"></div>
+                            <div class="route-class"></div>
 
                             <Transition>
                                 <div
-                                    v-show="selectedTab === 'autenticate' || selectedTab === 'all'"
+                                    v-show="
+                                        selectedTab === 'autenticate' ||
+                                        selectedTab === 'all'
+                                    "
                                     class="flex flex-col gap-5 mt-4">
                                     <DocumentationAutenticate
                                         :showDetailsRoute="showDetailsRoute" />
@@ -219,7 +239,10 @@ export default {
                             </Transition>
                             <Transition>
                                 <div
-                                    v-show="selectedTab === 'no-autenticate' || selectedTab === 'all'"
+                                    v-show="
+                                        selectedTab === 'no-autenticate' ||
+                                        selectedTab === 'all'
+                                    "
                                     class="flex flex-col gap-5 mt-4">
                                     <DocumentationNoAutenticate
                                         :showDetailsRoute="showDetailsRoute" />
@@ -277,6 +300,7 @@ export default {
                             :route="route"
                             :details="details"
                             :parameters="parameters"
+                            :autenticate="autenticate"
                             :responses="responses" />
                     </div>
                 </TransitionGroup>

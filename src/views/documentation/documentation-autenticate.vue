@@ -4,6 +4,10 @@ import DocumentationCard from "@/components/layout/documentation/DocumentationCa
 export default {
     props: {
         showDetailsRoute: Function,
+        autenticate: {
+            type: Boolean,
+            default: true,
+        },
     },
     components: {
         DocumentationCard,
@@ -17,6 +21,7 @@ export default {
         route="usuario"
         color="bg-success"
         details="returns-data-for-all-users"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -48,6 +53,7 @@ export default {
         route="usuario/[usuarioId]"
         color="bg-success"
         details="returns-user-data"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -102,6 +108,7 @@ export default {
         route="usuario/timezone/[usuarioId]"
         color="bg-success"
         details="returns-the-users-timezone"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -128,6 +135,7 @@ export default {
         route="documento/[usuarioId]"
         color="bg-success"
         details="validate-whether-the-user-sent-documents-and-selfie"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -151,6 +159,7 @@ export default {
         route="paciente"
         color="bg-success"
         details="returns-all-registered-patients"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -194,6 +203,7 @@ export default {
         route="paciente/[usuarioId]"
         color="bg-success"
         details="returns-patient-data"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -257,6 +267,7 @@ export default {
         route="busca/paciente/cpf/[cpf]"
         color="bg-success"
         details="returns-patient-data-by-cpf"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -320,6 +331,7 @@ export default {
         route="pre-agendamento/paciente/[pacienteId]"
         color="bg-success"
         details="returns-patient-pre-appointments"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -390,6 +402,7 @@ export default {
         route="medico"
         color="bg-success"
         details="searches-all-doctors-except-the-one-connected"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -457,6 +470,7 @@ export default {
         route="medico/[medicoId]"
         color="bg-success"
         details="search-for-doctors-details"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -570,6 +584,7 @@ export default {
         route="medico/cpf/[cpf]"
         color="bg-success"
         details="search-medical-data-using-cpf"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -683,6 +698,7 @@ export default {
         route="medico/crm/[crm]"
         color="bg-success"
         details="search-medical-data-using-crm"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -796,6 +812,7 @@ export default {
         route="medico/endereco/clinica/[latitude]/[longitude]"
         color="bg-success"
         details="search-doctor-data-by-clinic-address"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -906,6 +923,7 @@ export default {
         route="medico/especialidade/[medicoId]"
         color="bg-success"
         details="returns-the-doctors-active-specialties"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -930,6 +948,7 @@ export default {
         route="medico/clinica/[medicoId]"
         color="bg-success"
         details="returns-all-doctors-clinics"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -956,6 +975,7 @@ export default {
         route="medico/clinica/secretaria"
         color="bg-success"
         details="doctors-linked-to-a-secretary-return"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -981,6 +1001,7 @@ export default {
         route="medico/clinica/secretaria/[secretariaId]"
         color="bg-success"
         details="return-doctors-with-ties-to-the-secretary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1006,6 +1027,7 @@ export default {
         route="financeiro/medico/pagamento/tipo"
         color="bg-success"
         details="returns-the-doctors-payment-types"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1026,6 +1048,7 @@ export default {
         route="pre-agendamento/medico/[medicoId]"
         color="bg-success"
         details="returns-all-doctor-pre-appointments"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1095,6 +1118,7 @@ export default {
         route="clinica/medico/[medicoId]"
         color="bg-success"
         details="returns-clinic-requests-pending-physician-approval"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1120,6 +1144,7 @@ export default {
         route="consulta/medico/[medicoId]"
         color="bg-success"
         details="returns-the-doctors-available-opening-hours"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1183,6 +1208,7 @@ export default {
         route="consulta/valor/[medicoId]/[especialidadeId]"
         color="bg-success"
         details="return-the-value-of-the-doctors-consultation"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1218,6 +1244,7 @@ export default {
         route="secretaria/[cpf]"
         color="bg-success"
         details="returns-secretary-data"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1243,6 +1270,7 @@ export default {
         route="secretaria/medico/[secretariaId]"
         color="bg-success"
         details="returns-doctors-link-requests-to-the-secretary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1272,6 +1300,7 @@ export default {
         route="tipo-pagamento"
         color="bg-success"
         details="returns-all-available-payment-types"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1292,6 +1321,7 @@ export default {
         route="financeiro/medico/[medicoId]"
         color="bg-success"
         details="returns-the-doctors-financial-data"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1320,6 +1350,7 @@ export default {
         route="financeiro/medico/[medicoId]/[dataInicial]/[dataFinal]"
         color="bg-success"
         details="returns-the-doctors-financial-data"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1348,6 +1379,7 @@ export default {
         route="status/agenda"
         color="bg-success"
         details="returns-agenda-status"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1372,6 +1404,7 @@ export default {
         route="agenda/[pacienteId]"
         color="bg-success"
         details="returns-the-patients-schedules"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1415,6 +1448,7 @@ export default {
         route="agendamento/medico/[medicoId]"
         color="bg-success"
         details="returns-doctors-appointments"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1471,6 +1505,7 @@ export default {
         route="vencimentos-disponiveis"
         color="bg-success"
         details="returns-the-available-due-dates"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1496,6 +1531,7 @@ export default {
         route="pre-agendamento/agenda/[agendaId]"
         color="bg-success"
         details="returns-the-pre-scheduling-of-the-agenda"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1527,6 +1563,7 @@ export default {
         route="relatorio/risco-empresarial/[DataInicial]/[DataFinal]"
         color="bg-success"
         details="returns-data-from-the-enterprise-risk-report"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1594,6 +1631,7 @@ export default {
         route="especialidades/disponiveis"
         color="bg-success"
         details="returns-available-specialties"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1614,6 +1652,7 @@ export default {
         route="especialidades/medicos/[especialidadeId]"
         color="bg-success"
         details="specialty-doctors-return"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1647,6 +1686,7 @@ export default {
         route="limite-confirmacao-agendamento"
         color="bg-success"
         details="returns-the-minimum-time-to-generate-the-token-for-service"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1674,6 +1714,7 @@ export default {
         route="categoria-agenda/todas"
         color="bg-success"
         details="returns-all-calendar-categories"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1701,6 +1742,7 @@ export default {
         route="categoria-agenda/medico/[medicoId]"
         color="bg-success"
         details="returns-all-doctors-schedule-categories"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1726,6 +1768,7 @@ export default {
         route="categoria-agenda/especialidade/[especialidadeId]"
         color="bg-success"
         details="returns-all-specialty-agenda-categories"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1751,6 +1794,7 @@ export default {
         route="categoria-agenda/medico/especialidade/[medicoId]/[especialidadeId]"
         color="bg-success"
         details="returns-all-categories-of-the-doctors-agenda-with-specialty-specialty"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1776,6 +1820,7 @@ export default {
         route="paciente/financeiro/[pacienteId]"
         color="bg-success"
         details="returns-the-patients-finances"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1885,6 +1930,7 @@ export default {
         route="historico-notificacao/[usuarioId]"
         color="bg-success"
         details="returns-the-users-notification-history"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1914,6 +1960,7 @@ export default {
         route="atendimento/medico/[medicoId]"
         color="bg-success"
         details="return-doctors-care"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1941,6 +1988,7 @@ export default {
         route="atendimento/paciente/[pacienteId]"
         color="bg-success"
         details="returns-patient-care"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1968,6 +2016,7 @@ export default {
         route="maximo-parcelamento"
         color="bg-success"
         details="returns-the-maximum-active-installment"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -1993,6 +2042,7 @@ export default {
         route="risco-empresarial"
         color="bg-success"
         details="returns-active-enterprise-risk"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2021,6 +2071,7 @@ export default {
         route="risco-empresarial/[estadoId]"
         color="bg-success"
         details="returns-the-states-active-business-risk"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2046,6 +2097,7 @@ export default {
         route="admin/secretaria/agendamento"
         color="bg-success"
         details="returns-available-deadlines-for-scheduling-the-secretary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2073,6 +2125,7 @@ export default {
         route="admin/secretaria/categoria/agendamento"
         color="bg-success"
         details="returns-categories-available-for-secretary-scheduling"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2098,6 +2151,7 @@ export default {
         route="desconto/medico"
         color="bg-success"
         details="returns-the-registered-medical-discount"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2125,6 +2179,7 @@ export default {
         route="permissao"
         color="bg-success"
         details="returns-all-active-permissions"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2161,6 +2216,7 @@ export default {
         route="permissao/[permissaoId]"
         color="bg-success"
         details="returns-permission-data"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2197,6 +2253,7 @@ export default {
         route="crm/[usuarioId]/[crm]/[uf]"
         color="bg-success"
         details="validate-crm-user"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2223,6 +2280,7 @@ export default {
         route="paciente/dependente/[pacienteId]"
         color="bg-success"
         details="returns-the-patients-dependents"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2260,6 +2318,7 @@ export default {
         route="dispositivo/admin/token/[token]"
         color="bg-success"
         details="validates-existence-of-the-device-token"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2280,6 +2339,7 @@ export default {
         route="limite-pre-agendamento"
         color="bg-success"
         details="returns-the-valid-pre-scheduling-limit"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2309,6 +2369,7 @@ export default {
         route="tipo-limite-pre-agendamento"
         color="bg-success"
         details="returns-valid-pre-scheduling-limit-types"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2337,6 +2398,7 @@ export default {
         route="endereco/tipo"
         color="bg-success"
         details="returns-all-types-of-registered-addresses"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2357,6 +2419,7 @@ export default {
         route="telefone/tipo"
         color="bg-success"
         details="show-all-registered-phone-types"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '200',
@@ -2373,13 +2436,15 @@ export default {
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
-    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
+    <div
+        class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
 
     <DocumentationCard
         method="POST"
         route="usuario/timezone"
         color="bg-primary"
         details="register-the-users-timezone"
+        :autenticate=autenticate
         :parameters="[
             {
                 item: 'timezone_id',
@@ -2387,6 +2452,14 @@ export default {
             },
         ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['registered-timezone-for-user'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering-timezone-for-user'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -2397,6 +2470,8 @@ export default {
         method="POST"
         route="foto/validar"
         color="bg-primary"
+        details="validate-user-selfie-with-sent-document"
+        :autenticate=autenticate
         :parameters="[
             {
                 item: 'selfie',
@@ -2413,6 +2488,20 @@ export default {
         ]"
         :responses="[
             {
+                status: '201',
+                messages: ['validated-document'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'problems-saving-image',
+                    'the-front-document-sent-does-not-have-photos',
+                    'the-selfie-does-not-match-the-photo-on-the-document',
+                    'document-failed-validation-attempts',
+                    'invalid-document',
+                ],
+            },
+            {
                 status: '401',
                 messages: ['without-authorization'],
             },
@@ -2422,7 +2511,25 @@ export default {
         method="POST"
         route="paciente"
         color="bg-primary"
+        details="register-a-new-patient"
+        :autenticate=autenticate
+        :parameters="[
+            { item: 'nome_social', requests: ['max-70-characters'] },
+            { item: 'ocupacao', requests: ['required'] },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['patient-was-created-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'patient-already-registered',
+                    'patient-cannot-be-created',
+                    'error-when-registering-a-patient',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -2433,7 +2540,32 @@ export default {
         method="POST"
         route="paciente/telefone"
         color="bg-primary"
+        details="patient-telephone-registration"
+        :autenticate=autenticate
+        :parameters="[
+            { item: 'pais', requests: ['int', 'exists-in-the-table-pais'] },
+            {
+                item: 'telefone',
+                requests: ['required', 'string', 'max-15-characters'],
+            },
+            {
+                item: 'tipo',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-tipo-telefone',
+                ],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['phone-registered-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering-phone'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -2444,7 +2576,23 @@ export default {
         method="POST"
         route="paciente/telefone/principal"
         color="bg-primary"
+        details="update-patients-primary-phone-number"
+        :autenticate=autenticate
+        :parameters="[
+            {
+                item: 'telefone_id',
+                requests: ['required', 'int', 'exists-in-the-table-telefone'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['main-phone-updated-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['patient-not-found', 'error-updating-main-phone'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -2455,7 +2603,45 @@ export default {
         method="POST"
         route="paciente/endereco"
         color="bg-primary"
+        details="patient-address-registration"
+        :autenticate=autenticate
+        :parameters="[
+            { item: 'cep', requests: ['required', 'string'] },
+            { item: 'rua', requests: ['required', 'string'] },
+            { item: 'bairro', requests: ['required', 'string'] },
+            { item: 'cidade', requests: ['required', 'string'] },
+            {
+                item: 'estado',
+                requests: ['required', 'string', 'two-characters'],
+            },
+            {
+                item: 'tipo',
+                requests: ['int', 'exists-in-the-table-tipo-endereco'],
+            },
+            { item: 'numero', requests: ['int'] },
+            { item: 'complemento', requests: ['string'] },
+            {
+                item: 'clinica_id',
+                requests: ['int', 'exists-in-the-table-clinica'],
+            },
+            {
+                item: 'timezone_id',
+                requests: ['int', 'exists-in-the-table-timezone'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['address-registered-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'invalid-zip-code',
+                    'registration-failure',
+                    'error-registering-address',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -2466,7 +2652,23 @@ export default {
         method="POST"
         route="paciente/endereco/principal"
         color="bg-primary"
+        details="update-patients-primary-address"
+        :autenticate=autenticate
+        :parameters="[
+            {
+                item: 'endereco_id',
+                requests: ['required', 'int', 'exists-in-the-table-endereco'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['updated-main-address'],
+            },
+            {
+                status: '400',
+                messages: ['error-updating-address'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -2477,7 +2679,40 @@ export default {
         method="POST"
         route="paciente/dependente"
         color="bg-primary"
+        details="patient-dependent-registration"
+        :autenticate=autenticate
+        :parameters="[
+            {
+                item: 'nome',
+                requests: ['required', 'string', 'max-255-characters'],
+            },
+            { item: 'nome_social', requests: ['string', 'max-255-characters'] },
+            {
+                item: 'tipo_dependente',
+                requests: ['required', 'exists-in-the-table-tipo-dependente'],
+            },
+            {
+                item: 'documento',
+                requests: ['required', 'string', 'max-255-characters'],
+            },
+            {
+                item: 'tipo_documento',
+                requests: ['required', 'exists-in-the-table-tipo-documento'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['registered-dependent'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'patient-not-found',
+                    'error-in-dependent-document',
+                    'error-in-dependent-registration',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -2488,7 +2723,32 @@ export default {
         method="POST"
         route="medico"
         color="bg-primary"
+        details="new-doctor-registration"
+        :autenticate=autenticate
+        :parameters="[
+            {
+                item: 'crm',
+                requests: [
+                    'required',
+                    'between-3-and-6-characters',
+                    'unique-in-app-documento-numero',
+                ],
+            },
+            { item: 'uf', requests: ['required', 'two-characters'] },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['medico-was-created-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'document-type-does-not-exist',
+                    'doctor-already-registered',
+                    'doctor-cannot-be-created',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -2499,7 +2759,56 @@ export default {
         method="POST"
         route="medico/telefone"
         color="bg-primary"
+        details="doctors-telephone-number-registration"
+        :autenticate=autenticate
+        :parameters="[
+            { item: 'pais', requests: ['int', 'exists-in-the-table-pais'] },
+            {
+                item: 'telefone',
+                requests: ['required', 'string', 'max-15-characters'],
+            },
+            {
+                item: 'tipo',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-tipo-telefone',
+                ],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['phone-registered-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering-phone'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="medico/telefone/principal"
+        color="bg-primary"
+        details="update-doctor-main-phone"
+        :autenticate=autenticate
+        :parameters="[
+            { item: 'telefone_id', requests: ['required', 'int', 'exists-in-the-table-telefone'] }
+        ]"
+        :responses="[
+            {
+                status: '200',
+                messages: ['main-phone-updated-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['doctor-not-found', 'error-updating-main-phone'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -2510,17 +2819,44 @@ export default {
         method="POST"
         route="endereco/tipo"
         color="bg-primary"
+        details="register-new-type-of-address"
+        :autenticate=autenticate
+        :parameters="[
+            { item: 'descricao', requests: ['required', 'string', 'max-255-characters'] },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['registered-address-type'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering-address-type'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="POST"
         route="telefone/tipo"
         color="bg-primary"
-        :showDetailsRoute="showDetailsRoute" />
-    <DocumentationCard
-        method="POST"
-        route="medico/telefone/principal"
-        color="bg-primary"
+        details="register-new-phone-type"
+        :autenticate=autenticate
+        :parameters="[
+            { item: 'descricao', requests: ['required', 'string', 'max-255-characters'] },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['phone-type-successfully-registered'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering-phone-type'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -2531,6 +2867,7 @@ export default {
         method="POST"
         route="medico/especialidade"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2542,6 +2879,7 @@ export default {
         method="POST"
         route="medico/endereco"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2553,6 +2891,7 @@ export default {
         method="POST"
         route="medico/endereco/principal"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2564,6 +2903,7 @@ export default {
         method="POST"
         route="medico/consulta"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2575,6 +2915,7 @@ export default {
         method="POST"
         route="medico/clinica"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2586,6 +2927,7 @@ export default {
         method="POST"
         route="medico/clinica/secretaria"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2597,6 +2939,7 @@ export default {
         method="POST"
         route="desconto/medico"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2608,6 +2951,7 @@ export default {
         method="POST"
         route="clinica/medico"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2619,6 +2963,7 @@ export default {
         method="POST"
         route="clinica/medico/aceitar"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2630,6 +2975,7 @@ export default {
         method="POST"
         route="clinica/medico/rejeitar"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2641,6 +2987,7 @@ export default {
         method="POST"
         route="pre-agendamento/cadastro"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2652,6 +2999,7 @@ export default {
         method="POST"
         route="pre-agendamento/horarios/cadastro"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2663,6 +3011,7 @@ export default {
         method="POST"
         route="pre-agendamento/horarios/recusar"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2674,6 +3023,7 @@ export default {
         method="POST"
         route="consulta/criar"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2685,6 +3035,7 @@ export default {
         method="POST"
         route="secretaria/medico"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2696,6 +3047,7 @@ export default {
         method="POST"
         route="secretaria/medico/ativar"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2707,6 +3059,7 @@ export default {
         method="POST"
         route="secretaria/medico/rejeitar"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2718,6 +3071,7 @@ export default {
         method="POST"
         route="financeiro/status"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2729,6 +3083,7 @@ export default {
         method="POST"
         route="status/financeiro"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2740,6 +3095,7 @@ export default {
         method="POST"
         route="tipo-pagamento"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2751,6 +3107,7 @@ export default {
         method="POST"
         route="status/agenda"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2762,6 +3119,7 @@ export default {
         method="POST"
         route="agenda"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2773,6 +3131,7 @@ export default {
         method="POST"
         route="agenda/status"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2784,6 +3143,7 @@ export default {
         method="POST"
         route="token/agendamento"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2795,6 +3155,7 @@ export default {
         method="POST"
         route="atendimento"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2806,6 +3167,7 @@ export default {
         method="POST"
         route="agenda/confirmar"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2817,6 +3179,7 @@ export default {
         method="POST"
         route="dispositivo"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2828,6 +3191,7 @@ export default {
         method="POST"
         route="dispositivo/admin"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2839,6 +3203,7 @@ export default {
         method="POST"
         route="sms/enviar"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2850,6 +3215,7 @@ export default {
         method="POST"
         route="firebase"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2861,6 +3227,7 @@ export default {
         method="POST"
         route="galax/cobranca"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2872,6 +3239,7 @@ export default {
         method="POST"
         route="pix"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2883,6 +3251,7 @@ export default {
         method="POST"
         route="logout"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2894,6 +3263,7 @@ export default {
         method="POST"
         route="risco-empresarial"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2905,6 +3275,7 @@ export default {
         method="POST"
         route="limite-confirmacao-agendamento"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2916,6 +3287,7 @@ export default {
         method="POST"
         route="cadastro-categoria-agenda"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2927,6 +3299,7 @@ export default {
         method="POST"
         route="comprovante-residencia/validar"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2938,6 +3311,7 @@ export default {
         method="POST"
         route="maximo-parcelamento"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2949,6 +3323,7 @@ export default {
         method="POST"
         route="foto/perfil"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2960,6 +3335,7 @@ export default {
         method="POST"
         route="admin/secretaria/agendamento"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2971,6 +3347,7 @@ export default {
         method="POST"
         route="pre-agendamento/retorno"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2982,6 +3359,7 @@ export default {
         method="POST"
         route="permissao"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -2993,6 +3371,7 @@ export default {
         method="POST"
         route="usuario-permissao"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3004,6 +3383,7 @@ export default {
         method="POST"
         route="limite-pre-agendamento"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3015,6 +3395,7 @@ export default {
         method="POST"
         route="tipo-limite-pre-agendamento"
         color="bg-primary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3023,12 +3404,14 @@ export default {
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
-    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
+    <div
+        class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
 
     <DocumentationCard
         method="PATCH"
         route="usuario"
         color="bg-secondary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3040,6 +3423,7 @@ export default {
         method="PATCH"
         route="paciente/[usuarioId]"
         color="bg-secondary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3051,6 +3435,7 @@ export default {
         method="PATCH"
         route="medico/[usuarioId]"
         color="bg-secondary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3062,6 +3447,7 @@ export default {
         method="PATCH"
         route="token/agendamento/[token]"
         color="bg-secondary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3073,6 +3459,7 @@ export default {
         method="PATCH"
         route="dispositivo/[dispositivoId]"
         color="bg-secondary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3084,6 +3471,7 @@ export default {
         method="PATCH"
         route="firebase/[usuarioFirebaseId]"
         color="bg-secondary"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3092,12 +3480,14 @@ export default {
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
-    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
+    <div
+        class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
 
     <DocumentationCard
         method="DELETE"
         route="medico/especialidade/[especialidadeId]"
         color="bg-danger"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3109,6 +3499,7 @@ export default {
         method="DELETE"
         route="medico/clinica/[clinicaId]"
         color="bg-danger"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3120,6 +3511,7 @@ export default {
         method="DELETE"
         route="agenda/[agendaId]"
         color="bg-danger"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3131,6 +3523,7 @@ export default {
         method="DELETE"
         route="cadastro-categoria-agenda/[categoriaAgendaId]"
         color="bg-danger"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3142,6 +3535,7 @@ export default {
         method="DELETE"
         route="permissao/[permissaoId]"
         color="bg-danger"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3153,6 +3547,7 @@ export default {
         method="DELETE"
         route="limite-pre-agendamento/[limiteId]"
         color="bg-danger"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
@@ -3164,6 +3559,7 @@ export default {
         method="DELETE"
         route="tipo-limite-pre-agendamento/[tipoId]"
         color="bg-danger"
+        :autenticate=autenticate
         :responses="[
             {
                 status: '401',
