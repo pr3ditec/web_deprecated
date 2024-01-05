@@ -97,7 +97,7 @@ export default {
                                 v-model="searchText"
                                 @keyup="searchRoute()" />
                             <div
-                                class="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-primary">
+                                class="absolute ltr:right-[11px] rtl:left-[11px] top-4 -translate-y-1/2 peer-focus:text-primary">
                                 <svg
                                     width="24"
                                     height="24"
