@@ -724,5 +724,6 @@
     "email-already-registered": "Email already registered",
     "register-new-contact": "Register new contact",
     "register-new-newsletter": "Register new newsletter",
-    "success-when-register": "Success when register"
+    "success-when-register": "Success when register",
+    "register-the-users-timezone": "Register the user's timezone"
 }

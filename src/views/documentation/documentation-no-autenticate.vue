@@ -270,7 +270,7 @@ export default {
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
-    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b]"></div>
+    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
 
     <DocumentationCard
         method="POST"
@@ -581,7 +581,7 @@ export default {
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
-    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b]"></div>
+    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
 
     <DocumentationCard
         method="PATCH"

@@ -2373,17 +2373,17 @@ export default {
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
-    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b]"></div>
+    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
 
     <DocumentationCard
         method="POST"
         route="usuario/timezone"
         color="bg-primary"
-        details="Cadastrar o timezone do usuário"
+        details="register-the-users-timezone"
         :parameters="[
             {
                 item: 'timezone_id',
-                requests: ['exists app.timezone', 'required'],
+                requests: ['exists-in-the-table-timezone', 'required'],
             },
         ]"
         :responses="[
@@ -3023,7 +3023,7 @@ export default {
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
-    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b]"></div>
+    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
 
     <DocumentationCard
         method="PATCH"
@@ -3092,7 +3092,7 @@ export default {
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
-    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b]"></div>
+    <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
 
     <DocumentationCard
         method="DELETE"

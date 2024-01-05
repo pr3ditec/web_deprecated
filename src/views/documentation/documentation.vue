@@ -15,6 +15,7 @@ export default {
             selectedTab: "admin",
             detailsRoute: false,
             isShowMailMenu: false,
+            searchText: "",
             route: "",
             details: "",
             parameters: [],
@@ -38,6 +39,40 @@ export default {
             this.responses = responses;
             this.isShowMailMenu = !this.isShowMailMenu;
         },
+        searchRoute() {
+            let routes = document.getElementsByClassName("documentation-route");
+            let divideRoutes = document.getElementsByClassName("divider-routes");
+            let routeClass = document.querySelector(".route-class");
+
+            for (let i = 0; i < routes.length; i++) {
+                let route = routes[i];
+                let routeLower = route.textContent?.toLowerCase();
+
+                if (routeLower && routeLower.indexOf(this.searchText.toLowerCase()) !== -1) {
+                    if (this.selectedTab != 'autenticate' && this.selectedTab != 'no-autenticate') {
+                        this.selectedTab = 'admin';
+                    }
+
+                    route.parentElement?.parentElement?.classList.remove("hidden");
+                    if (divideRoutes[i]) {
+                        divideRoutes[i].classList.remove("hidden");
+                    }
+                } else {
+                    if (this.selectedTab != 'autenticate' && this.selectedTab != 'no-autenticate') {
+                        this.selectedTab = 'all';
+                    }
+
+                    route.parentElement?.parentElement?.classList.add("hidden");
+                    if (divideRoutes[i]) {
+                        divideRoutes[i].classList.add("hidden");
+                    }
+                }
+            }
+
+            if (routeClass) {
+                routeClass.scrollIntoView();
+            }
+        }
     },
 };
 </script>
@@ -54,6 +89,37 @@ export default {
                 :class="{ '!block': isShowMailMenu }">
                 <div class="flex flex-col h-full">
                     <div class="space-y-1">
+                        <div class="relative group space-y-1">
+                            <input
+                                type="text"
+                                placeholder="Search Routes"
+                                class="form-input ltr:pr-8 rtl:pl-8 peer"
+                                v-model="searchText"
+                                @keyup="searchRoute()" />
+                            <div
+                                class="absolute ltr:right-[11px] rtl:left-[11px] top-1/2 -translate-y-1/2 peer-focus:text-primary">
+                                <svg
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="w-4 h-4">
+                                    <circle
+                                        cx="11.5"
+                                        cy="11.5"
+                                        r="9.5"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        opacity="0.5"></circle>
+                                    <path
+                                        d="M18.5 18.5L22 22"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"></path>
+                                </svg>
+                            </div>
+                        </div>
                         <button
                             type="button"
                             class="w-full flex justify-between items-center p-2 hover:bg-white-dark/10 rounded-md dark:hover:text-primary hover:text-primary dark:hover:bg-[#181F32] font-medium h-10"
@@ -145,7 +211,7 @@ export default {
 
                             <Transition>
                                 <div
-                                    v-show="selectedTab === 'autenticate'"
+                                    v-show="selectedTab === 'autenticate' || selectedTab === 'all'"
                                     class="flex flex-col gap-5 mt-4">
                                     <DocumentationAutenticate
                                         :showDetailsRoute="showDetailsRoute" />
@@ -153,7 +219,7 @@ export default {
                             </Transition>
                             <Transition>
                                 <div
-                                    v-show="selectedTab === 'no-autenticate'"
+                                    v-show="selectedTab === 'no-autenticate' || selectedTab === 'all'"
                                     class="flex flex-col gap-5 mt-4">
                                     <DocumentationNoAutenticate
                                         :showDetailsRoute="showDetailsRoute" />

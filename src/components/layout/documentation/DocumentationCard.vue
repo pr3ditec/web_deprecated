@@ -43,7 +43,7 @@ export default {
             @click="showDetailsRoute(route, details, parameters, responses)">
             <span class="badge" :class="color">{{ $t(method) }}</span>
             <span
-                class="ltr:pl-3 rtl:pr-3 font-extrabold text-black dark:text-[#506690] dark:group-hover:text-white-dark"
+                class="ltr:pl-3 rtl:pr-3 font-extrabold text-black dark:text-[#506690] dark:group-hover:text-white-dark documentation-route"
                 :title="$t(route)"
                 >{{ $t(route) }}</span
             >

@@ -767,5 +767,6 @@
     "email-already-registered": "E-mail já cadastrado",
     "register-new-contact": "Cadastro novo contato",
     "register-new-newsletter": "Cadastro novo newsletter",
-    "success-when-register": "Sucesso ao cadastrar"
+    "success-when-register": "Sucesso ao cadastrar",
+    "register-the-users-timezone": "Cadastrar o timezone do usuário"
 }
