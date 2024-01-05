@@ -14,6 +14,7 @@ export default {
             isEdit: false,
             selectedTab: "admin",
             detailsRoute: false,
+            isShowMailMenu: false,
             route: "",
             details: "",
             parameters: [],
@@ -35,6 +36,7 @@ export default {
             this.details = details;
             this.parameters = parameters;
             this.responses = responses;
+            this.isShowMailMenu = !this.isShowMailMenu;
         },
     },
 };
@@ -44,9 +46,12 @@ export default {
     <div>
         <div class="flex gap-5 relative sm:h-[calc(100vh_-_150px)] h-full">
             <div
-                class="overlay bg-black/60 z-[5] w-full h-full absolute rounded-md hidden"></div>
+                class="overlay bg-black/60 z-[5] w-full h-full absolute rounded-md hidden"
+                :class="{ '!block xl:!hidden': isShowMailMenu }"
+                @click="isShowMailMenu = !isShowMailMenu"></div>
             <div
-                class="panel xl:block p-4 dark:gray-50 w-[350px] max-w-full flex-none space-y-3 xl:relative absolute z-10 xl:h-auto h-full hidden ltr:xl:rounded-r-md ltr:rounded-r-none rtl:xl:rounded-l-md rtl:rounded-l-none overflow-hidden">
+                class="panel xl:block p-4 dark:gray-50 w-[350px] max-w-full flex-none space-y-3 xl:relative absolute z-10 xl:h-auto hidden ltr:xl:rounded-r-md ltr:rounded-r-none rtl:xl:rounded-l-md rtl:rounded-l-none overflow-hidden"
+                :class="{ '!block': isShowMailMenu }">
                 <div class="flex flex-col h-full">
                     <div class="space-y-1">
                         <button
@@ -159,17 +164,57 @@ export default {
                 </div>
             </div>
 
-            <TransitionGroup name="list">
-                <div
-                    class="panel p-0 flex-1 overflow-x-hidden h-full"
-                    v-if="detailsRoute">
-                    <DocumentationRouteDetails
-                        :route="route"
-                        :details="details"
-                        :parameters="parameters"
-                        :responses="responses" />
+            <div class="panel p-0 flex-1 overflow-x-hidden h-full">
+                <div class="flex flex-col xl:hidden" v-show="!isShowMailMenu">
+                    <div
+                        class="flex justify-between items-center flex-wrap-reverse gap-4 p-4">
+                        <div
+                            class="flex justify-between items-center sm:w-auto w-full">
+                            <div class="flex items-center ltr:mr-4 rtl:ml-4">
+                                <button
+                                    type="button"
+                                    class="xl:hidden hover:text-primary block ltr:mr-3 rtl:ml-3"
+                                    @click="isShowMailMenu = !isShowMailMenu">
+                                    <svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="w-6 h-6">
+                                        <path
+                                            d="M20 7L4 7"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"></path>
+                                        <path
+                                            opacity="0.5"
+                                            d="M20 12L4 12"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"></path>
+                                        <path
+                                            d="M20 17L4 17"
+                                            stroke="currentColor"
+                                            stroke-width="1.5"
+                                            stroke-linecap="round"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </TransitionGroup>
+
+                <TransitionGroup name="list">
+                    <div v-if="detailsRoute">
+                        <DocumentationRouteDetails
+                            :route="route"
+                            :details="details"
+                            :parameters="parameters"
+                            :responses="responses" />
+                    </div>
+                </TransitionGroup>
+            </div>
         </div>
     </div>
 </template>

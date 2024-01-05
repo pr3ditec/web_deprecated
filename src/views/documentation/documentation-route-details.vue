@@ -76,6 +76,9 @@ export default {
 
             return formatParametersRoute;
         },
+        routeLength() {
+            return this.route.length;
+        }
     },
 };
 </script>
@@ -86,9 +89,11 @@ export default {
             <div class="border border-[#d3d3d3] rounded dark:border-[#1b2e4b]">
                 <button
                     type="button"
-                    class="p-4 w-full flex items-center text-white-dark"
+                    class="p-4 w-full flex items-center text-white-dark md:text-[15px] sm:text-[14px]"
                     :class="{
                         '!text-primary': accordians === 1,
+                        'text-[10px]': route.length > 35,
+                        'text-[9px]': route.length > 50,
                     }"
                     @click="
                         accordians === 1
@@ -173,7 +178,7 @@ export default {
                             type="button"
                             class="p-4 w-full flex items-center text-white-dark"
                             :class="{
-                                'underline': item.requests.includes('required'),
+                                underline: item.requests.includes('required'),
                                 '!text-primary': subAccordians === item.item,
                             }"
                             @click="
