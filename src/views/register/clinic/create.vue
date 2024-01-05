@@ -126,7 +126,7 @@ export default {
         <!-- FORMULARIO -->
         <div class="flex flex-col items-center gap-5 mt-4">
             <!-- Nome da clinica -->
-            <div class="w-1/2">
+            <div class="w-full md:w-1/2">
                 <label class="capitalize" for="groupFname"
                     >{{ $t("name") }}*</label
                 >
@@ -139,7 +139,7 @@ export default {
             <hr />
 
             <!-- CEP -->
-            <div class="w-1/2">
+            <div class="w-full md:w-1/2">
                 <label class="capitalize" for="groupFname">CEP*</label>
                 <input
                     v-mask="'#####-###'"
@@ -156,7 +156,7 @@ export default {
             <IconLoading v-if="loadingCep" />
 
             <!-- Rua -->
-            <div class="w-1/2">
+            <div class="w-full md:w-1/2">
                 <label class="capitalize" for="groupFname"
                     >{{ $t("street") }}*</label
                 >
@@ -168,7 +168,7 @@ export default {
             </div>
 
             <!-- Bairro -->
-            <div class="w-1/2">
+            <div class="w-full md:w-1/2">
                 <label class="capitalize" for="groupFname"
                     >{{ $t("neighborhood") }}*</label
                 >
@@ -184,7 +184,7 @@ export default {
             <!-- Especialidade -->
             <select
                 v-model="clinicaFormData.especialidade_id"
-                class="form-select w-1/2 lowercase dark:text-white">
+                class="form-select w-full md:w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("capabilities") }}*
                 </option>
@@ -203,7 +203,7 @@ export default {
             <!-- Estado -->
             <select
                 v-model="clinicaFormData.estado"
-                class="form-select w-1/2 lowercase dark:text-white">
+                class="form-select w-full md:w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("state") }}
                 </option>
@@ -223,7 +223,7 @@ export default {
             <!-- Cidade -->
             <select
                 v-model="clinicaFormData.cidade"
-                class="form-select w-1/2 lowercase dark:text-white">
+                class="form-select w-full md:w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("city") }}*
                 </option>
@@ -243,7 +243,7 @@ export default {
             <!-- Tipo de endereco -->
             <select
                 v-model="clinicaFormData.tipo"
-                class="form-select w-1/2 lowercase dark:text-white">
+                class="form-select w-full md:w-1/2 lowercase dark:text-white">
                 <option value="0" disabled selected>
                     {{ $t("select") }} {{ $t("address") }}*
                 </option>
@@ -261,7 +261,7 @@ export default {
             </select>
 
             <!-- Numero -->
-            <div class="w-1/2">
+            <div class="w-full md:w-1/2">
                 <label class="capitalize" for="groupFname"
                     >{{ $t("number") }}*</label
                 >
@@ -274,7 +274,7 @@ export default {
             </div>
 
             <!-- Complemento -->
-            <div class="w-1/2">
+            <div class="w-full md:w-1/2">
                 <label class="capitalize" for="groupFname"
                     >{{ $t("adjunct") }}*</label
                 >
@@ -284,7 +284,7 @@ export default {
                     type="text"
                     placeholder="Ex.: Apto 12" />
             </div>
-            <div class="w-1/2">
+            <div class="w-full md:w-1/2">
                 <span class="text-sm lowercase"
                     >* {{ $t("required-fields") }}</span
                 >

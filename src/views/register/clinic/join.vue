@@ -83,7 +83,7 @@ export default {
 
 <template>
     <div
-        class="flex flex-col items-center gap-1 mt-4 w-1/2"
+        class="flex flex-col items-center gap-1 mt-4 w-full md:w-1/2"
         @keyup.enter="criarVinculo">
         <h1 class="text-3xl font-bold capitalize">
             {{ $t("join") }} {{ $t("clinic") }}

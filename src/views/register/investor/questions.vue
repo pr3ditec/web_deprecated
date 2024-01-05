@@ -65,7 +65,7 @@ export default {
                         } else {
                             Response.mensagemSucesso(this.$t(res.messageCode));
                             this.finalize();
-                            // Avança para a próxima etapa do form-wizard
+                            // Avanï¿½a para a prï¿½xima etapa do form-wizard
                             this.$emit("nextTab");
                         }
                     });
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <template>
-    <div class="p-6 panel h-full">
+    <div class="p-6 panel h-full w-full md:w-1/2">
         <div v-if="loading">{{ $t("loading") }}...</div>
         <div
             v-for="(pergunta, index) in perguntasInvestidor.list"

@@ -113,10 +113,10 @@ export default {
 };
 </script>
 <template>
-    <div class="flex flex-col items-center gap-5 mt-4 w-1/2 dark:text-white">
-        <div class="flex flex-row gap-1 w-full">
+    <div class="flex flex-col items-center gap-5 mt-4 w-full md:w-1/2 dark:text-white">
+        <div class="flex flex-col md:flex-row gap-1 w-full">
             <!-- Nome da secretaria -->
-            <div class="w-1/2">
+            <div class="w-full md:w-1/2">
                 <label class="capitalize" for="groupFname capitalize"
                     >{{ $t("name") }}*</label
                 >
@@ -128,7 +128,7 @@ export default {
             </div>
 
             <!-- Nome da mae -->
-            <div class="w-1/2">
+            <div class="w-full md:w-1/2">
                 <label class="capitalize" for="groupFname capitalize"
                     >{{ $t("mother's name") }}*</label
                 >

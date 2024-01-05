@@ -54,7 +54,7 @@ export default {
 
 <template>
     <div class="flex justify-center">
-        <div class="w-1/2">
+        <div class="w-full md:w-1/2">
             <select
                 v-model="selectedProfessional"
                 class="form-select mb-6 dark:text-white"

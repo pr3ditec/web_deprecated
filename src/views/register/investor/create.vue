@@ -28,10 +28,7 @@ export default {
         },
 
         async cadastrarTelefone() {
-            if (
-                !this.telefone ||
-                !this.selectedTipoTelefoneId
-            ) {
+            if (!this.telefone || !this.selectedTipoTelefoneId) {
                 return Response.mensagemErro(
                     this.$t("please-fill-in-all-fields"),
                 );
@@ -75,9 +72,9 @@ export default {
 
 <template>
     <div
-        class="p-6 panel h-full flex flex-col items-center gap-5 mt-4 w-1/2 dark:text-white capitalize">
+        class="p-6 panel h-full flex flex-col items-center gap-5 mt-4 w-full md:w-1/2 dark:text-white capitalize">
         <div class="flex flex-row gap-1 w-full"></div>
-        <div class="w-1/2">
+        <div class="w-full md:w-1/2">
             <label for="tipo-telefone">{{ $t("telephone-type") }}</label>
             <select
                 v-model="selectedTipoTelefoneId"
@@ -90,7 +87,7 @@ export default {
                 </option>
             </select>
         </div>
-        <div class="w-1/2">
+        <div class="w-full md:w-1/2">
             <label for="telefone">{{ $t("telephone") }}</label>
             <input
                 v-model="telefone"
@@ -99,11 +96,11 @@ export default {
                 placeholder="Ex.: (11) 99999-9999" />
         </div>
 
-        <div class="flex flex-col items-center font-semibold mt-6">
+        <div class="flex flex-col items-center font-semibold mt-6 w-full">
             <button
                 @click="cadastrarTelefone()"
                 :disabled="submitBtnDisabled"
-                class="btn btn-success w-80 text-shadow">
+                class="btn btn-success w-full md:w-1/2 text-shadow">
                 {{ $t("register") }}
             </button>
         </div>

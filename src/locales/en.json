@@ -725,5 +725,8 @@
     "register-new-contact": "Register new contact",
     "register-new-newsletter": "Register new newsletter",
     "success-when-register": "Success when register",
+    "register-the-users-timezone": "Register the user's timezone",
+    "next": "Next",
+    "back": "Back"
     "register-the-users-timezone": "Register the user's timezone"
 }

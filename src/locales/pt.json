@@ -768,5 +768,8 @@
     "register-new-contact": "Cadastro novo contato",
     "register-new-newsletter": "Cadastro novo newsletter",
     "success-when-register": "Sucesso ao cadastrar",
+    "register-the-users-timezone": "Cadastrar o timezone do usuário",
+    "next": "Avançar",
+    "back": "Voltar"
     "register-the-users-timezone": "Cadastrar o timezone do usuário"
 }

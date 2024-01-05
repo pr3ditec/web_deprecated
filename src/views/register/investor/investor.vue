@@ -49,9 +49,9 @@ export default {
                 {{ $t("additional-investor-data") }}
             </p>
             <div
-                class="grid space-y-6 grid-cols-1 items-center dark:text-white">
+                class="grid space-y-6 grid-cols-1 items-center dark:text-white w-full">
                 <Transition>
-                    <div class="flex flex-col items-center gap-5 mt-4">
+                    <div class="flex flex-col items-center gap-5 mt-4 w-full">
                         <Create
                             @nextTab="nextTab"
                             :userId="userId"
@@ -102,5 +102,20 @@ export default {
                     @prevTab="prevTab" />
             </div>
         </tab-content>
+        <template #prev>
+            <button class="btn btn-primary w-full rounded-md mx-auto">
+                {{ $t("back") }}
+            </button>
+        </template>
+        <template #next>
+            <button class="btn btn-primary w-full rounded-md mx-auto">
+                {{ $t("next") }}
+            </button>
+        </template>
+        <template #finish>
+            <button class="btn btn-success w-full rounded-md mx-auto">
+                {{ $t("finish") }}
+            </button>
+        </template>
     </form-wizard>
 </template>

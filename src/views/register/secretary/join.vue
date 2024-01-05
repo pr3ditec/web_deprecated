@@ -67,11 +67,11 @@ export default {
 
 <template>
     <div
-        class="flex flex-col items-center gap-1 mt-4 w-1/2"
+        class="flex flex-col items-center gap-1 mt-4 w-full md:w-1/2"
         @keyup.enter="criarVinculo">
         <h1 class="text-3xl font-bold">{{ $t("ask-for-join") }}</h1>
         <hr />
-        <div class="w-full flex flex-col gap-0 p-6">
+        <div class="w-full flex flex-col gap-0 md:p-6">
             <label>{{ $t("secretary") }}</label>
             <div class="flex flex-col w-full justify-center">
                 <input

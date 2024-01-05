@@ -127,7 +127,7 @@ export default {
                     <input
                         v-model="search"
                         type="text"
-                        class="form-input w-1/2 dark:text-white"
+                        class="form-input w-full md:w-1/2 dark:text-white"
                         :placeholder="placeholder" />
                     <hr
                         class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />

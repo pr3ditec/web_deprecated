@@ -184,16 +184,16 @@ export default {
         <SelectMedico v-model="selectedDoctor" />
     </div>
     <div v-if="selectedDoctor">
-        <div class="flex">
-            <div class="w-6/12 p-4">
+        <div class="flex flex-col md:flex-row w-full">
+            <div class="w-full md:w-1/2 p-4">
                 <div
-                    class="calendar-wrapper bg-white dark:bg-slate-900 rounded-lg shadow-md p-4 dark:text-white">
+                    class="calendar-wrapper bg-white dark:bg-slate-900 rounded-lg shadow-md p-4 dark:text-white w-full">
                     <FullCalendarComponent
                         :calendar-options="calendarOptions"
                         @calendarMounted="handleCalendarMounted" />
                 </div>
             </div>
-            <div v-if="selectedDates" class="w-6/12 p-4">
+            <div v-if="selectedDates" class="w-full md:w-1/2 p-4">
                 <ScheduleSelection
                     v-if="showSchedule"
                     :selected-dates="selectedDates"

@@ -120,11 +120,11 @@ export default {
 <template>
     <div class="grid space-y-6 grid-cols-1 items-center mt-5 p-4">
         <div
-            class="table-responsive p-6 pt-1 gap-1' flex flex-col items-center">
+            class="table-responsive md:p-6 pt-1 gap-1' flex flex-col items-center">
             <input
                 v-model="search"
                 type="text"
-                class="form-input w-1/2 dark:text-white"
+                class="form-input w-full md:w-1/2 dark:text-white"
                 :placeholder="placeholder" />
             <hr
                 class="w-96 h-0.5 my-1 bg-zinc-300 border-0 rounded md:my-10 dark:bg-gray-700" />
