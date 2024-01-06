@@ -132,6 +132,7 @@ export default {
         },
 
         formatValor(valor) {
+            valor = Number(valor);
             return valor.toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL",
@@ -143,7 +144,7 @@ export default {
 
 <template>
     <div
-        class="h-full flex flex-col items-center text-black dark:text-white bg-white dark:bg-gray-800 capitalize">
+        class="h-full flex flex-col items-center text-black dark:text-white bg-white dark:bg-transparent capitalize">
         <div class="flex flex-row gap-1 w-full justify-center">
             <div class="w-8/12">
                 <div class="text-white-dark">
@@ -163,17 +164,17 @@ export default {
 
         <div v-if="mostrarItens" class="flex m-12">
             <div
-                class="border-2 border-gray-300 p-2 rounded-md dark:text-white">
+                class="border-4 border-gray-400 p-4 rounded-md dark:text-white">
                 <h2 class="text-center font-bold mb-2">
                     {{ $t("items-available-for-bonding") }}
                 </h2>
                 <VueDraggableNext
-                    class="dragArea list-group w-half dark:text-white dark:bg-gray-800 w-80"
+                    class="dragArea list-group w-half dark:text-white dark:bg-transparent w-80 min-h-[200px]"
                     :list="itensNaoVinculados"
                     group="items"
                     @change="atualizarItensProduto($event)">
                     <div
-                        class="list-group-item bg-white dark:bg-gray-800 m-1 p-3 rounded-md shadow-lg flex items-center justify-between dark:text-white"
+                        class="list-group-item bg-white dark:bg-transparent m-1 p-3 rounded-md shadow-lg flex items-center justify-between dark:text-white dark:border-4 dark:border-gray-400"
                         v-for="item in itensNaoVinculados"
                         :key="item.id">
                         <div class="flex items-center">
@@ -192,17 +193,17 @@ export default {
                 </VueDraggableNext>
             </div>
 
-            <div class="border-2 border-gray-300 p-2 rounded-md">
+            <div class="border-4 border-gray-400 p-4 rounded-md dragArea">
                 <h2 class="text-center font-bold mb-2">
                     {{ $t("linked-items") }}
                 </h2>
                 <VueDraggableNext
-                    class="dragArea list-group w-half dark:text-white dark:bg-gray-800 w-80"
+                    class="dragArea list-group w-half dark:text-white dark:bg-transparent w-80 min-h-[200px]"
                     :list="itensVinculados"
                     group="items"
                     @change="atualizarItensProduto($event)">
                     <div
-                        class="list-group-item bg-white dark:bg-gray-800 m-1 p-3 rounded-md shadow-lg flex items-center justify-between dark:text-white"
+                        class="list-group-item bg-white dark:bg-transparent m-1 p-3 rounded-md shadow-lg flex items-center justify-between dark:text-white dark:border-4 dark:border-gray-400"
                         v-for="item in itensVinculados"
                         :key="item.id">
                         <div class="flex items-center">

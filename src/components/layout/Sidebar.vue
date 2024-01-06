@@ -38,7 +38,7 @@ const permissions = ref({
     MenuRegister: ["secretaria-medico", "cadastro-clinica"],
     MenuFinancer: ["medico-financeiro"],
     MenuGeneralReport: ["busca-medicos", "medico-agenda"],
-    MenuDocumentation: ["documentacao"]
+    MenuDocumentation: ["documentacao"],
 });
 
 onMounted(() => {
