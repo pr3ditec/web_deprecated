@@ -385,7 +385,7 @@
     "available-specialties": "Available specialties",
     "doctor-specialties": "Doctor specialties",
     "no-doctor-found": "No doctor found",
-    "the-specialty-id-field-must-be-an-array": "The specialty id field must be an array",
+    "the-specialties-field-must-be-an-array": "The specialties field must be an array",
     "the-doctor-already-has-two-active-specialties": "The doctor already has two active specialties",
     "the-doctor-can-only-have-up-to-two-active-specialties": "The doctor can only have up to two active specialties",
     "error-when-registering-doctor-specialty": "Error when registering doctor specialty",
@@ -765,5 +765,7 @@
     "canceladopelaclinica": "Cancel by clinic",
     "remarcadopelopaciente": "Re-scheduled by client",
     "remarcadopelaclinica": "Re-scheduled by clinic",
-    "remarcadopelomedico": "Re-scheduled by doctor"
+    "remarcadopelomedico": "Re-scheduled by doctor",
+    "registration-of-a-doctor-with-a-specialty-and-the-cost-of-your-consultation": "Registration of a doctor with a specialty and the cost of your consultation",
+    "json-format": "Json format"
 }

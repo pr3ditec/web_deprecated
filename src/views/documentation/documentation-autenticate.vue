@@ -2867,8 +2867,20 @@ export default {
         method="POST"
         route="medico/especialidade"
         color="bg-primary"
+        details="registration-of-a-doctor-with-a-specialty-and-the-cost-of-your-consultation"
         :autenticate=autenticate
+        :parameters="[
+            { item: 'especialidades', requests: ['required', 'string', 'json-format'] }
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['doctor-specialty-registered-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['the-specialties-field-must-be-an-array', 'the-doctor-already-has-two-active-specialties', 'the-doctor-can-only-have-up-to-two-active-specialties', 'error-when-registering-doctor-specialty', 'doctor-specialty-not-registered'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],

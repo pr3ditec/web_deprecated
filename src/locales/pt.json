@@ -426,7 +426,7 @@
     "available-specialties": "Especialidades disponíveis",
     "doctor-specialties": "Especialidades do médico",
     "no-doctor-found": "Nenhum médico encontrado",
-    "the-specialty-id-field-must-be-an-array": "O campo de ID da especialidade deve ser um array",
+    "the-specialties-field-must-be-an-array": "O campo especialidades deve ser um array",
     "the-doctor-already-has-two-active-specialties": "O médico já tem duas especialidades ativas",
     "the-doctor-can-only-have-up-to-two-active-specialties": "O médico só pode ter até duas especialidades ativas",
     "error-when-registering-doctor-specialty": "Erro ao registrar especialidade do médico",
@@ -802,5 +802,7 @@
     "register-new-phone-type": "Cadastrar novo tipo de telefone",
     "no-user-found": "Nenhum usuário encontrado",
     "sended-to-patient": "Encaminhado ao paciente",
-    "scheduled": "Agendado"
+    "scheduled": "Agendado",
+    "registration-of-a-doctor-with-a-specialty-and-the-cost-of-your-consultation": "Cadastro de um médico com uma especialidade e o valor da sua consulta",
+    "json-format": "Formato json"
 }
