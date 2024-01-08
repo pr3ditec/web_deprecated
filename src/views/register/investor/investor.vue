@@ -36,7 +36,6 @@ export default {
 
         updateVerificacaoFinalizacao(componente) {
             this.verificacaoFinalizacao.push({ [componente]: "finalizado" });
-            console.log(this.verificacaoFinalizacao);
         },
     },
 };

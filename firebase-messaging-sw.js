@@ -18,13 +18,11 @@ firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(function (payload) {
-    console.log(payload);
     // const notificationTitle = payload.data.titulo;
     // const notificationOptions = {
     //     icon: "/assets/images/logo.png",
     //     body: payload.data.remetente,
     // };
-    // console.log(payload)
     // self.onnotificationclick = function (event) {
     //     event.waitUntil(
     //         clients

@@ -19,7 +19,6 @@ export default {
     },
     methods: {
         async enviarRespostas() {
-
             if (
                 !this.verificacaoFinalizacao.some(
                     (obj) => obj.Create === "finalizado",
@@ -57,7 +56,6 @@ export default {
                 await this.store.request
                     .enviarDadosApi("/perguntas-investidor-usuario", data)
                     .then((res) => {
-                        console.log(res);
                         if (res.status == false) {
                             return Response.mensagemErro(
                                 this.$t(res.messageCode),
@@ -106,7 +104,7 @@ export default {
         <button
             @click="enviarRespostas"
             class="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 focus:ring-green-500">
-            {{ $t("send-responses")}}
+            {{ $t("send-responses") }}
         </button>
     </div>
 </template>

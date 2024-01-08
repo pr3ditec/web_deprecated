@@ -18,7 +18,6 @@ export default {
         const categoriaResponse =
             await this.store.request.pegarDadosApi("/invest/categoria");
 
-        console.log(categoriaResponse);
         if (categoriaResponse.status == true) {
             this.categorias = categoriaResponse.list;
         } else {
@@ -41,8 +40,6 @@ export default {
                     periodo: this.periodo,
                     valor: this.valor,
                 };
-
-                console.log(data);
 
                 await this.store.request
                     .enviarDadosApi("/invest/item", data)

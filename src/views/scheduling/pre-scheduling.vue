@@ -150,7 +150,7 @@ export default {
                         nextArrow="Next">
                         <template #status="data">
                             <div
-                                class="flex flex-row cursor-pointer"
+                                class="flex flex-row cursor-pointer uppercase"
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="right"
                                 title="clique para ver historico">
@@ -166,17 +166,22 @@ export default {
                                 <span
                                     v-if="data.value.status_id == 1"
                                     class="badge bg-primary"
-                                    >{{ data.value.status }}</span
+                                    >{{ $t("sended-to-patient") }}</span
                                 >
                                 <span
                                     v-if="data.value.status_id == 2"
                                     class="badge bg-success"
-                                    >{{ data.value.status }}</span
+                                    >{{ $t("scheduled") }}</span
                                 >
                                 <span
-                                    v-if="data.value.status_id >= 3"
+                                    v-if="
+                                        data.value.status_id >= 3 &&
+                                        data.value.status_id <= 7
+                                    "
                                     class="badge bg-danger"
-                                    >{{ data.value.status }}</span
+                                    >{{
+                                        $t(data.value.status.trim.toLowerCase())
+                                    }}</span
                                 >
                             </div>
                         </template>

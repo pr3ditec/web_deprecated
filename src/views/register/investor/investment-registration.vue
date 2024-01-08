@@ -26,12 +26,10 @@ export default {
         };
     },
     created() {
-        console.log(this.selectedTab);
     },
     methods: {
         selectTab(tabName) {
             this.selectedTab = tabName;
-            console.log(this.selectedTab);
         },
     },
 };

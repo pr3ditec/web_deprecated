@@ -35,7 +35,6 @@ const submitForm = async () => {
     try {
         store.logout();
 
-        console.log("req", req);
 
         const response = await axios.request(req);
 

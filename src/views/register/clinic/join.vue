@@ -50,7 +50,6 @@ export default {
                                 especialidade_id: this.especialidadeSelect,
                             })
                             .then((response) => {
-                                console.log(response);
                                 response.status
                                     ? Response.mensagemToast(
                                           "success",

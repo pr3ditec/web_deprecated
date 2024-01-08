@@ -14,7 +14,6 @@ export default {
             .get("http://localhost:8001/unidades_federativas")
             .then((response) => {
                 this.unidadesFederativas = response.data.list;
-                console.log(this.estados);
             })
             .catch((error) => {
                 console.error("Erro ao obter dados:", error);

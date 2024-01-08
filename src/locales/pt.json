@@ -800,5 +800,7 @@
     "update-doctor-main-phone": "Atualizar telefone principal médico",
     "register-new-type-of-address": "Cadastrar novo tipo de endereço",
     "register-new-phone-type": "Cadastrar novo tipo de telefone",
-    "no-user-found": "Nenhum usuário encontrado"
+    "no-user-found": "Nenhum usuário encontrado",
+    "sended-to-patient": "Encaminhado ao paciente",
+    "scheduled": "Agendado"
 }

@@ -757,5 +757,13 @@
     "update-doctor-main-phone": "Update doctor main phone",
     "register-new-type-of-address": "Register new type of address",
     "register-new-phone-type": "Register new phone type",
-    "no-user-found": "No user found"
+    "no-user-found": "No user found",
+    "sended-to-patient": "Sended to patient",
+    "scheduled": "Scheduled",
+    "rejeitadopelocliente": "Reject by client",
+    "canceladopelocliente": "Cancel by client",
+    "canceladopelaclinica": "Cancel by clinic",
+    "remarcadopelopaciente": "Re-scheduled by client",
+    "remarcadopelaclinica": "Re-scheduled by clinic",
+    "remarcadopelomedico": "Re-scheduled by doctor"
 }

@@ -115,7 +115,6 @@ export default {
                         this.investidorFormData,
                     )
                     .then((res) => {
-                        console.log(res);
                         if (res.status == false) {
                             return Response.mensagemErro(
                                 this.$t(res.messageCode),

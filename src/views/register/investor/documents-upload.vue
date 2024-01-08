@@ -26,11 +26,9 @@ export default {
                         resolve();
                     };
                     reader.onerror = (error) => {
-                        console.log("Erro ao converter para Base64:", error);
                         reject(error);
                     };
                 } else {
-                    console.log("Nenhum arquivo selecionado.");
                     reject(new Error("Nenhum arquivo selecionado."));
                 }
             });

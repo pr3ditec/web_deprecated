@@ -47,17 +47,13 @@ onMounted(() => {
         `.sidebar ul a[href="${pathname}"]`,
     );
 
-    console.log("selector", selector);
-
     if (selector) {
         selector.classList.add("active");
         const ul: any = selector.closest("ul.sub-menu");
-        console.log("ul", ul);
 
         if (ul) {
             let ele: any =
                 ul.closest("li.menu").querySelectorAll(".nav-link") || [];
-            console.log("ele", ele);
             if (ele.length) {
                 ele = ele[0];
                 setTimeout(() => {
