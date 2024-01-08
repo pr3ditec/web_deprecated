@@ -495,6 +495,48 @@ export default {
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="POST"
+        route="celcoin/contrato-gravar"
+        color="bg-primary"
+        details="save-loan-contract"
+        :autenticate=autenticate
+        :responses="[
+            {
+                status: '200',
+                messages: ['loan-agreement-recorded'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-recording-loan-agreement',
+                    'loan-status-is-not-pending-signature',
+                    'payload-not-informed',
+                ],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="celcoin/financeiro-efetivar"
+        color="bg-primary"
+        details="make-financial"
+        :autenticate=autenticate
+        :responses="[
+            {
+                status: '200',
+                messages: ['financial-successfully-effected'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-when-committing-finance',
+                    'financial-not-found',
+                    'payload-not-informed',
+                ],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
         route="recuperacao-senha"
         color="bg-primary"
         details="request-password-recovery"

@@ -804,5 +804,14 @@
     "sended-to-patient": "Encaminhado ao paciente",
     "scheduled": "Agendado",
     "registration-of-a-doctor-with-a-specialty-and-the-cost-of-your-consultation": "Cadastro de um médico com uma especialidade e o valor da sua consulta",
-    "json-format": "Formato json"
+    "json-format": "Formato json",
+    "make-financial": "Efetivar financeiro",
+    "financial-successfully-effected": "Financeiro efetivado com sucesso",
+    "error-when-committing-finance": "Erro ao efetivar financeiro",
+    "financial-not-found": "Financeiro não encontrado",
+    "payload-not-informed": "Payload não informado",
+    "loan-agreement-recorded": "Contrato de empréstimo gravado com sucesso",
+    "error-recording-loan-agreement": "Erro ao gravar contrato de empréstimo",
+    "loan-status-is-not-pending-signature": "Status do empréstimo não está pendente de assinatura",
+    "save-loan-contract": "Salvar contrato do empréstimo"
 }

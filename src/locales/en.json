@@ -767,5 +767,14 @@
     "remarcadopelaclinica": "Re-scheduled by clinic",
     "remarcadopelomedico": "Re-scheduled by doctor",
     "registration-of-a-doctor-with-a-specialty-and-the-cost-of-your-consultation": "Registration of a doctor with a specialty and the cost of your consultation",
-    "json-format": "Json format"
+    "json-format": "Json format",
+    "make-financial": "Make financial",
+    "financial-successfully-effected": "Financial successfully effected",
+    "error-when-committing-finance": "Error when committing finance",
+    "financial-not-found": "Financial not found",
+    "payload-not-informed": "Payload not informed",
+    "loan-agreement-recorded": "Loan agreement recorded",
+    "error-recording-loan-agreement": "Error recording loan agreement",
+    "loan-status-is-not-pending-signature": "Loan status is not pending signature",
+    "save-loan-contract": "Save loan contract"
 }
