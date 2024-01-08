@@ -20,7 +20,7 @@ const showTitle = computed(() => {
     <TitleDivision v-if="showTitle" title="documentation" />
 
     <MenuNavItem>
-        <div v-if="store.checkPermission('documentation')">
+        <div v-if="store.checkPermission('documentacao')">
             <NavItem to="/documentation" label="documentation">
                 <IconRegister />
             </NavItem>
