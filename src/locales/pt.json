@@ -813,5 +813,7 @@
     "loan-agreement-recorded": "Contrato de empréstimo gravado com sucesso",
     "error-recording-loan-agreement": "Erro ao gravar contrato de empréstimo",
     "loan-status-is-not-pending-signature": "Status do empréstimo não está pendente de assinatura",
-    "save-loan-contract": "Salvar contrato do empréstimo"
+    "save-loan-contract": "Salvar contrato do empréstimo",
+    "complete-loan": "Efetivar empréstimo",
+    "successfully-done": "Realizado com sucesso"
 }

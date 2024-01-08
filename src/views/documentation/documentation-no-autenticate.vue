@@ -495,35 +495,14 @@ export default {
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="POST"
-        route="celcoin/contrato-gravar"
+        route="celcoin/emprestimo-efetivar"
         color="bg-primary"
-        details="save-loan-contract"
+        details="complete-loan"
         :autenticate=autenticate
         :responses="[
             {
                 status: '200',
-                messages: ['loan-agreement-recorded'],
-            },
-            {
-                status: '400',
-                messages: [
-                    'error-recording-loan-agreement',
-                    'loan-status-is-not-pending-signature',
-                    'payload-not-informed',
-                ],
-            },
-        ]"
-        :showDetailsRoute="showDetailsRoute" />
-    <DocumentationCard
-        method="POST"
-        route="celcoin/financeiro-efetivar"
-        color="bg-primary"
-        details="make-financial"
-        :autenticate=autenticate
-        :responses="[
-            {
-                status: '200',
-                messages: ['financial-successfully-effected'],
+                messages: ['successfully-done'],
             },
             {
                 status: '400',
