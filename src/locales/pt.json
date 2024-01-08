@@ -815,5 +815,10 @@
     "loan-status-is-not-pending-signature": "Status do empréstimo não está pendente de assinatura",
     "save-loan-contract": "Salvar contrato do empréstimo",
     "complete-loan": "Efetivar empréstimo",
-    "successfully-done": "Realizado com sucesso"
+    "successfully-done": "Realizado com sucesso",
+    "register-the-doctors-address": "Realizar o cadastro do endereço do médico",
+    "update-doctors-primary-address": "Atualizar endereço principal do médico",
+    "register-a-clinic": "Realizar o cadastro de uma clínica",
+    "exists-in-the-table-especialidade": "Existir na tabela especialidade",
+    "register-a-new-secretary": "Realiza o cadastro de uma nova secretária"
 }

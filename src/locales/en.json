@@ -778,5 +778,10 @@
     "loan-status-is-not-pending-signature": "Loan status is not pending signature",
     "save-loan-contract": "Save loan contract",
     "complete-loan": "Complete loan",
-    "successfully-done": "Successfully done"
+    "successfully-done": "Successfully done",
+    "register-the-doctors-address": "Register the doctor's address",
+    "update-doctors-primary-address": "Update doctor's primary address",
+    "register-a-clinic": "Register a clinic",
+    "exists-in-the-table-especialidade": "Exists in the table especialidade",
+    "register-a-new-secretary": "Register a new secretary"
 }
