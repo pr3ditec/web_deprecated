@@ -820,5 +820,8 @@
     "update-doctors-primary-address": "Atualizar endereço principal do médico",
     "register-a-clinic": "Realizar o cadastro de uma clínica",
     "exists-in-the-table-especialidade": "Existir na tabela especialidade",
-    "register-a-new-secretary": "Realiza o cadastro de uma nova secretária"
+    "register-a-new-secretary": "Realiza o cadastro de uma nova secretária",
+    "complete-appointment": "Finalizar atendimento",
+    "receipt": "Nota fiscal",
+    "financial-is-not-effected": "Financeiro ainda não efetivado"
 }

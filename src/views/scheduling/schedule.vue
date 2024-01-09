@@ -9,6 +9,7 @@ import Response from "@/api/Response";
 import ModalPreAgendamento from "./pre-scheduling-modal.vue";
 import { useAppStore } from "@/stores";
 import directScheduling from "./direct-scheduling.vue";
+import Swal from "sweetalert2";
 
 export default {
     components: {
@@ -58,9 +59,15 @@ export default {
                         new Date(click.event._instance.range.start).getDate() ==
                             new Date().getDate()
                     ) {
-                        this.gerarTokenPresenca(
-                            click.event._def.extendedProps.agenda_id,
-                        );
+                        if (click.event._def.extendedProps.hasToken) {
+                            this.finalizarAtendimento(
+                                click.event._def.extendedProps.agenda_id,
+                            );
+                        } else {
+                            this.gerarTokenPresenca(
+                                click.event._def.extendedProps.agenda_id,
+                            );
+                        }
                         /** FLUXO PARA PROPOR AGENDAMENTO */
                     } else if (!click.event._def.extendedProps.eventFromApi) {
                         //@ts-expect-error
@@ -126,12 +133,12 @@ export default {
                         if (res.status) {
                             Response.mensagemToast(
                                 "success",
-                                this.$t("res.message"),
+                                this.$t(res.message),
                             );
                         } else {
                             Response.mensagemToast(
                                 "error",
-                                this.$t("res.message"),
+                                this.$t(res.message),
                             );
                         }
                     });
@@ -139,12 +146,62 @@ export default {
         },
         /** GERAR TOKEN PRESENCA */
 
+        /** FLUXO ATENDIMENTO */
+        async finalizarAtendimento(agenda: number) {
+            const { value: file } = await Swal.fire({
+                customClass: {
+                    input: "form-input",
+                },
+                icon: "info",
+                title: this.$t("complete-appointment"),
+                input: "file",
+                inputLabel: this.$t("receipt"),
+                showCancelButton: true,
+                showConfirmButton: true,
+            });
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    Swal.mixin({
+                        title: this.$t("loading"),
+                        html: `<span class="animate-spin border-[3px] border-success border-l-transparent rounded-full w-6 h-6 inline-block align-middle m-auto mb-10"></span>`,
+                        toast: true,
+                        showConfirmButton: false,
+                    }).fire();
+                };
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    //@ts-expect-error
+                    const base64_string = reader.result!.split(",")[1];
+                    this.store.request
+                        .enviarDadosApi("/atendimento", {
+                            agenda_id: agenda,
+                            // observacao: "",
+                            nota_fiscal: base64_string,
+                        })
+                        .then((res) => {
+                            res.status
+                                ? Response.mensagemToast(
+                                      "success",
+                                      this.$t(res.messageCode),
+                                  )
+                                : Response.mensagemToast(
+                                      "error",
+                                      this.$t(res.messageCode),
+                                  );
+                        });
+                };
+            }
+        },
+        /** FLUXO ATENDIMENTO */
+
         /** BUSCAR DADOS DE API */
         async buscarAgendamentos() {
             if (this.medicoSelect == 0) return;
             await this.store.request
                 .pegarDadosApi(`/agendamento/medico/${this.medicoSelect}`)
                 .then((response: any) => {
+                    console.log(response);
                     const hoje = new Date();
                     if (response.status) {
                         const data = response.list;
@@ -159,6 +216,7 @@ export default {
                                         : "#161414",
                                 display: "block",
                                 eventFromApi: true,
+                                hasToken: res.token_agendamento,
                                 start: `${res.data} ${res.hora}`,
                             });
                         });

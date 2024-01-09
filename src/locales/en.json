@@ -783,5 +783,8 @@
     "update-doctors-primary-address": "Update doctor's primary address",
     "register-a-clinic": "Register a clinic",
     "exists-in-the-table-especialidade": "Exists in the table especialidade",
-    "register-a-new-secretary": "Register a new secretary"
+    "register-a-new-secretary": "Register a new secretary",
+    "complete-appointment": "Finish appointment",
+    "receipt": "Receipt",
+    "financial-is-not-effected": "Financial is not effected"
 }
