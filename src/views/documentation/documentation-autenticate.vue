@@ -1485,6 +1485,16 @@ export default {
                             { name: 'dias_retorno', type: 'int' },
                         ],
                     },
+                    {
+                        name: 'token_agendamento',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'agenda_id', type: 'int' },
+                            { name: 'token', type: 'string' },
+                            { name: 'validado', type: 'int' },
+                        ],
+                    },
                 ],
             },
             {
