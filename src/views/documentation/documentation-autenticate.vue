@@ -1546,6 +1546,17 @@ export default {
                     { name: 'qtd_parcelas', type: 'int' },
                     { name: 'valor_consulta_risco', type: 'float' },
                     { name: 'maximo_parcelamento', type: 'int' },
+                    {
+                        name: 'parcelamento',
+                        type: 'array',
+                        data_item: [
+                            { name: 'payment', type: 'string' },
+                            { name: 'iof', type: 'string' },
+                            { name: 'balance', type: 'string' },
+                            { name: 'interest', type: 'string' },
+                            { name: 'principal', type: 'string' },
+                        ],
+                    }
                 ],
             },
             {
