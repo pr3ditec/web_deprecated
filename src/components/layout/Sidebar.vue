@@ -22,7 +22,13 @@ import MenuUserInterface from "@/components/layout/sidebar-items/examples/MenuUs
 import MenuTableAndForms from "@/components/layout/sidebar-items/examples/MenuTableAndForms.vue";
 import MenuUserAndPages from "@/components/layout/sidebar-items/examples/MenuUserAndPages.vue";
 
+import { isLocalhost } from "@/helpers/Host";
+
 const store = useAppStore();
+
+/** CHECK LOCALHOST */
+const host = ref(false);
+/** CHECK LOCALHOST */
 
 const permissions = ref({
     MenuDashboard: [
@@ -62,6 +68,12 @@ onMounted(() => {
             }
         }
     }
+
+    /** VALIDANDO CASO SEJA LOCAL OU SERIDOR */
+    isLocalhost().then((res) =>
+        res ? (host.value = true) : (host.value = false),
+    );
+    /** VALIDANDO CASO SEJA LOCAL OU SERIDOR */
 });
 
 function hasChildPermission(component) {
@@ -115,10 +127,12 @@ function hasChildPermission(component) {
 
                         <MenuAuth />
 
-                        <MenuApps />
-                        <MenuUserInterface />
-                        <MenuTableAndForms />
-                        <MenuUserAndPages />
+                        <div v-if="host">
+                            <MenuApps />
+                            <MenuUserInterface />
+                            <MenuTableAndForms />
+                            <MenuUserAndPages />
+                        </div>
                     </ul>
                 </perfect-scrollbar>
             </div>
