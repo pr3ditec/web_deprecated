@@ -286,6 +286,29 @@ export default {
         ]"
         :showDetailsRoute="showDetailsRoute" />
 
+    <DocumentationCard
+        method="GET"
+        route="estado-civil"
+        color="bg-success"
+        details="returns-all-marital-statuses"
+        :autenticate=autenticate
+        :responses="[
+            {
+                status: '200',
+                messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'estado_civil', type: 'string' },
+                    { name: 'message_code', type: 'string' },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['error-when-searching'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+
     <div class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
 
     <DocumentationCard

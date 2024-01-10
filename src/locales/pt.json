@@ -830,5 +830,6 @@
     "admin-financial": "Financeiro administrativo",
     "admin-settings": "Configurações administrativas",
     "user-profile": "Perfil",
-    "exists-in-the-table-estado-civil": "Existir na tabela estado_civil"
+    "exists-in-the-table-estado-civil": "Existir na tabela estado_civil",
+    "returns-all-marital-statuses": "Retorna todos os estados civis"
 }
