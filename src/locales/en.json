@@ -794,5 +794,6 @@
     "doctor-financial": "Doctor's financial",
     "admin-financial": "Admin's financial",
     "admin-settings": "Admin settings",
-    "user-profile": "Profile"
+    "user-profile": "Profile",
+    "exists-in-the-table-estado-civil": "Exists in the table estado_civil"
 }

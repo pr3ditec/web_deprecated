@@ -3121,6 +3121,10 @@ export default {
                 item: 'timezone',
                 requests: ['string', 'exists-in-the-table-timezone'],
             },
+            {
+                item: 'estado_civil_id',
+                requests: ['required', 'int', 'exists-in-the-table-estado-civil'],
+            }
         ]"
         :responses="[
             {

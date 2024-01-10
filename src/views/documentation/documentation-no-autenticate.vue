@@ -342,6 +342,10 @@ export default {
                 item: 'tipo_usuario',
                 requests: ['int', 'exists-in-the-table-tipo-usuario'],
             },
+            {
+                item: 'estado_civil_id',
+                requests: ['required', 'int', 'exists-in-the-table-estado-civil'],
+            }
         ]"
         :autenticate=autenticate
         :responses="[

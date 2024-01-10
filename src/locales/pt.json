@@ -829,5 +829,6 @@
     "doctor-financial": "Financeiro médico",
     "admin-financial": "Financeiro administrativo",
     "admin-settings": "Configurações administrativas",
-    "user-profile": "Perfil"
+    "user-profile": "Perfil",
+    "exists-in-the-table-estado-civil": "Existir na tabela estado_civil"
 }
