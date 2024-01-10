@@ -21,7 +21,7 @@ const showTitle = computed(() => {
     <TitleDivision v-if="showTitle" title="report" />
 
     <MenuNavItem>
-        <div v-if="store.checkPermission('busca-medicos')">
+        <div v-if="store.checkPermission('visualizar-todas-parcelas')">
             <NavItem to="/report/doctor" label="doctor">
                 <IconDatatables />
             </NavItem>

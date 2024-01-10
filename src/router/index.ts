@@ -8,6 +8,10 @@ const routes: RouteRecordRaw[] = [
         path: "/",
         name: "home",
         component: () => import("../views/index.vue"),
+        meta: {
+            search: "home;dashboard;casa",
+            searchName: "dashboard",
+        },
     },
     {
         path: "/test",
@@ -41,6 +45,11 @@ const routes: RouteRecordRaw[] = [
         path: "/business-risk",
         name: "risco",
         component: () => import("../views/business-risk/business-risk.vue"),
+        meta: {
+            permision: "rel-risco-empresarial",
+            search: "business;risk;risco;empresarial;risco empresarial;business risk",
+            searchName: "business-risk",
+        },
     },
     /** RISCO */
 
@@ -49,16 +58,31 @@ const routes: RouteRecordRaw[] = [
         path: "/schedule-programming",
         name: "Schedule Programming",
         component: () => import("../views/scheduling/schedule-programming.vue"),
+        meta: {
+            permission: "horarios-atendimento-medico",
+            search: "schedule;schedule programming;programming;agenda;programar;programar agenda",
+            searchName: "schedule-programming",
+        },
     },
     {
         path: "/schedule",
         name: "schedule",
         component: () => import("../views/scheduling/schedule.vue"),
+        meta: {
+            permission: "medico-agenda",
+            search: "schedule;agenda",
+            searchName: "schedule",
+        },
     },
     {
         path: "/pre-scheduling",
         name: "Pre scheduling",
         component: () => import("../views/scheduling/pre-scheduling.vue"),
+        meta: {
+            permission: "pre-agendamento-agenda",
+            search: "pre;scheduling;pre scheduling;agendamento;pre agendamento",
+            searchName: "pre-scheduling",
+        },
     },
     /** AGENDA */
 
@@ -67,11 +91,21 @@ const routes: RouteRecordRaw[] = [
         path: "/secretary",
         name: "Secretary",
         component: () => import("../views/register/secretary/secretary.vue"),
+        meta: {
+            permission: "cadastro-clinica",
+            search: "secretary;attendant;secretaria;atendente",
+            searchName: "secretary",
+        },
     },
     {
         path: "/clinic",
         name: "Clinic",
         component: () => import("../views/register/clinic/clinic.vue"),
+        meta: {
+            permission: "cadastro-clinica",
+            search: "clnic;clnica",
+            searchName: "clinic",
+        },
     },
     /** CADASTRO */
 
@@ -80,16 +114,31 @@ const routes: RouteRecordRaw[] = [
         path: "/investor",
         name: "Investor",
         component: () => import("../views/register/investor/investor.vue"),
+        meta: {
+            search: "investor;investidor",
+            searchName: "investor",
+        },
     },
     {
         path: "/investment-registration",
         name: "Investment registration",
-        component: () => import("../views/register/investor/investment-registration.vue"),
+        component: () =>
+            import("../views/register/investor/investment-registration.vue"),
+        meta: {
+            permission: "categoria-investimento",
+            search: "investment;registration;investment registration;investimento;cadastrar investimento;cadastrar",
+            searchName: "investment-registration",
+        },
     },
     {
         path: "/investment",
         name: "Investment",
         component: () => import("../views/register/investor/investment.vue"),
+        meta: {
+            permission: "produtos-itens-investimento",
+            search: "investimento;investment",
+            searchName: "investment",
+        },
     },
     {
         path: "/approve-investor-registration",
@@ -98,6 +147,11 @@ const routes: RouteRecordRaw[] = [
             import(
                 "../views/register/investor/approve-investor-registration.vue"
             ),
+        meta: {
+            permission: "aprovar-recusar-investidor",
+            search: "approve investor registration;aprove;investor;registration;aprovar cadastro investidor;aprovar;cadastro;investidor",
+            searchName: "approve-investor-registration",
+        },
     },
     /** INVESTIDOR */
 
@@ -106,16 +160,31 @@ const routes: RouteRecordRaw[] = [
         path: "/report/doctor",
         name: "Doctor's Report",
         component: () => import("../views/report/doctors/doctor.vue"),
+        meta: {
+            permission: "visualizar-todas-parcelas",
+            search: "doctor;doctor report;medico;relatorio;relatorio medico",
+            searchName: "doctor-report",
+        },
     },
     {
         path: "/report/appointment",
         name: "Consult's Report",
         component: () => import("../views/report/appointments/appointment.vue"),
+        meta: {
+            permission: "medico-medicos",
+            search: "consult;report;consult report;consulta;relatorio;relatorio consulta",
+            searchName: "consult-report",
+        },
     },
     {
         path: "/report/app-overview",
         name: "App overview",
         component: () => import("@/views/report/app-overview/app-overview.vue"),
+        meta: {
+            permission: "rel-risco-empresarial",
+            search: "relatorio;app;aplicativo;relatorio aplicativo;overview;app overview",
+            searchName: "app-overview",
+        },
     },
     /** RELATORIOS */
 
@@ -124,11 +193,21 @@ const routes: RouteRecordRaw[] = [
         path: "/financier",
         name: "Doctors Financial",
         component: () => import("../views/financier/financier.vue"),
+        meta: {
+            permission: "medico-financeiro",
+            search: "doctor;financial;doctor financial;medico;financeiro;financeiro medico",
+            searchName: "doctor-financial",
+        },
     },
     {
         path: "/financier/admin",
         name: "Admin Financial",
         component: () => import("../views/financier/overdue-list.vue"),
+        meta: {
+            permission: "visualizar-todas-parcelas",
+            search: "admin;admin financial;financeiro administrativo;administrativo;financeiro",
+            searchName: "admin-financial",
+        },
     },
     /** FINANCEIRO */
 
@@ -137,11 +216,21 @@ const routes: RouteRecordRaw[] = [
         path: "/settings",
         name: "Admin settings",
         component: () => import("../views/settings/settings.vue"),
+        meta: {
+            permission: "gravar-risco-empresarial",
+            search: "admin;settings;admin settings;configuracoes;administrativo",
+            searchName: "admin-settings",
+        },
     },
     {
         path: "/doctor-settings",
         name: "Doctor's settings",
         component: () => import("../views/doctor-settings/doctor-settings.vue"),
+        meta: {
+            permission: "cadastro-valor-consulta",
+            search: "doctor;settings;doctor settings;medico;configuracoes;configuracoes medico",
+            searchName: "doctor-settings",
+        },
     },
     /** REGRAS */
 
@@ -153,6 +242,18 @@ const routes: RouteRecordRaw[] = [
         meta: { layout: "auth" },
     },
     /** REDEFINIR SENHA */
+
+    /** PERFIL */
+    {
+        path: "/users/profile",
+        name: "profile",
+        component: () => import("../views/users/profile.vue"),
+        meta: {
+            search: "profile;perfil;user;usuario",
+            searchName: "user-profile",
+        },
+    },
+    /** PERFIL */
 
     // auth
     {
@@ -187,11 +288,6 @@ const routes: RouteRecordRaw[] = [
     },
 
     // users
-    {
-        path: "/users/profile",
-        name: "profile",
-        component: () => import("../views/users/profile.vue"),
-    },
     {
         path: "/users/user-account-settings",
         name: "user-account-settings",
@@ -675,6 +771,9 @@ const routes: RouteRecordRaw[] = [
         path: "/documentation",
         name: "Documentation",
         component: () => import("../views/documentation/documentation.vue"),
+        meta: {
+            permission: "documentacao",
+        },
     },
     /** DOCUMENTAÇÃO */
 ];
@@ -695,6 +794,16 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const store = useAppStore();
 
+    /** VALIDANDO PERMISSOES PARA ACESSAR ROTA */
+    if (to.meta.permission != undefined) {
+        //@ts-expect-error
+        const checkPermission = store.checkPermission(to.meta.permission);
+        if (!checkPermission) {
+            next({ path: "/" });
+        }
+    }
+    /** VALIDANDO PERMISSOES PARA ACESSAR ROTA */
+
     if (to?.meta?.layout == "auth") {
         store.setMainLayout("auth");
     } else {
@@ -705,7 +814,6 @@ router.beforeEach((to, from, next) => {
         if (to.path === "/auth/login" || to.path === "/auth/register") {
             next(true);
         }
-
         next({ path: "/auth/login" });
     } else {
         next(true);

@@ -823,5 +823,11 @@
     "register-a-new-secretary": "Realiza o cadastro de uma nova secretária",
     "complete-appointment": "Finalizar atendimento",
     "receipt": "Nota fiscal",
-    "financial-is-not-effected": "Financeiro ainda não efetivado"
+    "financial-is-not-effected": "Financeiro ainda não efetivado",
+    "doctor-report": "Relatorio de medicos",
+    "consult-report": "Reltorio de consulta",
+    "doctor-financial": "Financeiro médico",
+    "admin-financial": "Financeiro administrativo",
+    "admin-settings": "Configurações administrativas",
+    "user-profile": "Perfil"
 }
