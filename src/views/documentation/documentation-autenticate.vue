@@ -1431,6 +1431,10 @@ export default {
                     { name: 'data_presenca', type: 'string | null' },
                     { name: 'token_agendamento', type: 'string | null' },
                     { name: 'token_agendamento_validado', type: 'int | null' },
+                    { name: 'pre_agendamento_id', type: 'int' },
+                    { name: 'efetivado', type: 'bool' },
+                    { name: 'contrato', type: 'string | null' },
+                    { name: 'contrato_gerado', type: 'bool' },
                 ],
             },
             {
