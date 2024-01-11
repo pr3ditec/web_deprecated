@@ -479,6 +479,7 @@ export default {
                     { name: 'usuario_id', type: 'int' },
                     { name: 'nome', type: 'string' },
                     { name: 'medico_id', type: 'int' },
+                    { name: 'sexo', type: 'char' },
                     {
                         name: 'documento',
                         type: 'array',
