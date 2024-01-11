@@ -30,7 +30,13 @@ export default {
                 nascimento: "",
                 nacionalidade_id: "0",
                 sexo: "0",
+                estado_civil_id: 0,
                 tipo_usuario: "6",
+            },
+
+            estadoCivil: {
+                id: 0,
+                estado_civil: "",
             },
 
             nacionalidade: {
@@ -52,6 +58,10 @@ export default {
         if (nacionalidadeResponse) {
             this.nacionalidade = nacionalidadeResponse.list;
         }
+
+        let estadoCiviResponse =
+            await this.store.request.pegarDadosApi("/estado-civil");
+        this.estadoCivil = estadoCiviResponse.list;
     },
     methods: {
         compararSenhas(entrada: any) {
@@ -159,6 +169,26 @@ export default {
                     </span>
                 </div>
             </div>
+
+            <!-- estado civil -->
+            <select
+                class="form-input"
+                v-model="investidorFormData.estado_civil_id">
+                <option disabled selected :value="0">
+                    {{ $t("select-marital-status") }}
+                </option>
+                <option
+                    v-for="status in estadoCivil"
+                    :value="
+                        //@ts-expect-error
+                        status.id
+                    ">
+                    {{
+                        //@ts-expect-error
+                        status.estado_civil
+                    }}
+                </option>
+            </select>
 
             <div>
                 <label for="mother">{{ $t("mother's name") }}</label>

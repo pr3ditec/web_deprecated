@@ -16,9 +16,14 @@ export default {
                 nome_mae: "",
                 nascimento: "",
                 nacionalidade_id: "0",
+                estado_civil_id: "0",
                 sexo: "0",
             },
 
+            estadoCivil: {
+                id: "",
+                estado_civil: "",
+            },
             nacionalidade: {
                 id: "",
                 descricao: "",
@@ -36,6 +41,10 @@ export default {
         let nacionalidadeResponse =
             await this.store.request.pegarDadosApi("/nacionalidade");
         this.nacionalidade = nacionalidadeResponse.list;
+
+        let estadoCiviResponse =
+            await this.store.request.pegarDadosApi("/estado-civil");
+        this.estadoCivil = estadoCiviResponse.list;
     },
 
     mounted() {
@@ -113,7 +122,8 @@ export default {
 };
 </script>
 <template>
-    <div class="flex flex-col items-center gap-5 mt-4 w-full md:w-1/2 dark:text-white">
+    <div
+        class="flex flex-col items-center gap-5 mt-4 w-full md:w-1/2 dark:text-white">
         <div class="flex flex-col md:flex-row gap-1 w-full">
             <!-- Nome da secretaria -->
             <div class="w-full md:w-1/2">
@@ -138,6 +148,28 @@ export default {
                     type="text"
                     placeholder="Ex.: Sabrina" />
             </div>
+        </div>
+
+        <!-- Estado civil -->
+        <div class="w-full">
+            <select
+                v-model="secretariaFormData.estado_civil_id"
+                class="form-select lowercase dark:text-white">
+                <option :value="0" disabled selected>
+                    {{ $t("select-marital-status") }}*
+                </option>
+                <option
+                    v-for="status in estadoCivil"
+                    :value="
+                        //@ts-expect-error
+                        status.id
+                    ">
+                    {{
+                        //@ts-expect-error
+                        status.estado_civil
+                    }}
+                </option>
+            </select>
         </div>
 
         <!-- CPF  -->
