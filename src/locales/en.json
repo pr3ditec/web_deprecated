@@ -796,6 +796,6 @@
     "admin-settings": "Admin settings",
     "user-profile": "Profile",
     "exists-in-the-table-estado-civil": "Exists in the table estado_civil",
-    "select-marital-status": "Select marital status"
+    "select-marital-status": "Select marital status",
     "returns-all-marital-statuses": "Returns all marital statuses"
 }
