@@ -2542,6 +2542,7 @@ export default {
         :parameters="[
             { item: 'nome_social', requests: ['max-70-characters'] },
             { item: 'ocupacao', requests: ['required'] },
+            { item: 'politicamente_exposto', requests: ['required', 'bool'] },
         ]"
         :responses="[
             {
