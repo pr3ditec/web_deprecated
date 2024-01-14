@@ -172,7 +172,7 @@ export default {
 
             <!-- estado civil -->
             <select
-                class="form-input"
+                class="form-input dark:text-white"
                 v-model="investidorFormData.estado_civil_id">
                 <option disabled selected :value="0">
                     {{ $t("select-marital-status") }}

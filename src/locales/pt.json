@@ -832,5 +832,7 @@
     "user-profile": "Perfil",
     "exists-in-the-table-estado-civil": "Existir na tabela estado_civil",
     "select-marital-status": "Selecione o estado civil",
-    "returns-all-marital-statuses": "Retorna todos os estados civis"
+    "returns-all-marital-statuses": "Retorna todos os estados civis",
+    "created-at": "criado em",
+    "disable": "Desativar"
 }
