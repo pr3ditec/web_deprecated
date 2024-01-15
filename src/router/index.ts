@@ -790,7 +790,7 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-    history: createWebHistory("/admin/"),
+    history: createWebHistory(),
     linkExactActiveClass: "active",
     routes,
     scrollBehavior(to, from, savedPosition) {
