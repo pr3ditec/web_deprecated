@@ -35,7 +35,6 @@ const submitForm = async () => {
     try {
         store.logout();
 
-
         const response = await axios.request(req);
 
         if (response.data.status) {
@@ -158,7 +157,6 @@ const submitForm = async () => {
                     or
                 </span>
             </div>
-
             <div class="mb-10 md:mb-[60px]">
                 <ul class="flex justify-center gap-3.5">
                     <li>

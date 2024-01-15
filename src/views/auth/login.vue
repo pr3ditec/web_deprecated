@@ -63,6 +63,13 @@ function mostrarLogin(value: boolean) {
                     <FormRequestPassword
                         v-show="!login"
                         @update:trocar="mostrarLogin(true)" />
+
+                    <button
+                        @click="$router.push('/app-policy')"
+                        class="lowercase underline">
+                        Politica de exclusão de dados
+                    </button>
+
                     <p
                         class="absolute lg:bottom-6 md:bottom-1 bottom-1 w-full text-center dark:text-white mt-10">
                         <TextSauvvi />

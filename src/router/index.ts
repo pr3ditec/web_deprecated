@@ -822,7 +822,11 @@ router.beforeEach((to, from, next) => {
     }
 
     if (!store.getUserToken()) {
-        if (to.path === "/auth/login" || to.path === "/auth/register") {
+        if (
+            to.path === "/auth/login" ||
+            to.path === "/auth/register" ||
+            to.path === "/app-policy"
+        ) {
             next(true);
         }
         next({ path: "/auth/login" });
