@@ -255,6 +255,17 @@ const routes: RouteRecordRaw[] = [
     },
     /** PERFIL */
 
+    /** APP */
+    {
+        path: "/app-policy",
+        name: "app polocy",
+        component: () => import("../views/app-policy/app-policy.vue"),
+        meta: {
+            layout: "auth",
+        },
+    },
+    /** APP */
+
     // auth
     {
         path: "/auth/login",
