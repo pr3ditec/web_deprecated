@@ -57,13 +57,13 @@ const excluirdados = () => {
                 suas informações serão tratadas.
             </li>
             <li class="text-justify text-md mt-2">
-                <b class="text--lg">Acesso e Controle:</b> Ofereceremos aos
+                <b class="text-lg">Acesso e Controle:</b> Ofereceremos aos
                 usuários a capacidade de acessar e controlar suas próprias
                 informações, permitindo correções ou exclusões conforme
                 necessário.
             </li>
             <li class="text-justify text-md mt-2">
-                <b class="text--lg">Exclusão Segura:</b>Implementaremos medidas
+                <b class="text-lg">Exclusão Segura:</b>Implementaremos medidas
                 de segurança robustas para garantir a exclusão segura de dados,
                 prevenindo acessos não autorizados e garantindo a
                 irreversibilidade do processo de exclusão.
@@ -75,7 +75,7 @@ const excluirdados = () => {
                 estabelecidos.
             </li>
             <li class="text-justify text-md mt-2">
-                <b class="text--lg">Revisão Regular:</b> Realizar revisões
+                <b class="text-lg">Revisão Regular:</b> Realizar revisões
                 periódicas de nossa política de exclusão de dados para garantir
                 que esteja alinhada com as melhores práticas do setor e com as
                 mudanças nas leis de privacidade.

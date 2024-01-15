@@ -258,7 +258,7 @@ const routes: RouteRecordRaw[] = [
     /** APP */
     {
         path: "/app-policy",
-        name: "app polocy",
+        name: "app policy",
         component: () => import("../views/app-policy/app-policy.vue"),
         meta: {
             layout: "auth",
