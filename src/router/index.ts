@@ -790,7 +790,7 @@ const routes: RouteRecordRaw[] = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHistory(import.meta.env.BASE_URL),
     linkExactActiveClass: "active",
     routes,
     scrollBehavior(to, from, savedPosition) {
