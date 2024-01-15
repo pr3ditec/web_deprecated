@@ -89,12 +89,12 @@ const excluirdados = () => {
                 transparente e diligente em relação à exclusão de dados.
             </li>
         </ul>
-        <input
+        <!-- <input
             v-mask="'###.###.###-##'"
             v-model="cpf"
             type="text"
             class="form-input mt-3"
-            placeholder="Digite o seu cpf..." />
+            placeholder="Digite o seu cpf..." /> -->
 
         <div class="flex flex-row gap-1 mt-4">
             <button
