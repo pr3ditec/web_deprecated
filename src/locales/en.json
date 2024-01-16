@@ -799,5 +799,21 @@
     "select-marital-status": "Select marital status",
     "returns-all-marital-statuses": "Returns all marital statuses",
     "created-at": "created at",
-    "disable": "disable"
+    "disable": "disable",
+    "register-for-a-doctors-discount": "Register for a doctor's discount",
+    "request-for-a-doctor-to-link-to-a-clinic": "Request for a doctor to link to a clinic",
+    "establish-a-link-between-the-clinic-and-the-doctor": "Establish a link between the clinic and the doctor",
+    "exists-in-the-table-clinica-medico": "Exists in the table clinica_medico",
+    "refuse-clinic-link": "Refuse clinic link",
+    "register-for-a-pre-schedule": "Register for a pre-schedule",
+    "exists-in-the-table-paciente": "Exists in the table paciente",
+    "exists-in-the-table-dependente": "Exists in the table dependente",
+    "hour-format-h-i-s": "Hour format: H:i:s",
+    "register-available-times-for-pre-scheduling-consultation": "Register available times for pre-scheduling consultation",
+    "exists-in-the-table-pre-agendamento": "Exists in the table pre_agendamento",
+    "decline-available-times-for-pre-scheduling-consultation": "Decline available times for pre-scheduling consultation",
+    "add-and-remove-available-doctor-appointment-times": "Add and remove available doctor appointment times.",
+    "registration-build-application": "Registration build application",
+    "returns-active-build-application": "Returns active build application",
+    "required-for-mobile-requests": "Required for mobile requests"
 }

@@ -87,6 +87,13 @@ export default {
         routeLength() {
             return this.route.length;
         },
+        getTitleBody(requestParams) {
+            if (requestParams.includes('required')) {
+                return 'required';
+            } else {
+                return '';
+            }
+        }
     },
 };
 </script>
@@ -178,12 +185,24 @@ export default {
                 </button>
                 <vue-collapsible :isOpen="accordians === 2">
                     <div
-                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]">
+                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]" :title="$t('required')">
                         Authorization
                     </div>
                     <div
-                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]">
+                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]" :title="$t('required')">
                         Origin-Request
+                    </div>
+                    <div
+                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b] underline" :title="$t('required-for-mobile-requests')">
+                        App-Version
+                    </div>
+                    <div
+                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b] underline" :title="$t('required-for-mobile-requests')">
+                        App-Plataform
+                    </div>
+                    <div
+                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b] underline" :title="$t('required-for-mobile-requests')">
+                        App-Build
                     </div>
                 </vue-collapsible>
             </div>
@@ -234,6 +253,7 @@ export default {
                                 underline: item.requests.includes('required'),
                                 '!text-primary': subAccordians === item.item,
                             }"
+                            :title="$t(getTitleBody(item.requests))"
                             @click="
                                 subAccordians === item.item
                                     ? (subAccordians = null)

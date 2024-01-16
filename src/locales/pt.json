@@ -834,5 +834,21 @@
     "select-marital-status": "Selecione o estado civil",
     "returns-all-marital-statuses": "Retorna todos os estados civis",
     "created-at": "criado em",
-    "disable": "Desativar"
+    "disable": "Desativar",
+    "register-for-a-doctors-discount": "Cadastro o desconto do médico",
+    "request-for-a-doctor-to-link-to-a-clinic": "Solicitação de vínculo de um médico com uma clínica",
+    "establish-a-link-between-the-clinic-and-the-doctor": "Efetivar vínculo da clínica com o médico",
+    "exists-in-the-table-clinica-medico": "Existir na tabela clinica_medico",
+    "refuse-clinic-link": "Recusar vínculo da clínica",
+    "register-for-a-pre-schedule": "Realizar o cadastro de um pré-agendamento",
+    "exists-in-the-table-paciente": "Existir na tabela paciente",
+    "exists-in-the-table-dependente": "Existir na tabela dependente",
+    "hour-format-h-i-s": "Formato hora: H:i:s",
+    "register-available-times-for-pre-scheduling-consultation": "Cadastrar horários disponíveis para consulta do pre-agendamento",
+    "exists-in-the-table-pre-agendamento": "Existir na tabela pre_agendamento",
+    "decline-available-times-for-pre-scheduling-consultation": "Recusar horários disponíveis para consulta do pre-agendamento",
+    "add-and-remove-available-doctor-appointment-times": "Adicionar e remover horários disponíveis do médico para atendimento.",
+    "registration-build-application": "Cadastro build aplicativo",
+    "returns-active-build-application": "Retorna build ativa aplicativo",
+    "required-for-mobile-requests": "Obrigatório para requisições mobile"
 }
