@@ -2464,10 +2464,67 @@ export default {
             },
         ]"
         :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="aplicativo/build"
+        color="bg-success"
+        details="returns-active-build-application"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['data-found'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'android', type: 'int' },
+                    { name: 'ios', type: 'int' },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['not-found'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
 
     <div
         class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
 
+    <DocumentationCard
+        method="POST"
+        route="aplicativo/build"
+        color="bg-primary"
+        details="registration-build-application"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'android',
+                requests: ['required', 'int'],
+            },
+            {
+                item: 'ios',
+                requests: ['required', 'int'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['success-when-register'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="POST"
         route="usuario/timezone"
@@ -3494,7 +3551,7 @@ export default {
             },
             {
                 item: 'horarios_disponiveis',
-                requests: ['required', 'string', 'json-format']
+                requests: ['required', 'string', 'json-format'],
             },
         ]"
         :responses="[
@@ -3504,7 +3561,11 @@ export default {
             },
             {
                 status: '400',
-                messages: ['doctor-not-found', 'times-were-not-announced', 'error-creating-query-date'],
+                messages: [
+                    'doctor-not-found',
+                    'times-were-not-announced',
+                    'error-creating-query-date',
+                ],
             },
             {
                 status: '401',

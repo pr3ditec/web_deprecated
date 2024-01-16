@@ -812,5 +812,7 @@
     "register-available-times-for-pre-scheduling-consultation": "Register available times for pre-scheduling consultation",
     "exists-in-the-table-pre-agendamento": "Exists in the table pre_agendamento",
     "decline-available-times-for-pre-scheduling-consultation": "Decline available times for pre-scheduling consultation",
-    "add-and-remove-available-doctor-appointment-times": "Add and remove available doctor appointment times."
+    "add-and-remove-available-doctor-appointment-times": "Add and remove available doctor appointment times.",
+    "registration-build-application": "Registration build application",
+    "returns-active-build-application": "Returns active build application"
 }

@@ -847,5 +847,7 @@
     "register-available-times-for-pre-scheduling-consultation": "Cadastrar horários disponíveis para consulta do pre-agendamento",
     "exists-in-the-table-pre-agendamento": "Existir na tabela pre_agendamento",
     "decline-available-times-for-pre-scheduling-consultation": "Recusar horários disponíveis para consulta do pre-agendamento",
-    "add-and-remove-available-doctor-appointment-times": "Adicionar e remover horários disponíveis do médico para atendimento."
+    "add-and-remove-available-doctor-appointment-times": "Adicionar e remover horários disponíveis do médico para atendimento.",
+    "registration-build-application": "Cadastro build aplicativo",
+    "returns-active-build-application": "Retorna build ativa aplicativo"
 }
