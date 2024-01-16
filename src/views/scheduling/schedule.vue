@@ -131,9 +131,10 @@ export default {
                     })
                     .then((res) => {
                         if (res.status) {
+                            console.log(res.data)
                             Response.mensagemToast(
                                 "success",
-                                this.$t(res.message),
+                                res.data.token,
                             );
                         } else {
                             Response.mensagemToast(
