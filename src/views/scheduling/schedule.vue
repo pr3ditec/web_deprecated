@@ -135,6 +135,7 @@ export default {
                             Response.mensagemToast(
                                 "success",
                                 res.data.token,
+                                false
                             );
                         } else {
                             Response.mensagemToast(

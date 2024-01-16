@@ -20,14 +20,14 @@ export default class Response {
         });
     }
 
-    public static mensagemToast(icon: any, mensagem: any): any {
+    public static mensagemToast(icon: any, mensagem: any , time: boolean = true): any {
         return Swal.mixin({
             icon: icon,
             animation: true,
             text: mensagem,
             toast: true,
             showConfirmButton: false,
-            timer: 1000,
+            timer: time ? 2000 : Infinity,
             position: "top",
         }).fire();
     }
