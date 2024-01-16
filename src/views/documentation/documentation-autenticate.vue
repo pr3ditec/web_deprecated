@@ -1571,7 +1571,7 @@ export default {
                             { name: 'interest', type: 'string' },
                             { name: 'principal', type: 'string' },
                         ],
-                    }
+                    },
                 ],
             },
             {
@@ -2024,6 +2024,8 @@ export default {
                     { name: 'medico_nome', type: 'string' },
                     { name: 'agenda_id', type: 'int' },
                     { name: 'status', type: 'string' },
+                    { name: 'data_atendimento', type: 'string' },
+                    { name: 'especialidade', type: 'string' },
                     { name: 'observacao', type: 'string' },
                 ],
             },
@@ -3129,8 +3131,12 @@ export default {
             },
             {
                 item: 'estado_civil_id',
-                requests: ['required', 'int', 'exists-in-the-table-estado-civil'],
-            }
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-estado-civil',
+                ],
+            },
         ]"
         :responses="[
             {
@@ -3156,8 +3162,26 @@ export default {
         method="POST"
         route="desconto/medico"
         color="bg-primary"
+        details="register-for-a-doctors-discount"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'desconto',
+                requests: ['required'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['registered-medical-discount'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-when-registering-medical-discount',
+                    'discount-already-registered-for-this-value',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3168,8 +3192,38 @@ export default {
         method="POST"
         route="clinica/medico"
         color="bg-primary"
+        details="request-for-a-doctor-to-link-to-a-clinic"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'clinica_id',
+                requests: ['required', 'exists-in-the-table-clinica'],
+            },
+            {
+                item: 'medico_id',
+                requests: ['required', 'exists-in-the-table-medico'],
+            },
+            {
+                item: 'especialidade_id',
+                requests: ['required', 'exists-in-the-table-especialidade'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['link-request-made'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-when-making-link-request',
+                    'error-recording-link-request',
+                    'doctor-already-has-link-with-the-specified-clinic',
+                    'doctor-already-has-link-with-another-clinic',
+                    'doctor-does-not-have-the-specified-specialty',
+                    'user-cannot-make-link-request',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3180,8 +3234,27 @@ export default {
         method="POST"
         route="clinica/medico/aceitar"
         color="bg-primary"
+        details="establish-a-link-between-the-clinic-and-the-doctor"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'clinica_medico_id',
+                requests: ['required', 'exists-in-the-table-clinica-medico'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['link-approved-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-approving-link',
+                    'link-already-approved',
+                    'user-is-not-authorized-to-approve-link',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3192,8 +3265,27 @@ export default {
         method="POST"
         route="clinica/medico/rejeitar"
         color="bg-primary"
+        details="refuse-clinic-link"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'clinica_medico_id',
+                requests: ['required', 'exists-in-the-table-clinica-medico'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['link-rejected-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-rejecting-link',
+                    'link-already-approved',
+                    'user-is-not-authorized-to-approve-link',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3204,8 +3296,111 @@ export default {
         method="POST"
         route="pre-agendamento/cadastro"
         color="bg-primary"
+        details="register-for-a-pre-schedule"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'paciente_id',
+                requests: ['required', 'exists-in-the-table-paciente'],
+            },
+            {
+                item: 'medico_id',
+                requests: ['required', 'exists-in-the-table-medico'],
+            },
+            {
+                item: 'especialidade_id',
+                requests: ['required', 'exists-in-the-table-especialidade'],
+            },
+            {
+                item: 'total_parcelas',
+                requests: ['required', 'int'],
+            },
+            {
+                item: 'periodo_atendimento',
+                requests: ['required', 'string', 'json-format'],
+            },
+            {
+                item: 'observacao',
+                requests: ['string'],
+            },
+            {
+                item: 'dependente_id',
+                requests: ['exists-in-the-table-dependente'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['pre-scheduling-successfully-completed'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-when-pre-booking',
+                    'patient-cannot-pre-book',
+                    'quantity-installments-exceeded',
+                ],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="pre-agendamento/cadastro-secretaria"
+        color="bg-primary"
+        details="register-for-a-pre-schedule"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'paciente_id',
+                requests: ['required', 'exists-in-the-table-paciente'],
+            },
+            {
+                item: 'medico_id',
+                requests: ['required', 'exists-in-the-table-medico'],
+            },
+            {
+                item: 'especialidade_id',
+                requests: ['required', 'exists-in-the-table-especialidade'],
+            },
+            {
+                item: 'total_parcelas',
+                requests: ['required', 'int'],
+            },
+            {
+                item: 'data_atendimento',
+                requests: ['required', 'date-format-y-m-d'],
+            },
+            {
+                item: 'hora_atendimento',
+                requests: ['required', 'hour-format-h-i-s'],
+            },
+            {
+                item: 'observacao',
+                requests: ['string'],
+            },
+            {
+                item: 'dependente_id',
+                requests: ['exists-in-the-table-dependente'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '200',
+                messages: ['pre-booking-created'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-creating-pre-booking',
+                    'timezone-clinic-not-found',
+                    'quantity-installments-exceeded',
+                    'pre-booking-cannot-be-made',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3216,8 +3411,35 @@ export default {
         method="POST"
         route="pre-agendamento/horarios/cadastro"
         color="bg-primary"
+        details="register-available-times-for-pre-scheduling-consultation"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'pre_agendamento_id',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-pre-agendamento',
+                ],
+            },
+            {
+                item: 'horarios_agendamento',
+                requests: ['required'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['schedule-created-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-registering-time',
+                    'timezone-clinic-not-found',
+                    'the-schedule-field-must-be-an-array',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3228,8 +3450,30 @@ export default {
         method="POST"
         route="pre-agendamento/horarios/recusar"
         color="bg-primary"
+        details="decline-available-times-for-pre-scheduling-consultation"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'pre_agendamento_id',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-pre-agendamento',
+                ],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['schedules-refused-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'it-is-not-possible-to-refuse-schedules-from-a-confirmed-appointment',
+                    'error-refusing-schedules',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3240,8 +3484,27 @@ export default {
         method="POST"
         route="consulta/criar"
         color="bg-primary"
+        details="add-and-remove-available-doctor-appointment-times"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'medico_id',
+                requests: ['required', 'exists-in-the-table-medico'],
+            },
+            {
+                item: 'horarios_disponiveis',
+                requests: ['required', 'string', 'json-format']
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['successfully-registered-times'],
+            },
+            {
+                status: '400',
+                messages: ['doctor-not-found', 'times-were-not-announced', 'error-creating-query-date'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
