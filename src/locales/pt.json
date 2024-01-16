@@ -849,5 +849,6 @@
     "decline-available-times-for-pre-scheduling-consultation": "Recusar horários disponíveis para consulta do pre-agendamento",
     "add-and-remove-available-doctor-appointment-times": "Adicionar e remover horários disponíveis do médico para atendimento.",
     "registration-build-application": "Cadastro build aplicativo",
-    "returns-active-build-application": "Retorna build ativa aplicativo"
+    "returns-active-build-application": "Retorna build ativa aplicativo",
+    "required-for-mobile-requests": "Obrigatório para requisições mobile"
 }

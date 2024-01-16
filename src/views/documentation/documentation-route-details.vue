@@ -185,6 +185,18 @@ export default {
                         class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b]">
                         Origin-Request
                     </div>
+                    <div
+                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b] underline" :title="$t('required-for-mobile-requests')">
+                        App-Version
+                    </div>
+                    <div
+                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b] underline" :title="$t('required-for-mobile-requests')">
+                        App-Plataform
+                    </div>
+                    <div
+                        class="p-4 text-[15px] border-t border-[#d3d3d3] dark:border-[#1b2e4b] underline" :title="$t('required-for-mobile-requests')">
+                        App-Build
+                    </div>
                 </vue-collapsible>
             </div>
             <div class="border border-[#d3d3d3] dark:border-[#1b2e4b] rounded">
