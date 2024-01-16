@@ -2025,6 +2025,7 @@ export default {
                     { name: 'agenda_id', type: 'int' },
                     { name: 'status', type: 'string' },
                     { name: 'data_atendimento', type: 'string' },
+                    { name: 'observacao_atendimento', type: 'string' },
                     { name: 'especialidade', type: 'string' },
                     { name: 'observacao', type: 'string' },
                 ],
