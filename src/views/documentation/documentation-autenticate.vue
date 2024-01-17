@@ -2490,6 +2490,283 @@ export default {
             },
         ]"
         :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="perguntas-investidor-usuario/[usuarioId]"
+        color="bg-success"
+        details="answer-user-answered-questions"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['data-found'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'usuario_id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'pergunta_id', type: 'int' },
+                    { name: 'resposta_id', type: 'int' },
+                    { name: 'observacao', type: 'string' },
+                    {
+                        name: 'pergunta',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'descricao', type: 'string' },
+                            { name: 'message_code', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'resposta',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'descricao', type: 'string' },
+                            { name: 'message_code', type: 'string' },
+                        ],
+                    },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['not-found'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="financeiro/todas"
+        color="bg-success"
+        details="returns-all-installments"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['list-of-plots'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'pre_agendamento_id', type: 'int' },
+                    { name: 'data_vencimento', type: 'string' },
+                    { name: 'valor', type: 'float' },
+                    { name: 'parcela', type: 'int' },
+                    {
+                        name: 'pago',
+                        type: 'array|null',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'financeiro_id', type: 'int' },
+                            { name: 'tipo_pagamento_id', type: 'int' },
+                            { name: 'valor_pago', type: 'float' },
+                            { name: 'bonificacao', type: 'float' },
+                            { name: 'desconto', type: 'float' },
+                            { name: 'juros', type: 'float' },
+                            { name: 'multa', type: 'float' },
+                        ],
+                    },
+                    {
+                        name: 'medico',
+                        type: 'array|null',
+                        data_item: [
+                            { name: 'usuario_id', type: 'int' },
+                            { name: 'nome', type: 'string' },
+                            { name: 'medico_id', type: 'int' },
+                            { name: 'cpf', type: 'string' },
+                        ],
+                    },
+                    {
+                        name: 'paciente',
+                        type: 'array|null',
+                        data_item: [
+                            { name: 'usuario_id', type: 'int' },
+                            { name: 'nome', type: 'string' },
+                            { name: 'paciente_id', type: 'int' },
+                            { name: 'ocupacao', type: 'string' },
+                            {
+                                name: 'telefone',
+                                type: 'array | null',
+                                data_sub_item: [
+                                    { name: 'id', type: 'int' },
+                                    { name: 'pais_id', type: 'int' },
+                                    { name: 'telefone', type: 'string' },
+                                    { name: 'principal', type: 'int' },
+                                    { name: 'pais', type: 'string' },
+                                    { name: 'sigla', type: 'string' },
+                                    { name: 'tipo', type: 'string' },
+                                ],
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['not-found'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="usuario-investidor"
+        color="bg-success"
+        details="view-investors-pending-approval"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['users-found'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'cpf', type: 'string' },
+                    { name: 'nascimento', type: 'string (format Y-m-d)' },
+                    { name: 'sexo', type: 'string' },
+                    { name: 'email', type: 'string' },
+                    { name: 'nacionalidade_id', type: 'int' },
+                    { name: 'nacionalidade', type: 'string' },
+                    { name: 'nome_mae', type: 'string' },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['no-user-found', 'error-when-searching'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="invest/categoria"
+        color="bg-success"
+        details="view-all-registered-categories"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['successfully-listed'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'ativo', type: 'int' },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['there-is-no-data-to-show', 'error-when-listing'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="invest/item"
+        color="bg-success"
+        details="view-all-registered-items"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['successfully-listed'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'categoria_id', type: 'int' },
+                    { name: 'periodo', type: 'int' },
+                    { name: 'valor', type: 'float' },
+                    { name: 'categoria', type: 'string' },
+                    { name: 'ativo', type: 'int' },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['there-is-no-data-to-show', 'error-when-listing'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="invest/produto"
+        color="bg-success"
+        details="view-all-registered-products"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['successfully-listed'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'descricao', type: 'string' },
+                    { name: 'ativo', type: 'int' },
+                    {
+                        name: 'itens',
+                        type: 'array',
+                        data_item: [
+                            { name: 'id', type: 'int' },
+                            { name: 'categoria_id', type: 'int' },
+                            { name: 'periodo', type: 'int' },
+                            { name: 'valor', type: 'float' },
+                            { name: 'categoria', type: 'string' },
+                            { name: 'ativo', type: 'int' },
+                        ],
+                    },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['there-is-no-data-to-show', 'error-when-listing'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="invest/produto-item/[produtoId]"
+        color="bg-success"
+        details="view-all-registered-product-items"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['successfully-listed'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'categoria_id', type: 'int' },
+                    { name: 'periodo', type: 'int' },
+                    { name: 'valor', type: 'float' },
+                    { name: 'categoria', type: 'string' },
+                    { name: 'ativo', type: 'int' },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['there-is-no-data-to-show', 'error-when-listing'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
 
     <div
         class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>
@@ -3577,8 +3854,26 @@ export default {
         method="POST"
         route="secretaria/medico"
         color="bg-primary"
+        details="request-a-secretarys-relationship-with-a-doctor"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'secretaria_id',
+                requests: ['required', 'exists-in-the-table-secretaria'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['requested-secretary-position-from-doctor'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'secretary-already-linked-to-the-doctor',
+                    'error-when-requesting-link',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3589,8 +3884,31 @@ export default {
         method="POST"
         route="secretaria/medico/ativar"
         color="bg-primary"
+        details="activate-doctor-secretary-link"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'secretaria_id',
+                requests: ['required', 'exists-in-the-table-secretaria'],
+            },
+            {
+                item: 'medico_id',
+                requests: ['required', 'exists-in-the-table-medico'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['link-activated'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'user-does-not-approve-secretary-requests',
+                    'error-when-activating-link',
+                    'no-link-requests',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3601,8 +3919,31 @@ export default {
         method="POST"
         route="secretaria/medico/rejeitar"
         color="bg-primary"
+        details="reject-medical-link-request"
+        :parameters="[
+            {
+                item: 'secretaria_id',
+                requests: ['required', 'exists-in-the-table-secretaria'],
+            },
+            {
+                item: 'medico_id',
+                requests: ['required', 'exists-in-the-table-medico'],
+            },
+        ]"
         :autenticate="autenticate"
         :responses="[
+            {
+                status: '200',
+                messages: ['link-rejected'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'user-does-not-approve-secretary-requests',
+                    'error-when-rejected-link',
+                    'no-link-requests',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3613,8 +3954,31 @@ export default {
         method="POST"
         route="financeiro/status"
         color="bg-primary"
+        details="update-patient-financial-status"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'status',
+                requests: ['required', 'int', 'exists-in-the-table-status'],
+            },
+            {
+                item: 'pre_agendamento',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-financeiro-field-pre-agendamento-id',
+                ],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['status-updated-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['status-cannot-be-updated'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3625,8 +3989,23 @@ export default {
         method="POST"
         route="status/financeiro"
         color="bg-primary"
+        details="register-new-type-of-financial-status"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'descricao',
+                requests: ['required', 'string', 'max-255-characters'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['successfully-registered-status'],
+            },
+            {
+                status: '400',
+                messages: ['error-registering-status'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3637,8 +4016,23 @@ export default {
         method="POST"
         route="tipo-pagamento"
         color="bg-primary"
+        details="register-a-new-type-of-installment-payment"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'descricao',
+                requests: ['required', 'string', 'max-255-characters'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['payment-type-successfully-registered'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering-payment-type'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3649,8 +4043,23 @@ export default {
         method="POST"
         route="status/agenda"
         color="bg-primary"
+        details="register-a-new-type-of-status-for-appointments"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'descricao',
+                requests: ['required', 'string', 'max-255-characters'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['calendar-status-created-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering-agenda-status'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3661,8 +4070,39 @@ export default {
         method="POST"
         route="agenda"
         color="bg-primary"
+        details="schedule-registration"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'pre_agendamento_id',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-pre-agendamento',
+                ],
+            },
+            {
+                item: 'data',
+                requests: ['required', 'date-format-y-m-d'],
+            },
+            {
+                item: 'hora',
+                requests: ['required', 'hour-format-h-i'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['schedule-created-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'pre-schedule-not-found',
+                    'timezone-clinic-not-found',
+                    'error-creating-schedule',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3673,8 +4113,30 @@ export default {
         method="POST"
         route="agenda/status"
         color="bg-primary"
+        details="update-scheduling-status"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'agenda_id',
+                requests: ['required', 'int', 'exists-in-the-table-agenda'],
+            },
+            {
+                item: 'status_id',
+                requests: ['required', 'int', 'exists-in-the-table-status'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['updated-calendar-status'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'status-already-registered-for-this-calendar',
+                    'error-updating-status',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3685,8 +4147,30 @@ export default {
         method="POST"
         route="token/agendamento"
         color="bg-primary"
+        details="generate-scheduling-token"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'agenda_id',
+                requests: ['required', 'exists-in-the-table-agenda'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['scheduling-token-registered-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'appointment-is-not-confirmed',
+                    'error-generate-token',
+                    'time-greater-than-limit',
+                    'already-existing-token',
+                    'error-generating-scheduling-token',
+                    'failed-to-generate-scheduling-token',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3697,8 +4181,38 @@ export default {
         method="POST"
         route="atendimento"
         color="bg-primary"
+        details="record-service"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'agenda_id',
+                requests: ['required', 'int', 'exists-in-the-table-agenda'],
+            },
+            {
+                item: 'observacao',
+                requests: ['string'],
+            },
+            {
+                item: 'nota_fiscal',
+                requests: ['base64'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['saved-service'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'pre-scheduling-not-found',
+                    'financial-is-not-effected',
+                    'error-saved-service',
+                    'service-not-found',
+                    'problems-saving-image',
+                    'error-recording-invoice',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3709,8 +4223,26 @@ export default {
         method="POST"
         route="agenda/confirmar"
         color="bg-primary"
+        details="confirm-patient-appointment"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'agenda_id',
+                requests: ['required', 'exists-in-the-table-agenda'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['schedule-confirmed'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'user-cannot-confirm-schedule',
+                    'error-confirming-schedule',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3721,8 +4253,39 @@ export default {
         method="POST"
         route="dispositivo"
         color="bg-primary"
+        details="register-new-user-device"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'unique_id',
+                requests: ['required', 'string', 'max-255-characters'],
+            },
+            {
+                item: 'system',
+                requests: ['required', 'max-255-characters'],
+            },
+            {
+                item: 'version',
+                requests: ['required', 'max-255-characters'],
+            },
+            {
+                item: 'brand',
+                requests: ['required', 'max-255-characters'],
+            },
+            {
+                item: 'model',
+                requests: ['required', 'max-255-characters'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['device-registered-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['error-registering-device'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3733,8 +4296,42 @@ export default {
         method="POST"
         route="dispositivo/admin"
         color="bg-primary"
+        details="register-new-user-device-web"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'browser',
+                requests: ['required'],
+            },
+            {
+                item: 'system',
+                requests: ['required'],
+            },
+            {
+                item: 'version',
+                requests: ['required'],
+            },
+            {
+                item: 'brand',
+                requests: ['required'],
+            },
+            {
+                item: 'token',
+                requests: ['required'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['data-registered-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-registering-device',
+                    'device-registration-failed',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3745,8 +4342,23 @@ export default {
         method="POST"
         route="sms/enviar"
         color="bg-primary"
+        details="sms-sending"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'numero',
+                requests: ['required'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['code-sent'],
+            },
+            {
+                status: '400',
+                messages: ['code-not-sent'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3757,8 +4369,34 @@ export default {
         method="POST"
         route="firebase"
         color="bg-primary"
+        details="register-new-firebase-with-user"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'dispositivo_id',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-dispositivo',
+                ],
+            },
+            {
+                item: 'token',
+                requests: ['required', 'string'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['firebase-registered-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'token-already-registered',
+                    'error-when-registering-firebase',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3769,8 +4407,41 @@ export default {
         method="POST"
         route="galax/cobranca"
         color="bg-primary"
+        details="generate-billing-for-the-patients-installment-by-galax"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'financeiro_id',
+                requests: ['required', 'int', 'exists-in-the-table-financeiro'],
+            },
+            {
+                item: 'tipo_pagamento',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-tipo-pagamento',
+                ],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['charge-created'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'charge-already-paid',
+                    'email-not-found',
+                    'address-not-found',
+                    'error-recording-charge',
+                    'error-creating-charge',
+                    'card-number-not-informed',
+                    'card-name-not-informed',
+                    'card-expiration-not-informed',
+                    'card-security-code-not-informed',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3781,8 +4452,31 @@ export default {
         method="POST"
         route="pix"
         color="bg-primary"
+        details="record-medical-pix-key"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'chave',
+                requests: ['required'],
+            },
+            {
+                item: 'tipo_pagamento_id',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-tipo-pagamento-medico',
+                ],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['pix-key-successfully-registered'],
+            },
+            {
+                status: '400',
+                messages: ['unable-to-register-pix'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3793,8 +4487,17 @@ export default {
         method="POST"
         route="logout"
         color="bg-primary"
+        details="log-out-of-the-system"
         :autenticate="autenticate"
         :responses="[
+            {
+                status: '201',
+                messages: ['logout-completed-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['invalid-origin-request', 'error-when-logging-out'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3805,8 +4508,30 @@ export default {
         method="POST"
         route="risco-empresarial"
         color="bg-primary"
+        details="business-risk-value-registration"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'estado_id',
+                requests: ['required', 'exists-in-the-table-estado'],
+            },
+            {
+                item: 'valor',
+                requests: ['required'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['registered-business-risk'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'business-risk-already-registered-in-this-value',
+                    'error-in-business-risk-registration',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3817,8 +4542,23 @@ export default {
         method="POST"
         route="limite-confirmacao-agendamento"
         color="bg-primary"
+        details="registration-time-limit-for-token-generation"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'tempo',
+                requests: ['required', 'string'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['minimum-time-for-saved-token-generation'],
+            },
+            {
+                status: '400',
+                messages: ['error-saving-minimum-time-for-token-generation'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3829,8 +4569,35 @@ export default {
         method="POST"
         route="cadastro-categoria-agenda"
         color="bg-primary"
+        details="agenda-category-registration-for-the-doctor"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'medico_id',
+                requests: ['required', 'exists-in-the-table-medico'],
+            },
+            {
+                item: 'especialidade_id',
+                requests: ['required', 'exists-in-the-table-especialidade'],
+            },
+            {
+                item: 'categoria',
+                requests: ['required', 'string'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['schedule-category-saved-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'doctor-has-no-specialty',
+                    'schedule-category-already-registered',
+                    'error-saving-schedule-category',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3841,8 +4608,32 @@ export default {
         method="POST"
         route="comprovante-residencia/validar"
         color="bg-primary"
+        details="validate-proof-of-patient-residence"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'comprovante_residencia',
+                requests: ['required', 'base64'],
+            },
+            {
+                item: 'paciente_id',
+                requests: ['required', 'exists-in-the-table-paciente'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['residence-proof-validated'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'residence-proof-not-validated',
+                    'address-not-found',
+                    'error-recording-proof-of-residence',
+                    'problems-saving-image',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3853,8 +4644,23 @@ export default {
         method="POST"
         route="maximo-parcelamento"
         color="bg-primary"
+        details="register-maximum-pre-scheduling-installment"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'maximo_parcelamento',
+                requests: ['required', 'int'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['maximu-installment-registered'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering-maximu-installment'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3865,8 +4671,27 @@ export default {
         method="POST"
         route="foto/perfil"
         color="bg-primary"
+        details="register-user-profile-photo"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'foto_perfil',
+                requests: ['required', 'base64'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['selfie-saved-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'problems-saving-image',
+                    'problems-saving-image',
+                    'error-recording-selfie',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3877,8 +4702,30 @@ export default {
         method="POST"
         route="admin/secretaria/agendamento"
         color="bg-primary"
+        details="register-scheduling-time-for-secretary"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'categoria_secretaria',
+                requests: [
+                    'required',
+                    'exists-in-the-table-categoria-secretaria-agendamento',
+                ],
+            },
+            {
+                item: 'tempo',
+                requests: ['required', 'string'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['saved-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-saving'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3889,8 +4736,31 @@ export default {
         method="POST"
         route="pre-agendamento/retorno"
         color="bg-primary"
+        details="pre-scheduling-return-registration"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'pre_agendamento_id',
+                requests: ['required', 'exists-in-the-table-pre-agendamento'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['success-registering-return'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'doctor-specialty-not-found',
+                    'return-not-found',
+                    'not-located-clinic',
+                    'not-found-clinic-state',
+                    'not-found-business-risk',
+                    'error-registering-return',
+                    'error-when-creating-pre-schedule',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3901,8 +4771,30 @@ export default {
         method="POST"
         route="permissao"
         color="bg-primary"
+        details="register-new-permission"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'nome',
+                requests: ['required', 'string'],
+            },
+            {
+                item: 'descricao',
+                requests: ['required', 'string'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['successfully-registered'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'permission-already-registered',
+                    'error-when-registering',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3913,8 +4805,30 @@ export default {
         method="POST"
         route="usuario-permissao"
         color="bg-primary"
+        details="link-new-user-permission"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'tipo_usuario',
+                requests: ['required', 'string', 'json-format'],
+            },
+            {
+                item: 'permissao_id',
+                requests: ['required', 'int', 'exists-in-the-table-permissao'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['permission-registered-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'user-types-must-be-a-valid-array',
+                    'error-when-registering',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3925,8 +4839,30 @@ export default {
         method="POST"
         route="limite-pre-agendamento"
         color="bg-primary"
+        details="register-pre-scheduling-limit"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'tipo_limite',
+                requests: [
+                    'required',
+                    'exists-in-the-table-tipo-limite-pre-agendamento',
+                ],
+            },
+            {
+                item: 'valor',
+                requests: ['required'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['limit-pre-scheduling-registered'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3937,8 +4873,422 @@ export default {
         method="POST"
         route="tipo-limite-pre-agendamento"
         color="bg-primary"
+        details="register-pre-scheduling-limit-type"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'descricao',
+                requests: ['required', 'string'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['registered'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-registering'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="perguntas-investidor"
+        color="bg-primary"
+        details="register-new-questions-and-answers-for-investors"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'pergunta',
+                requests: ['required', 'string'],
+            },
+            {
+                item: 'respostas',
+                requests: ['required', 'string', 'json-format'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['success-when-registering-question'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'the-response-field-must-be-a-valid-json',
+                    'there-is-already-a-question-with-this-description',
+                    'error-when-registering-question',
+                    'error-when-registering',
+                ],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="perguntas-investidor-usuario"
+        color="bg-primary"
+        details="answer-user-investor-questions"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'respostas',
+                requests: ['required', 'string', 'json-format'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '200',
+                messages: ['success-when-registering'],
+            },
+            {
+                status: '400',
+                messages: ['invalid-json', 'error-when-registering'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="usuario-investidor-aprovar"
+        color="bg-primary"
+        details="approve-investor-user"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'usuario_id',
+                requests: ['required', 'int', 'exists-in-the-table-usuario'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '200',
+                messages: ['user-approved-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'user-not-investor',
+                    'user-already-investor-active',
+                    'user-has-already-been-rejected-as-an-investor',
+                    'error-when-approving',
+                ],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="usuario-investidor-recusar"
+        color="bg-primary"
+        details="refuse-investor-user"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'usuario_id',
+                requests: ['required', 'int', 'exists-in-the-table-usuario'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '200',
+                messages: ['user-declined'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'user-not-investor',
+                    'user-already-investor-active',
+                    'user-has-already-been-rejected-as-an-investor',
+                    'field-motive-required',
+                    'error-when-declining',
+                ],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="usuario-telefone"
+        color="bg-primary"
+        details="user-phone-registration"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'pais',
+                requests: ['int', 'exists-in-the-table-pais'],
+            },
+            {
+                item: 'telefone',
+                requests: ['required', 'string', 'max-15-characters'],
+            },
+            {
+                item: 'tipo',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-tipo-telefone',
+                ],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['phone-registered-successfully'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'error-when-registering-phone',
+                    'error-creating-phone',
+                ],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="celcoin/pessoa-cadastrar"
+        color="bg-primary"
+        details="person-registration-at-celcoin"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'usuario_id',
+                requests: ['required', 'int', 'exists-in-the-table-usuario'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['created'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'phone-not-found',
+                    'address-not-found',
+                    'error-when-creating',
+                ],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="celcoin/pessoa/documento-cadastrar"
+        color="bg-primary"
+        details="celcoin-person-document-registration"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'usuario_id',
+                requests: ['required', 'int', 'exists-in-the-table-usuario'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['document-sent'],
+            },
+            {
+                status: '400',
+                messages: ['document-not-found', 'error-when-sending-document'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="invest/categoria"
+        color="bg-primary"
+        details="registration-of-a-new-investment-category"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'nome',
+                requests: ['required', 'string', 'max-255-characters'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['successfully-registered'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'existing-category',
+                    'unable-to-register',
+                    'error-when-registering',
+                ],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="invest/item"
+        color="bg-primary"
+        details="registration-of-a-new-investment-item"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'categoria_id',
+                requests: ['required', 'int', 'exists-in-the-table-categoria'],
+            },
+            {
+                item: 'periodo',
+                requests: ['required', 'int'],
+            },
+            {
+                item: 'valor',
+                requests: ['required', 'string'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['successfully-registered'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'already-existing-item',
+                    'unable-to-register',
+                    'error-when-registering',
+                ],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="invest/produto"
+        color="bg-primary"
+        details="register-new-investment-product"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'nome',
+                requests: ['required', 'string', 'max-255-characters'],
+            },
+            {
+                item: 'descricao',
+                requests: ['required', 'string'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '201',
+                messages: ['successfully-registered'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'existing-product',
+                    'unable-to-register',
+                    'error-when-registering',
+                ],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="invest/produto-item"
+        color="bg-primary"
+        details="register-new-investment-product"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'produto_id',
+                requests: ['required', 'int', 'exists-in-the-table-produto'],
+            },
+            {
+                item: 'itens',
+                requests: ['required', 'array'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '200',
+                messages: ['successfully-registered'],
+            },
+            {
+                status: '400',
+                messages: ['unable-to-register', 'error-when-registering'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="POST"
+        route="nota-fiscal"
+        color="bg-primary"
+        details="save-pre-scheduling-invoice"
+        :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'pre_agendamento_id',
+                requests: [
+                    'required',
+                    'int',
+                    'exists-in-the-table-pre-agendamento',
+                ],
+            },
+            {
+                item: 'nota_fiscal',
+                requests: ['required', 'base64'],
+            },
+        ]"
+        :responses="[
+            {
+                status: '200',
+                messages: ['invoice-saved-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['problems-saving-image', 'error-recording-invoice'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3953,8 +5303,38 @@ export default {
         method="PATCH"
         route="usuario"
         color="bg-secondary"
+        details="update-user-data"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'email',
+                requests: ['email'],
+            },
+            {
+                item: 'senha',
+                requests: [
+                    'min-8-characters',
+                    'different-from-the-nova-senha-field',
+                ],
+            },
+            {
+                item: 'nova_senha',
+                requests: ['min-8-characters'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['updated-registration'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'password-entered-different-from-the-registered-one',
+                    'unable-to-update-registration',
+                    'error-when-updating-registration',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3965,8 +5345,51 @@ export default {
         method="PATCH"
         route="paciente/[usuarioId]"
         color="bg-secondary"
+        details="update-patient-and-user-data"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'nome_social',
+                requests: ['max-70-characters'],
+            },
+            {
+                item: 'ocupacao',
+                requests: ['string'],
+            },
+            {
+                item: 'nome_mae',
+                requests: ['max-70-characters'],
+            },
+            {
+                item: 'nascimento',
+                requests: ['date-format-y-m-d'],
+            },
+            {
+                item: 'nacionalidade_id',
+                requests: ['exists-in-the-table-nacionalidade'],
+            },
+            {
+                item: 'sexo',
+                requests: ['one-character', 'M, F, X'],
+            },
+            {
+                item: 'email',
+                requests: ['email'],
+            },
+            {
+                item: 'password',
+                requests: ['string'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['data-updated-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['patient-not-found'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3977,8 +5400,43 @@ export default {
         method="PATCH"
         route="medico/[usuarioId]"
         color="bg-secondary"
+        details="update-doctors-and-user-data"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'nome_mae',
+                requests: ['max-70-characters'],
+            },
+            {
+                item: 'nascimento',
+                requests: ['date-format-y-m-d'],
+            },
+            {
+                item: 'nacionalidade_id',
+                requests: ['exists-in-the-table-nacionalidade'],
+            },
+            {
+                item: 'sexo',
+                requests: ['one-character', 'M, F, X'],
+            },
+            {
+                item: 'email',
+                requests: ['email'],
+            },
+            {
+                item: 'password',
+                requests: ['string'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['data-updated-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['doctor-not-found', 'doctor-cannot-be-updated'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -3989,8 +5447,35 @@ export default {
         method="PATCH"
         route="token/agendamento/[token]"
         color="bg-secondary"
+        details="authenticate-token-scheduling"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'vencimento',
+                requests: [
+                    'required',
+                    'exists-in-the-table-vencimentos-disponiveis-field-dia',
+                ],
+            },
+            {
+                item: 'total_parcelas',
+                requests: ['int'],
+            },
+        ]"
         :responses="[
+            {
+                status: '201',
+                messages: ['pre-scheduling-completed'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'due-date-not-available',
+                    'pre-scheduling-not-found',
+                    'error-validating-token',
+                    'error-saves-pre-scheduling',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -4001,8 +5486,39 @@ export default {
         method="PATCH"
         route="dispositivo/[dispositivoId]"
         color="bg-secondary"
+        details="update-user-device-data"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'unique_id',
+                requests: ['string', 'max-255-characters'],
+            },
+            {
+                item: 'system',
+                requests: ['string', 'max-255-characters'],
+            },
+            {
+                item: 'version',
+                requests: ['string', 'max-255-characters'],
+            },
+            {
+                item: 'brand',
+                requests: ['string', 'max-255-characters'],
+            },
+            {
+                item: 'model',
+                requests: ['string', 'max-255-characters'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['device-data-updated-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['error-updating-device-data'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -4013,8 +5529,23 @@ export default {
         method="PATCH"
         route="firebase/[usuarioFirebaseId]"
         color="bg-secondary"
+        details="update-firebase-user-token"
         :autenticate="autenticate"
+        :parameters="[
+            {
+                item: 'token',
+                requests: ['required', 'string', 'max-200-characters'],
+            },
+        ]"
         :responses="[
+            {
+                status: '200',
+                messages: ['firebase-updated-successfully'],
+            },
+            {
+                status: '400',
+                messages: ['error-updating-firebase'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -4029,8 +5560,17 @@ export default {
         method="DELETE"
         route="medico/especialidade/[especialidadeId]"
         color="bg-danger"
+        details="deactivate-the-doctors-link-with-the-specialty"
         :autenticate="autenticate"
         :responses="[
+            {
+                status: '200',
+                messages: ['doctor-specialty-successfully-deleted'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-deleting-doctor-specialty'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -4041,8 +5581,21 @@ export default {
         method="DELETE"
         route="medico/clinica/[clinicaId]"
         color="bg-danger"
+        details="remove-medical-link-with-clinic"
         :autenticate="autenticate"
         :responses="[
+            {
+                status: '200',
+                messages: ['doctor-separated-from-the-clinic'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'clinic-not-linked-to-the-doctor',
+                    'error-when-unlinking-doctor-from-clinic',
+                    'error-deleting-clinic',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -4053,8 +5606,13 @@ export default {
         method="DELETE"
         route="agenda/[agendaId]"
         color="bg-danger"
+        details="disable-scheduling"
         :autenticate="autenticate"
         :responses="[
+            {
+                status: '200',
+                messages: ['schedule-canceled-successfully'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -4063,10 +5621,15 @@ export default {
         :showDetailsRoute="showDetailsRoute" />
     <DocumentationCard
         method="DELETE"
-        route="cadastro-categoria-agenda/[categoriaAgendaId]"
+        route="categoria-agenda/desativar/[categoriaAgendaId]"
         color="bg-danger"
+        details="disable-calendar-category"
         :autenticate="autenticate"
         :responses="[
+            {
+                status: '200',
+                messages: ['schedule-category-deactivated'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -4077,8 +5640,17 @@ export default {
         method="DELETE"
         route="permissao/[permissaoId]"
         color="bg-danger"
+        details="disable-permission"
         :autenticate="autenticate"
         :responses="[
+            {
+                status: '200',
+                messages: ['successfully-deactivated'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-desactivating'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -4089,8 +5661,21 @@ export default {
         method="DELETE"
         route="limite-pre-agendamento/[limiteId]"
         color="bg-danger"
+        details="disable-pre-scheduling-limit"
         :autenticate="autenticate"
         :responses="[
+            {
+                status: '200',
+                messages: ['limit-pre-scheduling-deleted'],
+            },
+            {
+                status: '400',
+                messages: [
+                    'limit-pre-scheduling-not-found',
+                    'limit-pre-scheduling-already-deleted',
+                    'error-when-deleting',
+                ],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
@@ -4101,8 +5686,101 @@ export default {
         method="DELETE"
         route="tipo-limite-pre-agendamento/[tipoId]"
         color="bg-danger"
+        details="disable-pre-scheduling-limit-type"
         :autenticate="autenticate"
         :responses="[
+            {
+                status: '200',
+                messages: ['deleted'],
+            },
+            {
+                status: '400',
+                messages: ['error-when-deleting'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="DELETE"
+        route="invest/categoria/[categoriaId]"
+        color="bg-danger"
+        details="deactivate-investment-category"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['successfully-deleted'],
+            },
+            {
+                status: '400',
+                messages: ['unable-to-delete', 'error-when-deleting'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="DELETE"
+        route="invest/item/[itemId]"
+        color="bg-danger"
+        details="deactivate-investment-item"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['successfully-deleted'],
+            },
+            {
+                status: '400',
+                messages: ['unable-to-delete', 'error-when-deleting'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="DELETE"
+        route="invest/produto/[produtoId]"
+        color="bg-danger"
+        details="deactivate-investment-product"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['successfully-deleted'],
+            },
+            {
+                status: '400',
+                messages: ['unable-to-delete', 'error-when-deleting'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="DELETE"
+        route="invest/produto-item/[itemId]/[produtoId]"
+        color="bg-danger"
+        details="deactivate-investment-product-item"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['successfully-deleted'],
+            },
+            {
+                status: '400',
+                messages: ['unable-to-delete', 'error-when-deleting'],
+            },
             {
                 status: '401',
                 messages: ['without-authorization'],
