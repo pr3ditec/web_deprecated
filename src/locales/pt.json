@@ -947,5 +947,7 @@
     "deactivate-investment-product-item": "Desativar item do produto de investimento",
     "successfully-deleted": "Deletado com sucesso",
     "unable-to-delete": "Não foi possível deletar",
-    "error-when-deleting": "Erro ao deletar"
+    "error-when-deleting": "Erro ao deletar",
+    "invalid-json": "Json inválido",
+    "success-when-registering": "Sucesso ao cadastrar"
 }

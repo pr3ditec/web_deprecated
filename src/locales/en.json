@@ -912,5 +912,7 @@
     "deactivate-investment-product-item": "Deactivate investment product item",
     "successfully-deleted": "Successfully deleted",
     "unable-to-delete": "Unable to delete",
-    "error-when-deleting": "Error when deleting"
+    "error-when-deleting": "Error when deleting",
+    "invalid-json": "Invalid json",
+    "success-when-registering": "Success when registering"
 }
