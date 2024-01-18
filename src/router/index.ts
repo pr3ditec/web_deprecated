@@ -3,6 +3,21 @@ import { useAppStore } from "@/stores/index";
 import appSetting from "@/app-setting";
 
 const routes: RouteRecordRaw[] = [
+    /** LOGIN */
+    {
+        path: "/auth/login",
+        name: "login",
+        component: () => import("../views/auth/login.vue"),
+        meta: { layout: "auth" },
+    },
+    {
+        path: "/auth/register",
+        name: "register",
+        component: () => import("../views/auth/register.vue"),
+        meta: { layout: "auth" },
+    },
+    /** LOGIN */
+
     /** DASHBOARD */
     {
         path: "/",
@@ -13,11 +28,8 @@ const routes: RouteRecordRaw[] = [
             searchName: "dashboard",
         },
     },
-    {
-        path: "/test",
-        name: "test",
-        component: () => import("../views/test.vue"),
-    },
+    /** DASHBOARD */
+
     {
         path: "/analytics",
         name: "analytics",
@@ -38,7 +50,6 @@ const routes: RouteRecordRaw[] = [
         name: "crypto",
         component: () => import("../views/crypto.vue"),
     },
-    /** DASHBOARD */
 
     /** RISCO */
     {
@@ -85,218 +96,6 @@ const routes: RouteRecordRaw[] = [
         },
     },
     /** AGENDA */
-
-    /** CADASTRO */
-    {
-        path: "/secretary",
-        name: "Secretary",
-        component: () => import("../views/register/secretary/secretary.vue"),
-        meta: {
-            permission: "cadastro-clinica",
-            search: "secretary;attendant;secretaria;atendente",
-            searchName: "secretary",
-        },
-    },
-    {
-        path: "/clinic",
-        name: "Clinic",
-        component: () => import("../views/register/clinic/clinic.vue"),
-        meta: {
-            permission: "cadastro-clinica",
-            search: "clnic;clnica",
-            searchName: "clinic",
-        },
-    },
-    /** CADASTRO */
-
-    /** INVESTIDOR */
-    {
-        path: "/investor",
-        name: "Investor",
-        component: () => import("../views/register/investor/investor.vue"),
-        meta: {
-            search: "investor;investidor",
-            searchName: "investor",
-        },
-    },
-    {
-        path: "/investment-registration",
-        name: "Investment registration",
-        component: () =>
-            import("../views/register/investor/investment-registration.vue"),
-        meta: {
-            permission: "categoria-investimento",
-            search: "investment;registration;investment registration;investimento;cadastrar investimento;cadastrar",
-            searchName: "investment-registration",
-        },
-    },
-    {
-        path: "/investment",
-        name: "Investment",
-        component: () => import("../views/register/investor/investment.vue"),
-        meta: {
-            permission: "produtos-itens-investimento",
-            search: "investimento;investment",
-            searchName: "investment",
-        },
-    },
-    {
-        path: "/approve-investor-registration",
-        name: "approve investor registration",
-        component: () =>
-            import(
-                "../views/register/investor/approve-investor-registration.vue"
-            ),
-        meta: {
-            permission: "aprovar-recusar-investidor",
-            search: "approve investor registration;aprove;investor;registration;aprovar cadastro investidor;aprovar;cadastro;investidor",
-            searchName: "approve-investor-registration",
-        },
-    },
-    /** INVESTIDOR */
-
-    /** RELATORIOS */
-    {
-        path: "/report/doctor",
-        name: "Doctor's Report",
-        component: () => import("../views/report/doctors/doctor.vue"),
-        meta: {
-            permission: "visualizar-todas-parcelas",
-            search: "doctor;doctor report;medico;relatorio;relatorio medico",
-            searchName: "doctor-report",
-        },
-    },
-    {
-        path: "/report/appointment",
-        name: "Consult's Report",
-        component: () => import("../views/report/appointments/appointment.vue"),
-        meta: {
-            permission: "medico-medicos",
-            search: "consult;report;consult report;consulta;relatorio;relatorio consulta",
-            searchName: "consult-report",
-        },
-    },
-    {
-        path: "/report/app-overview",
-        name: "App overview",
-        component: () => import("@/views/report/app-overview/app-overview.vue"),
-        meta: {
-            permission: "rel-risco-empresarial",
-            search: "relatorio;app;aplicativo;relatorio aplicativo;overview;app overview",
-            searchName: "app-overview",
-        },
-    },
-    /** RELATORIOS */
-
-    /** FINANCEIRO */
-    {
-        path: "/financier",
-        name: "Doctors Financial",
-        component: () => import("../views/financier/financier.vue"),
-        meta: {
-            permission: "medico-financeiro",
-            search: "doctor;financial;doctor financial;medico;financeiro;financeiro medico",
-            searchName: "doctor-financial",
-        },
-    },
-    {
-        path: "/financier/admin",
-        name: "Admin Financial",
-        component: () => import("../views/financier/overdue-list.vue"),
-        meta: {
-            permission: "visualizar-todas-parcelas",
-            search: "admin;admin financial;financeiro administrativo;administrativo;financeiro",
-            searchName: "admin-financial",
-        },
-    },
-    /** FINANCEIRO */
-
-    /** REGRAS */
-    {
-        path: "/settings",
-        name: "Admin settings",
-        component: () => import("../views/settings/settings.vue"),
-        meta: {
-            permission: "gravar-risco-empresarial",
-            search: "admin;settings;admin settings;configuracoes;administrativo",
-            searchName: "admin-settings",
-        },
-    },
-    {
-        path: "/doctor-settings",
-        name: "Doctor's settings",
-        component: () => import("../views/doctor-settings/doctor-settings.vue"),
-        meta: {
-            permission: "cadastro-valor-consulta",
-            search: "doctor;settings;doctor settings;medico;configuracoes;configuracoes medico",
-            searchName: "doctor-settings",
-        },
-    },
-    /** REGRAS */
-
-    /** REDEFINIR SENHA */
-    {
-        path: "/users/change-password/:token",
-        name: "Change password",
-        component: () => import("../views/password/change-password.vue"),
-        meta: { layout: "auth" },
-    },
-    /** REDEFINIR SENHA */
-
-    /** PERFIL */
-    {
-        path: "/users/profile",
-        name: "profile",
-        component: () => import("../views/users/profile.vue"),
-        meta: {
-            search: "profile;perfil;user;usuario",
-            searchName: "user-profile",
-        },
-    },
-    /** PERFIL */
-
-    /** APP */
-    {
-        path: "/app-policy",
-        name: "app policy",
-        component: () => import("../views/app-policy/app-policy.vue"),
-        meta: {
-            layout: "auth",
-        },
-    },
-    /** APP */
-
-    // auth
-    {
-        path: "/auth/login",
-        name: "login",
-        component: () => import("../views/auth/login.vue"),
-        meta: { layout: "auth" },
-    },
-    {
-        path: "/auth/register",
-        name: "register",
-        component: () => import("../views/auth/register.vue"),
-        meta: { layout: "auth" },
-    },
-    {
-        path: "/auth/lockscreen",
-        name: "lockscreen",
-        component: () => import("../views/auth/lockscreen.vue"),
-        meta: { layout: "auth" },
-    },
-    {
-        path: "/auth/password-reset",
-        name: "password-reset",
-        component: () => import("../views/auth/password-reset.vue"),
-        meta: { layout: "auth" },
-    },
-    {
-        path: "/auth/logout",
-        name: "logout",
-        component: () => import("../views/auth/logout.vue"),
-        meta: { layout: "auth" },
-    },
 
     // users
     {
@@ -805,16 +604,6 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const store = useAppStore();
 
-    /** VALIDANDO PERMISSOES PARA ACESSAR ROTA */
-    if (to.meta.permission != undefined) {
-        //@ts-expect-error
-        const checkPermission = store.checkPermission(to.meta.permission);
-        if (!checkPermission) {
-            next({ path: "/" });
-        }
-    }
-    /** VALIDANDO PERMISSOES PARA ACESSAR ROTA */
-
     if (to?.meta?.layout == "auth") {
         store.setMainLayout("auth");
     } else {
@@ -822,11 +611,7 @@ router.beforeEach((to, from, next) => {
     }
 
     if (!store.getUserToken()) {
-        if (
-            to.path === "/auth/login" ||
-            to.path === "/auth/register" ||
-            to.path === "/app-policy"
-        ) {
+        if (to.path === "/auth/login" || to.path === "/auth/register") {
             next(true);
         }
         next({ path: "/auth/login" });

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useAppStore } from "@/stores/index";
-import LocalhostIndicator from "@/components/layout/LocalhostIndicator.vue";
 
 const store = useAppStore();
 </script>
@@ -11,7 +10,6 @@ const store = useAppStore();
         © {{ new Date().getFullYear() }}. Sauvvi<span class="text-red-500"
             >Tech</span
         >
-        <LocalhostIndicator />
     </div>
 </template>
 

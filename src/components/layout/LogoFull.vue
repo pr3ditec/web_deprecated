@@ -12,9 +12,3 @@ const store = useAppStore();
             class="filter-shadow" />
     </div>
 </template>
-
-<style scoped>
-.filter-shadow {
-    filter: drop-shadow(1px 1px 1px black);
-}
-</style>

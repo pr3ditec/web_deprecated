@@ -1,13 +1,9 @@
 <script lang="ts" setup>
 import { computed } from "vue";
-
 import appLayout from "@/layouts/app-layout.vue";
 import authLayout from "@/layouts/auth-layout.vue";
-
 import { useAppStore } from "@/stores/index";
 import { useMeta } from "@/composables/use-meta";
-import { provide } from "vue";
-import { useRouter } from "vue-router";
 
 const store = useAppStore();
 
