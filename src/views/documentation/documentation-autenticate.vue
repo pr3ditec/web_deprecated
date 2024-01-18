@@ -2767,6 +2767,91 @@ export default {
             },
         ]"
         :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="logs/error"
+        color="bg-success"
+        details="view-all-errors-from-the-last-7-days"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'id', type: 'int' },
+                    { name: 'rota', type: 'string' },
+                    { name: 'erro', type: 'string' },
+                    { name: 'detalhes', type: 'string' },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['error-when-searching'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="logs/cron"
+        color="bg-success"
+        details="view-all-executed-crons"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'cron_id', type: 'int' },
+                    { name: 'execucao_id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'retorno', type: 'string' },
+                    { name: 'created_at', type: 'string' },
+                    { name: 'updated_at', type: 'string' },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['there-is-no-data-to-show', 'error-when-listing'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
+    <DocumentationCard
+        method="GET"
+        route="logs/cron/[meses]"
+        color="bg-success"
+        details="view-all-crons-executed-in-the-period"
+        :autenticate="autenticate"
+        :responses="[
+            {
+                status: '200',
+                messages: ['data-recovered-successfully'],
+                data_return: [
+                    { name: 'cron_id', type: 'int' },
+                    { name: 'execucao_id', type: 'int' },
+                    { name: 'nome', type: 'string' },
+                    { name: 'retorno', type: 'string' },
+                    { name: 'created_at', type: 'string' },
+                    { name: 'updated_at', type: 'string' },
+                ],
+            },
+            {
+                status: '400',
+                messages: ['there-is-no-data-to-show', 'error-when-listing'],
+            },
+            {
+                status: '401',
+                messages: ['without-authorization'],
+            },
+        ]"
+        :showDetailsRoute="showDetailsRoute" />
 
     <div
         class="h-px border-b border-[#e0e6ed] dark:border-[#1b2e4b] divider-routes"></div>

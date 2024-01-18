@@ -616,7 +616,7 @@
     "patient-download-state-max": "Patient's major download rate per state",
     "product": "Product",
     "no-authentication": "No authentication",
-    "there-is-no-data-to-show": "there-is-no-data-to-show",
+    "there-is-no-data-to-show": "There is no data to show",
     "items-available-for-bonding": "Items available for Bonding",
     "linked-items": "Linked Items",
     "returns-data-for-all-users": "Returns data for all users",
@@ -914,5 +914,10 @@
     "unable-to-delete": "Unable to delete",
     "error-when-deleting": "Error when deleting",
     "invalid-json": "Invalid json",
-    "success-when-registering": "Success when registering"
+    "success-when-registering": "Success when registering",
+    "view-all-errors-from-the-last-7-days": "View all errors from the last 7 days",
+    "view-all-executed-crons": "View all executed crons",
+    "successfully-listed": "Successfully listed",
+    "error-when-listing": "Error when listing",
+    "view-all-crons-executed-in-the-period": "View all crons executed in the period"
 }

@@ -949,5 +949,10 @@
     "unable-to-delete": "Não foi possível deletar",
     "error-when-deleting": "Erro ao deletar",
     "invalid-json": "Json inválido",
-    "success-when-registering": "Sucesso ao cadastrar"
+    "success-when-registering": "Sucesso ao cadastrar",
+    "view-all-errors-from-the-last-7-days": "Visualizar todos os erros dos últimos 7 dias",
+    "view-all-executed-crons": "Visualizar todos os crons executados",
+    "successfully-listed": "Listado com sucesso",
+    "error-when-listing": "Erro ao listar",
+    "view-all-crons-executed-in-the-period": "Visualizar todos os crons executados no período"
 }
