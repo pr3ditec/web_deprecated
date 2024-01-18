@@ -10,12 +10,6 @@ const routes: RouteRecordRaw[] = [
         component: () => import("../views/auth/login.vue"),
         meta: { layout: "auth" },
     },
-    {
-        path: "/auth/register",
-        name: "register",
-        component: () => import("../views/auth/register.vue"),
-        meta: { layout: "auth" },
-    },
     /** LOGIN */
 
     /** DASHBOARD */
@@ -610,14 +604,15 @@ router.beforeEach((to, from, next) => {
         store.setMainLayout("app");
     }
 
-    if (!store.getUserToken()) {
+    next(true);
+    /* if (!store.getUserToken()) {
         if (to.path === "/auth/login" || to.path === "/auth/register") {
             next(true);
         }
         next({ path: "/auth/login" });
     } else {
         next(true);
-    }
+    } */
 });
 
 router.afterEach((to, from, next) => {
