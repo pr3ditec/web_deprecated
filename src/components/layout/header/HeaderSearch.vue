@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import ResultSearchModal from "./ResultSearchModal.vue";
 import FormSearch from "./FormSearch.vue";
-import { ref, onMounted, computed, watch } from "vue";
-import { useRoute } from "vue-router";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useAppStore } from "@/stores";
 

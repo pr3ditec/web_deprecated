@@ -24,6 +24,28 @@ const routes: RouteRecordRaw[] = [
     },
     /** DASHBOARD */
 
+    /** RISCO */
+    {
+        path: "/business-risk",
+        name: "risco",
+        component: () => import("../views/business-risk/business-risk.vue"),
+        meta: {
+            permision: "rel-risco-empresarial",
+            search: "business;risk;risco;empresarial;risco empresarial;business risk",
+            searchName: "business-risk",
+        },
+    },
+    /** RISCO */
+
+    /** PAGINAS NAO ECONTRADAS */
+    {
+        path: "/:pathMatch(.*)*",
+        name: "NotFound",
+        component: () => import("../views/pages/error404.vue"),
+        meta: { layout: "auth" },
+    },
+    /** PAGINAS NAO ECONTRADAS */
+
     {
         path: "/analytics",
         name: "analytics",
@@ -43,59 +65,6 @@ const routes: RouteRecordRaw[] = [
         path: "/crypto",
         name: "crypto",
         component: () => import("../views/crypto.vue"),
-    },
-
-    /** RISCO */
-    {
-        path: "/business-risk",
-        name: "risco",
-        component: () => import("../views/business-risk/business-risk.vue"),
-        meta: {
-            permision: "rel-risco-empresarial",
-            search: "business;risk;risco;empresarial;risco empresarial;business risk",
-            searchName: "business-risk",
-        },
-    },
-    /** RISCO */
-
-    /** AGENDA */
-    {
-        path: "/schedule-programming",
-        name: "Schedule Programming",
-        component: () => import("../views/scheduling/schedule-programming.vue"),
-        meta: {
-            permission: "horarios-atendimento-medico",
-            search: "schedule;schedule programming;programming;agenda;programar;programar agenda",
-            searchName: "schedule-programming",
-        },
-    },
-    {
-        path: "/schedule",
-        name: "schedule",
-        component: () => import("../views/scheduling/schedule.vue"),
-        meta: {
-            permission: "medico-agenda",
-            search: "schedule;agenda",
-            searchName: "schedule",
-        },
-    },
-    {
-        path: "/pre-scheduling",
-        name: "Pre scheduling",
-        component: () => import("../views/scheduling/pre-scheduling.vue"),
-        meta: {
-            permission: "pre-agendamento-agenda",
-            search: "pre;scheduling;pre scheduling;agendamento;pre agendamento",
-            searchName: "pre-scheduling",
-        },
-    },
-    /** AGENDA */
-
-    // users
-    {
-        path: "/users/user-account-settings",
-        name: "user-account-settings",
-        component: () => import("../views/users/user-account-settings.vue"),
     },
 
     // apps
@@ -563,23 +532,6 @@ const routes: RouteRecordRaw[] = [
         component: () => import("../views/pages/maintenence.vue"),
         meta: { layout: "auth" },
     },
-    {
-        path: "/:pathMatch(.*)*",
-        name: "NotFound",
-        component: () => import("../views/pages/error404.vue"),
-        meta: { layout: "auth" },
-    },
-
-    /** DOCUMENTAÇÃO */
-    {
-        path: "/documentation",
-        name: "Documentation",
-        component: () => import("../views/documentation/documentation.vue"),
-        meta: {
-            permission: "documentacao",
-        },
-    },
-    /** DOCUMENTAÇÃO */
 ];
 
 const router = createRouter({

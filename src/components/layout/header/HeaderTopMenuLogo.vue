@@ -13,7 +13,7 @@ const store = useAppStore();
                 alt="" />
             <span
                 class="text-2xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle hidden md:inline dark:text-white-light transition-all duration-300">
-                Sauvvi<span class="text-red-500">Tech</span>
+                ls<span class="text-blue-800 dark:text-blue-600">Tech</span>
             </span>
         </router-link>
 

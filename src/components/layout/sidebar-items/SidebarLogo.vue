@@ -20,7 +20,7 @@ const store = useAppStore();
                 alt="" />
             <span
                 class="text-2xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">
-                ls<span class="text-violet-600">Tech</span>
+                ls<span class="text-blue-800 dark:text-blue-600">Tech</span>
             </span>
         </router-link>
         <!-- LOGO -->

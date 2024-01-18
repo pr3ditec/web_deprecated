@@ -25,7 +25,7 @@ useMeta({ title: "Login" });
             <div
                 class="relative flex w-full flex-col justify-between overflow-hidden lg:h-screen lg:flex-row lg:gap-10 xl:gap-0">
                 <div
-                    class="relative hidden w-full items-center bg-violet-600 dark:bg-violet-950 justify-center p-5 lg:inline-flex h-screen lg:w-full xl:-ms-28 ltr:xl:skew-x-[14deg]">
+                    class="relative hidden w-full items-center bg-blue-800 dark:bg-blue-600 justify-center p-5 lg:inline-flex h-screen lg:w-full xl:-ms-28 ltr:xl:skew-x-[14deg]">
                     <div
                         class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg] text-center">
                         <LogoFull />

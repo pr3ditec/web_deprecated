@@ -144,7 +144,7 @@ const submitForm = async () => {
 
             <button
                 type="submit"
-                class="btn bg-violet-600 dark:bg-violet-950 !mt-10 w-full uppercase text-white border-0 shadow-lg"
+                class="btn bg-blue-800 dark:bg-blue-600 !mt-10 w-full uppercase text-white border-0 shadow-lg"
                 :disabled="submitBtnDisabled">
                 {{ $t("login") }}
             </button>

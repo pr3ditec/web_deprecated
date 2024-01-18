@@ -1,28 +1,12 @@
 <script lang="ts" setup>
-import { ref, onMounted, computed, reactive, watch } from "vue";
-import { useI18n } from "vue-i18n";
-
+import { ref, onMounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useAppStore } from "@/stores/index";
-import FirebaseClient from "@/firebase";
 
 const store = useAppStore();
 const route = useRoute();
-const search = ref(false);
-const firebase: FirebaseClient = new FirebaseClient();
 
 const notifications = ref([]);
-
-Notification.requestPermission().then((permission) => {
-    if (permission === "granted") {
-        firebase.validarCadastroDispositivo();
-        firebase.receberMensagens(notifications);
-    }
-});
-
-const removeNotification = (value: number) => {
-    notifications.value = notifications.value.filter((d) => d.id !== value);
-};
 
 onMounted(() => {
     setActiveDropdown();
@@ -133,19 +117,14 @@ const setActiveDropdown = () => {
                                 </div>
                                 <div class="ltr:pl-3 rtl:pr-3 flex flex-auto">
                                     <div class="ltr:pr-3 rtl:pl-3 font-bold">
-                                        <h6>{{ notification.titulo }}</h6>
+                                        <h6>{{ "sss" }}</h6>
                                         <span
                                             class="text-xs block font-normal dark:text-gray-500"
-                                            v-text="
-                                                notification.mensagem
-                                            "></span>
+                                            v-text="'ssss'"></span>
                                     </div>
                                     <button
                                         type="button"
-                                        class="ltr:ml-auto rtl:mr-auto text-neutral-300 hover:text-danger opacity-0 group-hover:opacity-100"
-                                        @click="
-                                            removeNotification(notification.id)
-                                        ">
+                                        class="ltr:ml-auto rtl:mr-auto text-neutral-300 hover:text-danger opacity-0 group-hover:opacity-100">
                                         <svg
                                             width="20"
                                             height="20"
