@@ -6,6 +6,7 @@ const store = useAppStore();
 
 <template>
     <div class="flex justify-between items-center px-4 py-3">
+        <!-- LOGO -->
         <router-link to="/" class="main-logo flex items-center shrink-0">
             <img
                 v-show="store.theme === 'light'"
@@ -19,9 +20,10 @@ const store = useAppStore();
                 alt="" />
             <span
                 class="text-2xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">
-                Sauvvi<span class="text-red-500">Tech</span>
+                ls<span class="text-violet-600">Tech</span>
             </span>
         </router-link>
+        <!-- LOGO -->
 
         <a
             href="javascript:;"

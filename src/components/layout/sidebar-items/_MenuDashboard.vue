@@ -27,41 +27,8 @@ const showTitle = computed(() => {
     <TitleDivision v-if="showTitle" title="dashboard" />
 
     <MenuNavItem>
-        <div v-if="store.checkPermission('rel-risco-empresarial')">
-            <NavItem to="/business-risk" label="busines-risk">
-                <IconComponents />
-            </NavItem>
-        </div>
-
-        <div v-if="store.checkPermission('gravar-risco-empresarial')">
-            <NavItem to="/settings" label="settings">
-                <IconComponents />
-            </NavItem>
-        </div>
-
-        <div v-if="store.checkPermission('cadastro-valor-consulta')">
-            <NavItem to="/doctor-settings" label="doctor-settings">
-                <IconComponents />
-            </NavItem>
-        </div>
-        <div v-if="store.checkPermission('visualizar-todas-parcelas')">
-            <NavItem to="/financier/admin" label="admin-financier">
-                <IconInvoice />
-            </NavItem>
-        </div>
-
-        <div v-if="store.checkPermission('rel-risco-empresarial')">
-            <NavItem to="/report/app-overview" label="app-overview">
-                <IconDatatables />
-            </NavItem>
-        </div>
-
-        <div v-if="store.checkPermission('aprovar-recusar-investidor')">
-            <NavItem
-                to="/approve-investor-registration"
-                label="approve-investor-registration">
-                <IconComponents />
-            </NavItem>
-        </div>
+        <NavItem to="/business-risk" label="busines-risk">
+            <IconComponents />
+        </NavItem>
     </MenuNavItem>
 </template>

@@ -29,9 +29,7 @@ const store = useAppStore();
         </div>
 
         <div v-if="store.checkPermission('produtos-itens-investimento')">
-            <NavItem
-                to="/investment"
-                label="investment">
+            <NavItem to="/investment" label="investment">
                 <IconInvoice />
             </NavItem>
         </div>

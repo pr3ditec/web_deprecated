@@ -1,51 +1,24 @@
 <script lang="ts" setup>
-import { ref, onMounted, computed } from "vue";
-
+import { onMounted } from "vue";
 import { useAppStore } from "@/stores/index";
 
+/** SIDEBAR LOGO */
 import SidebarLogo from "@/components/layout/sidebar-items/SidebarLogo.vue";
+/** SIDEBAR LOGO */
 
-// Prodoction menus - Will be available in production
+/** MENU PARA USAR */
 import MenuDashboard from "@/components/layout/sidebar-items/_MenuDashboard.vue";
 import MenuInvestor from "@/components/layout/sidebar-items/MenuInvestor.vue";
-import MenuSchedule from "@/components/layout/sidebar-items/MenuSchedule.vue";
-import MenuFinancer from "@/components/layout/sidebar-items/MenuFinancer.vue";
-import MenuRegister from "@/components/layout/sidebar-items/MenuRegister.vue";
-import MenuGeneralReport from "@/components/layout/sidebar-items/MenuGeneralReport.vue";
-import MenuDocumentation from "@/components/layout/sidebar-items/MenuDocumentation.vue";
+/** MENU PARA USAR */
 
-import MenuAuth from "@/components/layout/sidebar-items/MenuAuth.vue";
-
-// Ref menus - Just for reference
+/** MENUS DE DEV */
 import MenuApps from "@/components/layout/sidebar-items/examples/MenuApps.vue";
 import MenuUserInterface from "@/components/layout/sidebar-items/examples/MenuUserInterface.vue";
 import MenuTableAndForms from "@/components/layout/sidebar-items/examples/MenuTableAndForms.vue";
 import MenuUserAndPages from "@/components/layout/sidebar-items/examples/MenuUserAndPages.vue";
-
-import { isLocalhost } from "@/helpers/Host";
+/** MENUS DE DEV */
 
 const store = useAppStore();
-
-/** CHECK LOCALHOST */
-const host = ref(false);
-/** CHECK LOCALHOST */
-
-const permissions = ref({
-    MenuDashboard: [
-        "rel-risco-empresarial",
-        "gravar-risco-empresarial",
-        "cadastro-valor-consulta",
-    ],
-    MenuSchedule: [
-        "medico-agenda",
-        "horarios-atendimento-medico",
-        "pre-agendamento-agenda",
-    ],
-    MenuRegister: ["secretaria-medico", "cadastro-clinica"],
-    MenuFinancer: ["medico-financeiro"],
-    MenuGeneralReport: ["busca-medicos", "medico-agenda"],
-    MenuDocumentation: ["documentacao"],
-});
 
 onMounted(() => {
     const pathname = window.location.pathname;
@@ -68,21 +41,7 @@ onMounted(() => {
             }
         }
     }
-
-    /** VALIDANDO CASO SEJA LOCAL OU SERIDOR */
-    isLocalhost().then((res) =>
-        res ? (host.value = true) : (host.value = false),
-    );
-    /** VALIDANDO CASO SEJA LOCAL OU SERIDOR */
 });
-
-function hasChildPermission(component) {
-    return computed(() => {
-        return permissions.value[component].some((permission) =>
-            store.checkPermission(permission),
-        );
-    });
-}
 </script>
 
 <template>
@@ -100,39 +59,17 @@ function hasChildPermission(component) {
                     class="h-[calc(100vh-80px)] relative">
                     <ul
                         class="relative font-semibold space-y-0.5 p-4 py-0 mb-10">
-                        <div v-if="hasChildPermission('MenuDashboard')">
-                            <MenuDashboard />
-                        </div>
+                        <MenuDashboard />
+                        <MenuInvestor />
 
+                        <!-- MENUS DE DEV -->
                         <div>
-                            <MenuInvestor />
-                        </div>
-
-                        <div v-if="hasChildPermission('MenuDocumentation')">
-                            <MenuDocumentation />
-                        </div>
-
-                        <div v-if="hasChildPermission('MenuSchedule')">
-                            <MenuSchedule />
-                        </div>
-                        <div v-if="hasChildPermission('MenuRegister')">
-                            <MenuRegister />
-                        </div>
-                        <div v-if="hasChildPermission('MenuFinancer')">
-                            <MenuFinancer />
-                        </div>
-                        <div v-if="hasChildPermission('MenuGeneralReport')">
-                            <MenuGeneralReport />
-                        </div>
-
-                        <MenuAuth />
-
-                        <div v-if="host">
                             <MenuApps />
                             <MenuUserInterface />
                             <MenuTableAndForms />
                             <MenuUserAndPages />
                         </div>
+                        <!-- MENUS DE DEV -->
                     </ul>
                 </perfect-scrollbar>
             </div>
