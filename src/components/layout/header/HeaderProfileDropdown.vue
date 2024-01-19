@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { onMounted, computed, watch } from "vue";
-
 import { useRoute } from "vue-router";
 import { useAppStore } from "@/stores/index";
+import LogoIcon from "@/components/icons/LogoIcon.vue";
 
 const store = useAppStore();
 const route = useRoute();
@@ -61,17 +61,7 @@ const userName = computed(() => {
             offsetDistance="8"
             class="!block">
             <button type="button" class="relative group block">
-                <img
-                    v-show="store.theme === 'light'"
-                    class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
-                    src="/assets/images/logos/plus-light.png"
-                    alt="" />
-
-                <img
-                    v-show="store.theme === 'dark'"
-                    class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
-                    src="/assets/images/logos/plus-dark.png"
-                    alt="" />
+                <LogoIcon h="29" w="46" />
             </button>
 
             <template #content="{ close }">

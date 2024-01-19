@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useAppStore } from "@/stores/index";
+import LogoIcon from "@/components/icons/LogoIcon.vue";
 
 const store = useAppStore();
 </script>
@@ -8,16 +9,7 @@ const store = useAppStore();
     <div class="flex justify-between items-center px-4 py-3">
         <!-- LOGO -->
         <router-link to="/" class="main-logo flex items-center shrink-0">
-            <img
-                v-show="store.theme === 'light'"
-                class="w-8 ml-[5px] flex-none"
-                src="/assets/images/logos/plus-light.png"
-                alt="" />
-            <img
-                v-show="store.theme === 'dark'"
-                class="w-8 ml-[5px] flex-none"
-                src="/assets/images/logos/plus-dark.png"
-                alt="" />
+            <LogoIcon h="29" w="46" />
             <span
                 class="text-2xl ltr:ml-1.5 rtl:mr-1.5 font-semibold align-middle lg:inline dark:text-white-light">
                 ls<span class="text-blue-800 dark:text-blue-600">Tech</span>
@@ -25,6 +17,7 @@ const store = useAppStore();
         </router-link>
         <!-- LOGO -->
 
+        <!-- SETA -->
         <a
             href="javascript:;"
             class="collapse-icon w-8 h-8 rounded-full flex items-center hover:bg-gray-500/10 dark:hover:bg-dark-light/10 dark:text-white-light transition duration-300 rtl:rotate-180 hover:text-primary"
@@ -51,5 +44,6 @@ const store = useAppStore();
                     stroke-linejoin="round" />
             </svg>
         </a>
+        <!-- SETA -->
     </div>
 </template>
