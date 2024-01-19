@@ -84,7 +84,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/:pathMatch(.*)*",
         name: "NotFound",
-        component: () => null,
+        component: () => import("../views/error/error404.vue"),
         meta: { layout: "auth" },
     },
     /** PAGINAS NAO ECONTRADAS */
