@@ -35,7 +35,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/service/list",
         name: "list-service",
-        component: () => null,
+        component: () => import("@views/service/ServiceList.vue"),
         meta: {
             search: "list,list-service,service,listar,listar-servico,servico",
         },

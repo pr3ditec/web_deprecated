@@ -15,7 +15,7 @@ const activeDropdown = ref(false);
 <template>
     <MenuNavItem>
         <NavItem
-            to="#drop"
+            to=""
             :label="label"
             @click="
                 activeDropdown
