@@ -12,13 +12,6 @@ import MenuClient from "./sidebar-items/MenuClient.vue";
 import MenuOthers from "./sidebar-items/MenuOthers.vue";
 /** MENU PARA USAR */
 
-/** MENUS DE DEV */
-import MenuApps from "@/components/layout/sidebar-items/examples/MenuApps.vue";
-import MenuUserInterface from "@/components/layout/sidebar-items/examples/MenuUserInterface.vue";
-import MenuTableAndForms from "@/components/layout/sidebar-items/examples/MenuTableAndForms.vue";
-import MenuUserAndPages from "@/components/layout/sidebar-items/examples/MenuUserAndPages.vue";
-/** MENUS DE DEV */
-
 const store = useAppStore();
 
 onMounted(() => {
@@ -63,15 +56,6 @@ onMounted(() => {
                         <MenuDashboard />
                         <MenuClient />
                         <MenuOthers />
-
-                        <!-- MENUS DE DEV -->
-                        <!-- <div>
-                            <MenuApps />
-                            <MenuUserInterface />
-                            <MenuTableAndForms />
-                            <MenuUserAndPages />
-                        </div> -->
-                        <!-- MENUS DE DEV -->
                     </ul>
                 </perfect-scrollbar>
             </div>
