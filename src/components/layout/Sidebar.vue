@@ -7,8 +7,9 @@ import SidebarLogo from "@/components/layout/sidebar-items/SidebarLogo.vue";
 /** SIDEBAR LOGO */
 
 /** MENU PARA USAR */
-import MenuDashboard from "@/components/layout/sidebar-items/_MenuDashboard.vue";
-import MenuInvestor from "@/components/layout/sidebar-items/MenuInvestor.vue";
+import MenuDashboard from "./sidebar-items/MenuDashboard.vue";
+import MenuClient from "./sidebar-items/MenuClient.vue";
+import MenuOthers from "./sidebar-items/MenuOthers.vue";
 /** MENU PARA USAR */
 
 /** MENUS DE DEV */
@@ -60,15 +61,16 @@ onMounted(() => {
                     <ul
                         class="relative font-semibold space-y-0.5 p-4 py-0 mb-10">
                         <MenuDashboard />
-                        <MenuInvestor />
+                        <MenuClient />
+                        <MenuOthers />
 
                         <!-- MENUS DE DEV -->
-                        <div>
+                        <!-- <div>
                             <MenuApps />
                             <MenuUserInterface />
                             <MenuTableAndForms />
                             <MenuUserAndPages />
-                        </div>
+                        </div> -->
                         <!-- MENUS DE DEV -->
                     </ul>
                 </perfect-scrollbar>

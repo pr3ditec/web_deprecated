@@ -30,12 +30,23 @@ const routes: RouteRecordRaw[] = [
         name: "risco",
         component: () => import("../views/business-risk/business-risk.vue"),
         meta: {
-            permision: "rel-risco-empresarial",
             search: "business;risk;risco;empresarial;risco empresarial;business risk",
             searchName: "business-risk",
         },
     },
     /** RISCO */
+
+    /** SERVICOS */
+    {
+        path: "/service",
+        name: "service",
+        component: () => null,
+        meta: {
+            search: "service,servico",
+            searchName: "service",
+        },
+    },
+    /** SERVICOS */
 
     /** PAGINAS NAO ECONTRADAS */
     {
