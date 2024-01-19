@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, computed, watch } from "vue";
+import { onMounted, computed, watch } from "vue";
 
 import { useRoute } from "vue-router";
 import { useAppStore } from "@/stores/index";
@@ -20,7 +20,6 @@ const setActiveDropdown = () => {
         'ul.horizontal-menu a[href="' + window.location.pathname + '"]',
     );
     if (selector) {
-        selector.classList.add("active");
         const all: any = document.querySelectorAll(
             "ul.horizontal-menu .nav-link.active",
         );
@@ -55,6 +54,7 @@ const userName = computed(() => {
 <template>
     <div class="dropdown shrink-0">
         <Popper
+            hover
             :placement="
                 store.rtlClass === 'rtl' ? 'bottom-end' : 'bottom-start'
             "
