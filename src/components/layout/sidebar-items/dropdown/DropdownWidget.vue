@@ -2,7 +2,6 @@
 import MenuNavItem from "@/components/layout/navs/MenuNavItem.vue";
 import NavItem from "@/components/layout/navs/NavItem.vue";
 import VueCollapsible from "vue-height-collapsible/vue3";
-import IconComponents from "@/components/icons/IconComponents.vue";
 import { ref, defineProps } from "vue";
 
 /** CONTROLE */
@@ -23,7 +22,7 @@ const activeDropdown = ref(false);
                     ? (activeDropdown = false)
                     : (activeDropdown = true)
             ">
-            <IconComponents />
+            <slot></slot>
         </NavItem>
     </MenuNavItem>
     <vue-collapsible :isOpen="activeDropdown">
