@@ -224,5 +224,11 @@
     "person": "Pessoal",
     "others": "Outros",
     "payment-method": "Metodos de pagamento",
-    "cities": "Cidades"
+    "cities": "Cidades",
+    "new-service": "Novo serviço",
+    "list-service": "Listar serviços",
+    "new-equipment": "Novo equipamento",
+    "list-equipment": "Listar aparelhos",
+    "new-type-service": "Novo tipo de serviço",
+    "list-type-service": "Listar tipo de serviços"
 }

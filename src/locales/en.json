@@ -160,5 +160,11 @@
     "person": "Person",
     "others": "Others",
     "payment-method": "Payment method",
-    "cities": "Cities"
+    "cities": "Cities",
+    "new-service": "New service",
+    "list-service": "List services",
+    "new-equipment": "New equipment",
+    "list-equipment": "List equipment",
+    "new-type-service": "New service type",
+    "list-type-service": "List service type"
 }

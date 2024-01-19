@@ -25,7 +25,7 @@ export default {
                 v-for="route in routes"
                 class="hover:bg-dark-light cursor-pointer p-3"
                 @click="goToRoute(route.path)">
-                <span class="text-lg">{{ $t(route.meta.searchName) }}</span>
+                <span class="text-lg">{{ $t(route.name) }}</span>
                 <hr class="" />
             </div>
         </div>

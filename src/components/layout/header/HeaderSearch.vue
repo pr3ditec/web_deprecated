@@ -3,12 +3,10 @@ import ResultSearchModal from "./ResultSearchModal.vue";
 import FormSearch from "./FormSearch.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useAppStore } from "@/stores";
 
 const search = ref(false);
 const router = useRouter();
 const routes: any = ref([]);
-const store = useAppStore();
 
 const searchByName = (searchParams: any) => {
     if (searchParams == "") {
@@ -22,18 +20,6 @@ const searchByName = (searchParams: any) => {
         if (route.meta?.search == undefined) {
             return;
         }
-
-        /** VALIDANDO PERMISSOES PARA VISUALIZAR BUSCA DA ROTA */
-        if (route.meta.permission != undefined) {
-            const checkPermission = store.checkPermission(
-                //@ts-expect-error
-                route.meta.permission,
-            );
-            if (!checkPermission) {
-                return;
-            }
-        }
-        /** VALIDANDO PERMISSOES PARA VISUALIZAR BUSCA DA ROTA */
 
         const routeName = route.meta?.search
             ?.toString()
