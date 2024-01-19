@@ -5,6 +5,7 @@ import LangChanger from "@/components/layout/LangChanger.vue";
 import FormLogin from "@/components/layout/login/FormLogin.vue";
 import LogoSmallCircle from "@/components/layout/LogoSmallCircle.vue";
 import LogoFull from "@/components/layout/LogoFull.vue";
+import LogoIcon from "@/components/icons/LogoIcon.vue";
 import { ref } from "vue";
 
 useMeta({ title: "Login" });
@@ -12,14 +13,6 @@ useMeta({ title: "Login" });
 
 <template>
     <div>
-        <!-- IMAGEM DE FUNDO (TROCAR) -->
-        <!-- <div class="absolute inset-0">
-            <img
-                src="/assets/images/auth/bg-gradient.png"
-                alt="image"
-                class="h-full w-full object-cover" />
-        </div> -->
-        <!-- IMAGEM DE FUNDO -->
 
         <div class="relative flex h-full items-center justify-center">
             <div
@@ -28,7 +21,7 @@ useMeta({ title: "Login" });
                     class="relative hidden w-full items-center bg-blue-800 dark:bg-blue-600 justify-center p-5 lg:inline-flex h-screen lg:w-full xl:-ms-28 ltr:xl:skew-x-[14deg]">
                     <div
                         class="ltr:xl:-skew-x-[14deg] rtl:xl:skew-x-[14deg] text-center">
-                        <LogoFull />
+                        <LogoIcon h="339" w="356" />
                     </div>
                 </div>
 

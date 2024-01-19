@@ -62,7 +62,7 @@ const submitForm = async () => {
 </script>
 
 <template>
-    <div class="w-full md:w-11/12 lg:mt-20 md:p-4">
+    <div class="w-full md:w-11/12 lg:mt-20 mx-auto">
         <div class="md:mb-5">
             <h1
                 class="text-center text-dark dark:text-white-dark md:text-justify text-2xl font-extrabold uppercase md:mt-4 md:text-3xl">
