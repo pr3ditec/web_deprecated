@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import i18n from "@/i18n";
 import appSetting from "@/app-setting";
-import Api from "@/api/Api";
 
 export const useAppStore = defineStore("app", {
     state: () => ({
@@ -22,7 +21,6 @@ export const useAppStore = defineStore("app", {
         ],
         isShowMainLoader: true,
         semidark: false,
-        api: new Api(localStorage.getItem("user.token")),
     }),
 
     actions: {
@@ -187,12 +185,6 @@ export const useAppStore = defineStore("app", {
                 Array.isArray(permissions) && permissions.includes(routeName)
             );
         },
-
-        setRequest(token: any) {
-            this.api = new Api(token);
-        },
     },
-    getters: {
-        request: (state) => state.api,
-    },
+    getters: {},
 });
