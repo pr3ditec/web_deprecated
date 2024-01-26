@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, computed, onBeforeMount } from "vue";
-import Request from "@/api/Request";
+import Request from "@/helpers/Request";
 
 /** CONTROLE */
 const request = new Request();

@@ -166,5 +166,6 @@
     "new-equipment": "New equipment",
     "list-equipment": "List equipment",
     "new-type-service": "New service type",
-    "list-type-service": "List service type"
+    "list-type-service": "List service type",
+    "name": "Name"
 }

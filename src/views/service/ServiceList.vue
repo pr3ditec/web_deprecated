@@ -2,10 +2,7 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import Request from "@/helpers/Request";
-import Vue3Datatable from "@bhplugin/vue3-datatable";
-import ButtonForm from "@/components/form/ButtonForm.vue";
-import IconButton from "@/components/form/IconButton.vue";
-import "@bhplugin/vue3-datatable/dist/style.css";
+import StandartTable from "@/components/tables/StandardTable.vue";
 
 /** CONTROLE */
 const router = useRouter();
@@ -59,29 +56,5 @@ onMounted(() => {
 /** HOOKS */
 </script>
 <template>
-    <Vue3Datatable
-        skin="bh-table-striped"
-        :rows="rows"
-        :columns="cols"
-        :totalRows="rows?.length">
-        <template #status="data">
-            <SpanStatus :status="data.value.status" />
-        </template>
-        <template #btn="data">
-            <div class="d-flex flex-row gap-1">
-                <ButtonForm
-                    text="seeMore"
-                    typeClass="btn-primary"
-                    @actionCallback="
-                        router.push(`/equ
-                        ipment/${data.value.id}`)
-                    " />
-                <IconButton
-                    typeClass="btn-secondary"
-                    @actionCallback="removeData(data.value.id)">
-                    <template #icon> sasdafsd </template>
-                </IconButton>
-            </div>
-        </template>
-    </Vue3Datatable>
+    <StandartTable route="/servico" pushRoute="/servico" />
 </template>
