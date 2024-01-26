@@ -11,7 +11,7 @@ const emits = defineEmits(["actionCallback"]);
 const btnClass = reactive({
     "w-full": true,
     btn: true,
-    "btn-sm": true,
+    "btn-md": true,
 });
 
 /** CONTROLE */

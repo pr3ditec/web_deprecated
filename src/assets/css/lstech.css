@@ -1,0 +1,5 @@
+/** CUSTOM CLASSSES */
+
+.btn-main {
+    @apply btn bg-blue-800 dark:bg-blue-600 w-full uppercase text-white border-0 shadow-lg;
+}

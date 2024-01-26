@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import Request from "@/api/Request";
+import Request from "@/helpers/Request";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import ButtonForm from "@/components/form/ButtonForm.vue";
 import IconButton from "@/components/form/IconButton.vue";
