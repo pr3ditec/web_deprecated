@@ -40,6 +40,14 @@ const routes: RouteRecordRaw[] = [
             search: "list,list-service,service,listar,listar-servico,servico",
         },
     },
+    {
+        path: "/service/:id",
+        name: "service-profile",
+        component: () => null,
+        meta: {
+            search: "service,profile,servico,perfil",
+        },
+    },
     /** SERVICOS */
 
     /** APARELHO */
@@ -54,9 +62,17 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/equipment/list",
         name: "list-equipment",
-        component: () => null,
+        component: () => import("@/views/equipment/EquipmentList.vue"),
         meta: {
             search: "list,list-equipment,equipment,listar,listar-aparelho,aparelho",
+        },
+    },
+    {
+        path: "/equipment/:id",
+        name: "equipment-profile",
+        component: () => null,
+        meta: {
+            search: "equipment,profile,aparelho,perfil",
         },
     },
     /** APARELHO */
