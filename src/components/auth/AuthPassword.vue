@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch, defineEmits } from "vue";
+import { ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import IconPassword from "../icons/IconPassword.vue";
 

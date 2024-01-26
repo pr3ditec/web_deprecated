@@ -2,7 +2,7 @@
 import MenuNavItem from "@/components/layout/navs/MenuNavItem.vue";
 import NavItem from "@/components/layout/navs/NavItem.vue";
 import VueCollapsible from "vue-height-collapsible/vue3";
-import { ref, defineProps } from "vue";
+import { ref } from "vue";
 
 /** CONTROLE */
 const props = defineProps({
