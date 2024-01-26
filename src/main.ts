@@ -39,4 +39,8 @@ app.use(i18n);
 import Popper from "vue3-popper";
 app.component("Popper", Popper);
 
+import Request from "./helpers/Request";
+const request = new Request();
+app.provide("request", request);
+
 app.mount("#app");

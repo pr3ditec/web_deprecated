@@ -13,4 +13,23 @@ export default class Response {
             position: "top",
         }).fire();
     }
+
+    public static async confirmToast(mensagem: any) {
+        return Swal.mixin({
+            toast: true,
+            icon: "question",
+            title: mensagem,
+            position: "center",
+            showConfirmButton: true,
+            showCancelButton: true,
+        })
+            .fire()
+            .then((data) => {
+                if (data.isConfirmed) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+    }
 }

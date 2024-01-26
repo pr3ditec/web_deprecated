@@ -230,5 +230,10 @@
     "new-equipment": "Novo equipamento",
     "list-equipment": "Listar aparelhos",
     "new-type-service": "Novo tipo de serviço",
-    "list-type-service": "Listar tipo de serviços"
+    "list-type-service": "Listar tipo de serviços",
+    "seeMore": "Ver mais",
+    "created_at": "Criado",
+    "updated_at": "Atualizado",
+    "active": "Ativo",
+    "inactive": "Inativo"
 }

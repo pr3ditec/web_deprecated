@@ -2,7 +2,7 @@ import axios, { type AxiosResponse } from "axios";
 
 export default class Request {
     public constructor() {
-        axios.defaults.baseURL = "http://localhost:8001";
+        axios.defaults.baseURL = "http://localhost:8000/preditec";
         axios.defaults.timeout = 5000;
     }
 

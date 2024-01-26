@@ -167,5 +167,10 @@
     "list-equipment": "List equipment",
     "new-type-service": "New service type",
     "list-type-service": "List service type",
-    "name": "Name"
+    "name": "Name",
+    "seeMore": "See more",
+    "updated_at": "Updated at",
+    "created_at": "Created at",
+    "active": "Active",
+    "inactive": "Inactive"
 }
