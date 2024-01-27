@@ -1,4 +1,4 @@
-<script></script>
+<script setup></script>
 <template>
     <div class="flex flex-row w-full h-full" style="z-index: 2000 !important">
         <span

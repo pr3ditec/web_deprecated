@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, inject } from "vue";
+import { ref, onMounted, inject, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import Response from "@/helpers/Response";
@@ -9,6 +9,7 @@ import IconTrash from "@/components/icons/IconTrash.vue";
 import IconLoading from "@/components/icons/IconLoading.vue";
 import SpanStatus from "@/components/tables/SpanStatus.vue";
 import ReadableDate from "./ReadableDate.vue";
+import HelpTables from "./HelpTables.vue";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
 
@@ -28,27 +29,27 @@ const cols = ref([
     {
         field: "nome",
         title: t("name"),
-        headerClass: "semibold uppercase",
+        headerClass: "semibold uppercase dark:text-white",
     },
     {
         field: "ativo",
         title: "status",
-        headerClass: "semibold uppercase",
+        headerClass: "semibold uppercase dark:text-white",
     },
     {
         field: "created_at",
         title: t("created_at"),
-        headerClass: "semibold uppercase",
+        headerClass: "semibold uppercase dark:text-white",
     },
     {
         field: "updated_at",
         title: t("updated_at"),
-        headerClass: "semibold uppercase",
+        headerClass: "semibold uppercase dark:text-white",
     },
     {
         field: "btn",
         title: t("actions"),
-        headerClass: "semibold uppercase",
+        headerClass: "semibold uppercase dark:text-white",
     },
 ]);
 
@@ -76,20 +77,41 @@ const retrieveData = async () => {
 const updateStatus = async (id: number, ativo: any) => {
     const response = await Response.confirmToast("Alterar status ?");
     if (response) {
-        await request.put(`/aparelho/${id}`, {
-            ativo: !ativo,
-        });
+        await request
+            .put(`/aparelho/${id}`, {
+                ativo: !ativo,
+            })
+            .then((res: any) => {
+                Response.mensagemToast(res.data.status, res.data.message);
+            })
+            .finally(() => (isLoading.value = true));
     }
 };
 
 const removeData = async (id: number) => {
-    console.log("dataRemove");
+    const response = await Response.confirmToast("Deletar item ?");
+    if (response) {
+        await request
+            .del(`/aparelho/${id}`)
+            .then((res: any) => {
+                Response.mensagemToast(res.data.status, res.data.message);
+            })
+            .finally(() => (isLoading.value = true));
+    }
 };
 
 const pushRoute = (id: number) => {
     router.push(`${props.pushRoute}/${id}`);
 };
 /** FUNCOES */
+
+/** WATCHER */
+watch(isLoading, (old, novo) => {
+    if (old && !novo) {
+        retrieveData();
+    }
+});
+/** WATCHER */
 
 /** HOOKS */
 onMounted(() => {
@@ -101,7 +123,7 @@ onMounted(() => {
     <IconLoading v-if="isLoading" />
     <Vue3Datatable
         v-else
-        skin="bh-table-striped"
+        skin="bh-table-striped dark:text-white"
         :rows="rows"
         :columns="cols"
         :totalRows="rows?.length">
@@ -134,4 +156,5 @@ onMounted(() => {
             </div>
         </template>
     </Vue3Datatable>
+    <HelpTables />
 </template>

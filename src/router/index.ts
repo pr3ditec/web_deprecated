@@ -70,7 +70,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/equipment/:id",
         name: "equipment-profile",
-        component: () => null,
+        component: () => import("@/views/equipment/EquipmentProfile.vue"),
         meta: {
             search: "equipment,profile,aparelho,perfil",
         },

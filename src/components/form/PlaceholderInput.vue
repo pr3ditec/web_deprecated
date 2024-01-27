@@ -1,40 +1,39 @@
 <script lang="ts" setup>
-import { defineProps, ref, watch, computed } from "vue";
+import { onMounted } from "vue";
+import { ref, watch } from "vue";
 
 /** PROPS */
 const props = defineProps({
     model: String,
     label: String,
+    lock: Boolean,
 });
 const emits = defineEmits(["updateValue"]);
 /** PROPS */
 
 /** CONTROLE */
-const data: any = ref(props.model);
+const inputModel: any = ref("");
 /** CONTROLE */
 
-/** COMPUTED */
-const emptyData = computed(() => {
-    return data.value.length > 0 ? false : true;
+/** WATCHER */
+watch(inputModel, () => {
+    emits("updateValue", inputModel.value);
 });
-/** COMPUTED */
+/** WATCHER */
 
-/** WATCHER */
-watch(data, () => {
-    emits("updateValue", data.value);
+/** HOOKS */
+onMounted(() => {
+    inputModel.value = props.model;
 });
-/** WATCHER */
+/** HOOKS */
 </script>
 <template>
     <div class="flex flex-col gap-0 w-full">
-        <label>{{ $t(label!) }}</label>
+        <label class="dark:text-white">{{ $t(label!) }}</label>
         <input
-            class="form-input p-2"
+            :disabled="lock"
+            class="form-input p-2 mb-3 dark:text-white"
             type="text"
-            v-model="data"
-            :placeholder="$t('type-the') + $t(label!) + ' ......'" />
-        <label v-show="emptyData" class="text-danger lowercase">{{
-            $t("empty-data")
-        }}</label>
+            v-model="inputModel" />
     </div>
 </template>
