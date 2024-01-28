@@ -54,7 +54,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/equipment/new",
         name: "new-equipment",
-        component: () => null,
+        component: () => import("@/views/equipment/EquipmentNew.vue"),
         meta: {
             search: "new,new-equipment,equipment,novo,novo-aparelho,aparelho",
         },

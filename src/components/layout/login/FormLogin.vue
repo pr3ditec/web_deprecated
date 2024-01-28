@@ -1,86 +1,72 @@
 <script lang="ts" setup>
 import axios from "axios";
 import { useAppStore } from "@/stores/index";
-const store = useAppStore();
 import { useRouter } from "vue-router";
-const router = useRouter();
-import { getBaseURL } from "@/helpers/Host";
-import { onMounted, reactive, ref } from "vue";
+import { ref, inject } from "vue";
 import ButtonForm from "@/components/form/ButtonForm.vue";
 import AuthPassword from "@/components/auth/AuthPassword.vue";
 import AuthEmail from "@/components/auth/AuthEmail.vue";
 import AuthHeader from "@/components/auth/AuthHeader.vue";
 import Response from "@/helpers/Response";
 
-onMounted(async () => {
-    req.url = (await getBaseURL()) + "/admin/login";
-});
+/** CONTROLE */
+const router = useRouter();
+const store = useAppStore();
+const request = Object(inject("request"));
+/** CONTROLE */
 
-const loginForm = reactive({
-    login: "",
-    password: "",
-});
-
-const req = {
-    method: "post",
-    maxBodyLength: 10000,
-    url: "",
-    data: loginForm,
-};
-
+/** OPTIONS */
 const submitBtnDisabled = ref(false);
+const loginForm = ref({
+    email: "",
+    senha: "",
+});
+/** OPTIONS */
 
+/** FUNCOES */
 const submitForm = async () => {
     submitBtnDisabled.value = true;
-    Response.mensagemToast(submitBtnDisabled.value, "loginSuccess");
-    router.push("/");
+    await request
+        .post("/login", loginForm.value)
+        .then((res: any) => {
+            console.log(res.data.content.token);
 
-    // try {
-    //     store.logout();
-
-    //     const response = await axios.request(req);
-
-    //     if (response.data.status) {
-    //         store.setUserLogin(response.data.list.token);
-    //         store.setUserName(response.data.list.nome);
-    //         store.setUserId(response.data.list.usuario_id);
-    //         store.setDoctorId(response.data.list.medico_id);
-    //         store.setSecretaryId(response.data.list.secretaria_id);
-    //         store.setDevId(response.data.list.desenvolvedor_id);
-    //         store.setManagerId(response.data.list.gestor_id);
-    //         store.setPermissoes(response.data.list.permissoes);
-    //         // Instanciando a conexao global do axios
-    //         store.setRequest(response.data.list.token);
-
-    //         router.push("/");
-    //     } else {
-    //         Swal.fire("Login failed", response.data.message, "info");
-    //     }
-    // } catch (error) {
-    //     Swal.fire("Request failed: " + error);
-    // } finally {
-    //     submitBtnDisabled.value = false;
-    // }
+            if (res.data.status) {
+                Response.mensagemToast(res.data.status, res.data.message);
+                router.push("/");
+            } else {
+                Response.mensagemToast(res.data.status, res.data.message);
+                submitBtnDisabled.value = false;
+            }
+        })
+        .catch((err: any) => {
+            Response.mensagemToast(false, "errorOnLogin");
+            submitBtnDisabled.value = false;
+        });
 };
+/** FUNCOES */
 </script>
 
 <template>
-    <div class="w-full md:w-11/12 lg:mt-20 mx-auto">
+    <div
+        class="w-full md:w-11/12 lg:mt-20 mx-auto"
+        @keypress.enter="submitForm">
         <AuthHeader label="login" secondaryLabel="enterCredentialsToContinue" />
 
-        <form
-            class="space-y-5 dark:text-white p-4"
-            @submit.prevent="submitForm">
-            <AuthEmail label="idDoc" @updateValue="loginForm.login" />
+        <div class="space-y-5 dark:text-white p-4">
+            <AuthEmail
+                label="idDoc"
+                @updateValue="(value: any) => (loginForm.email = value)" />
 
-            <AuthPassword label="password" @updateValue="loginForm.password" />
+            <AuthPassword
+                label="password"
+                @updateValue="(value: any) => (loginForm.senha = value)" />
 
             <ButtonForm
                 :disabled="submitBtnDisabled"
-                type="submit"
                 text="login"
                 typeClass="btn-main"
-                @actionCallback="(value: any) => null" />
-        </form>
+                @actionCallback="submitForm" />
+        </div>
     </div>
 </template>

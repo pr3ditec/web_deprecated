@@ -254,5 +254,6 @@
     "indexMethodFailed": "Listar falhou",
     "emptyData": "Campo não pode ser vazio",
     "model": "Modelo",
-    "editEnabled": "Modo de edição ativado"
+    "editEnabled": "Modo de edição ativado",
+    "errorValidation": "Erro em validação de dados"
 }

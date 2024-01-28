@@ -190,5 +190,6 @@
     "indexMethodFailed": "Data cannot be retrieved",
     "emptyData": "Data cannot be empty",
     "model": "Model",
-    "editEnabled": "Edition mode enabled"
+    "editEnabled": "Edition mode enabled",
+    "errorValidation": "Error on data validation"
 }
