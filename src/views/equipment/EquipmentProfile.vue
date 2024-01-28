@@ -1,16 +1,20 @@
 <script lang="ts" setup>
 import { ref, watch, inject, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import IconLoading from "@/components/icons/IconLoading.vue";
 import ButtonForm from "@/components/form/ButtonForm.vue";
 import PlaceholderInput from "@/components/form/PlaceholderInput.vue";
 import FormCheckbox from "@/components/form/FormCheckbox.vue";
 import TitleForm from "@/components/form/TitleForm.vue";
 import IconPassword from "@/components/icons/IconPassword.vue";
-import IconRegister from "@/components/icons/IconRegister.vue";
+import IconEditDisabled from "@/components/icons/IconEditDisabled.vue";
+import IconEditEnable from "@/components/icons/IconEditEnable.vue";
+import ButtonReturn from "@/components/form/ButtonReturn.vue";
+import Response from "@/helpers/Response";
 
 /** CONTROLE */
 const route = useRoute();
+const router = useRouter();
 const formData: any = ref({});
 const isLoading: any = ref(true);
 const request: any = Object(inject("request"));
@@ -27,7 +31,14 @@ const retrieveData = async () => {
         .then(() => (isLoading.value = false));
 };
 const updateData = async () => {
-    console.log(formData.value);
+    await request
+        .put(`/aparelho/${route.params.id}`, formData.value)
+        .then((res: any) => {
+            Response.mensagemToast(res.data.status, res.data.message);
+        })
+        .finally(() => {
+            isLoading.value = true;
+        });
 };
 /** FUNCOES */
 
@@ -47,18 +58,19 @@ onMounted(() => {
 </script>
 <template>
     <!-- HEADER -->
+    <ButtonReturn pushRoute="/equipment/list" />
     <div class="flex flex-col gap-2 items-center">
         <TitleForm label="equipment" />
         <label v-show="!lockUpdate" class="text-danger lowercase">{{
             $t("editEnabled")
         }}</label>
-        <IconPassword v-if="lockUpdate" @click="lockUpdate = !lockUpdate" />
-        <IconRegister v-else @click="lockUpdate = !lockUpdate" />
+        <IconEditDisabled v-if="lockUpdate" @click="lockUpdate = !lockUpdate" />
+        <IconEditEnable v-else @click="lockUpdate = !lockUpdate" />
     </div>
     <!-- HEADER -->
 
     <!-- FORM -->
-    <IconLoading v-if="isLoading" class="mt-4"/>
+    <IconLoading v-if="isLoading" class="mt-4" />
     <div v-else class="flex flex-col w-3/4 mx-auto">
         <PlaceholderInput
             :lock="lockUpdate"
