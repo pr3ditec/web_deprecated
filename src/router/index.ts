@@ -129,14 +129,14 @@ router.beforeEach((to, from, next) => {
     }
 
     next(true);
-    /* if (!store.getUserToken()) {
+    if (!store.getUserToken) {
         if (to.path === "/auth/login" || to.path === "/auth/register") {
             next(true);
         }
         next({ path: "/auth/login" });
     } else {
         next(true);
-    } */
+    }
 });
 
 router.afterEach((to, from, next) => {

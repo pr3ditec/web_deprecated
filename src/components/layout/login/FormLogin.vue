@@ -30,11 +30,12 @@ const submitForm = async () => {
         .post("/login", loginForm.value)
         .then((res: any) => {
             if (res.data.status) {
-                Response.mensagemToast(res.data.status, res.data.message);
                 /** ARQUIVANDO TOKEN */
                 store.setUserToken(res.data.content.token);
                 request.setAxiosToken(res.data.content.token);
                 /** ARQUIVANDO TOKEN */
+
+                Response.mensagemToast(res.data.status, res.data.message);
 
                 router.push("/");
             } else {

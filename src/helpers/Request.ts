@@ -7,6 +7,7 @@ export default class Request {
     }
 
     public get(url: string): Promise<AxiosResponse<any>> {
+        this.setAxiosToken(localStorage.getItem("user.token"));
         return axios.get(url);
     }
 

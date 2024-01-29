@@ -40,7 +40,7 @@ const setActiveDropdown = () => {
 };
 
 const userName = computed(() => {
-    let fullName = store.getUserName();
+    let fullName = store.getUserName;
     if (fullName === null) {
         return null;
     }

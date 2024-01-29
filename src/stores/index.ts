@@ -27,6 +27,9 @@ export const useAppStore = defineStore("app", {
         setUserToken(value: any) {
             localStorage.setItem("user.token", value);
         },
+        setUserName(value: any) {
+            localStorage.setItem("user.name", value);
+        },
         logout() {
             localStorage.removeItem("user.token");
             localStorage.removeItem("user.id");
@@ -118,5 +121,6 @@ export const useAppStore = defineStore("app", {
     },
     getters: {
         getUserToken: () => localStorage.getItem("user.token"),
+        getUserName: () => localStorage.getItem("user.name"),
     },
 });
