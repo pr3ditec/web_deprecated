@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { onMounted } from "vue";
 import { ref, computed, watch } from "vue";
 
 /** CONTROLE */
@@ -32,18 +33,18 @@ watch(inputModel, () => {
             v-mask="mask"
             class="form-input"
             v-model="inputModel"
-            :placeholder="$t('type-the') + $t(label!) + ' ......'" />
+            :placeholder="$t('typeThe') + $t(label!) + ' ......'" />
         <input
             v-else
             type="text"
             class="form-input"
             v-model="inputModel"
-            :placeholder="$t('type-the') + $t(label!) + ' ......'" />
+            :placeholder="$t('typeThe') + $t(label!) + ' ......'" />
         <label
             v-if="required"
             v-show="emptyData"
             class="text-danger lowercase"
-            >{{ $t("empty-data") }}</label
+            >{{ $t("emptyData") }}</label
         >
     </div>
 </template>

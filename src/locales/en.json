@@ -191,5 +191,6 @@
     "emptyData": "Data cannot be empty",
     "model": "Model",
     "editEnabled": "Edition mode enabled",
-    "errorValidation": "Error on data validation"
+    "errorValidation": "Error on data validation",
+    "typeThe": "Type"
 }
