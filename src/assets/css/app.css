@@ -2,3 +2,9 @@
 @import "tailwind.css";
 @import "transitions.css";
 @import "lstech.css";
+
+.bh-pagination-info {
+    border-radius: 0.1rem;
+    padding: 0.2rem;
+    background-color: white;
+}

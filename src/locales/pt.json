@@ -256,5 +256,7 @@
     "model": "Modelo",
     "editEnabled": "Modo de edição ativado",
     "errorValidation": "Erro em validação de dados",
-    "typeThe": "Digite "
+    "typeThe": "Digite ",
+    "typeService": "Tipo de servico",
+    "searchTable": "Pesquise dados ....."
 }

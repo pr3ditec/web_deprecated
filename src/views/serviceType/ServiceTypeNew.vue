@@ -16,7 +16,6 @@ const request: any = Object(inject("request"));
 /** OPTIONS */
 const formData = ref({
     nome: "",
-    modelo: "",
     ativo: true,
 });
 /** OPTIONS */
@@ -24,7 +23,7 @@ const formData = ref({
 /** FUNCOES */
 const storeData = async () => {
     await request
-        .post("/aparelho", formData.value)
+        .post("/tipo-servico", formData.value)
         .then((res: any) => {
             Response.mensagemToast(res.data.status, res.data.message);
         })
@@ -35,16 +34,12 @@ const storeData = async () => {
 /** FUNCOES */
 </script>
 <template>
-    <TitleForm label="Aparelho" />
+    <TitleForm label="typeService" />
     <div class="flex flex-col w-3/4 mx-auto">
         <InputText
             label="name"
             :required="true"
             @update-value="(value: any) => (formData.nome = value)" />
-        <InputText
-            label="modelo"
-            :required="true"
-            @update-value="(value: any) => (formData.modelo = value)" />
         <Divider />
         <div class="flex flex-row mx-auto">
             <FormCheckbox

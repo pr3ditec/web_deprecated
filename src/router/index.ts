@@ -81,7 +81,7 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/type/new",
         name: "new-type-service",
-        component: () => null,
+        component: () => import("@/views/serviceType/ServiceTypeNew.vue"),
         meta: {
             search: "new,new-service-type,new-type-service,novo,novo-tipo-servico,tipo-servico",
         },
@@ -89,9 +89,17 @@ const routes: RouteRecordRaw[] = [
     {
         path: "/type/list",
         name: "list-type-service",
-        component: () => null,
+        component: () => import("@/views/serviceType/ServiceTypeList.vue"),
         meta: {
             search: "list,list-type,list-type-service,list-service-type,type-service,listar,listar-tipo-servico,tipo-servico",
+        },
+    },
+    {
+        path: "/type/:id",
+        name: "service-type-profile",
+        component: () => import("@/views/serviceType/serviceTypeProfile.vue"),
+        meta: {
+            search: "service type,profile,tipo servico,perfil",
         },
     },
     /** TIPO SERVICO */

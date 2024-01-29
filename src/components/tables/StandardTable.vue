@@ -12,6 +12,7 @@ import ReadableDate from "./ReadableDate.vue";
 import HelpTables from "./HelpTables.vue";
 import Vue3Datatable from "@bhplugin/vue3-datatable";
 import "@bhplugin/vue3-datatable/dist/style.css";
+import Searchbar from "./Searchbar.vue";
 
 /** CONTROLE */
 const t = useI18n().t;
@@ -22,6 +23,7 @@ const props = defineProps({
 });
 const router: any = useRouter();
 const isLoading: any = ref(true);
+const search: any = ref("");
 /** CONTROLE */
 
 /** OPTIONS */
@@ -59,7 +61,7 @@ const rows: any = ref([]);
 /** FUNCOES */
 const retrieveData = async () => {
     await request
-        .get("/aparelho")
+        .get(`${props.route}`)
         .then((res: any) => {
             if (!res.data.status) {
                 return Response.mensagemToast(
@@ -78,7 +80,7 @@ const updateStatus = async (id: number, ativo: any) => {
     const response = await Response.confirmToast("Alterar status ?");
     if (response) {
         await request
-            .put(`/aparelho/${id}`, {
+            .put(`${props.route}/${id}`, {
                 ativo: !ativo,
             })
             .then((res: any) => {
@@ -92,7 +94,7 @@ const removeData = async (id: number) => {
     const response = await Response.confirmToast("Deletar item ?");
     if (response) {
         await request
-            .del(`/aparelho/${id}`)
+            .del(`${props.route}/${id}`)
             .then((res: any) => {
                 Response.mensagemToast(res.data.status, res.data.message);
             })
@@ -121,40 +123,46 @@ onMounted(() => {
 </script>
 <template>
     <IconLoading v-if="isLoading" />
-    <Vue3Datatable
-        v-else
-        skin="bh-table-striped dark:text-white"
-        :rows="rows"
-        :columns="cols"
-        :totalRows="rows?.length">
-        <template #created_at="data">
-            <ReadableDate :date="data.value.created_at" />
-        </template>
-        <template #updated_at="data">
-            <ReadableDate :date="data.value.updated_at" />
-        </template>
-        <template #ativo="data">
-            <SpanStatus
-                :status="data.value.ativo"
-                @click="updateStatus(data.value.id, data.value.ativo)" />
-        </template>
-        <template #btn="data">
-            <div class="flex flex-row gap-1">
-                <ButtonForm
-                    class="basis-2/4"
-                    text="seeMore"
-                    typeClass="btn-primary"
-                    @actionCallback="pushRoute(data.value.id)" />
-                <ButtonIcon
-                    class="basis-1/4"
-                    typeClass="btn-dark "
-                    @actionCallback="removeData(data.value.id)">
-                    <template #icon>
-                        <IconTrash />
-                    </template>
-                </ButtonIcon>
-            </div>
-        </template>
-    </Vue3Datatable>
+    <div v-else class="flex flex-col gap-2">
+        <div class="mt-2 mb-2 mx-auto w-1/2">
+            <Searchbar @searchCallback="(value: any) => (search = value)" />
+        </div>
+        <Vue3Datatable
+            skin="bh-table-striped dark:text-white"
+            :rows="rows"
+            :columns="cols"
+            :search="search"
+            :sortable="true"
+            :totalRows="rows?.length">
+            <template #created_at="data">
+                <ReadableDate :date="data.value.created_at" />
+            </template>
+            <template #updated_at="data">
+                <ReadableDate :date="data.value.updated_at" />
+            </template>
+            <template #ativo="data">
+                <SpanStatus
+                    :status="data.value.ativo"
+                    @click="updateStatus(data.value.id, data.value.ativo)" />
+            </template>
+            <template #btn="data">
+                <div class="flex flex-row gap-1">
+                    <ButtonForm
+                        class="basis-2/4"
+                        text="seeMore"
+                        typeClass="btn-primary"
+                        @actionCallback="pushRoute(data.value.id)" />
+                    <ButtonIcon
+                        class="basis-1/4"
+                        typeClass="btn-dark "
+                        @actionCallback="removeData(data.value.id)">
+                        <template #icon>
+                            <IconTrash />
+                        </template>
+                    </ButtonIcon>
+                </div>
+            </template>
+        </Vue3Datatable>
+    </div>
     <HelpTables />
 </template>
