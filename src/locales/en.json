@@ -194,5 +194,6 @@
     "errorValidation": "Error on data validation",
     "typeThe": "Type",
     "typeService": "Service type",
-    "searchTable": "Search items ..."
+    "searchTable": "Search items ...",
+    "selectItem": "Select item ....."
 }

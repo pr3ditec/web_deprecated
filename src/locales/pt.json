@@ -258,5 +258,6 @@
     "errorValidation": "Erro em validação de dados",
     "typeThe": "Digite ",
     "typeService": "Tipo de servico",
-    "searchTable": "Pesquise dados ....."
+    "searchTable": "Pesquise dados .....",
+    "selectItem": "Selecione um item ....."
 }

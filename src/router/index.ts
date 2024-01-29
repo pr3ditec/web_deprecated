@@ -83,7 +83,7 @@ const routes: RouteRecordRaw[] = [
         name: "new-type-service",
         component: () => import("@/views/serviceType/ServiceTypeNew.vue"),
         meta: {
-            search: "new,new-service-type,new-type-service,novo,novo-tipo-servico,tipo-servico",
+            search: "new,new service type,new type service,novo,novo tipo servico,tipo servico",
         },
     },
     {
@@ -103,6 +103,33 @@ const routes: RouteRecordRaw[] = [
         },
     },
     /** TIPO SERVICO */
+
+    /** CLIENTE */
+    {
+        path: "/client/new",
+        name: "new-client",
+        component: () => import("@/views/client/ClientNew.vue"),
+        meta: {
+            search: "new,new client,new client,novo,novo cliente,cliente",
+        },
+    },
+    {
+        path: "/client/list",
+        name: "list-client",
+        component: () => import("@/views/client/ClientList.vue"),
+        meta: {
+            search: "list,list client,client,listar,listar-cliente,cliente",
+        },
+    },
+    {
+        path: "/client/:id",
+        name: "client-profile",
+        component: () => import("@/views/client/ClientProfile.vue"),
+        meta: {
+            search: "service type,profile,tipo servico,perfil",
+        },
+    },
+    /** CLIENTE */
 
     /** PAGINAS NAO ECONTRADAS */
     {

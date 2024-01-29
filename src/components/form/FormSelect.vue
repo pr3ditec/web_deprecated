@@ -21,7 +21,7 @@ const getData = async () => {
     await request
         .get(`${props.route}`)
         .then((res: any) => {
-            selectData.value = res.data.list;
+            selectData.value = res.data.content;
             isLoading.value = false;
         })
         .catch((err) => console.log("form-select-error"));
@@ -44,14 +44,16 @@ onBeforeMount(() => {
     <div class="row mt-4 w-full">
         <div class="col-12">
             <div class="flex flex-col align-items-start">
-                <label class="fw-bold tracking-wide">{{ $t(name!) }}</label>
+                <label class="fw-bold tracking-wide dark:text-white">{{
+                    $t(name!)
+                }}</label>
                 <select
                     :disabled="isLoading"
-                    class="form-select p-2"
+                    class="form-select p-2 dark:text-white"
                     @change="emits('updateValue', select_model)"
                     v-model="select_model">
                     <option disabled selected :value="0">
-                        {{ $t("select-item") }}
+                        {{ $t("selectItem") }}
                     </option>
                     <option v-for="data in selectData" :value="data.id">
                         {{ data[field!] }}
@@ -61,7 +63,7 @@ onBeforeMount(() => {
                     v-if="required"
                     v-show="isEmpty"
                     class="tracking-wide text-danger"
-                    >{{ $t("empty-data") }}</label
+                    >{{ $t("emptyData") }}</label
                 >
             </div>
         </div>
