@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, computed, onBeforeMount } from "vue";
 import Request from "@/helpers/Request";
+import { onMounted } from "vue";
 
 /** CONTROLE */
 const request = new Request();
@@ -9,10 +10,11 @@ const props = defineProps({
     name: String,
     required: Boolean,
     field: String,
+    selected: Number,
 });
 const emits = defineEmits(["updateValue"]);
 const selectData: any = ref([]);
-const select_model: any = ref(0);
+const select_model: any = ref(props.selected ?? 0);
 const isLoading: any = ref(true);
 /** CONTROLE */
 
@@ -38,6 +40,7 @@ const isEmpty = computed(() => {
 onBeforeMount(() => {
     getData();
 });
+
 /** HOOKS */
 </script>
 <template>

@@ -132,7 +132,7 @@
     "hello": "Olá",
     "name": "Nome",
     "street": "rua",
-    "neighborhood": "bairro",
+    "neighborhood": "Bairro",
     "state": "estado",
     "number": "número",
     "adjunct": "complemento",
@@ -259,5 +259,8 @@
     "typeThe": "Digite ",
     "typeService": "Tipo de servico",
     "searchTable": "Pesquise dados .....",
-    "selectItem": "Selecione um item ....."
+    "selectItem": "Selecione um item .....",
+    "noAddrAvailable": "Nenhum endereço vinculado com cliente",
+    "noDocAvailable": "Nenhum documento vinculado com cliente",
+    "noPhoneAvailable": "Nenhum telefone vinculado com cliente"
 }

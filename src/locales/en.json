@@ -195,5 +195,9 @@
     "typeThe": "Type",
     "typeService": "Service type",
     "searchTable": "Search items ...",
-    "selectItem": "Select item ....."
+    "selectItem": "Select item .....",
+    "neighborhood": "Neighbourhood",
+    "noAddrAvailable": "No address available for this client",
+    "noDocAvailable": "No document available for this client",
+    "noPhoneAvailable": "No phone available for this client"
 }

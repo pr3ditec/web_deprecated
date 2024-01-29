@@ -10,6 +10,10 @@ import FormSelect from "@/components/form/FormSelect.vue";
 import IconEditDisabled from "@/components/icons/IconEditDisabled.vue";
 import IconEditEnable from "@/components/icons/IconEditEnable.vue";
 import ButtonReturn from "@/components/form/ButtonReturn.vue";
+import AddressProfile from "@/components/profile/AddressProfile.vue";
+import DocumentProfile from "@/components/profile/DocumentProfile.vue";
+import TelephoneProfile from "@/components/profile/TelephoneProfile.vue";
+import NotAvailable from "@/components/profile/NotAvailable.vue";
 import Response from "@/helpers/Response";
 
 /** CONTROLE */
@@ -31,7 +35,7 @@ const retrieveData = async () => {
     await request
         .get(`/cliente/${route.params.id}`)
         .then((res: any) => {
-            console.log(res.data.content);
+            console.log(res.data.content.documento);
             formData.value = res.data.content;
         })
         .then(() => (isLoading.value = false));
@@ -86,6 +90,10 @@ onMounted(() => {
             @updateValue="(value: any) => (formData.cliente.nome = value)" />
         <!-- NOME -->
 
+        <!-- STATUS DO CLIENTE GERAL -->
+        <FormCheckbox @updateValue="(value: any) => (formData.ativo = value)" />
+        <!-- STATUS DO CLIENTE GERAL -->
+
         <!-- STATUS DO CLIENTE -->
         <div class="mb-2">
             <PlaceholderInput
@@ -106,34 +114,25 @@ onMounted(() => {
         <!-- STATUS DO CLIENTE -->
 
         <!-- TELEFONE -->
-        <PlaceholderInput
-            :lock="lockUpdate"
-            :model="formData.telefone.numero"
-            label="telephone"
-            @updateValue="(value: any) => (formData.telefone.numero = value)" />
+        <TelephoneProfile
+            v-if="formData.telefone.length != 0"
+            :telephone="formData.telefone" />
+        <NotAvailable v-else label="noPhoneAvailable" />
         <!-- TELEFONE -->
 
         <!-- DOCUMENTO -->
-        <PlaceholderInput
-            :lock="lockUpdate"
-            :model="formData.documento.numero"
-            label="document"
-            @updateValue="
-                (value: any) => (formData.documento.numero = value)
-            " />
+        <DocumentProfile
+            v-if="formData.documento.length != 0"
+            :document="formData.documento" />
+        <NotAvailable v-else label="noDocAvailable" />
         <!-- DOCUMENTO -->
 
         <!-- ENDERECO -->
-        <PlaceholderInput
-            :lock="lockUpdate"
-            :model="formData.endereco.nome"
-            label="address"
-            @updateValue="(value: any) => (formData.endereco.nome = value)" />
+        <AddressProfile
+            v-if="formData.endereco.length != 0"
+            :address="formData.endereco" />
+        <NotAvailable v-else label="noAddrAvailable" />
         <!-- ENDERECO -->
-
-        <!-- STATUS DO CLIENTE GERAL -->
-        <FormCheckbox @updateValue="(value: any) => (formData.ativo = value)" />
-        <!-- STATUS DO CLIENTE GERAL -->
 
         <div class="w-1/4 mt-3">
             <ButtonForm
