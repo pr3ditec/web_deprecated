@@ -41,6 +41,7 @@ const retrieveData = async () => {
         .then(() => (isLoading.value = false));
 };
 const updateData = async () => {
+    return console.log(formData.value);
     await request
         .put(`/cliente/${route.params.id}`, formData.value)
         .then((res: any) => {
@@ -130,7 +131,8 @@ onMounted(() => {
         <!-- ENDERECO -->
         <AddressProfile
             v-if="formData.endereco.length != 0"
-            :address="formData.endereco" />
+            :address="formData.endereco"
+            @actionCallback="(value: any) => (formData.endereco = value)" />
         <NotAvailable v-else label="noAddrAvailable" />
         <!-- ENDERECO -->
 

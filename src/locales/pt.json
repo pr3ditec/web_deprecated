@@ -262,5 +262,6 @@
     "selectItem": "Selecione um item .....",
     "noAddrAvailable": "Nenhum endereço vinculado com cliente",
     "noDocAvailable": "Nenhum documento vinculado com cliente",
-    "noPhoneAvailable": "Nenhum telefone vinculado com cliente"
+    "noPhoneAvailable": "Nenhum telefone vinculado com cliente",
+    "cep": "Cep"
 }

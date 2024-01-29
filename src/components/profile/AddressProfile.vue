@@ -6,13 +6,14 @@ import FormSelect from "@/components/form/FormSelect.vue";
 const props = defineProps({
     address: Object,
 });
+const emits = defineEmits(["updateValue"]);
 const modelData = ref(props.address);
 const indexModel = ref(0);
 /** CONTYROLE */
 
 /** WATCH */
-watch(modelData.value.nome, () => {
-    console.log("modelData");
+watch(modelData.value, () => {
+    emits("updateValue", modelData.value);
 });
 /** WATCH */
 </script>
@@ -55,6 +56,11 @@ watch(modelData.value.nome, () => {
                     v-model="modelData[indexModel].numero"
                     :placeholder="$t('number')" />
             </div>
+            <input
+                type="text"
+                class="form-input dark:text-white"
+                v-model="modelData[indexModel].cep"
+                :placeholder="$t('cep')" />
             <FormSelect
                 route="cidade"
                 name="city"
