@@ -25,4 +25,10 @@ export default class Request {
     public del(url: string): Promise<AxiosResponse<any>> {
         return axios.delete(url);
     }
+
+    /** TOKEN */
+    public setAxiosToken(value: any) {
+        axios.defaults.headers.common["Authorization"] = value;
+    }
+    /** TOKEN */
 }

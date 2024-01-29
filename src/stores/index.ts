@@ -24,73 +24,14 @@ export const useAppStore = defineStore("app", {
     }),
 
     actions: {
-        setUserName(name) {
-            localStorage.setItem("user.name", name);
-        },
-        getUserName() {
-            return localStorage.getItem("user.name");
-        },
-        setUserEmail(email) {
-            localStorage.setItem("user.email", email);
-        },
-        getUserEmail() {
-            return localStorage.getItem("user.email");
-        },
-        setUserLogin(token) {
-            localStorage.setItem("user.token", token);
+        setUserToken(value: any) {
+            localStorage.setItem("user.token", value);
         },
         logout() {
             localStorage.removeItem("user.token");
             localStorage.removeItem("user.id");
             localStorage.removeItem("user.name");
             localStorage.removeItem("user.email");
-            localStorage.removeItem("user.permissoes");
-            localStorage.removeItem("doctor.id");
-            localStorage.removeItem("secretary.id");
-            localStorage.removeItem("dev.id");
-            localStorage.removeItem("manager.id");
-        },
-        getUserToken() {
-            return localStorage.getItem("user.token");
-        },
-        setUserId(id) {
-            localStorage.setItem("user.id", id);
-        },
-        getUserId() {
-            return localStorage.getItem("user.id");
-        },
-        setDoctorId(doctorId) {
-            localStorage.setItem("doctor.id", doctorId);
-        },
-        getDoctorId() {
-            return localStorage.getItem("doctor.id");
-        },
-        setSecretaryId(secretaryId) {
-            localStorage.setItem("secretary.id", secretaryId);
-        },
-        getSecretaryId() {
-            return localStorage.getItem("secretary.id");
-        },
-        setDevId(devId) {
-            localStorage.setItem("dev.id", devId);
-        },
-        getDevId() {
-            return localStorage.getItem("dev.id");
-        },
-        setManagerId(managerId) {
-            localStorage.setItem("manager.id", managerId);
-        },
-        getManagerId() {
-            return localStorage.getItem("manager.id");
-        },
-
-        setPermissoes(permissoes) {
-            localStorage.setItem("user.permissoes", JSON.stringify(permissoes));
-        },
-
-        getPermissoes() {
-            const permissoes = localStorage.getItem("user.permissoes");
-            return permissoes ? JSON.parse(permissoes) : null;
         },
 
         setMainLayout(payload: any = null) {
@@ -174,17 +115,8 @@ export const useAppStore = defineStore("app", {
                 this.toggleSidebar();
             }
         },
-        getUserPermissions() {
-            const permissoes = this.getPermissoes();
-            return permissoes ? permissoes : {};
-        },
-
-        checkPermission(routeName: string) {
-            const permissions = this.getUserPermissions();
-            return (
-                Array.isArray(permissions) && permissions.includes(routeName)
-            );
-        },
     },
-    getters: {},
+    getters: {
+        getUserToken: () => localStorage.getItem("user.token"),
+    },
 });

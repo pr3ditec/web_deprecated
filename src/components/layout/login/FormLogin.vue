@@ -29,10 +29,13 @@ const submitForm = async () => {
     await request
         .post("/login", loginForm.value)
         .then((res: any) => {
-            console.log(res.data.content.token);
-
             if (res.data.status) {
                 Response.mensagemToast(res.data.status, res.data.message);
+                /** ARQUIVANDO TOKEN */
+                store.setUserToken(res.data.content.token);
+                request.setAxiosToken(res.data.content.token);
+                /** ARQUIVANDO TOKEN */
+
                 router.push("/");
             } else {
                 Response.mensagemToast(res.data.status, res.data.message);
