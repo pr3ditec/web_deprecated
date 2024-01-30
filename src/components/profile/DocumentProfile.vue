@@ -11,8 +11,8 @@ const indexModel = ref(0);
 /** CONTYROLE */
 
 /** WATCH */
-watch(modelData.value.nome, () => {
-    console.log("modelData");
+watch(modelData.value, () => {
+    emits("updateValue", modelData.value);
 });
 /** WATCH */
 </script>
@@ -36,7 +36,7 @@ watch(modelData.value.nome, () => {
             <input
                 type="text"
                 class="form-input"
-                v-model="modelData[indexModel].nome"
+                v-model="modelData[indexModel].numero"
                 :placeholder="$t('numero')" />
             <FormSelect
                 route="tipo-documento"

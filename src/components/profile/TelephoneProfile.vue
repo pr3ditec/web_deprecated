@@ -6,13 +6,15 @@ import FormSelect from "@/components/form/FormSelect.vue";
 const props = defineProps({
     telephone: Object,
 });
-const modelData = ref(props.document);
+const emits = defineEmits(["updateValue", "updateSelectedId"]);
+const modelData = ref(props.telephone);
 const indexModel = ref(0);
 /** CONTYROLE */
 
 /** WATCH */
-watch(modelData.value.nome, () => {
-    console.log("modelData");
+watch(modelData.value, () => {
+    emits("updateSelectedId", indexModel);
+    emits("updateValue", modelData.value);
 });
 /** WATCH */
 </script>
@@ -36,12 +38,15 @@ watch(modelData.value.nome, () => {
             <input
                 type="text"
                 class="form-input"
-                v-model="modelData[indexModel].nome"
+                v-model="modelData[indexModel].numero"
                 :placeholder="$t('number')" />
             <FormSelect
                 route="tipo-telefone"
                 name="type"
                 field="tipo"
+                @update-value="
+                    (value) => (modelData[indexModel].tipo_telefone_id = value)
+                "
                 :selected="modelData[indexModel].tipo_telefone_id" />
         </div>
     </Transition>

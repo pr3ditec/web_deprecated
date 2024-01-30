@@ -6,13 +6,14 @@ import FormSelect from "@/components/form/FormSelect.vue";
 const props = defineProps({
     address: Object,
 });
-const emits = defineEmits(["updateValue"]);
+const emits = defineEmits(["updateValue", "updateSelectedId"]);
 const modelData = ref(props.address);
 const indexModel = ref(0);
 /** CONTYROLE */
 
 /** WATCH */
 watch(modelData.value, () => {
+    emits("updateSelectedId", indexModel);
     emits("updateValue", modelData.value);
 });
 /** WATCH */
@@ -65,6 +66,9 @@ watch(modelData.value, () => {
                 route="cidade"
                 name="city"
                 field="nome"
+                @update-value="
+                    (value) => (modelData[indexModel].cidade_id = value)
+                "
                 :selected="modelData[indexModel].cidade_id" />
         </div>
     </Transition>
