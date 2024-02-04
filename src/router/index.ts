@@ -163,7 +163,6 @@ router.beforeEach((to, from, next) => {
         store.setMainLayout("app");
     }
 
-    next(true);
     if (!store.getUserToken) {
         if (to.path === "/auth/login" || to.path === "/auth/register") {
             next(true);

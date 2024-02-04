@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import TitleDivision from "@/components/layout/sidebar-items/TitleDivision.vue";
 import DropdownWidget from "./dropdown/DropdownWidget.vue";
-import IconComponents from "@/components/icons/IconComponents.vue";
 import IconUser from "@/components/icons/IconUser.vue";
+import IconLocation from "@/components/icons/IconLocation.vue";
+import IconPhone from "@/components/icons/IconPhone.vue"
 </script>
 <template>
     <!-- TITULO -->
@@ -27,7 +28,18 @@ import IconUser from "@/components/icons/IconUser.vue";
             { path: '/phone/new', label: 'new' },
             { path: '/phone/list', label: 'list' },
         ]">
-        <IconComponents />
+        <IconPhone />
     </DropdownWidget>
     <!-- TELEFONES -->
+
+    <!-- ENDERECO -->
+    <DropdownWidget
+        label="address"
+        :routes="[
+            { path: '/address/new', label: 'new' },
+            { path: '/address/list', label: 'list' },
+        ]">
+        <IconLocation />
+    </DropdownWidget>
+    <!-- ENDERECO -->
 </template>

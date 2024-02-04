@@ -7,7 +7,7 @@ import IconComponents from "@/components/icons/IconComponents.vue";
 </script>
 <template>
     <!-- TITULO -->
-    <TitleDivision title="dashboard" />
+    <TitleDivision title="service" />
     <!-- TITULO -->
 
     <!-- SERVICOS -->
@@ -20,17 +20,6 @@ import IconComponents from "@/components/icons/IconComponents.vue";
         <IconRegister />
     </DropdownWidget>
     <!-- SERVICOS -->
-
-    <!-- APARELHOS -->
-    <DropdownWidget
-        label="equipment"
-        :routes="[
-            { path: '/equipment/new', label: 'new' },
-            { path: '/equipment/list', label: 'list' },
-        ]">
-        <IconComponents />
-    </DropdownWidget>
-    <!-- APARELHOS -->
 
     <!-- TIPO DE SERVICO -->
     <DropdownWidget

@@ -120,7 +120,7 @@ export const useAppStore = defineStore("app", {
         },
     },
     getters: {
-        getUserToken: () => localStorage.getItem("user.token"),
+        getUserToken: () => localStorage.getItem("user.token") ? true : false,
         getUserName: () => localStorage.getItem("user.name"),
     },
 });

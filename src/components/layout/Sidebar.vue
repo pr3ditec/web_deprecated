@@ -10,6 +10,7 @@ import SidebarLogo from "@/components/layout/sidebar-items/SidebarLogo.vue";
 import MenuDashboard from "./sidebar-items/MenuDashboard.vue";
 import MenuClient from "./sidebar-items/MenuClient.vue";
 import MenuOthers from "./sidebar-items/MenuOthers.vue";
+import MenuEquipment from "./sidebar-items/MenuEquipment.vue";
 /** MENU PARA USAR */
 
 const store = useAppStore();
@@ -54,6 +55,7 @@ onMounted(() => {
                     <ul
                         class="relative font-semibold space-y-0.5 p-4 py-0 mb-10">
                         <MenuDashboard />
+                        <MenuEquipment />
                         <MenuClient />
                         <MenuOthers />
                     </ul>
