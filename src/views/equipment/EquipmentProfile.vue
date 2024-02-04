@@ -11,6 +11,8 @@ import IconEditDisabled from "@/components/icons/IconEditDisabled.vue";
 import IconEditEnable from "@/components/icons/IconEditEnable.vue";
 import ButtonReturn from "@/components/form/ButtonReturn.vue";
 import Response from "@/helpers/Response";
+import FormSelect from "@/components/form/FormSelect.vue";
+import Divider from "@/components/layout/Divider.vue";
 
 /** CONTROLE */
 const route = useRoute();
@@ -79,9 +81,19 @@ onMounted(() => {
             @updateValue="(value: any) => (formData.nome = value)" />
         <PlaceholderInput
             :lock="lockUpdate"
-            :model="formData.modelo"
-            label="model"
-            @updateValue="(value: any) => (formData.modelo = value)" />
+            :model="formData.descricao"
+            label="description"
+            @updateValue="(value: any) => (formData.descricao = value)" />
+        <FormSelect
+            route="tipo-aparelho"
+            name="equipment-type"
+            :required="true"
+            field="nome"
+            :selected="formData.tipo_aparelho_id"
+            @updateValue="
+                (value: any) => (formData.tipo_aparelho_id = value)
+            " />
+        <Divider />
         <FormCheckbox @updateValue="(value: any) => (formData.ativo = value)" />
         <div class="w-1/4 mt-3">
             <ButtonForm

@@ -7,6 +7,7 @@ import FormCheckbox from "@/components/form/FormCheckbox.vue";
 import ButtonForm from "@/components/form/ButtonForm.vue";
 import Response from "@/helpers/Response";
 import Divider from "@/components/layout/Divider.vue";
+import FormSelect from "@/components/form/FormSelect.vue";
 
 /** CONTROLE */
 const t = useI18n().t;
@@ -16,7 +17,8 @@ const request: any = Object(inject("request"));
 /** OPTIONS */
 const formData = ref({
     nome: "",
-    modelo: "",
+    descricao: "",
+    tipo_aparelho_id: 0,
     ativo: true,
 });
 /** OPTIONS */
@@ -42,9 +44,17 @@ const storeData = async () => {
             :required="true"
             @update-value="(value: any) => (formData.nome = value)" />
         <InputText
-            label="modelo"
+            label="description"
             :required="true"
-            @update-value="(value: any) => (formData.modelo = value)" />
+            @update-value="(value: any) => (formData.descricao = value)" />
+        <FormSelect
+            route="tipo-aparelho"
+            name="equipment-type"
+            :required="true"
+            field="nome"
+            @updateValue="
+                (value: any) => (formData.tipo_aparelho_id = value)
+            " />
         <Divider />
         <div class="flex flex-row mx-auto">
             <FormCheckbox
