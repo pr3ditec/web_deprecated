@@ -77,6 +77,34 @@ const routes: RouteRecordRaw[] = [
     },
     /** APARELHO */
 
+    /** TIPO DE APARELHO */
+    {
+        path: "/equipment/type/new",
+        name: "new-equipment-type",
+        component: () => import("@/views/equipmentType/EquipmentTypeNew.vue"),
+        meta: {
+            search: "new,new-equipment,equipment,novo,novo-aparelho,aparelho",
+        },
+    },
+    {
+        path: "/equipment/type/list",
+        name: "list-equipment-type",
+        component: () => import("@/views/equipmentType/EquipmentTypeList.vue"),
+        meta: {
+            search: "list,list-equipment,equipment,listar,listar-aparelho,aparelho",
+        },
+    },
+    {
+        path: "/equipment/type/:id",
+        name: "equipment-profile-type",
+        component: () =>
+            import("@/views/equipmentType/EquipmentTypeProfile.vue"),
+        meta: {
+            search: "equipment,profile,aparelho,perfil",
+        },
+    },
+    /** TIPO DE APARELHO */
+
     /** TIPO SERVICO */
     {
         path: "/type/new",
